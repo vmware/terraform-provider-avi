@@ -1,2 +1,2 @@
 # terraform-provider-avi
-Terraform Provider for Avi Vantage Platform
+Terraform Provider for Avi Vantage 
