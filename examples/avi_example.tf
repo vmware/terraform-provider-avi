@@ -53,7 +53,7 @@ output "aws_subnet" {
 provider "avi" {
   avi_username = "admin"
   //avi_password = "admin"
-  avi_password = "avi123"
+  avi_password = "avi123$%"
   avi_controller = "10.10.25.42"
   //avi_controller = "${aws_instance.avi_controller.private_ip}"
   avi_tenant = "admin"
@@ -67,24 +67,33 @@ resource "avi_healthmonitor" "test_hm" {
 
 
 resource "avi_pool" "testpool" {
-  name= "p4",
+  name= "p42",
   health_monitor_refs= ["${avi_healthmonitor.test_hm.id}"]
   servers {
     ip= {
       type= "V4",
       addr= "10.90.64.66",
     }
+    port= 8080
   }
   servers {
     ip= {
       type= "V4",
-      addr= "10.90.64.68",
+      addr= "10.90.64.42",
+    }
+    port= 8080
+  }
+  servers {
+    ip= {
+      type= "V4",
+      addr= "10.90.64.70",
     }
   }
   fail_action= {
     type= "FAIL_ACTION_CLOSE_CONN"
   }
 }
+
 
 
 output "test_pool_servers" {
@@ -102,4 +111,13 @@ output "test_pool_hm" {
 
 output "test_pool_name" {
   value = "${avi_pool.testpool.name}"
+}
+
+
+resource "avi_pool" "foopool" {
+  name= "p-foo"
+}
+
+output "foopool" {
+  value = "${avi_pool.foopool.name}"
 }
