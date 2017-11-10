@@ -23,7 +23,7 @@ func SchemaToAviData(d interface{}, s map[string]*schema.Schema) (interface{}, e
 	case map[string]interface{}:
 		m := make(map[string]interface{})
 		for k, v := range d.(map[string]interface{}) {
-			if obj, err := SchemaToAviData(v, nil); err == nil {
+			if obj, err := SchemaToAviData(v, nil); err == nil && obj != nil {
 				m[k] = obj
 			} else {
 				log.Printf("Error in parsing k: %v v: %v", k, v)
@@ -36,14 +36,20 @@ func SchemaToAviData(d interface{}, s map[string]*schema.Schema) (interface{}, e
 		varray := d.([]interface{})
 		for i := 0; i < len(varray); i++ {
 			obj, err := SchemaToAviData(varray[i], nil)
-			if err == nil {
+			if err == nil && obj != nil {
 				objList = append(objList, obj)
 			}
+		}
+		if len(objList) == 0 {
+			return nil, nil
 		}
 		log.Printf("List elem %v objList %v", d, objList)
 		return objList, nil
 
 	case *schema.Set:
+		if len(d.(*schema.Set).List()) == 0 {
+			return nil, nil
+		}
 		obj, err := SchemaToAviData(d.(*schema.Set).List()[0], nil)
 		log.Printf("Set elem %v obj %v", d.(*schema.Set).List()[0], obj)
 		return obj, err
@@ -53,7 +59,7 @@ func SchemaToAviData(d interface{}, s map[string]*schema.Schema) (interface{}, e
 		m := make(map[string]interface{})
 		r := d.(*schema.ResourceData)
 		for k, v := range s {
-			if obj, err := SchemaToAviData(r.Get(k), nil); err == nil {
+			if obj, err := SchemaToAviData(r.Get(k), nil); err == nil && obj != nil {
 				m[k] = obj
 			} else {
 				log.Printf("Error in converting k: %v v: %v", k, v)
