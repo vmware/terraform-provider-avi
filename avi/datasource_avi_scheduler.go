@@ -7,13 +7,9 @@ package avi
 
 import "github.com/hashicorp/terraform/helper/schema"
 
-func ResourceFailAction() *schema.Resource {
+func dataSourceAviScheduler() *schema.Resource {
 	return &schema.Resource{
-		Schema: map[string]*schema.Schema{
-			"type": &schema.Schema{
-				Type:     schema.TypeString,
-				Required: true,
-			},
-		},
+		Read:   ResourceAviSchedulerRead,
+		Schema: ResourceSchedulerSchema(),
 	}
 }
