@@ -76,7 +76,6 @@ resource "avi_healthmonitor" "test_hm" {
 	name= "hm1"
 	type= "HEALTH_MONITOR_HTTP"
 }
-
 resource "avi_pool" "testpool" {
 	name = "p42-%s",
 	health_monitor_refs= ["${avi_healthmonitor.test_hm.id}"]

@@ -9,27 +9,108 @@ import (
 	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform/helper/schema"
 	"log"
+	"strings"
 )
 
 func ResourceHealthMonitorSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
+		"description": &schema.Schema{
+			Type:     schema.TypeString,
+			Optional: true,
+		},
+		"dns_monitor": &schema.Schema{
+			Type:     schema.TypeSet,
+			Optional: true,
+			Elem:     ResourceHealthMonitorDNSSchema(),
+			Set: func(v interface{}) int {
+				return 0
+			},
+		},
+		"external_monitor": &schema.Schema{
+			Type:     schema.TypeSet,
+			Optional: true,
+			Elem:     ResourceHealthMonitorExternalSchema(),
+			Set: func(v interface{}) int {
+				return 0
+			},
+		},
+		"failed_checks": &schema.Schema{
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  2,
+		},
+		"http_monitor": &schema.Schema{
+			Type:     schema.TypeSet,
+			Optional: true,
+			Elem:     ResourceHealthMonitorHttpSchema(),
+			Set: func(v interface{}) int {
+				return 0
+			},
+		},
+		"https_monitor": &schema.Schema{
+			Type:     schema.TypeSet,
+			Optional: true,
+			Elem:     ResourceHealthMonitorHttpSchema(),
+			Set: func(v interface{}) int {
+				return 0
+			},
+		},
+		"is_federated": &schema.Schema{
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  false,
+		},
+		"monitor_port": &schema.Schema{
+			Type:     schema.TypeInt,
+			Optional: true,
+		},
 		"name": &schema.Schema{
 			Type:     schema.TypeString,
 			Required: true,
+		},
+		"receive_timeout": &schema.Schema{
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  4,
+		},
+		"send_interval": &schema.Schema{
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  10,
+		},
+		"successful_checks": &schema.Schema{
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  2,
+		},
+		"tcp_monitor": &schema.Schema{
+			Type:     schema.TypeSet,
+			Optional: true,
+			Elem:     ResourceHealthMonitorTcpSchema(),
+			Set: func(v interface{}) int {
+				return 0
+			},
+		},
+		"tenant_ref": &schema.Schema{
+			Type:     schema.TypeString,
+			Optional: true,
+		},
+		"type": &schema.Schema{
+			Type:     schema.TypeString,
+			Required: true,
+		},
+		"udp_monitor": &schema.Schema{
+			Type:     schema.TypeSet,
+			Optional: true,
+			Elem:     ResourceHealthMonitorUdpSchema(),
+			Set: func(v interface{}) int {
+				return 0
+			},
 		},
 		"uuid": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
-		},
-		"url": &schema.Schema{
-			Type:     schema.TypeString,
-			Optional: true,
-			Computed: true,
-		},
-		"type": &schema.Schema{
-			Type:     schema.TypeString,
-			Required: true,
 		},
 	}
 }
@@ -57,8 +138,6 @@ func ResourceAviHealthMonitorRead(d *schema.ResourceData, meta interface{}) erro
 			return nil
 		}
 	} else {
-		log.Printf("ResourceAviHealthMonitorRead CURRENT obj %v\n", d)
-
 		d.SetId("")
 		return nil
 	}
@@ -77,16 +156,6 @@ func ResourceAviHealthMonitorRead(d *schema.ResourceData, meta interface{}) erro
 	return nil
 }
 
-func resourceAviHealthMonitorUpdate(d *schema.ResourceData, meta interface{}) error {
-	s := ResourceHealthMonitorSchema()
-	err := ApiCreateOrUpdate(d, meta, "healthmonitor", s)
-	if err == nil {
-		err = ResourceAviHealthMonitorRead(d, meta)
-	}
-	log.Printf("[DEBUG] updated object %v: %v", "healthmonitor", d)
-	return err
-}
-
 func resourceAviHealthMonitorCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceHealthMonitorSchema()
 	err := ApiCreateOrUpdate(d, meta, "healthmonitor", s)
@@ -98,6 +167,16 @@ func resourceAviHealthMonitorCreate(d *schema.ResourceData, meta interface{}) er
 	return err
 }
 
+func resourceAviHealthMonitorUpdate(d *schema.ResourceData, meta interface{}) error {
+	s := ResourceHealthMonitorSchema()
+	err := ApiCreateOrUpdate(d, meta, "healthmonitor", s)
+	if err == nil {
+		err = ResourceAviHealthMonitorRead(d, meta)
+	}
+	log.Printf("[DEBUG] updated object %v: %v", "healthmonitor", d)
+	return err
+}
+
 func resourceAviHealthMonitorDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "healthmonitor"
 	log.Println("[INFO] ResourceAviHealthMonitorRead Avi Client")
@@ -106,7 +185,7 @@ func resourceAviHealthMonitorDelete(d *schema.ResourceData, meta interface{}) er
 	if uuid != "" {
 		path := "api/" + objType + "/" + uuid
 		err := client.AviSession.Delete(path)
-		if err != nil {
+		if err != nil && !(strings.Contains(err.Error(), "404") || strings.Contains(err.Error(), "204")) {
 			log.Println("[INFO] resourceAviHealthMonitorDelete not found")
 			return err
 		}

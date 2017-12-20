@@ -1,74 +1,67 @@
-provider "aws" {
-  access_key = "ABC"
-  secret_key = "XYZ"
-  region     = "us-west-2"
-}
-
-variable "aws_vpc_id" {
-  type = "string"
-  default = "vpc-19295f7c"
-}
-
-variable "avi_admin_user" {
-  type = "string"
-  default = "admin"
-}
-
-variable "avi_admin_password" {
-  type = "string"
-  default = "admin"
-}
-
-/*resource "aws_instance" "avi_controller" {
-  ami = "ami-5f39c527"
-  instance_type = "t2.large"
-  subnet_id = "${aws_subnet.grastogi-subnet.id}"
-  tags {
-    Name = "grastogi-terraform-controller"
-  }
-}
-
-output "aws_controller_instance" {
-  value = "${aws_instance.avi_controller.tags.Name}"
-}
-
-output "avi_controller_ip" {
-  value = "${aws_instance.avi_controller.private_ip}"
-}
-
-
-resource "aws_subnet" "grastogi-subnet" {
-  vpc_id = "${var.aws_vpc_id}"
-  cidr_block = "10.144.42.0/24"
-  tags {
-    Name = "grastogi-subnet"
-  }
-}
-
-output "aws_subnet" {
-  value = "${aws_subnet.grastogi-subnet.tags.Name}"
-}
-*/
-
 provider "avi" {
-  avi_username = "admin"
-  //avi_password = "admin"
-  avi_password = "avi123$%"
-  avi_controller = "10.10.25.42"
-  //avi_controller = "${aws_instance.avi_controller.private_ip}"
-  avi_tenant = "admin"
+  avi_username = ""
+  avi_tenant = ""
+  avi_password = ""
+  avi_controller= ""
 }
 
+resource "avi_networkprofile" "test_networkprofile" {
+  name= "networkprofile-1"
+  profile{
+    type= "PROTOCOL_TYPE_TCP_PROXY"
+  }
+}
 
-resource "avi_healthmonitor" "test_hm" {
-  name= "hm1"
-  type= "HEALTH_MONITOR_HTTP"
+resource "avi_applicationpersistenceprofile" "test_applicationpersistenceprofile" {
+  name = "applicationpersistence-1"
+  persistence_type = "PERSISTENCE_TYPE_CLIENT_IP_ADDRESS"
+}
+
+resource "avi_vsvip" "test_vsvip" {
+  name= "vip-1"
+  vip {
+    vip_id= "0"
+    ip_address {
+      type= "V4",
+      addr= "10.90.64.88",
+    }
+  }
+}
+
+resource "avi_virtualservice" "test_vs" {
+  name= "vs-1"
+  pool_ref= "${avi_pool.testpool.id}"
+  application_profile_ref= "${avi_applicationprofile.test_applicationprofile.id}"
+  network_profile_ref = "${avi_networkprofile.test_networkprofile.id}"
+  vsvip_ref = "${avi_vsvip.test_vsvip.id}"
+  vip {
+    vip_id= "0"
+    ip_address {
+      type= "V4",
+      addr= "10.90.64.88",
+    }
+  }
+  services {
+    port= 80
+    enable_ssl= true
+  }
+}
+
+resource "avi_applicationprofile" "test_applicationprofile" {
+  name= "applicationprofile-1"
+  type= "APPLICATION_PROFILE_TYPE_DNS"
+}
+
+resource "avi_healthmonitor" "test_hm_1" {
+  name = "healthmonitor-1"
+  type = "HEALTH_MONITOR_HTTP"
 }
 
 
 resource "avi_pool" "testpool" {
-  name= "p42",
-  health_monitor_refs= ["${avi_healthmonitor.test_hm.id}"]
+  name= "pool-5",
+  health_monitor_refs= ["${avi_healthmonitor.test_hm_1.id}"]
+  application_persistence_profile_ref= "${avi_applicationpersistenceprofile.test_applicationpersistenceprofile.id}"
   servers {
     ip= {
       type= "V4",
@@ -76,48 +69,7 @@ resource "avi_pool" "testpool" {
     }
     port= 8080
   }
-  servers {
-    ip= {
-      type= "V4",
-      addr= "10.90.64.42",
-    }
-    port= 8080
-  }
-  servers {
-    ip= {
-      type= "V4",
-      addr= "10.90.64.70",
-    }
-  }
   fail_action= {
     type= "FAIL_ACTION_CLOSE_CONN"
   }
-}
-
-
-
-output "test_pool_servers" {
-  value = "${avi_pool.testpool.servers}"
-}
-
-
-output "test_pool_fa" {
-  value = "${avi_pool.testpool.fail_action}"
-}
-
-output "test_pool_hm" {
-  value = "${avi_pool.testpool.health_monitor_refs}"
-}
-
-output "test_pool_name" {
-  value = "${avi_pool.testpool.name}"
-}
-
-
-resource "avi_pool" "foopool" {
-  name= "p-foo"
-}
-
-output "foopool" {
-  value = "${avi_pool.foopool.name}"
 }

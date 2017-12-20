@@ -43,7 +43,7 @@ func TestProvider(t *testing.T) {
 	}
 
 	// Validating pool resource in avi provider and datasource for pool
-	var poolconfigs = map[string]interface{}{"name": "", "uuid": "", "url": "",
+	var poolconfigs = map[string]interface{}{"name": "", "uuid": "",
 		"health_monitor_refs": make([]string, 0), "servers": make([]string, 0),
 		"fail_action": make([]string, 0)}
 
@@ -60,7 +60,8 @@ func TestProvider(t *testing.T) {
 	}
 
 	// Validating pool resource in avi provider and datasource for pool
-	var hmconfigs = map[string]interface{}{"name": "", "uuid": "", "url": "",
+
+	var hmconfigs = map[string]interface{}{"name": "", "uuid": "",
 		"type": ""}
 
 	_, errs = Provider().(*schema.Provider).ValidateDataSource(
