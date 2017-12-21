@@ -639,8 +639,8 @@
 		},
 		{
 			"path": "github.com/avinetworks/sdk",
-			"revision": "321a9d1918c04134889f1920fcd390dfc127c61c",
-			"revisionTime": "2016-07-20T23:31:40Z"
+			"revision": "15529e2abe36f1afa5e7c54bd60aa9cce3eb734e",
+			"revisionTime": "2017-12-20T23:31:40Z"
 		}
 	],
 	"rootPath": "github.com/terraform-providers/terraform-provider-avi"
