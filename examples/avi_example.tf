@@ -6,19 +6,19 @@ provider "avi" {
 }
 
 resource "avi_networkprofile" "test_networkprofile" {
-  name= "networkprofile-1"
+  name= "networkprofile-42"
   profile{
     type= "PROTOCOL_TYPE_TCP_PROXY"
   }
 }
 
 resource "avi_applicationpersistenceprofile" "test_applicationpersistenceprofile" {
-  name = "applicationpersistence-1"
+  name = "applicationpersistence-42"
   persistence_type = "PERSISTENCE_TYPE_CLIENT_IP_ADDRESS"
 }
 
 resource "avi_vsvip" "test_vsvip" {
-  name= "vip-1"
+  name= "vip-42"
   vip {
     vip_id= "0"
     ip_address {
@@ -29,7 +29,7 @@ resource "avi_vsvip" "test_vsvip" {
 }
 
 resource "avi_virtualservice" "test_vs" {
-  name= "vs-1"
+  name= "vs-42"
   pool_ref= "${avi_pool.testpool.id}"
   application_profile_ref= "${avi_applicationprofile.test_applicationprofile.id}"
   network_profile_ref = "${avi_networkprofile.test_networkprofile.id}"
@@ -48,18 +48,18 @@ resource "avi_virtualservice" "test_vs" {
 }
 
 resource "avi_applicationprofile" "test_applicationprofile" {
-  name= "applicationprofile-1"
+  name= "applicationprofile-42"
   type= "APPLICATION_PROFILE_TYPE_DNS"
 }
 
 resource "avi_healthmonitor" "test_hm_1" {
-  name = "healthmonitor-1"
+  name = "healthmonitor-42"
   type = "HEALTH_MONITOR_HTTP"
 }
 
 
 resource "avi_pool" "testpool" {
-  name= "pool-5",
+  name= "pool-42",
   health_monitor_refs= ["${avi_healthmonitor.test_hm_1.id}"]
   application_persistence_profile_ref= "${avi_applicationpersistenceprofile.test_applicationpersistenceprofile.id}"
   servers {
