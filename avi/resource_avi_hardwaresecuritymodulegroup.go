@@ -49,7 +49,6 @@ func resourceAviHardwareSecurityModuleGroup() *schema.Resource {
 
 func ResourceAviHardwareSecurityModuleGroupRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceHardwareSecurityModuleGroupSchema()
-	log.Printf("[INFO] ResourceAviHardwareSecurityModuleGroupRead Avi Client %v\n", d)
 	client := meta.(*clients.AviClient)
 	var obj interface{}
 	if uuid, ok := d.GetOk("uuid"); ok {
@@ -63,29 +62,20 @@ func ResourceAviHardwareSecurityModuleGroupRead(d *schema.ResourceData, meta int
 		d.SetId("")
 		return nil
 	}
-	// no need to set the ID
-	log.Printf("ResourceAviHardwareSecurityModuleGroupRead CURRENT obj %v\n", d)
-
-	log.Printf("ResourceAviHardwareSecurityModuleGroupRead Read API obj %v\n", obj)
-	if tObj, err := ApiDataToSchema(obj, d, s); err == nil {
-		log.Printf("[INFO] ResourceAviHardwareSecurityModuleGroupRead Converted obj %v\n", tObj)
-		//err = d.Set("obj", tObj)
+	if _, err := ApiDataToSchema(obj, d, s); err == nil {
 		if err != nil {
 			log.Printf("[ERROR] in setting read object %v\n", err)
 		}
 	}
-	log.Printf("[INFO] ResourceAviHardwareSecurityModuleGroupRead Updated %v\n", d)
 	return nil
 }
 
 func resourceAviHardwareSecurityModuleGroupCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceHardwareSecurityModuleGroupSchema()
 	err := ApiCreateOrUpdate(d, meta, "hardwaresecuritymodulegroup", s)
-	log.Printf("[DEBUG] created object %v: %v", "hardwaresecuritymodulegroup", d)
 	if err == nil {
 		err = ResourceAviHardwareSecurityModuleGroupRead(d, meta)
 	}
-	log.Printf("[DEBUG] created object %v: %v", "hardwaresecuritymodulegroup", d)
 	return err
 }
 
@@ -95,13 +85,11 @@ func resourceAviHardwareSecurityModuleGroupUpdate(d *schema.ResourceData, meta i
 	if err == nil {
 		err = ResourceAviHardwareSecurityModuleGroupRead(d, meta)
 	}
-	log.Printf("[DEBUG] updated object %v: %v", "hardwaresecuritymodulegroup", d)
 	return err
 }
 
 func resourceAviHardwareSecurityModuleGroupDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "hardwaresecuritymodulegroup"
-	log.Println("[INFO] ResourceAviHardwareSecurityModuleGroupRead Avi Client")
 	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {

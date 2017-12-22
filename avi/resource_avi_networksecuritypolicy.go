@@ -59,7 +59,6 @@ func resourceAviNetworkSecurityPolicy() *schema.Resource {
 
 func ResourceAviNetworkSecurityPolicyRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceNetworkSecurityPolicySchema()
-	log.Printf("[INFO] ResourceAviNetworkSecurityPolicyRead Avi Client %v\n", d)
 	client := meta.(*clients.AviClient)
 	var obj interface{}
 	if uuid, ok := d.GetOk("uuid"); ok {
@@ -73,29 +72,20 @@ func ResourceAviNetworkSecurityPolicyRead(d *schema.ResourceData, meta interface
 		d.SetId("")
 		return nil
 	}
-	// no need to set the ID
-	log.Printf("ResourceAviNetworkSecurityPolicyRead CURRENT obj %v\n", d)
-
-	log.Printf("ResourceAviNetworkSecurityPolicyRead Read API obj %v\n", obj)
-	if tObj, err := ApiDataToSchema(obj, d, s); err == nil {
-		log.Printf("[INFO] ResourceAviNetworkSecurityPolicyRead Converted obj %v\n", tObj)
-		//err = d.Set("obj", tObj)
+	if _, err := ApiDataToSchema(obj, d, s); err == nil {
 		if err != nil {
 			log.Printf("[ERROR] in setting read object %v\n", err)
 		}
 	}
-	log.Printf("[INFO] ResourceAviNetworkSecurityPolicyRead Updated %v\n", d)
 	return nil
 }
 
 func resourceAviNetworkSecurityPolicyCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceNetworkSecurityPolicySchema()
 	err := ApiCreateOrUpdate(d, meta, "networksecuritypolicy", s)
-	log.Printf("[DEBUG] created object %v: %v", "networksecuritypolicy", d)
 	if err == nil {
 		err = ResourceAviNetworkSecurityPolicyRead(d, meta)
 	}
-	log.Printf("[DEBUG] created object %v: %v", "networksecuritypolicy", d)
 	return err
 }
 
@@ -105,13 +95,11 @@ func resourceAviNetworkSecurityPolicyUpdate(d *schema.ResourceData, meta interfa
 	if err == nil {
 		err = ResourceAviNetworkSecurityPolicyRead(d, meta)
 	}
-	log.Printf("[DEBUG] updated object %v: %v", "networksecuritypolicy", d)
 	return err
 }
 
 func resourceAviNetworkSecurityPolicyDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "networksecuritypolicy"
-	log.Println("[INFO] ResourceAviNetworkSecurityPolicyRead Avi Client")
 	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {

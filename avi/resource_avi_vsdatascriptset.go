@@ -75,7 +75,6 @@ func resourceAviVSDataScriptSet() *schema.Resource {
 
 func ResourceAviVSDataScriptSetRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceVSDataScriptSetSchema()
-	log.Printf("[INFO] ResourceAviVSDataScriptSetRead Avi Client %v\n", d)
 	client := meta.(*clients.AviClient)
 	var obj interface{}
 	if uuid, ok := d.GetOk("uuid"); ok {
@@ -89,29 +88,20 @@ func ResourceAviVSDataScriptSetRead(d *schema.ResourceData, meta interface{}) er
 		d.SetId("")
 		return nil
 	}
-	// no need to set the ID
-	log.Printf("ResourceAviVSDataScriptSetRead CURRENT obj %v\n", d)
-
-	log.Printf("ResourceAviVSDataScriptSetRead Read API obj %v\n", obj)
-	if tObj, err := ApiDataToSchema(obj, d, s); err == nil {
-		log.Printf("[INFO] ResourceAviVSDataScriptSetRead Converted obj %v\n", tObj)
-		//err = d.Set("obj", tObj)
+	if _, err := ApiDataToSchema(obj, d, s); err == nil {
 		if err != nil {
 			log.Printf("[ERROR] in setting read object %v\n", err)
 		}
 	}
-	log.Printf("[INFO] ResourceAviVSDataScriptSetRead Updated %v\n", d)
 	return nil
 }
 
 func resourceAviVSDataScriptSetCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceVSDataScriptSetSchema()
 	err := ApiCreateOrUpdate(d, meta, "vsdatascriptset", s)
-	log.Printf("[DEBUG] created object %v: %v", "vsdatascriptset", d)
 	if err == nil {
 		err = ResourceAviVSDataScriptSetRead(d, meta)
 	}
-	log.Printf("[DEBUG] created object %v: %v", "vsdatascriptset", d)
 	return err
 }
 
@@ -121,13 +111,11 @@ func resourceAviVSDataScriptSetUpdate(d *schema.ResourceData, meta interface{}) 
 	if err == nil {
 		err = ResourceAviVSDataScriptSetRead(d, meta)
 	}
-	log.Printf("[DEBUG] updated object %v: %v", "vsdatascriptset", d)
 	return err
 }
 
 func resourceAviVSDataScriptSetDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "vsdatascriptset"
-	log.Println("[INFO] ResourceAviVSDataScriptSetRead Avi Client")
 	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {

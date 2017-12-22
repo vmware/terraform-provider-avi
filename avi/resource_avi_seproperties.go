@@ -58,7 +58,6 @@ func resourceAviSeProperties() *schema.Resource {
 
 func ResourceAviSePropertiesRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceSePropertiesSchema()
-	log.Printf("[INFO] ResourceAviSePropertiesRead Avi Client %v\n", d)
 	client := meta.(*clients.AviClient)
 	var obj interface{}
 	if uuid, ok := d.GetOk("uuid"); ok {
@@ -72,29 +71,20 @@ func ResourceAviSePropertiesRead(d *schema.ResourceData, meta interface{}) error
 		d.SetId("")
 		return nil
 	}
-	// no need to set the ID
-	log.Printf("ResourceAviSePropertiesRead CURRENT obj %v\n", d)
-
-	log.Printf("ResourceAviSePropertiesRead Read API obj %v\n", obj)
-	if tObj, err := ApiDataToSchema(obj, d, s); err == nil {
-		log.Printf("[INFO] ResourceAviSePropertiesRead Converted obj %v\n", tObj)
-		//err = d.Set("obj", tObj)
+	if _, err := ApiDataToSchema(obj, d, s); err == nil {
 		if err != nil {
 			log.Printf("[ERROR] in setting read object %v\n", err)
 		}
 	}
-	log.Printf("[INFO] ResourceAviSePropertiesRead Updated %v\n", d)
 	return nil
 }
 
 func resourceAviSePropertiesCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceSePropertiesSchema()
 	err := ApiCreateOrUpdate(d, meta, "seproperties", s)
-	log.Printf("[DEBUG] created object %v: %v", "seproperties", d)
 	if err == nil {
 		err = ResourceAviSePropertiesRead(d, meta)
 	}
-	log.Printf("[DEBUG] created object %v: %v", "seproperties", d)
 	return err
 }
 
@@ -104,13 +94,11 @@ func resourceAviSePropertiesUpdate(d *schema.ResourceData, meta interface{}) err
 	if err == nil {
 		err = ResourceAviSePropertiesRead(d, meta)
 	}
-	log.Printf("[DEBUG] updated object %v: %v", "seproperties", d)
 	return err
 }
 
 func resourceAviSePropertiesDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "seproperties"
-	log.Println("[INFO] ResourceAviSePropertiesRead Avi Client")
 	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {

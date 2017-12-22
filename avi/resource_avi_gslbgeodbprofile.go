@@ -56,7 +56,6 @@ func resourceAviGslbGeoDbProfile() *schema.Resource {
 
 func ResourceAviGslbGeoDbProfileRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceGslbGeoDbProfileSchema()
-	log.Printf("[INFO] ResourceAviGslbGeoDbProfileRead Avi Client %v\n", d)
 	client := meta.(*clients.AviClient)
 	var obj interface{}
 	if uuid, ok := d.GetOk("uuid"); ok {
@@ -70,29 +69,20 @@ func ResourceAviGslbGeoDbProfileRead(d *schema.ResourceData, meta interface{}) e
 		d.SetId("")
 		return nil
 	}
-	// no need to set the ID
-	log.Printf("ResourceAviGslbGeoDbProfileRead CURRENT obj %v\n", d)
-
-	log.Printf("ResourceAviGslbGeoDbProfileRead Read API obj %v\n", obj)
-	if tObj, err := ApiDataToSchema(obj, d, s); err == nil {
-		log.Printf("[INFO] ResourceAviGslbGeoDbProfileRead Converted obj %v\n", tObj)
-		//err = d.Set("obj", tObj)
+	if _, err := ApiDataToSchema(obj, d, s); err == nil {
 		if err != nil {
 			log.Printf("[ERROR] in setting read object %v\n", err)
 		}
 	}
-	log.Printf("[INFO] ResourceAviGslbGeoDbProfileRead Updated %v\n", d)
 	return nil
 }
 
 func resourceAviGslbGeoDbProfileCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceGslbGeoDbProfileSchema()
 	err := ApiCreateOrUpdate(d, meta, "gslbgeodbprofile", s)
-	log.Printf("[DEBUG] created object %v: %v", "gslbgeodbprofile", d)
 	if err == nil {
 		err = ResourceAviGslbGeoDbProfileRead(d, meta)
 	}
-	log.Printf("[DEBUG] created object %v: %v", "gslbgeodbprofile", d)
 	return err
 }
 
@@ -102,13 +92,11 @@ func resourceAviGslbGeoDbProfileUpdate(d *schema.ResourceData, meta interface{})
 	if err == nil {
 		err = ResourceAviGslbGeoDbProfileRead(d, meta)
 	}
-	log.Printf("[DEBUG] updated object %v: %v", "gslbgeodbprofile", d)
 	return err
 }
 
 func resourceAviGslbGeoDbProfileDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "gslbgeodbprofile"
-	log.Println("[INFO] ResourceAviGslbGeoDbProfileRead Avi Client")
 	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {

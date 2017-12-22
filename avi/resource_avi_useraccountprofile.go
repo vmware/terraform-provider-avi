@@ -63,7 +63,6 @@ func resourceAviUserAccountProfile() *schema.Resource {
 
 func ResourceAviUserAccountProfileRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceUserAccountProfileSchema()
-	log.Printf("[INFO] ResourceAviUserAccountProfileRead Avi Client %v\n", d)
 	client := meta.(*clients.AviClient)
 	var obj interface{}
 	if uuid, ok := d.GetOk("uuid"); ok {
@@ -77,29 +76,20 @@ func ResourceAviUserAccountProfileRead(d *schema.ResourceData, meta interface{})
 		d.SetId("")
 		return nil
 	}
-	// no need to set the ID
-	log.Printf("ResourceAviUserAccountProfileRead CURRENT obj %v\n", d)
-
-	log.Printf("ResourceAviUserAccountProfileRead Read API obj %v\n", obj)
-	if tObj, err := ApiDataToSchema(obj, d, s); err == nil {
-		log.Printf("[INFO] ResourceAviUserAccountProfileRead Converted obj %v\n", tObj)
-		//err = d.Set("obj", tObj)
+	if _, err := ApiDataToSchema(obj, d, s); err == nil {
 		if err != nil {
 			log.Printf("[ERROR] in setting read object %v\n", err)
 		}
 	}
-	log.Printf("[INFO] ResourceAviUserAccountProfileRead Updated %v\n", d)
 	return nil
 }
 
 func resourceAviUserAccountProfileCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceUserAccountProfileSchema()
 	err := ApiCreateOrUpdate(d, meta, "useraccountprofile", s)
-	log.Printf("[DEBUG] created object %v: %v", "useraccountprofile", d)
 	if err == nil {
 		err = ResourceAviUserAccountProfileRead(d, meta)
 	}
-	log.Printf("[DEBUG] created object %v: %v", "useraccountprofile", d)
 	return err
 }
 
@@ -109,13 +99,11 @@ func resourceAviUserAccountProfileUpdate(d *schema.ResourceData, meta interface{
 	if err == nil {
 		err = ResourceAviUserAccountProfileRead(d, meta)
 	}
-	log.Printf("[DEBUG] updated object %v: %v", "useraccountprofile", d)
 	return err
 }
 
 func resourceAviUserAccountProfileDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "useraccountprofile"
-	log.Println("[INFO] ResourceAviUserAccountProfileRead Avi Client")
 	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {

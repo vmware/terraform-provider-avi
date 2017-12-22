@@ -57,7 +57,6 @@ func resourceAviTrafficCloneProfile() *schema.Resource {
 
 func ResourceAviTrafficCloneProfileRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceTrafficCloneProfileSchema()
-	log.Printf("[INFO] ResourceAviTrafficCloneProfileRead Avi Client %v\n", d)
 	client := meta.(*clients.AviClient)
 	var obj interface{}
 	if uuid, ok := d.GetOk("uuid"); ok {
@@ -71,29 +70,20 @@ func ResourceAviTrafficCloneProfileRead(d *schema.ResourceData, meta interface{}
 		d.SetId("")
 		return nil
 	}
-	// no need to set the ID
-	log.Printf("ResourceAviTrafficCloneProfileRead CURRENT obj %v\n", d)
-
-	log.Printf("ResourceAviTrafficCloneProfileRead Read API obj %v\n", obj)
-	if tObj, err := ApiDataToSchema(obj, d, s); err == nil {
-		log.Printf("[INFO] ResourceAviTrafficCloneProfileRead Converted obj %v\n", tObj)
-		//err = d.Set("obj", tObj)
+	if _, err := ApiDataToSchema(obj, d, s); err == nil {
 		if err != nil {
 			log.Printf("[ERROR] in setting read object %v\n", err)
 		}
 	}
-	log.Printf("[INFO] ResourceAviTrafficCloneProfileRead Updated %v\n", d)
 	return nil
 }
 
 func resourceAviTrafficCloneProfileCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceTrafficCloneProfileSchema()
 	err := ApiCreateOrUpdate(d, meta, "trafficcloneprofile", s)
-	log.Printf("[DEBUG] created object %v: %v", "trafficcloneprofile", d)
 	if err == nil {
 		err = ResourceAviTrafficCloneProfileRead(d, meta)
 	}
-	log.Printf("[DEBUG] created object %v: %v", "trafficcloneprofile", d)
 	return err
 }
 
@@ -103,13 +93,11 @@ func resourceAviTrafficCloneProfileUpdate(d *schema.ResourceData, meta interface
 	if err == nil {
 		err = ResourceAviTrafficCloneProfileRead(d, meta)
 	}
-	log.Printf("[DEBUG] updated object %v: %v", "trafficcloneprofile", d)
 	return err
 }
 
 func resourceAviTrafficCloneProfileDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "trafficcloneprofile"
-	log.Println("[INFO] ResourceAviTrafficCloneProfileRead Avi Client")
 	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {

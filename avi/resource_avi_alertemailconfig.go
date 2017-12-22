@@ -54,7 +54,6 @@ func resourceAviAlertEmailConfig() *schema.Resource {
 
 func ResourceAviAlertEmailConfigRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceAlertEmailConfigSchema()
-	log.Printf("[INFO] ResourceAviAlertEmailConfigRead Avi Client %v\n", d)
 	client := meta.(*clients.AviClient)
 	var obj interface{}
 	if uuid, ok := d.GetOk("uuid"); ok {
@@ -68,29 +67,20 @@ func ResourceAviAlertEmailConfigRead(d *schema.ResourceData, meta interface{}) e
 		d.SetId("")
 		return nil
 	}
-	// no need to set the ID
-	log.Printf("ResourceAviAlertEmailConfigRead CURRENT obj %v\n", d)
-
-	log.Printf("ResourceAviAlertEmailConfigRead Read API obj %v\n", obj)
-	if tObj, err := ApiDataToSchema(obj, d, s); err == nil {
-		log.Printf("[INFO] ResourceAviAlertEmailConfigRead Converted obj %v\n", tObj)
-		//err = d.Set("obj", tObj)
+	if _, err := ApiDataToSchema(obj, d, s); err == nil {
 		if err != nil {
 			log.Printf("[ERROR] in setting read object %v\n", err)
 		}
 	}
-	log.Printf("[INFO] ResourceAviAlertEmailConfigRead Updated %v\n", d)
 	return nil
 }
 
 func resourceAviAlertEmailConfigCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceAlertEmailConfigSchema()
 	err := ApiCreateOrUpdate(d, meta, "alertemailconfig", s)
-	log.Printf("[DEBUG] created object %v: %v", "alertemailconfig", d)
 	if err == nil {
 		err = ResourceAviAlertEmailConfigRead(d, meta)
 	}
-	log.Printf("[DEBUG] created object %v: %v", "alertemailconfig", d)
 	return err
 }
 
@@ -100,13 +90,11 @@ func resourceAviAlertEmailConfigUpdate(d *schema.ResourceData, meta interface{})
 	if err == nil {
 		err = ResourceAviAlertEmailConfigRead(d, meta)
 	}
-	log.Printf("[DEBUG] updated object %v: %v", "alertemailconfig", d)
 	return err
 }
 
 func resourceAviAlertEmailConfigDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "alertemailconfig"
-	log.Println("[INFO] ResourceAviAlertEmailConfigRead Avi Client")
 	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {
