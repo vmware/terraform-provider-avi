@@ -83,7 +83,6 @@ func resourceAviIpAddrGroup() *schema.Resource {
 
 func ResourceAviIpAddrGroupRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceIpAddrGroupSchema()
-	log.Printf("[INFO] ResourceAviIpAddrGroupRead Avi Client %v\n", d)
 	client := meta.(*clients.AviClient)
 	var obj interface{}
 	if uuid, ok := d.GetOk("uuid"); ok {
@@ -97,29 +96,20 @@ func ResourceAviIpAddrGroupRead(d *schema.ResourceData, meta interface{}) error 
 		d.SetId("")
 		return nil
 	}
-	// no need to set the ID
-	log.Printf("ResourceAviIpAddrGroupRead CURRENT obj %v\n", d)
-
-	log.Printf("ResourceAviIpAddrGroupRead Read API obj %v\n", obj)
-	if tObj, err := ApiDataToSchema(obj, d, s); err == nil {
-		log.Printf("[INFO] ResourceAviIpAddrGroupRead Converted obj %v\n", tObj)
-		//err = d.Set("obj", tObj)
+	if _, err := ApiDataToSchema(obj, d, s); err == nil {
 		if err != nil {
 			log.Printf("[ERROR] in setting read object %v\n", err)
 		}
 	}
-	log.Printf("[INFO] ResourceAviIpAddrGroupRead Updated %v\n", d)
 	return nil
 }
 
 func resourceAviIpAddrGroupCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceIpAddrGroupSchema()
 	err := ApiCreateOrUpdate(d, meta, "ipaddrgroup", s)
-	log.Printf("[DEBUG] created object %v: %v", "ipaddrgroup", d)
 	if err == nil {
 		err = ResourceAviIpAddrGroupRead(d, meta)
 	}
-	log.Printf("[DEBUG] created object %v: %v", "ipaddrgroup", d)
 	return err
 }
 
@@ -129,13 +119,11 @@ func resourceAviIpAddrGroupUpdate(d *schema.ResourceData, meta interface{}) erro
 	if err == nil {
 		err = ResourceAviIpAddrGroupRead(d, meta)
 	}
-	log.Printf("[DEBUG] updated object %v: %v", "ipaddrgroup", d)
 	return err
 }
 
 func resourceAviIpAddrGroupDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "ipaddrgroup"
-	log.Println("[INFO] ResourceAviIpAddrGroupRead Avi Client")
 	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {

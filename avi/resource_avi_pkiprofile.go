@@ -76,7 +76,6 @@ func resourceAviPKIProfile() *schema.Resource {
 
 func ResourceAviPKIProfileRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourcePKIProfileSchema()
-	log.Printf("[INFO] ResourceAviPKIProfileRead Avi Client %v\n", d)
 	client := meta.(*clients.AviClient)
 	var obj interface{}
 	if uuid, ok := d.GetOk("uuid"); ok {
@@ -90,29 +89,20 @@ func ResourceAviPKIProfileRead(d *schema.ResourceData, meta interface{}) error {
 		d.SetId("")
 		return nil
 	}
-	// no need to set the ID
-	log.Printf("ResourceAviPKIProfileRead CURRENT obj %v\n", d)
-
-	log.Printf("ResourceAviPKIProfileRead Read API obj %v\n", obj)
-	if tObj, err := ApiDataToSchema(obj, d, s); err == nil {
-		log.Printf("[INFO] ResourceAviPKIProfileRead Converted obj %v\n", tObj)
-		//err = d.Set("obj", tObj)
+	if _, err := ApiDataToSchema(obj, d, s); err == nil {
 		if err != nil {
 			log.Printf("[ERROR] in setting read object %v\n", err)
 		}
 	}
-	log.Printf("[INFO] ResourceAviPKIProfileRead Updated %v\n", d)
 	return nil
 }
 
 func resourceAviPKIProfileCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourcePKIProfileSchema()
 	err := ApiCreateOrUpdate(d, meta, "pkiprofile", s)
-	log.Printf("[DEBUG] created object %v: %v", "pkiprofile", d)
 	if err == nil {
 		err = ResourceAviPKIProfileRead(d, meta)
 	}
-	log.Printf("[DEBUG] created object %v: %v", "pkiprofile", d)
 	return err
 }
 
@@ -122,13 +112,11 @@ func resourceAviPKIProfileUpdate(d *schema.ResourceData, meta interface{}) error
 	if err == nil {
 		err = ResourceAviPKIProfileRead(d, meta)
 	}
-	log.Printf("[DEBUG] updated object %v: %v", "pkiprofile", d)
 	return err
 }
 
 func resourceAviPKIProfileDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "pkiprofile"
-	log.Println("[INFO] ResourceAviPKIProfileRead Avi Client")
 	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {

@@ -34,6 +34,10 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  "PLACEMENT_ALGO_PACKED",
 		},
+		"allow_burst": &schema.Schema{
+			Type:     schema.TypeBool,
+			Optional: true,
+		},
 		"archive_shm_limit": &schema.Schema{
 			Type:     schema.TypeInt,
 			Optional: true,
@@ -123,6 +127,21 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
+		"disable_csum_offloads": &schema.Schema{
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  false,
+		},
+		"disable_gro": &schema.Schema{
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  false,
+		},
+		"disable_tso": &schema.Schema{
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  false,
+		},
 		"disk_per_se": &schema.Schema{
 			Type:     schema.TypeInt,
 			Optional: true,
@@ -167,6 +186,11 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Type:     schema.TypeList,
 			Optional: true,
 			Elem:     ResourceIpAddrSchema(),
+		},
+		"flow_table_new_syn_max_entries": &schema.Schema{
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  0,
 		},
 		"ha_mode": &schema.Schema{
 			Type:     schema.TypeString,
@@ -228,6 +252,14 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  true,
 		},
+		"license_tier": &schema.Schema{
+			Type:     schema.TypeString,
+			Optional: true,
+		},
+		"license_type": &schema.Schema{
+			Type:     schema.TypeString,
+			Optional: true,
+		},
 		"log_disksz": &schema.Schema{
 			Type:     schema.TypeInt,
 			Optional: true,
@@ -285,6 +317,11 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  1,
 		},
+		"minimum_required_config_mem_mb": &schema.Schema{
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  4,
+		},
 		"name": &schema.Schema{
 			Type:     schema.TypeString,
 			Required: true,
@@ -334,6 +371,10 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Set: func(v interface{}) int {
 				return 0
 			},
+		},
+		"se_bandwidth_type": &schema.Schema{
+			Type:     schema.TypeString,
+			Optional: true,
 		},
 		"se_deprovision_delay": &schema.Schema{
 			Type:     schema.TypeInt,
@@ -407,6 +448,11 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Type:     schema.TypeInt,
 			Optional: true,
 			Default:  256,
+		},
+		"service_ip6_subnets": &schema.Schema{
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceIpAddrPrefixSchema(),
 		},
 		"service_ip_subnets": &schema.Schema{
 			Type:     schema.TypeList,
@@ -526,7 +572,6 @@ func resourceAviServiceEngineGroup() *schema.Resource {
 
 func ResourceAviServiceEngineGroupRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceServiceEngineGroupSchema()
-	log.Printf("[INFO] ResourceAviServiceEngineGroupRead Avi Client %v\n", d)
 	client := meta.(*clients.AviClient)
 	var obj interface{}
 	if uuid, ok := d.GetOk("uuid"); ok {
@@ -540,29 +585,20 @@ func ResourceAviServiceEngineGroupRead(d *schema.ResourceData, meta interface{})
 		d.SetId("")
 		return nil
 	}
-	// no need to set the ID
-	log.Printf("ResourceAviServiceEngineGroupRead CURRENT obj %v\n", d)
-
-	log.Printf("ResourceAviServiceEngineGroupRead Read API obj %v\n", obj)
-	if tObj, err := ApiDataToSchema(obj, d, s); err == nil {
-		log.Printf("[INFO] ResourceAviServiceEngineGroupRead Converted obj %v\n", tObj)
-		//err = d.Set("obj", tObj)
+	if _, err := ApiDataToSchema(obj, d, s); err == nil {
 		if err != nil {
 			log.Printf("[ERROR] in setting read object %v\n", err)
 		}
 	}
-	log.Printf("[INFO] ResourceAviServiceEngineGroupRead Updated %v\n", d)
 	return nil
 }
 
 func resourceAviServiceEngineGroupCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceServiceEngineGroupSchema()
 	err := ApiCreateOrUpdate(d, meta, "serviceenginegroup", s)
-	log.Printf("[DEBUG] created object %v: %v", "serviceenginegroup", d)
 	if err == nil {
 		err = ResourceAviServiceEngineGroupRead(d, meta)
 	}
-	log.Printf("[DEBUG] created object %v: %v", "serviceenginegroup", d)
 	return err
 }
 
@@ -572,13 +608,11 @@ func resourceAviServiceEngineGroupUpdate(d *schema.ResourceData, meta interface{
 	if err == nil {
 		err = ResourceAviServiceEngineGroupRead(d, meta)
 	}
-	log.Printf("[DEBUG] updated object %v: %v", "serviceenginegroup", d)
 	return err
 }
 
 func resourceAviServiceEngineGroupDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "serviceenginegroup"
-	log.Println("[INFO] ResourceAviServiceEngineGroupRead Avi Client")
 	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {

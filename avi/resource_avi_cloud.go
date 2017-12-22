@@ -86,7 +86,16 @@ func ResourceCloudSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  false,
 		},
+		"ip6_autocfg_enabled": &schema.Schema{
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  false,
+		},
 		"ipam_provider_ref": &schema.Schema{
+			Type:     schema.TypeString,
+			Optional: true,
+		},
+		"license_tier": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
 		},
@@ -217,7 +226,6 @@ func resourceAviCloud() *schema.Resource {
 
 func ResourceAviCloudRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceCloudSchema()
-	log.Printf("[INFO] ResourceAviCloudRead Avi Client %v\n", d)
 	client := meta.(*clients.AviClient)
 	var obj interface{}
 	if uuid, ok := d.GetOk("uuid"); ok {
@@ -231,29 +239,20 @@ func ResourceAviCloudRead(d *schema.ResourceData, meta interface{}) error {
 		d.SetId("")
 		return nil
 	}
-	// no need to set the ID
-	log.Printf("ResourceAviCloudRead CURRENT obj %v\n", d)
-
-	log.Printf("ResourceAviCloudRead Read API obj %v\n", obj)
-	if tObj, err := ApiDataToSchema(obj, d, s); err == nil {
-		log.Printf("[INFO] ResourceAviCloudRead Converted obj %v\n", tObj)
-		//err = d.Set("obj", tObj)
+	if _, err := ApiDataToSchema(obj, d, s); err == nil {
 		if err != nil {
 			log.Printf("[ERROR] in setting read object %v\n", err)
 		}
 	}
-	log.Printf("[INFO] ResourceAviCloudRead Updated %v\n", d)
 	return nil
 }
 
 func resourceAviCloudCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceCloudSchema()
 	err := ApiCreateOrUpdate(d, meta, "cloud", s)
-	log.Printf("[DEBUG] created object %v: %v", "cloud", d)
 	if err == nil {
 		err = ResourceAviCloudRead(d, meta)
 	}
-	log.Printf("[DEBUG] created object %v: %v", "cloud", d)
 	return err
 }
 
@@ -263,13 +262,11 @@ func resourceAviCloudUpdate(d *schema.ResourceData, meta interface{}) error {
 	if err == nil {
 		err = ResourceAviCloudRead(d, meta)
 	}
-	log.Printf("[DEBUG] updated object %v: %v", "cloud", d)
 	return err
 }
 
 func resourceAviCloudDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "cloud"
-	log.Println("[INFO] ResourceAviCloudRead Avi Client")
 	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {

@@ -98,7 +98,6 @@ func resourceAviGslb() *schema.Resource {
 
 func ResourceAviGslbRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceGslbSchema()
-	log.Printf("[INFO] ResourceAviGslbRead Avi Client %v\n", d)
 	client := meta.(*clients.AviClient)
 	var obj interface{}
 	if uuid, ok := d.GetOk("uuid"); ok {
@@ -112,29 +111,20 @@ func ResourceAviGslbRead(d *schema.ResourceData, meta interface{}) error {
 		d.SetId("")
 		return nil
 	}
-	// no need to set the ID
-	log.Printf("ResourceAviGslbRead CURRENT obj %v\n", d)
-
-	log.Printf("ResourceAviGslbRead Read API obj %v\n", obj)
-	if tObj, err := ApiDataToSchema(obj, d, s); err == nil {
-		log.Printf("[INFO] ResourceAviGslbRead Converted obj %v\n", tObj)
-		//err = d.Set("obj", tObj)
+	if _, err := ApiDataToSchema(obj, d, s); err == nil {
 		if err != nil {
 			log.Printf("[ERROR] in setting read object %v\n", err)
 		}
 	}
-	log.Printf("[INFO] ResourceAviGslbRead Updated %v\n", d)
 	return nil
 }
 
 func resourceAviGslbCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceGslbSchema()
 	err := ApiCreateOrUpdate(d, meta, "gslb", s)
-	log.Printf("[DEBUG] created object %v: %v", "gslb", d)
 	if err == nil {
 		err = ResourceAviGslbRead(d, meta)
 	}
-	log.Printf("[DEBUG] created object %v: %v", "gslb", d)
 	return err
 }
 
@@ -144,13 +134,11 @@ func resourceAviGslbUpdate(d *schema.ResourceData, meta interface{}) error {
 	if err == nil {
 		err = ResourceAviGslbRead(d, meta)
 	}
-	log.Printf("[DEBUG] updated object %v: %v", "gslb", d)
 	return err
 }
 
 func resourceAviGslbDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "gslb"
-	log.Println("[INFO] ResourceAviGslbRead Avi Client")
 	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {

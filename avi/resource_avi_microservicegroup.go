@@ -55,7 +55,6 @@ func resourceAviMicroServiceGroup() *schema.Resource {
 
 func ResourceAviMicroServiceGroupRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceMicroServiceGroupSchema()
-	log.Printf("[INFO] ResourceAviMicroServiceGroupRead Avi Client %v\n", d)
 	client := meta.(*clients.AviClient)
 	var obj interface{}
 	if uuid, ok := d.GetOk("uuid"); ok {
@@ -69,29 +68,20 @@ func ResourceAviMicroServiceGroupRead(d *schema.ResourceData, meta interface{}) 
 		d.SetId("")
 		return nil
 	}
-	// no need to set the ID
-	log.Printf("ResourceAviMicroServiceGroupRead CURRENT obj %v\n", d)
-
-	log.Printf("ResourceAviMicroServiceGroupRead Read API obj %v\n", obj)
-	if tObj, err := ApiDataToSchema(obj, d, s); err == nil {
-		log.Printf("[INFO] ResourceAviMicroServiceGroupRead Converted obj %v\n", tObj)
-		//err = d.Set("obj", tObj)
+	if _, err := ApiDataToSchema(obj, d, s); err == nil {
 		if err != nil {
 			log.Printf("[ERROR] in setting read object %v\n", err)
 		}
 	}
-	log.Printf("[INFO] ResourceAviMicroServiceGroupRead Updated %v\n", d)
 	return nil
 }
 
 func resourceAviMicroServiceGroupCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceMicroServiceGroupSchema()
 	err := ApiCreateOrUpdate(d, meta, "microservicegroup", s)
-	log.Printf("[DEBUG] created object %v: %v", "microservicegroup", d)
 	if err == nil {
 		err = ResourceAviMicroServiceGroupRead(d, meta)
 	}
-	log.Printf("[DEBUG] created object %v: %v", "microservicegroup", d)
 	return err
 }
 
@@ -101,13 +91,11 @@ func resourceAviMicroServiceGroupUpdate(d *schema.ResourceData, meta interface{}
 	if err == nil {
 		err = ResourceAviMicroServiceGroupRead(d, meta)
 	}
-	log.Printf("[DEBUG] updated object %v: %v", "microservicegroup", d)
 	return err
 }
 
 func resourceAviMicroServiceGroupDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "microservicegroup"
-	log.Println("[INFO] ResourceAviMicroServiceGroupRead Avi Client")
 	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {

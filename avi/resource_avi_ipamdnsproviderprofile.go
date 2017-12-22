@@ -115,7 +115,6 @@ func resourceAviIpamDnsProviderProfile() *schema.Resource {
 
 func ResourceAviIpamDnsProviderProfileRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceIpamDnsProviderProfileSchema()
-	log.Printf("[INFO] ResourceAviIpamDnsProviderProfileRead Avi Client %v\n", d)
 	client := meta.(*clients.AviClient)
 	var obj interface{}
 	if uuid, ok := d.GetOk("uuid"); ok {
@@ -129,29 +128,20 @@ func ResourceAviIpamDnsProviderProfileRead(d *schema.ResourceData, meta interfac
 		d.SetId("")
 		return nil
 	}
-	// no need to set the ID
-	log.Printf("ResourceAviIpamDnsProviderProfileRead CURRENT obj %v\n", d)
-
-	log.Printf("ResourceAviIpamDnsProviderProfileRead Read API obj %v\n", obj)
-	if tObj, err := ApiDataToSchema(obj, d, s); err == nil {
-		log.Printf("[INFO] ResourceAviIpamDnsProviderProfileRead Converted obj %v\n", tObj)
-		//err = d.Set("obj", tObj)
+	if _, err := ApiDataToSchema(obj, d, s); err == nil {
 		if err != nil {
 			log.Printf("[ERROR] in setting read object %v\n", err)
 		}
 	}
-	log.Printf("[INFO] ResourceAviIpamDnsProviderProfileRead Updated %v\n", d)
 	return nil
 }
 
 func resourceAviIpamDnsProviderProfileCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceIpamDnsProviderProfileSchema()
 	err := ApiCreateOrUpdate(d, meta, "ipamdnsproviderprofile", s)
-	log.Printf("[DEBUG] created object %v: %v", "ipamdnsproviderprofile", d)
 	if err == nil {
 		err = ResourceAviIpamDnsProviderProfileRead(d, meta)
 	}
-	log.Printf("[DEBUG] created object %v: %v", "ipamdnsproviderprofile", d)
 	return err
 }
 
@@ -161,13 +151,11 @@ func resourceAviIpamDnsProviderProfileUpdate(d *schema.ResourceData, meta interf
 	if err == nil {
 		err = ResourceAviIpamDnsProviderProfileRead(d, meta)
 	}
-	log.Printf("[DEBUG] updated object %v: %v", "ipamdnsproviderprofile", d)
 	return err
 }
 
 func resourceAviIpamDnsProviderProfileDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "ipamdnsproviderprofile"
-	log.Println("[INFO] ResourceAviIpamDnsProviderProfileRead Avi Client")
 	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {

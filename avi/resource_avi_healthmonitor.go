@@ -127,7 +127,6 @@ func resourceAviHealthMonitor() *schema.Resource {
 
 func ResourceAviHealthMonitorRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceHealthMonitorSchema()
-	log.Printf("[INFO] ResourceAviHealthMonitorRead Avi Client %v\n", d)
 	client := meta.(*clients.AviClient)
 	var obj interface{}
 	if uuid, ok := d.GetOk("uuid"); ok {
@@ -141,29 +140,20 @@ func ResourceAviHealthMonitorRead(d *schema.ResourceData, meta interface{}) erro
 		d.SetId("")
 		return nil
 	}
-	// no need to set the ID
-	log.Printf("ResourceAviHealthMonitorRead CURRENT obj %v\n", d)
-
-	log.Printf("ResourceAviHealthMonitorRead Read API obj %v\n", obj)
-	if tObj, err := ApiDataToSchema(obj, d, s); err == nil {
-		log.Printf("[INFO] ResourceAviHealthMonitorRead Converted obj %v\n", tObj)
-		//err = d.Set("obj", tObj)
+	if _, err := ApiDataToSchema(obj, d, s); err == nil {
 		if err != nil {
 			log.Printf("[ERROR] in setting read object %v\n", err)
 		}
 	}
-	log.Printf("[INFO] ResourceAviHealthMonitorRead Updated %v\n", d)
 	return nil
 }
 
 func resourceAviHealthMonitorCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceHealthMonitorSchema()
 	err := ApiCreateOrUpdate(d, meta, "healthmonitor", s)
-	log.Printf("[DEBUG] created object %v: %v", "healthmonitor", d)
 	if err == nil {
 		err = ResourceAviHealthMonitorRead(d, meta)
 	}
-	log.Printf("[DEBUG] created object %v: %v", "healthmonitor", d)
 	return err
 }
 
@@ -173,13 +163,11 @@ func resourceAviHealthMonitorUpdate(d *schema.ResourceData, meta interface{}) er
 	if err == nil {
 		err = ResourceAviHealthMonitorRead(d, meta)
 	}
-	log.Printf("[DEBUG] updated object %v: %v", "healthmonitor", d)
 	return err
 }
 
 func resourceAviHealthMonitorDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "healthmonitor"
-	log.Println("[INFO] ResourceAviHealthMonitorRead Avi Client")
 	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {

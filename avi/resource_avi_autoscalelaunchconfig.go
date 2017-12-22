@@ -71,7 +71,6 @@ func resourceAviAutoScaleLaunchConfig() *schema.Resource {
 
 func ResourceAviAutoScaleLaunchConfigRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceAutoScaleLaunchConfigSchema()
-	log.Printf("[INFO] ResourceAviAutoScaleLaunchConfigRead Avi Client %v\n", d)
 	client := meta.(*clients.AviClient)
 	var obj interface{}
 	if uuid, ok := d.GetOk("uuid"); ok {
@@ -85,29 +84,20 @@ func ResourceAviAutoScaleLaunchConfigRead(d *schema.ResourceData, meta interface
 		d.SetId("")
 		return nil
 	}
-	// no need to set the ID
-	log.Printf("ResourceAviAutoScaleLaunchConfigRead CURRENT obj %v\n", d)
-
-	log.Printf("ResourceAviAutoScaleLaunchConfigRead Read API obj %v\n", obj)
-	if tObj, err := ApiDataToSchema(obj, d, s); err == nil {
-		log.Printf("[INFO] ResourceAviAutoScaleLaunchConfigRead Converted obj %v\n", tObj)
-		//err = d.Set("obj", tObj)
+	if _, err := ApiDataToSchema(obj, d, s); err == nil {
 		if err != nil {
 			log.Printf("[ERROR] in setting read object %v\n", err)
 		}
 	}
-	log.Printf("[INFO] ResourceAviAutoScaleLaunchConfigRead Updated %v\n", d)
 	return nil
 }
 
 func resourceAviAutoScaleLaunchConfigCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceAutoScaleLaunchConfigSchema()
 	err := ApiCreateOrUpdate(d, meta, "autoscalelaunchconfig", s)
-	log.Printf("[DEBUG] created object %v: %v", "autoscalelaunchconfig", d)
 	if err == nil {
 		err = ResourceAviAutoScaleLaunchConfigRead(d, meta)
 	}
-	log.Printf("[DEBUG] created object %v: %v", "autoscalelaunchconfig", d)
 	return err
 }
 
@@ -117,13 +107,11 @@ func resourceAviAutoScaleLaunchConfigUpdate(d *schema.ResourceData, meta interfa
 	if err == nil {
 		err = ResourceAviAutoScaleLaunchConfigRead(d, meta)
 	}
-	log.Printf("[DEBUG] updated object %v: %v", "autoscalelaunchconfig", d)
 	return err
 }
 
 func resourceAviAutoScaleLaunchConfigDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "autoscalelaunchconfig"
-	log.Println("[INFO] ResourceAviAutoScaleLaunchConfigRead Avi Client")
 	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {

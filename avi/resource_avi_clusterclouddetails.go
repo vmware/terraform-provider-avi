@@ -12,24 +12,15 @@ import (
 	"strings"
 )
 
-func ResourceWafProfileSchema() map[string]*schema.Schema {
+func ResourceClusterCloudDetailsSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"config": &schema.Schema{
+		"azure_info": &schema.Schema{
 			Type:     schema.TypeSet,
 			Optional: true,
-			Elem:     ResourceWafConfigSchema(),
+			Elem:     ResourceAzureClusterInfoSchema(),
 			Set: func(v interface{}) int {
 				return 0
 			},
-		},
-		"description": &schema.Schema{
-			Type:     schema.TypeString,
-			Optional: true,
-		},
-		"files": &schema.Schema{
-			Type:     schema.TypeList,
-			Optional: true,
-			Elem:     ResourceWafDataFileSchema(),
 		},
 		"name": &schema.Schema{
 			Type:     schema.TypeString,
@@ -47,22 +38,22 @@ func ResourceWafProfileSchema() map[string]*schema.Schema {
 	}
 }
 
-func resourceAviWafProfile() *schema.Resource {
+func resourceAviClusterCloudDetails() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceAviWafProfileCreate,
-		Read:   ResourceAviWafProfileRead,
-		Update: resourceAviWafProfileUpdate,
-		Delete: resourceAviWafProfileDelete,
-		Schema: ResourceWafProfileSchema(),
+		Create: resourceAviClusterCloudDetailsCreate,
+		Read:   ResourceAviClusterCloudDetailsRead,
+		Update: resourceAviClusterCloudDetailsUpdate,
+		Delete: resourceAviClusterCloudDetailsDelete,
+		Schema: ResourceClusterCloudDetailsSchema(),
 	}
 }
 
-func ResourceAviWafProfileRead(d *schema.ResourceData, meta interface{}) error {
-	s := ResourceWafProfileSchema()
+func ResourceAviClusterCloudDetailsRead(d *schema.ResourceData, meta interface{}) error {
+	s := ResourceClusterCloudDetailsSchema()
 	client := meta.(*clients.AviClient)
 	var obj interface{}
 	if uuid, ok := d.GetOk("uuid"); ok {
-		path := "api/wafprofile/" + uuid.(string)
+		path := "api/clusterclouddetails/" + uuid.(string)
 		err := client.AviSession.Get(path, &obj)
 		if err != nil {
 			d.SetId("")
@@ -80,33 +71,33 @@ func ResourceAviWafProfileRead(d *schema.ResourceData, meta interface{}) error {
 	return nil
 }
 
-func resourceAviWafProfileCreate(d *schema.ResourceData, meta interface{}) error {
-	s := ResourceWafProfileSchema()
-	err := ApiCreateOrUpdate(d, meta, "wafprofile", s)
+func resourceAviClusterCloudDetailsCreate(d *schema.ResourceData, meta interface{}) error {
+	s := ResourceClusterCloudDetailsSchema()
+	err := ApiCreateOrUpdate(d, meta, "clusterclouddetails", s)
 	if err == nil {
-		err = ResourceAviWafProfileRead(d, meta)
+		err = ResourceAviClusterCloudDetailsRead(d, meta)
 	}
 	return err
 }
 
-func resourceAviWafProfileUpdate(d *schema.ResourceData, meta interface{}) error {
-	s := ResourceWafProfileSchema()
-	err := ApiCreateOrUpdate(d, meta, "wafprofile", s)
+func resourceAviClusterCloudDetailsUpdate(d *schema.ResourceData, meta interface{}) error {
+	s := ResourceClusterCloudDetailsSchema()
+	err := ApiCreateOrUpdate(d, meta, "clusterclouddetails", s)
 	if err == nil {
-		err = ResourceAviWafProfileRead(d, meta)
+		err = ResourceAviClusterCloudDetailsRead(d, meta)
 	}
 	return err
 }
 
-func resourceAviWafProfileDelete(d *schema.ResourceData, meta interface{}) error {
-	objType := "wafprofile"
+func resourceAviClusterCloudDetailsDelete(d *schema.ResourceData, meta interface{}) error {
+	objType := "clusterclouddetails"
 	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {
 		path := "api/" + objType + "/" + uuid
 		err := client.AviSession.Delete(path)
 		if err != nil && !(strings.Contains(err.Error(), "404") || strings.Contains(err.Error(), "204")) {
-			log.Println("[INFO] resourceAviWafProfileDelete not found")
+			log.Println("[INFO] resourceAviClusterCloudDetailsDelete not found")
 			return err
 		}
 		d.SetId("")

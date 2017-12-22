@@ -54,7 +54,6 @@ func resourceAviWebhook() *schema.Resource {
 
 func ResourceAviWebhookRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceWebhookSchema()
-	log.Printf("[INFO] ResourceAviWebhookRead Avi Client %v\n", d)
 	client := meta.(*clients.AviClient)
 	var obj interface{}
 	if uuid, ok := d.GetOk("uuid"); ok {
@@ -68,29 +67,20 @@ func ResourceAviWebhookRead(d *schema.ResourceData, meta interface{}) error {
 		d.SetId("")
 		return nil
 	}
-	// no need to set the ID
-	log.Printf("ResourceAviWebhookRead CURRENT obj %v\n", d)
-
-	log.Printf("ResourceAviWebhookRead Read API obj %v\n", obj)
-	if tObj, err := ApiDataToSchema(obj, d, s); err == nil {
-		log.Printf("[INFO] ResourceAviWebhookRead Converted obj %v\n", tObj)
-		//err = d.Set("obj", tObj)
+	if _, err := ApiDataToSchema(obj, d, s); err == nil {
 		if err != nil {
 			log.Printf("[ERROR] in setting read object %v\n", err)
 		}
 	}
-	log.Printf("[INFO] ResourceAviWebhookRead Updated %v\n", d)
 	return nil
 }
 
 func resourceAviWebhookCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceWebhookSchema()
 	err := ApiCreateOrUpdate(d, meta, "webhook", s)
-	log.Printf("[DEBUG] created object %v: %v", "webhook", d)
 	if err == nil {
 		err = ResourceAviWebhookRead(d, meta)
 	}
-	log.Printf("[DEBUG] created object %v: %v", "webhook", d)
 	return err
 }
 
@@ -100,13 +90,11 @@ func resourceAviWebhookUpdate(d *schema.ResourceData, meta interface{}) error {
 	if err == nil {
 		err = ResourceAviWebhookRead(d, meta)
 	}
-	log.Printf("[DEBUG] updated object %v: %v", "webhook", d)
 	return err
 }
 
 func resourceAviWebhookDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "webhook"
-	log.Println("[INFO] ResourceAviWebhookRead Avi Client")
 	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {
