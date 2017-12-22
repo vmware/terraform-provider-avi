@@ -56,7 +56,6 @@ func resourceAviPriorityLabels() *schema.Resource {
 
 func ResourceAviPriorityLabelsRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourcePriorityLabelsSchema()
-	log.Printf("[INFO] ResourceAviPriorityLabelsRead Avi Client %v\n", d)
 	client := meta.(*clients.AviClient)
 	var obj interface{}
 	if uuid, ok := d.GetOk("uuid"); ok {
@@ -70,29 +69,20 @@ func ResourceAviPriorityLabelsRead(d *schema.ResourceData, meta interface{}) err
 		d.SetId("")
 		return nil
 	}
-	// no need to set the ID
-	log.Printf("ResourceAviPriorityLabelsRead CURRENT obj %v\n", d)
-
-	log.Printf("ResourceAviPriorityLabelsRead Read API obj %v\n", obj)
-	if tObj, err := ApiDataToSchema(obj, d, s); err == nil {
-		log.Printf("[INFO] ResourceAviPriorityLabelsRead Converted obj %v\n", tObj)
-		//err = d.Set("obj", tObj)
+	if _, err := ApiDataToSchema(obj, d, s); err == nil {
 		if err != nil {
 			log.Printf("[ERROR] in setting read object %v\n", err)
 		}
 	}
-	log.Printf("[INFO] ResourceAviPriorityLabelsRead Updated %v\n", d)
 	return nil
 }
 
 func resourceAviPriorityLabelsCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourcePriorityLabelsSchema()
 	err := ApiCreateOrUpdate(d, meta, "prioritylabels", s)
-	log.Printf("[DEBUG] created object %v: %v", "prioritylabels", d)
 	if err == nil {
 		err = ResourceAviPriorityLabelsRead(d, meta)
 	}
-	log.Printf("[DEBUG] created object %v: %v", "prioritylabels", d)
 	return err
 }
 
@@ -102,13 +92,11 @@ func resourceAviPriorityLabelsUpdate(d *schema.ResourceData, meta interface{}) e
 	if err == nil {
 		err = ResourceAviPriorityLabelsRead(d, meta)
 	}
-	log.Printf("[DEBUG] updated object %v: %v", "prioritylabels", d)
 	return err
 }
 
 func resourceAviPriorityLabelsDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "prioritylabels"
-	log.Println("[INFO] ResourceAviPriorityLabelsRead Avi Client")
 	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {

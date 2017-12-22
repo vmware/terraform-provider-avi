@@ -66,7 +66,6 @@ func resourceAviCloudConnectorUser() *schema.Resource {
 
 func ResourceAviCloudConnectorUserRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceCloudConnectorUserSchema()
-	log.Printf("[INFO] ResourceAviCloudConnectorUserRead Avi Client %v\n", d)
 	client := meta.(*clients.AviClient)
 	var obj interface{}
 	if uuid, ok := d.GetOk("uuid"); ok {
@@ -80,29 +79,20 @@ func ResourceAviCloudConnectorUserRead(d *schema.ResourceData, meta interface{})
 		d.SetId("")
 		return nil
 	}
-	// no need to set the ID
-	log.Printf("ResourceAviCloudConnectorUserRead CURRENT obj %v\n", d)
-
-	log.Printf("ResourceAviCloudConnectorUserRead Read API obj %v\n", obj)
-	if tObj, err := ApiDataToSchema(obj, d, s); err == nil {
-		log.Printf("[INFO] ResourceAviCloudConnectorUserRead Converted obj %v\n", tObj)
-		//err = d.Set("obj", tObj)
+	if _, err := ApiDataToSchema(obj, d, s); err == nil {
 		if err != nil {
 			log.Printf("[ERROR] in setting read object %v\n", err)
 		}
 	}
-	log.Printf("[INFO] ResourceAviCloudConnectorUserRead Updated %v\n", d)
 	return nil
 }
 
 func resourceAviCloudConnectorUserCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceCloudConnectorUserSchema()
 	err := ApiCreateOrUpdate(d, meta, "cloudconnectoruser", s)
-	log.Printf("[DEBUG] created object %v: %v", "cloudconnectoruser", d)
 	if err == nil {
 		err = ResourceAviCloudConnectorUserRead(d, meta)
 	}
-	log.Printf("[DEBUG] created object %v: %v", "cloudconnectoruser", d)
 	return err
 }
 
@@ -112,13 +102,11 @@ func resourceAviCloudConnectorUserUpdate(d *schema.ResourceData, meta interface{
 	if err == nil {
 		err = ResourceAviCloudConnectorUserRead(d, meta)
 	}
-	log.Printf("[DEBUG] updated object %v: %v", "cloudconnectoruser", d)
 	return err
 }
 
 func resourceAviCloudConnectorUserDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "cloudconnectoruser"
-	log.Println("[INFO] ResourceAviCloudConnectorUserRead Avi Client")
 	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {

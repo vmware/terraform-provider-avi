@@ -90,7 +90,6 @@ func resourceAviVrfContext() *schema.Resource {
 
 func ResourceAviVrfContextRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceVrfContextSchema()
-	log.Printf("[INFO] ResourceAviVrfContextRead Avi Client %v\n", d)
 	client := meta.(*clients.AviClient)
 	var obj interface{}
 	if uuid, ok := d.GetOk("uuid"); ok {
@@ -104,29 +103,20 @@ func ResourceAviVrfContextRead(d *schema.ResourceData, meta interface{}) error {
 		d.SetId("")
 		return nil
 	}
-	// no need to set the ID
-	log.Printf("ResourceAviVrfContextRead CURRENT obj %v\n", d)
-
-	log.Printf("ResourceAviVrfContextRead Read API obj %v\n", obj)
-	if tObj, err := ApiDataToSchema(obj, d, s); err == nil {
-		log.Printf("[INFO] ResourceAviVrfContextRead Converted obj %v\n", tObj)
-		//err = d.Set("obj", tObj)
+	if _, err := ApiDataToSchema(obj, d, s); err == nil {
 		if err != nil {
 			log.Printf("[ERROR] in setting read object %v\n", err)
 		}
 	}
-	log.Printf("[INFO] ResourceAviVrfContextRead Updated %v\n", d)
 	return nil
 }
 
 func resourceAviVrfContextCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceVrfContextSchema()
 	err := ApiCreateOrUpdate(d, meta, "vrfcontext", s)
-	log.Printf("[DEBUG] created object %v: %v", "vrfcontext", d)
 	if err == nil {
 		err = ResourceAviVrfContextRead(d, meta)
 	}
-	log.Printf("[DEBUG] created object %v: %v", "vrfcontext", d)
 	return err
 }
 
@@ -136,13 +126,11 @@ func resourceAviVrfContextUpdate(d *schema.ResourceData, meta interface{}) error
 	if err == nil {
 		err = ResourceAviVrfContextRead(d, meta)
 	}
-	log.Printf("[DEBUG] updated object %v: %v", "vrfcontext", d)
 	return err
 }
 
 func resourceAviVrfContextDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "vrfcontext"
-	log.Println("[INFO] ResourceAviVrfContextRead Avi Client")
 	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {

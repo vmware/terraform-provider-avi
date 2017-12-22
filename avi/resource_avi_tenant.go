@@ -59,7 +59,6 @@ func resourceAviTenant() *schema.Resource {
 
 func ResourceAviTenantRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceTenantSchema()
-	log.Printf("[INFO] ResourceAviTenantRead Avi Client %v\n", d)
 	client := meta.(*clients.AviClient)
 	var obj interface{}
 	if uuid, ok := d.GetOk("uuid"); ok {
@@ -73,29 +72,20 @@ func ResourceAviTenantRead(d *schema.ResourceData, meta interface{}) error {
 		d.SetId("")
 		return nil
 	}
-	// no need to set the ID
-	log.Printf("ResourceAviTenantRead CURRENT obj %v\n", d)
-
-	log.Printf("ResourceAviTenantRead Read API obj %v\n", obj)
-	if tObj, err := ApiDataToSchema(obj, d, s); err == nil {
-		log.Printf("[INFO] ResourceAviTenantRead Converted obj %v\n", tObj)
-		//err = d.Set("obj", tObj)
+	if _, err := ApiDataToSchema(obj, d, s); err == nil {
 		if err != nil {
 			log.Printf("[ERROR] in setting read object %v\n", err)
 		}
 	}
-	log.Printf("[INFO] ResourceAviTenantRead Updated %v\n", d)
 	return nil
 }
 
 func resourceAviTenantCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceTenantSchema()
 	err := ApiCreateOrUpdate(d, meta, "tenant", s)
-	log.Printf("[DEBUG] created object %v: %v", "tenant", d)
 	if err == nil {
 		err = ResourceAviTenantRead(d, meta)
 	}
-	log.Printf("[DEBUG] created object %v: %v", "tenant", d)
 	return err
 }
 
@@ -105,13 +95,11 @@ func resourceAviTenantUpdate(d *schema.ResourceData, meta interface{}) error {
 	if err == nil {
 		err = ResourceAviTenantRead(d, meta)
 	}
-	log.Printf("[DEBUG] updated object %v: %v", "tenant", d)
 	return err
 }
 
 func resourceAviTenantDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "tenant"
-	log.Println("[INFO] ResourceAviTenantRead Avi Client")
 	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {

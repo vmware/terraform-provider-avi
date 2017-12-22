@@ -55,7 +55,6 @@ func resourceAviDnsPolicy() *schema.Resource {
 
 func ResourceAviDnsPolicyRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceDnsPolicySchema()
-	log.Printf("[INFO] ResourceAviDnsPolicyRead Avi Client %v\n", d)
 	client := meta.(*clients.AviClient)
 	var obj interface{}
 	if uuid, ok := d.GetOk("uuid"); ok {
@@ -69,29 +68,20 @@ func ResourceAviDnsPolicyRead(d *schema.ResourceData, meta interface{}) error {
 		d.SetId("")
 		return nil
 	}
-	// no need to set the ID
-	log.Printf("ResourceAviDnsPolicyRead CURRENT obj %v\n", d)
-
-	log.Printf("ResourceAviDnsPolicyRead Read API obj %v\n", obj)
-	if tObj, err := ApiDataToSchema(obj, d, s); err == nil {
-		log.Printf("[INFO] ResourceAviDnsPolicyRead Converted obj %v\n", tObj)
-		//err = d.Set("obj", tObj)
+	if _, err := ApiDataToSchema(obj, d, s); err == nil {
 		if err != nil {
 			log.Printf("[ERROR] in setting read object %v\n", err)
 		}
 	}
-	log.Printf("[INFO] ResourceAviDnsPolicyRead Updated %v\n", d)
 	return nil
 }
 
 func resourceAviDnsPolicyCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceDnsPolicySchema()
 	err := ApiCreateOrUpdate(d, meta, "dnspolicy", s)
-	log.Printf("[DEBUG] created object %v: %v", "dnspolicy", d)
 	if err == nil {
 		err = ResourceAviDnsPolicyRead(d, meta)
 	}
-	log.Printf("[DEBUG] created object %v: %v", "dnspolicy", d)
 	return err
 }
 
@@ -101,13 +91,11 @@ func resourceAviDnsPolicyUpdate(d *schema.ResourceData, meta interface{}) error 
 	if err == nil {
 		err = ResourceAviDnsPolicyRead(d, meta)
 	}
-	log.Printf("[DEBUG] updated object %v: %v", "dnspolicy", d)
 	return err
 }
 
 func resourceAviDnsPolicyDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "dnspolicy"
-	log.Println("[INFO] ResourceAviDnsPolicyRead Avi Client")
 	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {

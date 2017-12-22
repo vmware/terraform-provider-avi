@@ -113,7 +113,6 @@ func resourceAviServiceEngine() *schema.Resource {
 
 func ResourceAviServiceEngineRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceServiceEngineSchema()
-	log.Printf("[INFO] ResourceAviServiceEngineRead Avi Client %v\n", d)
 	client := meta.(*clients.AviClient)
 	var obj interface{}
 	if uuid, ok := d.GetOk("uuid"); ok {
@@ -127,29 +126,20 @@ func ResourceAviServiceEngineRead(d *schema.ResourceData, meta interface{}) erro
 		d.SetId("")
 		return nil
 	}
-	// no need to set the ID
-	log.Printf("ResourceAviServiceEngineRead CURRENT obj %v\n", d)
-
-	log.Printf("ResourceAviServiceEngineRead Read API obj %v\n", obj)
-	if tObj, err := ApiDataToSchema(obj, d, s); err == nil {
-		log.Printf("[INFO] ResourceAviServiceEngineRead Converted obj %v\n", tObj)
-		//err = d.Set("obj", tObj)
+	if _, err := ApiDataToSchema(obj, d, s); err == nil {
 		if err != nil {
 			log.Printf("[ERROR] in setting read object %v\n", err)
 		}
 	}
-	log.Printf("[INFO] ResourceAviServiceEngineRead Updated %v\n", d)
 	return nil
 }
 
 func resourceAviServiceEngineCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceServiceEngineSchema()
 	err := ApiCreateOrUpdate(d, meta, "serviceengine", s)
-	log.Printf("[DEBUG] created object %v: %v", "serviceengine", d)
 	if err == nil {
 		err = ResourceAviServiceEngineRead(d, meta)
 	}
-	log.Printf("[DEBUG] created object %v: %v", "serviceengine", d)
 	return err
 }
 
@@ -159,13 +149,11 @@ func resourceAviServiceEngineUpdate(d *schema.ResourceData, meta interface{}) er
 	if err == nil {
 		err = ResourceAviServiceEngineRead(d, meta)
 	}
-	log.Printf("[DEBUG] updated object %v: %v", "serviceengine", d)
 	return err
 }
 
 func resourceAviServiceEngineDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "serviceengine"
-	log.Println("[INFO] ResourceAviServiceEngineRead Avi Client")
 	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {

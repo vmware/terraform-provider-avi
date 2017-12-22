@@ -85,7 +85,6 @@ func resourceAviPoolGroupDeploymentPolicy() *schema.Resource {
 
 func ResourceAviPoolGroupDeploymentPolicyRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourcePoolGroupDeploymentPolicySchema()
-	log.Printf("[INFO] ResourceAviPoolGroupDeploymentPolicyRead Avi Client %v\n", d)
 	client := meta.(*clients.AviClient)
 	var obj interface{}
 	if uuid, ok := d.GetOk("uuid"); ok {
@@ -99,29 +98,20 @@ func ResourceAviPoolGroupDeploymentPolicyRead(d *schema.ResourceData, meta inter
 		d.SetId("")
 		return nil
 	}
-	// no need to set the ID
-	log.Printf("ResourceAviPoolGroupDeploymentPolicyRead CURRENT obj %v\n", d)
-
-	log.Printf("ResourceAviPoolGroupDeploymentPolicyRead Read API obj %v\n", obj)
-	if tObj, err := ApiDataToSchema(obj, d, s); err == nil {
-		log.Printf("[INFO] ResourceAviPoolGroupDeploymentPolicyRead Converted obj %v\n", tObj)
-		//err = d.Set("obj", tObj)
+	if _, err := ApiDataToSchema(obj, d, s); err == nil {
 		if err != nil {
 			log.Printf("[ERROR] in setting read object %v\n", err)
 		}
 	}
-	log.Printf("[INFO] ResourceAviPoolGroupDeploymentPolicyRead Updated %v\n", d)
 	return nil
 }
 
 func resourceAviPoolGroupDeploymentPolicyCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourcePoolGroupDeploymentPolicySchema()
 	err := ApiCreateOrUpdate(d, meta, "poolgroupdeploymentpolicy", s)
-	log.Printf("[DEBUG] created object %v: %v", "poolgroupdeploymentpolicy", d)
 	if err == nil {
 		err = ResourceAviPoolGroupDeploymentPolicyRead(d, meta)
 	}
-	log.Printf("[DEBUG] created object %v: %v", "poolgroupdeploymentpolicy", d)
 	return err
 }
 
@@ -131,13 +121,11 @@ func resourceAviPoolGroupDeploymentPolicyUpdate(d *schema.ResourceData, meta int
 	if err == nil {
 		err = ResourceAviPoolGroupDeploymentPolicyRead(d, meta)
 	}
-	log.Printf("[DEBUG] updated object %v: %v", "poolgroupdeploymentpolicy", d)
 	return err
 }
 
 func resourceAviPoolGroupDeploymentPolicyDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "poolgroupdeploymentpolicy"
-	log.Println("[INFO] ResourceAviPoolGroupDeploymentPolicyRead Avi Client")
 	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {

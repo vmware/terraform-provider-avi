@@ -82,7 +82,6 @@ func resourceAviAuthProfile() *schema.Resource {
 
 func ResourceAviAuthProfileRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceAuthProfileSchema()
-	log.Printf("[INFO] ResourceAviAuthProfileRead Avi Client %v\n", d)
 	client := meta.(*clients.AviClient)
 	var obj interface{}
 	if uuid, ok := d.GetOk("uuid"); ok {
@@ -96,29 +95,20 @@ func ResourceAviAuthProfileRead(d *schema.ResourceData, meta interface{}) error 
 		d.SetId("")
 		return nil
 	}
-	// no need to set the ID
-	log.Printf("ResourceAviAuthProfileRead CURRENT obj %v\n", d)
-
-	log.Printf("ResourceAviAuthProfileRead Read API obj %v\n", obj)
-	if tObj, err := ApiDataToSchema(obj, d, s); err == nil {
-		log.Printf("[INFO] ResourceAviAuthProfileRead Converted obj %v\n", tObj)
-		//err = d.Set("obj", tObj)
+	if _, err := ApiDataToSchema(obj, d, s); err == nil {
 		if err != nil {
 			log.Printf("[ERROR] in setting read object %v\n", err)
 		}
 	}
-	log.Printf("[INFO] ResourceAviAuthProfileRead Updated %v\n", d)
 	return nil
 }
 
 func resourceAviAuthProfileCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceAuthProfileSchema()
 	err := ApiCreateOrUpdate(d, meta, "authprofile", s)
-	log.Printf("[DEBUG] created object %v: %v", "authprofile", d)
 	if err == nil {
 		err = ResourceAviAuthProfileRead(d, meta)
 	}
-	log.Printf("[DEBUG] created object %v: %v", "authprofile", d)
 	return err
 }
 
@@ -128,13 +118,11 @@ func resourceAviAuthProfileUpdate(d *schema.ResourceData, meta interface{}) erro
 	if err == nil {
 		err = ResourceAviAuthProfileRead(d, meta)
 	}
-	log.Printf("[DEBUG] updated object %v: %v", "authprofile", d)
 	return err
 }
 
 func resourceAviAuthProfileDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "authprofile"
-	log.Println("[INFO] ResourceAviAuthProfileRead Avi Client")
 	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {

@@ -110,7 +110,6 @@ func resourceAviAlertConfig() *schema.Resource {
 
 func ResourceAviAlertConfigRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceAlertConfigSchema()
-	log.Printf("[INFO] ResourceAviAlertConfigRead Avi Client %v\n", d)
 	client := meta.(*clients.AviClient)
 	var obj interface{}
 	if uuid, ok := d.GetOk("uuid"); ok {
@@ -124,29 +123,20 @@ func ResourceAviAlertConfigRead(d *schema.ResourceData, meta interface{}) error 
 		d.SetId("")
 		return nil
 	}
-	// no need to set the ID
-	log.Printf("ResourceAviAlertConfigRead CURRENT obj %v\n", d)
-
-	log.Printf("ResourceAviAlertConfigRead Read API obj %v\n", obj)
-	if tObj, err := ApiDataToSchema(obj, d, s); err == nil {
-		log.Printf("[INFO] ResourceAviAlertConfigRead Converted obj %v\n", tObj)
-		//err = d.Set("obj", tObj)
+	if _, err := ApiDataToSchema(obj, d, s); err == nil {
 		if err != nil {
 			log.Printf("[ERROR] in setting read object %v\n", err)
 		}
 	}
-	log.Printf("[INFO] ResourceAviAlertConfigRead Updated %v\n", d)
 	return nil
 }
 
 func resourceAviAlertConfigCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceAlertConfigSchema()
 	err := ApiCreateOrUpdate(d, meta, "alertconfig", s)
-	log.Printf("[DEBUG] created object %v: %v", "alertconfig", d)
 	if err == nil {
 		err = ResourceAviAlertConfigRead(d, meta)
 	}
-	log.Printf("[DEBUG] created object %v: %v", "alertconfig", d)
 	return err
 }
 
@@ -156,13 +146,11 @@ func resourceAviAlertConfigUpdate(d *schema.ResourceData, meta interface{}) erro
 	if err == nil {
 		err = ResourceAviAlertConfigRead(d, meta)
 	}
-	log.Printf("[DEBUG] updated object %v: %v", "alertconfig", d)
 	return err
 }
 
 func resourceAviAlertConfigDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "alertconfig"
-	log.Println("[INFO] ResourceAviAlertConfigRead Avi Client")
 	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {
