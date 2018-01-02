@@ -6,7 +6,6 @@
 package avi
 
 import (
-	//"github.com/hashicorp/terraform/helper/schema"
 	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform/helper/hashcode"
 	"github.com/hashicorp/terraform/helper/schema"
@@ -23,9 +22,9 @@ func SchemaToAviData(d interface{}, s map[string]*schema.Schema) (interface{}, e
 	case map[string]interface{}:
 		m := make(map[string]interface{})
 		for k, v := range d.(map[string]interface{}) {
-			if obj, err := SchemaToAviData(v, nil); err == nil && obj != nil {
+			if obj, err := SchemaToAviData(v, nil); err == nil && obj != nil && obj != "" {
 				m[k] = obj
-			} else {
+			} else if err != nil {
 				log.Printf("Error in parsing k: %v v: %v", k, v)
 			}
 		}
@@ -56,9 +55,9 @@ func SchemaToAviData(d interface{}, s map[string]*schema.Schema) (interface{}, e
 		m := make(map[string]interface{})
 		r := d.(*schema.ResourceData)
 		for k, v := range s {
-			if obj, err := SchemaToAviData(r.Get(k), nil); err == nil && obj != nil {
+			if obj, err := SchemaToAviData(r.Get(k), nil); err == nil && obj != nil && obj != "" {
 				m[k] = obj
-			} else {
+			} else if err != nil {
 				log.Printf("Error in converting k: %v v: %v", k, v)
 			}
 		}
@@ -83,7 +82,7 @@ func ApiDataToSchema(adata interface{}, d *schema.ResourceData, t map[string]*sc
 			for k, v := range adata.(map[string]interface{}) {
 				if obj, err := ApiDataToSchema(v, nil, nil); err == nil {
 					m[k] = obj
-				} else {
+				} else if err != nil {
 					log.Printf("Error in converting k: %v v: %v", k, v)
 				}
 
