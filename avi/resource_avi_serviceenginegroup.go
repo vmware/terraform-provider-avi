@@ -317,11 +317,6 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  1,
 		},
-		"minimum_required_config_mem_mb": &schema.Schema{
-			Type:     schema.TypeInt,
-			Optional: true,
-			Default:  4,
-		},
 		"name": &schema.Schema{
 			Type:     schema.TypeString,
 			Required: true,
@@ -449,11 +444,6 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  256,
 		},
-		"service_ip6_subnets": &schema.Schema{
-			Type:     schema.TypeList,
-			Optional: true,
-			Elem:     ResourceIpAddrPrefixSchema(),
-		},
 		"service_ip_subnets": &schema.Schema{
 			Type:     schema.TypeList,
 			Optional: true,
@@ -572,25 +562,8 @@ func resourceAviServiceEngineGroup() *schema.Resource {
 
 func ResourceAviServiceEngineGroupRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceServiceEngineGroupSchema()
-	client := meta.(*clients.AviClient)
-	var obj interface{}
-	if uuid, ok := d.GetOk("uuid"); ok {
-		path := "api/serviceenginegroup/" + uuid.(string)
-		err := client.AviSession.Get(path, &obj)
-		if err != nil {
-			d.SetId("")
-			return nil
-		}
-	} else {
-		d.SetId("")
-		return nil
-	}
-	if _, err := ApiDataToSchema(obj, d, s); err == nil {
-		if err != nil {
-			log.Printf("[ERROR] in setting read object %v\n", err)
-		}
-	}
-	return nil
+	err := ApiRead(d, meta, "serviceenginegroup", s)
+	return err
 }
 
 func resourceAviServiceEngineGroupCreate(d *schema.ResourceData, meta interface{}) error {

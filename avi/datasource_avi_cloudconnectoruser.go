@@ -9,7 +9,44 @@ import "github.com/hashicorp/terraform/helper/schema"
 
 func dataSourceAviCloudConnectorUser() *schema.Resource {
 	return &schema.Resource{
-		Read:   ResourceAviCloudConnectorUserRead,
-		Schema: ResourceCloudConnectorUserSchema(),
+		Read: ResourceAviCloudConnectorUserRead,
+		Schema: map[string]*schema.Schema{
+			"azure_serviceprincipal": &schema.Schema{
+				Type:     schema.TypeSet,
+				Optional: true,
+				Elem:     ResourceAzureServicePrincipalCredentialsSchema(),
+				Set: func(v interface{}) int {
+					return 0
+				},
+			},
+			"azure_userpass": &schema.Schema{
+				Type:     schema.TypeSet,
+				Optional: true,
+				Elem:     ResourceAzureUserPassCredentialsSchema(),
+				Set: func(v interface{}) int {
+					return 0
+				},
+			},
+			"name": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"private_key": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"public_key": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"tenant_ref": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"uuid": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+		},
 	}
 }

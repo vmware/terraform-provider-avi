@@ -88,7 +88,6 @@ func resourceAviApplicationProfile() *schema.Resource {
 func ResourceAviApplicationProfileRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceApplicationProfileSchema()
 	err := ApiRead(d, meta, "applicationprofile", s)
-	log.Printf("[DEBUG] data read as %v uuid %v id %v\n", d.Get("name"), d.Get("uuid"), d.Id())
 	return err
 }
 

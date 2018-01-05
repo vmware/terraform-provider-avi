@@ -50,25 +50,8 @@ func resourceAviClusterCloudDetails() *schema.Resource {
 
 func ResourceAviClusterCloudDetailsRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceClusterCloudDetailsSchema()
-	client := meta.(*clients.AviClient)
-	var obj interface{}
-	if uuid, ok := d.GetOk("uuid"); ok {
-		path := "api/clusterclouddetails/" + uuid.(string)
-		err := client.AviSession.Get(path, &obj)
-		if err != nil {
-			d.SetId("")
-			return nil
-		}
-	} else {
-		d.SetId("")
-		return nil
-	}
-	if _, err := ApiDataToSchema(obj, d, s); err == nil {
-		if err != nil {
-			log.Printf("[ERROR] in setting read object %v\n", err)
-		}
-	}
-	return nil
+	err := ApiRead(d, meta, "clusterclouddetails", s)
+	return err
 }
 
 func resourceAviClusterCloudDetailsCreate(d *schema.ResourceData, meta interface{}) error {

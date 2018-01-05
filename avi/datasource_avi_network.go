@@ -9,7 +9,58 @@ import "github.com/hashicorp/terraform/helper/schema"
 
 func dataSourceAviNetwork() *schema.Resource {
 	return &schema.Resource{
-		Read:   ResourceAviNetworkRead,
-		Schema: ResourceNetworkSchema(),
+		Read: ResourceAviNetworkRead,
+		Schema: map[string]*schema.Schema{
+			"cloud_ref": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "/api/cloud?name=Default-Cloud",
+			},
+			"configured_subnets": &schema.Schema{
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceSubnetSchema(),
+			},
+			"dhcp_enabled": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  true,
+			},
+			"exclude_discovered_subnets": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  false,
+			},
+			"name": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"synced_from_se": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  false,
+			},
+			"tenant_ref": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"uuid": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"vcenter_dvs": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  true,
+			},
+			"vimgrnw_ref": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"vrf_context_ref": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+		},
 	}
 }
