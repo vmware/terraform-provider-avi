@@ -51,6 +51,17 @@ resource "avi_pool" "testpool" {
 
 ```
 
+Reference existing resources as readonly or data sources
+
+```
+data "avi_applicationprofile" "system_http_profile" {
+  name= "System-HTTP"
+}
+
+application_profile_ref= "${data.avi_applicationprofile.system_https_profile.id}"
+
+```
+
 
 Building The Provider
 ---------------------
