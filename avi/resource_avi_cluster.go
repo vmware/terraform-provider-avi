@@ -60,25 +60,8 @@ func resourceAviCluster() *schema.Resource {
 
 func ResourceAviClusterRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceClusterSchema()
-	client := meta.(*clients.AviClient)
-	var obj interface{}
-	if uuid, ok := d.GetOk("uuid"); ok {
-		path := "api/cluster/" + uuid.(string)
-		err := client.AviSession.Get(path, &obj)
-		if err != nil {
-			d.SetId("")
-			return nil
-		}
-	} else {
-		d.SetId("")
-		return nil
-	}
-	if _, err := ApiDataToSchema(obj, d, s); err == nil {
-		if err != nil {
-			log.Printf("[ERROR] in setting read object %v\n", err)
-		}
-	}
-	return nil
+	err := ApiRead(d, meta, "cluster", s)
+	return err
 }
 
 func resourceAviClusterCreate(d *schema.ResourceData, meta interface{}) error {

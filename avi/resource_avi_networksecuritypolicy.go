@@ -59,25 +59,8 @@ func resourceAviNetworkSecurityPolicy() *schema.Resource {
 
 func ResourceAviNetworkSecurityPolicyRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceNetworkSecurityPolicySchema()
-	client := meta.(*clients.AviClient)
-	var obj interface{}
-	if uuid, ok := d.GetOk("uuid"); ok {
-		path := "api/networksecuritypolicy/" + uuid.(string)
-		err := client.AviSession.Get(path, &obj)
-		if err != nil {
-			d.SetId("")
-			return nil
-		}
-	} else {
-		d.SetId("")
-		return nil
-	}
-	if _, err := ApiDataToSchema(obj, d, s); err == nil {
-		if err != nil {
-			log.Printf("[ERROR] in setting read object %v\n", err)
-		}
-	}
-	return nil
+	err := ApiRead(d, meta, "networksecuritypolicy", s)
+	return err
 }
 
 func resourceAviNetworkSecurityPolicyCreate(d *schema.ResourceData, meta interface{}) error {

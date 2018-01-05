@@ -82,25 +82,8 @@ func resourceAviAuthProfile() *schema.Resource {
 
 func ResourceAviAuthProfileRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceAuthProfileSchema()
-	client := meta.(*clients.AviClient)
-	var obj interface{}
-	if uuid, ok := d.GetOk("uuid"); ok {
-		path := "api/authprofile/" + uuid.(string)
-		err := client.AviSession.Get(path, &obj)
-		if err != nil {
-			d.SetId("")
-			return nil
-		}
-	} else {
-		d.SetId("")
-		return nil
-	}
-	if _, err := ApiDataToSchema(obj, d, s); err == nil {
-		if err != nil {
-			log.Printf("[ERROR] in setting read object %v\n", err)
-		}
-	}
-	return nil
+	err := ApiRead(d, meta, "authprofile", s)
+	return err
 }
 
 func resourceAviAuthProfileCreate(d *schema.ResourceData, meta interface{}) error {

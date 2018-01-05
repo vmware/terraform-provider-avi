@@ -86,11 +86,6 @@ func ResourceCloudSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  false,
 		},
-		"ip6_autocfg_enabled": &schema.Schema{
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
-		},
 		"ipam_provider_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
@@ -226,25 +221,8 @@ func resourceAviCloud() *schema.Resource {
 
 func ResourceAviCloudRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceCloudSchema()
-	client := meta.(*clients.AviClient)
-	var obj interface{}
-	if uuid, ok := d.GetOk("uuid"); ok {
-		path := "api/cloud/" + uuid.(string)
-		err := client.AviSession.Get(path, &obj)
-		if err != nil {
-			d.SetId("")
-			return nil
-		}
-	} else {
-		d.SetId("")
-		return nil
-	}
-	if _, err := ApiDataToSchema(obj, d, s); err == nil {
-		if err != nil {
-			log.Printf("[ERROR] in setting read object %v\n", err)
-		}
-	}
-	return nil
+	err := ApiRead(d, meta, "cloud", s)
+	return err
 }
 
 func resourceAviCloudCreate(d *schema.ResourceData, meta interface{}) error {
