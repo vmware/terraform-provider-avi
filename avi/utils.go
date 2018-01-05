@@ -131,17 +131,32 @@ func ApiCreateOrUpdate(d *schema.ResourceData, meta interface{}, objType string,
 	var err error
 	client := meta.(*clients.AviClient)
 	var robj interface{}
-	//	obj := tObj.(*schema.Set).List()[0]
 	obj := d
 	if data, err := SchemaToAviData(obj, s); err == nil {
 		path := "api/" + objType
 		if uuid, ok := d.GetOk("uuid"); ok {
 			path = path + "/" + uuid.(string)
 			err = client.AviSession.Put(path, data, &robj)
-		} else {
-			err = client.AviSession.Post(path, data, &robj)
+		} else if name, ok := d.GetOk("name"); ok {
+			var existing_obj interface{}
+			err := client.AviSession.GetObjectByName(objType, name.(string), &existing_obj)
+			if err != nil {
+				// object not found
+				err = client.AviSession.Post(path, data, &robj)
+				if err != nil {
+					log.Printf("[ERROR] object with name %v not found\n", name)
+				}
+			} else {
+				// found existing object.
+				uuid = existing_obj.(map[string]interface{})["uuid"].(string)
+				d.Set("uuid", uuid)
+				d.SetId(uuid.(string))
+				path = path + "/" + uuid.(string)
+				err = client.AviSession.Put(path, data, &robj)
+			}
 		}
 		if err != nil {
+			d.SetId("")
 			log.Printf("[ERROR] ApiCreateOrUpdate: Error %v path %v id %v\n", err, path, d.Id())
 			return err
 		}
@@ -150,9 +165,43 @@ func ApiCreateOrUpdate(d *schema.ResourceData, meta interface{}, objType string,
 		url = strings.SplitN(url, "#", 2)[0]
 		d.SetId(url)
 		d.Set("uuid", uuid)
-		//d.SetId(robj.(map[string]interface{})["uuid"].(string))
 	} else {
 		log.Printf("Error %v", err)
 	}
 	return err
+}
+
+func ApiRead(d *schema.ResourceData, meta interface{}, objType string, s map[string]*schema.Schema) error {
+	client := meta.(*clients.AviClient)
+	var obj interface{}
+	if uuid, ok := d.GetOk("uuid"); ok {
+		path := "api/" + objType + "/" + uuid.(string)
+		err := client.AviSession.Get(path, &obj)
+		if err != nil {
+			d.SetId("")
+			log.Printf("[ERROR] object with uuid %v not found\n", uuid)
+			return nil
+		}
+	} else if name, ok := d.GetOk("name"); ok {
+		err := client.AviSession.GetObjectByName(objType, name.(string), &obj)
+		if err != nil {
+			d.SetId("")
+			log.Printf("[ERROR] object with name %v not found\n", name)
+			return nil
+		}
+	} else {
+		d.SetId("")
+		log.Printf("[ERROR] application profile not found %v\n", d.Get("uuid"))
+		return nil
+	}
+	if _, err := ApiDataToSchema(obj, d, s); err == nil {
+		url := obj.(map[string]interface{})["url"].(string)
+		uuid := obj.(map[string]interface{})["uuid"].(string)
+		url = strings.SplitN(url, "#", 2)[0]
+		d.SetId(url)
+		d.Set("uuid", uuid)
+	} else {
+		log.Printf("[ERROR] in setting read object %v\n", err)
+	}
+	return nil
 }
