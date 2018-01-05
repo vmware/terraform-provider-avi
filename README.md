@@ -16,12 +16,41 @@ Requirements
 Usage
 ---------------------
 
+Create Avi Provider in terraform plan
+
 ```
 # For example, restrict template version in 0.1.x
-provider "template" {
-  version = "~> 0.1"
+provider "avi" {
+  avi_username = "admin"
+  avi_tenant = "admin"
+  avi_password = "something"
+  avi_controller= "42.42.42.42"
 }
 ```
+
+Create Avi Pool Example. Here Pool depends on read only tenant data source and another health monitor defined as resource in the terraform plan
+
+```
+resource "avi_pool" "testpool" {
+  name= "pool-42",
+  health_monitor_refs= ["${avi_healthmonitor.test_hm_1.id}"]
+  tenant_ref= "${data.avi_tenant.default_tenant.id}"
+  cloud_ref= "${data.avi_cloud.default_cloud.id}"
+  application_persistence_profile_ref= "${avi_applicationpersistenceprofile.test_applicationpersistenceprofile.id}"
+  servers {
+    ip= {
+      type= "V4",
+      addr= "10.90.64.66",
+    }
+    port= 8080
+  }
+  fail_action= {
+    type= "FAIL_ACTION_CLOSE_CONN"
+  }
+}
+
+```
+
 
 Building The Provider
 ---------------------
