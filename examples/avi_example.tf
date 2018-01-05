@@ -1,8 +1,18 @@
 provider "avi" {
-  avi_username = ""
-  avi_tenant = ""
-  avi_password = ""
-  avi_controller= ""
+  avi_username = "admin"
+  avi_tenant = "admin"
+  avi_password = "something"
+  avi_controller= "10.10.25.42"
+}
+
+data "avi_applicationprofile" "system_app_profile" {
+  name= "System-HTTP"
+  type= "APPLICATION_PROFILE_TYPE_HTTP"
+}
+
+
+output "system app profile" {
+  value = "${data.avi_applicationprofile.system_app_profile.name}"
 }
 
 resource "avi_networkprofile" "test_networkprofile" {
@@ -31,7 +41,8 @@ resource "avi_vsvip" "test_vsvip" {
 resource "avi_virtualservice" "test_vs" {
   name= "vs-42"
   pool_ref= "${avi_pool.testpool.id}"
-  application_profile_ref= "${avi_applicationprofile.test_applicationprofile.id}"
+  application_profile_ref= "${data.avi_applicationprofile.system_app_profile.id}"
+  #application_profile_ref= "${avi_applicationprofile.test_applicationprofile.id}"
   network_profile_ref = "${avi_networkprofile.test_networkprofile.id}"
   vsvip_ref = "${avi_vsvip.test_vsvip.id}"
   vip {
