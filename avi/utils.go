@@ -173,9 +173,19 @@ func ApiCreateOrUpdate(d *schema.ResourceData, meta interface{}, objType string,
 
 func ApiRead(d *schema.ResourceData, meta interface{}, objType string, s map[string]*schema.Schema) error {
 	client := meta.(*clients.AviClient)
+	log.Printf("[DEBUG] reading object with id %v \n", d.Id())
 	var obj interface{}
-	if uuid, ok := d.GetOk("uuid"); ok {
-		path := "api/" + objType + "/" + uuid.(string)
+	uuid := ""
+	if d.Id() != "" {
+		// extract the uuid from it.
+		url_parts := strings.Split(d.Id(), "/")
+		uuid = url_parts[len(url_parts)-1]
+	} else if u, ok := d.GetOk("uuid"); ok {
+		uuid = u.(string)
+	}
+	if uuid != "" {
+		path := "api/" + objType + "/" + uuid
+		log.Printf("[DEBUG] reading object with id %v path %v\n", uuid, path)
 		err := client.AviSession.Get(path, &obj)
 		if err != nil {
 			d.SetId("")
@@ -191,7 +201,7 @@ func ApiRead(d *schema.ResourceData, meta interface{}, objType string, s map[str
 		}
 	} else {
 		d.SetId("")
-		log.Printf("[ERROR] application profile not found %v\n", d.Get("uuid"))
+		log.Printf("[ERROR] not found %v\n", d.Get("uuid"))
 		return nil
 	}
 	if _, err := ApiDataToSchema(obj, d, s); err == nil {

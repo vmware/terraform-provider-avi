@@ -349,12 +349,18 @@ func resourceAviVirtualService() *schema.Resource {
 		Update: resourceAviVirtualServiceUpdate,
 		Delete: resourceAviVirtualServiceDelete,
 		Schema: ResourceVirtualServiceSchema(),
+		Importer: &schema.ResourceImporter{
+			State: schema.ImportStatePassthrough,
+		},
 	}
 }
 
 func ResourceAviVirtualServiceRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceVirtualServiceSchema()
 	err := ApiRead(d, meta, "virtualservice", s)
+	if err != nil {
+		log.Printf("[ERROR] in reading object %v\n", err)
+	}
 	return err
 }
 
