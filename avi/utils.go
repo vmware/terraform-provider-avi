@@ -215,3 +215,43 @@ func ApiRead(d *schema.ResourceData, meta interface{}, objType string, s map[str
 	}
 	return nil
 }
+
+func ResourceImporter(d *schema.ResourceData, meta interface{}, objType string, s map[string]*schema.Schema) ([]*schema.ResourceData, error) {
+	if d.Id() != "" {
+		// return the ID based import
+		return []*schema.ResourceData{d}, nil
+	}
+	var data interface{}
+	client := meta.(*clients.AviClient)
+	path := "api/" + objType + "/"
+	log.Printf("[DEBUG] reading object with path %v\n", path)
+
+	err := client.AviSession.Get(path, &data)
+	if err != nil {
+		log.Printf("[ERROR] in GET of path %v\n", path)
+		return nil, err
+	}
+	count := int((data.(map[string]interface{})["count"]).(float64))
+	log.Printf("[DEBUG] read data with path %v -> count %v\n", path, count)
+	if count > 0 {
+		results := make([]*schema.ResourceData, count)
+		apiResults := (data.(map[string]interface{})["results"]).([]interface{})
+		for index := 0; index < count; index++ {
+			obj := apiResults[index].(map[string]interface{})
+			log.Printf("[DEBUG] processing obj %v results %v\n", obj, results[index])
+			result := new(schema.ResourceData)
+			if _, err := ApiDataToSchema(obj, result, s); err == nil {
+				log.Printf("[DEBUG] Processing obj %v\n", obj)
+				url := obj["url"].(string)
+				uuid := obj["uuid"].(string)
+				url = strings.SplitN(url, "#", 2)[0]
+				result.SetId(url)
+				result.Set("uuid", uuid)
+				result.SetType("avi_" + objType)
+				results[index] = result
+			}
+		}
+		return results, nil
+	}
+	return nil, nil
+}
