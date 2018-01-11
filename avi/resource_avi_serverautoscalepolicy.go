@@ -99,12 +99,23 @@ func resourceAviServerAutoScalePolicy() *schema.Resource {
 		Update: resourceAviServerAutoScalePolicyUpdate,
 		Delete: resourceAviServerAutoScalePolicyDelete,
 		Schema: ResourceServerAutoScalePolicySchema(),
+		Importer: &schema.ResourceImporter{
+			State: ResourceServerAutoScalePolicyImporter,
+		},
 	}
+}
+
+func ResourceServerAutoScalePolicyImporter(d *schema.ResourceData, m interface{}) ([]*schema.ResourceData, error) {
+	s := ResourceServerAutoScalePolicySchema()
+	return ResourceImporter(d, m, "serverautoscalepolicy", s)
 }
 
 func ResourceAviServerAutoScalePolicyRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceServerAutoScalePolicySchema()
 	err := ApiRead(d, meta, "serverautoscalepolicy", s)
+	if err != nil {
+		log.Printf("[ERROR] in reading object %v\n", err)
+	}
 	return err
 }
 

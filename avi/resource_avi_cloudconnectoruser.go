@@ -61,12 +61,23 @@ func resourceAviCloudConnectorUser() *schema.Resource {
 		Update: resourceAviCloudConnectorUserUpdate,
 		Delete: resourceAviCloudConnectorUserDelete,
 		Schema: ResourceCloudConnectorUserSchema(),
+		Importer: &schema.ResourceImporter{
+			State: ResourceCloudConnectorUserImporter,
+		},
 	}
+}
+
+func ResourceCloudConnectorUserImporter(d *schema.ResourceData, m interface{}) ([]*schema.ResourceData, error) {
+	s := ResourceCloudConnectorUserSchema()
+	return ResourceImporter(d, m, "cloudconnectoruser", s)
 }
 
 func ResourceAviCloudConnectorUserRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceCloudConnectorUserSchema()
 	err := ApiRead(d, meta, "cloudconnectoruser", s)
+	if err != nil {
+		log.Printf("[ERROR] in reading object %v\n", err)
+	}
 	return err
 }
 

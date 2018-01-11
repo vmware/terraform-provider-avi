@@ -54,12 +54,23 @@ func resourceAviNetworkSecurityPolicy() *schema.Resource {
 		Update: resourceAviNetworkSecurityPolicyUpdate,
 		Delete: resourceAviNetworkSecurityPolicyDelete,
 		Schema: ResourceNetworkSecurityPolicySchema(),
+		Importer: &schema.ResourceImporter{
+			State: ResourceNetworkSecurityPolicyImporter,
+		},
 	}
+}
+
+func ResourceNetworkSecurityPolicyImporter(d *schema.ResourceData, m interface{}) ([]*schema.ResourceData, error) {
+	s := ResourceNetworkSecurityPolicySchema()
+	return ResourceImporter(d, m, "networksecuritypolicy", s)
 }
 
 func ResourceAviNetworkSecurityPolicyRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceNetworkSecurityPolicySchema()
 	err := ApiRead(d, meta, "networksecuritypolicy", s)
+	if err != nil {
+		log.Printf("[ERROR] in reading object %v\n", err)
+	}
 	return err
 }
 

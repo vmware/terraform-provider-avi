@@ -54,12 +54,23 @@ func resourceAviWafProfile() *schema.Resource {
 		Update: resourceAviWafProfileUpdate,
 		Delete: resourceAviWafProfileDelete,
 		Schema: ResourceWafProfileSchema(),
+		Importer: &schema.ResourceImporter{
+			State: ResourceWafProfileImporter,
+		},
 	}
+}
+
+func ResourceWafProfileImporter(d *schema.ResourceData, m interface{}) ([]*schema.ResourceData, error) {
+	s := ResourceWafProfileSchema()
+	return ResourceImporter(d, m, "wafprofile", s)
 }
 
 func ResourceAviWafProfileRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceWafProfileSchema()
 	err := ApiRead(d, meta, "wafprofile", s)
+	if err != nil {
+		log.Printf("[ERROR] in reading object %v\n", err)
+	}
 	return err
 }
 

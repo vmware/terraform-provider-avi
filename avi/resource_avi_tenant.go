@@ -54,12 +54,23 @@ func resourceAviTenant() *schema.Resource {
 		Update: resourceAviTenantUpdate,
 		Delete: resourceAviTenantDelete,
 		Schema: ResourceTenantSchema(),
+		Importer: &schema.ResourceImporter{
+			State: ResourceTenantImporter,
+		},
 	}
+}
+
+func ResourceTenantImporter(d *schema.ResourceData, m interface{}) ([]*schema.ResourceData, error) {
+	s := ResourceTenantSchema()
+	return ResourceImporter(d, m, "tenant", s)
 }
 
 func ResourceAviTenantRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceTenantSchema()
 	err := ApiRead(d, meta, "tenant", s)
+	if err != nil {
+		log.Printf("[ERROR] in reading object %v\n", err)
+	}
 	return err
 }
 

@@ -46,12 +46,23 @@ func resourceAviAlertSyslogConfig() *schema.Resource {
 		Update: resourceAviAlertSyslogConfigUpdate,
 		Delete: resourceAviAlertSyslogConfigDelete,
 		Schema: ResourceAlertSyslogConfigSchema(),
+		Importer: &schema.ResourceImporter{
+			State: ResourceAlertSyslogConfigImporter,
+		},
 	}
+}
+
+func ResourceAlertSyslogConfigImporter(d *schema.ResourceData, m interface{}) ([]*schema.ResourceData, error) {
+	s := ResourceAlertSyslogConfigSchema()
+	return ResourceImporter(d, m, "alertsyslogconfig", s)
 }
 
 func ResourceAviAlertSyslogConfigRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceAlertSyslogConfigSchema()
 	err := ApiRead(d, meta, "alertsyslogconfig", s)
+	if err != nil {
+		log.Printf("[ERROR] in reading object %v\n", err)
+	}
 	return err
 }
 

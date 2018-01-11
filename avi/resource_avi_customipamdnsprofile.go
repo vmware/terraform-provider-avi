@@ -46,12 +46,23 @@ func resourceAviCustomIpamDnsProfile() *schema.Resource {
 		Update: resourceAviCustomIpamDnsProfileUpdate,
 		Delete: resourceAviCustomIpamDnsProfileDelete,
 		Schema: ResourceCustomIpamDnsProfileSchema(),
+		Importer: &schema.ResourceImporter{
+			State: ResourceCustomIpamDnsProfileImporter,
+		},
 	}
+}
+
+func ResourceCustomIpamDnsProfileImporter(d *schema.ResourceData, m interface{}) ([]*schema.ResourceData, error) {
+	s := ResourceCustomIpamDnsProfileSchema()
+	return ResourceImporter(d, m, "customipamdnsprofile", s)
 }
 
 func ResourceAviCustomIpamDnsProfileRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceCustomIpamDnsProfileSchema()
 	err := ApiRead(d, meta, "customipamdnsprofile", s)
+	if err != nil {
+		log.Printf("[ERROR] in reading object %v\n", err)
+	}
 	return err
 }
 

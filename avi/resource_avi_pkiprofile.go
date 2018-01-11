@@ -71,12 +71,23 @@ func resourceAviPKIProfile() *schema.Resource {
 		Update: resourceAviPKIProfileUpdate,
 		Delete: resourceAviPKIProfileDelete,
 		Schema: ResourcePKIProfileSchema(),
+		Importer: &schema.ResourceImporter{
+			State: ResourcePKIProfileImporter,
+		},
 	}
+}
+
+func ResourcePKIProfileImporter(d *schema.ResourceData, m interface{}) ([]*schema.ResourceData, error) {
+	s := ResourcePKIProfileSchema()
+	return ResourceImporter(d, m, "pkiprofile", s)
 }
 
 func ResourceAviPKIProfileRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourcePKIProfileSchema()
 	err := ApiRead(d, meta, "pkiprofile", s)
+	if err != nil {
+		log.Printf("[ERROR] in reading object %v\n", err)
+	}
 	return err
 }
 

@@ -52,12 +52,23 @@ func resourceAviTrafficCloneProfile() *schema.Resource {
 		Update: resourceAviTrafficCloneProfileUpdate,
 		Delete: resourceAviTrafficCloneProfileDelete,
 		Schema: ResourceTrafficCloneProfileSchema(),
+		Importer: &schema.ResourceImporter{
+			State: ResourceTrafficCloneProfileImporter,
+		},
 	}
+}
+
+func ResourceTrafficCloneProfileImporter(d *schema.ResourceData, m interface{}) ([]*schema.ResourceData, error) {
+	s := ResourceTrafficCloneProfileSchema()
+	return ResourceImporter(d, m, "trafficcloneprofile", s)
 }
 
 func ResourceAviTrafficCloneProfileRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceTrafficCloneProfileSchema()
 	err := ApiRead(d, meta, "trafficcloneprofile", s)
+	if err != nil {
+		log.Printf("[ERROR] in reading object %v\n", err)
+	}
 	return err
 }
 

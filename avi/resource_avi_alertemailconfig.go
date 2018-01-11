@@ -49,12 +49,23 @@ func resourceAviAlertEmailConfig() *schema.Resource {
 		Update: resourceAviAlertEmailConfigUpdate,
 		Delete: resourceAviAlertEmailConfigDelete,
 		Schema: ResourceAlertEmailConfigSchema(),
+		Importer: &schema.ResourceImporter{
+			State: ResourceAlertEmailConfigImporter,
+		},
 	}
+}
+
+func ResourceAlertEmailConfigImporter(d *schema.ResourceData, m interface{}) ([]*schema.ResourceData, error) {
+	s := ResourceAlertEmailConfigSchema()
+	return ResourceImporter(d, m, "alertemailconfig", s)
 }
 
 func ResourceAviAlertEmailConfigRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceAlertEmailConfigSchema()
 	err := ApiRead(d, meta, "alertemailconfig", s)
+	if err != nil {
+		log.Printf("[ERROR] in reading object %v\n", err)
+	}
 	return err
 }
 

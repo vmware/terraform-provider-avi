@@ -6,12 +6,13 @@
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/hashcode"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"reflect"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform/helper/hashcode"
+	"github.com/hashicorp/terraform/helper/schema"
 )
 
 func SchemaToAviData(d interface{}, s map[string]*schema.Schema) (interface{}, error) {

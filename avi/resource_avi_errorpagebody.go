@@ -41,12 +41,23 @@ func resourceAviErrorPageBody() *schema.Resource {
 		Update: resourceAviErrorPageBodyUpdate,
 		Delete: resourceAviErrorPageBodyDelete,
 		Schema: ResourceErrorPageBodySchema(),
+		Importer: &schema.ResourceImporter{
+			State: ResourceErrorPageBodyImporter,
+		},
 	}
+}
+
+func ResourceErrorPageBodyImporter(d *schema.ResourceData, m interface{}) ([]*schema.ResourceData, error) {
+	s := ResourceErrorPageBodySchema()
+	return ResourceImporter(d, m, "errorpagebody", s)
 }
 
 func ResourceAviErrorPageBodyRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceErrorPageBodySchema()
 	err := ApiRead(d, meta, "errorpagebody", s)
+	if err != nil {
+		log.Printf("[ERROR] in reading object %v\n", err)
+	}
 	return err
 }
 

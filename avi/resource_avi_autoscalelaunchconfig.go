@@ -66,12 +66,23 @@ func resourceAviAutoScaleLaunchConfig() *schema.Resource {
 		Update: resourceAviAutoScaleLaunchConfigUpdate,
 		Delete: resourceAviAutoScaleLaunchConfigDelete,
 		Schema: ResourceAutoScaleLaunchConfigSchema(),
+		Importer: &schema.ResourceImporter{
+			State: ResourceAutoScaleLaunchConfigImporter,
+		},
 	}
+}
+
+func ResourceAutoScaleLaunchConfigImporter(d *schema.ResourceData, m interface{}) ([]*schema.ResourceData, error) {
+	s := ResourceAutoScaleLaunchConfigSchema()
+	return ResourceImporter(d, m, "autoscalelaunchconfig", s)
 }
 
 func ResourceAviAutoScaleLaunchConfigRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceAutoScaleLaunchConfigSchema()
 	err := ApiRead(d, meta, "autoscalelaunchconfig", s)
+	if err != nil {
+		log.Printf("[ERROR] in reading object %v\n", err)
+	}
 	return err
 }
 

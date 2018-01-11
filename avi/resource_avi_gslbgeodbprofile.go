@@ -51,12 +51,23 @@ func resourceAviGslbGeoDbProfile() *schema.Resource {
 		Update: resourceAviGslbGeoDbProfileUpdate,
 		Delete: resourceAviGslbGeoDbProfileDelete,
 		Schema: ResourceGslbGeoDbProfileSchema(),
+		Importer: &schema.ResourceImporter{
+			State: ResourceGslbGeoDbProfileImporter,
+		},
 	}
+}
+
+func ResourceGslbGeoDbProfileImporter(d *schema.ResourceData, m interface{}) ([]*schema.ResourceData, error) {
+	s := ResourceGslbGeoDbProfileSchema()
+	return ResourceImporter(d, m, "gslbgeodbprofile", s)
 }
 
 func ResourceAviGslbGeoDbProfileRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceGslbGeoDbProfileSchema()
 	err := ApiRead(d, meta, "gslbgeodbprofile", s)
+	if err != nil {
+		log.Printf("[ERROR] in reading object %v\n", err)
+	}
 	return err
 }
 

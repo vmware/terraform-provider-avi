@@ -77,12 +77,23 @@ func resourceAviAuthProfile() *schema.Resource {
 		Update: resourceAviAuthProfileUpdate,
 		Delete: resourceAviAuthProfileDelete,
 		Schema: ResourceAuthProfileSchema(),
+		Importer: &schema.ResourceImporter{
+			State: ResourceAuthProfileImporter,
+		},
 	}
+}
+
+func ResourceAuthProfileImporter(d *schema.ResourceData, m interface{}) ([]*schema.ResourceData, error) {
+	s := ResourceAuthProfileSchema()
+	return ResourceImporter(d, m, "authprofile", s)
 }
 
 func ResourceAviAuthProfileRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceAuthProfileSchema()
 	err := ApiRead(d, meta, "authprofile", s)
+	if err != nil {
+		log.Printf("[ERROR] in reading object %v\n", err)
+	}
 	return err
 }
 

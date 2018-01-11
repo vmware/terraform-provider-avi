@@ -93,12 +93,23 @@ func resourceAviSSLProfile() *schema.Resource {
 		Update: resourceAviSSLProfileUpdate,
 		Delete: resourceAviSSLProfileDelete,
 		Schema: ResourceSSLProfileSchema(),
+		Importer: &schema.ResourceImporter{
+			State: ResourceSSLProfileImporter,
+		},
 	}
+}
+
+func ResourceSSLProfileImporter(d *schema.ResourceData, m interface{}) ([]*schema.ResourceData, error) {
+	s := ResourceSSLProfileSchema()
+	return ResourceImporter(d, m, "sslprofile", s)
 }
 
 func ResourceAviSSLProfileRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceSSLProfileSchema()
 	err := ApiRead(d, meta, "sslprofile", s)
+	if err != nil {
+		log.Printf("[ERROR] in reading object %v\n", err)
+	}
 	return err
 }
 

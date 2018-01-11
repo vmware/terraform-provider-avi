@@ -256,12 +256,23 @@ func resourceAviControllerProperties() *schema.Resource {
 		Update: resourceAviControllerPropertiesUpdate,
 		Delete: resourceAviControllerPropertiesDelete,
 		Schema: ResourceControllerPropertiesSchema(),
+		Importer: &schema.ResourceImporter{
+			State: ResourceControllerPropertiesImporter,
+		},
 	}
+}
+
+func ResourceControllerPropertiesImporter(d *schema.ResourceData, m interface{}) ([]*schema.ResourceData, error) {
+	s := ResourceControllerPropertiesSchema()
+	return ResourceImporter(d, m, "controllerproperties", s)
 }
 
 func ResourceAviControllerPropertiesRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceControllerPropertiesSchema()
 	err := ApiRead(d, meta, "controllerproperties", s)
+	if err != nil {
+		log.Printf("[ERROR] in reading object %v\n", err)
+	}
 	return err
 }
 

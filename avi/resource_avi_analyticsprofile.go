@@ -367,12 +367,23 @@ func resourceAviAnalyticsProfile() *schema.Resource {
 		Update: resourceAviAnalyticsProfileUpdate,
 		Delete: resourceAviAnalyticsProfileDelete,
 		Schema: ResourceAnalyticsProfileSchema(),
+		Importer: &schema.ResourceImporter{
+			State: ResourceAnalyticsProfileImporter,
+		},
 	}
+}
+
+func ResourceAnalyticsProfileImporter(d *schema.ResourceData, m interface{}) ([]*schema.ResourceData, error) {
+	s := ResourceAnalyticsProfileSchema()
+	return ResourceImporter(d, m, "analyticsprofile", s)
 }
 
 func ResourceAviAnalyticsProfileRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceAnalyticsProfileSchema()
 	err := ApiRead(d, meta, "analyticsprofile", s)
+	if err != nil {
+		log.Printf("[ERROR] in reading object %v\n", err)
+	}
 	return err
 }
 

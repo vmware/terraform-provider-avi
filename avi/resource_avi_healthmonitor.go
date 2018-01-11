@@ -122,12 +122,23 @@ func resourceAviHealthMonitor() *schema.Resource {
 		Update: resourceAviHealthMonitorUpdate,
 		Delete: resourceAviHealthMonitorDelete,
 		Schema: ResourceHealthMonitorSchema(),
+		Importer: &schema.ResourceImporter{
+			State: ResourceHealthMonitorImporter,
+		},
 	}
+}
+
+func ResourceHealthMonitorImporter(d *schema.ResourceData, m interface{}) ([]*schema.ResourceData, error) {
+	s := ResourceHealthMonitorSchema()
+	return ResourceImporter(d, m, "healthmonitor", s)
 }
 
 func ResourceAviHealthMonitorRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceHealthMonitorSchema()
 	err := ApiRead(d, meta, "healthmonitor", s)
+	if err != nil {
+		log.Printf("[ERROR] in reading object %v\n", err)
+	}
 	return err
 }
 

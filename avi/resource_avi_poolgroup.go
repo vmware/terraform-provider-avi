@@ -85,12 +85,23 @@ func resourceAviPoolGroup() *schema.Resource {
 		Update: resourceAviPoolGroupUpdate,
 		Delete: resourceAviPoolGroupDelete,
 		Schema: ResourcePoolGroupSchema(),
+		Importer: &schema.ResourceImporter{
+			State: ResourcePoolGroupImporter,
+		},
 	}
+}
+
+func ResourcePoolGroupImporter(d *schema.ResourceData, m interface{}) ([]*schema.ResourceData, error) {
+	s := ResourcePoolGroupSchema()
+	return ResourceImporter(d, m, "poolgroup", s)
 }
 
 func ResourceAviPoolGroupRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourcePoolGroupSchema()
 	err := ApiRead(d, meta, "poolgroup", s)
+	if err != nil {
+		log.Printf("[ERROR] in reading object %v\n", err)
+	}
 	return err
 }
 

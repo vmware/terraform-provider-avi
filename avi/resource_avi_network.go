@@ -6,10 +6,11 @@
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform/helper/schema"
 )
 
 func ResourceNetworkSchema() map[string]*schema.Schema {
@@ -75,12 +76,23 @@ func resourceAviNetwork() *schema.Resource {
 		Update: resourceAviNetworkUpdate,
 		Delete: resourceAviNetworkDelete,
 		Schema: ResourceNetworkSchema(),
+		Importer: &schema.ResourceImporter{
+			State: ResourceNetworkImporter,
+		},
 	}
+}
+
+func ResourceNetworkImporter(d *schema.ResourceData, m interface{}) ([]*schema.ResourceData, error) {
+	s := ResourceNetworkSchema()
+	return ResourceImporter(d, m, "network", s)
 }
 
 func ResourceAviNetworkRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceNetworkSchema()
 	err := ApiRead(d, meta, "network", s)
+	if err != nil {
+		log.Printf("[ERROR] in reading object %v\n", err)
+	}
 	return err
 }
 

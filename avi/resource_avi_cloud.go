@@ -216,12 +216,23 @@ func resourceAviCloud() *schema.Resource {
 		Update: resourceAviCloudUpdate,
 		Delete: resourceAviCloudDelete,
 		Schema: ResourceCloudSchema(),
+		Importer: &schema.ResourceImporter{
+			State: ResourceCloudImporter,
+		},
 	}
+}
+
+func ResourceCloudImporter(d *schema.ResourceData, m interface{}) ([]*schema.ResourceData, error) {
+	s := ResourceCloudSchema()
+	return ResourceImporter(d, m, "cloud", s)
 }
 
 func ResourceAviCloudRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceCloudSchema()
 	err := ApiRead(d, meta, "cloud", s)
+	if err != nil {
+		log.Printf("[ERROR] in reading object %v\n", err)
+	}
 	return err
 }
 

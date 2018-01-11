@@ -75,12 +75,23 @@ func resourceAviScheduler() *schema.Resource {
 		Update: resourceAviSchedulerUpdate,
 		Delete: resourceAviSchedulerDelete,
 		Schema: ResourceSchedulerSchema(),
+		Importer: &schema.ResourceImporter{
+			State: ResourceSchedulerImporter,
+		},
 	}
+}
+
+func ResourceSchedulerImporter(d *schema.ResourceData, m interface{}) ([]*schema.ResourceData, error) {
+	s := ResourceSchedulerSchema()
+	return ResourceImporter(d, m, "scheduler", s)
 }
 
 func ResourceAviSchedulerRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceSchedulerSchema()
 	err := ApiRead(d, meta, "scheduler", s)
+	if err != nil {
+		log.Printf("[ERROR] in reading object %v\n", err)
+	}
 	return err
 }
 

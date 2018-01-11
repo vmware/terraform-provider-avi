@@ -96,12 +96,23 @@ func resourceAviSSLKeyAndCertificate() *schema.Resource {
 		Update: resourceAviSSLKeyAndCertificateUpdate,
 		Delete: resourceAviSSLKeyAndCertificateDelete,
 		Schema: ResourceSSLKeyAndCertificateSchema(),
+		Importer: &schema.ResourceImporter{
+			State: ResourceSSLKeyAndCertificateImporter,
+		},
 	}
+}
+
+func ResourceSSLKeyAndCertificateImporter(d *schema.ResourceData, m interface{}) ([]*schema.ResourceData, error) {
+	s := ResourceSSLKeyAndCertificateSchema()
+	return ResourceImporter(d, m, "sslkeyandcertificate", s)
 }
 
 func ResourceAviSSLKeyAndCertificateRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceSSLKeyAndCertificateSchema()
 	err := ApiRead(d, meta, "sslkeyandcertificate", s)
+	if err != nil {
+		log.Printf("[ERROR] in reading object %v\n", err)
+	}
 	return err
 }
 

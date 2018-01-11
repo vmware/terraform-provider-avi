@@ -42,12 +42,23 @@ func resourceAviSnmpTrapProfile() *schema.Resource {
 		Update: resourceAviSnmpTrapProfileUpdate,
 		Delete: resourceAviSnmpTrapProfileDelete,
 		Schema: ResourceSnmpTrapProfileSchema(),
+		Importer: &schema.ResourceImporter{
+			State: ResourceSnmpTrapProfileImporter,
+		},
 	}
+}
+
+func ResourceSnmpTrapProfileImporter(d *schema.ResourceData, m interface{}) ([]*schema.ResourceData, error) {
+	s := ResourceSnmpTrapProfileSchema()
+	return ResourceImporter(d, m, "snmptrapprofile", s)
 }
 
 func ResourceAviSnmpTrapProfileRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceSnmpTrapProfileSchema()
 	err := ApiRead(d, meta, "snmptrapprofile", s)
+	if err != nil {
+		log.Printf("[ERROR] in reading object %v\n", err)
+	}
 	return err
 }
 

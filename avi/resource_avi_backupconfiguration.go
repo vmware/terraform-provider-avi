@@ -70,12 +70,23 @@ func resourceAviBackupConfiguration() *schema.Resource {
 		Update: resourceAviBackupConfigurationUpdate,
 		Delete: resourceAviBackupConfigurationDelete,
 		Schema: ResourceBackupConfigurationSchema(),
+		Importer: &schema.ResourceImporter{
+			State: ResourceBackupConfigurationImporter,
+		},
 	}
+}
+
+func ResourceBackupConfigurationImporter(d *schema.ResourceData, m interface{}) ([]*schema.ResourceData, error) {
+	s := ResourceBackupConfigurationSchema()
+	return ResourceImporter(d, m, "backupconfiguration", s)
 }
 
 func ResourceAviBackupConfigurationRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceBackupConfigurationSchema()
 	err := ApiRead(d, meta, "backupconfiguration", s)
+	if err != nil {
+		log.Printf("[ERROR] in reading object %v\n", err)
+	}
 	return err
 }
 

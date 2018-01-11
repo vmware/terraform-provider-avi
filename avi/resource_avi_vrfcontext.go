@@ -85,12 +85,23 @@ func resourceAviVrfContext() *schema.Resource {
 		Update: resourceAviVrfContextUpdate,
 		Delete: resourceAviVrfContextDelete,
 		Schema: ResourceVrfContextSchema(),
+		Importer: &schema.ResourceImporter{
+			State: ResourceVrfContextImporter,
+		},
 	}
+}
+
+func ResourceVrfContextImporter(d *schema.ResourceData, m interface{}) ([]*schema.ResourceData, error) {
+	s := ResourceVrfContextSchema()
+	return ResourceImporter(d, m, "vrfcontext", s)
 }
 
 func ResourceAviVrfContextRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceVrfContextSchema()
 	err := ApiRead(d, meta, "vrfcontext", s)
+	if err != nil {
+		log.Printf("[ERROR] in reading object %v\n", err)
+	}
 	return err
 }
 

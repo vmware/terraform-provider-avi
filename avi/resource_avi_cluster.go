@@ -55,12 +55,23 @@ func resourceAviCluster() *schema.Resource {
 		Update: resourceAviClusterUpdate,
 		Delete: resourceAviClusterDelete,
 		Schema: ResourceClusterSchema(),
+		Importer: &schema.ResourceImporter{
+			State: ResourceClusterImporter,
+		},
 	}
+}
+
+func ResourceClusterImporter(d *schema.ResourceData, m interface{}) ([]*schema.ResourceData, error) {
+	s := ResourceClusterSchema()
+	return ResourceImporter(d, m, "cluster", s)
 }
 
 func ResourceAviClusterRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceClusterSchema()
 	err := ApiRead(d, meta, "cluster", s)
+	if err != nil {
+		log.Printf("[ERROR] in reading object %v\n", err)
+	}
 	return err
 }
 

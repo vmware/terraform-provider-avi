@@ -50,12 +50,23 @@ func resourceAviStringGroup() *schema.Resource {
 		Update: resourceAviStringGroupUpdate,
 		Delete: resourceAviStringGroupDelete,
 		Schema: ResourceStringGroupSchema(),
+		Importer: &schema.ResourceImporter{
+			State: ResourceStringGroupImporter,
+		},
 	}
+}
+
+func ResourceStringGroupImporter(d *schema.ResourceData, m interface{}) ([]*schema.ResourceData, error) {
+	s := ResourceStringGroupSchema()
+	return ResourceImporter(d, m, "stringgroup", s)
 }
 
 func ResourceAviStringGroupRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceStringGroupSchema()
 	err := ApiRead(d, meta, "stringgroup", s)
+	if err != nil {
+		log.Printf("[ERROR] in reading object %v\n", err)
+	}
 	return err
 }
 

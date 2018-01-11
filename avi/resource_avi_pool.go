@@ -296,12 +296,23 @@ func resourceAviPool() *schema.Resource {
 		Update: resourceAviPoolUpdate,
 		Delete: resourceAviPoolDelete,
 		Schema: ResourcePoolSchema(),
+		Importer: &schema.ResourceImporter{
+			State: ResourcePoolImporter,
+		},
 	}
+}
+
+func ResourcePoolImporter(d *schema.ResourceData, m interface{}) ([]*schema.ResourceData, error) {
+	s := ResourcePoolSchema()
+	return ResourceImporter(d, m, "pool", s)
 }
 
 func ResourceAviPoolRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourcePoolSchema()
 	err := ApiRead(d, meta, "pool", s)
+	if err != nil {
+		log.Printf("[ERROR] in reading object %v\n", err)
+	}
 	return err
 }
 

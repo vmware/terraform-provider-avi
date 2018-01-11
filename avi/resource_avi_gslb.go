@@ -93,12 +93,23 @@ func resourceAviGslb() *schema.Resource {
 		Update: resourceAviGslbUpdate,
 		Delete: resourceAviGslbDelete,
 		Schema: ResourceGslbSchema(),
+		Importer: &schema.ResourceImporter{
+			State: ResourceGslbImporter,
+		},
 	}
+}
+
+func ResourceGslbImporter(d *schema.ResourceData, m interface{}) ([]*schema.ResourceData, error) {
+	s := ResourceGslbSchema()
+	return ResourceImporter(d, m, "gslb", s)
 }
 
 func ResourceAviGslbRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceGslbSchema()
 	err := ApiRead(d, meta, "gslb", s)
+	if err != nil {
+		log.Printf("[ERROR] in reading object %v\n", err)
+	}
 	return err
 }
 

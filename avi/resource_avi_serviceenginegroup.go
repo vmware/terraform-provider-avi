@@ -557,12 +557,23 @@ func resourceAviServiceEngineGroup() *schema.Resource {
 		Update: resourceAviServiceEngineGroupUpdate,
 		Delete: resourceAviServiceEngineGroupDelete,
 		Schema: ResourceServiceEngineGroupSchema(),
+		Importer: &schema.ResourceImporter{
+			State: ResourceServiceEngineGroupImporter,
+		},
 	}
+}
+
+func ResourceServiceEngineGroupImporter(d *schema.ResourceData, m interface{}) ([]*schema.ResourceData, error) {
+	s := ResourceServiceEngineGroupSchema()
+	return ResourceImporter(d, m, "serviceenginegroup", s)
 }
 
 func ResourceAviServiceEngineGroupRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceServiceEngineGroupSchema()
 	err := ApiRead(d, meta, "serviceenginegroup", s)
+	if err != nil {
+		log.Printf("[ERROR] in reading object %v\n", err)
+	}
 	return err
 }
 

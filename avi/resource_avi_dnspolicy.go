@@ -50,12 +50,23 @@ func resourceAviDnsPolicy() *schema.Resource {
 		Update: resourceAviDnsPolicyUpdate,
 		Delete: resourceAviDnsPolicyDelete,
 		Schema: ResourceDnsPolicySchema(),
+		Importer: &schema.ResourceImporter{
+			State: ResourceDnsPolicyImporter,
+		},
 	}
+}
+
+func ResourceDnsPolicyImporter(d *schema.ResourceData, m interface{}) ([]*schema.ResourceData, error) {
+	s := ResourceDnsPolicySchema()
+	return ResourceImporter(d, m, "dnspolicy", s)
 }
 
 func ResourceAviDnsPolicyRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceDnsPolicySchema()
 	err := ApiRead(d, meta, "dnspolicy", s)
+	if err != nil {
+		log.Printf("[ERROR] in reading object %v\n", err)
+	}
 	return err
 }
 

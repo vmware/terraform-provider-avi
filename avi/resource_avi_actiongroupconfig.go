@@ -70,12 +70,23 @@ func resourceAviActionGroupConfig() *schema.Resource {
 		Update: resourceAviActionGroupConfigUpdate,
 		Delete: resourceAviActionGroupConfigDelete,
 		Schema: ResourceActionGroupConfigSchema(),
+		Importer: &schema.ResourceImporter{
+			State: ResourceActionGroupConfigImporter,
+		},
 	}
+}
+
+func ResourceActionGroupConfigImporter(d *schema.ResourceData, m interface{}) ([]*schema.ResourceData, error) {
+	s := ResourceActionGroupConfigSchema()
+	return ResourceImporter(d, m, "actiongroupconfig", s)
 }
 
 func ResourceAviActionGroupConfigRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceActionGroupConfigSchema()
 	err := ApiRead(d, meta, "actiongroupconfig", s)
+	if err != nil {
+		log.Printf("[ERROR] in reading object %v\n", err)
+	}
 	return err
 }
 

@@ -80,12 +80,23 @@ func resourceAviPoolGroupDeploymentPolicy() *schema.Resource {
 		Update: resourceAviPoolGroupDeploymentPolicyUpdate,
 		Delete: resourceAviPoolGroupDeploymentPolicyDelete,
 		Schema: ResourcePoolGroupDeploymentPolicySchema(),
+		Importer: &schema.ResourceImporter{
+			State: ResourcePoolGroupDeploymentPolicyImporter,
+		},
 	}
+}
+
+func ResourcePoolGroupDeploymentPolicyImporter(d *schema.ResourceData, m interface{}) ([]*schema.ResourceData, error) {
+	s := ResourcePoolGroupDeploymentPolicySchema()
+	return ResourceImporter(d, m, "poolgroupdeploymentpolicy", s)
 }
 
 func ResourceAviPoolGroupDeploymentPolicyRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourcePoolGroupDeploymentPolicySchema()
 	err := ApiRead(d, meta, "poolgroupdeploymentpolicy", s)
+	if err != nil {
+		log.Printf("[ERROR] in reading object %v\n", err)
+	}
 	return err
 }
 

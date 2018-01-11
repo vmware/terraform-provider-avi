@@ -134,12 +134,23 @@ func resourceAviSystemConfiguration() *schema.Resource {
 		Update: resourceAviSystemConfigurationUpdate,
 		Delete: resourceAviSystemConfigurationDelete,
 		Schema: ResourceSystemConfigurationSchema(),
+		Importer: &schema.ResourceImporter{
+			State: ResourceSystemConfigurationImporter,
+		},
 	}
+}
+
+func ResourceSystemConfigurationImporter(d *schema.ResourceData, m interface{}) ([]*schema.ResourceData, error) {
+	s := ResourceSystemConfigurationSchema()
+	return ResourceImporter(d, m, "systemconfiguration", s)
 }
 
 func ResourceAviSystemConfigurationRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceSystemConfigurationSchema()
 	err := ApiRead(d, meta, "systemconfiguration", s)
+	if err != nil {
+		log.Printf("[ERROR] in reading object %v\n", err)
+	}
 	return err
 }
 

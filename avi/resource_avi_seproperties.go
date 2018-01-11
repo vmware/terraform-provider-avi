@@ -53,12 +53,23 @@ func resourceAviSeProperties() *schema.Resource {
 		Update: resourceAviSePropertiesUpdate,
 		Delete: resourceAviSePropertiesDelete,
 		Schema: ResourceSePropertiesSchema(),
+		Importer: &schema.ResourceImporter{
+			State: ResourceSePropertiesImporter,
+		},
 	}
+}
+
+func ResourceSePropertiesImporter(d *schema.ResourceData, m interface{}) ([]*schema.ResourceData, error) {
+	s := ResourceSePropertiesSchema()
+	return ResourceImporter(d, m, "seproperties", s)
 }
 
 func ResourceAviSePropertiesRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceSePropertiesSchema()
 	err := ApiRead(d, meta, "seproperties", s)
+	if err != nil {
+		log.Printf("[ERROR] in reading object %v\n", err)
+	}
 	return err
 }
 

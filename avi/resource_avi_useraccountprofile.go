@@ -58,12 +58,23 @@ func resourceAviUserAccountProfile() *schema.Resource {
 		Update: resourceAviUserAccountProfileUpdate,
 		Delete: resourceAviUserAccountProfileDelete,
 		Schema: ResourceUserAccountProfileSchema(),
+		Importer: &schema.ResourceImporter{
+			State: ResourceUserAccountProfileImporter,
+		},
 	}
+}
+
+func ResourceUserAccountProfileImporter(d *schema.ResourceData, m interface{}) ([]*schema.ResourceData, error) {
+	s := ResourceUserAccountProfileSchema()
+	return ResourceImporter(d, m, "useraccountprofile", s)
 }
 
 func ResourceAviUserAccountProfileRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceUserAccountProfileSchema()
 	err := ApiRead(d, meta, "useraccountprofile", s)
+	if err != nil {
+		log.Printf("[ERROR] in reading object %v\n", err)
+	}
 	return err
 }
 

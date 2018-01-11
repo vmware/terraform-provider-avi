@@ -44,12 +44,23 @@ func resourceAviHardwareSecurityModuleGroup() *schema.Resource {
 		Update: resourceAviHardwareSecurityModuleGroupUpdate,
 		Delete: resourceAviHardwareSecurityModuleGroupDelete,
 		Schema: ResourceHardwareSecurityModuleGroupSchema(),
+		Importer: &schema.ResourceImporter{
+			State: ResourceHardwareSecurityModuleGroupImporter,
+		},
 	}
+}
+
+func ResourceHardwareSecurityModuleGroupImporter(d *schema.ResourceData, m interface{}) ([]*schema.ResourceData, error) {
+	s := ResourceHardwareSecurityModuleGroupSchema()
+	return ResourceImporter(d, m, "hardwaresecuritymodulegroup", s)
 }
 
 func ResourceAviHardwareSecurityModuleGroupRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceHardwareSecurityModuleGroupSchema()
 	err := ApiRead(d, meta, "hardwaresecuritymodulegroup", s)
+	if err != nil {
+		log.Printf("[ERROR] in reading object %v\n", err)
+	}
 	return err
 }
 

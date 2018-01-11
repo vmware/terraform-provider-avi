@@ -57,12 +57,23 @@ func resourceAviErrorPageProfile() *schema.Resource {
 		Update: resourceAviErrorPageProfileUpdate,
 		Delete: resourceAviErrorPageProfileDelete,
 		Schema: ResourceErrorPageProfileSchema(),
+		Importer: &schema.ResourceImporter{
+			State: ResourceErrorPageProfileImporter,
+		},
 	}
+}
+
+func ResourceErrorPageProfileImporter(d *schema.ResourceData, m interface{}) ([]*schema.ResourceData, error) {
+	s := ResourceErrorPageProfileSchema()
+	return ResourceImporter(d, m, "errorpageprofile", s)
 }
 
 func ResourceAviErrorPageProfileRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceErrorPageProfileSchema()
 	err := ApiRead(d, meta, "errorpageprofile", s)
+	if err != nil {
+		log.Printf("[ERROR] in reading object %v\n", err)
+	}
 	return err
 }
 

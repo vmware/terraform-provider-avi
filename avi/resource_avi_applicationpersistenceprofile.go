@@ -87,12 +87,23 @@ func resourceAviApplicationPersistenceProfile() *schema.Resource {
 		Update: resourceAviApplicationPersistenceProfileUpdate,
 		Delete: resourceAviApplicationPersistenceProfileDelete,
 		Schema: ResourceApplicationPersistenceProfileSchema(),
+		Importer: &schema.ResourceImporter{
+			State: ResourceApplicationPersistenceProfileImporter,
+		},
 	}
+}
+
+func ResourceApplicationPersistenceProfileImporter(d *schema.ResourceData, m interface{}) ([]*schema.ResourceData, error) {
+	s := ResourceApplicationPersistenceProfileSchema()
+	return ResourceImporter(d, m, "applicationpersistenceprofile", s)
 }
 
 func ResourceAviApplicationPersistenceProfileRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceApplicationPersistenceProfileSchema()
 	err := ApiRead(d, meta, "applicationpersistenceprofile", s)
+	if err != nil {
+		log.Printf("[ERROR] in reading object %v\n", err)
+	}
 	return err
 }
 

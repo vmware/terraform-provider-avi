@@ -350,7 +350,6 @@ func resourceAviVirtualService() *schema.Resource {
 		Delete: resourceAviVirtualServiceDelete,
 		Schema: ResourceVirtualServiceSchema(),
 		Importer: &schema.ResourceImporter{
-			//State: schema.ImportStatePassthrough,
 			State: ResourceVirtualServiceImporter,
 		},
 	}
@@ -358,7 +357,6 @@ func resourceAviVirtualService() *schema.Resource {
 
 func ResourceVirtualServiceImporter(d *schema.ResourceData, m interface{}) ([]*schema.ResourceData, error) {
 	s := ResourceVirtualServiceSchema()
-	log.Printf("[DEBUG] importing object %v\n", d.Id())
 	return ResourceImporter(d, m, "virtualservice", s)
 }
 

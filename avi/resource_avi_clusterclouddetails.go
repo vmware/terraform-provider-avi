@@ -45,12 +45,23 @@ func resourceAviClusterCloudDetails() *schema.Resource {
 		Update: resourceAviClusterCloudDetailsUpdate,
 		Delete: resourceAviClusterCloudDetailsDelete,
 		Schema: ResourceClusterCloudDetailsSchema(),
+		Importer: &schema.ResourceImporter{
+			State: ResourceClusterCloudDetailsImporter,
+		},
 	}
+}
+
+func ResourceClusterCloudDetailsImporter(d *schema.ResourceData, m interface{}) ([]*schema.ResourceData, error) {
+	s := ResourceClusterCloudDetailsSchema()
+	return ResourceImporter(d, m, "clusterclouddetails", s)
 }
 
 func ResourceAviClusterCloudDetailsRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceClusterCloudDetailsSchema()
 	err := ApiRead(d, meta, "clusterclouddetails", s)
+	if err != nil {
+		log.Printf("[ERROR] in reading object %v\n", err)
+	}
 	return err
 }
 

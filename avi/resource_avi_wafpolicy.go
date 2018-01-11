@@ -74,12 +74,23 @@ func resourceAviWafPolicy() *schema.Resource {
 		Update: resourceAviWafPolicyUpdate,
 		Delete: resourceAviWafPolicyDelete,
 		Schema: ResourceWafPolicySchema(),
+		Importer: &schema.ResourceImporter{
+			State: ResourceWafPolicyImporter,
+		},
 	}
+}
+
+func ResourceWafPolicyImporter(d *schema.ResourceData, m interface{}) ([]*schema.ResourceData, error) {
+	s := ResourceWafPolicySchema()
+	return ResourceImporter(d, m, "wafpolicy", s)
 }
 
 func ResourceAviWafPolicyRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceWafPolicySchema()
 	err := ApiRead(d, meta, "wafpolicy", s)
+	if err != nil {
+		log.Printf("[ERROR] in reading object %v\n", err)
+	}
 	return err
 }
 

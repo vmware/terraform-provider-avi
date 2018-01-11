@@ -42,12 +42,23 @@ func resourceAviRole() *schema.Resource {
 		Update: resourceAviRoleUpdate,
 		Delete: resourceAviRoleDelete,
 		Schema: ResourceRoleSchema(),
+		Importer: &schema.ResourceImporter{
+			State: ResourceRoleImporter,
+		},
 	}
+}
+
+func ResourceRoleImporter(d *schema.ResourceData, m interface{}) ([]*schema.ResourceData, error) {
+	s := ResourceRoleSchema()
+	return ResourceImporter(d, m, "role", s)
 }
 
 func ResourceAviRoleRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceRoleSchema()
 	err := ApiRead(d, meta, "role", s)
+	if err != nil {
+		log.Printf("[ERROR] in reading object %v\n", err)
+	}
 	return err
 }
 

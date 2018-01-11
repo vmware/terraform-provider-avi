@@ -52,12 +52,23 @@ func resourceAviCloudProperties() *schema.Resource {
 		Update: resourceAviCloudPropertiesUpdate,
 		Delete: resourceAviCloudPropertiesDelete,
 		Schema: ResourceCloudPropertiesSchema(),
+		Importer: &schema.ResourceImporter{
+			State: ResourceCloudPropertiesImporter,
+		},
 	}
+}
+
+func ResourceCloudPropertiesImporter(d *schema.ResourceData, m interface{}) ([]*schema.ResourceData, error) {
+	s := ResourceCloudPropertiesSchema()
+	return ResourceImporter(d, m, "cloudproperties", s)
 }
 
 func ResourceAviCloudPropertiesRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceCloudPropertiesSchema()
 	err := ApiRead(d, meta, "cloudproperties", s)
+	if err != nil {
+		log.Printf("[ERROR] in reading object %v\n", err)
+	}
 	return err
 }
 

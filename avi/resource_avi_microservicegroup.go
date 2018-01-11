@@ -50,12 +50,23 @@ func resourceAviMicroServiceGroup() *schema.Resource {
 		Update: resourceAviMicroServiceGroupUpdate,
 		Delete: resourceAviMicroServiceGroupDelete,
 		Schema: ResourceMicroServiceGroupSchema(),
+		Importer: &schema.ResourceImporter{
+			State: ResourceMicroServiceGroupImporter,
+		},
 	}
+}
+
+func ResourceMicroServiceGroupImporter(d *schema.ResourceData, m interface{}) ([]*schema.ResourceData, error) {
+	s := ResourceMicroServiceGroupSchema()
+	return ResourceImporter(d, m, "microservicegroup", s)
 }
 
 func ResourceAviMicroServiceGroupRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceMicroServiceGroupSchema()
 	err := ApiRead(d, meta, "microservicegroup", s)
+	if err != nil {
+		log.Printf("[ERROR] in reading object %v\n", err)
+	}
 	return err
 }
 

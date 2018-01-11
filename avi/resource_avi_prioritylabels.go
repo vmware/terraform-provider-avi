@@ -51,12 +51,23 @@ func resourceAviPriorityLabels() *schema.Resource {
 		Update: resourceAviPriorityLabelsUpdate,
 		Delete: resourceAviPriorityLabelsDelete,
 		Schema: ResourcePriorityLabelsSchema(),
+		Importer: &schema.ResourceImporter{
+			State: ResourcePriorityLabelsImporter,
+		},
 	}
+}
+
+func ResourcePriorityLabelsImporter(d *schema.ResourceData, m interface{}) ([]*schema.ResourceData, error) {
+	s := ResourcePriorityLabelsSchema()
+	return ResourceImporter(d, m, "prioritylabels", s)
 }
 
 func ResourceAviPriorityLabelsRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourcePriorityLabelsSchema()
 	err := ApiRead(d, meta, "prioritylabels", s)
+	if err != nil {
+		log.Printf("[ERROR] in reading object %v\n", err)
+	}
 	return err
 }
 

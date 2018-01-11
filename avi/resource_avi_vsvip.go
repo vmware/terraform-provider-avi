@@ -61,12 +61,23 @@ func resourceAviVsVip() *schema.Resource {
 		Update: resourceAviVsVipUpdate,
 		Delete: resourceAviVsVipDelete,
 		Schema: ResourceVsVipSchema(),
+		Importer: &schema.ResourceImporter{
+			State: ResourceVsVipImporter,
+		},
 	}
+}
+
+func ResourceVsVipImporter(d *schema.ResourceData, m interface{}) ([]*schema.ResourceData, error) {
+	s := ResourceVsVipSchema()
+	return ResourceImporter(d, m, "vsvip", s)
 }
 
 func ResourceAviVsVipRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceVsVipSchema()
 	err := ApiRead(d, meta, "vsvip", s)
+	if err != nil {
+		log.Printf("[ERROR] in reading object %v\n", err)
+	}
 	return err
 }
 

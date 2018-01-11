@@ -46,12 +46,23 @@ func resourceAviCertificateManagementProfile() *schema.Resource {
 		Update: resourceAviCertificateManagementProfileUpdate,
 		Delete: resourceAviCertificateManagementProfileDelete,
 		Schema: ResourceCertificateManagementProfileSchema(),
+		Importer: &schema.ResourceImporter{
+			State: ResourceCertificateManagementProfileImporter,
+		},
 	}
+}
+
+func ResourceCertificateManagementProfileImporter(d *schema.ResourceData, m interface{}) ([]*schema.ResourceData, error) {
+	s := ResourceCertificateManagementProfileSchema()
+	return ResourceImporter(d, m, "certificatemanagementprofile", s)
 }
 
 func ResourceAviCertificateManagementProfileRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceCertificateManagementProfileSchema()
 	err := ApiRead(d, meta, "certificatemanagementprofile", s)
+	if err != nil {
+		log.Printf("[ERROR] in reading object %v\n", err)
+	}
 	return err
 }
 

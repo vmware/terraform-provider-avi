@@ -78,12 +78,23 @@ func resourceAviIpAddrGroup() *schema.Resource {
 		Update: resourceAviIpAddrGroupUpdate,
 		Delete: resourceAviIpAddrGroupDelete,
 		Schema: ResourceIpAddrGroupSchema(),
+		Importer: &schema.ResourceImporter{
+			State: ResourceIpAddrGroupImporter,
+		},
 	}
+}
+
+func ResourceIpAddrGroupImporter(d *schema.ResourceData, m interface{}) ([]*schema.ResourceData, error) {
+	s := ResourceIpAddrGroupSchema()
+	return ResourceImporter(d, m, "ipaddrgroup", s)
 }
 
 func ResourceAviIpAddrGroupRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceIpAddrGroupSchema()
 	err := ApiRead(d, meta, "ipaddrgroup", s)
+	if err != nil {
+		log.Printf("[ERROR] in reading object %v\n", err)
+	}
 	return err
 }
 

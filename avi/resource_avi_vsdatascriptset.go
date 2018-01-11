@@ -70,12 +70,23 @@ func resourceAviVSDataScriptSet() *schema.Resource {
 		Update: resourceAviVSDataScriptSetUpdate,
 		Delete: resourceAviVSDataScriptSetDelete,
 		Schema: ResourceVSDataScriptSetSchema(),
+		Importer: &schema.ResourceImporter{
+			State: ResourceVSDataScriptSetImporter,
+		},
 	}
+}
+
+func ResourceVSDataScriptSetImporter(d *schema.ResourceData, m interface{}) ([]*schema.ResourceData, error) {
+	s := ResourceVSDataScriptSetSchema()
+	return ResourceImporter(d, m, "vsdatascriptset", s)
 }
 
 func ResourceAviVSDataScriptSetRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceVSDataScriptSetSchema()
 	err := ApiRead(d, meta, "vsdatascriptset", s)
+	if err != nil {
+		log.Printf("[ERROR] in reading object %v\n", err)
+	}
 	return err
 }
 

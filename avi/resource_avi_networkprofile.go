@@ -48,12 +48,23 @@ func resourceAviNetworkProfile() *schema.Resource {
 		Update: resourceAviNetworkProfileUpdate,
 		Delete: resourceAviNetworkProfileDelete,
 		Schema: ResourceNetworkProfileSchema(),
+		Importer: &schema.ResourceImporter{
+			State: ResourceNetworkProfileImporter,
+		},
 	}
+}
+
+func ResourceNetworkProfileImporter(d *schema.ResourceData, m interface{}) ([]*schema.ResourceData, error) {
+	s := ResourceNetworkProfileSchema()
+	return ResourceImporter(d, m, "networkprofile", s)
 }
 
 func ResourceAviNetworkProfileRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceNetworkProfileSchema()
 	err := ApiRead(d, meta, "networkprofile", s)
+	if err != nil {
+		log.Printf("[ERROR] in reading object %v\n", err)
+	}
 	return err
 }
 

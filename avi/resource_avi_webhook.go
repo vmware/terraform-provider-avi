@@ -49,12 +49,23 @@ func resourceAviWebhook() *schema.Resource {
 		Update: resourceAviWebhookUpdate,
 		Delete: resourceAviWebhookDelete,
 		Schema: ResourceWebhookSchema(),
+		Importer: &schema.ResourceImporter{
+			State: ResourceWebhookImporter,
+		},
 	}
+}
+
+func ResourceWebhookImporter(d *schema.ResourceData, m interface{}) ([]*schema.ResourceData, error) {
+	s := ResourceWebhookSchema()
+	return ResourceImporter(d, m, "webhook", s)
 }
 
 func ResourceAviWebhookRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceWebhookSchema()
 	err := ApiRead(d, meta, "webhook", s)
+	if err != nil {
+		log.Printf("[ERROR] in reading object %v\n", err)
+	}
 	return err
 }
 

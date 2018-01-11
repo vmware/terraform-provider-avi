@@ -78,12 +78,23 @@ func resourceAviHTTPPolicySet() *schema.Resource {
 		Update: resourceAviHTTPPolicySetUpdate,
 		Delete: resourceAviHTTPPolicySetDelete,
 		Schema: ResourceHTTPPolicySetSchema(),
+		Importer: &schema.ResourceImporter{
+			State: ResourceHTTPPolicySetImporter,
+		},
 	}
+}
+
+func ResourceHTTPPolicySetImporter(d *schema.ResourceData, m interface{}) ([]*schema.ResourceData, error) {
+	s := ResourceHTTPPolicySetSchema()
+	return ResourceImporter(d, m, "httppolicyset", s)
 }
 
 func ResourceAviHTTPPolicySetRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceHTTPPolicySetSchema()
 	err := ApiRead(d, meta, "httppolicyset", s)
+	if err != nil {
+		log.Printf("[ERROR] in reading object %v\n", err)
+	}
 	return err
 }
 

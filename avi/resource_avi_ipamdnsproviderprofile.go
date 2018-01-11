@@ -110,12 +110,23 @@ func resourceAviIpamDnsProviderProfile() *schema.Resource {
 		Update: resourceAviIpamDnsProviderProfileUpdate,
 		Delete: resourceAviIpamDnsProviderProfileDelete,
 		Schema: ResourceIpamDnsProviderProfileSchema(),
+		Importer: &schema.ResourceImporter{
+			State: ResourceIpamDnsProviderProfileImporter,
+		},
 	}
+}
+
+func ResourceIpamDnsProviderProfileImporter(d *schema.ResourceData, m interface{}) ([]*schema.ResourceData, error) {
+	s := ResourceIpamDnsProviderProfileSchema()
+	return ResourceImporter(d, m, "ipamdnsproviderprofile", s)
 }
 
 func ResourceAviIpamDnsProviderProfileRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceIpamDnsProviderProfileSchema()
 	err := ApiRead(d, meta, "ipamdnsproviderprofile", s)
+	if err != nil {
+		log.Printf("[ERROR] in reading object %v\n", err)
+	}
 	return err
 }
 

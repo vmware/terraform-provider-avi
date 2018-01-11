@@ -41,12 +41,23 @@ func resourceAviAlertScriptConfig() *schema.Resource {
 		Update: resourceAviAlertScriptConfigUpdate,
 		Delete: resourceAviAlertScriptConfigDelete,
 		Schema: ResourceAlertScriptConfigSchema(),
+		Importer: &schema.ResourceImporter{
+			State: ResourceAlertScriptConfigImporter,
+		},
 	}
+}
+
+func ResourceAlertScriptConfigImporter(d *schema.ResourceData, m interface{}) ([]*schema.ResourceData, error) {
+	s := ResourceAlertScriptConfigSchema()
+	return ResourceImporter(d, m, "alertscriptconfig", s)
 }
 
 func ResourceAviAlertScriptConfigRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceAlertScriptConfigSchema()
 	err := ApiRead(d, meta, "alertscriptconfig", s)
+	if err != nil {
+		log.Printf("[ERROR] in reading object %v\n", err)
+	}
 	return err
 }
 
