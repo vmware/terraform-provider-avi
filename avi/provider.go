@@ -189,7 +189,7 @@ func providerConfigure(d *schema.ResourceData) (interface{}, error) {
 		config.Controller, config.Username,
 		session.SetPassword(config.Password),
 		session.SetTenant(config.Tenant),
-		session.SetVersion("17.2.6"),
+		session.SetVersion("17.2.5"),
 		session.SetInsecure)
 
 	log.Println("Avi Client created ")
