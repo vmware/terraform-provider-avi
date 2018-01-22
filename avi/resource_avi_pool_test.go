@@ -2,17 +2,19 @@ package avi
 
 import (
 	"fmt"
-	"testing"
-
+	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform/helper/resource"
 	"github.com/hashicorp/terraform/terraform"
+	"strings"
+	"testing"
 )
 
-func TestAVIPoolCreate(t *testing.T) {
+func TestAVIPoolBasic(t *testing.T) {
+	updatedConfig := fmt.Sprintf(testAccAVIPoolConfig, "abc")
 	resource.Test(t, resource.TestCase{
-		PreCheck:  func() { testAccPreCheck(t) },
-		Providers: testAccProviders,
-		// CheckDestroy: testAccCheckAVIPoolDestroy,
+		PreCheck:     func() { testAccPreCheck(t) },
+		Providers:    testAccProviders,
+		CheckDestroy: testAccCheckAVIPoolDestroy,
 		Steps: []resource.TestStep{
 			{
 				Config: testAccAVIPoolConfig,
@@ -21,18 +23,6 @@ func TestAVIPoolCreate(t *testing.T) {
 					resource.TestCheckResourceAttr(
 						"avi_pool.testpool", "name", "p42-%s")),
 			},
-		},
-	})
-
-}
-
-func TestAVIPoolUpdate(t *testing.T) {
-	updatedConfig := fmt.Sprintf(testAccAVIPoolConfig, "abc")
-	resource.Test(t, resource.TestCase{
-		PreCheck:  func() { testAccPreCheck(t) },
-		Providers: testAccProviders,
-		// CheckDestroy: testAccCheckAVIPoolDestroy,
-		Steps: []resource.TestStep{
 			{
 				Config: updatedConfig,
 				Check: resource.ComposeTestCheckFunc(
@@ -47,6 +37,8 @@ func TestAVIPoolUpdate(t *testing.T) {
 
 func testAccCheckAVIPoolExists(resourcename string) resource.TestCheckFunc {
 	return func(s *terraform.State) error {
+		conn := testAccProvider.Meta().(*clients.AviClient).AviSession
+		var obj interface{}
 		rs, ok := s.RootModule().Resources[resourcename]
 		if !ok {
 			return fmt.Errorf("Not found: %s", resourcename)
@@ -54,46 +46,65 @@ func testAccCheckAVIPoolExists(resourcename string) resource.TestCheckFunc {
 		if rs.Primary.ID == "" {
 			return fmt.Errorf("No AVI POOL ID is set")
 		}
+		path := "api" + strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		err := conn.Get(path, &obj)
+		if err != nil {
+			return err
+		}
 		return nil
 	}
 
 }
 
-// func testAccCheckAVIPoolDestroy(s *terraform.State) error {
-// 	for _, rs := range s.RootModule().Resources {
-// 		if rs.Type != "avi_pool" {
-// 			continue
-// 		}
-// 		if rs.Primary.ID != "" {
-// 			return fmt.Errorf("AVI POOL ID is set")
-// 		}
-// 	}
-// 	return nil
-// }
+func testAccCheckAVIPoolDestroy(s *terraform.State) error {
+	conn := testAccProvider.Meta().(*clients.AviClient).AviSession
+	var obj interface{}
+	for _, rs := range s.RootModule().Resources {
+		if rs.Type != "avi_pool" {
+			continue
+		}
+		path := "api" + strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		err := conn.Get(path, &obj)
+		if err != nil {
+			if strings.Contains(err.Error(), "404") {
+				return nil
+			}
+			return err
+		}
+		if len(obj.(map[string]interface{})) > 0 {
+			return fmt.Errorf("AVI Pool still exists")
+		}
+	}
+	return nil
+}
 
 const testAccAVIPoolConfig = `
-resource "avi_healthmonitor" "test_hm" {
-	name= "hm1"
-	type= "HEALTH_MONITOR_HTTP"
+data "avi_tenant" "default_tenant"{
+	name= "admin"
+}
+  
+data "avi_cloud" "default_cloud" {
+	name= "Default-Cloud"
+}
+data "avi_vrfcontext" "global_vrf" {
+	name= "global"
 }
 resource "avi_pool" "testpool" {
-	name = "p42-%s",
-	health_monitor_refs= ["${avi_healthmonitor.test_hm.id}"]
+	name = "p42-%s"
+	server_count = 1
 	servers {
+		hostname= "10.90.64.66"
 		ip= {
-		  type= "V4",
-		  addr= "10.90.64.66",
+		  type= "V4"
+		  addr= "10.90.64.66"
 		}
 		port= 8080
-	}
-	servers {
-		ip= {
-			type= "V4",
-			addr= "10.90.64.70",
-		}
 	}
 	fail_action= {
 		type= "FAIL_ACTION_CLOSE_CONN"
 	}
+	vrf_ref="${data.avi_vrfcontext.global_vrf.id}"
+	tenant_ref= "${data.avi_tenant.default_tenant.id}"
+	cloud_ref= "${data.avi_cloud.default_cloud.id}"
 }
 `
