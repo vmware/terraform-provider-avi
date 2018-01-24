@@ -70,7 +70,7 @@ Clone repository to: `$GOPATH/src/github.com/hashicorp/terraform-provider-avi`
 
 ```sh
 $ mkdir -p $GOPATH/src/github.com/hashicorp; cd $GOPATH/src/github.com/hashicorp
-$ git clone git@github.com:hashicorp/terraform-provider-avi
+$ git clone https://github.com/avinetworks/terraform-provider-avi.git
 ```
 
 Enter the provider directory and build the provider
