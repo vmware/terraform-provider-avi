@@ -10,13 +10,13 @@ Steps to add a new server
 
 provider "aws" {
   /*
-                                                                                    Export the AWS credentials from the Environment. In order to explicitly
-                                                                                    provide it in the plan then use the variables.tf to set aws_access_key and
-                                                                                    aws_secret_key
-                                                                                      $ export AWS_ACCESS_KEY_ID="anaccesskey"
-                                                                                      $ export AWS_SECRET_ACCESS_KEY="asecretkey"
-                                                                                      $ export AWS_DEFAULT_REGION="us-west-2"
-                                                                                      */
+                                                                                                                                                          Export the AWS credentials from the Environment. In order to explicitly
+                                                                                                                                                          provide it in the plan then use the variables.tf to set aws_access_key and
+                                                                                                                                                          aws_secret_key
+                                                                                                                                                            $ export AWS_ACCESS_KEY_ID="anaccesskey"
+                                                                                                                                                            $ export AWS_SECRET_ACCESS_KEY="asecretkey"
+                                                                                                                                                            $ export AWS_DEFAULT_REGION="us-west-2"
+                                                                                                                                                            */
   access_key = "${var.aws_access_key}"
 
   secret_key = "${var.aws_secret_key}"
@@ -34,42 +34,48 @@ data "avi_applicationprofile" "system_https_profile" {
 data "aws_instance" "avi_controller" {
   filter {
     name   = "tag:Name"
-    values = ["grastogi-terraform-controller"]
+    values = ["${var.project_name}-terraform-controller"]
   }
 }
 
-data "aws_instance" "terraform-webserver1" {
-  filter {
-    name   = "tag:Name"
-    values = ["grastogi-terraform-webserver1"]
+resource "aws_instance" "terraform-webserver" {
+  count         = "${var.webserver_count}"
+  ami           = "${var.webserver_ami}"
+  instance_type = "${var.webserver_instance_type}"
+  subnet_id     = "${data.aws_subnet.terraform-subnets-0.id}"
+
+  tags {
+    Name    = "${var.project_name}-terraform-webserver-${count.index}"
+    Project = "${var.project_name}-terraform-webservers"
   }
 }
 
-data "aws_instance" "terraform-webserver2" {
+output "aws_webserver_ips" {
+  value = "${aws_instance.terraform-webserver.*.private_ip}"
+}
+
+output "aws_webserver_tags" {
+  value = "${aws_instance.terraform-webserver.*.tags}"
+}
+
+data "aws_subnet" "terraform-subnets-0" {
   filter {
     name   = "tag:Name"
-    values = ["grastogi-terraform-webserver2"]
+    values = ["${var.project_name}-terraform-subnet-0"]
   }
 }
 
-data "aws_instance" "terraform-webserver3" {
+data "aws_subnet" "terraform-subnets-1" {
   filter {
     name   = "tag:Name"
-    values = ["grastogi-terraform-webserver3"]
+    values = ["${var.project_name}-terraform-subnet-1"]
   }
 }
 
-data "aws_instance" "terraform-webserver4" {
+data "aws_subnet" "terraform-subnets-2" {
   filter {
     name   = "tag:Name"
-    values = ["grastogi-terraform-webserver4"]
-  }
-}
-
-data "aws_subnet" "grastogi-terraform-subnet" {
-  filter {
-    name   = "tag:Name"
-    values = ["grastogi-terraform-subnet"]
+    values = ["${var.project_name}-terraform-subnet-2"]
   }
 }
 
@@ -89,13 +95,11 @@ data "avi_tenant" "default_tenant" {
 }
 
 data "avi_cloud" "aws_cloud_cfg" {
-  name = "aws_cloud_cfg"
+  name = "AWS"
 }
 
 data "avi_vrfcontext" "terraform_vrf" {
-  uuid = "vrfcontext-00b1ebc1-8349-40d8-b4d1-83ee8382b942"
-
-  //name      = "global"
+  name      = "global"
   cloud_ref = "${data.avi_cloud.aws_cloud_cfg.id}"
 }
 
@@ -119,6 +123,11 @@ data "avi_sslprofile" "system_standard_sslprofile" {
   name = "System-Standard"
 }
 
+data "avi_serviceenginegroup" "se_group" {
+  name      = "Default-Group"
+  cloud_ref = "${data.avi_cloud.aws_cloud_cfg.id}"
+}
+
 resource "avi_pool" "terraform-pool-version1" {
   name                = "poolv1"
   health_monitor_refs = ["${data.avi_healthmonitor.system_http_healthmonitor.id}"]
@@ -131,50 +140,50 @@ resource "avi_pool" "terraform-pool-version1" {
   servers {
     ip = {
       type = "V4"
-      addr = "${data.aws_instance.terraform-webserver1.private_ip}"
+      addr = "${aws_instance.terraform-webserver.0.private_ip}"
     }
 
     availability_zone = "${var.aws_availability_zone}"
 
     discovered_networks = {
-      network_ref = "https://10.144.43.149/api/network/${data.aws_subnet.grastogi-terraform-subnet.id}"
+      network_ref = "https://${data.aws_instance.avi_controller.private_ip}/api/network/${data.aws_subnet.terraform-subnets-0.id}"
 
       subnet = {
         ip_addr = {
-          addr = "10.144.43.0"
+          addr = "${var.aws_subnet_ip}"
           type = "V4"
         }
 
-        mask = 24
+        mask = "${var.aws_subnet_mask}"
       }
     }
 
-    hostname = "${data.aws_instance.terraform-webserver1.private_ip}"
+    hostname = "${aws_instance.terraform-webserver.0.private_ip}"
     port     = 80
   }
 
   servers {
     ip = {
       type = "V4"
-      addr = "${data.aws_instance.terraform-webserver2.private_ip}"
+      addr = "${aws_instance.terraform-webserver.1.private_ip}"
     }
 
     availability_zone = "${var.aws_availability_zone}"
 
     discovered_networks = {
-      network_ref = "https://10.144.43.149/api/network/${data.aws_subnet.grastogi-terraform-subnet.id}"
+      network_ref = "https://${data.aws_instance.avi_controller.private_ip}/api/network/${data.aws_subnet.terraform-subnets-0.id}"
 
       subnet = {
         ip_addr = {
-          addr = "10.144.43.0"
+          addr = "${var.aws_subnet_ip}"
           type = "V4"
         }
 
-        mask = 24
+        mask = "${var.aws_subnet_mask}"
       }
     }
 
-    hostname = "${data.aws_instance.terraform-webserver2.private_ip}"
+    hostname = "${aws_instance.terraform-webserver.1.private_ip}"
     port     = 80
   }
 
@@ -195,50 +204,50 @@ resource "avi_pool" "terraform-pool-version2" {
   servers {
     ip = {
       type = "V4"
-      addr = "${data.aws_instance.terraform-webserver3.private_ip}"
+      addr = "${aws_instance.terraform-webserver.2.private_ip}"
     }
 
     availability_zone = "${var.aws_availability_zone}"
 
     discovered_networks = {
-      network_ref = "https://10.144.43.149/api/network/${data.aws_subnet.grastogi-terraform-subnet.id}"
+      network_ref = "https://${data.aws_instance.avi_controller.private_ip}/api/network/${data.aws_subnet.terraform-subnets-0.id}"
 
       subnet = {
         ip_addr = {
-          addr = "10.144.43.0"
+          addr = "${var.aws_subnet_ip}"
           type = "V4"
         }
 
-        mask = 24
+        mask = "${var.aws_subnet_mask}"
       }
     }
 
-    hostname = "${data.aws_instance.terraform-webserver3.private_ip}"
+    hostname = "${aws_instance.terraform-webserver.2.private_ip}"
     port     = 80
   }
 
   servers {
     ip = {
       type = "V4"
-      addr = "${data.aws_instance.terraform-webserver4.private_ip}"
+      addr = "${aws_instance.terraform-webserver.3.private_ip}"
     }
 
     availability_zone = "${var.aws_availability_zone}"
 
     discovered_networks = {
-      network_ref = "https://10.144.43.149/api/network/${data.aws_subnet.grastogi-terraform-subnet.id}"
+      network_ref = "https://${data.aws_instance.avi_controller.private_ip}/api/network/${data.aws_subnet.terraform-subnets-0.id}"
 
       subnet = {
         ip_addr = {
-          addr = "10.144.43.0"
+          addr = "${var.aws_subnet_ip}"
           type = "V4"
         }
 
-        mask = 24
+        mask = "${var.aws_subnet_mask}"
       }
     }
 
-    hostname = "${data.aws_instance.terraform-webserver4.private_ip}"
+    hostname = "${aws_instance.terraform-webserver.3.private_ip}"
     port     = 80
   }
 
@@ -263,8 +272,38 @@ resource "avi_poolgroup" "terraform-poolgroup" {
   }
 }
 
+/*
+resource "avi_vsvip" "terraform-vip" {
+  name            = "aws_vip"
+  tenant_ref      = "${data.avi_tenant.default_tenant.id}"
+  cloud_ref       = "${data.avi_cloud.aws_cloud_cfg.id}"
+  vrf_context_ref = "${data.avi_vrfcontext.terraform_vrf.id}"
+
+  vip {
+    auto_allocate_ip  = true
+    avi_allocated_vip = true
+    availability_zone = "${var.aws_availability_zone}"
+    subnet_uuid       = "${data.aws_subnet.terraform-subnet-0.id}"
+
+    ip_address = {
+      addr = "10.144.43.5"
+      type = "V4"
+    }
+
+    subnet = {
+      ip_addr = {
+        addr = "${var.aws_subnet_ip}"
+        type = "V4"
+      }
+
+      mask = "${var.aws_subnet_mask}"
+    }
+  }
+}
+*/
+
 resource "avi_virtualservice" "terraform-virtualservice" {
-  name                         = "virtualservice"
+  name                         = "aws_vs"
   pool_group_ref               = "${avi_poolgroup.terraform-poolgroup.id}"
   tenant_ref                   = "${data.avi_tenant.default_tenant.id}"
   cloud_type                   = "CLOUD_AWS"
@@ -274,34 +313,37 @@ resource "avi_virtualservice" "terraform-virtualservice" {
   analytics_profile_ref        = "${data.avi_analyticsprofile.system_analytics_profile.id}"
   ssl_key_and_certificate_refs = ["${data.avi_sslkeyandcertificate.system_default_cert.id}"]
   ssl_profile_ref              = "${data.avi_sslprofile.system_standard_sslprofile.id}"
+  se_group_ref                 = "${data.avi_serviceenginegroup.se_group.id}"
+  vrf_context_ref              = "${data.avi_vrfcontext.terraform_vrf.id}"
+
+  //vsvip_ref                    = "${avi_vsvip.terraform-vip.id}"
 
   vip {
     auto_allocate_ip  = true
     avi_allocated_vip = true
     availability_zone = "${var.aws_availability_zone}"
-    subnet_uuid       = "${data.aws_subnet.grastogi-terraform-subnet.id}"
+    subnet_uuid       = "${data.aws_subnet.terraform-subnets-0.id}"
 
-    ip_address = {
+    /*ip_address = {
       addr = "10.144.43.5"
       type = "V4"
     }
+    */
 
     subnet = {
       ip_addr = {
-        addr = "10.144.43.0"
+        addr = "${var.aws_subnet_ip}"
         type = "V4"
       }
 
-      mask = 24
+      mask = "${var.aws_subnet_mask}"
     }
   }
-
   services {
     port           = 80
     enable_ssl     = true
     port_range_end = 80
   }
-
   analytics_policy {
     metrics_realtime_update = {
       enabled  = true

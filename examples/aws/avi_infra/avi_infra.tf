@@ -10,13 +10,13 @@ Steps to add a new server
 
 provider "aws" {
   /*
-                                                              Export the AWS credentials from the Environment. In order to explicitly
-                                                              provide it in the plan then use the variables.tf to set aws_access_key and
-                                                              aws_secret_key
-                                                                $ export AWS_ACCESS_KEY_ID="anaccesskey"
-                                                                $ export AWS_SECRET_ACCESS_KEY="asecretkey"
-                                                                $ export AWS_DEFAULT_REGION="us-west-2"
-                                                                */
+                                                                                                Export the AWS credentials from the Environment. In order to explicitly
+                                                                                                provide it in the plan then use the variables.tf to set aws_access_key and
+                                                                                                aws_secret_key
+                                                                                                  $ export AWS_ACCESS_KEY_ID="anaccesskey"
+                                                                                                  $ export AWS_SECRET_ACCESS_KEY="asecretkey"
+                                                                                                  $ export AWS_DEFAULT_REGION="us-west-2"
+                                                                                                  */
   access_key = "${var.aws_access_key}"
 
   secret_key = "${var.aws_secret_key}"
@@ -26,14 +26,28 @@ provider "aws" {
 data "aws_instance" "avi_controller" {
   filter {
     name   = "tag:Name"
-    values = ["grastogi-terraform-controller"]
+    values = ["${var.project_name}-terraform-controller"]
   }
 }
 
-data "aws_subnet" "grastogi-terraform-subnet" {
+data "aws_subnet" "terraform-subnets-0" {
   filter {
     name   = "tag:Name"
-    values = ["grastogi-terraform-subnet"]
+    values = ["${var.project_name}-terraform-subnet-0"]
+  }
+}
+
+data "aws_subnet" "terraform-subnets-1" {
+  filter {
+    name   = "tag:Name"
+    values = ["${var.project_name}-terraform-subnet-1"]
+  }
+}
+
+data "aws_subnet" "terraform-subnets-2" {
+  filter {
+    name   = "tag:Name"
+    values = ["${var.project_name}-terraform-subnet-2"]
   }
 }
 
@@ -53,12 +67,12 @@ data "avi_tenant" "default_tenant" {
 }
 
 resource "avi_cloud" "aws_cloud_cfg" {
-  name         = "aws_cloud_cfg"
+  name         = "AWS"
   vtype        = "CLOUD_AWS"
   dhcp_enabled = true
 
   aws_configuration = {
-    region            = "us-west-2"
+    region            = "${var.aws_region}"
     secret_access_key = "${var.aws_secret_key}"
     access_key_id     = "${var.aws_access_key}"
 
@@ -67,9 +81,21 @@ resource "avi_cloud" "aws_cloud_cfg" {
     }
 
     zones = {
-      mgmt_network_name = "${data.aws_subnet.grastogi-terraform-subnet.tags.Name}"
-      mgmt_network_uuid = "${data.aws_subnet.grastogi-terraform-subnet.id}"
-      availability_zone = "${var.aws_availability_zone}"
+      mgmt_network_name = "${data.aws_subnet.terraform-subnets-0.tags.Name}"
+      mgmt_network_uuid = "${data.aws_subnet.terraform-subnets-0.id}"
+      availability_zone = "${data.aws_subnet.terraform-subnets-0.availability_zone}}"
+    }
+
+    zones = {
+      mgmt_network_name = "${data.aws_subnet.terraform-subnets-1.tags.Name}"
+      mgmt_network_uuid = "${data.aws_subnet.terraform-subnets-1.id}"
+      availability_zone = "${data.aws_subnet.terraform-subnets-1.availability_zone}"
+    }
+
+    zones = {
+      mgmt_network_name = "${data.aws_subnet.terraform-subnets-2.tags.Name}"
+      mgmt_network_uuid = "${data.aws_subnet.terraform-subnets-2.id}"
+      availability_zone = "${data.aws_subnet.terraform-subnets-2.availability_zone}"
     }
 
     use_iam_roles = false

@@ -11,6 +11,7 @@ import (
 	"strings"
 
 	"github.com/avinetworks/sdk/go/clients"
+	"github.com/avinetworks/sdk/go/session"
 	"github.com/hashicorp/terraform/helper/hashcode"
 	"github.com/hashicorp/terraform/helper/schema"
 )
@@ -140,7 +141,17 @@ func ApiCreateOrUpdate(d *schema.ResourceData, meta interface{}, objType string,
 			err = client.AviSession.Put(path, data, &robj)
 		} else if name, ok := d.GetOk("name"); ok {
 			var existing_obj interface{}
-			err := client.AviSession.GetObjectByName(objType, name.(string), &existing_obj)
+			var err error
+			if cloudRef, ok := d.GetOk("cloud_ref"); ok {
+				cloudUUID := strings.SplitN(cloudRef.(string), "api/cloud/", 2)[1]
+				log.Printf("[INFO] using cloud %v \n", cloudUUID)
+
+				err = client.AviSession.GetObject(objType, session.SetName(name.(string)),
+					session.SetResult(&existing_obj), session.SetCloudUUID(cloudUUID))
+			} else {
+				err = client.AviSession.GetObject(objType, session.SetName(name.(string)),
+					session.SetResult(&existing_obj))
+			}
 			if err != nil {
 				// object not found
 				err = client.AviSession.Post(path, data, &robj)
@@ -174,15 +185,19 @@ func ApiCreateOrUpdate(d *schema.ResourceData, meta interface{}, objType string,
 
 func ApiRead(d *schema.ResourceData, meta interface{}, objType string, s map[string]*schema.Schema) error {
 	client := meta.(*clients.AviClient)
-	log.Printf("[DEBUG] reading object with id %v \n", d.Id())
 	var obj interface{}
 	uuid := ""
+	log.Printf("[DEBUG] reading object with objType %v id %v\n",
+		objType, d.Id())
+
 	if d.Id() != "" {
 		// extract the uuid from it.
+		log.Printf("[DEBUG] reading object with objType %v id %v \n", objType, d.Id())
 		url_parts := strings.Split(d.Id(), "/")
 		uuid = url_parts[len(url_parts)-1]
 	} else if u, ok := d.GetOk("uuid"); ok {
 		uuid = u.(string)
+		log.Printf("[DEBUG] reading object with uuid %v \n", uuid)
 	}
 	if uuid != "" {
 		path := "api/" + objType + "/" + uuid
@@ -194,7 +209,17 @@ func ApiRead(d *schema.ResourceData, meta interface{}, objType string, s map[str
 			return nil
 		}
 	} else if name, ok := d.GetOk("name"); ok {
-		err := client.AviSession.GetObjectByName(objType, name.(string), &obj)
+		var err error
+		if cloudRef, ok := d.GetOk("cloud_ref"); ok {
+			cloudUUID := strings.SplitN(cloudRef.(string), "api/cloud/", 2)[1]
+			log.Printf("[DEBUG] using cloud %v \n", cloudUUID)
+			err = client.AviSession.GetObject(objType, session.SetName(name.(string)),
+				session.SetResult(&obj), session.SetCloudUUID(cloudUUID))
+		} else {
+			log.Printf("[DEBUG] using name %v \n", name)
+			err = client.AviSession.GetObject(objType, session.SetName(name.(string)),
+				session.SetResult(&obj))
+		}
 		if err != nil {
 			d.SetId("")
 			log.Printf("[ERROR] object with name %v not found\n", name)

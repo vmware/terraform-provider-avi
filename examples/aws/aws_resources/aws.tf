@@ -1,18 +1,17 @@
 provider "aws" {
-  /*
   access_key = "${var.aws_access_key}"
+
   secret_key = "${var.aws_secret_key}"
   region     = "${var.aws_region}"
-  */
 }
 
 resource "aws_instance" "avi_controller" {
-  ami           = "ami-2c0bbf54"
+  ami           = "${var.avi_controller_ami}"
   instance_type = "c4.2xlarge"
-  subnet_id     = "${aws_subnet.grastogi-terraform-subnet.id}"
+  subnet_id     = "${aws_subnet.terraform-subnet.0.id}"
 
   tags {
-    Name = "grastogi-terraform-controller"
+    Name = "${var.project_name}-terraform-controller"
   }
 }
 
@@ -24,71 +23,19 @@ output "avi_controller_ip" {
   value = "${aws_instance.avi_controller.private_ip}"
 }
 
-resource "aws_subnet" "grastogi-terraform-subnet" {
-  vpc_id     = "${var.aws_vpc_id}"
-  cidr_block = "10.144.43.0/24"
+resource "aws_subnet" "terraform-subnet" {
+  count = "${length(var.aws_subnets)}"
+
+  vpc_id            = "${var.aws_vpc_id}"
+  availability_zone = "${var.aws_availability_zones[count.index]}"
+  cidr_block        = "${var.aws_subnets[count.index]}/${var.aws_subnet_mask}"
 
   tags {
-    Name = "grastogi-terraform-subnet"
+    Name    = "${var.project_name}-terraform-subnet-${count.index}"
+    Project = "${var.project_name}-terraform-subnets"
   }
 }
 
-output "aws_subnet" {
-  value = "${aws_subnet.grastogi-terraform-subnet.tags.Name}"
-}
-
-resource "aws_instance" "terraform-webserver1" {
-  ami           = "ami-05141f7c"
-  instance_type = "t2.micro"
-  subnet_id     = "${aws_subnet.grastogi-terraform-subnet.id}"
-
-  tags {
-    Name = "grastogi-terraform-webserver1"
-  }
-}
-
-output "aws_webserver1_ip" {
-  value = "${aws_instance.terraform-webserver1.private_ip}"
-}
-
-resource "aws_instance" "terraform-webserver2" {
-  ami           = "ami-05141f7c"
-  instance_type = "t2.micro"
-  subnet_id     = "${aws_subnet.grastogi-terraform-subnet.id}"
-
-  tags {
-    Name = "grastogi-terraform-webserver2"
-  }
-}
-
-output "aws_webserver2_ip" {
-  value = "${aws_instance.terraform-webserver2.private_ip}"
-}
-
-resource "aws_instance" "terraform-webserver3" {
-  ami           = "ami-05141f7c"
-  instance_type = "t2.micro"
-  subnet_id     = "${aws_subnet.grastogi-terraform-subnet.id}"
-
-  tags {
-    Name = "grastogi-terraform-webserver3"
-  }
-}
-
-output "aws_webserver3_ip" {
-  value = "${aws_instance.terraform-webserver3.private_ip}"
-}
-
-resource "aws_instance" "terraform-webserver4" {
-  ami           = "ami-05141f7c"
-  instance_type = "t2.micro"
-  subnet_id     = "${aws_subnet.grastogi-terraform-subnet.id}"
-
-  tags {
-    Name = "grastogi-terraform-webserver4"
-  }
-}
-
-output "aws_webserver4_ip" {
-  value = "${aws_instance.terraform-webserver4.private_ip}"
+output "aws_subnets" {
+  value = "${aws_subnet.terraform-subnet.*.tags.Name}"
 }
