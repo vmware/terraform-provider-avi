@@ -1,12 +1,6 @@
-variable "aws_access_key" {
-  type    = "string"
-  default = ""
-}
+variable "aws_access_key" {}
 
-variable "aws_secret_key" {
-  type    = "string"
-  default = ""
-}
+variable "aws_secret_key" {}
 
 variable "aws_region" {
   type    = "string"
@@ -25,7 +19,8 @@ variable "avi_username" {
 
 variable "avi_password" {}
 
-variable "aws_availability_zone" {
-  type    = "string"
-  default = "us-west-2a"
+variable "aws_availability_zones" {
+  default = ["us-west-2a", "us-west-2b", "us-west-2c"]
 }
+
+variable "project_name" {}

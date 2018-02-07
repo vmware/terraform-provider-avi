@@ -1,12 +1,6 @@
-variable "aws_access_key" {
-  type    = "string"
-  default = ""
-}
+variable "aws_access_key" {}
 
-variable "aws_secret_key" {
-  type    = "string"
-  default = ""
-}
+variable "aws_secret_key" {}
 
 variable "aws_region" {
   type    = "string"
@@ -31,10 +25,24 @@ variable "aws_availability_zone" {
 }
 
 variable "aws_subnet_ip" {
-  type = "string"
-  default = "10.144.44.0"
+  type    = "string"
+  default = "10.144.43.0"
 }
 
 variable "aws_subnet_mask" {
   default = 24
+}
+
+variable "project_name" {}
+
+variable "webserver_ami" {
+  default = "ami-05141f7c"
+}
+
+variable "webserver_instance_type" {
+  default = "t2.micro"
+}
+
+variable "webserver_count" {
+  default = 4
 }
