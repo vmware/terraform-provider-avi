@@ -58,7 +58,7 @@ resource "avi_cloud" "aws_cloud_cfg" {
   dhcp_enabled = true
 
   aws_configuration = {
-    region            = "us-west-2"
+    region            = "${var.aws_region}"
     secret_access_key = "${var.aws_secret_key}"
     access_key_id     = "${var.aws_access_key}"
 

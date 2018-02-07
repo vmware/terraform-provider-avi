@@ -25,7 +25,8 @@ output "avi_controller_ip" {
 
 resource "aws_subnet" "grastogi-terraform-subnet" {
   vpc_id     = "${var.aws_vpc_id}"
-  cidr_block = "10.144.43.0/24"
+  availability_zone = "${var.aws_available_zone}"
+  cidr_block = "${var.aws_subnet_ip}/${var.aws_subnet_mask}"
 
   tags {
     Name = "grastogi-terraform-subnet"

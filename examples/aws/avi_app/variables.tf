@@ -29,3 +29,12 @@ variable "aws_availability_zone" {
   type    = "string"
   default = "us-west-2a"
 }
+
+variable "aws_subnet_ip" {
+  type = "string"
+  default = "10.144.44.0"
+}
+
+variable "aws_subnet_mask" {
+  default = 24
+}

@@ -144,11 +144,11 @@ resource "avi_pool" "terraform-pool-version1" {
 
       subnet = {
         ip_addr = {
-          addr = "10.144.43.0"
+          addr = "${var.aws_subnet_ip}"
           type = "V4"
         }
 
-        mask = 24
+        mask = "${var.aws_subnet_mask}"
       }
     }
 
@@ -169,11 +169,11 @@ resource "avi_pool" "terraform-pool-version1" {
 
       subnet = {
         ip_addr = {
-          addr = "10.144.43.0"
+          addr = "${var.aws_subnet_ip}"
           type = "V4"
         }
 
-        mask = 24
+        mask = "${var.aws_subnet_mask}"
       }
     }
 
@@ -208,11 +208,11 @@ resource "avi_pool" "terraform-pool-version2" {
 
       subnet = {
         ip_addr = {
-          addr = "10.144.43.0"
+          addr = "${var.aws_subnet_ip}"
           type = "V4"
         }
 
-        mask = 24
+        mask = "${var.aws_subnet_mask}"
       }
     }
 
@@ -233,11 +233,11 @@ resource "avi_pool" "terraform-pool-version2" {
 
       subnet = {
         ip_addr = {
-          addr = "10.144.43.0"
+          addr = "${var.aws_subnet_ip}"
           type = "V4"
         }
 
-        mask = 24
+        mask = "${var.aws_subnet_mask}"
       }
     }
 
@@ -286,11 +286,11 @@ resource "avi_vsvip" "terraform-vip" {
 
     subnet = {
       ip_addr = {
-        addr = "10.144.43.0"
+        addr = "${var.aws_subnet_ip}"
         type = "V4"
       }
 
-      mask = 24
+      mask = "${var.aws_subnet_mask}"
     }
   }
 }
@@ -325,11 +325,11 @@ resource "avi_virtualservice" "terraform-virtualservice" {
 
     subnet = {
       ip_addr = {
-        addr = "10.144.43.0"
+        addr = "${var.aws_subnet_ip}"
         type = "V4"
       }
 
-      mask = 24
+      mask = "${var.aws_subnet_mask}"
     }
   }
   services {
