@@ -5,20 +5,17 @@ directory.
 
 Steps to add a new server
 1. Add server in the ../aws_resources/avi_controller.tf
+Export the AWS credentials from the Environment. In order to explicitly
+provide it in the plan then use the variables.tf to set aws_access_key and
+aws_secret_key
+$ export AWS_ACCESS_KEY_ID="anaccesskey"
+$ export AWS_SECRET_ACCESS_KEY="asecretkey"
+$ export AWS_DEFAULT_REGION="us-west-2"
 
 **/
 
 provider "aws" {
-  /*
-                                                                                                Export the AWS credentials from the Environment. In order to explicitly
-                                                                                                provide it in the plan then use the variables.tf to set aws_access_key and
-                                                                                                aws_secret_key
-                                                                                                  $ export AWS_ACCESS_KEY_ID="anaccesskey"
-                                                                                                  $ export AWS_SECRET_ACCESS_KEY="asecretkey"
-                                                                                                  $ export AWS_DEFAULT_REGION="us-west-2"
-                                                                                                  */
   access_key = "${var.aws_access_key}"
-
   secret_key = "${var.aws_secret_key}"
   region     = "${var.aws_region}"
 }
@@ -83,7 +80,7 @@ resource "avi_cloud" "aws_cloud_cfg" {
     zones = {
       mgmt_network_name = "${data.aws_subnet.terraform-subnets-0.tags.Name}"
       mgmt_network_uuid = "${data.aws_subnet.terraform-subnets-0.id}"
-      availability_zone = "${data.aws_subnet.terraform-subnets-0.availability_zone}}"
+      availability_zone = "${data.aws_subnet.terraform-subnets-0.availability_zone}"
     }
 
     zones = {
