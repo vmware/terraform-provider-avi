@@ -101,7 +101,9 @@ func resourceAviBackupConfigurationCreate(d *schema.ResourceData, meta interface
 
 func resourceAviBackupConfigurationUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceBackupConfigurationSchema()
-	err := ApiCreateOrUpdate(d, meta, "backupconfiguration", s)
+	var err error
+
+	err = ApiCreateOrUpdate(d, meta, "backupconfiguration", s)
 	if err == nil {
 		err = ResourceAviBackupConfigurationRead(d, meta)
 	}

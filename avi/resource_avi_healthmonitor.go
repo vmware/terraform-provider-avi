@@ -153,7 +153,9 @@ func resourceAviHealthMonitorCreate(d *schema.ResourceData, meta interface{}) er
 
 func resourceAviHealthMonitorUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceHealthMonitorSchema()
-	err := ApiCreateOrUpdate(d, meta, "healthmonitor", s)
+	var err error
+
+	err = ApiCreateOrUpdate(d, meta, "healthmonitor", s)
 	if err == nil {
 		err = ResourceAviHealthMonitorRead(d, meta)
 	}
@@ -162,6 +164,9 @@ func resourceAviHealthMonitorUpdate(d *schema.ResourceData, meta interface{}) er
 
 func resourceAviHealthMonitorDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "healthmonitor"
+	if ApiDeleteSystemDefaultCheck(d) {
+		return nil
+	}
 	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {

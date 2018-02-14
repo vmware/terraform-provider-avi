@@ -398,7 +398,9 @@ func resourceAviAnalyticsProfileCreate(d *schema.ResourceData, meta interface{})
 
 func resourceAviAnalyticsProfileUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceAnalyticsProfileSchema()
-	err := ApiCreateOrUpdate(d, meta, "analyticsprofile", s)
+	var err error
+
+	err = ApiCreateOrUpdate(d, meta, "analyticsprofile", s)
 	if err == nil {
 		err = ResourceAviAnalyticsProfileRead(d, meta)
 	}

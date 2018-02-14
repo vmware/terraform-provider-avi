@@ -130,7 +130,9 @@ func resourceAviServerAutoScalePolicyCreate(d *schema.ResourceData, meta interfa
 
 func resourceAviServerAutoScalePolicyUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceServerAutoScalePolicySchema()
-	err := ApiCreateOrUpdate(d, meta, "serverautoscalepolicy", s)
+	var err error
+
+	err = ApiCreateOrUpdate(d, meta, "serverautoscalepolicy", s)
 	if err == nil {
 		err = ResourceAviServerAutoScalePolicyRead(d, meta)
 	}

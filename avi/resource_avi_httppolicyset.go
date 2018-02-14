@@ -109,7 +109,9 @@ func resourceAviHTTPPolicySetCreate(d *schema.ResourceData, meta interface{}) er
 
 func resourceAviHTTPPolicySetUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceHTTPPolicySetSchema()
-	err := ApiCreateOrUpdate(d, meta, "httppolicyset", s)
+	var err error
+
+	err = ApiCreateOrUpdate(d, meta, "httppolicyset", s)
 	if err == nil {
 		err = ResourceAviHTTPPolicySetRead(d, meta)
 	}

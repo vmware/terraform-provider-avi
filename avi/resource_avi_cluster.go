@@ -86,7 +86,9 @@ func resourceAviClusterCreate(d *schema.ResourceData, meta interface{}) error {
 
 func resourceAviClusterUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceClusterSchema()
-	err := ApiCreateOrUpdate(d, meta, "cluster", s)
+	var err error
+
+	err = ApiCreateOrUpdate(d, meta, "cluster", s)
 	if err == nil {
 		err = ResourceAviClusterRead(d, meta)
 	}

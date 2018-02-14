@@ -141,7 +141,9 @@ func resourceAviIpamDnsProviderProfileCreate(d *schema.ResourceData, meta interf
 
 func resourceAviIpamDnsProviderProfileUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceIpamDnsProviderProfileSchema()
-	err := ApiCreateOrUpdate(d, meta, "ipamdnsproviderprofile", s)
+	var err error
+
+	err = ApiCreateOrUpdate(d, meta, "ipamdnsproviderprofile", s)
 	if err == nil {
 		err = ResourceAviIpamDnsProviderProfileRead(d, meta)
 	}

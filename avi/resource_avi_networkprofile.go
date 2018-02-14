@@ -79,7 +79,9 @@ func resourceAviNetworkProfileCreate(d *schema.ResourceData, meta interface{}) e
 
 func resourceAviNetworkProfileUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceNetworkProfileSchema()
-	err := ApiCreateOrUpdate(d, meta, "networkprofile", s)
+	var err error
+
+	err = ApiCreateOrUpdate(d, meta, "networkprofile", s)
 	if err == nil {
 		err = ResourceAviNetworkProfileRead(d, meta)
 	}
@@ -88,6 +90,9 @@ func resourceAviNetworkProfileUpdate(d *schema.ResourceData, meta interface{}) e
 
 func resourceAviNetworkProfileDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "networkprofile"
+	if ApiDeleteSystemDefaultCheck(d) {
+		return nil
+	}
 	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {

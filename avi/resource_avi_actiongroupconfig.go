@@ -101,7 +101,9 @@ func resourceAviActionGroupConfigCreate(d *schema.ResourceData, meta interface{}
 
 func resourceAviActionGroupConfigUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceActionGroupConfigSchema()
-	err := ApiCreateOrUpdate(d, meta, "actiongroupconfig", s)
+	var err error
+
+	err = ApiCreateOrUpdate(d, meta, "actiongroupconfig", s)
 	if err == nil {
 		err = ResourceAviActionGroupConfigRead(d, meta)
 	}

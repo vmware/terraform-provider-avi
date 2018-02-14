@@ -165,7 +165,9 @@ func resourceAviSystemConfigurationCreate(d *schema.ResourceData, meta interface
 
 func resourceAviSystemConfigurationUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceSystemConfigurationSchema()
-	err := ApiCreateOrUpdate(d, meta, "systemconfiguration", s)
+	var err error
+
+	err = ApiCreateOrUpdate(d, meta, "systemconfiguration", s)
 	if err == nil {
 		err = ResourceAviSystemConfigurationRead(d, meta)
 	}

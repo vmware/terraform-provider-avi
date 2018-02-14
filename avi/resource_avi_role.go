@@ -73,7 +73,9 @@ func resourceAviRoleCreate(d *schema.ResourceData, meta interface{}) error {
 
 func resourceAviRoleUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceRoleSchema()
-	err := ApiCreateOrUpdate(d, meta, "role", s)
+	var err error
+
+	err = ApiCreateOrUpdate(d, meta, "role", s)
 	if err == nil {
 		err = ResourceAviRoleRead(d, meta)
 	}

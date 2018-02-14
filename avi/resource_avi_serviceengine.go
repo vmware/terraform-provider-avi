@@ -139,7 +139,9 @@ func resourceAviServiceEngineCreate(d *schema.ResourceData, meta interface{}) er
 
 func resourceAviServiceEngineUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceServiceEngineSchema()
-	err := ApiCreateOrUpdate(d, meta, "serviceengine", s)
+	var err error
+
+	err = ApiCreateOrUpdate(d, meta, "serviceengine", s)
 	if err == nil {
 		err = ResourceAviServiceEngineRead(d, meta)
 	}

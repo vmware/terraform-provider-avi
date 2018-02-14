@@ -106,7 +106,9 @@ func resourceAviSchedulerCreate(d *schema.ResourceData, meta interface{}) error 
 
 func resourceAviSchedulerUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceSchedulerSchema()
-	err := ApiCreateOrUpdate(d, meta, "scheduler", s)
+	var err error
+
+	err = ApiCreateOrUpdate(d, meta, "scheduler", s)
 	if err == nil {
 		err = ResourceAviSchedulerRead(d, meta)
 	}

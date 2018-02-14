@@ -116,7 +116,9 @@ func resourceAviVrfContextCreate(d *schema.ResourceData, meta interface{}) error
 
 func resourceAviVrfContextUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceVrfContextSchema()
-	err := ApiCreateOrUpdate(d, meta, "vrfcontext", s)
+	var err error
+
+	err = ApiCreateOrUpdate(d, meta, "vrfcontext", s)
 	if err == nil {
 		err = ResourceAviVrfContextRead(d, meta)
 	}

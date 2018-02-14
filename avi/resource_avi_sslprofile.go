@@ -124,7 +124,9 @@ func resourceAviSSLProfileCreate(d *schema.ResourceData, meta interface{}) error
 
 func resourceAviSSLProfileUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceSSLProfileSchema()
-	err := ApiCreateOrUpdate(d, meta, "sslprofile", s)
+	var err error
+
+	err = ApiCreateOrUpdate(d, meta, "sslprofile", s)
 	if err == nil {
 		err = ResourceAviSSLProfileRead(d, meta)
 	}
@@ -133,6 +135,9 @@ func resourceAviSSLProfileUpdate(d *schema.ResourceData, meta interface{}) error
 
 func resourceAviSSLProfileDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "sslprofile"
+	if ApiDeleteSystemDefaultCheck(d) {
+		return nil
+	}
 	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {

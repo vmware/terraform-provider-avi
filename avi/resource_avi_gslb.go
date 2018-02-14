@@ -124,7 +124,9 @@ func resourceAviGslbCreate(d *schema.ResourceData, meta interface{}) error {
 
 func resourceAviGslbUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceGslbSchema()
-	err := ApiCreateOrUpdate(d, meta, "gslb", s)
+	var err error
+
+	err = ApiCreateOrUpdate(d, meta, "gslb", s)
 	if err == nil {
 		err = ResourceAviGslbRead(d, meta)
 	}

@@ -31,6 +31,10 @@ func dataSourceAviCloudConnectorUser() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"password": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"private_key": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,

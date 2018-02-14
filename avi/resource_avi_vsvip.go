@@ -92,7 +92,9 @@ func resourceAviVsVipCreate(d *schema.ResourceData, meta interface{}) error {
 
 func resourceAviVsVipUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceVsVipSchema()
-	err := ApiCreateOrUpdate(d, meta, "vsvip", s)
+	var err error
+
+	err = ApiCreateOrUpdate(d, meta, "vsvip", s)
 	if err == nil {
 		err = ResourceAviVsVipRead(d, meta)
 	}

@@ -81,7 +81,9 @@ func resourceAviStringGroupCreate(d *schema.ResourceData, meta interface{}) erro
 
 func resourceAviStringGroupUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceStringGroupSchema()
-	err := ApiCreateOrUpdate(d, meta, "stringgroup", s)
+	var err error
+
+	err = ApiCreateOrUpdate(d, meta, "stringgroup", s)
 	if err == nil {
 		err = ResourceAviStringGroupRead(d, meta)
 	}

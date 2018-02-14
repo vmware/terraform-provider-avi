@@ -152,6 +152,11 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  false,
 		},
+		"enable_hsm_priming": &schema.Schema{
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  false,
+		},
 		"enable_routing": &schema.Schema{
 			Type:     schema.TypeBool,
 			Optional: true,
@@ -588,7 +593,9 @@ func resourceAviServiceEngineGroupCreate(d *schema.ResourceData, meta interface{
 
 func resourceAviServiceEngineGroupUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceServiceEngineGroupSchema()
-	err := ApiCreateOrUpdate(d, meta, "serviceenginegroup", s)
+	var err error
+
+	err = ApiCreateOrUpdate(d, meta, "serviceenginegroup", s)
 	if err == nil {
 		err = ResourceAviServiceEngineGroupRead(d, meta)
 	}

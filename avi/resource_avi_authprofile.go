@@ -108,7 +108,9 @@ func resourceAviAuthProfileCreate(d *schema.ResourceData, meta interface{}) erro
 
 func resourceAviAuthProfileUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceAuthProfileSchema()
-	err := ApiCreateOrUpdate(d, meta, "authprofile", s)
+	var err error
+
+	err = ApiCreateOrUpdate(d, meta, "authprofile", s)
 	if err == nil {
 		err = ResourceAviAuthProfileRead(d, meta)
 	}

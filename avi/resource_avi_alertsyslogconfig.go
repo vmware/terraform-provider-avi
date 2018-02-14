@@ -77,7 +77,9 @@ func resourceAviAlertSyslogConfigCreate(d *schema.ResourceData, meta interface{}
 
 func resourceAviAlertSyslogConfigUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceAlertSyslogConfigSchema()
-	err := ApiCreateOrUpdate(d, meta, "alertsyslogconfig", s)
+	var err error
+
+	err = ApiCreateOrUpdate(d, meta, "alertsyslogconfig", s)
 	if err == nil {
 		err = ResourceAviAlertSyslogConfigRead(d, meta)
 	}

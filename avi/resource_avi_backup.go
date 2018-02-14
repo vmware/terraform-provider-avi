@@ -88,7 +88,9 @@ func resourceAviBackupCreate(d *schema.ResourceData, meta interface{}) error {
 
 func resourceAviBackupUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceBackupSchema()
-	err := ApiCreateOrUpdate(d, meta, "backup", s)
+	var err error
+
+	err = ApiCreateOrUpdate(d, meta, "backup", s)
 	if err == nil {
 		err = ResourceAviBackupRead(d, meta)
 	}

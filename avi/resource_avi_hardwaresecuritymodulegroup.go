@@ -75,7 +75,9 @@ func resourceAviHardwareSecurityModuleGroupCreate(d *schema.ResourceData, meta i
 
 func resourceAviHardwareSecurityModuleGroupUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceHardwareSecurityModuleGroupSchema()
-	err := ApiCreateOrUpdate(d, meta, "hardwaresecuritymodulegroup", s)
+	var err error
+
+	err = ApiCreateOrUpdate(d, meta, "hardwaresecuritymodulegroup", s)
 	if err == nil {
 		err = ResourceAviHardwareSecurityModuleGroupRead(d, meta)
 	}

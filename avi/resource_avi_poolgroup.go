@@ -116,7 +116,9 @@ func resourceAviPoolGroupCreate(d *schema.ResourceData, meta interface{}) error 
 
 func resourceAviPoolGroupUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourcePoolGroupSchema()
-	err := ApiCreateOrUpdate(d, meta, "poolgroup", s)
+	var err error
+
+	err = ApiCreateOrUpdate(d, meta, "poolgroup", s)
 	if err == nil {
 		err = ResourceAviPoolGroupRead(d, meta)
 	}

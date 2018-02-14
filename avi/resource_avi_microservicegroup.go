@@ -81,7 +81,9 @@ func resourceAviMicroServiceGroupCreate(d *schema.ResourceData, meta interface{}
 
 func resourceAviMicroServiceGroupUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceMicroServiceGroupSchema()
-	err := ApiCreateOrUpdate(d, meta, "microservicegroup", s)
+	var err error
+
+	err = ApiCreateOrUpdate(d, meta, "microservicegroup", s)
 	if err == nil {
 		err = ResourceAviMicroServiceGroupRead(d, meta)
 	}

@@ -31,6 +31,11 @@ func dataSourceAviVirtualService() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"bulk_sync_kvcache": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  false,
+			},
 			"client_auth": &schema.Schema{
 				Type:     schema.TypeSet,
 				Optional: true,

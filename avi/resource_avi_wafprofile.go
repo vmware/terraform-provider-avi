@@ -85,7 +85,9 @@ func resourceAviWafProfileCreate(d *schema.ResourceData, meta interface{}) error
 
 func resourceAviWafProfileUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceWafProfileSchema()
-	err := ApiCreateOrUpdate(d, meta, "wafprofile", s)
+	var err error
+
+	err = ApiCreateOrUpdate(d, meta, "wafprofile", s)
 	if err == nil {
 		err = ResourceAviWafProfileRead(d, meta)
 	}

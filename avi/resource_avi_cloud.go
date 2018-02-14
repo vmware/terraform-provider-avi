@@ -247,7 +247,9 @@ func resourceAviCloudCreate(d *schema.ResourceData, meta interface{}) error {
 
 func resourceAviCloudUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceCloudSchema()
-	err := ApiCreateOrUpdate(d, meta, "cloud", s)
+	var err error
+
+	err = ApiCreateOrUpdate(d, meta, "cloud", s)
 	if err == nil {
 		err = ResourceAviCloudRead(d, meta)
 	}

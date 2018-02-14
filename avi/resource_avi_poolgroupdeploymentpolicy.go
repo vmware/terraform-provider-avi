@@ -111,7 +111,9 @@ func resourceAviPoolGroupDeploymentPolicyCreate(d *schema.ResourceData, meta int
 
 func resourceAviPoolGroupDeploymentPolicyUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourcePoolGroupDeploymentPolicySchema()
-	err := ApiCreateOrUpdate(d, meta, "poolgroupdeploymentpolicy", s)
+	var err error
+
+	err = ApiCreateOrUpdate(d, meta, "poolgroupdeploymentpolicy", s)
 	if err == nil {
 		err = ResourceAviPoolGroupDeploymentPolicyRead(d, meta)
 	}

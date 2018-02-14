@@ -80,7 +80,9 @@ func resourceAviWebhookCreate(d *schema.ResourceData, meta interface{}) error {
 
 func resourceAviWebhookUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceWebhookSchema()
-	err := ApiCreateOrUpdate(d, meta, "webhook", s)
+	var err error
+
+	err = ApiCreateOrUpdate(d, meta, "webhook", s)
 	if err == nil {
 		err = ResourceAviWebhookRead(d, meta)
 	}

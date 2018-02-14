@@ -88,7 +88,9 @@ func resourceAviErrorPageProfileCreate(d *schema.ResourceData, meta interface{})
 
 func resourceAviErrorPageProfileUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceErrorPageProfileSchema()
-	err := ApiCreateOrUpdate(d, meta, "errorpageprofile", s)
+	var err error
+
+	err = ApiCreateOrUpdate(d, meta, "errorpageprofile", s)
 	if err == nil {
 		err = ResourceAviErrorPageProfileRead(d, meta)
 	}

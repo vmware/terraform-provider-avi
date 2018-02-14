@@ -281,3 +281,19 @@ func ResourceImporter(d *schema.ResourceData, meta interface{}, objType string, 
 	}
 	return nil, nil
 }
+
+func ApiDeleteSystemDefaultCheck(d *schema.ResourceData) bool {
+	var systemDefault bool
+	var sysName string
+	if sysdef, ok := d.GetOk("system_default"); ok {
+		systemDefault = sysdef.(bool)
+	}
+	if name, ok := d.GetOk("name"); ok {
+		sysName = name.(string)
+	}
+	if systemDefault || strings.HasPrefix(sysName, "System-") {
+		d.SetId("")
+		return true
+	}
+	return false
+}

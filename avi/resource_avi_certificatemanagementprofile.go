@@ -77,7 +77,9 @@ func resourceAviCertificateManagementProfileCreate(d *schema.ResourceData, meta 
 
 func resourceAviCertificateManagementProfileUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceCertificateManagementProfileSchema()
-	err := ApiCreateOrUpdate(d, meta, "certificatemanagementprofile", s)
+	var err error
+
+	err = ApiCreateOrUpdate(d, meta, "certificatemanagementprofile", s)
 	if err == nil {
 		err = ResourceAviCertificateManagementProfileRead(d, meta)
 	}

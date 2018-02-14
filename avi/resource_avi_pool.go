@@ -327,7 +327,9 @@ func resourceAviPoolCreate(d *schema.ResourceData, meta interface{}) error {
 
 func resourceAviPoolUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourcePoolSchema()
-	err := ApiCreateOrUpdate(d, meta, "pool", s)
+	var err error
+
+	err = ApiCreateOrUpdate(d, meta, "pool", s)
 	if err == nil {
 		err = ResourceAviPoolRead(d, meta)
 	}

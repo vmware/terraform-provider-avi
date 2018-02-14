@@ -136,7 +136,9 @@ func resourceAviAlertConfigCreate(d *schema.ResourceData, meta interface{}) erro
 
 func resourceAviAlertConfigUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceAlertConfigSchema()
-	err := ApiCreateOrUpdate(d, meta, "alertconfig", s)
+	var err error
+
+	err = ApiCreateOrUpdate(d, meta, "alertconfig", s)
 	if err == nil {
 		err = ResourceAviAlertConfigRead(d, meta)
 	}

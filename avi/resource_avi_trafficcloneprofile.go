@@ -83,7 +83,9 @@ func resourceAviTrafficCloneProfileCreate(d *schema.ResourceData, meta interface
 
 func resourceAviTrafficCloneProfileUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceTrafficCloneProfileSchema()
-	err := ApiCreateOrUpdate(d, meta, "trafficcloneprofile", s)
+	var err error
+
+	err = ApiCreateOrUpdate(d, meta, "trafficcloneprofile", s)
 	if err == nil {
 		err = ResourceAviTrafficCloneProfileRead(d, meta)
 	}

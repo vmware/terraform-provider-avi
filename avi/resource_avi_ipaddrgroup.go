@@ -109,7 +109,9 @@ func resourceAviIpAddrGroupCreate(d *schema.ResourceData, meta interface{}) erro
 
 func resourceAviIpAddrGroupUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceIpAddrGroupSchema()
-	err := ApiCreateOrUpdate(d, meta, "ipaddrgroup", s)
+	var err error
+
+	err = ApiCreateOrUpdate(d, meta, "ipaddrgroup", s)
 	if err == nil {
 		err = ResourceAviIpAddrGroupRead(d, meta)
 	}

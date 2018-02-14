@@ -76,7 +76,9 @@ func resourceAviClusterCloudDetailsCreate(d *schema.ResourceData, meta interface
 
 func resourceAviClusterCloudDetailsUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceClusterCloudDetailsSchema()
-	err := ApiCreateOrUpdate(d, meta, "clusterclouddetails", s)
+	var err error
+
+	err = ApiCreateOrUpdate(d, meta, "clusterclouddetails", s)
 	if err == nil {
 		err = ResourceAviClusterCloudDetailsRead(d, meta)
 	}

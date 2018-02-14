@@ -85,7 +85,9 @@ func resourceAviTenantCreate(d *schema.ResourceData, meta interface{}) error {
 
 func resourceAviTenantUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceTenantSchema()
-	err := ApiCreateOrUpdate(d, meta, "tenant", s)
+	var err error
+
+	err = ApiCreateOrUpdate(d, meta, "tenant", s)
 	if err == nil {
 		err = ResourceAviTenantRead(d, meta)
 	}

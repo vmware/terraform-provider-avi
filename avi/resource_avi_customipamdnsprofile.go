@@ -77,7 +77,9 @@ func resourceAviCustomIpamDnsProfileCreate(d *schema.ResourceData, meta interfac
 
 func resourceAviCustomIpamDnsProfileUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceCustomIpamDnsProfileSchema()
-	err := ApiCreateOrUpdate(d, meta, "customipamdnsprofile", s)
+	var err error
+
+	err = ApiCreateOrUpdate(d, meta, "customipamdnsprofile", s)
 	if err == nil {
 		err = ResourceAviCustomIpamDnsProfileRead(d, meta)
 	}

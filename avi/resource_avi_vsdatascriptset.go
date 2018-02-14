@@ -101,7 +101,9 @@ func resourceAviVSDataScriptSetCreate(d *schema.ResourceData, meta interface{}) 
 
 func resourceAviVSDataScriptSetUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceVSDataScriptSetSchema()
-	err := ApiCreateOrUpdate(d, meta, "vsdatascriptset", s)
+	var err error
+
+	err = ApiCreateOrUpdate(d, meta, "vsdatascriptset", s)
 	if err == nil {
 		err = ResourceAviVSDataScriptSetRead(d, meta)
 	}

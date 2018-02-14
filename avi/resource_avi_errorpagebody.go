@@ -72,7 +72,9 @@ func resourceAviErrorPageBodyCreate(d *schema.ResourceData, meta interface{}) er
 
 func resourceAviErrorPageBodyUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceErrorPageBodySchema()
-	err := ApiCreateOrUpdate(d, meta, "errorpagebody", s)
+	var err error
+
+	err = ApiCreateOrUpdate(d, meta, "errorpagebody", s)
 	if err == nil {
 		err = ResourceAviErrorPageBodyRead(d, meta)
 	}

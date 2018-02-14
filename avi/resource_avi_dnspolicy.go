@@ -81,7 +81,9 @@ func resourceAviDnsPolicyCreate(d *schema.ResourceData, meta interface{}) error 
 
 func resourceAviDnsPolicyUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceDnsPolicySchema()
-	err := ApiCreateOrUpdate(d, meta, "dnspolicy", s)
+	var err error
+
+	err = ApiCreateOrUpdate(d, meta, "dnspolicy", s)
 	if err == nil {
 		err = ResourceAviDnsPolicyRead(d, meta)
 	}

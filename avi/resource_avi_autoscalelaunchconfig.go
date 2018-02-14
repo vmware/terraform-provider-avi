@@ -97,7 +97,9 @@ func resourceAviAutoScaleLaunchConfigCreate(d *schema.ResourceData, meta interfa
 
 func resourceAviAutoScaleLaunchConfigUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceAutoScaleLaunchConfigSchema()
-	err := ApiCreateOrUpdate(d, meta, "autoscalelaunchconfig", s)
+	var err error
+
+	err = ApiCreateOrUpdate(d, meta, "autoscalelaunchconfig", s)
 	if err == nil {
 		err = ResourceAviAutoScaleLaunchConfigRead(d, meta)
 	}

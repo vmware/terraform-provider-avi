@@ -72,7 +72,9 @@ func resourceAviAlertScriptConfigCreate(d *schema.ResourceData, meta interface{}
 
 func resourceAviAlertScriptConfigUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceAlertScriptConfigSchema()
-	err := ApiCreateOrUpdate(d, meta, "alertscriptconfig", s)
+	var err error
+
+	err = ApiCreateOrUpdate(d, meta, "alertscriptconfig", s)
 	if err == nil {
 		err = ResourceAviAlertScriptConfigRead(d, meta)
 	}

@@ -89,7 +89,9 @@ func resourceAviUserAccountProfileCreate(d *schema.ResourceData, meta interface{
 
 func resourceAviUserAccountProfileUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceUserAccountProfileSchema()
-	err := ApiCreateOrUpdate(d, meta, "useraccountprofile", s)
+	var err error
+
+	err = ApiCreateOrUpdate(d, meta, "useraccountprofile", s)
 	if err == nil {
 		err = ResourceAviUserAccountProfileRead(d, meta)
 	}

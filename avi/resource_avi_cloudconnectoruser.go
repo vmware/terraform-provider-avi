@@ -34,6 +34,10 @@ func ResourceCloudConnectorUserSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Required: true,
 		},
+		"password": &schema.Schema{
+			Type:     schema.TypeString,
+			Optional: true,
+		},
 		"private_key": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
@@ -92,7 +96,9 @@ func resourceAviCloudConnectorUserCreate(d *schema.ResourceData, meta interface{
 
 func resourceAviCloudConnectorUserUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceCloudConnectorUserSchema()
-	err := ApiCreateOrUpdate(d, meta, "cloudconnectoruser", s)
+	var err error
+
+	err = ApiCreateOrUpdate(d, meta, "cloudconnectoruser", s)
 	if err == nil {
 		err = ResourceAviCloudConnectorUserRead(d, meta)
 	}

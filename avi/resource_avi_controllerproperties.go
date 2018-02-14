@@ -287,7 +287,9 @@ func resourceAviControllerPropertiesCreate(d *schema.ResourceData, meta interfac
 
 func resourceAviControllerPropertiesUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceControllerPropertiesSchema()
-	err := ApiCreateOrUpdate(d, meta, "controllerproperties", s)
+	var err error
+
+	err = ApiCreateOrUpdate(d, meta, "controllerproperties", s)
 	if err == nil {
 		err = ResourceAviControllerPropertiesRead(d, meta)
 	}

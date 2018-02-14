@@ -148,6 +148,11 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Optional: true,
 				Default:  false,
 			},
+			"enable_hsm_priming": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  false,
+			},
 			"enable_routing": &schema.Schema{
 				Type:     schema.TypeBool,
 				Optional: true,

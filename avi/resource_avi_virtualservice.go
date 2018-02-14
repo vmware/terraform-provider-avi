@@ -35,6 +35,11 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
+		"bulk_sync_kvcache": &schema.Schema{
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  false,
+		},
 		"client_auth": &schema.Schema{
 			Type:     schema.TypeSet,
 			Optional: true,
@@ -380,7 +385,30 @@ func resourceAviVirtualServiceCreate(d *schema.ResourceData, meta interface{}) e
 
 func resourceAviVirtualServiceUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceVirtualServiceSchema()
-	err := ApiCreateOrUpdate(d, meta, "virtualservice", s)
+	var err error
+	var existingvs interface{}
+	client := meta.(*clients.AviClient)
+	var obj schema.ResourceData
+	err = ApiRead(d, meta, "virtualservice", s)
+	if err == nil {
+		uuid := d.Get("uuid").(string)
+		vspath := "api/virtualservice/" + uuid
+		err = client.AviSession.Get(vspath, &existingvs)
+		if err == nil {
+			if _, err := ApiDataToSchema(existingvs, &obj, s); err == nil {
+				if vipob, ok := obj.GetOk("vip"); ok {
+					d.Set("vip", vipob)
+				}
+				if vsvipref, ok := obj.GetOk("vsvip_ref"); ok {
+					d.Set("vsvip_ref", vsvipref.(string))
+				}
+			}
+		}
+	} else {
+		log.Printf("[ERROR] in reading object %v\n", err)
+	}
+
+	err = ApiCreateOrUpdate(d, meta, "virtualservice", s)
 	if err == nil {
 		err = ResourceAviVirtualServiceRead(d, meta)
 	}

@@ -85,7 +85,9 @@ func resourceAviNetworkSecurityPolicyCreate(d *schema.ResourceData, meta interfa
 
 func resourceAviNetworkSecurityPolicyUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceNetworkSecurityPolicySchema()
-	err := ApiCreateOrUpdate(d, meta, "networksecuritypolicy", s)
+	var err error
+
+	err = ApiCreateOrUpdate(d, meta, "networksecuritypolicy", s)
 	if err == nil {
 		err = ResourceAviNetworkSecurityPolicyRead(d, meta)
 	}

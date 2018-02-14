@@ -84,7 +84,9 @@ func resourceAviSePropertiesCreate(d *schema.ResourceData, meta interface{}) err
 
 func resourceAviSePropertiesUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceSePropertiesSchema()
-	err := ApiCreateOrUpdate(d, meta, "seproperties", s)
+	var err error
+
+	err = ApiCreateOrUpdate(d, meta, "seproperties", s)
 	if err == nil {
 		err = ResourceAviSePropertiesRead(d, meta)
 	}

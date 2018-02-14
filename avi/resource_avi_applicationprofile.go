@@ -113,7 +113,9 @@ func resourceAviApplicationProfileCreate(d *schema.ResourceData, meta interface{
 
 func resourceAviApplicationProfileUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceApplicationProfileSchema()
-	err := ApiCreateOrUpdate(d, meta, "applicationprofile", s)
+	var err error
+
+	err = ApiCreateOrUpdate(d, meta, "applicationprofile", s)
 	if err == nil {
 		err = ResourceAviApplicationProfileRead(d, meta)
 	}
@@ -122,6 +124,9 @@ func resourceAviApplicationProfileUpdate(d *schema.ResourceData, meta interface{
 
 func resourceAviApplicationProfileDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "applicationprofile"
+	if ApiDeleteSystemDefaultCheck(d) {
+		return nil
+	}
 	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {
