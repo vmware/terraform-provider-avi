@@ -351,3 +351,7 @@ resource "avi_virtualservice" "terraform-virtualservice" {
     }
   }
 }
+
+output "aws_vs_vip" {
+value = "${avi_virtualservice.terraform-virtualservice.vip}"
+}
