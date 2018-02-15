@@ -40,4 +40,5 @@ variable "avi_username" {
   default = "admin"
 }
 
-variable "avi_password" {}
+variable "avi_password" {
+}

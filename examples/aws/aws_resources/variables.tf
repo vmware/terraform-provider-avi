@@ -12,9 +12,7 @@ variable "aws_vpc_id" {
   default = "vpc-19295f7c"
 }
 
-variable "aws_subnets" {
-  default = ["10.144.43.0", "10.144.44.0", "10.144.45.0"]
-}
+variable "aws_subnets" {}
 
 variable "aws_subnet_mask" {
   default = 24

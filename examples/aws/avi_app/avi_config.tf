@@ -39,30 +39,30 @@ data "aws_instance" "avi_controller" {
 }
 
 resource "aws_instance" "terraform-webserver" {
-  count         = "${var.webserver_count}"
-  ami           = "${var.webserver_ami}"
-  instance_type = "${var.webserver_instance_type}"
-  subnet_id     = "${data.aws_subnet.terraform-subnets-0.id}"
+count         = "${var.webserver_count}"
+ami           = "${var.webserver_ami}"
+instance_type = "${var.webserver_instance_type}"
+subnet_id     = "${data.aws_subnet.terraform-subnets-0.id}"
 
-  tags {
-    Name    = "${var.project_name}-terraform-webserver-${count.index}"
-    Project = "${var.project_name}-terraform-webservers"
-  }
+tags {
+Name    = "${var.project_name}-terraform-webserver-${count.index}"
+Project = "${var.project_name}-terraform-webservers"
+}
 }
 
 output "aws_webserver_ips" {
-  value = "${aws_instance.terraform-webserver.*.private_ip}"
+value = "${aws_instance.terraform-webserver.*.private_ip}"
 }
 
 output "aws_webserver_tags" {
-  value = "${aws_instance.terraform-webserver.*.tags}"
+value = "${aws_instance.terraform-webserver.*.tags}"
 }
 
 data "aws_subnet" "terraform-subnets-0" {
-  filter {
-    name   = "tag:Name"
-    values = ["${var.project_name}-terraform-subnet-0"]
-  }
+filter {
+name   = "tag:Name"
+values = ["${var.project_name}-terraform-subnet-0"]
+}
 }
 
 data "aws_subnet" "terraform-subnets-1" {

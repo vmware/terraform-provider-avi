@@ -26,7 +26,7 @@ variable "aws_availability_zone" {
 
 variable "aws_subnet_ip" {
   type    = "string"
-  default = "10.144.43.0"
+  default = ""
 }
 
 variable "aws_subnet_mask" {

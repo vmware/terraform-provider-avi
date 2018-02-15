@@ -205,7 +205,7 @@ func ApiRead(d *schema.ResourceData, meta interface{}, objType string, s map[str
 		err := client.AviSession.Get(path, &obj)
 		if err != nil {
 			d.SetId("")
-			log.Printf("[ERROR] object with uuid %v not found\n", uuid)
+			log.Printf("[ERROR] object with uuid %v not found err %v\n", uuid, err)
 			return nil
 		}
 	} else if name, ok := d.GetOk("name"); ok {
@@ -222,7 +222,7 @@ func ApiRead(d *schema.ResourceData, meta interface{}, objType string, s map[str
 		}
 		if err != nil {
 			d.SetId("")
-			log.Printf("[ERROR] object with name %v not found\n", name)
+			log.Printf("[ERROR] object with name %v:%v not found err %v\n", objType, name, err)
 			return nil
 		}
 	} else {

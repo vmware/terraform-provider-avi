@@ -18,7 +18,7 @@ variable "client_secret" {
 
 variable "tenant_id" {
   description = "Enter Tenant ID / Directory ID of your Azure AD. Run Get-AzureSubscription to know your Tenant ID"
-  default = ""
+  default = "avinetworks.com"
 }
 
 variable "location" {
@@ -29,15 +29,26 @@ variable "location" {
 // This can be removed if have authorization to create new rg
 variable "resource_group_name" {
   description = "Resource group name that will contain various resources"
-  default = ""
+  default = "abhinav-group-eu"
 }
 
-variable "azure_subnet_ip" {
-    default = "10.140.43.0"
+variable "azure_subnet_ip" {}
+
+variable "azure_vip_subnet_ip" {}
+
+variable "azure_vnet" {
+  default = "abhinaveuvnetperf"
 }
+
+variable "azure_vm_password" {}
 
 variable "azure_subnet_mask" {
     default = 24
+}
+
+
+variable "azure_vip_subnet_mask" {
+  default = 24
 }
 
 variable "avi_username" {
@@ -45,3 +56,9 @@ variable "avi_username" {
 }
 
 variable "avi_password" {}
+
+variable "avi_controller_name" {
+  default = "abhinavcntrl1721"
+}
+
+variable "project_name" {}
