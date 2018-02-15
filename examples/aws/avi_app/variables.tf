@@ -1,6 +1,11 @@
-variable "aws_access_key" {}
+variable "aws_access_key" {
+  default=""
+}
 
-variable "aws_secret_key" {}
+variable "aws_secret_key" {
+  default =""
+}
+
 
 variable "aws_region" {
   type    = "string"
@@ -26,7 +31,7 @@ variable "aws_availability_zone" {
 
 variable "aws_subnet_ip" {
   type    = "string"
-  default = ""
+  default = "10.144.50.0"
 }
 
 variable "aws_subnet_mask" {
@@ -45,4 +50,8 @@ variable "webserver_instance_type" {
 
 variable "webserver_count" {
   default = 4
+}
+
+variable "aws_creds_file" {
+  default = "/Users/grastogi/.aws/credentials"
 }
