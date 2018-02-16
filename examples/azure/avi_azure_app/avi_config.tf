@@ -24,14 +24,6 @@ resource "azurerm_subnet" "terraform_subnet" {
   address_prefix       = "${var.azure_subnet_ip}/24"
 }
 
-resource "azurerm_subnet" "terraform_vip_subnet" {
-  name                 = "${var.project_name}_terraform_vip_subnet"
-  resource_group_name  = "${var.resource_group_name}"
-  virtual_network_name = "${var.azure_vnet}"
-  #virtual_network_name = "${var.project_name}"
-  address_prefix       = "${var.azure_vip_subnet_ip}/24"
-}
-
 provider "avi" {
   avi_username   = "${var.avi_username}"
   avi_password   = "${var.avi_password}"
@@ -86,8 +78,8 @@ data "avi_serviceenginegroup" "se_group" {
 }
 
 
-resource "avi_pool" "terraform-pool-version1" {
-  name                = "poolv1"
+resource "avi_pool" "azure-pool-v1" {
+  name                = "azure_poolv1"
   health_monitor_refs = ["${data.avi_healthmonitor.system_http_healthmonitor.id}"]
   server_count        = 0
   tenant_ref          = "${data.avi_tenant.default_tenant.id}"
@@ -104,8 +96,8 @@ resource "avi_pool" "terraform-pool-version1" {
   }
 }
 
-resource "avi_pool" "terraform-pool-version2" {
-  name                = "poolv2"
+resource "avi_pool" "azure-pool-v2" {
+  name                = "azure_poolv2"
   health_monitor_refs = ["${data.avi_healthmonitor.system_http_healthmonitor.id}"]
   server_count        = 0
   tenant_ref          = "${data.avi_tenant.default_tenant.id}"
@@ -121,18 +113,18 @@ resource "avi_pool" "terraform-pool-version2" {
   }
 }
 
-resource "avi_poolgroup" "terraform-poolgroup" {
-  name       = "terraform_poolgroup"
+resource "avi_poolgroup" "azure-poolgroup" {
+  name       = "azure_poolgroup"
   tenant_ref = "${data.avi_tenant.default_tenant.id}"
   cloud_ref  = "${data.avi_cloud.azure_cloud_cfg.id}"
 
   members = {
-    pool_ref = "${avi_pool.terraform-pool-version1.id}"
+    pool_ref = "${avi_pool.azure-pool-v1.id}"
     ratio    = 50
   }
 
   members = {
-    pool_ref = "${avi_pool.terraform-pool-version2.id}"
+    pool_ref = "${avi_pool.azure-pool-v2.id}"
     ratio    = 50
   }
 }
@@ -272,10 +264,10 @@ resource "azurerm_virtual_machine_scale_set" "terraform_scale_set_v2" {
 
 }
 
-
-resource "avi_virtualservice" "terraform-virtualservice" {
+/*
+resource "avi_virtualservice" "azure-virtualservice" {
   name                         = "azure_vs"
-  pool_group_ref               = "${avi_poolgroup.terraform-poolgroup.id}"
+  pool_group_ref               = "${avi_poolgroup.azure-poolgroup.id}"
   tenant_ref                   = "${data.avi_tenant.default_tenant.id}"
   cloud_type                   = "CLOUD_AZURE"
   application_profile_ref      = "${data.avi_applicationprofile.system_https_profile.id}"
@@ -321,3 +313,4 @@ resource "avi_virtualservice" "terraform-virtualservice" {
     }
   }
 }
+*/
