@@ -5,38 +5,23 @@ provider "azurerm" {
   tenant_id 		= "${var.tenant_id}"
 }
 
+
 data "azurerm_public_ip" "terraform_controller" {
-  name = "Terraform-PIP"
+  name = "${var.avi_controller_name}"
   resource_group_name = "${var.resource_group_name}"
 }
 
-data "azurerm_public_ip" "terraform_webserver1" {
-  name = "Terraform-PIP-WebVM1"
-  resource_group_name = "${var.resource_group_name}"
+
+output "controlller_ip" {
+  value = "${data.azurerm_public_ip.terraform_controller.ip_address}"
 }
 
-data "azurerm_public_ip" "terraform_webserver2" {
-  name = "Terraform-PIP-WebVM2"
-  resource_group_name = "${var.resource_group_name}"
-}
-
-data "azurerm_public_ip" "terraform_webserver3" {
-  name = "Terraform-PIP-WebVM3"
-  resource_group_name = "${var.resource_group_name}"
-}
-
-data "azurerm_public_ip" "terraform_webserver4" {
-  name = "Terraform-PIP-WebVM4"
-  resource_group_name = "${var.resource_group_name}"
-}
-
-data "azurerm_virtual_network" "terraform_vnet" {
-  name 			= "Terraform-VNet"
-  resource_group_name   = "${var.resource_group_name}"
-}
-
-output "subnets" {
-  value = "${data.azurerm_virtual_network.terraform_vnet.subnets}"
+resource "azurerm_subnet" "terraform_subnet" {
+  name                 = "${var.project_name}_terraform_subnet"
+  resource_group_name  = "${var.resource_group_name}"
+  virtual_network_name = "${var.azure_vnet}"
+  #virtual_network_name = "${var.project_name}"
+  address_prefix       = "${var.azure_subnet_ip}/24"
 }
 
 provider "avi" {
@@ -59,7 +44,7 @@ data "avi_tenant" "default_tenant" {
 }
 
 data "avi_cloud" "azure_cloud_cfg" {
-  name = "azure_cloud_cfg"
+  name = "msazure"
 }
 
 data "avi_vrfcontext" "terraform_vrf" {
@@ -92,169 +77,197 @@ data "avi_serviceenginegroup" "se_group" {
   cloud_ref = "${data.avi_cloud.azure_cloud_cfg.id}"
 }
 
-resource "avi_pool" "terraform-pool-version1" {
-  name                = "poolv1"
+
+resource "avi_pool" "azure-pool-v1" {
+  name                = "azure_poolv1"
   health_monitor_refs = ["${data.avi_healthmonitor.system_http_healthmonitor.id}"]
-  server_count        = 2
+  server_count        = 0
   tenant_ref          = "${data.avi_tenant.default_tenant.id}"
 
   vrf_ref   = "${data.avi_vrfcontext.terraform_vrf.id}"
   cloud_ref = "${data.avi_cloud.azure_cloud_cfg.id}"
 
-  servers {
-    ip = {
-      type = "V4"
-      addr = "${data.azurerm_public_ip.terraform_webserver1.ip_address}"
-    }
+  //external_autoscale_groups = ["${var.project_name}_scale_set_v1@${var.resource_group_name}"]
+  external_autoscale_groups = ["${azurerm_virtual_machine_scale_set.terraform_scale_set_v1.name}@${var.resource_group_name}"]
 
-    discovered_networks = {
-      network_ref = "https://${data.azurerm_public_ip.terraform_controller.ip_address}/api/network/${data.azurerm_virtual_network.terraform_vnet.subnets[0]}"
-
-      subnet = {
-        ip_addr = {
-          addr = "${var.azure_subnet_ip}"
-          type = "V4"
-        }
-
-        mask = "${var.azure_subnet_mask}"
-      }
-    }
-
-    hostname = "${data.azurerm_public_ip.terraform_webserver1.ip_address}"
-    port     = 80
-  }
-
-  servers {
-    ip = {
-      type = "V4"
-      addr = "${data.azurerm_public_ip.terraform_webserver2.ip_address}"
-    }
-
-    discovered_networks = {
-      network_ref = "https://${data.azurerm_public_ip.terraform_controller.ip_address}/api/network/${data.azurerm_virtual_network.terraform_vnet.subnets[0]}"
-
-      subnet = {
-        ip_addr = {
-          addr = "${var.azure_subnet_ip}"
-          type = "V4"
-        }
-
-        mask = "${var.azure_subnet_mask}"
-      }
-    }
-
-    hostname = "${data.azurerm_public_ip.terraform_webserver2.ip_address}"
-    port     = 80
-  }
 
   fail_action = {
     type = "FAIL_ACTION_CLOSE_CONN"
   }
 }
 
-resource "avi_pool" "terraform-pool-version2" {
-  name                = "poolv2"
+resource "avi_pool" "azure-pool-v2" {
+  name                = "azure_poolv2"
   health_monitor_refs = ["${data.avi_healthmonitor.system_http_healthmonitor.id}"]
-  server_count        = 2
+  server_count        = 0
   tenant_ref          = "${data.avi_tenant.default_tenant.id}"
 
   vrf_ref   = "${data.avi_vrfcontext.terraform_vrf.id}"
   cloud_ref = "${data.avi_cloud.azure_cloud_cfg.id}"
 
-  servers {
-    ip = {
-      type = "V4"
-      addr = "${data.azurerm_public_ip.terraform_webserver3.ip_address}"
-    }
-
-    discovered_networks = {
-      network_ref = "https://${data.azurerm_public_ip.terraform_controller.ip_address}/api/network/${data.azurerm_virtual_network.terraform_vnet.subnets[0]}"
-
-      subnet = {
-        ip_addr = {
-          addr = "${var.azure_subnet_ip}"
-          type = "V4"
-        }
-
-        mask = "${var.azure_subnet_mask}"
-      }
-    }
-
-    hostname = "${data.azurerm_public_ip.terraform_webserver3.ip_address}"
-    port     = 80
-  }
-
-  servers {
-    ip = {
-      type = "V4"
-      addr = "${data.azurerm_public_ip.terraform_webserver4.ip_address}"
-    }
-
-    discovered_networks = {
-      network_ref = "https://${data.azurerm_public_ip.terraform_controller.ip_address}/api/network/${data.azurerm_virtual_network.terraform_vnet.subnets[0]}"
-
-      subnet = {
-        ip_addr = {
-          addr = "${var.azure_subnet_ip}"
-          type = "V4"
-        }
-
-        mask = "${var.azure_subnet_mask}"
-      }
-    }
-
-    hostname = "${data.azurerm_public_ip.terraform_webserver4.ip_address}"
-    port     = 80
-  }
+  external_autoscale_groups = ["${azurerm_virtual_machine_scale_set.terraform_scale_set_v2.name}@${var.resource_group_name}"]
+  //external_autoscale_groups = ["${var.project_name}_scale_set_v2@${var.resource_group_name}"]
 
   fail_action = {
     type = "FAIL_ACTION_CLOSE_CONN"
   }
 }
 
-resource "avi_poolgroup" "terraform-poolgroup" {
-  name       = "terraform_poolgroup"
+resource "avi_poolgroup" "azure-poolgroup" {
+  name       = "azure_poolgroup"
   tenant_ref = "${data.avi_tenant.default_tenant.id}"
   cloud_ref  = "${data.avi_cloud.azure_cloud_cfg.id}"
 
   members = {
-    pool_ref = "${avi_pool.terraform-pool-version1.id}"
-    ratio    = 100
+    pool_ref = "${avi_pool.azure-pool-v1.id}"
+    ratio    = 50
   }
 
   members = {
-    pool_ref = "${avi_pool.terraform-pool-version2.id}"
-    ratio    = 0
+    pool_ref = "${avi_pool.azure-pool-v2.id}"
+    ratio    = 50
   }
 }
 
-resource "avi_vsvip" "terraform-vip" {
-  name            = "azure_vip"
-  tenant_ref      = "${data.avi_tenant.default_tenant.id}"
-  cloud_ref       = "${data.avi_cloud.azure_cloud_cfg.id}"
-  vrf_context_ref = "${data.avi_vrfcontext.terraform_vrf.id}"
 
-  vip {
-    auto_allocate_ip  = true
-    avi_allocated_vip = true
-    avi_allocated_fip = true
-    auto_allocate_floating_ip = true
-    subnet_uuid       = "${data.azurerm_virtual_network.terraform_vnet.subnets[0]}"
+resource "azurerm_virtual_machine_scale_set" "terraform_scale_set_v1" {
+  name = "${var.project_name}_scale_set_v1"
+  location = "${var.location}"
+  resource_group_name = "${var.resource_group_name}"
+  upgrade_policy_mode = "Manual"
 
-    subnet = {
-      ip_addr = {
-        addr = "${var.azure_subnet_ip}"
-        type = "V4"
-      }
+  sku {
+    name = "Standard_A0"
+    tier = "Standard"
+    capacity = 2
+  }
 
-      mask = "${var.azure_subnet_mask}"
+  storage_profile_image_reference {
+    publisher = "Canonical"
+    offer = "UbuntuServer"
+    sku = "16.04-LTS"
+    version = "latest"
+  }
+
+
+  storage_profile_os_disk {
+    name = ""
+    caching = "ReadWrite"
+    create_option = "FromImage"
+    managed_disk_type = "Standard_LRS"
+  }
+
+
+  storage_profile_data_disk {
+    lun = 0
+    caching = "ReadWrite"
+    create_option = "Empty"
+    disk_size_gb = 10
+  }
+
+  os_profile {
+    computer_name_prefix = "${var.project_name}testvm"
+    admin_username = "myadmin"
+    admin_password = "${var.azure_vm_password}"
+  }
+
+  network_profile {
+    name = "${var.project_name}terraformnetworkprofile"
+    primary = true
+
+    ip_configuration {
+      name = "${var.project_name}TestIPConfiguration"
+      subnet_id = "${azurerm_subnet.terraform_subnet.id}"
     }
   }
+
+  extension {
+    name = "vmssextension"
+    publisher = "Microsoft.OSTCExtensions"
+    type = "CustomScriptForLinux"
+    type_handler_version = "1.2"
+    settings = <<SETTINGS
+    {
+        "commandToExecute": "sudo apt-get -y install nginx"
+    }
+    SETTINGS
+  }
+
 }
 
-resource "avi_virtualservice" "terraform-virtualservice" {
+output "azure_scale_set1" {
+  value = "${azurerm_virtual_machine_scale_set.terraform_scale_set_v1.name}"
+}
+
+resource "azurerm_virtual_machine_scale_set" "terraform_scale_set_v2" {
+  name = "${var.project_name}_scale_set_v2"
+  location = "${var.location}"
+  resource_group_name = "${var.resource_group_name}"
+  upgrade_policy_mode = "Manual"
+
+  sku {
+    name = "Standard_A0"
+    tier = "Standard"
+    capacity = 2
+  }
+
+  storage_profile_image_reference {
+    publisher = "Canonical"
+    offer = "UbuntuServer"
+    sku = "16.04-LTS"
+    version = "latest"
+  }
+
+
+  storage_profile_os_disk {
+    name = ""
+    caching = "ReadWrite"
+    create_option = "FromImage"
+    managed_disk_type = "Standard_LRS"
+  }
+
+
+  storage_profile_data_disk {
+    lun = 0
+    caching = "ReadWrite"
+    create_option = "Empty"
+    disk_size_gb = 10
+  }
+
+  os_profile {
+    computer_name_prefix = "${var.project_name}testvm"
+    admin_username = "myadmin"
+    admin_password = "${var.azure_vm_password}"
+  }
+
+  network_profile {
+    name = "${var.project_name}terraformnetworkprofile"
+    primary = true
+
+    ip_configuration {
+      name = "${var.project_name}TestIPConfiguration"
+      subnet_id = "${azurerm_subnet.terraform_subnet.id}"
+    }
+  }
+
+  extension {
+    name = "vmssextension"
+    publisher = "Microsoft.OSTCExtensions"
+    type = "CustomScriptForLinux"
+    type_handler_version = "1.2"
+    settings = <<SETTINGS
+    {
+        "commandToExecute": "sudo apt-get -y install nginx"
+    }
+    SETTINGS
+  }
+
+}
+
+/*
+resource "avi_virtualservice" "azure-virtualservice" {
   name                         = "azure_vs"
-  pool_group_ref               = "${avi_poolgroup.terraform-poolgroup.id}"
+  pool_group_ref               = "${avi_poolgroup.azure-poolgroup.id}"
   tenant_ref                   = "${data.avi_tenant.default_tenant.id}"
   cloud_type                   = "CLOUD_AZURE"
   application_profile_ref      = "${data.avi_applicationprofile.system_https_profile.id}"
@@ -266,28 +279,32 @@ resource "avi_virtualservice" "terraform-virtualservice" {
   se_group_ref                 = "${data.avi_serviceenginegroup.se_group.id}"
   vrf_context_ref              = "${data.avi_vrfcontext.terraform_vrf.id}"
 
-  //vsvip_ref                    = "${avi_vsvip.terraform-vip.id}"
 
   vip {
     auto_allocate_ip  = true
     avi_allocated_vip = true
     avi_allocated_fip = true
-    auto_allocate_floating_ip = true
-    subnet_uuid       = "${data.azurerm_virtual_network.terraform_vnet.subnets[0]}"
+    # auto_allocate_floating_ip = true
+    subnet_uuid       = "${azurerm_subnet.terraform_vip_subnet.name}"
 
     subnet = {
       ip_addr = {
-        addr = "${var.azure_subnet_ip}"
+        addr = "${var.azure_vip_subnet_ip}"
         type = "V4"
       }
 
-      mask = "${var.azure_subnet_mask}"
+      mask = "${var.azure_vip_subnet_mask}"
     }
   }
   services {
     port           = 80
     enable_ssl     = true
     port_range_end = 80
+  }
+  services {
+    port           = 443
+    enable_ssl     = true
+    port_range_end = 443
   }
   analytics_policy {
     metrics_realtime_update = {
@@ -296,3 +313,4 @@ resource "avi_virtualservice" "terraform-virtualservice" {
     }
   }
 }
+*/

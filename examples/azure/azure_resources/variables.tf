@@ -34,12 +34,10 @@ variable "resource_group_name" {
 
 variable "vnet_cidr" {
   description = "CIDR block for Virtual Network"
-  default = "10.140.0.0/16"
 }
 
 variable "subnet_cidr" {
   description = "CIDR block for Subnet within a Virtual Network"
-  default = "10.140.43.0/24"
 }
 
 variable "vm_username" {

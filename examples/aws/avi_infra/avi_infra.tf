@@ -1,18 +1,3 @@
-/**
-
-All the AWS resources are created outside this plan in the aws_resources
-directory.
-
-Steps to add a new server
-1. Add server in the ../aws_resources/avi_controller.tf
-Export the AWS credentials from the Environment. In order to explicitly
-provide it in the plan then use the variables.tf to set aws_access_key and
-aws_secret_key
-$ export AWS_ACCESS_KEY_ID="anaccesskey"
-$ export AWS_SECRET_ACCESS_KEY="asecretkey"
-$ export AWS_DEFAULT_REGION="us-west-2"
-
-**/
 
 provider "aws" {
   access_key = "${var.aws_access_key}"
