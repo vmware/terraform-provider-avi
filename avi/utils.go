@@ -296,7 +296,7 @@ func ApiDeleteSystemDefaultCheck(d *schema.ResourceData) bool {
 	if name, ok := d.GetOk("name"); ok {
 		sysName = name.(string)
 	}
-	if systemDefault || strings.HasPrefix(sysName, "System-") {
+	if systemDefault || strings.HasPrefix(sysName, "System-") || sysName == "Default-Group" {
 		d.SetId("")
 		return true
 	}
