@@ -306,6 +306,7 @@ resource "avi_virtualservice" "terraform-virtualservice" {
   se_group_ref                 = "${data.avi_serviceenginegroup.se_group.id}"
   vrf_context_ref              = "${data.avi_vrfcontext.terraform_vrf.id}"
 
+  fqdn = "aws_vs.${var.project_name}.demoavi.net"
   //vsvip_ref                    = "${avi_vsvip.terraform-vip.id}"
 
   vip {
