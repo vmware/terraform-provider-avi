@@ -419,4 +419,9 @@ resource "aws_autoscaling_group" "asg_based_pool" {
   max_size                  = 2
   min_size                  = 1
   launch_configuration      = "${aws_launch_configuration.web_app_launch_conf.name}"
+  vpc_zone_identifier = [
+    "${data.aws_subnet.terraform-subnets-0.id}",
+    "${data.aws_subnet.terraform-subnets-1.id}",
+    "${data.aws_subnet.terraform-subnets-2.id}"
+  ]
 }
