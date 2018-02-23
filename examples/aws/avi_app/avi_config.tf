@@ -1,7 +1,11 @@
+//
+// Usage:
+//  terraform apply -var project_name=<xx> -var avi_password=<xx> -var aws_access_key=<xx> -var aws_secret_key=<xx> -var aws_subnet_ip=<xx>
+//
+
 provider "aws" {
   //access_key = "${var.aws_access_key}"
   //secret_key = "${var.aws_secret_key}"
-  region     = "${var.aws_region}"
   shared_credentials_file = "${var.aws_creds_file}"
   region     = "${var.aws_region}"
 }
@@ -239,6 +243,22 @@ resource "avi_pool" "terraform-pool-version2" {
   }
 }
 
+
+resource "avi_pool" "terraform-pool-version3" {
+  name                = "poolv3"
+  health_monitor_refs = ["${data.avi_healthmonitor.system_http_healthmonitor.id}"]
+  tenant_ref          = "${data.avi_tenant.default_tenant.id}"
+  vrf_ref   = "${data.avi_vrfcontext.terraform_vrf.id}"
+  cloud_ref = "${data.avi_cloud.aws_cloud_cfg.id}"
+
+  external_autoscale_groups = ["${aws_autoscaling_group.asg_based_pool.name}"]
+
+  fail_action = {
+    type = "FAIL_ACTION_CLOSE_CONN"
+  }
+}
+
+
 resource "avi_poolgroup" "terraform-poolgroup" {
   name       = "terraform_poolgroup"
   tenant_ref = "${data.avi_tenant.default_tenant.id}"
@@ -253,6 +273,11 @@ resource "avi_poolgroup" "terraform-poolgroup" {
     pool_ref = "${avi_pool.terraform-pool-version2.id}"
     ratio    = 10
   }
+
+  members = {
+    pool_ref = "${avi_pool.terraform-pool-version3.id}"
+    ratio    = 10
+  }
 }
 
 
@@ -262,17 +287,32 @@ resource "avi_vsvip" "terraform-vip" {
   cloud_ref       = "${data.avi_cloud.aws_cloud_cfg.id}"
   vrf_context_ref = "${data.avi_vrfcontext.terraform_vrf.id}"
 
+  dns_info {
+    fqdn = "aws_vs_test.${var.project_name}.awsavi.net"
+  }
+
   vip {
+    vip_id = "0"
     auto_allocate_ip = true
     avi_allocated_vip = true
     availability_zone = "${var.aws_availability_zone}"
     subnet_uuid = "${data.aws_subnet.terraform-subnets-0.id}"
 
-    /*ip_address = {
-      addr = "10.144.43.5"
-      type = "V4"
+    subnet = {
+      ip_addr = {
+        addr = "${var.aws_subnet_ip}"
+        type = "V4"
+      }
+
+      mask = "${var.aws_subnet_mask}"
     }
-    */
+  }
+  vip {
+    vip_id = "1"
+    auto_allocate_ip = true
+    avi_allocated_vip = true
+    availability_zone = "${var.aws_availability_zone}"
+    subnet_uuid = "${data.aws_subnet.terraform-subnets-1.id}"
 
     subnet = {
       ip_addr = {
@@ -306,21 +346,15 @@ resource "avi_virtualservice" "terraform-virtualservice" {
   se_group_ref                 = "${data.avi_serviceenginegroup.se_group.id}"
   vrf_context_ref              = "${data.avi_vrfcontext.terraform_vrf.id}"
 
-  fqdn = "aws_vs.${var.project_name}.demoavi.net"
-  //vsvip_ref                    = "${avi_vsvip.terraform-vip.id}"
+  //fqdn = "aws_vs.${var.project_name}.awsavi.net"
+  // vsvip_ref                    = "${avi_vsvip.terraform-vip.id}"
 
   vip {
+    vip_id = "0"
     auto_allocate_ip  = true
     avi_allocated_vip = true
     availability_zone = "${var.aws_availability_zone}"
     subnet_uuid       = "${data.aws_subnet.terraform-subnets-0.id}"
-
-    /*
-    ip_address = {
-    addr = "10.144.43.5"
-    type = "V4"
-    }
-    */
 
     subnet = {
       ip_addr = {
@@ -330,6 +364,27 @@ resource "avi_virtualservice" "terraform-virtualservice" {
 
       mask = "${var.aws_subnet_mask}"
     }
+  }
+
+  vip {
+    vip_id = "1"
+    auto_allocate_ip = true
+    avi_allocated_vip = true
+    availability_zone = "${var.aws_availability_zone}"
+    subnet_uuid = "${data.aws_subnet.terraform-subnets-1.id}"
+
+    subnet = {
+      ip_addr = {
+        addr = "${var.aws_subnet_ip}"
+        type = "V4"
+      }
+
+      mask = "${var.aws_subnet_mask}"
+    }
+  }
+
+  dns_info {
+    fqdn = "aws_vs.${var.project_name}.awsavi.net"
   }
 
   services {
@@ -348,4 +403,20 @@ resource "avi_virtualservice" "terraform-virtualservice" {
 
 output "aws_vs_vip" {
 value = "${avi_virtualservice.terraform-virtualservice.vip}"
+}
+
+
+resource "aws_launch_configuration" "web_app_launch_conf" {
+  name          = "${var.project_name}-app-launch-config"
+  image_id      = "${var.webserver_ami}"
+  instance_type = "${var.webserver_instance_type}"
+}
+
+
+resource "aws_autoscaling_group" "asg_based_pool" {
+  name                      = "${var.project_name}-aws-vs-pool3-asg"
+  availability_zones        = "${var.aws_availability_zones}"
+  max_size                  = 2
+  min_size                  = 1
+  launch_configuration      = "${aws_launch_configuration.web_app_launch_conf.name}"
 }

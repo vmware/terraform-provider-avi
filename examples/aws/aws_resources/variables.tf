@@ -30,8 +30,6 @@ variable "aws_availability_zone" {
 }
 
 variable "aws_subnet_ip" {
-  type    = "string"
-  default = ""
 }
 
 variable "aws_subnet_mask" {
@@ -57,12 +55,12 @@ variable "aws_creds_file" {
 }
 
 variable "aws_subnets" {
-  default = ["x.x.x.x"]
+  //default = ["x.x.x.x"]
 }
 
 
 variable "avi_controller_ami" {
-  default = "ami-2c0bbf54"
+  default = "ami-1426aa6c"
 }
 
 variable "aws_availability_zones" {

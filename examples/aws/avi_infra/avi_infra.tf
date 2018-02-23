@@ -33,6 +33,7 @@ data "aws_subnet" "terraform-subnets-2" {
   }
 }
 
+
 data "aws_vpc" "avi_vpc" {
   id = "${var.aws_vpc_id}"
 }

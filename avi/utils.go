@@ -19,7 +19,7 @@ import (
 func SchemaToAviData(d interface{}, s map[string]*schema.Schema) (interface{}, error) {
 	switch d.(type) {
 	default:
-		log.Printf("SchemaToAviData: resource d: %v(%v)", d, reflect.TypeOf(d))
+		log.Printf("[INFO] SchemaToAviData: resource d: %v(%v)", d, reflect.TypeOf(d))
 		//return d, nil
 	case map[string]interface{}:
 		m := make(map[string]interface{})
@@ -102,7 +102,7 @@ func ApiDataToSchema(adata interface{}, d *schema.ResourceData, t map[string]*sc
 					if obj, err := ApiDataToSchema(v, nil, nil); err == nil {
 						err := d.Set(k, obj)
 						if err != nil {
-							log.Print("[ERROR] ApiDataToSchema %v in setting %v", err, obj)
+							log.Printf("[ERROR] ApiDataToSchema %v in setting %v", err, obj)
 						}
 					}
 				}
@@ -122,7 +122,7 @@ func ApiDataToSchema(adata interface{}, d *schema.ResourceData, t map[string]*sc
 					objList = append(objList, obj.(*schema.Set).List()[0])
 				}
 			} else {
-				log.Print("[ERROR] ApiDataToSchema %v", err)
+				log.Printf("[ERROR] ApiDataToSchema %v", err)
 			}
 		}
 		return objList, nil
@@ -144,9 +144,9 @@ func ApiCreateOrUpdate(d *schema.ResourceData, meta interface{}, objType string,
 			err = client.AviSession.Put(path, data, &robj)
 		} else if name, ok := d.GetOk("name"); ok {
 			var existing_obj interface{}
-			if cloudRef, ok := d.GetOk("cloud_ref"); ok {
+			if cloudRef, ok := d.GetOk("cloud_ref"); ok && strings.Contains(cloudRef.(string), "api/cloud/") {
 				cloudUUID := strings.SplitN(cloudRef.(string), "api/cloud/", 2)[1]
-				log.Printf("[INFO] using cloud %v \n", cloudUUID)
+				log.Printf("[INFO] ApiCreateOrUpdate: using cloud %v \n", cloudUUID)
 
 				err = client.AviSession.GetObject(objType, session.SetName(name.(string)),
 					session.SetResult(&existing_obj), session.SetCloudUUID(cloudUUID))
@@ -156,7 +156,7 @@ func ApiCreateOrUpdate(d *schema.ResourceData, meta interface{}, objType string,
 			}
 			if err != nil {
 				// object not found
-				log.Printf("[INFO] Creating obj type %v schema %v data %v\n", objType, d, data)
+				log.Printf("[INFO] ApiCreateOrUpdate: Creating obj type %v schema %v data %v\n", objType, d, data)
 
 				err = client.AviSession.Post(path, data, &robj)
 				if err != nil {
@@ -176,14 +176,14 @@ func ApiCreateOrUpdate(d *schema.ResourceData, meta interface{}, objType string,
 			log.Printf("[ERROR] ApiCreateOrUpdate: Error %v path %v id %v\n", err, path, d.Id())
 			return err
 		}
-		log.Printf("[DEBUG] ApiCreateOrUpdate object %v\n", robj)
+		log.Printf("[DEBUG] ApiCreateOrUpdate: object %v\n", robj)
 		url := robj.(map[string]interface{})["url"].(string)
 		uuid := robj.(map[string]interface{})["uuid"].(string)
 		url = strings.SplitN(url, "#", 2)[0]
 		d.SetId(url)
 		d.Set("uuid", uuid)
 	} else {
-		log.Printf("Error %v", err)
+		log.Printf("[ERROR] ApiCreateOrUpdate: Error %v", err)
 	}
 	return err
 }
@@ -215,7 +215,7 @@ func ApiRead(d *schema.ResourceData, meta interface{}, objType string, s map[str
 		}
 	} else if name, ok := d.GetOk("name"); ok {
 		var err error
-		if cloudRef, ok := d.GetOk("cloud_ref"); ok {
+		if cloudRef, ok := d.GetOk("cloud_ref"); ok && strings.Contains(cloudRef.(string), "api/cloud/") {
 			cloudUUID := strings.SplitN(cloudRef.(string), "api/cloud/", 2)[1]
 			log.Printf("[DEBUG] ApiRead using cloud %v \n", cloudUUID)
 			err = client.AviSession.GetObject(objType, session.SetName(name.(string)),
