@@ -168,6 +168,7 @@ func Provider() terraform.ResourceProvider {
 			"avi_applicationprofile":            resourceAviApplicationProfile(),
 			"avi_httppolicyset":                 resourceAviHTTPPolicySet(),
 			"avi_serviceengine":                 resourceAviServiceEngine(),
+			"avi_useraccount":                   resourceAviUserAccount(),
 		},
 		ConfigureFunc: providerConfigure,
 	}
