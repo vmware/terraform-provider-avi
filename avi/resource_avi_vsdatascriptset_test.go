@@ -9,33 +9,33 @@ import (
 	"testing"
 )
 
-func TestAVITenantBasic(t *testing.T) {
-	updatedConfig := fmt.Sprintf(testAccAVITenantConfig, "abc")
+func TestAVIVSDataScriptSetBasic(t *testing.T) {
+	updatedConfig := fmt.Sprintf(testAccAVIVSDataScriptSetConfig, "abc")
 	resource.Test(t, resource.TestCase{
 		PreCheck:     func() { testAccPreCheck(t) },
 		Providers:    testAccProviders,
-		CheckDestroy: testAccCheckAVITenantDestroy,
+		CheckDestroy: testAccCheckAVIVSDataScriptSetDestroy,
 		Steps: []resource.TestStep{
 			{
-				Config: testAccAVITenantConfig,
+				Config: testAccAVIVSDataScriptSetConfig,
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckAVITenantExists("avi_tenant.test_tenant"),
+					testAccCheckAVIVSDataScriptSetExists("avi_vsdatascriptset.testvsdatascriptset"),
 					resource.TestCheckResourceAttr(
-						"avi_tenant.test_tenant", "name", "tenant-%s")),
+						"avi_vsdatascriptset.testvsdatascriptset", "name", "vsd-%s")),
 			},
 			{
 				Config: updatedConfig,
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckAVIVSVipExists("avi_tenant.test_tenant"),
+					testAccCheckAVIVSDataScriptSetExists("avi_vsdatascriptset.testvsdatascriptset"),
 					resource.TestCheckResourceAttr(
-						"avi_tenant.test_tenant", "name", "tenant-abc")),
+						"avi_vsdatascriptset.testvsdatascriptset", "name", "vsd-abc")),
 			},
 		},
 	})
 
 }
 
-func testAccCheckAVITenantExists(resourcename string) resource.TestCheckFunc {
+func testAccCheckAVIVSDataScriptSetExists(resourcename string) resource.TestCheckFunc {
 	return func(s *terraform.State) error {
 		conn := testAccProvider.Meta().(*clients.AviClient).AviSession
 		var obj interface{}
@@ -44,7 +44,7 @@ func testAccCheckAVITenantExists(resourcename string) resource.TestCheckFunc {
 			return fmt.Errorf("Not found: %s", resourcename)
 		}
 		if rs.Primary.ID == "" {
-			return fmt.Errorf("No AVI Tenant ID is set")
+			return fmt.Errorf("No VS DataScript Set ID is set")
 		}
 		path := "api" + strings.SplitN(rs.Primary.ID, "/api", 2)[1]
 		err := conn.Get(path, &obj)
@@ -53,13 +53,14 @@ func testAccCheckAVITenantExists(resourcename string) resource.TestCheckFunc {
 		}
 		return nil
 	}
+
 }
 
-func testAccCheckAVITenantDestroy(s *terraform.State) error {
+func testAccCheckAVIVSDataScriptSetDestroy(s *terraform.State) error {
 	conn := testAccProvider.Meta().(*clients.AviClient).AviSession
 	var obj interface{}
 	for _, rs := range s.RootModule().Resources {
-		if rs.Type != "avi_tenant" {
+		if rs.Type != "avi_vsdatascriptset" {
 			continue
 		}
 		path := "api" + strings.SplitN(rs.Primary.ID, "/api", 2)[1]
@@ -71,19 +72,22 @@ func testAccCheckAVITenantDestroy(s *terraform.State) error {
 			return err
 		}
 		if len(obj.(map[string]interface{})) > 0 {
-			return fmt.Errorf("AVI Tenant still exists")
+			return fmt.Errorf("AVI VS DataScript Set still exists")
 		}
 	}
 	return nil
 }
 
-const testAccAVITenantConfig = `
-resource "avi_tenant" "test_tenant"{
-	name= "tenant-%s"
-	config_settings {
-		se_in_provider_context = true
-		tenant_access_to_provider_se = true
-		tenant_vrf = false
-	}
+const testAccAVIVSDataScriptSetConfig = `
+data "avi_tenant" "default_tenant"{
+	name= "admin"
+}
+data "avi_cloud" "default_cloud" {
+	name= "Default-Cloud"
+}
+
+resource "avi_vsdatascriptset" "testvsdatascriptset" {
+	name = "vsd-%s"
+	tenant_ref= "${data.avi_tenant.default_tenant.id}"
 }
 `

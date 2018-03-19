@@ -12,7 +12,11 @@ test: fmtcheck
 		xargs -t -n4 go test $(TESTARGS) -timeout=30s -parallel=4
 
 testacc: fmtcheck
-	TF_ACC=1 go test $(TEST) -v $(TESTARGS) -timeout 120m
+	@if [ "${specific_test}" ]; then \
+	TF_ACC=1 go test $(TEST) -v $(TESTARGS) -timeout 120m -run=TestAVI${specific_test}Basic; \
+	else \
+	TF_ACC=1 go test $(TEST) -v $(TESTARGS) -timeout 120m; \
+	fi
 
 vet:
 	@echo "go vet ."

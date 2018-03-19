@@ -9,33 +9,33 @@ import (
 	"testing"
 )
 
-func TestAVITenantBasic(t *testing.T) {
-	updatedConfig := fmt.Sprintf(testAccAVITenantConfig, "abc")
+func TestAVIPoolGroupBasic(t *testing.T) {
+	updatedConfig := fmt.Sprintf(testAccAVIPoolGroupConfig, "abc")
 	resource.Test(t, resource.TestCase{
 		PreCheck:     func() { testAccPreCheck(t) },
 		Providers:    testAccProviders,
-		CheckDestroy: testAccCheckAVITenantDestroy,
+		CheckDestroy: testAccCheckAVIPoolGroupDestroy,
 		Steps: []resource.TestStep{
 			{
-				Config: testAccAVITenantConfig,
+				Config: testAccAVIPoolGroupConfig,
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckAVITenantExists("avi_tenant.test_tenant"),
+					testAccCheckAVIPoolGroupExists("avi_poolgroup.testpoolgroup"),
 					resource.TestCheckResourceAttr(
-						"avi_tenant.test_tenant", "name", "tenant-%s")),
+						"avi_poolgroup.testpoolgroup", "name", "pg-%s")),
 			},
 			{
 				Config: updatedConfig,
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckAVIVSVipExists("avi_tenant.test_tenant"),
+					testAccCheckAVIPoolGroupExists("avi_poolgroup.testpoolgroup"),
 					resource.TestCheckResourceAttr(
-						"avi_tenant.test_tenant", "name", "tenant-abc")),
+						"avi_poolgroup.testpoolgroup", "name", "pg-abc")),
 			},
 		},
 	})
 
 }
 
-func testAccCheckAVITenantExists(resourcename string) resource.TestCheckFunc {
+func testAccCheckAVIPoolGroupExists(resourcename string) resource.TestCheckFunc {
 	return func(s *terraform.State) error {
 		conn := testAccProvider.Meta().(*clients.AviClient).AviSession
 		var obj interface{}
@@ -44,7 +44,7 @@ func testAccCheckAVITenantExists(resourcename string) resource.TestCheckFunc {
 			return fmt.Errorf("Not found: %s", resourcename)
 		}
 		if rs.Primary.ID == "" {
-			return fmt.Errorf("No AVI Tenant ID is set")
+			return fmt.Errorf("No AVI POOL Group ID is set")
 		}
 		path := "api" + strings.SplitN(rs.Primary.ID, "/api", 2)[1]
 		err := conn.Get(path, &obj)
@@ -53,13 +53,14 @@ func testAccCheckAVITenantExists(resourcename string) resource.TestCheckFunc {
 		}
 		return nil
 	}
+
 }
 
-func testAccCheckAVITenantDestroy(s *terraform.State) error {
+func testAccCheckAVIPoolGroupDestroy(s *terraform.State) error {
 	conn := testAccProvider.Meta().(*clients.AviClient).AviSession
 	var obj interface{}
 	for _, rs := range s.RootModule().Resources {
-		if rs.Type != "avi_tenant" {
+		if rs.Type != "avi_poolgroup" {
 			continue
 		}
 		path := "api" + strings.SplitN(rs.Primary.ID, "/api", 2)[1]
@@ -71,19 +72,28 @@ func testAccCheckAVITenantDestroy(s *terraform.State) error {
 			return err
 		}
 		if len(obj.(map[string]interface{})) > 0 {
-			return fmt.Errorf("AVI Tenant still exists")
+			return fmt.Errorf("AVI Pool Group still exists")
 		}
 	}
 	return nil
 }
 
-const testAccAVITenantConfig = `
-resource "avi_tenant" "test_tenant"{
-	name= "tenant-%s"
-	config_settings {
-		se_in_provider_context = true
-		tenant_access_to_provider_se = true
-		tenant_vrf = false
+const testAccAVIPoolGroupConfig = `
+data "avi_tenant" "default_tenant"{
+	name= "admin"
+}
+data "avi_cloud" "default_cloud" {
+	name= "Default-Cloud"
+}
+
+resource "avi_poolgroup" "testpoolgroup" {
+	name = "pg-%s"
+	implicit_priority_labels= false
+	min_servers= 0
+	fail_action= {
+		type= "FAIL_ACTION_CLOSE_CONN"
 	}
+	tenant_ref= "${data.avi_tenant.default_tenant.id}"
+	cloud_ref= "${data.avi_cloud.default_cloud.id}"
 }
 `

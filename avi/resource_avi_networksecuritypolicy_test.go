@@ -9,33 +9,33 @@ import (
 	"testing"
 )
 
-func TestAVITenantBasic(t *testing.T) {
-	updatedConfig := fmt.Sprintf(testAccAVITenantConfig, "abc")
+func TestAVINetworkSecuritypolicyBasic(t *testing.T) {
+	updatedConfig := fmt.Sprintf(testAccAVINetworkSecuritypolicyConfig, "abc")
 	resource.Test(t, resource.TestCase{
 		PreCheck:     func() { testAccPreCheck(t) },
 		Providers:    testAccProviders,
-		CheckDestroy: testAccCheckAVITenantDestroy,
+		CheckDestroy: testAccCheckAVINetworkSecuritypolicyDestroy,
 		Steps: []resource.TestStep{
 			{
-				Config: testAccAVITenantConfig,
+				Config: testAccAVINetworkSecuritypolicyConfig,
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckAVITenantExists("avi_tenant.test_tenant"),
+					testAccCheckAVINetworkSecuritypolicyExists("avi_networksecuritypolicy.testnetworksecuritypolicy"),
 					resource.TestCheckResourceAttr(
-						"avi_tenant.test_tenant", "name", "tenant-%s")),
+						"avi_networksecuritypolicy.testnetworksecuritypolicy", "name", "ns-%s")),
 			},
 			{
 				Config: updatedConfig,
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckAVIVSVipExists("avi_tenant.test_tenant"),
+					testAccCheckAVINetworkSecuritypolicyExists("avi_networksecuritypolicy.testnetworksecuritypolicy"),
 					resource.TestCheckResourceAttr(
-						"avi_tenant.test_tenant", "name", "tenant-abc")),
+						"avi_networksecuritypolicy.testnetworksecuritypolicy", "name", "ns-abc")),
 			},
 		},
 	})
 
 }
 
-func testAccCheckAVITenantExists(resourcename string) resource.TestCheckFunc {
+func testAccCheckAVINetworkSecuritypolicyExists(resourcename string) resource.TestCheckFunc {
 	return func(s *terraform.State) error {
 		conn := testAccProvider.Meta().(*clients.AviClient).AviSession
 		var obj interface{}
@@ -44,7 +44,7 @@ func testAccCheckAVITenantExists(resourcename string) resource.TestCheckFunc {
 			return fmt.Errorf("Not found: %s", resourcename)
 		}
 		if rs.Primary.ID == "" {
-			return fmt.Errorf("No AVI Tenant ID is set")
+			return fmt.Errorf("No Network Security policy ID is set")
 		}
 		path := "api" + strings.SplitN(rs.Primary.ID, "/api", 2)[1]
 		err := conn.Get(path, &obj)
@@ -53,13 +53,14 @@ func testAccCheckAVITenantExists(resourcename string) resource.TestCheckFunc {
 		}
 		return nil
 	}
+
 }
 
-func testAccCheckAVITenantDestroy(s *terraform.State) error {
+func testAccCheckAVINetworkSecuritypolicyDestroy(s *terraform.State) error {
 	conn := testAccProvider.Meta().(*clients.AviClient).AviSession
 	var obj interface{}
 	for _, rs := range s.RootModule().Resources {
-		if rs.Type != "avi_tenant" {
+		if rs.Type != "avi_networksecuritypolicy" {
 			continue
 		}
 		path := "api" + strings.SplitN(rs.Primary.ID, "/api", 2)[1]
@@ -71,19 +72,20 @@ func testAccCheckAVITenantDestroy(s *terraform.State) error {
 			return err
 		}
 		if len(obj.(map[string]interface{})) > 0 {
-			return fmt.Errorf("AVI Tenant still exists")
+			return fmt.Errorf("AVI Network Security policy still exists")
 		}
 	}
 	return nil
 }
 
-const testAccAVITenantConfig = `
-resource "avi_tenant" "test_tenant"{
-	name= "tenant-%s"
-	config_settings {
-		se_in_provider_context = true
-		tenant_access_to_provider_se = true
-		tenant_vrf = false
-	}
+const testAccAVINetworkSecuritypolicyConfig = `
+data "avi_tenant" "default_tenant"{
+	name= "admin"
+}
+
+resource "avi_networksecuritypolicy" "testnetworksecuritypolicy" {
+	name = "ns-%s"
+	description= "test network policy"
+	tenant_ref= "${data.avi_tenant.default_tenant.id}"
 }
 `

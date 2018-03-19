@@ -9,33 +9,33 @@ import (
 	"testing"
 )
 
-func TestAVITenantBasic(t *testing.T) {
-	updatedConfig := fmt.Sprintf(testAccAVITenantConfig, "abc")
+func TestAVIAlertConfigBasic(t *testing.T) {
+	updatedConfig := fmt.Sprintf(testAccAVIAlertConfig, "abc")
 	resource.Test(t, resource.TestCase{
 		PreCheck:     func() { testAccPreCheck(t) },
 		Providers:    testAccProviders,
-		CheckDestroy: testAccCheckAVITenantDestroy,
+		CheckDestroy: testAccCheckAVIAlertConfigDestroy,
 		Steps: []resource.TestStep{
 			{
-				Config: testAccAVITenantConfig,
+				Config: testAccAVIAlertConfig,
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckAVITenantExists("avi_tenant.test_tenant"),
+					testAccCheckAVIAlertConfigExists("avi_alertconfig.testalertconfig"),
 					resource.TestCheckResourceAttr(
-						"avi_tenant.test_tenant", "name", "tenant-%s")),
+						"avi_alertconfig.testalertconfig", "name", "ac-%s")),
 			},
 			{
 				Config: updatedConfig,
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckAVIVSVipExists("avi_tenant.test_tenant"),
+					testAccCheckAVIAlertConfigExists("avi_alertconfig.testalertconfig"),
 					resource.TestCheckResourceAttr(
-						"avi_tenant.test_tenant", "name", "tenant-abc")),
+						"avi_alertconfig.testalertconfig", "name", "ac-abc")),
 			},
 		},
 	})
 
 }
 
-func testAccCheckAVITenantExists(resourcename string) resource.TestCheckFunc {
+func testAccCheckAVIAlertConfigExists(resourcename string) resource.TestCheckFunc {
 	return func(s *terraform.State) error {
 		conn := testAccProvider.Meta().(*clients.AviClient).AviSession
 		var obj interface{}
@@ -44,7 +44,7 @@ func testAccCheckAVITenantExists(resourcename string) resource.TestCheckFunc {
 			return fmt.Errorf("Not found: %s", resourcename)
 		}
 		if rs.Primary.ID == "" {
-			return fmt.Errorf("No AVI Tenant ID is set")
+			return fmt.Errorf("No Alert Config ID is set")
 		}
 		path := "api" + strings.SplitN(rs.Primary.ID, "/api", 2)[1]
 		err := conn.Get(path, &obj)
@@ -53,13 +53,14 @@ func testAccCheckAVITenantExists(resourcename string) resource.TestCheckFunc {
 		}
 		return nil
 	}
+
 }
 
-func testAccCheckAVITenantDestroy(s *terraform.State) error {
+func testAccCheckAVIAlertConfigDestroy(s *terraform.State) error {
 	conn := testAccProvider.Meta().(*clients.AviClient).AviSession
 	var obj interface{}
 	for _, rs := range s.RootModule().Resources {
-		if rs.Type != "avi_tenant" {
+		if rs.Type != "avi_alertconfig" {
 			continue
 		}
 		path := "api" + strings.SplitN(rs.Primary.ID, "/api", 2)[1]
@@ -71,19 +72,30 @@ func testAccCheckAVITenantDestroy(s *terraform.State) error {
 			return err
 		}
 		if len(obj.(map[string]interface{})) > 0 {
-			return fmt.Errorf("AVI Tenant still exists")
+			return fmt.Errorf("AVI Alert Config still exists")
 		}
 	}
 	return nil
 }
 
-const testAccAVITenantConfig = `
-resource "avi_tenant" "test_tenant"{
-	name= "tenant-%s"
-	config_settings {
-		se_in_provider_context = true
-		tenant_access_to_provider_se = true
-		tenant_vrf = false
+const testAccAVIAlertConfig = `
+data "avi_tenant" "default_tenant"{
+	name= "admin"
+}
+
+resource "avi_alertconfig" "testalertconfig" {
+	name = "ac-%s"
+	category= "REALTIME"
+	expiry_time= 86400
+	enabled= true
+	summary= "System-CC-Alert System Alert Triggered"
+	rolling_window= 300
+	source= "EVENT_LOGS"
+	threshold= 1
+	throttle= 0
+	tenant_ref= "${data.avi_tenant.default_tenant.id}"
+	alert_rule= {
+		operator= "OPERATOR_OR"
 	}
 }
 `
