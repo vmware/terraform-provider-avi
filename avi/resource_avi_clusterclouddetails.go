@@ -77,7 +77,6 @@ func resourceAviClusterCloudDetailsCreate(d *schema.ResourceData, meta interface
 func resourceAviClusterCloudDetailsUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceClusterCloudDetailsSchema()
 	var err error
-
 	err = ApiCreateOrUpdate(d, meta, "clusterclouddetails", s)
 	if err == nil {
 		err = ResourceAviClusterCloudDetailsRead(d, meta)
@@ -87,12 +86,15 @@ func resourceAviClusterCloudDetailsUpdate(d *schema.ResourceData, meta interface
 
 func resourceAviClusterCloudDetailsDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "clusterclouddetails"
+	if ApiDeleteSystemDefaultCheck(d) {
+		return nil
+	}
 	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {
 		path := "api/" + objType + "/" + uuid
 		err := client.AviSession.Delete(path)
-		if err != nil && !(strings.Contains(err.Error(), "404") || strings.Contains(err.Error(), "204")) {
+		if err != nil && !(strings.Contains(err.Error(), "404") || strings.Contains(err.Error(), "204") || strings.Contains(err.Error(), "403")) {
 			log.Println("[INFO] resourceAviClusterCloudDetailsDelete not found")
 			return err
 		}

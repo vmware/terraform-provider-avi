@@ -78,6 +78,11 @@ func ResourceSSLProfileSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
+		"type": &schema.Schema{
+			Type:     schema.TypeString,
+			Optional: true,
+			Default:  "SSL_PROFILE_TYPE_APPLICATION",
+		},
 		"uuid": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
@@ -125,7 +130,6 @@ func resourceAviSSLProfileCreate(d *schema.ResourceData, meta interface{}) error
 func resourceAviSSLProfileUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceSSLProfileSchema()
 	var err error
-
 	err = ApiCreateOrUpdate(d, meta, "sslprofile", s)
 	if err == nil {
 		err = ResourceAviSSLProfileRead(d, meta)
@@ -143,7 +147,7 @@ func resourceAviSSLProfileDelete(d *schema.ResourceData, meta interface{}) error
 	if uuid != "" {
 		path := "api/" + objType + "/" + uuid
 		err := client.AviSession.Delete(path)
-		if err != nil && !(strings.Contains(err.Error(), "404") || strings.Contains(err.Error(), "204")) {
+		if err != nil && !(strings.Contains(err.Error(), "404") || strings.Contains(err.Error(), "204") || strings.Contains(err.Error(), "403")) {
 			log.Println("[INFO] resourceAviSSLProfileDelete not found")
 			return err
 		}

@@ -78,7 +78,6 @@ func resourceAviCustomIpamDnsProfileCreate(d *schema.ResourceData, meta interfac
 func resourceAviCustomIpamDnsProfileUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceCustomIpamDnsProfileSchema()
 	var err error
-
 	err = ApiCreateOrUpdate(d, meta, "customipamdnsprofile", s)
 	if err == nil {
 		err = ResourceAviCustomIpamDnsProfileRead(d, meta)
@@ -88,12 +87,15 @@ func resourceAviCustomIpamDnsProfileUpdate(d *schema.ResourceData, meta interfac
 
 func resourceAviCustomIpamDnsProfileDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "customipamdnsprofile"
+	if ApiDeleteSystemDefaultCheck(d) {
+		return nil
+	}
 	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {
 		path := "api/" + objType + "/" + uuid
 		err := client.AviSession.Delete(path)
-		if err != nil && !(strings.Contains(err.Error(), "404") || strings.Contains(err.Error(), "204")) {
+		if err != nil && !(strings.Contains(err.Error(), "404") || strings.Contains(err.Error(), "204") || strings.Contains(err.Error(), "403")) {
 			log.Println("[INFO] resourceAviCustomIpamDnsProfileDelete not found")
 			return err
 		}

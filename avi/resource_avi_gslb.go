@@ -125,7 +125,6 @@ func resourceAviGslbCreate(d *schema.ResourceData, meta interface{}) error {
 func resourceAviGslbUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceGslbSchema()
 	var err error
-
 	err = ApiCreateOrUpdate(d, meta, "gslb", s)
 	if err == nil {
 		err = ResourceAviGslbRead(d, meta)
@@ -135,12 +134,15 @@ func resourceAviGslbUpdate(d *schema.ResourceData, meta interface{}) error {
 
 func resourceAviGslbDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "gslb"
+	if ApiDeleteSystemDefaultCheck(d) {
+		return nil
+	}
 	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {
 		path := "api/" + objType + "/" + uuid
 		err := client.AviSession.Delete(path)
-		if err != nil && !(strings.Contains(err.Error(), "404") || strings.Contains(err.Error(), "204")) {
+		if err != nil && !(strings.Contains(err.Error(), "404") || strings.Contains(err.Error(), "204") || strings.Contains(err.Error(), "403")) {
 			log.Println("[INFO] resourceAviGslbDelete not found")
 			return err
 		}

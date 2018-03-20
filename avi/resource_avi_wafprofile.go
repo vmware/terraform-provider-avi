@@ -86,7 +86,6 @@ func resourceAviWafProfileCreate(d *schema.ResourceData, meta interface{}) error
 func resourceAviWafProfileUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceWafProfileSchema()
 	var err error
-
 	err = ApiCreateOrUpdate(d, meta, "wafprofile", s)
 	if err == nil {
 		err = ResourceAviWafProfileRead(d, meta)
@@ -96,12 +95,15 @@ func resourceAviWafProfileUpdate(d *schema.ResourceData, meta interface{}) error
 
 func resourceAviWafProfileDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "wafprofile"
+	if ApiDeleteSystemDefaultCheck(d) {
+		return nil
+	}
 	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {
 		path := "api/" + objType + "/" + uuid
 		err := client.AviSession.Delete(path)
-		if err != nil && !(strings.Contains(err.Error(), "404") || strings.Contains(err.Error(), "204")) {
+		if err != nil && !(strings.Contains(err.Error(), "404") || strings.Contains(err.Error(), "204") || strings.Contains(err.Error(), "403")) {
 			log.Println("[INFO] resourceAviWafProfileDelete not found")
 			return err
 		}

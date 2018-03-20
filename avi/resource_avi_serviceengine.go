@@ -140,7 +140,6 @@ func resourceAviServiceEngineCreate(d *schema.ResourceData, meta interface{}) er
 func resourceAviServiceEngineUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceServiceEngineSchema()
 	var err error
-
 	err = ApiCreateOrUpdate(d, meta, "serviceengine", s)
 	if err == nil {
 		err = ResourceAviServiceEngineRead(d, meta)
@@ -150,12 +149,15 @@ func resourceAviServiceEngineUpdate(d *schema.ResourceData, meta interface{}) er
 
 func resourceAviServiceEngineDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "serviceengine"
+	if ApiDeleteSystemDefaultCheck(d) {
+		return nil
+	}
 	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {
 		path := "api/" + objType + "/" + uuid
 		err := client.AviSession.Delete(path)
-		if err != nil && !(strings.Contains(err.Error(), "404") || strings.Contains(err.Error(), "204")) {
+		if err != nil && !(strings.Contains(err.Error(), "404") || strings.Contains(err.Error(), "204") || strings.Contains(err.Error(), "403")) {
 			log.Println("[INFO] resourceAviServiceEngineDelete not found")
 			return err
 		}

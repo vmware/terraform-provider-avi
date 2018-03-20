@@ -109,7 +109,6 @@ func resourceAviAuthProfileCreate(d *schema.ResourceData, meta interface{}) erro
 func resourceAviAuthProfileUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceAuthProfileSchema()
 	var err error
-
 	err = ApiCreateOrUpdate(d, meta, "authprofile", s)
 	if err == nil {
 		err = ResourceAviAuthProfileRead(d, meta)
@@ -119,12 +118,15 @@ func resourceAviAuthProfileUpdate(d *schema.ResourceData, meta interface{}) erro
 
 func resourceAviAuthProfileDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "authprofile"
+	if ApiDeleteSystemDefaultCheck(d) {
+		return nil
+	}
 	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {
 		path := "api/" + objType + "/" + uuid
 		err := client.AviSession.Delete(path)
-		if err != nil && !(strings.Contains(err.Error(), "404") || strings.Contains(err.Error(), "204")) {
+		if err != nil && !(strings.Contains(err.Error(), "404") || strings.Contains(err.Error(), "204") || strings.Contains(err.Error(), "403")) {
 			log.Println("[INFO] resourceAviAuthProfileDelete not found")
 			return err
 		}

@@ -56,6 +56,7 @@ func Provider() terraform.ResourceProvider {
 			"avi_sslprofile":                    dataSourceAviSSLProfile(),
 			"avi_pkiprofile":                    dataSourceAviPKIProfile(),
 			"avi_certificatemanagementprofile":  dataSourceAviCertificateManagementProfile(),
+			"avi_l4policyset":                   dataSourceAviL4PolicySet(),
 			"avi_scheduler":                     dataSourceAviScheduler(),
 			"avi_backupconfiguration":           dataSourceAviBackupConfiguration(),
 			"avi_serviceenginegroup":            dataSourceAviServiceEngineGroup(),
@@ -119,6 +120,7 @@ func Provider() terraform.ResourceProvider {
 			"avi_sslprofile":                    resourceAviSSLProfile(),
 			"avi_pkiprofile":                    resourceAviPKIProfile(),
 			"avi_certificatemanagementprofile":  resourceAviCertificateManagementProfile(),
+			"avi_l4policyset":                   resourceAviL4PolicySet(),
 			"avi_scheduler":                     resourceAviScheduler(),
 			"avi_backupconfiguration":           resourceAviBackupConfiguration(),
 			"avi_serviceenginegroup":            resourceAviServiceEngineGroup(),
@@ -190,7 +192,7 @@ func providerConfigure(d *schema.ResourceData) (interface{}, error) {
 		config.Controller, config.Username,
 		session.SetPassword(config.Password),
 		session.SetTenant(config.Tenant),
-		session.SetVersion("17.2.7"),
+		session.SetVersion("17.2.8"),
 		session.SetInsecure)
 
 	log.Println("Avi Client created ")

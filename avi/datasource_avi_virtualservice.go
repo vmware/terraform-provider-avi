@@ -154,6 +154,11 @@ func dataSourceAviVirtualService() *schema.Resource {
 				Optional: true,
 				Default:  false,
 			},
+			"l4_policies": &schema.Schema{
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceL4PoliciesSchema(),
+			},
 			"limit_doser": &schema.Schema{
 				Type:     schema.TypeBool,
 				Optional: true,
@@ -280,6 +285,11 @@ func dataSourceAviVirtualService() *schema.Resource {
 			"traffic_clone_profile_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+			},
+			"traffic_enabled": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  true,
 			},
 			"type": &schema.Schema{
 				Type:     schema.TypeString,

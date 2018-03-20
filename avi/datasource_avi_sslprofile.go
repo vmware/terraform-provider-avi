@@ -74,6 +74,10 @@ func dataSourceAviSSLProfile() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"type": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "SSL_PROFILE_TYPE_APPLICATION"},
 			"uuid": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,

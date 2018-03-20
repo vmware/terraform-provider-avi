@@ -81,7 +81,6 @@ func resourceAviAlertEmailConfigCreate(d *schema.ResourceData, meta interface{})
 func resourceAviAlertEmailConfigUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceAlertEmailConfigSchema()
 	var err error
-
 	err = ApiCreateOrUpdate(d, meta, "alertemailconfig", s)
 	if err == nil {
 		err = ResourceAviAlertEmailConfigRead(d, meta)
@@ -91,12 +90,15 @@ func resourceAviAlertEmailConfigUpdate(d *schema.ResourceData, meta interface{})
 
 func resourceAviAlertEmailConfigDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "alertemailconfig"
+	if ApiDeleteSystemDefaultCheck(d) {
+		return nil
+	}
 	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {
 		path := "api/" + objType + "/" + uuid
 		err := client.AviSession.Delete(path)
-		if err != nil && !(strings.Contains(err.Error(), "404") || strings.Contains(err.Error(), "204")) {
+		if err != nil && !(strings.Contains(err.Error(), "404") || strings.Contains(err.Error(), "204") || strings.Contains(err.Error(), "403")) {
 			log.Println("[INFO] resourceAviAlertEmailConfigDelete not found")
 			return err
 		}

@@ -89,7 +89,6 @@ func resourceAviErrorPageProfileCreate(d *schema.ResourceData, meta interface{})
 func resourceAviErrorPageProfileUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceErrorPageProfileSchema()
 	var err error
-
 	err = ApiCreateOrUpdate(d, meta, "errorpageprofile", s)
 	if err == nil {
 		err = ResourceAviErrorPageProfileRead(d, meta)
@@ -99,12 +98,15 @@ func resourceAviErrorPageProfileUpdate(d *schema.ResourceData, meta interface{})
 
 func resourceAviErrorPageProfileDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "errorpageprofile"
+	if ApiDeleteSystemDefaultCheck(d) {
+		return nil
+	}
 	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {
 		path := "api/" + objType + "/" + uuid
 		err := client.AviSession.Delete(path)
-		if err != nil && !(strings.Contains(err.Error(), "404") || strings.Contains(err.Error(), "204")) {
+		if err != nil && !(strings.Contains(err.Error(), "404") || strings.Contains(err.Error(), "204") || strings.Contains(err.Error(), "403")) {
 			log.Println("[INFO] resourceAviErrorPageProfileDelete not found")
 			return err
 		}
