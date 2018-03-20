@@ -74,7 +74,6 @@ func resourceAviRoleCreate(d *schema.ResourceData, meta interface{}) error {
 func resourceAviRoleUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceRoleSchema()
 	var err error
-
 	err = ApiCreateOrUpdate(d, meta, "role", s)
 	if err == nil {
 		err = ResourceAviRoleRead(d, meta)
@@ -84,12 +83,15 @@ func resourceAviRoleUpdate(d *schema.ResourceData, meta interface{}) error {
 
 func resourceAviRoleDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "role"
+	if ApiDeleteSystemDefaultCheck(d) {
+		return nil
+	}
 	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {
 		path := "api/" + objType + "/" + uuid
 		err := client.AviSession.Delete(path)
-		if err != nil && !(strings.Contains(err.Error(), "404") || strings.Contains(err.Error(), "204")) {
+		if err != nil && !(strings.Contains(err.Error(), "404") || strings.Contains(err.Error(), "204") || strings.Contains(err.Error(), "403")) {
 			log.Println("[INFO] resourceAviRoleDelete not found")
 			return err
 		}

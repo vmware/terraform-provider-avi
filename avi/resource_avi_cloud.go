@@ -248,7 +248,6 @@ func resourceAviCloudCreate(d *schema.ResourceData, meta interface{}) error {
 func resourceAviCloudUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceCloudSchema()
 	var err error
-
 	err = ApiCreateOrUpdate(d, meta, "cloud", s)
 	if err == nil {
 		err = ResourceAviCloudRead(d, meta)
@@ -258,12 +257,15 @@ func resourceAviCloudUpdate(d *schema.ResourceData, meta interface{}) error {
 
 func resourceAviCloudDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "cloud"
+	if ApiDeleteSystemDefaultCheck(d) {
+		return nil
+	}
 	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {
 		path := "api/" + objType + "/" + uuid
 		err := client.AviSession.Delete(path)
-		if err != nil && !(strings.Contains(err.Error(), "404") || strings.Contains(err.Error(), "204")) {
+		if err != nil && !(strings.Contains(err.Error(), "404") || strings.Contains(err.Error(), "204") || strings.Contains(err.Error(), "403")) {
 			log.Println("[INFO] resourceAviCloudDelete not found")
 			return err
 		}

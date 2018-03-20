@@ -117,7 +117,6 @@ func resourceAviVrfContextCreate(d *schema.ResourceData, meta interface{}) error
 func resourceAviVrfContextUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceVrfContextSchema()
 	var err error
-
 	err = ApiCreateOrUpdate(d, meta, "vrfcontext", s)
 	if err == nil {
 		err = ResourceAviVrfContextRead(d, meta)
@@ -127,12 +126,15 @@ func resourceAviVrfContextUpdate(d *schema.ResourceData, meta interface{}) error
 
 func resourceAviVrfContextDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "vrfcontext"
+	if ApiDeleteSystemDefaultCheck(d) {
+		return nil
+	}
 	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {
 		path := "api/" + objType + "/" + uuid
 		err := client.AviSession.Delete(path)
-		if err != nil && !(strings.Contains(err.Error(), "404") || strings.Contains(err.Error(), "204")) {
+		if err != nil && !(strings.Contains(err.Error(), "404") || strings.Contains(err.Error(), "204") || strings.Contains(err.Error(), "403")) {
 			log.Println("[INFO] resourceAviVrfContextDelete not found")
 			return err
 		}

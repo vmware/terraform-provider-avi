@@ -86,7 +86,6 @@ func resourceAviNetworkSecurityPolicyCreate(d *schema.ResourceData, meta interfa
 func resourceAviNetworkSecurityPolicyUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceNetworkSecurityPolicySchema()
 	var err error
-
 	err = ApiCreateOrUpdate(d, meta, "networksecuritypolicy", s)
 	if err == nil {
 		err = ResourceAviNetworkSecurityPolicyRead(d, meta)
@@ -96,12 +95,15 @@ func resourceAviNetworkSecurityPolicyUpdate(d *schema.ResourceData, meta interfa
 
 func resourceAviNetworkSecurityPolicyDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "networksecuritypolicy"
+	if ApiDeleteSystemDefaultCheck(d) {
+		return nil
+	}
 	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {
 		path := "api/" + objType + "/" + uuid
 		err := client.AviSession.Delete(path)
-		if err != nil && !(strings.Contains(err.Error(), "404") || strings.Contains(err.Error(), "204")) {
+		if err != nil && !(strings.Contains(err.Error(), "404") || strings.Contains(err.Error(), "204") || strings.Contains(err.Error(), "403")) {
 			log.Println("[INFO] resourceAviNetworkSecurityPolicyDelete not found")
 			return err
 		}

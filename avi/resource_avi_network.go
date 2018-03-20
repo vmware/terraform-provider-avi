@@ -103,7 +103,6 @@ func resourceAviNetworkCreate(d *schema.ResourceData, meta interface{}) error {
 func resourceAviNetworkUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceNetworkSchema()
 	var err error
-
 	err = ApiCreateOrUpdate(d, meta, "network", s)
 	if err == nil {
 		err = ResourceAviNetworkRead(d, meta)
@@ -113,12 +112,15 @@ func resourceAviNetworkUpdate(d *schema.ResourceData, meta interface{}) error {
 
 func resourceAviNetworkDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "network"
+	if ApiDeleteSystemDefaultCheck(d) {
+		return nil
+	}
 	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {
 		path := "api/" + objType + "/" + uuid
 		err := client.AviSession.Delete(path)
-		if err != nil && !(strings.Contains(err.Error(), "404") || strings.Contains(err.Error(), "204")) {
+		if err != nil && !(strings.Contains(err.Error(), "404") || strings.Contains(err.Error(), "204") || strings.Contains(err.Error(), "403")) {
 			log.Println("[INFO] resourceAviNetworkDelete not found")
 			return err
 		}

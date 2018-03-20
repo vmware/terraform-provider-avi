@@ -102,7 +102,6 @@ func resourceAviVSDataScriptSetCreate(d *schema.ResourceData, meta interface{}) 
 func resourceAviVSDataScriptSetUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceVSDataScriptSetSchema()
 	var err error
-
 	err = ApiCreateOrUpdate(d, meta, "vsdatascriptset", s)
 	if err == nil {
 		err = ResourceAviVSDataScriptSetRead(d, meta)
@@ -112,12 +111,15 @@ func resourceAviVSDataScriptSetUpdate(d *schema.ResourceData, meta interface{}) 
 
 func resourceAviVSDataScriptSetDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "vsdatascriptset"
+	if ApiDeleteSystemDefaultCheck(d) {
+		return nil
+	}
 	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {
 		path := "api/" + objType + "/" + uuid
 		err := client.AviSession.Delete(path)
-		if err != nil && !(strings.Contains(err.Error(), "404") || strings.Contains(err.Error(), "204")) {
+		if err != nil && !(strings.Contains(err.Error(), "404") || strings.Contains(err.Error(), "204") || strings.Contains(err.Error(), "403")) {
 			log.Println("[INFO] resourceAviVSDataScriptSetDelete not found")
 			return err
 		}

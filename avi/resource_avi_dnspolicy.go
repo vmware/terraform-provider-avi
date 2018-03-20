@@ -82,7 +82,6 @@ func resourceAviDnsPolicyCreate(d *schema.ResourceData, meta interface{}) error 
 func resourceAviDnsPolicyUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceDnsPolicySchema()
 	var err error
-
 	err = ApiCreateOrUpdate(d, meta, "dnspolicy", s)
 	if err == nil {
 		err = ResourceAviDnsPolicyRead(d, meta)
@@ -92,12 +91,15 @@ func resourceAviDnsPolicyUpdate(d *schema.ResourceData, meta interface{}) error 
 
 func resourceAviDnsPolicyDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "dnspolicy"
+	if ApiDeleteSystemDefaultCheck(d) {
+		return nil
+	}
 	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {
 		path := "api/" + objType + "/" + uuid
 		err := client.AviSession.Delete(path)
-		if err != nil && !(strings.Contains(err.Error(), "404") || strings.Contains(err.Error(), "204")) {
+		if err != nil && !(strings.Contains(err.Error(), "404") || strings.Contains(err.Error(), "204") || strings.Contains(err.Error(), "403")) {
 			log.Println("[INFO] resourceAviDnsPolicyDelete not found")
 			return err
 		}

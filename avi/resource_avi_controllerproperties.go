@@ -78,6 +78,11 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Type:     schema.TypeInt,
 			Optional: true,
 		},
+		"enable_memory_balancer": &schema.Schema{
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  true,
+		},
 		"fatal_error_lease_time": &schema.Schema{
 			Type:     schema.TypeInt,
 			Optional: true,
@@ -288,7 +293,6 @@ func resourceAviControllerPropertiesCreate(d *schema.ResourceData, meta interfac
 func resourceAviControllerPropertiesUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceControllerPropertiesSchema()
 	var err error
-
 	err = ApiCreateOrUpdate(d, meta, "controllerproperties", s)
 	if err == nil {
 		err = ResourceAviControllerPropertiesRead(d, meta)
@@ -298,12 +302,15 @@ func resourceAviControllerPropertiesUpdate(d *schema.ResourceData, meta interfac
 
 func resourceAviControllerPropertiesDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "controllerproperties"
+	if ApiDeleteSystemDefaultCheck(d) {
+		return nil
+	}
 	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {
 		path := "api/" + objType + "/" + uuid
 		err := client.AviSession.Delete(path)
-		if err != nil && !(strings.Contains(err.Error(), "404") || strings.Contains(err.Error(), "204")) {
+		if err != nil && !(strings.Contains(err.Error(), "404") || strings.Contains(err.Error(), "204") || strings.Contains(err.Error(), "403")) {
 			log.Println("[INFO] resourceAviControllerPropertiesDelete not found")
 			return err
 		}

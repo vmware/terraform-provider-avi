@@ -161,6 +161,11 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  false,
 		},
+		"l4_policies": &schema.Schema{
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceL4PoliciesSchema(),
+		},
 		"limit_doser": &schema.Schema{
 			Type:     schema.TypeBool,
 			Optional: true,
@@ -288,6 +293,11 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
+		"traffic_enabled": &schema.Schema{
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  true,
+		},
 		"type": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
@@ -388,26 +398,30 @@ func resourceAviVirtualServiceUpdate(d *schema.ResourceData, meta interface{}) e
 	var err error
 	var existingvs interface{}
 	client := meta.(*clients.AviClient)
-	var obj schema.ResourceData
-	err = ApiRead(d, meta, "virtualservice", s)
+	uuid := d.Get("uuid").(string)
+	vspath := "api/virtualservice/" + uuid
+	err = client.AviSession.Get(vspath, &existingvs)
 	if err == nil {
-		uuid := d.Get("uuid").(string)
-		vspath := "api/virtualservice/" + uuid
-		err = client.AviSession.Get(vspath, &existingvs)
-		if err == nil {
-			if _, err := ApiDataToSchema(existingvs, &obj, s); err == nil {
-				if vipob, ok := obj.GetOk("vip"); ok {
-					d.Set("vip", vipob)
+		if vsobj, err := ApiDataToSchema(existingvs, nil, nil); err == nil {
+			objs := vsobj.(*schema.Set).List()
+			for obj := 0; obj < len(objs); obj++ {
+				vsvipref := objs[obj].(map[string]interface{})["vsvip_ref"]
+				err = d.Set("vsvip_ref", vsvipref.(string))
+				if err != nil {
+					log.Printf("[ERROR] resourceAviVirtualServiceUpdate in Setting vsvip ref: %v\n", err)
 				}
-				if vsvipref, ok := obj.GetOk("vsvip_ref"); ok {
-					d.Set("vsvip_ref", vsvipref.(string))
+				vipob := objs[obj].(map[string]interface{})["vip"]
+				err = d.Set("vip", vipob)
+				if err != nil {
+					log.Printf("[ERROR] resourceAviVirtualServiceUpdate in Setting vip: %v\n", err)
 				}
 			}
+		} else {
+			log.Printf("[ERROR] resourceAviVirtualServiceUpdate in ApiDataToSchema: %v\n", err)
 		}
 	} else {
-		log.Printf("[ERROR] in reading object %v\n", err)
+		log.Printf("[ERROR] resourceAviVirtualServiceUpdate in GET: %v\n", err)
 	}
-
 	err = ApiCreateOrUpdate(d, meta, "virtualservice", s)
 	if err == nil {
 		err = ResourceAviVirtualServiceRead(d, meta)
@@ -417,12 +431,15 @@ func resourceAviVirtualServiceUpdate(d *schema.ResourceData, meta interface{}) e
 
 func resourceAviVirtualServiceDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "virtualservice"
+	if ApiDeleteSystemDefaultCheck(d) {
+		return nil
+	}
 	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {
 		path := "api/" + objType + "/" + uuid
 		err := client.AviSession.Delete(path)
-		if err != nil && !(strings.Contains(err.Error(), "404") || strings.Contains(err.Error(), "204")) {
+		if err != nil && !(strings.Contains(err.Error(), "404") || strings.Contains(err.Error(), "204") || strings.Contains(err.Error(), "403")) {
 			log.Println("[INFO] resourceAviVirtualServiceDelete not found")
 			return err
 		}

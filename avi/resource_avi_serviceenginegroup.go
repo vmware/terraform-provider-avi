@@ -135,12 +135,12 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 		"disable_gro": &schema.Schema{
 			Type:     schema.TypeBool,
 			Optional: true,
-			Default:  false,
+			Default:  true,
 		},
 		"disable_tso": &schema.Schema{
 			Type:     schema.TypeBool,
 			Optional: true,
-			Default:  false,
+			Default:  true,
 		},
 		"disk_per_se": &schema.Schema{
 			Type:     schema.TypeInt,
@@ -424,6 +424,14 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  1,
 		},
+		"se_tracert_port_range": &schema.Schema{
+			Type:     schema.TypeSet,
+			Optional: true,
+			Elem:     ResourcePortRangeSchema(),
+			Set: func(v interface{}) int {
+				return 0
+			},
+		},
 		"se_tunnel_mode": &schema.Schema{
 			Type:     schema.TypeInt,
 			Optional: true,
@@ -594,7 +602,6 @@ func resourceAviServiceEngineGroupCreate(d *schema.ResourceData, meta interface{
 func resourceAviServiceEngineGroupUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceServiceEngineGroupSchema()
 	var err error
-
 	err = ApiCreateOrUpdate(d, meta, "serviceenginegroup", s)
 	if err == nil {
 		err = ResourceAviServiceEngineGroupRead(d, meta)
@@ -604,12 +611,15 @@ func resourceAviServiceEngineGroupUpdate(d *schema.ResourceData, meta interface{
 
 func resourceAviServiceEngineGroupDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "serviceenginegroup"
+	if ApiDeleteSystemDefaultCheck(d) {
+		return nil
+	}
 	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {
 		path := "api/" + objType + "/" + uuid
 		err := client.AviSession.Delete(path)
-		if err != nil && !(strings.Contains(err.Error(), "404") || strings.Contains(err.Error(), "204")) {
+		if err != nil && !(strings.Contains(err.Error(), "404") || strings.Contains(err.Error(), "204") || strings.Contains(err.Error(), "403")) {
 			log.Println("[INFO] resourceAviServiceEngineGroupDelete not found")
 			return err
 		}

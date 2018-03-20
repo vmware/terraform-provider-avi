@@ -84,7 +84,6 @@ func resourceAviTrafficCloneProfileCreate(d *schema.ResourceData, meta interface
 func resourceAviTrafficCloneProfileUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceTrafficCloneProfileSchema()
 	var err error
-
 	err = ApiCreateOrUpdate(d, meta, "trafficcloneprofile", s)
 	if err == nil {
 		err = ResourceAviTrafficCloneProfileRead(d, meta)
@@ -94,12 +93,15 @@ func resourceAviTrafficCloneProfileUpdate(d *schema.ResourceData, meta interface
 
 func resourceAviTrafficCloneProfileDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "trafficcloneprofile"
+	if ApiDeleteSystemDefaultCheck(d) {
+		return nil
+	}
 	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {
 		path := "api/" + objType + "/" + uuid
 		err := client.AviSession.Delete(path)
-		if err != nil && !(strings.Contains(err.Error(), "404") || strings.Contains(err.Error(), "204")) {
+		if err != nil && !(strings.Contains(err.Error(), "404") || strings.Contains(err.Error(), "204") || strings.Contains(err.Error(), "403")) {
 			log.Println("[INFO] resourceAviTrafficCloneProfileDelete not found")
 			return err
 		}

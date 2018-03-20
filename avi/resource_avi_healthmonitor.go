@@ -154,7 +154,6 @@ func resourceAviHealthMonitorCreate(d *schema.ResourceData, meta interface{}) er
 func resourceAviHealthMonitorUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceHealthMonitorSchema()
 	var err error
-
 	err = ApiCreateOrUpdate(d, meta, "healthmonitor", s)
 	if err == nil {
 		err = ResourceAviHealthMonitorRead(d, meta)
@@ -172,7 +171,7 @@ func resourceAviHealthMonitorDelete(d *schema.ResourceData, meta interface{}) er
 	if uuid != "" {
 		path := "api/" + objType + "/" + uuid
 		err := client.AviSession.Delete(path)
-		if err != nil && !(strings.Contains(err.Error(), "404") || strings.Contains(err.Error(), "204")) {
+		if err != nil && !(strings.Contains(err.Error(), "404") || strings.Contains(err.Error(), "204") || strings.Contains(err.Error(), "403")) {
 			log.Println("[INFO] resourceAviHealthMonitorDelete not found")
 			return err
 		}

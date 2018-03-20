@@ -131,12 +131,12 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 			"disable_gro": &schema.Schema{
 				Type:     schema.TypeBool,
 				Optional: true,
-				Default:  false,
+				Default:  true,
 			},
 			"disable_tso": &schema.Schema{
 				Type:     schema.TypeBool,
 				Optional: true,
-				Default:  false,
+				Default:  true,
 			},
 			"disk_per_se": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -413,6 +413,14 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeInt,
 				Optional: true,
 				Default:  1,
+			},
+			"se_tracert_port_range": &schema.Schema{
+				Type:     schema.TypeSet,
+				Optional: true,
+				Elem:     ResourcePortRangeSchema(),
+				Set: func(v interface{}) int {
+					return 0
+				},
 			},
 			"se_tunnel_mode": &schema.Schema{
 				Type:     schema.TypeInt,

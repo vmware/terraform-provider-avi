@@ -131,7 +131,6 @@ func resourceAviServerAutoScalePolicyCreate(d *schema.ResourceData, meta interfa
 func resourceAviServerAutoScalePolicyUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceServerAutoScalePolicySchema()
 	var err error
-
 	err = ApiCreateOrUpdate(d, meta, "serverautoscalepolicy", s)
 	if err == nil {
 		err = ResourceAviServerAutoScalePolicyRead(d, meta)
@@ -141,12 +140,15 @@ func resourceAviServerAutoScalePolicyUpdate(d *schema.ResourceData, meta interfa
 
 func resourceAviServerAutoScalePolicyDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "serverautoscalepolicy"
+	if ApiDeleteSystemDefaultCheck(d) {
+		return nil
+	}
 	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {
 		path := "api/" + objType + "/" + uuid
 		err := client.AviSession.Delete(path)
-		if err != nil && !(strings.Contains(err.Error(), "404") || strings.Contains(err.Error(), "204")) {
+		if err != nil && !(strings.Contains(err.Error(), "404") || strings.Contains(err.Error(), "204") || strings.Contains(err.Error(), "403")) {
 			log.Println("[INFO] resourceAviServerAutoScalePolicyDelete not found")
 			return err
 		}
