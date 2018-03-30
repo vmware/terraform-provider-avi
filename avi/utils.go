@@ -142,33 +142,41 @@ func ApiCreateOrUpdate(d *schema.ResourceData, meta interface{}, objType string,
 		if uuid, ok := d.GetOk("uuid"); ok {
 			path = path + "/" + uuid.(string)
 			err = client.AviSession.Put(path, data, &robj)
-		} else if name, ok := d.GetOk("name"); ok {
-			var existing_obj interface{}
-			if cloudRef, ok := d.GetOk("cloud_ref"); ok && strings.Contains(cloudRef.(string), "api/cloud/") {
-				cloudUUID := strings.SplitN(cloudRef.(string), "api/cloud/", 2)[1]
-				log.Printf("[INFO] ApiCreateOrUpdate: using cloud %v \n", cloudUUID)
-
-				err = client.AviSession.GetObject(objType, session.SetName(name.(string)),
-					session.SetResult(&existing_obj), session.SetCloudUUID(cloudUUID))
-			} else {
-				err = client.AviSession.GetObject(objType, session.SetName(name.(string)),
-					session.SetResult(&existing_obj))
-			}
-			if err != nil {
-				// object not found
-				log.Printf("[INFO] ApiCreateOrUpdate: Creating obj type %v schema %v data %v\n", objType, d, data)
-
-				err = client.AviSession.Post(path, data, &robj)
+		} else {
+			if name, ok := d.GetOk("name"); ok {
+				var existing_obj interface{}
+				if cloudRef, ok := d.GetOk("cloud_ref"); ok && strings.Contains(cloudRef.(string), "api/cloud/") {
+					cloudUUID := strings.SplitN(cloudRef.(string), "api/cloud/", 2)[1]
+					log.Printf("[INFO] ApiCreateOrUpdate: using cloud %v \n", cloudUUID)
+					name := d.Get("name")
+					err = client.AviSession.GetObject(objType, session.SetName(name.(string)),
+						session.SetResult(&existing_obj), session.SetCloudUUID(cloudUUID))
+				} else {
+					err = client.AviSession.GetObject(objType, session.SetName(name.(string)),
+						session.SetResult(&existing_obj))
+				}
 				if err != nil {
-					log.Printf("[ERROR] ApiCreateOrUpdate creation failed %v object with name %v\n", err, name)
+					// object not found
+					log.Printf("[INFO] ApiCreateOrUpdate: Creating obj type %v schema %v data %v\n", objType, d, data)
+
+					err = client.AviSession.Post(path, data, &robj)
+					if err != nil {
+						log.Printf("[ERROR] ApiCreateOrUpdate creation failed %v object with name %v\n", err, name)
+					}
+				} else {
+					// found existing object.
+					uuid = existing_obj.(map[string]interface{})["uuid"].(string)
+					d.Set("uuid", uuid)
+					d.SetId(uuid.(string))
+					path = path + "/" + uuid.(string)
+					err = client.AviSession.Put(path, data, &robj)
 				}
 			} else {
-				// found existing object.
-				uuid = existing_obj.(map[string]interface{})["uuid"].(string)
-				d.Set("uuid", uuid)
-				d.SetId(uuid.(string))
-				path = path + "/" + uuid.(string)
-				err = client.AviSession.Put(path, data, &robj)
+				log.Printf("[INFO] ApiCreateOrUpdate: Creating obj %v schema %v data %v\n", objType, d, data)
+				err = client.AviSession.Post(path, data, &robj)
+				if err != nil {
+					log.Printf("[ERROR] ApiCreateOrUpdate creation failed %v\n", err)
+				}
 			}
 		}
 		if err != nil {
