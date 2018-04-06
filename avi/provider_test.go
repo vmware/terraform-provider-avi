@@ -78,20 +78,28 @@ func TestProvider(t *testing.T) {
 }
 
 func testAccPreCheck(t *testing.T) {
-	required := []string{"AVI_USERNAME", "AVI_PASSWORD", "AVI_CONTROLLER",
-		"AVI_TENANT"}
-	for _, property := range required {
-		if os.Getenv(property) == "" {
-			t.Fatalf("%s must be set for acceptance test", property)
-		}
-	}
 	config := Credentials{
 		Username:   os.Getenv("AVI_USERNAME"),
 		Password:   os.Getenv("AVI_PASSWORD"),
 		Controller: os.Getenv("AVI_CONTROLLER"),
 		Tenant:     os.Getenv("AVI_TENANT"),
+		Version:    os.Getenv("AVI_VERSION"),
 	}
-
+	required := []string{"AVI_PASSWORD", "AVI_CONTROLLER"}
+	for _, property := range required {
+		if os.Getenv(property) == "" {
+			t.Fatalf("%s must be set for acceptance test", property)
+		}
+	}
+	if config.Username == "" {
+		config.Username = "admin"
+	}
+	if config.Tenant == "" {
+		config.Tenant = "admin"
+	}
+	if config.Version == "" {
+		config.Version = "17.2.7"
+	}
 	_, err := clients.NewAviClient(
 		config.Controller, config.Username,
 		session.SetPassword(config.Password),

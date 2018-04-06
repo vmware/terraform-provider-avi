@@ -20,26 +20,32 @@ func Provider() terraform.ResourceProvider {
 		Schema: map[string]*schema.Schema{
 			"avi_username": &schema.Schema{
 				Type:        schema.TypeString,
-				Required:    true,
+				Optional:    true,
 				DefaultFunc: schema.EnvDefaultFunc("AVI_USERNAME", nil),
 				Description: "Username for Avi Controller.",
 			},
 			"avi_controller": &schema.Schema{
 				Type:        schema.TypeString,
-				Required:    true,
+				Optional:    true,
 				DefaultFunc: schema.EnvDefaultFunc("AVI_CONTROLLER", nil),
 				Description: "Avi Controller hostname or IP address.",
 			},
 			"avi_password": &schema.Schema{
 				Type:        schema.TypeString,
-				Required:    true,
+				Optional:    true,
 				DefaultFunc: schema.EnvDefaultFunc("AVI_PASSWORD", nil),
 				Description: "Password for Avi Controller.",
 			},
 			"avi_tenant": &schema.Schema{
 				Type:        schema.TypeString,
-				Required:    true,
+				Optional:    true,
 				DefaultFunc: schema.EnvDefaultFunc("AVI_TENANT", nil),
+				Description: "Avi tenant for Avi Controller.",
+			},
+			"avi_version": &schema.Schema{
+				Type:        schema.TypeString,
+				Optional:    true,
+				DefaultFunc: schema.EnvDefaultFunc("AVI_VERSION", nil),
 				Description: "Avi tenant for Avi Controller.",
 			},
 		},
@@ -178,10 +184,17 @@ func Provider() terraform.ResourceProvider {
 
 func providerConfigure(d *schema.ResourceData) (interface{}, error) {
 	config := Credentials{
-		Username:   d.Get("avi_username").(string),
+		Username:   "admin",
 		Password:   d.Get("avi_password").(string),
 		Controller: d.Get("avi_controller").(string),
-		Tenant:     d.Get("avi_tenant").(string),
+		Tenant:     "admin",
+		Version:    "17.2.7",
+	}
+	if username, ok := d.GetOk("avi_username"); ok {
+		config.Username = username.(string)
+	}
+	if version, ok := d.GetOk("avi_version"); ok {
+		config.Version = version.(string)
 	}
 
 	if err := config.validate(); err != nil {
@@ -192,10 +205,11 @@ func providerConfigure(d *schema.ResourceData) (interface{}, error) {
 		config.Controller, config.Username,
 		session.SetPassword(config.Password),
 		session.SetTenant(config.Tenant),
-		session.SetVersion("17.2.8"),
+		session.SetVersion(config.Version),
 		session.SetInsecure)
 
-	log.Println("Avi Client created ")
+	log.Println("Avi Client created for user %v tenant %v version %v",
+		config.Username, config.Tenant, config.Version)
 
 	return aviClient, err
 }
@@ -206,6 +220,7 @@ type Credentials struct {
 	Controller string
 	Port       string
 	Tenant     string
+	Version    string
 }
 
 func (c *Credentials) validate() error {

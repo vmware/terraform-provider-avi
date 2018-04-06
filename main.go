@@ -1,8 +1,8 @@
 package main
 
 import (
+	"github.com/avinetworks/terraform-provider-avi/avi"
 	"github.com/hashicorp/terraform/plugin"
-	"github.com/terraform-providers/terraform-provider-avi/avi"
 )
 
 func main() {

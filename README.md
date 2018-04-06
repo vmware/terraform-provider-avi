@@ -1,5 +1,6 @@
 Terraform Provider
 ==================
+[![Build Status](https://travis-ci.org/avinetworks/terraform-provider-avi.svg?branch=master)](https://travis-ci.org/avinetworks/terraform-provider-avi)
 
 - Website: https://www.terraform.io
 - [![Gitter chat](https://badges.gitter.im/hashicorp-terraform/Lobby.png)](https://gitter.im/hashicorp-terraform/Lobby)
