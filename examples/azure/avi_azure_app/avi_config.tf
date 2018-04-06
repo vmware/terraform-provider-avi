@@ -44,7 +44,7 @@ data "avi_tenant" "default_tenant" {
 }
 
 data "avi_cloud" "azure_cloud_cfg" {
-  name = "msazure"
+  name = "Default-Cloud"
 }
 
 data "avi_vrfcontext" "terraform_vrf" {
@@ -111,22 +111,7 @@ resource "avi_pool" "azure-pool-v2" {
   fail_action = {
     type = "FAIL_ACTION_CLOSE_CONN"
   }
-}
 
-resource "avi_poolgroup" "azure-poolgroup" {
-  name       = "azure_poolgroup"
-  tenant_ref = "${data.avi_tenant.default_tenant.id}"
-  cloud_ref  = "${data.avi_cloud.azure_cloud_cfg.id}"
-
-  members = {
-    pool_ref = "${avi_pool.azure-pool-v1.id}"
-    ratio    = 50
-  }
-
-  members = {
-    pool_ref = "${avi_pool.azure-pool-v2.id}"
-    ratio    = 50
-  }
 }
 
 
@@ -180,7 +165,13 @@ resource "azurerm_virtual_machine_scale_set" "terraform_scale_set_v1" {
       subnet_id = "${azurerm_subnet.terraform_subnet.id}"
     }
   }
-
+  os_profile_linux_config {
+    disable_password_authentication = false
+    ssh_keys {
+      path     = "/home/myadmin/.ssh/authorized_keys"
+      key_data = "${file("~/.ssh/id_rsa.pub")}"
+    }
+  }
   extension {
     name = "vmssextension"
     publisher = "Microsoft.OSTCExtensions"
@@ -188,7 +179,7 @@ resource "azurerm_virtual_machine_scale_set" "terraform_scale_set_v1" {
     type_handler_version = "1.2"
     settings = <<SETTINGS
     {
-        "commandToExecute": "sudo apt-get -y install nginx"
+        "commandToExecute": "sudo apt-get update && sudo apt-get -y install nginx"
     }
     SETTINGS
   }
@@ -250,6 +241,14 @@ resource "azurerm_virtual_machine_scale_set" "terraform_scale_set_v2" {
     }
   }
 
+  os_profile_linux_config {
+    disable_password_authentication = false
+    ssh_keys {
+      path     = "/home/myadmin/.ssh/authorized_keys"
+      key_data = "${file("~/.ssh/id_rsa.pub")}"
+    }
+  }
+
   extension {
     name = "vmssextension"
     publisher = "Microsoft.OSTCExtensions"
@@ -264,53 +263,3 @@ resource "azurerm_virtual_machine_scale_set" "terraform_scale_set_v2" {
 
 }
 
-/*
-resource "avi_virtualservice" "azure-virtualservice" {
-  name                         = "azure_vs"
-  pool_group_ref               = "${avi_poolgroup.azure-poolgroup.id}"
-  tenant_ref                   = "${data.avi_tenant.default_tenant.id}"
-  cloud_type                   = "CLOUD_AZURE"
-  application_profile_ref      = "${data.avi_applicationprofile.system_https_profile.id}"
-  network_profile_ref          = "${data.avi_networkprofile.system_tcp_profile.id}"
-  cloud_ref                    = "${data.avi_cloud.azure_cloud_cfg.id}"
-  analytics_profile_ref        = "${data.avi_analyticsprofile.system_analytics_profile.id}"
-  ssl_key_and_certificate_refs = ["${data.avi_sslkeyandcertificate.system_default_cert.id}"]
-  ssl_profile_ref              = "${data.avi_sslprofile.system_standard_sslprofile.id}"
-  se_group_ref                 = "${data.avi_serviceenginegroup.se_group.id}"
-  vrf_context_ref              = "${data.avi_vrfcontext.terraform_vrf.id}"
-
-
-  vip {
-    auto_allocate_ip  = true
-    avi_allocated_vip = true
-    avi_allocated_fip = true
-    # auto_allocate_floating_ip = true
-    subnet_uuid       = "${azurerm_subnet.terraform_vip_subnet.name}"
-
-    subnet = {
-      ip_addr = {
-        addr = "${var.azure_vip_subnet_ip}"
-        type = "V4"
-      }
-
-      mask = "${var.azure_vip_subnet_mask}"
-    }
-  }
-  services {
-    port           = 80
-    enable_ssl     = true
-    port_range_end = 80
-  }
-  services {
-    port           = 443
-    enable_ssl     = true
-    port_range_end = 443
-  }
-  analytics_policy {
-    metrics_realtime_update = {
-      enabled  = true
-      duration = 0
-    }
-  }
-}
-*/

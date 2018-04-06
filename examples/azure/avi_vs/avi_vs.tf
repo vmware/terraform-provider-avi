@@ -37,7 +37,7 @@ data "avi_tenant" "default_tenant" {
 }
 
 data "avi_cloud" "azure_cloud_cfg" {
-  name = "msazure"
+  name = "Default-Cloud"
 }
 
 data "avi_vrfcontext" "terraform_vrf" {
@@ -70,9 +70,14 @@ data "avi_serviceenginegroup" "se_group" {
   cloud_ref = "${data.avi_cloud.azure_cloud_cfg.id}"
 }
 
+data "avi_pool" "azure-pool-v1" {
+  name = "azure_poolv1"
+  tenant_ref = "${data.avi_tenant.default_tenant.id}"
+  cloud_ref  = "${data.avi_cloud.azure_cloud_cfg.id}"
+}
 
-data "avi_poolgroup" "azure-poolgroup" {
-  name       = "azure_poolgroup"
+data "avi_pool" "azure-pool-v2" {
+  name = "azure_poolv2"
   tenant_ref = "${data.avi_tenant.default_tenant.id}"
   cloud_ref  = "${data.avi_cloud.azure_cloud_cfg.id}"
 }
@@ -85,9 +90,28 @@ resource "azurerm_subnet" "terraform_vip_subnet" {
   address_prefix       = "${var.azure_vip_subnet_ip}/24"
 }
 
+
+
+resource "avi_poolgroup" "azure-poolgroup" {
+  name       = "azure_poolgroup"
+  tenant_ref = "${data.avi_tenant.default_tenant.id}"
+  cloud_ref  = "${data.avi_cloud.azure_cloud_cfg.id}"
+
+  members = {
+    pool_ref = "${data.avi_pool.azure-pool-v1.id}"
+    ratio    = 100
+  }
+
+  members = {
+    pool_ref = "${data.avi_pool.azure-pool-v2.id}"
+    ratio    = 50
+  }
+
+}
+
 resource "avi_virtualservice" "azure-virtualservice" {
   name                         = "azure_vs"
-  pool_group_ref               = "${data.avi_poolgroup.azure-poolgroup.id}"
+  pool_group_ref               = "${avi_poolgroup.azure-poolgroup.id}"
   tenant_ref                   = "${data.avi_tenant.default_tenant.id}"
   cloud_type                   = "CLOUD_AZURE"
   application_profile_ref      = "${data.avi_applicationprofile.system_https_profile.id}"
@@ -98,12 +122,12 @@ resource "avi_virtualservice" "azure-virtualservice" {
   ssl_profile_ref              = "${data.avi_sslprofile.system_standard_sslprofile.id}"
   se_group_ref                 = "${data.avi_serviceenginegroup.se_group.id}"
   vrf_context_ref              = "${data.avi_vrfcontext.terraform_vrf.id}"
-
-
+  scaleout_ecmp = true
+  enabled = true
   vip {
     auto_allocate_ip  = true
     avi_allocated_vip = true
-    avi_allocated_fip = true
+    avi_allocated_fip = false
     # auto_allocate_floating_ip = true
     subnet_uuid       = "${azurerm_subnet.terraform_vip_subnet.name}"
 
