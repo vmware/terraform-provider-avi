@@ -1,9 +1,8 @@
 Terraform Provider
 ==================
-[![Build Status](https://travis-ci.org/avinetworks/terraform-provider-avi.svg?branch=master)](https://travis-ci.org/avinetworks/terraform-provider-avi)
-
-- Website: https://www.terraform.io
+- [![Build Status](https://travis-ci.org/avinetworks/terraform-provider-avi.svg?branch=master)](https://travis-ci.org/avinetworks/terraform-provider-avi)
 - [![Gitter chat](https://badges.gitter.im/hashicorp-terraform/Lobby.png)](https://gitter.im/hashicorp-terraform/Lobby)
+- Website: https://www.terraform.io
 - Mailing list: [Google Groups](http://groups.google.com/group/terraform-tool)
 
 <img src="https://cdn.rawgit.com/hashicorp/terraform-website/master/source/assets/images/logo-text.svg" width="600px">
