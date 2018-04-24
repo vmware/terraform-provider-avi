@@ -56,6 +56,14 @@ func ResourceApplicationProfileSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  false,
 		},
+		"sip_service_profile": &schema.Schema{
+			Type:     schema.TypeSet,
+			Optional: true,
+			Elem:     ResourceSipServiceApplicationProfileSchema(),
+			Set: func(v interface{}) int {
+				return 0
+			},
+		},
 		"tcp_app_profile": &schema.Schema{
 			Type:     schema.TypeSet,
 			Optional: true,

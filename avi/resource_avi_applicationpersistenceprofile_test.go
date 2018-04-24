@@ -86,9 +86,6 @@ resource "avi_applicationpersistenceprofile" "testApplicationPersistenceProfile"
 "is_federated" = false
 "server_hm_down_recovery" = "HM_DOWN_PICK_NEW_SERVER"
 "persistence_type" = "PERSISTENCE_TYPE_CLIENT_IP_ADDRESS"
-"ip_persistence_profile" {
-"ip_persistent_timeout" = "5"
-}
 "name" = "testSystem-Persistence-Client-IP"
 }
 `
@@ -102,9 +99,6 @@ resource "avi_applicationpersistenceprofile" "testApplicationPersistenceProfile"
 "is_federated" = false
 "server_hm_down_recovery" = "HM_DOWN_PICK_NEW_SERVER"
 "persistence_type" = "PERSISTENCE_TYPE_CLIENT_IP_ADDRESS"
-"ip_persistence_profile" {
-"ip_persistent_timeout" = "5"
-}
 "name" = "testSystem-Persistence-Client-IP-abc"
 }
 `

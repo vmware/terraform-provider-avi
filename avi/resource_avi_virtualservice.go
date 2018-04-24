@@ -341,6 +341,10 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 			Optional: true,
 			Elem:     ResourceVSDataScriptsSchema(),
 		},
+		"vsvip_cloud_config_cksum": &schema.Schema{
+			Type:     schema.TypeString,
+			Optional: true,
+		},
 		"vsvip_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,

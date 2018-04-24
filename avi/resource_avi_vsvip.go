@@ -51,6 +51,10 @@ func ResourceVsVipSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
+		"vsvip_cloud_config_cksum": &schema.Schema{
+			Type:     schema.TypeString,
+			Optional: true,
+		},
 	}
 }
 

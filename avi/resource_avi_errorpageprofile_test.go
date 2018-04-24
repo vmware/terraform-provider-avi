@@ -2,15 +2,15 @@ package avi
 
 import (
 	"fmt"
+	"strings"
+	"testing"
+
 	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform/helper/resource"
 	"github.com/hashicorp/terraform/terraform"
-	"strings"
-	"testing"
 )
 
 func TestAVIErrorPageProfileBasic(t *testing.T) {
-	updatedConfig := fmt.Sprintf(testAccAVIErrorPageProfileConfig, "abc")
 	resource.Test(t, resource.TestCase{
 		PreCheck:     func() { testAccPreCheck(t) },
 		Providers:    testAccProviders,
@@ -21,10 +21,10 @@ func TestAVIErrorPageProfileBasic(t *testing.T) {
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckAVIErrorPageProfileExists("avi_errorpageprofile.testerrorpageprofile"),
 					resource.TestCheckResourceAttr(
-						"avi_errorpageprofile.testerrorpageprofile", "name", "epp-%s")),
+						"avi_errorpageprofile.testerrorpageprofile", "name", "epp-test")),
 			},
 			{
-				Config: updatedConfig,
+				Config: testAccUpdatedAVIErrorPageProfileConfig,
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckAVIErrorPageProfileExists("avi_errorpageprofile.testerrorpageprofile"),
 					resource.TestCheckResourceAttr(
@@ -46,7 +46,9 @@ func testAccCheckAVIErrorPageProfileExists(resourcename string) resource.TestChe
 		if rs.Primary.ID == "" {
 			return fmt.Errorf("No Error Page Profile ID is set")
 		}
-		path := "api" + strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		uuid := strings.Split(url, "#")[0]
+		path := "api" + uuid
 		err := conn.Get(path, &obj)
 		if err != nil {
 			return err
@@ -63,7 +65,9 @@ func testAccCheckAVIErrorPageProfileDestroy(s *terraform.State) error {
 		if rs.Type != "avi_errorpageprofile" {
 			continue
 		}
-		path := "api" + strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		uuid := strings.Split(url, "#")[0]
+		path := "api" + uuid
 		err := conn.Get(path, &obj)
 		if err != nil {
 			if strings.Contains(err.Error(), "404") {
@@ -84,7 +88,18 @@ data "avi_tenant" "default_tenant"{
 }
 
 resource "avi_errorpageprofile" "testerrorpageprofile" {
-	name = "epp-%s"
+	name = "epp-test"
+	tenant_ref= "${data.avi_tenant.default_tenant.id}"
+}
+`
+
+const testAccUpdatedAVIErrorPageProfileConfig = `
+data "avi_tenant" "default_tenant"{
+	name= "admin"
+}
+
+resource "avi_errorpageprofile" "testerrorpageprofile" {
+	name = "epp-abc"
 	tenant_ref= "${data.avi_tenant.default_tenant.id}"
 }
 `

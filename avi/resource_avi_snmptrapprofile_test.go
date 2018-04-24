@@ -2,15 +2,15 @@ package avi
 
 import (
 	"fmt"
+	"strings"
+	"testing"
+
 	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform/helper/resource"
 	"github.com/hashicorp/terraform/terraform"
-	"strings"
-	"testing"
 )
 
 func TestAVISNMPTrapProfileBasic(t *testing.T) {
-	updatedConfig := fmt.Sprintf(testAccAVISNMPTrapProfileConfig, "abc")
 	resource.Test(t, resource.TestCase{
 		PreCheck:     func() { testAccPreCheck(t) },
 		Providers:    testAccProviders,
@@ -21,10 +21,10 @@ func TestAVISNMPTrapProfileBasic(t *testing.T) {
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckAVISNMPTrapProfileExists("avi_snmptrapprofile.testsnmptrapprofile"),
 					resource.TestCheckResourceAttr(
-						"avi_snmptrapprofile.testsnmptrapprofile", "name", "snmp-%s")),
+						"avi_snmptrapprofile.testsnmptrapprofile", "name", "snmp-test")),
 			},
 			{
-				Config: updatedConfig,
+				Config: testAccUpdatedAVISNMPTrapProfileConfig,
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckAVISNMPTrapProfileExists("avi_snmptrapprofile.testsnmptrapprofile"),
 					resource.TestCheckResourceAttr(
@@ -46,7 +46,9 @@ func testAccCheckAVISNMPTrapProfileExists(resourcename string) resource.TestChec
 		if rs.Primary.ID == "" {
 			return fmt.Errorf("No SNMP Trap Profile ID is set")
 		}
-		path := "api" + strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		uuid := strings.Split(url, "#")[0]
+		path := "api" + uuid
 		err := conn.Get(path, &obj)
 		if err != nil {
 			return err
@@ -63,7 +65,9 @@ func testAccCheckAVISNMPTrapProfileDestroy(s *terraform.State) error {
 		if rs.Type != "avi_snmptrapprofile" {
 			continue
 		}
-		path := "api" + strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		uuid := strings.Split(url, "#")[0]
+		path := "api" + uuid
 		err := conn.Get(path, &obj)
 		if err != nil {
 			if strings.Contains(err.Error(), "404") {
@@ -84,7 +88,18 @@ data "avi_tenant" "default_tenant"{
 }
 
 resource "avi_snmptrapprofile" "testsnmptrapprofile" {
-	name = "snmp-%s"
+	name = "snmp-test"
+	tenant_ref= "${data.avi_tenant.default_tenant.id}"
+}
+`
+
+const testAccUpdatedAVISNMPTrapProfileConfig = `
+data "avi_tenant" "default_tenant"{
+	name= "admin"
+}
+
+resource "avi_snmptrapprofile" "testsnmptrapprofile" {
+	name = "snmp-abc"
 	tenant_ref= "${data.avi_tenant.default_tenant.id}"
 }
 `

@@ -2,15 +2,15 @@ package avi
 
 import (
 	"fmt"
+	"strings"
+	"testing"
+
 	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform/helper/resource"
 	"github.com/hashicorp/terraform/terraform"
-	"strings"
-	"testing"
 )
 
 func TestAVIDNSPolicyBasic(t *testing.T) {
-	updatedConfig := fmt.Sprintf(testAccAVIDNSPolicyConfig, "abc")
 	resource.Test(t, resource.TestCase{
 		PreCheck:     func() { testAccPreCheck(t) },
 		Providers:    testAccProviders,
@@ -21,10 +21,10 @@ func TestAVIDNSPolicyBasic(t *testing.T) {
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckAVIDNSPolicyExists("avi_dnspolicy.testdnspolicy"),
 					resource.TestCheckResourceAttr(
-						"avi_dnspolicy.testdnspolicy", "name", "dp-%s")),
+						"avi_dnspolicy.testdnspolicy", "name", "dp-test")),
 			},
 			{
-				Config: updatedConfig,
+				Config: testAccUpdatedAVIDNSPolicyConfig,
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckAVIDNSPolicyExists("avi_dnspolicy.testdnspolicy"),
 					resource.TestCheckResourceAttr(
@@ -46,7 +46,9 @@ func testAccCheckAVIDNSPolicyExists(resourcename string) resource.TestCheckFunc 
 		if rs.Primary.ID == "" {
 			return fmt.Errorf("No DNS Policy ID is set")
 		}
-		path := "api" + strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		uuid := strings.Split(url, "#")[0]
+		path := "api" + uuid
 		err := conn.Get(path, &obj)
 		if err != nil {
 			return err
@@ -63,7 +65,9 @@ func testAccCheckAVIDNSPolicyDestroy(s *terraform.State) error {
 		if rs.Type != "avi_dnspolicy" {
 			continue
 		}
-		path := "api" + strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		uuid := strings.Split(url, "#")[0]
+		path := "api" + uuid
 		err := conn.Get(path, &obj)
 		if err != nil {
 			if strings.Contains(err.Error(), "404") {
@@ -84,7 +88,19 @@ data "avi_tenant" "default_tenant"{
 }
 
 resource "avi_dnspolicy" "testdnspolicy" {
-	name = "dp-%s"
+	name = "dp-test"
+	description = "test dns policy"
+	tenant_ref= "${data.avi_tenant.default_tenant.id}"
+}
+`
+
+const testAccUpdatedAVIDNSPolicyConfig = `
+data "avi_tenant" "default_tenant"{
+	name= "admin"
+}
+
+resource "avi_dnspolicy" "testdnspolicy" {
+	name = "dp-abc"
 	description = "test dns policy"
 	tenant_ref= "${data.avi_tenant.default_tenant.id}"
 }

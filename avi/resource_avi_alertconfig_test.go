@@ -2,15 +2,15 @@ package avi
 
 import (
 	"fmt"
+	"strings"
+	"testing"
+
 	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform/helper/resource"
 	"github.com/hashicorp/terraform/terraform"
-	"strings"
-	"testing"
 )
 
 func TestAVIAlertConfigBasic(t *testing.T) {
-	updatedConfig := fmt.Sprintf(testAccAVIAlertConfig, "abc")
 	resource.Test(t, resource.TestCase{
 		PreCheck:     func() { testAccPreCheck(t) },
 		Providers:    testAccProviders,
@@ -21,10 +21,10 @@ func TestAVIAlertConfigBasic(t *testing.T) {
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckAVIAlertConfigExists("avi_alertconfig.testalertconfig"),
 					resource.TestCheckResourceAttr(
-						"avi_alertconfig.testalertconfig", "name", "ac-%s")),
+						"avi_alertconfig.testalertconfig", "name", "ac-test")),
 			},
 			{
-				Config: updatedConfig,
+				Config: testAccUpdatedAVIAlertConfig,
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckAVIAlertConfigExists("avi_alertconfig.testalertconfig"),
 					resource.TestCheckResourceAttr(
@@ -46,7 +46,9 @@ func testAccCheckAVIAlertConfigExists(resourcename string) resource.TestCheckFun
 		if rs.Primary.ID == "" {
 			return fmt.Errorf("No Alert Config ID is set")
 		}
-		path := "api" + strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		uuid := strings.Split(url, "#")[0]
+		path := "api" + uuid
 		err := conn.Get(path, &obj)
 		if err != nil {
 			return err
@@ -63,7 +65,9 @@ func testAccCheckAVIAlertConfigDestroy(s *terraform.State) error {
 		if rs.Type != "avi_alertconfig" {
 			continue
 		}
-		path := "api" + strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		uuid := strings.Split(url, "#")[0]
+		path := "api" + uuid
 		err := conn.Get(path, &obj)
 		if err != nil {
 			if strings.Contains(err.Error(), "404") {
@@ -84,7 +88,29 @@ data "avi_tenant" "default_tenant"{
 }
 
 resource "avi_alertconfig" "testalertconfig" {
-	name = "ac-%s"
+	name = "ac-test"
+	category= "REALTIME"
+	expiry_time= 86400
+	enabled= true
+	summary= "System-CC-Alert System Alert Triggered"
+	rolling_window= 300
+	source= "EVENT_LOGS"
+	threshold= 1
+	throttle= 0
+	tenant_ref= "${data.avi_tenant.default_tenant.id}"
+	alert_rule= {
+		operator= "OPERATOR_OR"
+	}
+}
+`
+
+const testAccUpdatedAVIAlertConfig = `
+data "avi_tenant" "default_tenant"{
+	name= "admin"
+}
+
+resource "avi_alertconfig" "testalertconfig" {
+	name = "ac-abc"
 	category= "REALTIME"
 	expiry_time= 86400
 	enabled= true

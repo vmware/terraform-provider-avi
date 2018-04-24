@@ -2,15 +2,15 @@ package avi
 
 import (
 	"fmt"
+	"strings"
+	"testing"
+
 	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform/helper/resource"
 	"github.com/hashicorp/terraform/terraform"
-	"strings"
-	"testing"
 )
 
 func TestAVIAlertEmailConfigBasic(t *testing.T) {
-	updatedConfig := fmt.Sprintf(testAccAVIAlertEmailConfig, "abc")
 	resource.Test(t, resource.TestCase{
 		PreCheck:     func() { testAccPreCheck(t) },
 		Providers:    testAccProviders,
@@ -21,10 +21,10 @@ func TestAVIAlertEmailConfigBasic(t *testing.T) {
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckAVIAlertEmailConfigExists("avi_alertemailconfig.testalertemailconfig"),
 					resource.TestCheckResourceAttr(
-						"avi_alertemailconfig.testalertemailconfig", "name", "aec-%s")),
+						"avi_alertemailconfig.testalertemailconfig", "name", "aec-test")),
 			},
 			{
-				Config: updatedConfig,
+				Config: testAccUpdatedAVIAlertEmailConfig,
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckAVIAlertEmailConfigExists("avi_alertemailconfig.testalertemailconfig"),
 					resource.TestCheckResourceAttr(
@@ -46,7 +46,9 @@ func testAccCheckAVIAlertEmailConfigExists(resourcename string) resource.TestChe
 		if rs.Primary.ID == "" {
 			return fmt.Errorf("No Alert Email Config ID is set")
 		}
-		path := "api" + strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		uuid := strings.Split(url, "#")[0]
+		path := "api" + uuid
 		err := conn.Get(path, &obj)
 		if err != nil {
 			return err
@@ -63,7 +65,9 @@ func testAccCheckAVIAlertEmailConfigDestroy(s *terraform.State) error {
 		if rs.Type != "avi_alertemailconfig" {
 			continue
 		}
-		path := "api" + strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		uuid := strings.Split(url, "#")[0]
+		path := "api" + uuid
 		err := conn.Get(path, &obj)
 		if err != nil {
 			if strings.Contains(err.Error(), "404") {
@@ -84,7 +88,21 @@ data "avi_tenant" "default_tenant"{
 }
 
 resource "avi_alertemailconfig" "testalertemailconfig" {
-	name = "aec-%s"
+	name = "aec-test"
+	tenant_ref= "${data.avi_tenant.default_tenant.id}"
+	cc_emails= "admin@avicontroller.net"
+	description= "test alert email"
+	to_emails= "admin@avicontroller.net"
+}
+`
+
+const testAccUpdatedAVIAlertEmailConfig = `
+data "avi_tenant" "default_tenant"{
+	name= "admin"
+}
+
+resource "avi_alertemailconfig" "testalertemailconfig" {
+	name = "aec-abc"
 	tenant_ref= "${data.avi_tenant.default_tenant.id}"
 	cc_emails= "admin@avicontroller.net"
 	description= "test alert email"

@@ -2,15 +2,15 @@ package avi
 
 import (
 	"fmt"
+	"strings"
+	"testing"
+
 	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform/helper/resource"
 	"github.com/hashicorp/terraform/terraform"
-	"strings"
-	"testing"
 )
 
 func TestAVICertificateManagementProfileBasic(t *testing.T) {
-	updatedConfig := fmt.Sprintf(testAccAVICertificateManagementProfileConfig, "abc")
 	resource.Test(t, resource.TestCase{
 		PreCheck:     func() { testAccPreCheck(t) },
 		Providers:    testAccProviders,
@@ -21,10 +21,10 @@ func TestAVICertificateManagementProfileBasic(t *testing.T) {
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckAVICertificateManagementProfileExists("avi_certificatemanagementprofile.testcertificatemanagementprofile"),
 					resource.TestCheckResourceAttr(
-						"avi_certificatemanagementprofile.testcertificatemanagementprofile", "name", "cert-%s")),
+						"avi_certificatemanagementprofile.testcertificatemanagementprofile", "name", "cert-test")),
 			},
 			{
-				Config: updatedConfig,
+				Config: testAccUpdatedAVICertificateManagementProfileConfig,
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckAVICertificateManagementProfileExists("avi_certificatemanagementprofile.testcertificatemanagementprofile"),
 					resource.TestCheckResourceAttr(
@@ -46,7 +46,9 @@ func testAccCheckAVICertificateManagementProfileExists(resourcename string) reso
 		if rs.Primary.ID == "" {
 			return fmt.Errorf("No Certificate Management Profile ID is set")
 		}
-		path := "api" + strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		uuid := strings.Split(url, "#")[0]
+		path := "api" + uuid
 		err := conn.Get(path, &obj)
 		if err != nil {
 			return err
@@ -63,7 +65,9 @@ func testAccCheckAVICertificateManagementProfileDestroy(s *terraform.State) erro
 		if rs.Type != "avi_certificatemanagementprofile" {
 			continue
 		}
-		path := "api" + strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		uuid := strings.Split(url, "#")[0]
+		path := "api" + uuid
 		err := conn.Get(path, &obj)
 		if err != nil {
 			if strings.Contains(err.Error(), "404") {
@@ -84,7 +88,19 @@ data "avi_tenant" "default_tenant"{
 }
 
 resource "avi_certificatemanagementprofile" "testcertificatemanagementprofile" {
-	name = "cert-%s"
+	name = "cert-test"
+	script_path= "test script path"
+	tenant_ref= "${data.avi_tenant.default_tenant.id}"
+}
+`
+
+const testAccUpdatedAVICertificateManagementProfileConfig = `
+data "avi_tenant" "default_tenant"{
+	name= "admin"
+}
+
+resource "avi_certificatemanagementprofile" "testcertificatemanagementprofile" {
+	name = "cert-abc"
 	script_path= "test script path"
 	tenant_ref= "${data.avi_tenant.default_tenant.id}"
 }

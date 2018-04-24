@@ -2,15 +2,15 @@ package avi
 
 import (
 	"fmt"
+	"strings"
+	"testing"
+
 	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform/helper/resource"
 	"github.com/hashicorp/terraform/terraform"
-	"strings"
-	"testing"
 )
 
 func TestAVIIPAMDNSProviderProfileBasic(t *testing.T) {
-	updatedConfig := fmt.Sprintf(testAccAVIIPAMDNSProviderProfileConfig, "abc")
 	resource.Test(t, resource.TestCase{
 		PreCheck:     func() { testAccPreCheck(t) },
 		Providers:    testAccProviders,
@@ -21,10 +21,10 @@ func TestAVIIPAMDNSProviderProfileBasic(t *testing.T) {
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckAVIIPAMDNSProviderProfileExists("avi_ipamdnsproviderprofile.testipamdnsproviderprofile"),
 					resource.TestCheckResourceAttr(
-						"avi_ipamdnsproviderprofile.testipamdnsproviderprofile", "name", "ipam-%s")),
+						"avi_ipamdnsproviderprofile.testipamdnsproviderprofile", "name", "ipam-test")),
 			},
 			{
-				Config: updatedConfig,
+				Config: testAccUpdatedAVIIPAMDNSProviderProfileConfig,
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckAVIIPAMDNSProviderProfileExists("avi_ipamdnsproviderprofile.testipamdnsproviderprofile"),
 					resource.TestCheckResourceAttr(
@@ -46,7 +46,9 @@ func testAccCheckAVIIPAMDNSProviderProfileExists(resourcename string) resource.T
 		if rs.Primary.ID == "" {
 			return fmt.Errorf("No IPAMDNS Provider Profile ID is set")
 		}
-		path := "api" + strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		uuid := strings.Split(url, "#")[0]
+		path := "api" + uuid
 		err := conn.Get(path, &obj)
 		if err != nil {
 			return err
@@ -63,7 +65,9 @@ func testAccCheckAVIIPAMDNSProviderProfileDestroy(s *terraform.State) error {
 		if rs.Type != "avi_ipamdnsproviderprofile" {
 			continue
 		}
-		path := "api" + strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		uuid := strings.Split(url, "#")[0]
+		path := "api" + uuid
 		err := conn.Get(path, &obj)
 		if err != nil {
 			if strings.Contains(err.Error(), "404") {
@@ -82,7 +86,6 @@ const testAccAVIIPAMDNSProviderProfileConfig = `
 data "avi_tenant" "default_tenant"{
 	name= "admin"
 }
-
 data "avi_cloud" "default_cloud" {
 	name= "Default-Cloud"
 }
@@ -90,11 +93,32 @@ data "avi_vrfcontext" "global_vrf" {
 	name= "global"
 }
 resource "avi_ipamdnsproviderprofile" "testipamdnsproviderprofile" {
-	name = "ipam-%s"
+	name = "ipam-test"
 	allocate_ip_in_vrf= false
   	internal_profile= {
-    	ttl= 30
+        ttl= 31
   	}
+  	type= "IPAMDNS_TYPE_INTERNAL"
+	tenant_ref= "${data.avi_tenant.default_tenant.id}"
+}
+`
+
+const testAccUpdatedAVIIPAMDNSProviderProfileConfig = `
+data "avi_tenant" "default_tenant"{
+	name= "admin"
+}
+data "avi_cloud" "default_cloud" {
+	name= "Default-Cloud"
+}
+data "avi_vrfcontext" "global_vrf" {
+	name= "global"
+}
+resource "avi_ipamdnsproviderprofile" "testipamdnsproviderprofile" {
+	name = "ipam-abc"
+	allocate_ip_in_vrf= false
+    internal_profile= {
+        ttl= 31
+    }
   	type= "IPAMDNS_TYPE_INTERNAL"
 	tenant_ref= "${data.avi_tenant.default_tenant.id}"
 }

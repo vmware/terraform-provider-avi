@@ -2,15 +2,15 @@ package avi
 
 import (
 	"fmt"
+	"strings"
+	"testing"
+
 	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform/helper/resource"
 	"github.com/hashicorp/terraform/terraform"
-	"strings"
-	"testing"
 )
 
 func TestAVIAlertSyslogConfigBasic(t *testing.T) {
-	updatedConfig := fmt.Sprintf(testAccAVIAlertSyslogConfig, "abc")
 	resource.Test(t, resource.TestCase{
 		PreCheck:     func() { testAccPreCheck(t) },
 		Providers:    testAccProviders,
@@ -21,10 +21,10 @@ func TestAVIAlertSyslogConfigBasic(t *testing.T) {
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckAVIAlertSyslogConfigExists("avi_alertsyslogconfig.testalertsyslogconfig"),
 					resource.TestCheckResourceAttr(
-						"avi_alertsyslogconfig.testalertsyslogconfig", "name", "asyc-%s")),
+						"avi_alertsyslogconfig.testalertsyslogconfig", "name", "asyc-test")),
 			},
 			{
-				Config: updatedConfig,
+				Config: testAccUpdatedAVIAlertSyslogConfig,
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckAVIAlertSyslogConfigExists("avi_alertsyslogconfig.testalertsyslogconfig"),
 					resource.TestCheckResourceAttr(
@@ -46,7 +46,9 @@ func testAccCheckAVIAlertSyslogConfigExists(resourcename string) resource.TestCh
 		if rs.Primary.ID == "" {
 			return fmt.Errorf("No Alert Syslog Config ID is set")
 		}
-		path := "api" + strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		uuid := strings.Split(url, "#")[0]
+		path := "api" + uuid
 		err := conn.Get(path, &obj)
 		if err != nil {
 			return err
@@ -63,7 +65,9 @@ func testAccCheckAVIAlertSyslogConfigDestroy(s *terraform.State) error {
 		if rs.Type != "avi_alertsyslogconfig" {
 			continue
 		}
-		path := "api" + strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		uuid := strings.Split(url, "#")[0]
+		path := "api" + uuid
 		err := conn.Get(path, &obj)
 		if err != nil {
 			if strings.Contains(err.Error(), "404") {
@@ -84,7 +88,19 @@ data "avi_tenant" "default_tenant"{
 }
 
 resource "avi_alertsyslogconfig" "testalertsyslogconfig" {
-	name = "asyc-%s"
+	name = "asyc-test"
+	description= "test alert syslog"
+	tenant_ref= "${data.avi_tenant.default_tenant.id}"
+}
+`
+
+const testAccUpdatedAVIAlertSyslogConfig = `
+data "avi_tenant" "default_tenant"{
+	name= "admin"
+}
+
+resource "avi_alertsyslogconfig" "testalertsyslogconfig" {
+	name = "asyc-abc"
 	description= "test alert syslog"
 	tenant_ref= "${data.avi_tenant.default_tenant.id}"
 }

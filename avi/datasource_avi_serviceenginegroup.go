@@ -148,7 +148,17 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Optional: true,
 				Default:  false,
 			},
+			"distribute_queues": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  false,
+			},
 			"enable_hsm_priming": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  false,
+			},
+			"enable_multi_lb": &schema.Schema{
 				Type:     schema.TypeBool,
 				Optional: true,
 				Default:  false,

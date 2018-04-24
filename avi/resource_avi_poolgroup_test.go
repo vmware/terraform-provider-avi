@@ -2,15 +2,15 @@ package avi
 
 import (
 	"fmt"
+	"strings"
+	"testing"
+
 	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform/helper/resource"
 	"github.com/hashicorp/terraform/terraform"
-	"strings"
-	"testing"
 )
 
 func TestAVIPoolGroupBasic(t *testing.T) {
-	updatedConfig := fmt.Sprintf(testAccAVIPoolGroupConfig, "abc")
 	resource.Test(t, resource.TestCase{
 		PreCheck:     func() { testAccPreCheck(t) },
 		Providers:    testAccProviders,
@@ -21,10 +21,10 @@ func TestAVIPoolGroupBasic(t *testing.T) {
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckAVIPoolGroupExists("avi_poolgroup.testpoolgroup"),
 					resource.TestCheckResourceAttr(
-						"avi_poolgroup.testpoolgroup", "name", "pg-%s")),
+						"avi_poolgroup.testpoolgroup", "name", "pg-test")),
 			},
 			{
-				Config: updatedConfig,
+				Config: testAccUpdatedAVIPoolGroupConfig,
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckAVIPoolGroupExists("avi_poolgroup.testpoolgroup"),
 					resource.TestCheckResourceAttr(
@@ -46,7 +46,9 @@ func testAccCheckAVIPoolGroupExists(resourcename string) resource.TestCheckFunc 
 		if rs.Primary.ID == "" {
 			return fmt.Errorf("No AVI POOL Group ID is set")
 		}
-		path := "api" + strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		uuid := strings.Split(url, "#")[0]
+		path := "api" + uuid
 		err := conn.Get(path, &obj)
 		if err != nil {
 			return err
@@ -63,7 +65,9 @@ func testAccCheckAVIPoolGroupDestroy(s *terraform.State) error {
 		if rs.Type != "avi_poolgroup" {
 			continue
 		}
-		path := "api" + strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		uuid := strings.Split(url, "#")[0]
+		path := "api" + uuid
 		err := conn.Get(path, &obj)
 		if err != nil {
 			if strings.Contains(err.Error(), "404") {
@@ -87,7 +91,27 @@ data "avi_cloud" "default_cloud" {
 }
 
 resource "avi_poolgroup" "testpoolgroup" {
-	name = "pg-%s"
+	name = "pg-test"
+	implicit_priority_labels= false
+	min_servers= 0
+	fail_action= {
+		type= "FAIL_ACTION_CLOSE_CONN"
+	}
+	tenant_ref= "${data.avi_tenant.default_tenant.id}"
+	cloud_ref= "${data.avi_cloud.default_cloud.id}"
+}
+`
+
+const testAccUpdatedAVIPoolGroupConfig = `
+data "avi_tenant" "default_tenant"{
+	name= "admin"
+}
+data "avi_cloud" "default_cloud" {
+	name= "Default-Cloud"
+}
+
+resource "avi_poolgroup" "testpoolgroup" {
+	name = "pg-abc"
 	implicit_priority_labels= false
 	min_servers= 0
 	fail_action= {

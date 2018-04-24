@@ -2,15 +2,15 @@ package avi
 
 import (
 	"fmt"
+	"strings"
+	"testing"
+
 	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform/helper/resource"
 	"github.com/hashicorp/terraform/terraform"
-	"strings"
-	"testing"
 )
 
 func TestAVINetworkBasic(t *testing.T) {
-	updatedConfig := fmt.Sprintf(testAccAVINetworkConfig, "abc")
 	resource.Test(t, resource.TestCase{
 		PreCheck:     func() { testAccPreCheck(t) },
 		Providers:    testAccProviders,
@@ -21,10 +21,10 @@ func TestAVINetworkBasic(t *testing.T) {
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckAVINetworkExists("avi_network.testnetwork"),
 					resource.TestCheckResourceAttr(
-						"avi_network.testnetwork", "name", "network-%s")),
+						"avi_network.testnetwork", "name", "network-test")),
 			},
 			{
-				Config: updatedConfig,
+				Config: testAccUpdatedAVINetworkConfig,
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckAVINetworkExists("avi_network.testnetwork"),
 					resource.TestCheckResourceAttr(
@@ -46,7 +46,9 @@ func testAccCheckAVINetworkExists(resourcename string) resource.TestCheckFunc {
 		if rs.Primary.ID == "" {
 			return fmt.Errorf("No Network ID is set")
 		}
-		path := "api" + strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		uuid := strings.Split(url, "#")[0]
+		path := "api" + uuid
 		err := conn.Get(path, &obj)
 		if err != nil {
 			return err
@@ -63,7 +65,9 @@ func testAccCheckAVINetworkDestroy(s *terraform.State) error {
 		if rs.Type != "avi_network" {
 			continue
 		}
-		path := "api" + strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		uuid := strings.Split(url, "#")[0]
+		path := "api" + uuid
 		err := conn.Get(path, &obj)
 		if err != nil {
 			if strings.Contains(err.Error(), "404") {
@@ -90,7 +94,30 @@ data "avi_vrfcontext" "global_vrf" {
 	name= "global"
 }
 resource "avi_network" "testnetwork" {
-	name = "network-%s"
+	name = "network-test"
+	vrf_context_ref="${data.avi_vrfcontext.global_vrf.id}"
+	tenant_ref= "${data.avi_tenant.default_tenant.id}"
+	cloud_ref= "${data.avi_cloud.default_cloud.id}"
+	exclude_discovered_subnets= false
+	synced_from_se= true
+    dhcp_enabled= true
+	vcenter_dvs= true
+}
+`
+
+const testAccUpdatedAVINetworkConfig = `
+data "avi_tenant" "default_tenant"{
+	name= "admin"
+}
+
+data "avi_cloud" "default_cloud" {
+	name= "Default-Cloud"
+}
+data "avi_vrfcontext" "global_vrf" {
+	name= "global"
+}
+resource "avi_network" "testnetwork" {
+	name = "network-abc"
 	vrf_context_ref="${data.avi_vrfcontext.global_vrf.id}"
 	tenant_ref= "${data.avi_tenant.default_tenant.id}"
 	cloud_ref= "${data.avi_cloud.default_cloud.id}"

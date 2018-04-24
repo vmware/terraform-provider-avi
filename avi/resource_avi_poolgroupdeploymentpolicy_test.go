@@ -2,15 +2,15 @@ package avi
 
 import (
 	"fmt"
+	"strings"
+	"testing"
+
 	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform/helper/resource"
 	"github.com/hashicorp/terraform/terraform"
-	"strings"
-	"testing"
 )
 
 func TestAVIPoolGroupDeploymentPolicyBasic(t *testing.T) {
-	updatedConfig := fmt.Sprintf(testAccAVIPoolGroupDeploymentPolicyConfig, "abc")
 	resource.Test(t, resource.TestCase{
 		PreCheck:     func() { testAccPreCheck(t) },
 		Providers:    testAccProviders,
@@ -21,10 +21,10 @@ func TestAVIPoolGroupDeploymentPolicyBasic(t *testing.T) {
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckAVIPoolGroupDeploymentPolicyExists("avi_poolgroupdeploymentpolicy.testpoolgroupdeploymentpolicy"),
 					resource.TestCheckResourceAttr(
-						"avi_poolgroupdeploymentpolicy.testpoolgroupdeploymentpolicy", "name", "pgpp-%s")),
+						"avi_poolgroupdeploymentpolicy.testpoolgroupdeploymentpolicy", "name", "pgpp-test")),
 			},
 			{
-				Config: updatedConfig,
+				Config: testAccUpdatedAVIPoolGroupDeploymentPolicyConfig,
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckAVIPoolGroupDeploymentPolicyExists("avi_poolgroupdeploymentpolicy.testpoolgroupdeploymentpolicy"),
 					resource.TestCheckResourceAttr(
@@ -46,7 +46,9 @@ func testAccCheckAVIPoolGroupDeploymentPolicyExists(resourcename string) resourc
 		if rs.Primary.ID == "" {
 			return fmt.Errorf("No PoolGroup Deployment Policy ID is set")
 		}
-		path := "api" + strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		uuid := strings.Split(url, "#")[0]
+		path := "api" + uuid
 		err := conn.Get(path, &obj)
 		if err != nil {
 			return err
@@ -63,7 +65,9 @@ func testAccCheckAVIPoolGroupDeploymentPolicyDestroy(s *terraform.State) error {
 		if rs.Type != "avi_poolgroupdeploymentpolicy" {
 			continue
 		}
-		path := "api" + strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		uuid := strings.Split(url, "#")[0]
+		path := "api" + uuid
 		err := conn.Get(path, &obj)
 		if err != nil {
 			if strings.Contains(err.Error(), "404") {
@@ -85,10 +89,22 @@ data "avi_tenant" "default_tenant"{
 data "avi_cloud" "default_cloud" {
 	name= "Default-Cloud"
 }
+resource "avi_poolgroupdeploymentpolicy" "testpoolgroupdeploymentpolicy" {
+	name = "pgpp-test"
+	tenant_ref= "${data.avi_tenant.default_tenant.id}"
+}
+`
+
+const testAccUpdatedAVIPoolGroupDeploymentPolicyConfig = `
+data "avi_tenant" "default_tenant"{
+	name= "admin"
+}
+data "avi_cloud" "default_cloud" {
+	name= "Default-Cloud"
+}
 
 resource "avi_poolgroupdeploymentpolicy" "testpoolgroupdeploymentpolicy" {
-	name = "pgpp-%s"
+	name = "pgpp-abc"
 	tenant_ref= "${data.avi_tenant.default_tenant.id}"
-	cloud_ref= "${data.avi_cloud.default_cloud.id}"
 }
 `

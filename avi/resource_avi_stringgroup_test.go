@@ -45,7 +45,9 @@ func testAccCheckAVIStringGroupExists(resourcename string) resource.TestCheckFun
 		if rs.Primary.ID == "" {
 			return fmt.Errorf("No AVI StringGroup ID is set")
 		}
-		path := "api" + strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		uuid := strings.Split(url, "#")[0]
+		path := "api" + uuid
 		err := conn.Get(path, &obj)
 		if err != nil {
 			return err
@@ -62,7 +64,9 @@ func testAccCheckAVIStringGroupDestroy(s *terraform.State) error {
 		if rs.Type != "avi_stringgroup" {
 			continue
 		}
-		path := "api" + strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		uuid := strings.Split(url, "#")[0]
+		path := "api" + uuid
 		err := conn.Get(path, &obj)
 		if err != nil {
 			if strings.Contains(err.Error(), "404") {

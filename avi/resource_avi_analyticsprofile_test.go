@@ -105,12 +105,6 @@ resource "avi_analyticsprofile" "testAnalyticsProfile" {
 "hs_max_anomaly_penalty" = "10"
 "exclude_gs_down_as_error" = false
 "apdex_server_response_tolerated_factor" = "4.0"
-"client_log_config" {
-"enable_significant_log_collection" = true
-"non_significant_log_processing" = "LOGS_PROCESSING_SYNC_AND_INDEX_ON_DEMAND"
-"significant_log_processing" = "LOGS_PROCESSING_SYNC_AND_INDEX_ON_DEMAND"
-"filtered_log_processing" = "LOGS_PROCESSING_SYNC_AND_INDEX_ON_DEMAND"
-}
 "disable_server_analytics" = false
 "conn_server_lossy_timeo_rexmt_threshold" = "20"
 "exclude_client_close_before_request_as_error" = true
@@ -181,12 +175,6 @@ resource "avi_analyticsprofile" "testAnalyticsProfile" {
 "hs_max_anomaly_penalty" = "10"
 "exclude_gs_down_as_error" = false
 "apdex_server_response_tolerated_factor" = "4.0"
-"client_log_config" {
-"enable_significant_log_collection" = true
-"non_significant_log_processing" = "LOGS_PROCESSING_SYNC_AND_INDEX_ON_DEMAND"
-"significant_log_processing" = "LOGS_PROCESSING_SYNC_AND_INDEX_ON_DEMAND"
-"filtered_log_processing" = "LOGS_PROCESSING_SYNC_AND_INDEX_ON_DEMAND"
-}
 "disable_server_analytics" = false
 "conn_server_lossy_timeo_rexmt_threshold" = "20"
 "exclude_client_close_before_request_as_error" = true

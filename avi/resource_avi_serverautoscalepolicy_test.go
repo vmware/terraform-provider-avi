@@ -2,15 +2,15 @@ package avi
 
 import (
 	"fmt"
+	"strings"
+	"testing"
+
 	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform/helper/resource"
 	"github.com/hashicorp/terraform/terraform"
-	"strings"
-	"testing"
 )
 
 func TestAVIServerAutoScalePolicyBasic(t *testing.T) {
-	updatedConfig := fmt.Sprintf(testAccAVIServerAutoScalePolicyConfig, "abc")
 	resource.Test(t, resource.TestCase{
 		PreCheck:     func() { testAccPreCheck(t) },
 		Providers:    testAccProviders,
@@ -21,10 +21,10 @@ func TestAVIServerAutoScalePolicyBasic(t *testing.T) {
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckAVIServerAutoScalePolicyBExists("avi_serverautoscalepolicy.testserverautoscalepolicy"),
 					resource.TestCheckResourceAttr(
-						"avi_serverautoscalepolicy.testserverautoscalepolicy", "name", "ssp-%s")),
+						"avi_serverautoscalepolicy.testserverautoscalepolicy", "name", "ssp-test")),
 			},
 			{
-				Config: updatedConfig,
+				Config: testAccUpdatedAVIServerAutoScalePolicyConfig,
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckAVIServerAutoScalePolicyBExists("avi_serverautoscalepolicy.testserverautoscalepolicy"),
 					resource.TestCheckResourceAttr(
@@ -46,7 +46,9 @@ func testAccCheckAVIServerAutoScalePolicyBExists(resourcename string) resource.T
 		if rs.Primary.ID == "" {
 			return fmt.Errorf("No Server Auto Scale Policy ID is set")
 		}
-		path := "api" + strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		uuid := strings.Split(url, "#")[0]
+		path := "api" + uuid
 		err := conn.Get(path, &obj)
 		if err != nil {
 			return err
@@ -63,7 +65,9 @@ func testAccCheckAVIServerAutoScalePolicyDestroy(s *terraform.State) error {
 		if rs.Type != "avi_serverautoscalepolicy" {
 			continue
 		}
-		path := "api" + strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		uuid := strings.Split(url, "#")[0]
+		path := "api" + uuid
 		err := conn.Get(path, &obj)
 		if err != nil {
 			if strings.Contains(err.Error(), "404") {
@@ -84,7 +88,18 @@ data "avi_tenant" "default_tenant"{
 }
 
 resource "avi_serverautoscalepolicy" "testserverautoscalepolicy" {
-	name = "ssp-%s"
+	name = "ssp-test"
+	tenant_ref= "${data.avi_tenant.default_tenant.id}"
+}
+`
+
+const testAccUpdatedAVIServerAutoScalePolicyConfig = `
+data "avi_tenant" "default_tenant"{
+	name= "admin"
+}
+
+resource "avi_serverautoscalepolicy" "testserverautoscalepolicy" {
+	name = "ssp-abc"
 	tenant_ref= "${data.avi_tenant.default_tenant.id}"
 }
 `

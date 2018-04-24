@@ -2,15 +2,15 @@ package avi
 
 import (
 	"fmt"
+	"strings"
+	"testing"
+
 	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform/helper/resource"
 	"github.com/hashicorp/terraform/terraform"
-	"strings"
-	"testing"
 )
 
 func TestAVIClusterCloudDetailsBasic(t *testing.T) {
-	updatedConfig := fmt.Sprintf(testAccAVIClusterCloudDetailsConfig, "abc")
 	resource.Test(t, resource.TestCase{
 		PreCheck:     func() { testAccPreCheck(t) },
 		Providers:    testAccProviders,
@@ -21,10 +21,10 @@ func TestAVIClusterCloudDetailsBasic(t *testing.T) {
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckAVIClusterCloudDetailsExists("avi_clusterclouddetails.testclusterclouddetails"),
 					resource.TestCheckResourceAttr(
-						"avi_clusterclouddetails.testclusterclouddetails", "name", "ccd-%s")),
+						"avi_clusterclouddetails.testclusterclouddetails", "name", "ccd-test")),
 			},
 			{
-				Config: updatedConfig,
+				Config: testAccUpdatedAVIClusterCloudDetailsConfig,
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckAVIClusterCloudDetailsExists("avi_clusterclouddetails.testclusterclouddetails"),
 					resource.TestCheckResourceAttr(
@@ -46,7 +46,9 @@ func testAccCheckAVIClusterCloudDetailsExists(resourcename string) resource.Test
 		if rs.Primary.ID == "" {
 			return fmt.Errorf("No Cluster Cloud Details ID is set")
 		}
-		path := "api" + strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		uuid := strings.Split(url, "#")[0]
+		path := "api" + uuid
 		err := conn.Get(path, &obj)
 		if err != nil {
 			return err
@@ -63,7 +65,9 @@ func testAccCheckAVIClusterCloudDetailsDestroy(s *terraform.State) error {
 		if rs.Type != "avi_clusterclouddetails" {
 			continue
 		}
-		path := "api" + strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		uuid := strings.Split(url, "#")[0]
+		path := "api" + uuid
 		err := conn.Get(path, &obj)
 		if err != nil {
 			if strings.Contains(err.Error(), "404") {
@@ -84,7 +88,18 @@ data "avi_tenant" "default_tenant"{
 }
 
 resource "avi_clusterclouddetails" "testclusterclouddetails" {
-	name = "ccd-%s"
+	name = "ccd-test"
+	tenant_ref= "${data.avi_tenant.default_tenant.id}"
+}
+`
+
+const testAccUpdatedAVIClusterCloudDetailsConfig = `
+data "avi_tenant" "default_tenant"{
+	name= "admin"
+}
+
+resource "avi_clusterclouddetails" "testclusterclouddetails" {
+	name = "ccd-abc"
 	tenant_ref= "${data.avi_tenant.default_tenant.id}"
 }
 `

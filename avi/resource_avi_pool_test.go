@@ -2,15 +2,15 @@ package avi
 
 import (
 	"fmt"
+	"strings"
+	"testing"
+
 	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform/helper/resource"
 	"github.com/hashicorp/terraform/terraform"
-	"strings"
-	"testing"
 )
 
 func TestAVIPoolBasic(t *testing.T) {
-	updatedConfig := fmt.Sprintf(testAccAVIPoolConfig, "abc")
 	resource.Test(t, resource.TestCase{
 		PreCheck:     func() { testAccPreCheck(t) },
 		Providers:    testAccProviders,
@@ -21,10 +21,10 @@ func TestAVIPoolBasic(t *testing.T) {
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckAVIPoolExists("avi_pool.testpool"),
 					resource.TestCheckResourceAttr(
-						"avi_pool.testpool", "name", "p42-%s")),
+						"avi_pool.testpool", "name", "p42-test")),
 			},
 			{
-				Config: updatedConfig,
+				Config: testAccUpdatedAVIPoolConfig,
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckAVIPoolExists("avi_pool.testpool"),
 					resource.TestCheckResourceAttr(
@@ -46,7 +46,9 @@ func testAccCheckAVIPoolExists(resourcename string) resource.TestCheckFunc {
 		if rs.Primary.ID == "" {
 			return fmt.Errorf("No AVI POOL ID is set")
 		}
-		path := "api" + strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		uuid := strings.Split(url, "#")[0]
+		path := "api" + uuid
 		err := conn.Get(path, &obj)
 		if err != nil {
 			return err
@@ -63,7 +65,9 @@ func testAccCheckAVIPoolDestroy(s *terraform.State) error {
 		if rs.Type != "avi_pool" {
 			continue
 		}
-		path := "api" + strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		uuid := strings.Split(url, "#")[0]
+		path := "api" + uuid
 		err := conn.Get(path, &obj)
 		if err != nil {
 			if strings.Contains(err.Error(), "404") {
@@ -90,7 +94,7 @@ data "avi_vrfcontext" "global_vrf" {
 	name= "global"
 }
 resource "avi_pool" "testpool" {
-	name = "p42-%s"
+	name = "p42-test"
 	server_count = 1
 	servers {
 		hostname= "10.90.64.66"
@@ -99,6 +103,41 @@ resource "avi_pool" "testpool" {
 		  addr= "10.90.64.66"
 		}
 		port= 8080
+		enabled = false
+		ratio = 7
+	}
+	fail_action= {
+		type= "FAIL_ACTION_CLOSE_CONN"
+	}
+	vrf_ref="${data.avi_vrfcontext.global_vrf.id}"
+	tenant_ref= "${data.avi_tenant.default_tenant.id}"
+	cloud_ref= "${data.avi_cloud.default_cloud.id}"
+}
+`
+
+const testAccUpdatedAVIPoolConfig = `
+data "avi_tenant" "default_tenant"{
+	name= "admin"
+}
+
+data "avi_cloud" "default_cloud" {
+	name= "Default-Cloud"
+}
+data "avi_vrfcontext" "global_vrf" {
+	name= "global"
+}
+resource "avi_pool" "testpool" {
+	name = "p42-abc"
+	server_count = 1
+	servers {
+		hostname= "10.90.64.66"
+		ip= {
+		  type= "V4"
+		  addr= "10.90.64.66"
+		}
+		port= 8080
+		enabled = false
+		ratio = 7
 	}
 	fail_action= {
 		type= "FAIL_ACTION_CLOSE_CONN"

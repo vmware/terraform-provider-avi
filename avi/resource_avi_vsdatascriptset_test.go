@@ -2,15 +2,15 @@ package avi
 
 import (
 	"fmt"
+	"strings"
+	"testing"
+
 	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform/helper/resource"
 	"github.com/hashicorp/terraform/terraform"
-	"strings"
-	"testing"
 )
 
 func TestAVIVSDataScriptSetBasic(t *testing.T) {
-	updatedConfig := fmt.Sprintf(testAccAVIVSDataScriptSetConfig, "abc")
 	resource.Test(t, resource.TestCase{
 		PreCheck:     func() { testAccPreCheck(t) },
 		Providers:    testAccProviders,
@@ -21,10 +21,10 @@ func TestAVIVSDataScriptSetBasic(t *testing.T) {
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckAVIVSDataScriptSetExists("avi_vsdatascriptset.testvsdatascriptset"),
 					resource.TestCheckResourceAttr(
-						"avi_vsdatascriptset.testvsdatascriptset", "name", "vsd-%s")),
+						"avi_vsdatascriptset.testvsdatascriptset", "name", "vsd-test")),
 			},
 			{
-				Config: updatedConfig,
+				Config: testAccUpdatedAVIVSDataScriptSetConfig,
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckAVIVSDataScriptSetExists("avi_vsdatascriptset.testvsdatascriptset"),
 					resource.TestCheckResourceAttr(
@@ -46,7 +46,9 @@ func testAccCheckAVIVSDataScriptSetExists(resourcename string) resource.TestChec
 		if rs.Primary.ID == "" {
 			return fmt.Errorf("No VS DataScript Set ID is set")
 		}
-		path := "api" + strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		uuid := strings.Split(url, "#")[0]
+		path := "api" + uuid
 		err := conn.Get(path, &obj)
 		if err != nil {
 			return err
@@ -63,7 +65,9 @@ func testAccCheckAVIVSDataScriptSetDestroy(s *terraform.State) error {
 		if rs.Type != "avi_vsdatascriptset" {
 			continue
 		}
-		path := "api" + strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		uuid := strings.Split(url, "#")[0]
+		path := "api" + uuid
 		err := conn.Get(path, &obj)
 		if err != nil {
 			if strings.Contains(err.Error(), "404") {
@@ -87,7 +91,21 @@ data "avi_cloud" "default_cloud" {
 }
 
 resource "avi_vsdatascriptset" "testvsdatascriptset" {
-	name = "vsd-%s"
+	name = "vsd-test"
+	tenant_ref= "${data.avi_tenant.default_tenant.id}"
+}
+`
+
+const testAccUpdatedAVIVSDataScriptSetConfig = `
+data "avi_tenant" "default_tenant"{
+	name= "admin"
+}
+data "avi_cloud" "default_cloud" {
+	name= "Default-Cloud"
+}
+
+resource "avi_vsdatascriptset" "testvsdatascriptset" {
+	name = "vsd-abc"
 	tenant_ref= "${data.avi_tenant.default_tenant.id}"
 }
 `

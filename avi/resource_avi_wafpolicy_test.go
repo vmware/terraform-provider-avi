@@ -2,19 +2,20 @@ package avi
 
 import (
 	"fmt"
+	"strings"
+	"testing"
+
 	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform/helper/resource"
 	"github.com/hashicorp/terraform/terraform"
-	"strings"
-	"testing"
 )
 
 func TestAVIWAFPolicyBasic(t *testing.T) {
 	//updatedConfig := fmt.Sprintf(testAccAVIWAFPolicyConfig, "abc")
 	resource.Test(t, resource.TestCase{
-		PreCheck:  func() { testAccPreCheck(t) },
-		Providers: testAccProviders,
-		//CheckDestroy: testAccCheckAVIWAFPolicyDestroy,
+		PreCheck:     func() { testAccPreCheck(t) },
+		Providers:    testAccProviders,
+		CheckDestroy: testAccCheckAVIWAFPolicyDestroy,
 		Steps: []resource.TestStep{
 			{
 				Config: testAccAVIWAFPolicyConfig,
@@ -46,7 +47,9 @@ func testAccCheckAVIWAFPolicyExists(resourcename string) resource.TestCheckFunc 
 		if rs.Primary.ID == "" {
 			return fmt.Errorf("No WAF Policy ID is set")
 		}
-		path := "api" + strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		uuid := strings.Split(url, "#")[0]
+		path := "api" + uuid
 		err := conn.Get(path, &obj)
 		if err != nil {
 			return err
@@ -63,7 +66,9 @@ func testAccCheckAVIWAFPolicyDestroy(s *terraform.State) error {
 		if rs.Type != "avi_wafpolicy" {
 			continue
 		}
-		path := "api" + strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		uuid := strings.Split(url, "#")[0]
+		path := "api" + uuid
 		err := conn.Get(path, &obj)
 		if err != nil {
 			if strings.Contains(err.Error(), "404") {

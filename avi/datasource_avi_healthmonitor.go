@@ -75,6 +75,14 @@ func dataSourceAviHealthMonitor() *schema.Resource {
 				Optional: true,
 				Default:  10,
 			},
+			"sip_monitor": &schema.Schema{
+				Type:     schema.TypeSet,
+				Optional: true,
+				Elem:     ResourceHealthMonitorSIPSchema(),
+				Set: func(v interface{}) int {
+					return 0
+				},
+			},
 			"successful_checks": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,

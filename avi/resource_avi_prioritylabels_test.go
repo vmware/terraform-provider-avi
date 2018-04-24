@@ -2,15 +2,15 @@ package avi
 
 import (
 	"fmt"
+	"strings"
+	"testing"
+
 	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform/helper/resource"
 	"github.com/hashicorp/terraform/terraform"
-	"strings"
-	"testing"
 )
 
 func TestAVIPriorityLabelsBasic(t *testing.T) {
-	updatedConfig := fmt.Sprintf(testAccAVIPriorityLabelsConfig, "abc")
 	resource.Test(t, resource.TestCase{
 		PreCheck:     func() { testAccPreCheck(t) },
 		Providers:    testAccProviders,
@@ -21,10 +21,10 @@ func TestAVIPriorityLabelsBasic(t *testing.T) {
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckAVIPriorityLabelsExists("avi_prioritylabels.testprioritylabels"),
 					resource.TestCheckResourceAttr(
-						"avi_prioritylabels.testprioritylabels", "name", "pl-%s")),
+						"avi_prioritylabels.testprioritylabels", "name", "pl-test")),
 			},
 			{
-				Config: updatedConfig,
+				Config: testAccUpdatedAVIPriorityLabelsConfig,
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckAVIPriorityLabelsExists("avi_prioritylabels.testprioritylabels"),
 					resource.TestCheckResourceAttr(
@@ -46,7 +46,9 @@ func testAccCheckAVIPriorityLabelsExists(resourcename string) resource.TestCheck
 		if rs.Primary.ID == "" {
 			return fmt.Errorf("No Priority Labels ID is set")
 		}
-		path := "api" + strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		uuid := strings.Split(url, "#")[0]
+		path := "api" + uuid
 		err := conn.Get(path, &obj)
 		if err != nil {
 			return err
@@ -63,7 +65,9 @@ func testAccCheckAVIPriorityLabelsDestroy(s *terraform.State) error {
 		if rs.Type != "avi_prioritylabels" {
 			continue
 		}
-		path := "api" + strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		uuid := strings.Split(url, "#")[0]
+		path := "api" + uuid
 		err := conn.Get(path, &obj)
 		if err != nil {
 			if strings.Contains(err.Error(), "404") {
@@ -87,7 +91,23 @@ data "avi_cloud" "default_cloud" {
 }
 
 resource "avi_prioritylabels" "testprioritylabels" {
-	name = "pl-%s"
+	name = "pl-test"
+	description = "test priority labels"
+	tenant_ref= "${data.avi_tenant.default_tenant.id}"
+	cloud_ref= "${data.avi_cloud.default_cloud.id}"
+}
+`
+
+const testAccUpdatedAVIPriorityLabelsConfig = `
+data "avi_tenant" "default_tenant"{
+	name= "admin"
+}
+data "avi_cloud" "default_cloud" {
+	name= "Default-Cloud"
+}
+
+resource "avi_prioritylabels" "testprioritylabels" {
+	name = "pl-abc"
 	description = "test priority labels"
 	tenant_ref= "${data.avi_tenant.default_tenant.id}"
 	cloud_ref= "${data.avi_cloud.default_cloud.id}"

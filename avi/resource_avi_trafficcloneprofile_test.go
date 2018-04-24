@@ -2,15 +2,15 @@ package avi
 
 import (
 	"fmt"
+	"strings"
+	"testing"
+
 	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform/helper/resource"
 	"github.com/hashicorp/terraform/terraform"
-	"strings"
-	"testing"
 )
 
 func TestAVITrafficCloneProfileBasic(t *testing.T) {
-	updatedConfig := fmt.Sprintf(testAccAVITrafficCloneProfileConfig, "abc")
 	resource.Test(t, resource.TestCase{
 		PreCheck:     func() { testAccPreCheck(t) },
 		Providers:    testAccProviders,
@@ -21,10 +21,10 @@ func TestAVITrafficCloneProfileBasic(t *testing.T) {
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckAVITrafficCloneProfileExists("avi_trafficcloneprofile.testtrafficcloneprofile"),
 					resource.TestCheckResourceAttr(
-						"avi_trafficcloneprofile.testtrafficcloneprofile", "name", "tp-%s")),
+						"avi_trafficcloneprofile.testtrafficcloneprofile", "name", "tp-test")),
 			},
 			{
-				Config: updatedConfig,
+				Config: testAccUpdatedAVITrafficCloneProfileConfig,
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckAVITrafficCloneProfileExists("avi_trafficcloneprofile.testtrafficcloneprofile"),
 					resource.TestCheckResourceAttr(
@@ -46,7 +46,9 @@ func testAccCheckAVITrafficCloneProfileExists(resourcename string) resource.Test
 		if rs.Primary.ID == "" {
 			return fmt.Errorf("No Traffic Clone Profile ID is set")
 		}
-		path := "api" + strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		uuid := strings.Split(url, "#")[0]
+		path := "api" + uuid
 		err := conn.Get(path, &obj)
 		if err != nil {
 			return err
@@ -63,7 +65,9 @@ func testAccCheckAVITrafficCloneProfileDestroy(s *terraform.State) error {
 		if rs.Type != "avi_trafficcloneprofile" {
 			continue
 		}
-		path := "api" + strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		uuid := strings.Split(url, "#")[0]
+		path := "api" + uuid
 		err := conn.Get(path, &obj)
 		if err != nil {
 			if strings.Contains(err.Error(), "404") {
@@ -87,7 +91,22 @@ data "avi_cloud" "default_cloud" {
 }
 
 resource "avi_trafficcloneprofile" "testtrafficcloneprofile" {
-	name = "tp-%s"
+	name = "tp-test"
+	tenant_ref= "${data.avi_tenant.default_tenant.id}"
+	cloud_ref= "${data.avi_cloud.default_cloud.id}"
+}
+`
+
+const testAccUpdatedAVITrafficCloneProfileConfig = `
+data "avi_tenant" "default_tenant"{
+	name= "admin"
+}
+data "avi_cloud" "default_cloud" {
+	name= "Default-Cloud"
+}
+
+resource "avi_trafficcloneprofile" "testtrafficcloneprofile" {
+	name = "tp-abc"
 	tenant_ref= "${data.avi_tenant.default_tenant.id}"
 	cloud_ref= "${data.avi_cloud.default_cloud.id}"
 }

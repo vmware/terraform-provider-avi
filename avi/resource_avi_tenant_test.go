@@ -2,15 +2,15 @@ package avi
 
 import (
 	"fmt"
+	"strings"
+	"testing"
+
 	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform/helper/resource"
 	"github.com/hashicorp/terraform/terraform"
-	"strings"
-	"testing"
 )
 
 func TestAVITenantBasic(t *testing.T) {
-	updatedConfig := fmt.Sprintf(testAccAVITenantConfig, "abc")
 	resource.Test(t, resource.TestCase{
 		PreCheck:     func() { testAccPreCheck(t) },
 		Providers:    testAccProviders,
@@ -21,10 +21,10 @@ func TestAVITenantBasic(t *testing.T) {
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckAVITenantExists("avi_tenant.test_tenant"),
 					resource.TestCheckResourceAttr(
-						"avi_tenant.test_tenant", "name", "tenant-%s")),
+						"avi_tenant.test_tenant", "name", "tenant-test")),
 			},
 			{
-				Config: updatedConfig,
+				Config: testAccUpdatedAVITenantConfig,
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckAVIVSVipExists("avi_tenant.test_tenant"),
 					resource.TestCheckResourceAttr(
@@ -46,7 +46,9 @@ func testAccCheckAVITenantExists(resourcename string) resource.TestCheckFunc {
 		if rs.Primary.ID == "" {
 			return fmt.Errorf("No AVI Tenant ID is set")
 		}
-		path := "api" + strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		uuid := strings.Split(url, "#")[0]
+		path := "api" + uuid
 		err := conn.Get(path, &obj)
 		if err != nil {
 			return err
@@ -62,7 +64,9 @@ func testAccCheckAVITenantDestroy(s *terraform.State) error {
 		if rs.Type != "avi_tenant" {
 			continue
 		}
-		path := "api" + strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		uuid := strings.Split(url, "#")[0]
+		path := "api" + uuid
 		err := conn.Get(path, &obj)
 		if err != nil {
 			if strings.Contains(err.Error(), "404") {
@@ -79,11 +83,12 @@ func testAccCheckAVITenantDestroy(s *terraform.State) error {
 
 const testAccAVITenantConfig = `
 resource "avi_tenant" "test_tenant"{
-	name= "tenant-%s"
-	config_settings {
-		se_in_provider_context = true
-		tenant_access_to_provider_se = true
-		tenant_vrf = false
-	}
+	name= "tenant-test"
+}
+`
+
+const testAccUpdatedAVITenantConfig = `
+resource "avi_tenant" "test_tenant"{
+	name= "tenant-abc"
 }
 `

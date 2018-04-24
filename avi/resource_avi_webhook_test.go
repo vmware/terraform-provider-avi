@@ -2,11 +2,12 @@ package avi
 
 import (
 	"fmt"
+	"strings"
+	"testing"
+
 	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform/helper/resource"
 	"github.com/hashicorp/terraform/terraform"
-	"strings"
-	"testing"
 )
 
 func TestAVIWebhookBasic(t *testing.T) {
@@ -21,7 +22,7 @@ func TestAVIWebhookBasic(t *testing.T) {
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckAVIWebhookExists("avi_webhook.testwebhook"),
 					resource.TestCheckResourceAttr(
-						"avi_webhook.testwebhook", "name", "wb-%s")),
+						"avi_webhook.testwebhook", "name", "wb-test")),
 			},
 			{
 				Config: updatetestAccAVIWebhookConfig,
@@ -46,7 +47,9 @@ func testAccCheckAVIWebhookExists(resourcename string) resource.TestCheckFunc {
 		if rs.Primary.ID == "" {
 			return fmt.Errorf("No Webhook ID is set")
 		}
-		path := "api" + strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		uuid := strings.Split(url, "#")[0]
+		path := "api" + uuid
 		err := conn.Get(path, &obj)
 		if err != nil {
 			return err
@@ -63,7 +66,9 @@ func testAccCheckAVIWebhookDestroy(s *terraform.State) error {
 		if rs.Type != "avi_webhook" {
 			continue
 		}
-		path := "api" + strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		uuid := strings.Split(url, "#")[0]
+		path := "api" + uuid
 		err := conn.Get(path, &obj)
 		if err != nil {
 			if strings.Contains(err.Error(), "404") {
@@ -84,7 +89,7 @@ data "avi_tenant" "default_tenant"{
 }
 
 resource "avi_webhook" "testwebhook" {
-	name = "wb-%s"
+	name = "wb-test"
 	tenant_ref= "${data.avi_tenant.default_tenant.id}"
 }
 `

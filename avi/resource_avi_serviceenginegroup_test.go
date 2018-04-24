@@ -45,7 +45,9 @@ func testAccCheckAVIServiceEngineGroupExists(resourcename string) resource.TestC
 		if rs.Primary.ID == "" {
 			return fmt.Errorf("No AVI ServiceEngineGroup ID is set")
 		}
-		path := "api" + strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		uuid := strings.Split(url, "#")[0]
+		path := "api" + uuid
 		err := conn.Get(path, &obj)
 		if err != nil {
 			return err
@@ -62,7 +64,9 @@ func testAccCheckAVIServiceEngineGroupDestroy(s *terraform.State) error {
 		if rs.Type != "avi_serviceenginegroup" {
 			continue
 		}
-		path := "api" + strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		uuid := strings.Split(url, "#")[0]
+		path := "api" + uuid
 		err := conn.Get(path, &obj)
 		if err != nil {
 			if strings.Contains(err.Error(), "404") {
@@ -117,6 +121,7 @@ resource "avi_serviceenginegroup" "testServiceEngineGroup" {
 "se_remote_punt_udp_port" = "1501"
 "ignore_rtt_threshold" = "5000"
 "active_standby" = false
+"distribute_queues" = false
 "disable_csum_offloads" = false
 "enable_vip_on_all_interfaces" = true
 "se_probe_port" = "7"
@@ -207,6 +212,7 @@ resource "avi_serviceenginegroup" "testServiceEngineGroup" {
 "se_remote_punt_udp_port" = "1501"
 "ignore_rtt_threshold" = "5000"
 "active_standby" = false
+"distribute_queues" = false
 "disable_csum_offloads" = false
 "enable_vip_on_all_interfaces" = true
 "se_probe_port" = "7"

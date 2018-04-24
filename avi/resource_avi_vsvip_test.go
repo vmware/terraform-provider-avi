@@ -2,15 +2,15 @@ package avi
 
 import (
 	"fmt"
+	"strings"
+	"testing"
+
 	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform/helper/resource"
 	"github.com/hashicorp/terraform/terraform"
-	"strings"
-	"testing"
 )
 
 func TestAVIVSVipBasic(t *testing.T) {
-	updatedConfig := fmt.Sprintf(testAccAVIVSVipConfig, "abc")
 	resource.Test(t, resource.TestCase{
 		PreCheck:     func() { testAccPreCheck(t) },
 		Providers:    testAccProviders,
@@ -21,10 +21,10 @@ func TestAVIVSVipBasic(t *testing.T) {
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckAVIVSVipExists("avi_vsvip.testvsvip"),
 					resource.TestCheckResourceAttr(
-						"avi_vsvip.testvsvip", "name", "vsvip-%s")),
+						"avi_vsvip.testvsvip", "name", "vsvip-test")),
 			},
 			{
-				Config: updatedConfig,
+				Config: testAccUpdatedAVIVSVipConfig,
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckAVIVSVipExists("avi_vsvip.testvsvip"),
 					resource.TestCheckResourceAttr(
@@ -46,7 +46,9 @@ func testAccCheckAVIVSVipExists(resourcename string) resource.TestCheckFunc {
 		if rs.Primary.ID == "" {
 			return fmt.Errorf("No VSVip ID is set")
 		}
-		path := "api" + strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		uuid := strings.Split(url, "#")[0]
+		path := "api" + uuid
 		err := conn.Get(path, &obj)
 		if err != nil {
 			return err
@@ -63,7 +65,9 @@ func testAccCheckAVIVSVipDestroy(s *terraform.State) error {
 		if rs.Type != "avi_vsvip" {
 			continue
 		}
-		path := "api" + strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		uuid := strings.Split(url, "#")[0]
+		path := "api" + uuid
 		err := conn.Get(path, &obj)
 		if err != nil {
 			if strings.Contains(err.Error(), "404") {
@@ -90,7 +94,7 @@ data "avi_vrfcontext" "global_vrf" {
 }
 
 resource "avi_vsvip" "testvsvip" {
-	name = "vsvip-%s"
+	name = "vsvip-test"
 	tenant_ref= "${data.avi_tenant.default_tenant.id}"
 	cloud_ref= "${data.avi_cloud.default_cloud.id}"
 	vrf_context_ref= "${data.avi_vrfcontext.global_vrf.id}"
@@ -98,7 +102,38 @@ resource "avi_vsvip" "testvsvip" {
 		vip_id= "1"
 		avi_allocated_fip= false
 		auto_allocate_ip= false
-		enabled= true
+		enabled= false
+		auto_allocate_floating_ip= false
+		avi_allocated_vip= false
+		ip_address= {
+			type= "V4"
+			addr= "1.2.3.1"
+		}
+	}]
+}
+`
+
+const testAccUpdatedAVIVSVipConfig = `
+data "avi_tenant" "default_tenant"{
+	name= "admin"
+}
+data "avi_cloud" "default_cloud" {
+	name= "Default-Cloud"
+}
+data "avi_vrfcontext" "global_vrf" {
+	name= "global"
+}
+
+resource "avi_vsvip" "testvsvip" {
+	name = "vsvip-abc"
+	tenant_ref= "${data.avi_tenant.default_tenant.id}"
+	cloud_ref= "${data.avi_cloud.default_cloud.id}"
+	vrf_context_ref= "${data.avi_vrfcontext.global_vrf.id}"
+	vip= [{
+		vip_id= "1"
+		avi_allocated_fip= false
+		auto_allocate_ip= false
+		enabled= false
 		auto_allocate_floating_ip= false
 		avi_allocated_vip= false
 		ip_address= {

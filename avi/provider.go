@@ -12,7 +12,7 @@ import (
 	"github.com/hashicorp/go-multierror"
 	"github.com/hashicorp/terraform/helper/schema"
 	"github.com/hashicorp/terraform/terraform"
-	"log"
+	//	"log"
 )
 
 func Provider() terraform.ResourceProvider {
@@ -46,7 +46,7 @@ func Provider() terraform.ResourceProvider {
 				Type:        schema.TypeString,
 				Optional:    true,
 				DefaultFunc: schema.EnvDefaultFunc("AVI_VERSION", nil),
-				Description: "Avi tenant for Avi Controller.",
+				Description: "Avi version for Avi Controller.",
 			},
 		},
 		DataSourcesMap: map[string]*schema.Resource{
@@ -188,7 +188,7 @@ func providerConfigure(d *schema.ResourceData) (interface{}, error) {
 		Password:   d.Get("avi_password").(string),
 		Controller: d.Get("avi_controller").(string),
 		Tenant:     "admin",
-		Version:    "17.2.7",
+		Version:    "17.2.8",
 	}
 	if username, ok := d.GetOk("avi_username"); ok {
 		config.Username = username.(string)
@@ -208,9 +208,8 @@ func providerConfigure(d *schema.ResourceData) (interface{}, error) {
 		session.SetVersion(config.Version),
 		session.SetInsecure)
 
-	log.Println("Avi Client created for user %v tenant %v version %v",
-		config.Username, config.Tenant, config.Version)
-
+	//	log.Println("Avi Client created for user %v tenant %v version %v",
+	//		config.Username, config.Tenant, config.Version)
 	return aviClient, err
 }
 
@@ -228,10 +227,6 @@ func (c *Credentials) validate() error {
 
 	if c.Controller == "" {
 		err = multierror.Append(err, fmt.Errorf("Avi Controller must be provided"))
-	}
-
-	if c.Username == "" {
-		err = multierror.Append(err, fmt.Errorf("Avi Controller username must be provided"))
 	}
 
 	if c.Password == "" {

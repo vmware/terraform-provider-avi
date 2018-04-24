@@ -2,15 +2,15 @@ package avi
 
 import (
 	"fmt"
+	"strings"
+	"testing"
+
 	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform/helper/resource"
 	"github.com/hashicorp/terraform/terraform"
-	"strings"
-	"testing"
 )
 
 func TestAVIHTTPPolicySetBasic(t *testing.T) {
-	updatedConfig := fmt.Sprintf(testAccAVIHTTPPolicySetConfig, "abc")
 	resource.Test(t, resource.TestCase{
 		PreCheck:     func() { testAccPreCheck(t) },
 		Providers:    testAccProviders,
@@ -21,10 +21,10 @@ func TestAVIHTTPPolicySetBasic(t *testing.T) {
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckAVIHTTPPolicySetExists("avi_httppolicyset.testhttppolicyset"),
 					resource.TestCheckResourceAttr(
-						"avi_httppolicyset.testhttppolicyset", "name", "policy-%s")),
+						"avi_httppolicyset.testhttppolicyset", "name", "policy-test")),
 			},
 			{
-				Config: updatedConfig,
+				Config: testAccUpdatedAVIHTTPPolicySetConfig,
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckAVIHTTPPolicySetExists("avi_httppolicyset.testhttppolicyset"),
 					resource.TestCheckResourceAttr(
@@ -46,7 +46,9 @@ func testAccCheckAVIHTTPPolicySetExists(resourcename string) resource.TestCheckF
 		if rs.Primary.ID == "" {
 			return fmt.Errorf("No HTTP Policy Set ID is set")
 		}
-		path := "api" + strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		uuid := strings.Split(url, "#")[0]
+		path := "api" + uuid
 		err := conn.Get(path, &obj)
 		if err != nil {
 			return err
@@ -63,7 +65,9 @@ func testAccCheckAVIHTTPPolicySetDestroy(s *terraform.State) error {
 		if rs.Type != "avi_httppolicyset" {
 			continue
 		}
-		path := "api" + strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		uuid := strings.Split(url, "#")[0]
+		path := "api" + uuid
 		err := conn.Get(path, &obj)
 		if err != nil {
 			if strings.Contains(err.Error(), "404") {
@@ -89,27 +93,19 @@ data "avi_vrfcontext" "global_vrf" {
 	name= "global"
 }
 
-resource "avi_pool" "testpool" {
-	name = "p42"
-	server_count = 1
-	servers {
-		hostname= "10.90.64.66"
-		ip= {
-		  type= "V4"
-		  addr= "10.90.64.66"
-		}
-		port= 8080
-	}
+resource "avi_poolgroup" "testpoolgroup" {
+	name = "pg-test"
+	implicit_priority_labels= false
+	min_servers= 0
 	fail_action= {
 		type= "FAIL_ACTION_CLOSE_CONN"
 	}
-	vrf_ref="${data.avi_vrfcontext.global_vrf.id}"
 	tenant_ref= "${data.avi_tenant.default_tenant.id}"
 	cloud_ref= "${data.avi_cloud.default_cloud.id}"
 }
 
 resource "avi_httppolicyset" "testhttppolicyset" {
-	name = "policy-%s"
+	name = "policy-test"
 	tenant_ref= "${data.avi_tenant.default_tenant.id}"
 	is_internal_policy = false
 	http_request_policy= {
@@ -128,8 +124,58 @@ resource "avi_httppolicyset" "testhttppolicyset" {
 				}]
 			}
 			switching_action= {
-				action= "HTTP_SWITCHING_SELECT_POOL"
-				pool_ref = "${avi_pool.testpool.id}"
+				action= "HTTP_SWITCHING_SELECT_POOLGROUP"
+				pool_group_ref = "${avi_poolgroup.testpoolgroup.id}"
+			}
+		}]
+	}
+}
+`
+
+const testAccUpdatedAVIHTTPPolicySetConfig = `
+data "avi_tenant" "default_tenant"{
+	name= "admin"
+}
+data "avi_cloud" "default_cloud" {
+	name= "Default-Cloud"
+}
+data "avi_vrfcontext" "global_vrf" {
+	name= "global"
+}
+
+resource "avi_poolgroup" "testpoolgroup" {
+	name = "pg-test"
+	implicit_priority_labels= false
+	min_servers= 0
+	fail_action= {
+		type= "FAIL_ACTION_CLOSE_CONN"
+	}
+	tenant_ref= "${data.avi_tenant.default_tenant.id}"
+	cloud_ref= "${data.avi_cloud.default_cloud.id}"
+}
+
+resource "avi_httppolicyset" "testhttppolicyset" {
+	name = "policy-abc"
+	tenant_ref= "${data.avi_tenant.default_tenant.id}"
+	is_internal_policy = false
+	http_request_policy= {
+		rules= [{
+         	index= 1
+      		enable= true
+			name= "rule-1"
+			match= {
+				hdrs= [{
+					match_case= "INSENSITIVE"
+					hdr= "User-Agent"
+					value= [
+						"Backup_Pool_Redirect"
+					]
+					match_criteria= "HDR_CONTAINS"
+				}]
+			}
+			switching_action= {
+				action= "HTTP_SWITCHING_SELECT_POOLGROUP"
+				pool_group_ref = "${avi_poolgroup.testpoolgroup.id}"
 			}
 		}]
 	}

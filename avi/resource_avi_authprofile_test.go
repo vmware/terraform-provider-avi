@@ -2,15 +2,15 @@ package avi
 
 import (
 	"fmt"
+	"strings"
+	"testing"
+
 	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform/helper/resource"
 	"github.com/hashicorp/terraform/terraform"
-	"strings"
-	"testing"
 )
 
 func TestAVIAuthProfileBasic(t *testing.T) {
-	updatedConfig := fmt.Sprintf(testAccAVIAuthProfileConfig, "abc")
 	resource.Test(t, resource.TestCase{
 		PreCheck:     func() { testAccPreCheck(t) },
 		Providers:    testAccProviders,
@@ -21,14 +21,7 @@ func TestAVIAuthProfileBasic(t *testing.T) {
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckAVIAuthProfileExists("avi_authprofile.testauthprofile"),
 					resource.TestCheckResourceAttr(
-						"avi_authprofile.testauthprofile", "name", "ap-%s")),
-			},
-			{
-				Config: updatedConfig,
-				Check: resource.ComposeTestCheckFunc(
-					testAccCheckAVIAuthProfileExists("avi_authprofile.testauthprofile"),
-					resource.TestCheckResourceAttr(
-						"avi_authprofile.testauthprofile", "name", "ap-abc")),
+						"avi_authprofile.testauthprofile", "name", "ap-test")),
 			},
 		},
 	})
@@ -46,7 +39,9 @@ func testAccCheckAVIAuthProfileExists(resourcename string) resource.TestCheckFun
 		if rs.Primary.ID == "" {
 			return fmt.Errorf("No Auth Profile ID is set")
 		}
-		path := "api" + strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		uuid := strings.Split(url, "#")[0]
+		path := "api" + uuid
 		err := conn.Get(path, &obj)
 		if err != nil {
 			return err
@@ -63,7 +58,9 @@ func testAccCheckAVIAuthProfileDestroy(s *terraform.State) error {
 		if rs.Type != "avi_authprofile" {
 			continue
 		}
-		path := "api" + strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
+		uuid := strings.Split(url, "#")[0]
+		path := "api" + uuid
 		err := conn.Get(path, &obj)
 		if err != nil {
 			if strings.Contains(err.Error(), "404") {
@@ -84,11 +81,7 @@ data "avi_tenant" "default_tenant"{
 }
 
 resource "avi_authprofile" "testauthprofile" {
-	name = "ap-%s"
-	http= {
-		cache_expiration_time= 5
-		group_member_is_full_dn= false
-	}
+	name = "ap-test"
 	ldap= {
 		security_mode= "AUTH_LDAP_SECURE_NONE"
 		settings= {
@@ -106,9 +99,39 @@ resource "avi_authprofile" "testauthprofile" {
 		server= [
 			"10.0.0.1"
 		]
-		user_bind= {
-			token= "<user>"
+		full_name_attribute= "name"
+		email_attribute= "email"
+		port= 389
+	}
+	type= "AUTH_PROFILE_LDAP"
+	tenant_ref= "${data.avi_tenant.default_tenant.id}"
+}
+`
+
+const testAccUpdatedAVIAuthProfileConfig = `
+data "avi_tenant" "default_tenant"{
+	name= "admin"
+}
+
+resource "avi_authprofile" "testauthprofile" {
+	name = "ap-abc"
+	ldap= {
+		security_mode= "AUTH_LDAP_SECURE_NONE"
+		settings= {
+			group_search_scope= "AUTH_LDAP_SCOPE_SUBTREE"
+			group_member_is_full_dn= true
+			user_search_scope= "AUTH_LDAP_SCOPE_ONE"
+			user_id_attribute= "gg"
+			group_member_attribute= "member"
+			group_filter= "(objectClass=*)"
+			ignore_referrals= false
+			password= "avi123"
+			admin_bind_dn= "avinetworkstest.com"
 		}
+		bind_as_administrator= true
+		server= [
+			"10.0.0.1"
+		]
 		full_name_attribute= "name"
 		email_attribute= "email"
 		port= 389
