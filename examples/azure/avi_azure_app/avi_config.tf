@@ -29,6 +29,7 @@ provider "avi" {
   avi_password   = "${var.avi_password}"
   avi_controller = "${data.azurerm_public_ip.terraform_controller.ip_address}"
   avi_tenant     = "admin"
+  avi_version = "17.2.7"
 }
 
 data "avi_applicationprofile" "system_http_profile" {
@@ -44,7 +45,7 @@ data "avi_tenant" "default_tenant" {
 }
 
 data "avi_cloud" "azure_cloud_cfg" {
-  name = "Default-Cloud"
+  name = "Azure"
 }
 
 data "avi_vrfcontext" "terraform_vrf" {
@@ -124,7 +125,7 @@ resource "azurerm_virtual_machine_scale_set" "terraform_scale_set_v1" {
   sku {
     name = "Standard_A0"
     tier = "Standard"
-    capacity = 2
+    capacity = 1
   }
 
   storage_profile_image_reference {
@@ -179,7 +180,7 @@ resource "azurerm_virtual_machine_scale_set" "terraform_scale_set_v1" {
     type_handler_version = "1.2"
     settings = <<SETTINGS
     {
-        "commandToExecute": "sudo apt-get update && sudo apt-get -y install nginx"
+        "commandToExecute": "apt-get -y install nginx"
     }
     SETTINGS
   }
@@ -199,7 +200,7 @@ resource "azurerm_virtual_machine_scale_set" "terraform_scale_set_v2" {
   sku {
     name = "Standard_A0"
     tier = "Standard"
-    capacity = 2
+    capacity = 1
   }
 
   storage_profile_image_reference {
@@ -256,7 +257,7 @@ resource "azurerm_virtual_machine_scale_set" "terraform_scale_set_v2" {
     type_handler_version = "1.2"
     settings = <<SETTINGS
     {
-        "commandToExecute": "sudo apt-get -y install nginx"
+        "commandToExecute": "apt-get -y install nginx"
     }
     SETTINGS
   }

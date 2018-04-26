@@ -22,6 +22,7 @@ provider "avi" {
   avi_password   = "${var.avi_password}"
   avi_controller = "${data.azurerm_public_ip.terraform_controller.ip_address}"
   avi_tenant     = "admin"
+  avi_version    = "17.2.7"
 }
 
 data "avi_applicationprofile" "system_http_profile" {
@@ -37,7 +38,7 @@ data "avi_tenant" "default_tenant" {
 }
 
 data "avi_cloud" "azure_cloud_cfg" {
-  name = "Default-Cloud"
+  name = "Azure"
 }
 
 data "avi_vrfcontext" "terraform_vrf" {
@@ -70,17 +71,13 @@ data "avi_serviceenginegroup" "se_group" {
   cloud_ref = "${data.avi_cloud.azure_cloud_cfg.id}"
 }
 
-data "avi_pool" "azure-pool-v1" {
-  name = "azure_poolv1"
+
+data "avi_poolgroup" "azure-poolgroup" {
+  name = "azure_poolgroup"
   tenant_ref = "${data.avi_tenant.default_tenant.id}"
   cloud_ref  = "${data.avi_cloud.azure_cloud_cfg.id}"
 }
 
-data "avi_pool" "azure-pool-v2" {
-  name = "azure_poolv2"
-  tenant_ref = "${data.avi_tenant.default_tenant.id}"
-  cloud_ref  = "${data.avi_cloud.azure_cloud_cfg.id}"
-}
 
 resource "azurerm_subnet" "terraform_vip_subnet" {
   name                 = "${var.project_name}_terraform_vip_subnet"
@@ -90,28 +87,9 @@ resource "azurerm_subnet" "terraform_vip_subnet" {
   address_prefix       = "${var.azure_vip_subnet_ip}/24"
 }
 
-
-
-resource "avi_poolgroup" "azure-poolgroup" {
-  name       = "azure_poolgroup"
-  tenant_ref = "${data.avi_tenant.default_tenant.id}"
-  cloud_ref  = "${data.avi_cloud.azure_cloud_cfg.id}"
-
-  members = {
-    pool_ref = "${data.avi_pool.azure-pool-v1.id}"
-    ratio    = 100
-  }
-
-  members = {
-    pool_ref = "${data.avi_pool.azure-pool-v2.id}"
-    ratio    = 50
-  }
-
-}
-
 resource "avi_virtualservice" "azure-virtualservice" {
   name                         = "azure_vs"
-  pool_group_ref               = "${avi_poolgroup.azure-poolgroup.id}"
+  pool_group_ref               = "${data.avi_poolgroup.azure-poolgroup.id}"
   tenant_ref                   = "${data.avi_tenant.default_tenant.id}"
   cloud_type                   = "CLOUD_AZURE"
   application_profile_ref      = "${data.avi_applicationprofile.system_https_profile.id}"
@@ -124,13 +102,14 @@ resource "avi_virtualservice" "azure-virtualservice" {
   vrf_context_ref              = "${data.avi_vrfcontext.terraform_vrf.id}"
   scaleout_ecmp = true
   enabled = true
+  // vsvip_ref = "${avi_vsvip.azure-vs-vsvip.id}"
   vip {
     auto_allocate_ip  = true
     avi_allocated_vip = true
     avi_allocated_fip = false
     # auto_allocate_floating_ip = true
     subnet_uuid       = "${azurerm_subnet.terraform_vip_subnet.name}"
-
+    enabled = true
     subnet = {
       ip_addr = {
         addr = "${var.azure_vip_subnet_ip}"
@@ -140,6 +119,7 @@ resource "avi_virtualservice" "azure-virtualservice" {
       mask = "${var.azure_vip_subnet_mask}"
     }
   }
+
   services {
     port           = 80
     enable_ssl     = true
@@ -151,6 +131,7 @@ resource "avi_virtualservice" "azure-virtualservice" {
     port_range_end = 443
   }
   analytics_policy {
+    enabled = true
     metrics_realtime_update = {
       enabled  = true
       duration = 0
