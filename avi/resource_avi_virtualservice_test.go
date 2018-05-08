@@ -127,7 +127,7 @@ resource "avi_vsvip" "test_vsvip" {
 		type= "V4",
 		addr= "10.90.64.88",
 	  }
-      enabled= false
+      enabled= true
 	}
 	tenant_ref= "${data.avi_tenant.default_tenant.id}"
 	cloud_ref= "${data.avi_cloud.default_cloud.id}"
@@ -147,7 +147,7 @@ resource "avi_virtualservice" "testvs" {
 		type= "V4"
 		addr= "10.90.64.88"
 	  }
-      enabled= false
+      enabled= true
 	}
 	services {
 	  port= 80
@@ -207,7 +207,7 @@ resource "avi_vsvip" "test_vsvip" {
 		type= "V4",
 		addr= "10.90.64.88",
 	  }
-      enabled= false
+      enabled= true
 	}
 	tenant_ref= "${data.avi_tenant.default_tenant.id}"
 	cloud_ref= "${data.avi_cloud.default_cloud.id}"
@@ -227,7 +227,7 @@ resource "avi_virtualservice" "testvs" {
 		type= "V4"
 		addr= "10.90.64.88"
 	  }
-      enabled= false
+      enabled= true
 	}
 	services {
 	  port= 80
