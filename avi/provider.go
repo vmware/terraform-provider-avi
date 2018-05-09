@@ -188,7 +188,7 @@ func providerConfigure(d *schema.ResourceData) (interface{}, error) {
 		Password:   d.Get("avi_password").(string),
 		Controller: d.Get("avi_controller").(string),
 		Tenant:     "admin",
-		Version:    "17.2.10",
+		Version:    "17.2.8",
 	}
 	if username, ok := d.GetOk("avi_username"); ok {
 		config.Username = username.(string)
