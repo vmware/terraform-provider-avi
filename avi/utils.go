@@ -178,7 +178,10 @@ func ApiCreateOrUpdate(d *schema.ResourceData, meta interface{}, objType string,
 
 	if data, err := SchemaToAviData(obj, s); err == nil {
 		path := "api/" + objType
-		if uuid, ok := d.GetOk("uuid"); ok {
+		if objType == "cluster" {
+			path = path + "?include_name=true&skip_default=true"
+			err = client.AviSession.Put(path, data, &robj)
+		} else if uuid, ok := d.GetOk("uuid"); ok {
 			path = path + "/" + uuid.(string) + "?include_name=true&skip_default=true"
 			err = client.AviSession.Put(path, data, &robj)
 		} else {
@@ -228,11 +231,15 @@ func ApiCreateOrUpdate(d *schema.ResourceData, meta interface{}, objType string,
 			return err
 		}
 		log.Printf("[DEBUG] ApiCreateOrUpdate: object %v\n", robj)
-		url := robj.(map[string]interface{})["url"].(string)
 		uuid := robj.(map[string]interface{})["uuid"].(string)
-		//url = strings.SplitN(url, "#", 2)[0]
-		d.SetId(url)
 		d.Set("uuid", uuid)
+		if objType != "cluster" {
+			url := robj.(map[string]interface{})["url"].(string)
+			d.SetId(url)
+		} else {
+			d.SetId(uuid)
+		}
+		//url = strings.SplitN(url, "#", 2)[0]
 	} else {
 		log.Printf("[ERROR] ApiCreateOrUpdate: Error %v", err)
 	}
@@ -298,12 +305,16 @@ func ApiRead(d *schema.ResourceData, meta interface{}, objType string, s map[str
 			log.Printf("[ERROR] ApiRead in modifying api response object %v\n", err)
 		}
 		if _, err := ApiDataToSchema(mod_api_res, d, s); err == nil {
-			url := obj.(map[string]interface{})["url"].(string)
 			uuid := obj.(map[string]interface{})["uuid"].(string)
 			//url = strings.SplitN(url, "#", 2)[0]
-			log.Printf("[DEBUG] ApiRead read object with id %v\n", url)
-			d.SetId(url)
-			d.Set("uuid", uuid)
+			if objType != "cluster" {
+				url := obj.(map[string]interface{})["url"].(string)
+				log.Printf("[DEBUG] ApiRead read object with id %v\n", url)
+				d.SetId(url)
+			} else {
+				d.SetId(uuid)
+			}
+
 		} else {
 			log.Printf("[ERROR] ApiRead in setting read object %v\n", err)
 		}
