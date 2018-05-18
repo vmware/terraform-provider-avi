@@ -86,7 +86,6 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 		"cloud_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
-			Default:  "/api/cloud?name=Default-Cloud",
 		},
 		"connection_memory_percentage": &schema.Schema{
 			Type:     schema.TypeInt,
@@ -206,6 +205,11 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Type:     schema.TypeInt,
 			Optional: true,
 			Default:  0,
+		},
+		"free_list_size": &schema.Schema{
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  1024,
 		},
 		"ha_mode": &schema.Schema{
 			Type:     schema.TypeString,
@@ -360,6 +364,16 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 		},
 		"os_reserved_memory": &schema.Schema{
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  0,
+		},
+		"pcap_reinit_frequency": &schema.Schema{
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  0,
+		},
+		"pcap_reinit_threshold": &schema.Schema{
 			Type:     schema.TypeInt,
 			Optional: true,
 			Default:  0,

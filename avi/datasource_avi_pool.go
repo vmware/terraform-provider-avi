@@ -65,7 +65,6 @@ func dataSourceAviPool() *schema.Resource {
 			"cloud_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Default:  "/api/cloud?name=Default-Cloud",
 			},
 			"connection_ramp_duration": &schema.Schema{
 				Type:     schema.TypeInt,

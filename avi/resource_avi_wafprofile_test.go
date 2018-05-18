@@ -4072,7 +4072,7 @@ EOF
 }
 "tenant_ref" = "${data.avi_tenant.default_tenant.id}"
 "config" {
-"client_nonfile_upload_max_body_size" = "4505"
+"client_nonfile_upload_max_body_size" = "128"
 "regex_match_limit" = "1500"
 "allowed_request_content_types" = ["application/x-www-form-urlencoded","multipart/form-data","text/xml","application/xml","application/x-amf","application/json"]
 "allowed_methods" = ["HTTP_METHOD_GET","HTTP_METHOD_HEAD","HTTP_METHOD_POST","HTTP_METHOD_OPTIONS"]
@@ -4084,10 +4084,10 @@ EOF
 "static_extensions" = [".gif",".jpg",".jpeg",".png",".js",".css",".ico",".svg",".webp"]
 "buffer_response_body_for_inspection" = false
 "restricted_extensions" = [".asa",".asax",".ascx",".axd",".backup",".bak",".bat",".cdx",".cer",".cfg",".cmd",".com",".config",".conf",".cs",".csproj",".csr",".dat",".db",".dbf",".dll",".dos",".htr",".htw",".ida",".idc",".idq",".inc",".ini",".key",".licx",".lnk",".log",".mdb",".old",".pass",".pdb",".pol",".printer",".pwd",".resources",".resx",".sql",".sys",".vb",".vbs",".vbproj",".vsdisco",".webinfo",".xsd",".xsx"]
-"client_file_upload_max_body_size" = "3456"
+"client_file_upload_max_body_size" = "1024"
 "allowed_http_versions" = ["ONE_ZERO","ONE_ONE"]
 "restricted_headers" = ["Proxy-Connection","Lock-Token","Content-Range","Translate","via","if"]
-"server_response_max_body_size" = "7654"
+"server_response_max_body_size" = "128"
 "argument_separator" = "&"
 }
 "name" = "testSystem-WAF-Profile"
@@ -8085,7 +8085,7 @@ EOF
 }
 "tenant_ref" = "${data.avi_tenant.default_tenant.id}"
 "config" {
-"client_nonfile_upload_max_body_size" = "4505"
+"client_nonfile_upload_max_body_size" = "128"
 "regex_match_limit" = "1500"
 "allowed_request_content_types" = ["application/x-www-form-urlencoded","multipart/form-data","text/xml","application/xml","application/x-amf","application/json"]
 "allowed_methods" = ["HTTP_METHOD_GET","HTTP_METHOD_HEAD","HTTP_METHOD_POST","HTTP_METHOD_OPTIONS"]
@@ -8097,10 +8097,10 @@ EOF
 "static_extensions" = [".gif",".jpg",".jpeg",".png",".js",".css",".ico",".svg",".webp"]
 "buffer_response_body_for_inspection" = false
 "restricted_extensions" = [".asa",".asax",".ascx",".axd",".backup",".bak",".bat",".cdx",".cer",".cfg",".cmd",".com",".config",".conf",".cs",".csproj",".csr",".dat",".db",".dbf",".dll",".dos",".htr",".htw",".ida",".idc",".idq",".inc",".ini",".key",".licx",".lnk",".log",".mdb",".old",".pass",".pdb",".pol",".printer",".pwd",".resources",".resx",".sql",".sys",".vb",".vbs",".vbproj",".vsdisco",".webinfo",".xsd",".xsx"]
-"client_file_upload_max_body_size" = "3456"
+"client_file_upload_max_body_size" = "1024"
 "allowed_http_versions" = ["ONE_ZERO","ONE_ONE"]
 "restricted_headers" = ["Proxy-Connection","Lock-Token","Content-Range","Translate","via","if"]
-"server_response_max_body_size" = "7654"
+"server_response_max_body_size" = "128"
 "argument_separator" = "&"
 }
 "name" = "testSystem-WAF-Profile-abc"

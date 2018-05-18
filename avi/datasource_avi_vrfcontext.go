@@ -22,7 +22,6 @@ func dataSourceAviVrfContext() *schema.Resource {
 			"cloud_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Default:  "/api/cloud?name=Default-Cloud",
 			},
 			"debugvrfcontext": &schema.Schema{
 				Type:     schema.TypeSet,

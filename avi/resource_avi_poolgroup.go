@@ -21,7 +21,6 @@ func ResourcePoolGroupSchema() map[string]*schema.Schema {
 		"cloud_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
-			Default:  "/api/cloud?name=Default-Cloud",
 		},
 		"created_by": &schema.Schema{
 			Type:     schema.TypeString,

@@ -73,7 +73,7 @@ func CommonHash(v interface{}) int {
 	return hashcode.String("avi")
 }
 
-func SetDefaultsInAPIRes(api_res interface{}, d_local interface{}) (interface{}, error) {
+func SetDefaultsInAPIRes(api_res interface{}, d_local interface{}, s map[string]*schema.Schema) (interface{}, error) {
 	switch d_local.(type) {
 	default:
 	case map[string]interface{}:
@@ -82,27 +82,68 @@ func SetDefaultsInAPIRes(api_res interface{}, d_local interface{}) (interface{},
 			//Getting key, value for given d_local
 			default:
 				if _, ok := api_res.(map[string]interface{})[k]; !ok {
-					//Setting up value of api_res key from d_local
-					api_res.(map[string]interface{})[k] = v
-				}
+					switch s[k].Type {
+					default:
+						//Cheking if field is present in schema
+						if dval, ok := s[k]; ok {
+							//Getting default values from schema
+							default_val, err := dval.DefaultValue()
+							if err != nil {
+								log.Printf("[ERROR] SetDefaultsInAPIRes %v", err)
+							} else {
+								if default_val != nil {
+									api_res.(map[string]interface{})[k] = default_val
+									log.Printf("[INFO] SetDefaultsInAPIRes setting default for field: %v\t val: %v", k, default_val)
+								}
+							}
 
+						}
+					//string fields are being skiped from setting default values. e.g. cloud_ref has default value which will override the value which is
+					//fetched from datasource object.
+					case schema.TypeString:
+						continue
+					}
+				}
 			//d_local nested dictionary.
 			case map[string]interface{}:
-				api_res1, err := SetDefaultsInAPIRes(api_res.(map[string]interface{})[k], v)
-				if err != nil {
-					log.Printf("[ERROR] SetDefaultsInAPIRes %v\n", api_res)
+				s2, err := s[k]
+				//As err returned is boolean value
+				if err {
+					log.Printf("[INFO] SetDefaultsInAPIRes %v", err)
 				}
-				api_res.(map[string]interface{})[k] = api_res1
+				switch s2.Elem.(type) {
+				default:
+				case *schema.Resource:
+					api_res1, err := SetDefaultsInAPIRes(api_res.(map[string]interface{})[k], v, s2.Elem.(*schema.Resource).Schema)
+					if err != nil {
+						log.Printf("[INFO] SetDefaultsInAPIRes %v", err)
+
+					} else {
+						api_res.(map[string]interface{})[k] = api_res1
+					}
+				}
 			//d_local is array of dictionaries.
 			case []interface{}:
 				var objList []interface{}
 				varray2 := api_res.(map[string]interface{})[k].([]interface{})
+				//getting schema for nested object.
+				s2, err := s[k]
+				//As err returned is boolean value
+				if err {
+					log.Printf("[ERROR] SetDefaultsInAPIRes %v", err)
+				}
 				for x, y := range v.([]interface{}) {
-					obj, err := SetDefaultsInAPIRes(varray2[x], y)
-					if err == nil {
-						objList = append(objList, obj)
-					} else {
-						log.Printf("[ERROR] SetDefaultsInAPIRes %v", err)
+					switch s2.Elem.(type) {
+					default:
+					case *schema.Resource:
+						obj, err := SetDefaultsInAPIRes(varray2[x], y, s2.Elem.(*schema.Resource).Schema)
+						if err != nil {
+							log.Printf("[INFO] SetDefaultsInAPIRes %v", err)
+						} else {
+							objList = append(objList, obj)
+						}
+					case *schema.Schema:
+						objList = append(objList, y)
 					}
 				}
 				api_res.(map[string]interface{})[k] = objList
@@ -300,7 +341,7 @@ func ApiRead(d *schema.ResourceData, meta interface{}, objType string, s map[str
 		return nil
 	}
 	if local_data, err := SchemaToAviData(d, s); err == nil {
-		mod_api_res, err := SetDefaultsInAPIRes(obj, local_data)
+		mod_api_res, err := SetDefaultsInAPIRes(obj, local_data, s)
 		if err != nil {
 			log.Printf("[ERROR] ApiRead in modifying api response object %v\n", err)
 		}

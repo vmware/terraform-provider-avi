@@ -21,7 +21,6 @@ func ResourceServiceEngineSchema() map[string]*schema.Schema {
 		"cloud_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
-			Default:  "/api/cloud?name=Default-Cloud",
 		},
 		"container_mode": &schema.Schema{
 			Type:     schema.TypeBool,

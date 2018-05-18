@@ -14,7 +14,6 @@ func dataSourceAviVsVip() *schema.Resource {
 			"cloud_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Default:  "/api/cloud?name=Default-Cloud",
 			},
 			"dns_info": &schema.Schema{
 				Type:     schema.TypeList,

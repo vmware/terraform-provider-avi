@@ -22,7 +22,6 @@ func ResourceTrafficCloneProfileSchema() map[string]*schema.Schema {
 		"cloud_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
-			Default:  "/api/cloud?name=Default-Cloud",
 		},
 		"name": &schema.Schema{
 			Type:     schema.TypeString,

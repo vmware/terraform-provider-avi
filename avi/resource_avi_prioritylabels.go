@@ -17,7 +17,6 @@ func ResourcePriorityLabelsSchema() map[string]*schema.Schema {
 		"cloud_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
-			Default:  "/api/cloud?name=Default-Cloud",
 		},
 		"description": &schema.Schema{
 			Type:     schema.TypeString,
