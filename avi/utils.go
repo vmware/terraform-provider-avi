@@ -274,12 +274,16 @@ func ApiCreateOrUpdate(d *schema.ResourceData, meta interface{}, objType string,
 		log.Printf("[DEBUG] ApiCreateOrUpdate: object %v\n", robj)
 		uuid := robj.(map[string]interface{})["uuid"].(string)
 		d.Set("uuid", uuid)
-		if objType != "cluster" {
+		_, prs := s["url"]
+		var id string
+		if prs {
 			url := robj.(map[string]interface{})["url"].(string)
-			d.SetId(url)
+			id = url
 		} else {
-			d.SetId(uuid)
+			id = uuid
 		}
+		d.SetId(id)
+		log.Printf("[DEBUG] ApiRead read object with id %v\n", id)
 		//url = strings.SplitN(url, "#", 2)[0]
 	} else {
 		log.Printf("[ERROR] ApiCreateOrUpdate: Error %v", err)
@@ -348,14 +352,16 @@ func ApiRead(d *schema.ResourceData, meta interface{}, objType string, s map[str
 		if _, err := ApiDataToSchema(mod_api_res, d, s); err == nil {
 			uuid := obj.(map[string]interface{})["uuid"].(string)
 			//url = strings.SplitN(url, "#", 2)[0]
-			if objType != "cluster" {
+			_, prs := s["url"]
+			var id string
+			if prs {
 				url := obj.(map[string]interface{})["url"].(string)
-				log.Printf("[DEBUG] ApiRead read object with id %v\n", url)
-				d.SetId(url)
+				id = url
 			} else {
-				d.SetId(uuid)
+				id = uuid
 			}
-
+			d.SetId(id)
+			log.Printf("[DEBUG] ApiRead read object with id %v\n", id)
 		} else {
 			log.Printf("[ERROR] ApiRead in setting read object %v\n", err)
 		}
