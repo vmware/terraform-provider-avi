@@ -26,10 +26,6 @@ func ResourcePoolSchema() map[string]*schema.Schema {
 				return 0
 			},
 		},
-		"ab_priority": &schema.Schema{
-			Type:     schema.TypeInt,
-			Optional: true,
-		},
 		"apic_epg_name": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
