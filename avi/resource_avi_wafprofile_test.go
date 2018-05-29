@@ -88,265 +88,88 @@ data "avi_tenant" "default_tenant"{
 resource "avi_wafprofile" "testWafProfile" {
 "files" {
 "data" = <<EOF
-# Search engine crawlers and other bots
-
-# site ripper
-# http://www.softbytelabs.com/en/BlackWidow/
-black widow
-blackwidow
-# crawler
-# 2006
-prowebwalker
-# generic crawler
-pymills-spider/
-# SEO
-# https://ahrefs.com/robot
-AhrefsBot
-# people database
-# https://pipl.com/bot/
-PiplBot
-# advertising targeting
-# https://www.grapeshot.com/crawler/
-GrapeshotCrawler/2.0
-grapeFX
-# SEO
-# http://www.searchmetrics.com/searchmetricsbot/
-SearchmetricsBot
-# SEO
-# https://moz.com/help/guides/moz-procedures/what-is-rogerbot
-rogerbot
-# SEO
-# http://www.majestic12.co.uk/projects/dsearch/mj12bot.php
-MJ12bot
-# news service
-Owlin bot
-# misbehaving spider
-Lingewoud-550-Spyder
+MySqlClient.
+Server message
+SQL error
+Oracle error
+JET Database Engine
+Procedure or function 
+SQLite.Exception
+[IBM][CLI Driver][DB2/6000]
+the used select statements have different number of columns
+org.postgresql.util.PSQLException
+Access Database Engine
+Incorrect syntax near
+Syntax error in string in query expression
+SQLiteException
+' doesn't exist
+CLI Driver
+on MySQL result index
+sybase
+com.informix.jdbc
+[MySQL][ODBC
+Error
+has occurred in the vicinity of:
+Sintaxis incorrecta cerca de
+MySQL server version for the right syntax to use
+com.mysql.jdbc.exceptions
+You have an error in your SQL syntax near
+You have an error in your SQL syntax;
+An illegal character has been found in the statement
+pg_query() [:
+supplied argument is not a valid MySQL
+mssql_query()
+mysql_fetch_array()
+Exception
+java.sql.SQLException
+Column count doesn't match value count at row
+Sybase message
+ SQL Server
+PostgreSQL query failed:
+Dynamic SQL Error
+System.Data.SQLite.SQLiteException
+SQLite/JDBCDriver
+Unclosed quotation mark before the character string
+System.Data.SqlClient.
+Unclosed quotation mark after the character string
+System.Data.OleDb.OleDbException
+[DM_QUERY_E_SYNTAX]
+[SqlException
+Unexpected end of command in statement
+valid PostgreSQL result
+pg_exec() [:
+SQL Server
+[SQLITE_ERROR]
+Microsoft OLE DB Provider for ODBC Drivers
+PostgreSQL
+org.hsqldb.jdbc
+ADODB.Field (0x800A0BCD)
+SQL syntax
+Exception 
+System.Data.SqlClient.SqlException
+Data type mismatch in criteria expression.
+Driver
+DB2 SQL error
+Sybase message:
+ORA-
+[Microsoft][ODBC SQL Server Driver]
+'80040e14'
+Microsoft OLE DB Provider for SQL Server
+ in query expression
+Npgsql.
+valid MySQL result
+supplied argument is not a valid PostgreSQL result
+db2_
+Ingres SQLSTATE
+Column count doesn't match
+Warning
+[Microsoft][ODBC Microsoft Access Driver]
+[Macromedia][SQLServer JDBC Driver]
+<b>Warning</b>: ibase_
+Roadhouse.Cms.
+DB2 SQL error:
 EOF
-"name" = "crawlers-user-agents.data"
-}
-"files" {
-"data" = <<EOF
-<b>Warning</b>:
-No row with the given identifier
-open_basedir restriction in effect
-eval()'d code</b> on line <b>
-Cannot execute a blank command in
-Fatal error</b>:  preg_replace
-thrown in <b>
-#0 {main}
-Stack trace:
-</b> on line <b>
-() cannot be called statically
-- not a Class::Method
-::__toString() must not throw an exception
-Access to undeclared static property:
-An iterator cannot be used with foreach by reference
-Array callback has to contain indices 0 and 1
-Arrived at end of main loop which shouldn't happen
-Attempt to destruct pending exception
-Attempt to unset static property
-Balloc() allocation exceeds list boundary
-Balloc() failed to allocate memory
-Base lambda function for closure not found
-Call to a member function
-Call to private 
-Call to protected 
-Call to undefined function
-Call to undefined method
-Can only throw objects
-Cannot access empty property
-Cannot access parent:: when current class scope has no parent
-Cannot access parent:: when no class scope is active
-Cannot access property started with '\\0'
-Cannot access self:: when no class scope is active
-Cannot access static:: when no class scope is active
-Cannot access undefined property for object with overloaded property access
-Cannot assign by reference to overloaded object
-Cannot break/continue %d level%s
-Cannot call abstract method 
-Cannot call constructor
-Cannot call forward_static_call() when no class scope is active
-Cannot call non static method
-Cannot call overloaded function for non-object
-Cannot call private 
-Cannot create references to/from string offsets
-Cannot create references to/from string offsets nor overloaded objects
-Cannot declare self-referencing constant 
-Cannot destroy active lambda function
-Cannot get arguments for 
-Cannot increment/decrement overloaded objects nor string offsets
-Cannot instantiate abstract class 
-Cannot instantiate interface 
-Cannot instantiate trait 
-Cannot override final 
-Cannot pass parameter 
-Cannot redeclare 
-Cannot redeclare class 
-Cannot register a reverse output handler conflict outside of MINIT
-Cannot register an output handler alias outside of MINIT
-Cannot register an output handler conflict outside of MINIT
-Cannot resume an already running generator
-Cannot return string offsets by reference
-Cannot set non exception as previous exception
-Cannot unset string offsets
-Cannot use [] for reading
-Cannot use assign-op operators with overloaded objects nor string offsets
-Cannot use object as array
-Cannot use object of type 
-Cannot use string offset as an array
-Cannot use string offset as an object
-Cannot yield from finally in a force-closed generator
-Cannot yield string offsets by reference
-Class entry requested for an object without PHP class
-Class name must be a valid object or a string
-Corrupted fcall_info provided to zend_call_function()
-DCOM has been disabled by your administrator [com.allow_dcom=0]
-DateFormat class not defined
-DateTimeInterface can't be implemented by user classes
-EXTREMELY fatal error: jmpbuf unrecoverable; terminating
-EXTREMELY fatal error: jmpbuf unrecoverable; terminating.
-EXTREMELY fatal error: longjmp returned control; terminating
-Encoding: '*' may only be first arraySize value in list
-Encoding: Attribute 
-Encoding: Can't decode apache map, missing key
-Encoding: Can't decode apache map, missing value
-Encoding: Can't decode apache map, only Strings or Longs are allowd as keys
-Encoding: Cannot find encoding
-Encoding: Element 
-Encoding: Error calling from_xml callback
-Encoding: Error calling to_xml callback
-Encoding: External reference 
-Encoding: Internal Error
-Encoding: Invalid timestamp 
-Encoding: SoapVar has no 'enc_type' property
-Encoding: Unresolved reference 
-Encoding: Violation of encoding rules
-Encoding: Violation of id and ref information items 
-Encoding: object has no '
-Encoding: object has no 'any' property
-Encoding: string '
-Error installing signal handler for 
-Exception thrown without a stack frame
-Exceptions must be valid objects derived from the Exception base class
-Failed to clone SpoofChecker object
-Failed to register IntlDateFormatter class
-Failed to register MessageFormatter class
-Failed to register NumberFormatter class
-Failed to register ResourceBundle class
-Field width %d is too long
-First array member is not a valid class name or object
-Function name must be a string
-Illegal length modifier specified 
-Illegal offset type
-Input string is too long
-Invalid RelaxNG Validation Context
-Invalid Schema Validation Context
-Invalid opcode
-Invalid serialization data for DatePeriod object
-Invalid serialization data for DateTime object
-Invalid serialization data for DateTimeImmutable object
-Maximum execution time of
-Method name must be a string
-Need to supply an object when throwing an exception
-Nesting level too deep - recursive dependency?
-NumberFormatter class not defined
-Object does not support method calls
-Only variables can be passed by reference
-PDO: driver 
-Parsing Schema: <restriction> or <extension> expected in complexContent
-Parsing Schema: attribute
-Parsing Schema: attribute has both 'ref' and 'type' attributes
-Parsing Schema: attribute has both 'ref' attribute and subtype
-Parsing Schema: attribute has both 'type' attribute and subtype
-Parsing Schema: attribute has no 'name' nor 'ref' attributes
-Parsing Schema: attributeGroup 
-Parsing Schema: attributeGroup has both 'ref' attribute and subattribute
-Parsing Schema: attributeGroup has no 'name' nor 'ref' attributes
-Parsing Schema: can't import schema from 
-Parsing Schema: complexType has no 'name' attribute
-Parsing Schema: element has both 'default' and 'fixed' attributes
-Parsing Schema: element has both 'itemType' attribute and subtype
-Parsing Schema: element has both 'ref' and 'fixed' attributes
-Parsing Schema: element has both 'ref' and 'nillable' attributes
-Parsing Schema: element has both 'ref' and 'type' attributes
-Parsing Schema: element has both 'ref' attribute and subtype
-Parsing Schema: element has both 'type' attribute and subtype
-Parsing Schema: element has no 'name' nor 'ref' attributes
-Parsing Schema: expected <restriction> or <extension> in simpleContent
-Parsing Schema: expected <restriction>, <list> or <union> in simpleType
-Parsing Schema: extension has no 'base' attribute
-Parsing Schema: group has both 'ref' attribute and subcontent
-Parsing Schema: group has no 'name' nor 'ref' attributes
-Parsing Schema: include has no 'schemaLocation' attribute
-Parsing Schema: missing restriction value
-Parsing Schema: redefine has no 'schemaLocation' attribute
-Parsing Schema: restriction has no 'base' attribute
-Parsing Schema: simpleType has no 'name' attribute
-Parsing Schema: unexpected
-Parsing Schema: unresolved element 'ref' attribute 
-Parsing Schema: unresolved group 'ref' attribute 
-Parsing WSDL: <binding> 
-Parsing WSDL: <binding> has no name attribute
-Parsing WSDL: <fault> with name 
-Parsing WSDL: <message> has no name attribute
-Parsing WSDL: <portType> 
-Parsing WSDL: <portType> has no name attribute
-Parsing WSDL: <service> 
-Parsing WSDL: <service> has no name attribute
-Parsing WSDL: Could not find any usable binding services in WSDL.
-Parsing WSDL: Couldn't bind to service
-Parsing WSDL: Couldn't find <definitions> in 
-Parsing WSDL: Couldn't load from 
-Parsing WSDL: Missing 'name' attribute for <binding>
-Parsing WSDL: Missing 'name' attribute for <operation>
-Parsing WSDL: Missing 'type' attribute for <binding>
-Parsing WSDL: Missing <message> with name 
-Parsing WSDL: Missing <portType> with name 
-Parsing WSDL: Missing <portType>/<operation> with name 
-Parsing WSDL: Missing message attribute for <header>
-Parsing WSDL: Missing name for <fault> of 
-Parsing WSDL: Missing name for <input> of 
-Parsing WSDL: Missing name for <output> of 
-Parsing WSDL: Missing part '%s' in <message>
-Parsing WSDL: Missing part attribute for <header>
-Parsing WSDL: No <binding> element with name 
-Parsing WSDL: No address associated with <port>
-Parsing WSDL: No binding associated with <port>
-Parsing WSDL: No location associated with <port>
-Parsing WSDL: No name associated with <part> 
-Parsing WSDL: The fault message 
-Parsing WSDL: Unexpected WSDL element <
-Parsing WSDL: Unexpected extensibility element <
-Parsing WSDL: Unknown encodingStyle '
-Parsing WSDL: Unknown required WSDL extension '
-Parsing WSDL: Unspecified encodingStyle
-Possible integer overflow in memory allocation (
-Second array member is not a valid method
-Spoofchecker class not defined
-String size overflow
-The object to be iterated is in an invalid state: "
-Trying to clone an uncloneable object
-Trying to clone an uncloneable object of class 
-Unable to call 
-Unable to cast node to string
-Undefined class constant '
-Undefined constant '
-Undefined offset for object of type 
-Unexpected inconsistency in create_function()
-Unknown SOAP version
-Unknown typehint
-Unsupported operand types
-Using $this when not in object context
-Wrong parameters for ErrorException(
-Wrong parameters for Exception(
-You MUST load PDO before loading any PDO drivers
-[] operator not supported for strings
-and must therefore be declared abstract or implement the remaining methods
-namespace must not match the enclosing schema 'targetNamespace'
-requires PDO API version 
-EOF
-"name" = "php-errors.data"
+"name" = "sql-errors.data"
 }
 "files" {
 "data" = <<EOF
@@ -1624,738 +1447,226 @@ EOF
 }
 "files" {
 "data" = <<EOF
-# Apache
-# (no slash; also guards against old.htaccess, old.htpasswd, etc.)
-.htaccess
-.htdigest
-.htpasswd
-# Version control
-/.git/
-/.gitignore
-/.hg/
-/.hgignore
-/.svn/
-# Wordpress
-wp-config.php
-wp-config.bak
-wp-config.old
-wp-config.temp
-wp-config.tmp
-wp-config.txt
-# Symfony
-/config/config.yml
-/config/config_dev.yml
-/config/config_prod.yml
-/config/config_test.yml
-/config/parameters.yml
-/config/routing.yml
-/config/security.yml
-/config/services.yml
-# Drupal
-/sites/default/default.settings.php
-/sites/default/settings.php
-# Magento
-/app/etc/local.xml
-# Sublime Text
-/sftp-config.json
-# ASP.NET
-/Web.config
-# Node
-/gruntfile.js
-/npm-debug.log
-# Composer
-/composer.json
-/composer.lock
-/packages.json
-# dotenv
-/.env
+<b>Warning</b>:
+No row with the given identifier
+open_basedir restriction in effect
+eval()'d code</b> on line <b>
+Cannot execute a blank command in
+Fatal error</b>:  preg_replace
+thrown in <b>
+#0 {main}
+Stack trace:
+</b> on line <b>
+() cannot be called statically
+- not a Class::Method
+::__toString() must not throw an exception
+Access to undeclared static property:
+An iterator cannot be used with foreach by reference
+Array callback has to contain indices 0 and 1
+Arrived at end of main loop which shouldn't happen
+Attempt to destruct pending exception
+Attempt to unset static property
+Balloc() allocation exceeds list boundary
+Balloc() failed to allocate memory
+Base lambda function for closure not found
+Call to a member function
+Call to private 
+Call to protected 
+Call to undefined function
+Call to undefined method
+Can only throw objects
+Cannot access empty property
+Cannot access parent:: when current class scope has no parent
+Cannot access parent:: when no class scope is active
+Cannot access property started with '\\0'
+Cannot access self:: when no class scope is active
+Cannot access static:: when no class scope is active
+Cannot access undefined property for object with overloaded property access
+Cannot assign by reference to overloaded object
+Cannot break/continue %d level%s
+Cannot call abstract method 
+Cannot call constructor
+Cannot call forward_static_call() when no class scope is active
+Cannot call non static method
+Cannot call overloaded function for non-object
+Cannot call private 
+Cannot create references to/from string offsets
+Cannot create references to/from string offsets nor overloaded objects
+Cannot declare self-referencing constant 
+Cannot destroy active lambda function
+Cannot get arguments for 
+Cannot increment/decrement overloaded objects nor string offsets
+Cannot instantiate abstract class 
+Cannot instantiate interface 
+Cannot instantiate trait 
+Cannot override final 
+Cannot pass parameter 
+Cannot redeclare 
+Cannot redeclare class 
+Cannot register a reverse output handler conflict outside of MINIT
+Cannot register an output handler alias outside of MINIT
+Cannot register an output handler conflict outside of MINIT
+Cannot resume an already running generator
+Cannot return string offsets by reference
+Cannot set non exception as previous exception
+Cannot unset string offsets
+Cannot use [] for reading
+Cannot use assign-op operators with overloaded objects nor string offsets
+Cannot use object as array
+Cannot use object of type 
+Cannot use string offset as an array
+Cannot use string offset as an object
+Cannot yield from finally in a force-closed generator
+Cannot yield string offsets by reference
+Class entry requested for an object without PHP class
+Class name must be a valid object or a string
+Corrupted fcall_info provided to zend_call_function()
+DCOM has been disabled by your administrator [com.allow_dcom=0]
+DateFormat class not defined
+DateTimeInterface can't be implemented by user classes
+EXTREMELY fatal error: jmpbuf unrecoverable; terminating
+EXTREMELY fatal error: jmpbuf unrecoverable; terminating.
+EXTREMELY fatal error: longjmp returned control; terminating
+Encoding: '*' may only be first arraySize value in list
+Encoding: Attribute 
+Encoding: Can't decode apache map, missing key
+Encoding: Can't decode apache map, missing value
+Encoding: Can't decode apache map, only Strings or Longs are allowd as keys
+Encoding: Cannot find encoding
+Encoding: Element 
+Encoding: Error calling from_xml callback
+Encoding: Error calling to_xml callback
+Encoding: External reference 
+Encoding: Internal Error
+Encoding: Invalid timestamp 
+Encoding: SoapVar has no 'enc_type' property
+Encoding: Unresolved reference 
+Encoding: Violation of encoding rules
+Encoding: Violation of id and ref information items 
+Encoding: object has no '
+Encoding: object has no 'any' property
+Encoding: string '
+Error installing signal handler for 
+Exception thrown without a stack frame
+Exceptions must be valid objects derived from the Exception base class
+Failed to clone SpoofChecker object
+Failed to register IntlDateFormatter class
+Failed to register MessageFormatter class
+Failed to register NumberFormatter class
+Failed to register ResourceBundle class
+Field width %d is too long
+First array member is not a valid class name or object
+Function name must be a string
+Illegal length modifier specified 
+Illegal offset type
+Input string is too long
+Invalid RelaxNG Validation Context
+Invalid Schema Validation Context
+Invalid opcode
+Invalid serialization data for DatePeriod object
+Invalid serialization data for DateTime object
+Invalid serialization data for DateTimeImmutable object
+Maximum execution time of
+Method name must be a string
+Need to supply an object when throwing an exception
+Nesting level too deep - recursive dependency?
+NumberFormatter class not defined
+Object does not support method calls
+Only variables can be passed by reference
+PDO: driver 
+Parsing Schema: <restriction> or <extension> expected in complexContent
+Parsing Schema: attribute
+Parsing Schema: attribute has both 'ref' and 'type' attributes
+Parsing Schema: attribute has both 'ref' attribute and subtype
+Parsing Schema: attribute has both 'type' attribute and subtype
+Parsing Schema: attribute has no 'name' nor 'ref' attributes
+Parsing Schema: attributeGroup 
+Parsing Schema: attributeGroup has both 'ref' attribute and subattribute
+Parsing Schema: attributeGroup has no 'name' nor 'ref' attributes
+Parsing Schema: can't import schema from 
+Parsing Schema: complexType has no 'name' attribute
+Parsing Schema: element has both 'default' and 'fixed' attributes
+Parsing Schema: element has both 'itemType' attribute and subtype
+Parsing Schema: element has both 'ref' and 'fixed' attributes
+Parsing Schema: element has both 'ref' and 'nillable' attributes
+Parsing Schema: element has both 'ref' and 'type' attributes
+Parsing Schema: element has both 'ref' attribute and subtype
+Parsing Schema: element has both 'type' attribute and subtype
+Parsing Schema: element has no 'name' nor 'ref' attributes
+Parsing Schema: expected <restriction> or <extension> in simpleContent
+Parsing Schema: expected <restriction>, <list> or <union> in simpleType
+Parsing Schema: extension has no 'base' attribute
+Parsing Schema: group has both 'ref' attribute and subcontent
+Parsing Schema: group has no 'name' nor 'ref' attributes
+Parsing Schema: include has no 'schemaLocation' attribute
+Parsing Schema: missing restriction value
+Parsing Schema: redefine has no 'schemaLocation' attribute
+Parsing Schema: restriction has no 'base' attribute
+Parsing Schema: simpleType has no 'name' attribute
+Parsing Schema: unexpected
+Parsing Schema: unresolved element 'ref' attribute 
+Parsing Schema: unresolved group 'ref' attribute 
+Parsing WSDL: <binding> 
+Parsing WSDL: <binding> has no name attribute
+Parsing WSDL: <fault> with name 
+Parsing WSDL: <message> has no name attribute
+Parsing WSDL: <portType> 
+Parsing WSDL: <portType> has no name attribute
+Parsing WSDL: <service> 
+Parsing WSDL: <service> has no name attribute
+Parsing WSDL: Could not find any usable binding services in WSDL.
+Parsing WSDL: Couldn't bind to service
+Parsing WSDL: Couldn't find <definitions> in 
+Parsing WSDL: Couldn't load from 
+Parsing WSDL: Missing 'name' attribute for <binding>
+Parsing WSDL: Missing 'name' attribute for <operation>
+Parsing WSDL: Missing 'type' attribute for <binding>
+Parsing WSDL: Missing <message> with name 
+Parsing WSDL: Missing <portType> with name 
+Parsing WSDL: Missing <portType>/<operation> with name 
+Parsing WSDL: Missing message attribute for <header>
+Parsing WSDL: Missing name for <fault> of 
+Parsing WSDL: Missing name for <input> of 
+Parsing WSDL: Missing name for <output> of 
+Parsing WSDL: Missing part '%s' in <message>
+Parsing WSDL: Missing part attribute for <header>
+Parsing WSDL: No <binding> element with name 
+Parsing WSDL: No address associated with <port>
+Parsing WSDL: No binding associated with <port>
+Parsing WSDL: No location associated with <port>
+Parsing WSDL: No name associated with <part> 
+Parsing WSDL: The fault message 
+Parsing WSDL: Unexpected WSDL element <
+Parsing WSDL: Unexpected extensibility element <
+Parsing WSDL: Unknown encodingStyle '
+Parsing WSDL: Unknown required WSDL extension '
+Parsing WSDL: Unspecified encodingStyle
+Possible integer overflow in memory allocation (
+Second array member is not a valid method
+Spoofchecker class not defined
+String size overflow
+The object to be iterated is in an invalid state: "
+Trying to clone an uncloneable object
+Trying to clone an uncloneable object of class 
+Unable to call 
+Unable to cast node to string
+Undefined class constant '
+Undefined constant '
+Undefined offset for object of type 
+Unexpected inconsistency in create_function()
+Unknown SOAP version
+Unknown typehint
+Unsupported operand types
+Using $this when not in object context
+Wrong parameters for ErrorException(
+Wrong parameters for Exception(
+You MUST load PDO before loading any PDO drivers
+[] operator not supported for strings
+and must therefore be declared abstract or implement the remaining methods
+namespace must not match the enclosing schema 'targetNamespace'
+requires PDO API version 
 EOF
-"name" = "restricted-files.data"
-}
-"files" {
-"data" = <<EOF
-<jsp:
-javax.servlet
-.addheader
-.createtextfile
-.getfile
-.loadfromfile
-response.binarywrite
-response.write
-scripting.filesystemobject
-server.createobject
-server.execute
-server.htmlencode
-server.mappath
-server.urlencode
-vbscript.encode
-wscript.network
-wscript.shell
-EOF
-"name" = "java-code-leakages.data"
-}
-"files" {
-"data" = <<EOF
-powershell.exe
-Add-BitsFile
-Add-Computer
-Add-Content
-Add-History
-Add-Member
-Add-PSSnapin
-Add-Type
-Checkpoint-Computer
-Clear-Content
-Clear-EventLog
-Clear-History
-Clear-Item
-Clear-ItemProperty
-Clear-Variable
-Compare-Object
-Complete-BitsTransfer
-Complete-Transaction
-Connect-WSMan
-ConvertFrom-CSV
-ConvertFrom-SecureString
-ConvertFrom-StringData
-Convert-Path
-ConvertTo-CSV
-ConvertTo-Html
-ConvertTo-SecureString
-ConvertTo-XML
-Copy-Item
-Copy-ItemProperty
-Debug-Process
-Disable-ComputerRestore
-Disable-PSBreakpoint
-Disable-PSSessionConfiguration
-Disable-WSManCredSSP
-Disconnect-WSMan
-Enable-ComputerRestore
-Enable-PSBreakpoint
-Enable-PSRemoting
-Enable-PSSessionConfiguration
-Enable-WSManCredSSP
-Enter-PSSession
-Exit-PSSession
-Export-Alias
-Export-Clixml
-Export-Console
-Export-Counter
-Export-CSV
-Export-FormatData
-Export-ModuleMember
-Export-PSSession
-ForEach-Object
-Format-Custom
-Format-List
-Format-Table
-Format-Wide
-Get-Acl
-Get-Alias
-Get-AppLockerFileInformation
-Get-AppLockerPolicy
-Get-AuthenticodeSignature
-Get-BitsTransfer
-Get-ChildItem
-Get-Command
-Get-ComputerRestorePoint
-Get-Content
-Get-Counter
-Get-Credential
-Get-Culture
-Get-Event
-Get-EventLog
-Get-EventSubscriber
-Get-ExecutionPolicy
-Get-FormatData
-Get-History
-Get-Host
-Get-HotFix
-Get-Item
-Get-ItemProperty
-Get-Job
-Get-Location
-Get-Member
-Get-Module
-Get-PfxCertificate
-Get-Process
-Get-PSBreakpoint
-Get-PSCallStack
-Get-PSDrive
-Get-PSProvider
-Get-PSSession
-Get-PSSessionConfiguration
-Get-PSSnapin
-Get-Random
-Get-Service
-Get-TraceSource
-Get-Transaction
-Get-TroubleshootingPack
-Get-UICulture
-Get-Unique
-Get-Variable
-Get-WinEvent
-Get-WmiObject
-Get-WSManCredSSP
-Get-WSManInstance
-Group-Object
-Import-Alias
-Import-Clixml
-Import-Counter
-Import-CSV
-Import-LocalizedData
-Import-Module
-Import-PSSession
-Invoke-Command
-Invoke-Expression
-Invoke-History
-Invoke-Item
-Invoke-TroubleshootingPack
-Invoke-WmiMethod
-Invoke-WSManAction
-Join-Path
-Limit-EventLog
-Measure-Command
-Measure-Object
-Move-Item
-Move-ItemProperty
-New-Alias
-New-AppLockerPolicy
-New-Event
-New-EventLog
-New-Item
-New-ItemProperty
-New-Module
-New-ModuleManifest
-New-Object
-New-PSDrive
-New-PSSession
-New-PSSessionOption
-New-Service
-New-TimeSpan
-New-Variable
-New-WebServiceProxy
-New-WSManInstance
-New-WSManSessionOption
-Out-Default
-Out-File
-Out-GridView
-Out-Host
-Out-Null
-Out-Printer
-Out-String
-Pop-Location
-Push-Location
-Read-Host
-Receive-Job
-Register-EngineEvent
-Register-ObjectEvent
-Register-PSSessionConfiguration
-Register-WmiEvent
-Remove-BitsTransfer
-Remove-Computer
-Remove-Event
-Remove-EventLog
-Remove-Item
-Remove-ItemProperty
-Remove-Job
-Remove-Module
-Remove-PSBreakpoint
-Remove-PSDrive
-Remove-PSSession
-Remove-PSSnapin
-Remove-Variable
-Remove-WmiObject
-Remove-WSManInstance
-Rename-Item
-Rename-ItemProperty
-Reset-ComputerMachinePassword
-Resolve-Path
-Restart-Computer
-Restart-Service
-Restore-Computer
-Resume-BitsTransfer
-Resume-Service
-Select-Object
-Select-String
-Select-XML
-Send-MailMessage
-Set-Acl
-Set-Alias
-Set-AppLockerPolicy
-Set-AuthenticodeSignature
-Set-BitsTransfer
-Set-Content
-Set-Date
-Set-ExecutionPolicy
-Set-Item
-Set-ItemProperty
-Set-Location
-Set-PSBreakpoint
-Set-PSDebug
-Set-PSSessionConfiguration
-Set-Service
-Set-StrictMode
-Set-TraceSource
-Set-Variable
-Set-WmiInstance
-Set-WSManInstance
-Set-WSManQuickConfig
-Show-EventLog
-Sort-Object
-Split-Path
-Start-BitsTransfer
-Start-Job
-Start-Process
-Start-Service
-Start-Sleep
-Start-Transaction
-Start-Transcript
-Stop-Computer
-Stop-Job
-Stop-Process
-Stop-Service
-Stop-Transcript
-Suspend-BitsTransfer
-Suspend-Service
-Tee-Object
-Test-AppLockerPolicy
-Test-ComputerSecureChannel
-Test-Connection
-Test-ModuleManifest
-Test-Path
-Test-WSMan
-Trace-Command
-Undo-Transaction
-Unregister-Event
-Unregister-PSSessionConfiguration
-Update-FormatData
-Update-List
-Update-TypeData
-Use-Transaction
-Wait-Event
-Wait-Job
-Wait-Process
-Where-Object
-Write-Debug
-Write-Error
-Write-EventLog
-Write-Host
-Write-Output
-Write-Progress
-Write-Verbose
-Write-Warning
--EncodedCommand
--ExecutionPolicy
--PSConsoleFile
-EOF
-"name" = "windows-powershell-commands.data"
-}
-"files" {
-"data" = <<EOF
-[java.lang.
-class java.lang.
-java.lang.NullPointerException
-java.rmi.ServerException
-at java.lang.
-onclick="toggle('full exception chain stacktrace')"
-at org.apache.catalina
-at org.apache.coyote.
-at org.apache.tomcat.
-at org.apache.jasper.
-EOF
-"name" = "java-errors.data"
-}
-"files" {
-"data" = <<EOF
-MySqlClient.
-Server message
-SQL error
-Oracle error
-JET Database Engine
-Procedure or function 
-SQLite.Exception
-[IBM][CLI Driver][DB2/6000]
-the used select statements have different number of columns
-org.postgresql.util.PSQLException
-Access Database Engine
-Incorrect syntax near
-Syntax error in string in query expression
-SQLiteException
-' doesn't exist
-CLI Driver
-on MySQL result index
-sybase
-com.informix.jdbc
-[MySQL][ODBC
-Error
-has occurred in the vicinity of:
-Sintaxis incorrecta cerca de
-MySQL server version for the right syntax to use
-com.mysql.jdbc.exceptions
-You have an error in your SQL syntax near
-You have an error in your SQL syntax;
-An illegal character has been found in the statement
-pg_query() [:
-supplied argument is not a valid MySQL
-mssql_query()
-mysql_fetch_array()
-Exception
-java.sql.SQLException
-Column count doesn't match value count at row
-Sybase message
- SQL Server
-PostgreSQL query failed:
-Dynamic SQL Error
-System.Data.SQLite.SQLiteException
-SQLite/JDBCDriver
-Unclosed quotation mark before the character string
-System.Data.SqlClient.
-Unclosed quotation mark after the character string
-System.Data.OleDb.OleDbException
-[DM_QUERY_E_SYNTAX]
-[SqlException
-Unexpected end of command in statement
-valid PostgreSQL result
-pg_exec() [:
-SQL Server
-[SQLITE_ERROR]
-Microsoft OLE DB Provider for ODBC Drivers
-PostgreSQL
-org.hsqldb.jdbc
-ADODB.Field (0x800A0BCD)
-SQL syntax
-Exception 
-System.Data.SqlClient.SqlException
-Data type mismatch in criteria expression.
-Driver
-DB2 SQL error
-Sybase message:
-ORA-
-[Microsoft][ODBC SQL Server Driver]
-'80040e14'
-Microsoft OLE DB Provider for SQL Server
- in query expression
-Npgsql.
-valid MySQL result
-supplied argument is not a valid PostgreSQL result
-db2_
-Ingres SQLSTATE
-Column count doesn't match
-Warning
-[Microsoft][ODBC Microsoft Access Driver]
-[Macromedia][SQLServer JDBC Driver]
-<b>Warning</b>: ibase_
-Roadhouse.Cms.
-DB2 SQL error:
-EOF
-"name" = "sql-errors.data"
-}
-"files" {
-"data" = <<EOF
-allow_call_time_pass_reference
-allow_url_fopen
-allow_url_include
-always_populate_raw_post_data
-arg_separator.input
-arg_separator.output
-asp_tags
-assert.active
-assert.bail
-assert.callback
-assert.quiet_eval
-assert.warning
-auto_append_file
-auto_detect_line_endings
-auto_globals_jit
-auto_prepend_file
-bcmath.scale
-birdstep.max_links
-browscap
-cgi.fix_pathinfo
-cgi.force_redirect
-cgi.nph
-cgi.redirect_status_env
-cgi.rfc2616_headers
-com.allow_dcom
-com.autoregister_casesensitive
-com.autoregister_typelib
-com.autoregister_verbose
-com.code_page
-com.typelib_file
-date.default_latitude
-date.default_longitude
-date.sunrise_zenith
-date.sunset_zenith
-date.timezone
-dba.default_handler
-default_charset
-default_mimetype
-default_socket_timeout
-define_syslog_variables
-disable_classes
-disable_functions
-display_errors
-display_startup_errors
-doc_root
-docref_ext
-docref_root
-enable_dl
-error_append_string
-error_log
-error_prepend_string
-error_reporting
-exif.decode_jis_intel
-exif.decode_jis_motorola
-exif.decode_unicode_intel
-exif.decode_unicode_motorola
-exif.encode_jis
-exif.encode_unicode
-expose_php
-extension_dir
-fastcgi.impersonate
-fastcgi.logging
-file_uploads
-filter.default
-filter.default_flags
-gd.jpeg_ignore_warning
-highlight.bg
-highlight.comment
-highlight.default
-highlight.html
-highlight.keyword
-highlight.string
-html_errors
-ibase.allow_persistent
-ibase.dateformat
-ibase.default_charset
-ibase.default_db
-ibase.default_password
-ibase.default_user
-ibase.max_links
-ibase.max_persistent
-ibase.timeformat
-ibase.timestampformat
-iconv.input_encoding
-iconv.internal_encoding
-iconv.output_encoding
-ignore_repeated_errors
-ignore_repeated_source
-ignore_user_abort
-implicit_flush
-include_path
-intl.default_locale
-intl.error_level
-ldap.max_links
-log_errors
-log_errors_max_len
-magic_quotes_gpc
-magic_quotes_runtime
-magic_quotes_sybase
-mail.add_x_header
-mail.force_extra_parameters
-mail.log
-max_execution_time
-max_file_uploads
-max_input_nesting_level
-max_input_time
-mbstring.detect_order
-mbstring.encoding_translation
-mbstring.func_overload
-mbstring.http_input
-mbstring.http_output
-mbstring.http_output_conv_mimetype
-mbstring.internal_encoding
-mbstring.language
-mbstring.script_encoding
-mbstring.strict_detection
-mbstring.substitute_character
-mcrypt.algorithms_dir
-mcrypt.modes_dir
-memory_limit
-mssql.allow_persistent
-mssql.batchsize
-mssql.charset
-mssql.compatability_mode
-mssql.connect_timeout
-mssql.datetimeconvert
-mssql.max_links
-mssql.max_persistent
-mssql.max_procs
-mssql.min_error_severity
-mssql.min_message_severity
-mssql.secure_connection
-mssql.textlimit
-mssql.textsize
-mssql.timeout
-mysql.allow_local_infile
-mysql.allow_persistent
-mysql.cache_size
-mysql.connect_timeout
-mysql.default_host
-mysql.default_password
-mysql.default_port
-mysql.default_socket
-mysql.default_user
-mysql.max_links
-mysql.max_persistent
-mysql.trace_mode
-mysqli.allow_local_infile
-mysqli.allow_persistent
-mysqli.cache_size
-mysqli.default_host
-mysqli.default_port
-mysqli.default_pw
-mysqli.default_socket
-mysqli.default_user
-mysqli.max_links
-mysqli.max_persistent
-mysqli.reconnect
-mysqlnd.collect_memory_statistics
-mysqlnd.collect_statistics
-mysqlnd.net_cmd_buffer_size
-mysqlnd.net_read_buffer_size
-oci8.connection_class
-oci8.default_prefetch
-oci8.events
-oci8.max_persistent
-oci8.old_oci_close_semantics
-oci8.persistent_timeout
-oci8.ping_interval
-oci8.privileged_connect
-oci8.statement_cache_size
-odbc.allow_persistent
-odbc.check_persistent
-odbc.default_db
-odbc.default_pw
-odbc.default_user
-odbc.defaultbinmode
-odbc.defaultlrl
-odbc.max_links
-odbc.max_persistent
-open_basedir
-output_buffering
-output_handler
-pcre.backtrack_limit
-pcre.recursion_limit
-pdo_mysql.cache_size
-pdo_mysql.default_socket
-pdo_odbc.connection_pooling
-pgsql.allow_persistent
-pgsql.auto_reset_persistent
-pgsql.ignore_notice
-pgsql.log_notice
-pgsql.max_links
-pgsql.max_persistent
-phar.cache_list
-phar.readonly
-phar.require_hash
-post_max_size
-realpath_cache_size
-realpath_cache_ttl
-register_argc_argv
-register_globals
-register_long_arrays
-report_memleaks
-report_zend_debug
-request_order
-safe_mode
-safe_mode_allowed_env_vars
-safe_mode_exec_dir
-safe_mode_gid
-safe_mode_include_dir
-safe_mode_protected_env_vars
-sendmail_from
-sendmail_path
-serialize_precision
-session.auto_start
-session.bug_compat_42
-session.bug_compat_warn
-session.cache_expire
-session.cache_limiter
-session.cookie_domain
-session.cookie_httponly
-session.cookie_lifetime
-session.cookie_path
-session.cookie_secure
-session.entropy_file
-session.entropy_length
-session.gc_divisor
-session.gc_maxlifetime
-session.gc_probability
-session.hash_bits_per_character
-session.hash_function
-session.name
-session.referer_check
-session.save_handler
-session.save_path
-session.serialize_handler
-session.use_cookies
-session.use_only_cookies
-session.use_trans_sid
-short_open_tag
-soap.wsdl_cache_dir
-soap.wsdl_cache_enabled
-soap.wsdl_cache_limit
-soap.wsdl_cache_ttl
-sql.safe_mode
-sqlite.assoc_case
-sqlite3.extension_dir
-sybct.allow_persistent
-sybct.deadlock_retry_count
-sybct.hostname
-sybct.login_timeout
-sybct.max_links
-sybct.max_persistent
-sybct.min_client_severity
-sybct.min_server_severity
-sybct.timeout
-sysvshm.init_mem
-tidy.clean_output
-tidy.default_config
-track_errors
-unserialize_callback_func
-upload_max_filesize
-upload_tmp_dir
-url_rewriter.tags
-user_agent
-user_dir
-user_ini.cache_ttl
-user_ini.filename
-variables_order
-xmlrpc_error_number
-xmlrpc_errors
-y2k_compliance
-zlib.output_compression
-zlib.output_compression_level
-zlib.output_handler
-EOF
-"name" = "php-config-directives.data"
-}
-"files" {
-"data" = <<EOF
-$GLOBALS
-$HTTP_COOKIE_VARS
-$HTTP_ENV_VARS
-$HTTP_GET_VARS
-$HTTP_POST_FILES
-$HTTP_POST_VARS
-$HTTP_RAW_POST_DATA
-$HTTP_REQUEST_VARS
-$HTTP_SERVER_VARS
-$_COOKIE
-$_ENV
-$_FILES
-$_GET
-$_POST
-$_REQUEST
-$_SERVER
-$_SESSION
-$argc
-$argv
-EOF
-"name" = "php-variables.data"
+"name" = "php-errors.data"
 }
 "files" {
 "data" = <<EOF
@@ -3418,6 +2729,326 @@ EOF
 }
 "files" {
 "data" = <<EOF
+# Search engine crawlers and other bots
+
+# site ripper
+# http://www.softbytelabs.com/en/BlackWidow/
+black widow
+blackwidow
+# crawler
+# 2006
+prowebwalker
+# generic crawler
+pymills-spider/
+# SEO
+# https://ahrefs.com/robot
+AhrefsBot
+# people database
+# https://pipl.com/bot/
+PiplBot
+# advertising targeting
+# https://www.grapeshot.com/crawler/
+GrapeshotCrawler/2.0
+grapeFX
+# SEO
+# http://www.searchmetrics.com/searchmetricsbot/
+SearchmetricsBot
+# SEO
+# https://moz.com/help/guides/moz-procedures/what-is-rogerbot
+rogerbot
+# SEO
+# http://www.majestic12.co.uk/projects/dsearch/mj12bot.php
+MJ12bot
+# news service
+Owlin bot
+# misbehaving spider
+Lingewoud-550-Spyder
+EOF
+"name" = "crawlers-user-agents.data"
+}
+"files" {
+"data" = <<EOF
+allow_call_time_pass_reference
+allow_url_fopen
+allow_url_include
+always_populate_raw_post_data
+arg_separator.input
+arg_separator.output
+asp_tags
+assert.active
+assert.bail
+assert.callback
+assert.quiet_eval
+assert.warning
+auto_append_file
+auto_detect_line_endings
+auto_globals_jit
+auto_prepend_file
+bcmath.scale
+birdstep.max_links
+browscap
+cgi.fix_pathinfo
+cgi.force_redirect
+cgi.nph
+cgi.redirect_status_env
+cgi.rfc2616_headers
+com.allow_dcom
+com.autoregister_casesensitive
+com.autoregister_typelib
+com.autoregister_verbose
+com.code_page
+com.typelib_file
+date.default_latitude
+date.default_longitude
+date.sunrise_zenith
+date.sunset_zenith
+date.timezone
+dba.default_handler
+default_charset
+default_mimetype
+default_socket_timeout
+define_syslog_variables
+disable_classes
+disable_functions
+display_errors
+display_startup_errors
+doc_root
+docref_ext
+docref_root
+enable_dl
+error_append_string
+error_log
+error_prepend_string
+error_reporting
+exif.decode_jis_intel
+exif.decode_jis_motorola
+exif.decode_unicode_intel
+exif.decode_unicode_motorola
+exif.encode_jis
+exif.encode_unicode
+expose_php
+extension_dir
+fastcgi.impersonate
+fastcgi.logging
+file_uploads
+filter.default
+filter.default_flags
+gd.jpeg_ignore_warning
+highlight.bg
+highlight.comment
+highlight.default
+highlight.html
+highlight.keyword
+highlight.string
+html_errors
+ibase.allow_persistent
+ibase.dateformat
+ibase.default_charset
+ibase.default_db
+ibase.default_password
+ibase.default_user
+ibase.max_links
+ibase.max_persistent
+ibase.timeformat
+ibase.timestampformat
+iconv.input_encoding
+iconv.internal_encoding
+iconv.output_encoding
+ignore_repeated_errors
+ignore_repeated_source
+ignore_user_abort
+implicit_flush
+include_path
+intl.default_locale
+intl.error_level
+ldap.max_links
+log_errors
+log_errors_max_len
+magic_quotes_gpc
+magic_quotes_runtime
+magic_quotes_sybase
+mail.add_x_header
+mail.force_extra_parameters
+mail.log
+max_execution_time
+max_file_uploads
+max_input_nesting_level
+max_input_time
+mbstring.detect_order
+mbstring.encoding_translation
+mbstring.func_overload
+mbstring.http_input
+mbstring.http_output
+mbstring.http_output_conv_mimetype
+mbstring.internal_encoding
+mbstring.language
+mbstring.script_encoding
+mbstring.strict_detection
+mbstring.substitute_character
+mcrypt.algorithms_dir
+mcrypt.modes_dir
+memory_limit
+mssql.allow_persistent
+mssql.batchsize
+mssql.charset
+mssql.compatability_mode
+mssql.connect_timeout
+mssql.datetimeconvert
+mssql.max_links
+mssql.max_persistent
+mssql.max_procs
+mssql.min_error_severity
+mssql.min_message_severity
+mssql.secure_connection
+mssql.textlimit
+mssql.textsize
+mssql.timeout
+mysql.allow_local_infile
+mysql.allow_persistent
+mysql.cache_size
+mysql.connect_timeout
+mysql.default_host
+mysql.default_password
+mysql.default_port
+mysql.default_socket
+mysql.default_user
+mysql.max_links
+mysql.max_persistent
+mysql.trace_mode
+mysqli.allow_local_infile
+mysqli.allow_persistent
+mysqli.cache_size
+mysqli.default_host
+mysqli.default_port
+mysqli.default_pw
+mysqli.default_socket
+mysqli.default_user
+mysqli.max_links
+mysqli.max_persistent
+mysqli.reconnect
+mysqlnd.collect_memory_statistics
+mysqlnd.collect_statistics
+mysqlnd.net_cmd_buffer_size
+mysqlnd.net_read_buffer_size
+oci8.connection_class
+oci8.default_prefetch
+oci8.events
+oci8.max_persistent
+oci8.old_oci_close_semantics
+oci8.persistent_timeout
+oci8.ping_interval
+oci8.privileged_connect
+oci8.statement_cache_size
+odbc.allow_persistent
+odbc.check_persistent
+odbc.default_db
+odbc.default_pw
+odbc.default_user
+odbc.defaultbinmode
+odbc.defaultlrl
+odbc.max_links
+odbc.max_persistent
+open_basedir
+output_buffering
+output_handler
+pcre.backtrack_limit
+pcre.recursion_limit
+pdo_mysql.cache_size
+pdo_mysql.default_socket
+pdo_odbc.connection_pooling
+pgsql.allow_persistent
+pgsql.auto_reset_persistent
+pgsql.ignore_notice
+pgsql.log_notice
+pgsql.max_links
+pgsql.max_persistent
+phar.cache_list
+phar.readonly
+phar.require_hash
+post_max_size
+realpath_cache_size
+realpath_cache_ttl
+register_argc_argv
+register_globals
+register_long_arrays
+report_memleaks
+report_zend_debug
+request_order
+safe_mode
+safe_mode_allowed_env_vars
+safe_mode_exec_dir
+safe_mode_gid
+safe_mode_include_dir
+safe_mode_protected_env_vars
+sendmail_from
+sendmail_path
+serialize_precision
+session.auto_start
+session.bug_compat_42
+session.bug_compat_warn
+session.cache_expire
+session.cache_limiter
+session.cookie_domain
+session.cookie_httponly
+session.cookie_lifetime
+session.cookie_path
+session.cookie_secure
+session.entropy_file
+session.entropy_length
+session.gc_divisor
+session.gc_maxlifetime
+session.gc_probability
+session.hash_bits_per_character
+session.hash_function
+session.name
+session.referer_check
+session.save_handler
+session.save_path
+session.serialize_handler
+session.use_cookies
+session.use_only_cookies
+session.use_trans_sid
+short_open_tag
+soap.wsdl_cache_dir
+soap.wsdl_cache_enabled
+soap.wsdl_cache_limit
+soap.wsdl_cache_ttl
+sql.safe_mode
+sqlite.assoc_case
+sqlite3.extension_dir
+sybct.allow_persistent
+sybct.deadlock_retry_count
+sybct.hostname
+sybct.login_timeout
+sybct.max_links
+sybct.max_persistent
+sybct.min_client_severity
+sybct.min_server_severity
+sybct.timeout
+sysvshm.init_mem
+tidy.clean_output
+tidy.default_config
+track_errors
+unserialize_callback_func
+upload_max_filesize
+upload_tmp_dir
+url_rewriter.tags
+user_agent
+user_dir
+user_ini.cache_ttl
+user_ini.filename
+variables_order
+xmlrpc_error_number
+xmlrpc_errors
+y2k_compliance
+zlib.output_compression
+zlib.output_compression_level
+zlib.output_handler
+EOF
+"name" = "php-config-directives.data"
+}
+"files" {
+"data" = <<EOF
 # Generic HTTP clients (popular libraries)
 
 # http library
@@ -3451,149 +3082,18 @@ EOF
 }
 "files" {
 "data" = <<EOF
-__halt_compiler
-apache_child_terminate
-base64_decode
-bzdecompress
-call_user_func
-call_user_func_array
-call_user_method
-call_user_method_array
-convert_uudecode
-file_get_contents
-file_put_contents
-fsockopen
-gzdecode
-gzinflate
-gzuncompress
-include_once
-invokeargs
-pcntl_exec
-pcntl_fork
-pfsockopen
-posix_getcwd
-posix_getpwuid
-posix_getuid
-posix_uname
-ReflectionFunction
-require_once
-shell_exec
-str_rot13
-sys_get_temp_dir
-wp_remote_fopen
-wp_remote_get
-wp_remote_head
-wp_remote_post
-wp_remote_request
-wp_safe_remote_get
-wp_safe_remote_head
-wp_safe_remote_post
-wp_safe_remote_request
-zlib_decode
+[java.lang.
+class java.lang.
+java.lang.NullPointerException
+java.rmi.ServerException
+at java.lang.
+onclick="toggle('full exception chain stacktrace')"
+at org.apache.catalina
+at org.apache.coyote.
+at org.apache.tomcat.
+at org.apache.jasper.
 EOF
-"name" = "php-function-names-933150.data"
-}
-"files" {
-"data" = <<EOF
-bin/bash
-bin/csh
-bin/dash
-bin/du
-bin/echo
-bin/less
-bin/ls
-bin/more
-bin/nc
-bin/ps
-bin/rbash
-bin/sh
-bin/sleep
-bin/su
-bin/tcsh
-bin/uname
-dev/fd/
-dev/null
-dev/stderr
-dev/stdin
-dev/stdout
-dev/tcp/
-dev/udp/
-dev/zero
-etc/group
-etc/master.passwd
-etc/passwd
-etc/pwd.db
-etc/shadow
-etc/shells
-etc/spwd.db
-proc/self/
-usr/bin/cc
-usr/bin/clang
-usr/bin/clang++
-usr/bin/curl
-usr/bin/env
-usr/bin/fetch
-usr/bin/file
-usr/bin/find
-usr/bin/ftp
-usr/bin/gcc
-usr/bin/head
-usr/bin/id
-usr/bin/less
-usr/bin/more
-usr/bin/nc
-usr/bin/nice
-usr/bin/nmap
-usr/bin/perl
-usr/bin/php
-usr/bin/php5
-usr/bin/php7
-usr/bin/python
-usr/bin/python2
-usr/bin/python3
-usr/bin/ruby
-usr/bin/tail
-usr/bin/top
-usr/bin/uname
-usr/bin/wget
-usr/bin/who
-usr/bin/whoami
-usr/bin/xargs
-usr/local/bin/bash
-usr/local/bin/curl
-usr/local/bin/nmap
-usr/local/bin/perl
-usr/local/bin/php
-usr/local/bin/python
-usr/local/bin/python2
-usr/local/bin/python3
-usr/local/bin/rbash
-usr/local/bin/ruby
-usr/local/bin/wget
-EOF
-"name" = "unix-shell.data"
-}
-"files" {
-"data" = <<EOF
-/.adSensepostnottherenonobook
-/<invalid>hello.html
-/actSensepostnottherenonotive
-/acunetix-wvs-test-for-some-inexistent-file
-/antidisestablishmentarianism
-/appscan_fingerprint/mac_address
-/arachni-
-/cybercop
-/nessus_is_probing_you_
-/nessustest
-/netsparker-
-/rfiinc.txt
-/thereisnowaythat-you-canbethere
-/w3af/remotefileinclude.html
-appscan_fingerprint
-w00tw00t.at.ISC.SANS.DFind
-w00tw00t.at.blackhats.romanian.anti-sec
-EOF
-"name" = "scanners-urls.data"
+"name" = "java-errors.data"
 }
 "files" {
 "data" = <<EOF
@@ -3838,19 +3338,6 @@ EOF
 }
 "files" {
 "data" = <<EOF
-acunetix-product
-(acunetix web vulnerability scanner
-acunetix-scanning-agreement
-acunetix-user-agreement
-myvar=1234
-x-ratproxy-loop
-bytes=0-,5-0,5-1,5-2,5-3,5-4,5-5,5-6,5-7,5-8,5-9,5-10,5-11,5-12,5-13,5-14
-x-scanner
-EOF
-"name" = "scanners-headers.data"
-}
-"files" {
-"data" = <<EOF
 # Vulnerability scanners, bruteforce password crackers and exploitation tools
 
 # password cracker
@@ -4054,6 +3541,189 @@ EOF
 }
 "files" {
 "data" = <<EOF
+__halt_compiler
+apache_child_terminate
+base64_decode
+bzdecompress
+call_user_func
+call_user_func_array
+call_user_method
+call_user_method_array
+convert_uudecode
+file_get_contents
+file_put_contents
+fsockopen
+gzdecode
+gzinflate
+gzuncompress
+include_once
+invokeargs
+pcntl_exec
+pcntl_fork
+pfsockopen
+posix_getcwd
+posix_getpwuid
+posix_getuid
+posix_uname
+ReflectionFunction
+require_once
+shell_exec
+str_rot13
+sys_get_temp_dir
+wp_remote_fopen
+wp_remote_get
+wp_remote_head
+wp_remote_post
+wp_remote_request
+wp_safe_remote_get
+wp_safe_remote_head
+wp_safe_remote_post
+wp_safe_remote_request
+zlib_decode
+EOF
+"name" = "php-function-names-933150.data"
+}
+"files" {
+"data" = <<EOF
+<jsp:
+javax.servlet
+.addheader
+.createtextfile
+.getfile
+.loadfromfile
+response.binarywrite
+response.write
+scripting.filesystemobject
+server.createobject
+server.execute
+server.htmlencode
+server.mappath
+server.urlencode
+vbscript.encode
+wscript.network
+wscript.shell
+EOF
+"name" = "java-code-leakages.data"
+}
+"files" {
+"data" = <<EOF
+bin/bash
+bin/csh
+bin/dash
+bin/du
+bin/echo
+bin/less
+bin/ls
+bin/more
+bin/nc
+bin/ps
+bin/rbash
+bin/sh
+bin/sleep
+bin/su
+bin/tcsh
+bin/uname
+dev/fd/
+dev/null
+dev/stderr
+dev/stdin
+dev/stdout
+dev/tcp/
+dev/udp/
+dev/zero
+etc/group
+etc/master.passwd
+etc/passwd
+etc/pwd.db
+etc/shadow
+etc/shells
+etc/spwd.db
+proc/self/
+usr/bin/cc
+usr/bin/clang
+usr/bin/clang++
+usr/bin/curl
+usr/bin/env
+usr/bin/fetch
+usr/bin/file
+usr/bin/find
+usr/bin/ftp
+usr/bin/gcc
+usr/bin/head
+usr/bin/id
+usr/bin/less
+usr/bin/more
+usr/bin/nc
+usr/bin/nice
+usr/bin/nmap
+usr/bin/perl
+usr/bin/php
+usr/bin/php5
+usr/bin/php7
+usr/bin/python
+usr/bin/python2
+usr/bin/python3
+usr/bin/ruby
+usr/bin/tail
+usr/bin/top
+usr/bin/uname
+usr/bin/wget
+usr/bin/who
+usr/bin/whoami
+usr/bin/xargs
+usr/local/bin/bash
+usr/local/bin/curl
+usr/local/bin/nmap
+usr/local/bin/perl
+usr/local/bin/php
+usr/local/bin/python
+usr/local/bin/python2
+usr/local/bin/python3
+usr/local/bin/rbash
+usr/local/bin/ruby
+usr/local/bin/wget
+EOF
+"name" = "unix-shell.data"
+}
+"files" {
+"data" = <<EOF
+$GLOBALS
+$HTTP_COOKIE_VARS
+$HTTP_ENV_VARS
+$HTTP_GET_VARS
+$HTTP_POST_FILES
+$HTTP_POST_VARS
+$HTTP_RAW_POST_DATA
+$HTTP_REQUEST_VARS
+$HTTP_SERVER_VARS
+$_COOKIE
+$_ENV
+$_FILES
+$_GET
+$_POST
+$_REQUEST
+$_SERVER
+$_SESSION
+$argc
+$argv
+EOF
+"name" = "php-variables.data"
+}
+"files" {
+"data" = <<EOF
+acunetix-product
+(acunetix web vulnerability scanner
+acunetix-scanning-agreement
+acunetix-user-agreement
+myvar=1234
+x-ratproxy-loop
+bytes=0-,5-0,5-1,5-2,5-3,5-4,5-5,5-6,5-7,5-8,5-9,5-10,5-11,5-12,5-13,5-14
+x-scanner
+EOF
+"name" = "scanners-headers.data"
+}
+"files" {
+"data" = <<EOF
 <h2 style="font:8pt/11pt verdana; color:000000">HTTP 403.6 - Forbidden: IP address rejected<br>
 <TITLE>500 Internal Server Error</TITLE>
 Microsoft VBScript runtime (0x8
@@ -4069,6 +3739,336 @@ ADODB.Command
 Object required: '
 EOF
 "name" = "iis-errors.data"
+}
+"files" {
+"data" = <<EOF
+powershell.exe
+Add-BitsFile
+Add-Computer
+Add-Content
+Add-History
+Add-Member
+Add-PSSnapin
+Add-Type
+Checkpoint-Computer
+Clear-Content
+Clear-EventLog
+Clear-History
+Clear-Item
+Clear-ItemProperty
+Clear-Variable
+Compare-Object
+Complete-BitsTransfer
+Complete-Transaction
+Connect-WSMan
+ConvertFrom-CSV
+ConvertFrom-SecureString
+ConvertFrom-StringData
+Convert-Path
+ConvertTo-CSV
+ConvertTo-Html
+ConvertTo-SecureString
+ConvertTo-XML
+Copy-Item
+Copy-ItemProperty
+Debug-Process
+Disable-ComputerRestore
+Disable-PSBreakpoint
+Disable-PSSessionConfiguration
+Disable-WSManCredSSP
+Disconnect-WSMan
+Enable-ComputerRestore
+Enable-PSBreakpoint
+Enable-PSRemoting
+Enable-PSSessionConfiguration
+Enable-WSManCredSSP
+Enter-PSSession
+Exit-PSSession
+Export-Alias
+Export-Clixml
+Export-Console
+Export-Counter
+Export-CSV
+Export-FormatData
+Export-ModuleMember
+Export-PSSession
+ForEach-Object
+Format-Custom
+Format-List
+Format-Table
+Format-Wide
+Get-Acl
+Get-Alias
+Get-AppLockerFileInformation
+Get-AppLockerPolicy
+Get-AuthenticodeSignature
+Get-BitsTransfer
+Get-ChildItem
+Get-Command
+Get-ComputerRestorePoint
+Get-Content
+Get-Counter
+Get-Credential
+Get-Culture
+Get-Event
+Get-EventLog
+Get-EventSubscriber
+Get-ExecutionPolicy
+Get-FormatData
+Get-History
+Get-Host
+Get-HotFix
+Get-Item
+Get-ItemProperty
+Get-Job
+Get-Location
+Get-Member
+Get-Module
+Get-PfxCertificate
+Get-Process
+Get-PSBreakpoint
+Get-PSCallStack
+Get-PSDrive
+Get-PSProvider
+Get-PSSession
+Get-PSSessionConfiguration
+Get-PSSnapin
+Get-Random
+Get-Service
+Get-TraceSource
+Get-Transaction
+Get-TroubleshootingPack
+Get-UICulture
+Get-Unique
+Get-Variable
+Get-WinEvent
+Get-WmiObject
+Get-WSManCredSSP
+Get-WSManInstance
+Group-Object
+Import-Alias
+Import-Clixml
+Import-Counter
+Import-CSV
+Import-LocalizedData
+Import-Module
+Import-PSSession
+Invoke-Command
+Invoke-Expression
+Invoke-History
+Invoke-Item
+Invoke-TroubleshootingPack
+Invoke-WmiMethod
+Invoke-WSManAction
+Join-Path
+Limit-EventLog
+Measure-Command
+Measure-Object
+Move-Item
+Move-ItemProperty
+New-Alias
+New-AppLockerPolicy
+New-Event
+New-EventLog
+New-Item
+New-ItemProperty
+New-Module
+New-ModuleManifest
+New-Object
+New-PSDrive
+New-PSSession
+New-PSSessionOption
+New-Service
+New-TimeSpan
+New-Variable
+New-WebServiceProxy
+New-WSManInstance
+New-WSManSessionOption
+Out-Default
+Out-File
+Out-GridView
+Out-Host
+Out-Null
+Out-Printer
+Out-String
+Pop-Location
+Push-Location
+Read-Host
+Receive-Job
+Register-EngineEvent
+Register-ObjectEvent
+Register-PSSessionConfiguration
+Register-WmiEvent
+Remove-BitsTransfer
+Remove-Computer
+Remove-Event
+Remove-EventLog
+Remove-Item
+Remove-ItemProperty
+Remove-Job
+Remove-Module
+Remove-PSBreakpoint
+Remove-PSDrive
+Remove-PSSession
+Remove-PSSnapin
+Remove-Variable
+Remove-WmiObject
+Remove-WSManInstance
+Rename-Item
+Rename-ItemProperty
+Reset-ComputerMachinePassword
+Resolve-Path
+Restart-Computer
+Restart-Service
+Restore-Computer
+Resume-BitsTransfer
+Resume-Service
+Select-Object
+Select-String
+Select-XML
+Send-MailMessage
+Set-Acl
+Set-Alias
+Set-AppLockerPolicy
+Set-AuthenticodeSignature
+Set-BitsTransfer
+Set-Content
+Set-Date
+Set-ExecutionPolicy
+Set-Item
+Set-ItemProperty
+Set-Location
+Set-PSBreakpoint
+Set-PSDebug
+Set-PSSessionConfiguration
+Set-Service
+Set-StrictMode
+Set-TraceSource
+Set-Variable
+Set-WmiInstance
+Set-WSManInstance
+Set-WSManQuickConfig
+Show-EventLog
+Sort-Object
+Split-Path
+Start-BitsTransfer
+Start-Job
+Start-Process
+Start-Service
+Start-Sleep
+Start-Transaction
+Start-Transcript
+Stop-Computer
+Stop-Job
+Stop-Process
+Stop-Service
+Stop-Transcript
+Suspend-BitsTransfer
+Suspend-Service
+Tee-Object
+Test-AppLockerPolicy
+Test-ComputerSecureChannel
+Test-Connection
+Test-ModuleManifest
+Test-Path
+Test-WSMan
+Trace-Command
+Undo-Transaction
+Unregister-Event
+Unregister-PSSessionConfiguration
+Update-FormatData
+Update-List
+Update-TypeData
+Use-Transaction
+Wait-Event
+Wait-Job
+Wait-Process
+Where-Object
+Write-Debug
+Write-Error
+Write-EventLog
+Write-Host
+Write-Output
+Write-Progress
+Write-Verbose
+Write-Warning
+-EncodedCommand
+-ExecutionPolicy
+-PSConsoleFile
+EOF
+"name" = "windows-powershell-commands.data"
+}
+"files" {
+"data" = <<EOF
+/.adSensepostnottherenonobook
+/<invalid>hello.html
+/actSensepostnottherenonotive
+/acunetix-wvs-test-for-some-inexistent-file
+/antidisestablishmentarianism
+/appscan_fingerprint/mac_address
+/arachni-
+/cybercop
+/nessus_is_probing_you_
+/nessustest
+/netsparker-
+/rfiinc.txt
+/thereisnowaythat-you-canbethere
+/w3af/remotefileinclude.html
+appscan_fingerprint
+w00tw00t.at.ISC.SANS.DFind
+w00tw00t.at.blackhats.romanian.anti-sec
+EOF
+"name" = "scanners-urls.data"
+}
+"files" {
+"data" = <<EOF
+# Apache
+# (no slash; also guards against old.htaccess, old.htpasswd, etc.)
+.htaccess
+.htdigest
+.htpasswd
+# Version control
+/.git/
+/.gitignore
+/.hg/
+/.hgignore
+/.svn/
+# Wordpress
+wp-config.php
+wp-config.bak
+wp-config.old
+wp-config.temp
+wp-config.tmp
+wp-config.txt
+# Symfony
+/config/config.yml
+/config/config_dev.yml
+/config/config_prod.yml
+/config/config_test.yml
+/config/parameters.yml
+/config/routing.yml
+/config/security.yml
+/config/services.yml
+# Drupal
+/sites/default/default.settings.php
+/sites/default/settings.php
+# Magento
+/app/etc/local.xml
+# Sublime Text
+/sftp-config.json
+# ASP.NET
+/Web.config
+# Node
+/gruntfile.js
+/npm-debug.log
+# Composer
+/composer.json
+/composer.lock
+/packages.json
+# dotenv
+/.env
+EOF
+"name" = "restricted-files.data"
 }
 "tenant_ref" = "${data.avi_tenant.default_tenant.id}"
 "config" {
@@ -4101,265 +4101,88 @@ data "avi_tenant" "default_tenant"{
 resource "avi_wafprofile" "testWafProfile" {
 "files" {
 "data" = <<EOF
-# Search engine crawlers and other bots
-
-# site ripper
-# http://www.softbytelabs.com/en/BlackWidow/
-black widow
-blackwidow
-# crawler
-# 2006
-prowebwalker
-# generic crawler
-pymills-spider/
-# SEO
-# https://ahrefs.com/robot
-AhrefsBot
-# people database
-# https://pipl.com/bot/
-PiplBot
-# advertising targeting
-# https://www.grapeshot.com/crawler/
-GrapeshotCrawler/2.0
-grapeFX
-# SEO
-# http://www.searchmetrics.com/searchmetricsbot/
-SearchmetricsBot
-# SEO
-# https://moz.com/help/guides/moz-procedures/what-is-rogerbot
-rogerbot
-# SEO
-# http://www.majestic12.co.uk/projects/dsearch/mj12bot.php
-MJ12bot
-# news service
-Owlin bot
-# misbehaving spider
-Lingewoud-550-Spyder
+MySqlClient.
+Server message
+SQL error
+Oracle error
+JET Database Engine
+Procedure or function 
+SQLite.Exception
+[IBM][CLI Driver][DB2/6000]
+the used select statements have different number of columns
+org.postgresql.util.PSQLException
+Access Database Engine
+Incorrect syntax near
+Syntax error in string in query expression
+SQLiteException
+' doesn't exist
+CLI Driver
+on MySQL result index
+sybase
+com.informix.jdbc
+[MySQL][ODBC
+Error
+has occurred in the vicinity of:
+Sintaxis incorrecta cerca de
+MySQL server version for the right syntax to use
+com.mysql.jdbc.exceptions
+You have an error in your SQL syntax near
+You have an error in your SQL syntax;
+An illegal character has been found in the statement
+pg_query() [:
+supplied argument is not a valid MySQL
+mssql_query()
+mysql_fetch_array()
+Exception
+java.sql.SQLException
+Column count doesn't match value count at row
+Sybase message
+ SQL Server
+PostgreSQL query failed:
+Dynamic SQL Error
+System.Data.SQLite.SQLiteException
+SQLite/JDBCDriver
+Unclosed quotation mark before the character string
+System.Data.SqlClient.
+Unclosed quotation mark after the character string
+System.Data.OleDb.OleDbException
+[DM_QUERY_E_SYNTAX]
+[SqlException
+Unexpected end of command in statement
+valid PostgreSQL result
+pg_exec() [:
+SQL Server
+[SQLITE_ERROR]
+Microsoft OLE DB Provider for ODBC Drivers
+PostgreSQL
+org.hsqldb.jdbc
+ADODB.Field (0x800A0BCD)
+SQL syntax
+Exception 
+System.Data.SqlClient.SqlException
+Data type mismatch in criteria expression.
+Driver
+DB2 SQL error
+Sybase message:
+ORA-
+[Microsoft][ODBC SQL Server Driver]
+'80040e14'
+Microsoft OLE DB Provider for SQL Server
+ in query expression
+Npgsql.
+valid MySQL result
+supplied argument is not a valid PostgreSQL result
+db2_
+Ingres SQLSTATE
+Column count doesn't match
+Warning
+[Microsoft][ODBC Microsoft Access Driver]
+[Macromedia][SQLServer JDBC Driver]
+<b>Warning</b>: ibase_
+Roadhouse.Cms.
+DB2 SQL error:
 EOF
-"name" = "crawlers-user-agents.data"
-}
-"files" {
-"data" = <<EOF
-<b>Warning</b>:
-No row with the given identifier
-open_basedir restriction in effect
-eval()'d code</b> on line <b>
-Cannot execute a blank command in
-Fatal error</b>:  preg_replace
-thrown in <b>
-#0 {main}
-Stack trace:
-</b> on line <b>
-() cannot be called statically
-- not a Class::Method
-::__toString() must not throw an exception
-Access to undeclared static property:
-An iterator cannot be used with foreach by reference
-Array callback has to contain indices 0 and 1
-Arrived at end of main loop which shouldn't happen
-Attempt to destruct pending exception
-Attempt to unset static property
-Balloc() allocation exceeds list boundary
-Balloc() failed to allocate memory
-Base lambda function for closure not found
-Call to a member function
-Call to private 
-Call to protected 
-Call to undefined function
-Call to undefined method
-Can only throw objects
-Cannot access empty property
-Cannot access parent:: when current class scope has no parent
-Cannot access parent:: when no class scope is active
-Cannot access property started with '\\0'
-Cannot access self:: when no class scope is active
-Cannot access static:: when no class scope is active
-Cannot access undefined property for object with overloaded property access
-Cannot assign by reference to overloaded object
-Cannot break/continue %d level%s
-Cannot call abstract method 
-Cannot call constructor
-Cannot call forward_static_call() when no class scope is active
-Cannot call non static method
-Cannot call overloaded function for non-object
-Cannot call private 
-Cannot create references to/from string offsets
-Cannot create references to/from string offsets nor overloaded objects
-Cannot declare self-referencing constant 
-Cannot destroy active lambda function
-Cannot get arguments for 
-Cannot increment/decrement overloaded objects nor string offsets
-Cannot instantiate abstract class 
-Cannot instantiate interface 
-Cannot instantiate trait 
-Cannot override final 
-Cannot pass parameter 
-Cannot redeclare 
-Cannot redeclare class 
-Cannot register a reverse output handler conflict outside of MINIT
-Cannot register an output handler alias outside of MINIT
-Cannot register an output handler conflict outside of MINIT
-Cannot resume an already running generator
-Cannot return string offsets by reference
-Cannot set non exception as previous exception
-Cannot unset string offsets
-Cannot use [] for reading
-Cannot use assign-op operators with overloaded objects nor string offsets
-Cannot use object as array
-Cannot use object of type 
-Cannot use string offset as an array
-Cannot use string offset as an object
-Cannot yield from finally in a force-closed generator
-Cannot yield string offsets by reference
-Class entry requested for an object without PHP class
-Class name must be a valid object or a string
-Corrupted fcall_info provided to zend_call_function()
-DCOM has been disabled by your administrator [com.allow_dcom=0]
-DateFormat class not defined
-DateTimeInterface can't be implemented by user classes
-EXTREMELY fatal error: jmpbuf unrecoverable; terminating
-EXTREMELY fatal error: jmpbuf unrecoverable; terminating.
-EXTREMELY fatal error: longjmp returned control; terminating
-Encoding: '*' may only be first arraySize value in list
-Encoding: Attribute 
-Encoding: Can't decode apache map, missing key
-Encoding: Can't decode apache map, missing value
-Encoding: Can't decode apache map, only Strings or Longs are allowd as keys
-Encoding: Cannot find encoding
-Encoding: Element 
-Encoding: Error calling from_xml callback
-Encoding: Error calling to_xml callback
-Encoding: External reference 
-Encoding: Internal Error
-Encoding: Invalid timestamp 
-Encoding: SoapVar has no 'enc_type' property
-Encoding: Unresolved reference 
-Encoding: Violation of encoding rules
-Encoding: Violation of id and ref information items 
-Encoding: object has no '
-Encoding: object has no 'any' property
-Encoding: string '
-Error installing signal handler for 
-Exception thrown without a stack frame
-Exceptions must be valid objects derived from the Exception base class
-Failed to clone SpoofChecker object
-Failed to register IntlDateFormatter class
-Failed to register MessageFormatter class
-Failed to register NumberFormatter class
-Failed to register ResourceBundle class
-Field width %d is too long
-First array member is not a valid class name or object
-Function name must be a string
-Illegal length modifier specified 
-Illegal offset type
-Input string is too long
-Invalid RelaxNG Validation Context
-Invalid Schema Validation Context
-Invalid opcode
-Invalid serialization data for DatePeriod object
-Invalid serialization data for DateTime object
-Invalid serialization data for DateTimeImmutable object
-Maximum execution time of
-Method name must be a string
-Need to supply an object when throwing an exception
-Nesting level too deep - recursive dependency?
-NumberFormatter class not defined
-Object does not support method calls
-Only variables can be passed by reference
-PDO: driver 
-Parsing Schema: <restriction> or <extension> expected in complexContent
-Parsing Schema: attribute
-Parsing Schema: attribute has both 'ref' and 'type' attributes
-Parsing Schema: attribute has both 'ref' attribute and subtype
-Parsing Schema: attribute has both 'type' attribute and subtype
-Parsing Schema: attribute has no 'name' nor 'ref' attributes
-Parsing Schema: attributeGroup 
-Parsing Schema: attributeGroup has both 'ref' attribute and subattribute
-Parsing Schema: attributeGroup has no 'name' nor 'ref' attributes
-Parsing Schema: can't import schema from 
-Parsing Schema: complexType has no 'name' attribute
-Parsing Schema: element has both 'default' and 'fixed' attributes
-Parsing Schema: element has both 'itemType' attribute and subtype
-Parsing Schema: element has both 'ref' and 'fixed' attributes
-Parsing Schema: element has both 'ref' and 'nillable' attributes
-Parsing Schema: element has both 'ref' and 'type' attributes
-Parsing Schema: element has both 'ref' attribute and subtype
-Parsing Schema: element has both 'type' attribute and subtype
-Parsing Schema: element has no 'name' nor 'ref' attributes
-Parsing Schema: expected <restriction> or <extension> in simpleContent
-Parsing Schema: expected <restriction>, <list> or <union> in simpleType
-Parsing Schema: extension has no 'base' attribute
-Parsing Schema: group has both 'ref' attribute and subcontent
-Parsing Schema: group has no 'name' nor 'ref' attributes
-Parsing Schema: include has no 'schemaLocation' attribute
-Parsing Schema: missing restriction value
-Parsing Schema: redefine has no 'schemaLocation' attribute
-Parsing Schema: restriction has no 'base' attribute
-Parsing Schema: simpleType has no 'name' attribute
-Parsing Schema: unexpected
-Parsing Schema: unresolved element 'ref' attribute 
-Parsing Schema: unresolved group 'ref' attribute 
-Parsing WSDL: <binding> 
-Parsing WSDL: <binding> has no name attribute
-Parsing WSDL: <fault> with name 
-Parsing WSDL: <message> has no name attribute
-Parsing WSDL: <portType> 
-Parsing WSDL: <portType> has no name attribute
-Parsing WSDL: <service> 
-Parsing WSDL: <service> has no name attribute
-Parsing WSDL: Could not find any usable binding services in WSDL.
-Parsing WSDL: Couldn't bind to service
-Parsing WSDL: Couldn't find <definitions> in 
-Parsing WSDL: Couldn't load from 
-Parsing WSDL: Missing 'name' attribute for <binding>
-Parsing WSDL: Missing 'name' attribute for <operation>
-Parsing WSDL: Missing 'type' attribute for <binding>
-Parsing WSDL: Missing <message> with name 
-Parsing WSDL: Missing <portType> with name 
-Parsing WSDL: Missing <portType>/<operation> with name 
-Parsing WSDL: Missing message attribute for <header>
-Parsing WSDL: Missing name for <fault> of 
-Parsing WSDL: Missing name for <input> of 
-Parsing WSDL: Missing name for <output> of 
-Parsing WSDL: Missing part '%s' in <message>
-Parsing WSDL: Missing part attribute for <header>
-Parsing WSDL: No <binding> element with name 
-Parsing WSDL: No address associated with <port>
-Parsing WSDL: No binding associated with <port>
-Parsing WSDL: No location associated with <port>
-Parsing WSDL: No name associated with <part> 
-Parsing WSDL: The fault message 
-Parsing WSDL: Unexpected WSDL element <
-Parsing WSDL: Unexpected extensibility element <
-Parsing WSDL: Unknown encodingStyle '
-Parsing WSDL: Unknown required WSDL extension '
-Parsing WSDL: Unspecified encodingStyle
-Possible integer overflow in memory allocation (
-Second array member is not a valid method
-Spoofchecker class not defined
-String size overflow
-The object to be iterated is in an invalid state: "
-Trying to clone an uncloneable object
-Trying to clone an uncloneable object of class 
-Unable to call 
-Unable to cast node to string
-Undefined class constant '
-Undefined constant '
-Undefined offset for object of type 
-Unexpected inconsistency in create_function()
-Unknown SOAP version
-Unknown typehint
-Unsupported operand types
-Using $this when not in object context
-Wrong parameters for ErrorException(
-Wrong parameters for Exception(
-You MUST load PDO before loading any PDO drivers
-[] operator not supported for strings
-and must therefore be declared abstract or implement the remaining methods
-namespace must not match the enclosing schema 'targetNamespace'
-requires PDO API version 
-EOF
-"name" = "php-errors.data"
+"name" = "sql-errors.data"
 }
 "files" {
 "data" = <<EOF
@@ -5637,738 +5460,226 @@ EOF
 }
 "files" {
 "data" = <<EOF
-# Apache
-# (no slash; also guards against old.htaccess, old.htpasswd, etc.)
-.htaccess
-.htdigest
-.htpasswd
-# Version control
-/.git/
-/.gitignore
-/.hg/
-/.hgignore
-/.svn/
-# Wordpress
-wp-config.php
-wp-config.bak
-wp-config.old
-wp-config.temp
-wp-config.tmp
-wp-config.txt
-# Symfony
-/config/config.yml
-/config/config_dev.yml
-/config/config_prod.yml
-/config/config_test.yml
-/config/parameters.yml
-/config/routing.yml
-/config/security.yml
-/config/services.yml
-# Drupal
-/sites/default/default.settings.php
-/sites/default/settings.php
-# Magento
-/app/etc/local.xml
-# Sublime Text
-/sftp-config.json
-# ASP.NET
-/Web.config
-# Node
-/gruntfile.js
-/npm-debug.log
-# Composer
-/composer.json
-/composer.lock
-/packages.json
-# dotenv
-/.env
+<b>Warning</b>:
+No row with the given identifier
+open_basedir restriction in effect
+eval()'d code</b> on line <b>
+Cannot execute a blank command in
+Fatal error</b>:  preg_replace
+thrown in <b>
+#0 {main}
+Stack trace:
+</b> on line <b>
+() cannot be called statically
+- not a Class::Method
+::__toString() must not throw an exception
+Access to undeclared static property:
+An iterator cannot be used with foreach by reference
+Array callback has to contain indices 0 and 1
+Arrived at end of main loop which shouldn't happen
+Attempt to destruct pending exception
+Attempt to unset static property
+Balloc() allocation exceeds list boundary
+Balloc() failed to allocate memory
+Base lambda function for closure not found
+Call to a member function
+Call to private 
+Call to protected 
+Call to undefined function
+Call to undefined method
+Can only throw objects
+Cannot access empty property
+Cannot access parent:: when current class scope has no parent
+Cannot access parent:: when no class scope is active
+Cannot access property started with '\\0'
+Cannot access self:: when no class scope is active
+Cannot access static:: when no class scope is active
+Cannot access undefined property for object with overloaded property access
+Cannot assign by reference to overloaded object
+Cannot break/continue %d level%s
+Cannot call abstract method 
+Cannot call constructor
+Cannot call forward_static_call() when no class scope is active
+Cannot call non static method
+Cannot call overloaded function for non-object
+Cannot call private 
+Cannot create references to/from string offsets
+Cannot create references to/from string offsets nor overloaded objects
+Cannot declare self-referencing constant 
+Cannot destroy active lambda function
+Cannot get arguments for 
+Cannot increment/decrement overloaded objects nor string offsets
+Cannot instantiate abstract class 
+Cannot instantiate interface 
+Cannot instantiate trait 
+Cannot override final 
+Cannot pass parameter 
+Cannot redeclare 
+Cannot redeclare class 
+Cannot register a reverse output handler conflict outside of MINIT
+Cannot register an output handler alias outside of MINIT
+Cannot register an output handler conflict outside of MINIT
+Cannot resume an already running generator
+Cannot return string offsets by reference
+Cannot set non exception as previous exception
+Cannot unset string offsets
+Cannot use [] for reading
+Cannot use assign-op operators with overloaded objects nor string offsets
+Cannot use object as array
+Cannot use object of type 
+Cannot use string offset as an array
+Cannot use string offset as an object
+Cannot yield from finally in a force-closed generator
+Cannot yield string offsets by reference
+Class entry requested for an object without PHP class
+Class name must be a valid object or a string
+Corrupted fcall_info provided to zend_call_function()
+DCOM has been disabled by your administrator [com.allow_dcom=0]
+DateFormat class not defined
+DateTimeInterface can't be implemented by user classes
+EXTREMELY fatal error: jmpbuf unrecoverable; terminating
+EXTREMELY fatal error: jmpbuf unrecoverable; terminating.
+EXTREMELY fatal error: longjmp returned control; terminating
+Encoding: '*' may only be first arraySize value in list
+Encoding: Attribute 
+Encoding: Can't decode apache map, missing key
+Encoding: Can't decode apache map, missing value
+Encoding: Can't decode apache map, only Strings or Longs are allowd as keys
+Encoding: Cannot find encoding
+Encoding: Element 
+Encoding: Error calling from_xml callback
+Encoding: Error calling to_xml callback
+Encoding: External reference 
+Encoding: Internal Error
+Encoding: Invalid timestamp 
+Encoding: SoapVar has no 'enc_type' property
+Encoding: Unresolved reference 
+Encoding: Violation of encoding rules
+Encoding: Violation of id and ref information items 
+Encoding: object has no '
+Encoding: object has no 'any' property
+Encoding: string '
+Error installing signal handler for 
+Exception thrown without a stack frame
+Exceptions must be valid objects derived from the Exception base class
+Failed to clone SpoofChecker object
+Failed to register IntlDateFormatter class
+Failed to register MessageFormatter class
+Failed to register NumberFormatter class
+Failed to register ResourceBundle class
+Field width %d is too long
+First array member is not a valid class name or object
+Function name must be a string
+Illegal length modifier specified 
+Illegal offset type
+Input string is too long
+Invalid RelaxNG Validation Context
+Invalid Schema Validation Context
+Invalid opcode
+Invalid serialization data for DatePeriod object
+Invalid serialization data for DateTime object
+Invalid serialization data for DateTimeImmutable object
+Maximum execution time of
+Method name must be a string
+Need to supply an object when throwing an exception
+Nesting level too deep - recursive dependency?
+NumberFormatter class not defined
+Object does not support method calls
+Only variables can be passed by reference
+PDO: driver 
+Parsing Schema: <restriction> or <extension> expected in complexContent
+Parsing Schema: attribute
+Parsing Schema: attribute has both 'ref' and 'type' attributes
+Parsing Schema: attribute has both 'ref' attribute and subtype
+Parsing Schema: attribute has both 'type' attribute and subtype
+Parsing Schema: attribute has no 'name' nor 'ref' attributes
+Parsing Schema: attributeGroup 
+Parsing Schema: attributeGroup has both 'ref' attribute and subattribute
+Parsing Schema: attributeGroup has no 'name' nor 'ref' attributes
+Parsing Schema: can't import schema from 
+Parsing Schema: complexType has no 'name' attribute
+Parsing Schema: element has both 'default' and 'fixed' attributes
+Parsing Schema: element has both 'itemType' attribute and subtype
+Parsing Schema: element has both 'ref' and 'fixed' attributes
+Parsing Schema: element has both 'ref' and 'nillable' attributes
+Parsing Schema: element has both 'ref' and 'type' attributes
+Parsing Schema: element has both 'ref' attribute and subtype
+Parsing Schema: element has both 'type' attribute and subtype
+Parsing Schema: element has no 'name' nor 'ref' attributes
+Parsing Schema: expected <restriction> or <extension> in simpleContent
+Parsing Schema: expected <restriction>, <list> or <union> in simpleType
+Parsing Schema: extension has no 'base' attribute
+Parsing Schema: group has both 'ref' attribute and subcontent
+Parsing Schema: group has no 'name' nor 'ref' attributes
+Parsing Schema: include has no 'schemaLocation' attribute
+Parsing Schema: missing restriction value
+Parsing Schema: redefine has no 'schemaLocation' attribute
+Parsing Schema: restriction has no 'base' attribute
+Parsing Schema: simpleType has no 'name' attribute
+Parsing Schema: unexpected
+Parsing Schema: unresolved element 'ref' attribute 
+Parsing Schema: unresolved group 'ref' attribute 
+Parsing WSDL: <binding> 
+Parsing WSDL: <binding> has no name attribute
+Parsing WSDL: <fault> with name 
+Parsing WSDL: <message> has no name attribute
+Parsing WSDL: <portType> 
+Parsing WSDL: <portType> has no name attribute
+Parsing WSDL: <service> 
+Parsing WSDL: <service> has no name attribute
+Parsing WSDL: Could not find any usable binding services in WSDL.
+Parsing WSDL: Couldn't bind to service
+Parsing WSDL: Couldn't find <definitions> in 
+Parsing WSDL: Couldn't load from 
+Parsing WSDL: Missing 'name' attribute for <binding>
+Parsing WSDL: Missing 'name' attribute for <operation>
+Parsing WSDL: Missing 'type' attribute for <binding>
+Parsing WSDL: Missing <message> with name 
+Parsing WSDL: Missing <portType> with name 
+Parsing WSDL: Missing <portType>/<operation> with name 
+Parsing WSDL: Missing message attribute for <header>
+Parsing WSDL: Missing name for <fault> of 
+Parsing WSDL: Missing name for <input> of 
+Parsing WSDL: Missing name for <output> of 
+Parsing WSDL: Missing part '%s' in <message>
+Parsing WSDL: Missing part attribute for <header>
+Parsing WSDL: No <binding> element with name 
+Parsing WSDL: No address associated with <port>
+Parsing WSDL: No binding associated with <port>
+Parsing WSDL: No location associated with <port>
+Parsing WSDL: No name associated with <part> 
+Parsing WSDL: The fault message 
+Parsing WSDL: Unexpected WSDL element <
+Parsing WSDL: Unexpected extensibility element <
+Parsing WSDL: Unknown encodingStyle '
+Parsing WSDL: Unknown required WSDL extension '
+Parsing WSDL: Unspecified encodingStyle
+Possible integer overflow in memory allocation (
+Second array member is not a valid method
+Spoofchecker class not defined
+String size overflow
+The object to be iterated is in an invalid state: "
+Trying to clone an uncloneable object
+Trying to clone an uncloneable object of class 
+Unable to call 
+Unable to cast node to string
+Undefined class constant '
+Undefined constant '
+Undefined offset for object of type 
+Unexpected inconsistency in create_function()
+Unknown SOAP version
+Unknown typehint
+Unsupported operand types
+Using $this when not in object context
+Wrong parameters for ErrorException(
+Wrong parameters for Exception(
+You MUST load PDO before loading any PDO drivers
+[] operator not supported for strings
+and must therefore be declared abstract or implement the remaining methods
+namespace must not match the enclosing schema 'targetNamespace'
+requires PDO API version 
 EOF
-"name" = "restricted-files.data"
-}
-"files" {
-"data" = <<EOF
-<jsp:
-javax.servlet
-.addheader
-.createtextfile
-.getfile
-.loadfromfile
-response.binarywrite
-response.write
-scripting.filesystemobject
-server.createobject
-server.execute
-server.htmlencode
-server.mappath
-server.urlencode
-vbscript.encode
-wscript.network
-wscript.shell
-EOF
-"name" = "java-code-leakages.data"
-}
-"files" {
-"data" = <<EOF
-powershell.exe
-Add-BitsFile
-Add-Computer
-Add-Content
-Add-History
-Add-Member
-Add-PSSnapin
-Add-Type
-Checkpoint-Computer
-Clear-Content
-Clear-EventLog
-Clear-History
-Clear-Item
-Clear-ItemProperty
-Clear-Variable
-Compare-Object
-Complete-BitsTransfer
-Complete-Transaction
-Connect-WSMan
-ConvertFrom-CSV
-ConvertFrom-SecureString
-ConvertFrom-StringData
-Convert-Path
-ConvertTo-CSV
-ConvertTo-Html
-ConvertTo-SecureString
-ConvertTo-XML
-Copy-Item
-Copy-ItemProperty
-Debug-Process
-Disable-ComputerRestore
-Disable-PSBreakpoint
-Disable-PSSessionConfiguration
-Disable-WSManCredSSP
-Disconnect-WSMan
-Enable-ComputerRestore
-Enable-PSBreakpoint
-Enable-PSRemoting
-Enable-PSSessionConfiguration
-Enable-WSManCredSSP
-Enter-PSSession
-Exit-PSSession
-Export-Alias
-Export-Clixml
-Export-Console
-Export-Counter
-Export-CSV
-Export-FormatData
-Export-ModuleMember
-Export-PSSession
-ForEach-Object
-Format-Custom
-Format-List
-Format-Table
-Format-Wide
-Get-Acl
-Get-Alias
-Get-AppLockerFileInformation
-Get-AppLockerPolicy
-Get-AuthenticodeSignature
-Get-BitsTransfer
-Get-ChildItem
-Get-Command
-Get-ComputerRestorePoint
-Get-Content
-Get-Counter
-Get-Credential
-Get-Culture
-Get-Event
-Get-EventLog
-Get-EventSubscriber
-Get-ExecutionPolicy
-Get-FormatData
-Get-History
-Get-Host
-Get-HotFix
-Get-Item
-Get-ItemProperty
-Get-Job
-Get-Location
-Get-Member
-Get-Module
-Get-PfxCertificate
-Get-Process
-Get-PSBreakpoint
-Get-PSCallStack
-Get-PSDrive
-Get-PSProvider
-Get-PSSession
-Get-PSSessionConfiguration
-Get-PSSnapin
-Get-Random
-Get-Service
-Get-TraceSource
-Get-Transaction
-Get-TroubleshootingPack
-Get-UICulture
-Get-Unique
-Get-Variable
-Get-WinEvent
-Get-WmiObject
-Get-WSManCredSSP
-Get-WSManInstance
-Group-Object
-Import-Alias
-Import-Clixml
-Import-Counter
-Import-CSV
-Import-LocalizedData
-Import-Module
-Import-PSSession
-Invoke-Command
-Invoke-Expression
-Invoke-History
-Invoke-Item
-Invoke-TroubleshootingPack
-Invoke-WmiMethod
-Invoke-WSManAction
-Join-Path
-Limit-EventLog
-Measure-Command
-Measure-Object
-Move-Item
-Move-ItemProperty
-New-Alias
-New-AppLockerPolicy
-New-Event
-New-EventLog
-New-Item
-New-ItemProperty
-New-Module
-New-ModuleManifest
-New-Object
-New-PSDrive
-New-PSSession
-New-PSSessionOption
-New-Service
-New-TimeSpan
-New-Variable
-New-WebServiceProxy
-New-WSManInstance
-New-WSManSessionOption
-Out-Default
-Out-File
-Out-GridView
-Out-Host
-Out-Null
-Out-Printer
-Out-String
-Pop-Location
-Push-Location
-Read-Host
-Receive-Job
-Register-EngineEvent
-Register-ObjectEvent
-Register-PSSessionConfiguration
-Register-WmiEvent
-Remove-BitsTransfer
-Remove-Computer
-Remove-Event
-Remove-EventLog
-Remove-Item
-Remove-ItemProperty
-Remove-Job
-Remove-Module
-Remove-PSBreakpoint
-Remove-PSDrive
-Remove-PSSession
-Remove-PSSnapin
-Remove-Variable
-Remove-WmiObject
-Remove-WSManInstance
-Rename-Item
-Rename-ItemProperty
-Reset-ComputerMachinePassword
-Resolve-Path
-Restart-Computer
-Restart-Service
-Restore-Computer
-Resume-BitsTransfer
-Resume-Service
-Select-Object
-Select-String
-Select-XML
-Send-MailMessage
-Set-Acl
-Set-Alias
-Set-AppLockerPolicy
-Set-AuthenticodeSignature
-Set-BitsTransfer
-Set-Content
-Set-Date
-Set-ExecutionPolicy
-Set-Item
-Set-ItemProperty
-Set-Location
-Set-PSBreakpoint
-Set-PSDebug
-Set-PSSessionConfiguration
-Set-Service
-Set-StrictMode
-Set-TraceSource
-Set-Variable
-Set-WmiInstance
-Set-WSManInstance
-Set-WSManQuickConfig
-Show-EventLog
-Sort-Object
-Split-Path
-Start-BitsTransfer
-Start-Job
-Start-Process
-Start-Service
-Start-Sleep
-Start-Transaction
-Start-Transcript
-Stop-Computer
-Stop-Job
-Stop-Process
-Stop-Service
-Stop-Transcript
-Suspend-BitsTransfer
-Suspend-Service
-Tee-Object
-Test-AppLockerPolicy
-Test-ComputerSecureChannel
-Test-Connection
-Test-ModuleManifest
-Test-Path
-Test-WSMan
-Trace-Command
-Undo-Transaction
-Unregister-Event
-Unregister-PSSessionConfiguration
-Update-FormatData
-Update-List
-Update-TypeData
-Use-Transaction
-Wait-Event
-Wait-Job
-Wait-Process
-Where-Object
-Write-Debug
-Write-Error
-Write-EventLog
-Write-Host
-Write-Output
-Write-Progress
-Write-Verbose
-Write-Warning
--EncodedCommand
--ExecutionPolicy
--PSConsoleFile
-EOF
-"name" = "windows-powershell-commands.data"
-}
-"files" {
-"data" = <<EOF
-[java.lang.
-class java.lang.
-java.lang.NullPointerException
-java.rmi.ServerException
-at java.lang.
-onclick="toggle('full exception chain stacktrace')"
-at org.apache.catalina
-at org.apache.coyote.
-at org.apache.tomcat.
-at org.apache.jasper.
-EOF
-"name" = "java-errors.data"
-}
-"files" {
-"data" = <<EOF
-MySqlClient.
-Server message
-SQL error
-Oracle error
-JET Database Engine
-Procedure or function 
-SQLite.Exception
-[IBM][CLI Driver][DB2/6000]
-the used select statements have different number of columns
-org.postgresql.util.PSQLException
-Access Database Engine
-Incorrect syntax near
-Syntax error in string in query expression
-SQLiteException
-' doesn't exist
-CLI Driver
-on MySQL result index
-sybase
-com.informix.jdbc
-[MySQL][ODBC
-Error
-has occurred in the vicinity of:
-Sintaxis incorrecta cerca de
-MySQL server version for the right syntax to use
-com.mysql.jdbc.exceptions
-You have an error in your SQL syntax near
-You have an error in your SQL syntax;
-An illegal character has been found in the statement
-pg_query() [:
-supplied argument is not a valid MySQL
-mssql_query()
-mysql_fetch_array()
-Exception
-java.sql.SQLException
-Column count doesn't match value count at row
-Sybase message
- SQL Server
-PostgreSQL query failed:
-Dynamic SQL Error
-System.Data.SQLite.SQLiteException
-SQLite/JDBCDriver
-Unclosed quotation mark before the character string
-System.Data.SqlClient.
-Unclosed quotation mark after the character string
-System.Data.OleDb.OleDbException
-[DM_QUERY_E_SYNTAX]
-[SqlException
-Unexpected end of command in statement
-valid PostgreSQL result
-pg_exec() [:
-SQL Server
-[SQLITE_ERROR]
-Microsoft OLE DB Provider for ODBC Drivers
-PostgreSQL
-org.hsqldb.jdbc
-ADODB.Field (0x800A0BCD)
-SQL syntax
-Exception 
-System.Data.SqlClient.SqlException
-Data type mismatch in criteria expression.
-Driver
-DB2 SQL error
-Sybase message:
-ORA-
-[Microsoft][ODBC SQL Server Driver]
-'80040e14'
-Microsoft OLE DB Provider for SQL Server
- in query expression
-Npgsql.
-valid MySQL result
-supplied argument is not a valid PostgreSQL result
-db2_
-Ingres SQLSTATE
-Column count doesn't match
-Warning
-[Microsoft][ODBC Microsoft Access Driver]
-[Macromedia][SQLServer JDBC Driver]
-<b>Warning</b>: ibase_
-Roadhouse.Cms.
-DB2 SQL error:
-EOF
-"name" = "sql-errors.data"
-}
-"files" {
-"data" = <<EOF
-allow_call_time_pass_reference
-allow_url_fopen
-allow_url_include
-always_populate_raw_post_data
-arg_separator.input
-arg_separator.output
-asp_tags
-assert.active
-assert.bail
-assert.callback
-assert.quiet_eval
-assert.warning
-auto_append_file
-auto_detect_line_endings
-auto_globals_jit
-auto_prepend_file
-bcmath.scale
-birdstep.max_links
-browscap
-cgi.fix_pathinfo
-cgi.force_redirect
-cgi.nph
-cgi.redirect_status_env
-cgi.rfc2616_headers
-com.allow_dcom
-com.autoregister_casesensitive
-com.autoregister_typelib
-com.autoregister_verbose
-com.code_page
-com.typelib_file
-date.default_latitude
-date.default_longitude
-date.sunrise_zenith
-date.sunset_zenith
-date.timezone
-dba.default_handler
-default_charset
-default_mimetype
-default_socket_timeout
-define_syslog_variables
-disable_classes
-disable_functions
-display_errors
-display_startup_errors
-doc_root
-docref_ext
-docref_root
-enable_dl
-error_append_string
-error_log
-error_prepend_string
-error_reporting
-exif.decode_jis_intel
-exif.decode_jis_motorola
-exif.decode_unicode_intel
-exif.decode_unicode_motorola
-exif.encode_jis
-exif.encode_unicode
-expose_php
-extension_dir
-fastcgi.impersonate
-fastcgi.logging
-file_uploads
-filter.default
-filter.default_flags
-gd.jpeg_ignore_warning
-highlight.bg
-highlight.comment
-highlight.default
-highlight.html
-highlight.keyword
-highlight.string
-html_errors
-ibase.allow_persistent
-ibase.dateformat
-ibase.default_charset
-ibase.default_db
-ibase.default_password
-ibase.default_user
-ibase.max_links
-ibase.max_persistent
-ibase.timeformat
-ibase.timestampformat
-iconv.input_encoding
-iconv.internal_encoding
-iconv.output_encoding
-ignore_repeated_errors
-ignore_repeated_source
-ignore_user_abort
-implicit_flush
-include_path
-intl.default_locale
-intl.error_level
-ldap.max_links
-log_errors
-log_errors_max_len
-magic_quotes_gpc
-magic_quotes_runtime
-magic_quotes_sybase
-mail.add_x_header
-mail.force_extra_parameters
-mail.log
-max_execution_time
-max_file_uploads
-max_input_nesting_level
-max_input_time
-mbstring.detect_order
-mbstring.encoding_translation
-mbstring.func_overload
-mbstring.http_input
-mbstring.http_output
-mbstring.http_output_conv_mimetype
-mbstring.internal_encoding
-mbstring.language
-mbstring.script_encoding
-mbstring.strict_detection
-mbstring.substitute_character
-mcrypt.algorithms_dir
-mcrypt.modes_dir
-memory_limit
-mssql.allow_persistent
-mssql.batchsize
-mssql.charset
-mssql.compatability_mode
-mssql.connect_timeout
-mssql.datetimeconvert
-mssql.max_links
-mssql.max_persistent
-mssql.max_procs
-mssql.min_error_severity
-mssql.min_message_severity
-mssql.secure_connection
-mssql.textlimit
-mssql.textsize
-mssql.timeout
-mysql.allow_local_infile
-mysql.allow_persistent
-mysql.cache_size
-mysql.connect_timeout
-mysql.default_host
-mysql.default_password
-mysql.default_port
-mysql.default_socket
-mysql.default_user
-mysql.max_links
-mysql.max_persistent
-mysql.trace_mode
-mysqli.allow_local_infile
-mysqli.allow_persistent
-mysqli.cache_size
-mysqli.default_host
-mysqli.default_port
-mysqli.default_pw
-mysqli.default_socket
-mysqli.default_user
-mysqli.max_links
-mysqli.max_persistent
-mysqli.reconnect
-mysqlnd.collect_memory_statistics
-mysqlnd.collect_statistics
-mysqlnd.net_cmd_buffer_size
-mysqlnd.net_read_buffer_size
-oci8.connection_class
-oci8.default_prefetch
-oci8.events
-oci8.max_persistent
-oci8.old_oci_close_semantics
-oci8.persistent_timeout
-oci8.ping_interval
-oci8.privileged_connect
-oci8.statement_cache_size
-odbc.allow_persistent
-odbc.check_persistent
-odbc.default_db
-odbc.default_pw
-odbc.default_user
-odbc.defaultbinmode
-odbc.defaultlrl
-odbc.max_links
-odbc.max_persistent
-open_basedir
-output_buffering
-output_handler
-pcre.backtrack_limit
-pcre.recursion_limit
-pdo_mysql.cache_size
-pdo_mysql.default_socket
-pdo_odbc.connection_pooling
-pgsql.allow_persistent
-pgsql.auto_reset_persistent
-pgsql.ignore_notice
-pgsql.log_notice
-pgsql.max_links
-pgsql.max_persistent
-phar.cache_list
-phar.readonly
-phar.require_hash
-post_max_size
-realpath_cache_size
-realpath_cache_ttl
-register_argc_argv
-register_globals
-register_long_arrays
-report_memleaks
-report_zend_debug
-request_order
-safe_mode
-safe_mode_allowed_env_vars
-safe_mode_exec_dir
-safe_mode_gid
-safe_mode_include_dir
-safe_mode_protected_env_vars
-sendmail_from
-sendmail_path
-serialize_precision
-session.auto_start
-session.bug_compat_42
-session.bug_compat_warn
-session.cache_expire
-session.cache_limiter
-session.cookie_domain
-session.cookie_httponly
-session.cookie_lifetime
-session.cookie_path
-session.cookie_secure
-session.entropy_file
-session.entropy_length
-session.gc_divisor
-session.gc_maxlifetime
-session.gc_probability
-session.hash_bits_per_character
-session.hash_function
-session.name
-session.referer_check
-session.save_handler
-session.save_path
-session.serialize_handler
-session.use_cookies
-session.use_only_cookies
-session.use_trans_sid
-short_open_tag
-soap.wsdl_cache_dir
-soap.wsdl_cache_enabled
-soap.wsdl_cache_limit
-soap.wsdl_cache_ttl
-sql.safe_mode
-sqlite.assoc_case
-sqlite3.extension_dir
-sybct.allow_persistent
-sybct.deadlock_retry_count
-sybct.hostname
-sybct.login_timeout
-sybct.max_links
-sybct.max_persistent
-sybct.min_client_severity
-sybct.min_server_severity
-sybct.timeout
-sysvshm.init_mem
-tidy.clean_output
-tidy.default_config
-track_errors
-unserialize_callback_func
-upload_max_filesize
-upload_tmp_dir
-url_rewriter.tags
-user_agent
-user_dir
-user_ini.cache_ttl
-user_ini.filename
-variables_order
-xmlrpc_error_number
-xmlrpc_errors
-y2k_compliance
-zlib.output_compression
-zlib.output_compression_level
-zlib.output_handler
-EOF
-"name" = "php-config-directives.data"
-}
-"files" {
-"data" = <<EOF
-$GLOBALS
-$HTTP_COOKIE_VARS
-$HTTP_ENV_VARS
-$HTTP_GET_VARS
-$HTTP_POST_FILES
-$HTTP_POST_VARS
-$HTTP_RAW_POST_DATA
-$HTTP_REQUEST_VARS
-$HTTP_SERVER_VARS
-$_COOKIE
-$_ENV
-$_FILES
-$_GET
-$_POST
-$_REQUEST
-$_SERVER
-$_SESSION
-$argc
-$argv
-EOF
-"name" = "php-variables.data"
+"name" = "php-errors.data"
 }
 "files" {
 "data" = <<EOF
@@ -7431,6 +6742,326 @@ EOF
 }
 "files" {
 "data" = <<EOF
+# Search engine crawlers and other bots
+
+# site ripper
+# http://www.softbytelabs.com/en/BlackWidow/
+black widow
+blackwidow
+# crawler
+# 2006
+prowebwalker
+# generic crawler
+pymills-spider/
+# SEO
+# https://ahrefs.com/robot
+AhrefsBot
+# people database
+# https://pipl.com/bot/
+PiplBot
+# advertising targeting
+# https://www.grapeshot.com/crawler/
+GrapeshotCrawler/2.0
+grapeFX
+# SEO
+# http://www.searchmetrics.com/searchmetricsbot/
+SearchmetricsBot
+# SEO
+# https://moz.com/help/guides/moz-procedures/what-is-rogerbot
+rogerbot
+# SEO
+# http://www.majestic12.co.uk/projects/dsearch/mj12bot.php
+MJ12bot
+# news service
+Owlin bot
+# misbehaving spider
+Lingewoud-550-Spyder
+EOF
+"name" = "crawlers-user-agents.data"
+}
+"files" {
+"data" = <<EOF
+allow_call_time_pass_reference
+allow_url_fopen
+allow_url_include
+always_populate_raw_post_data
+arg_separator.input
+arg_separator.output
+asp_tags
+assert.active
+assert.bail
+assert.callback
+assert.quiet_eval
+assert.warning
+auto_append_file
+auto_detect_line_endings
+auto_globals_jit
+auto_prepend_file
+bcmath.scale
+birdstep.max_links
+browscap
+cgi.fix_pathinfo
+cgi.force_redirect
+cgi.nph
+cgi.redirect_status_env
+cgi.rfc2616_headers
+com.allow_dcom
+com.autoregister_casesensitive
+com.autoregister_typelib
+com.autoregister_verbose
+com.code_page
+com.typelib_file
+date.default_latitude
+date.default_longitude
+date.sunrise_zenith
+date.sunset_zenith
+date.timezone
+dba.default_handler
+default_charset
+default_mimetype
+default_socket_timeout
+define_syslog_variables
+disable_classes
+disable_functions
+display_errors
+display_startup_errors
+doc_root
+docref_ext
+docref_root
+enable_dl
+error_append_string
+error_log
+error_prepend_string
+error_reporting
+exif.decode_jis_intel
+exif.decode_jis_motorola
+exif.decode_unicode_intel
+exif.decode_unicode_motorola
+exif.encode_jis
+exif.encode_unicode
+expose_php
+extension_dir
+fastcgi.impersonate
+fastcgi.logging
+file_uploads
+filter.default
+filter.default_flags
+gd.jpeg_ignore_warning
+highlight.bg
+highlight.comment
+highlight.default
+highlight.html
+highlight.keyword
+highlight.string
+html_errors
+ibase.allow_persistent
+ibase.dateformat
+ibase.default_charset
+ibase.default_db
+ibase.default_password
+ibase.default_user
+ibase.max_links
+ibase.max_persistent
+ibase.timeformat
+ibase.timestampformat
+iconv.input_encoding
+iconv.internal_encoding
+iconv.output_encoding
+ignore_repeated_errors
+ignore_repeated_source
+ignore_user_abort
+implicit_flush
+include_path
+intl.default_locale
+intl.error_level
+ldap.max_links
+log_errors
+log_errors_max_len
+magic_quotes_gpc
+magic_quotes_runtime
+magic_quotes_sybase
+mail.add_x_header
+mail.force_extra_parameters
+mail.log
+max_execution_time
+max_file_uploads
+max_input_nesting_level
+max_input_time
+mbstring.detect_order
+mbstring.encoding_translation
+mbstring.func_overload
+mbstring.http_input
+mbstring.http_output
+mbstring.http_output_conv_mimetype
+mbstring.internal_encoding
+mbstring.language
+mbstring.script_encoding
+mbstring.strict_detection
+mbstring.substitute_character
+mcrypt.algorithms_dir
+mcrypt.modes_dir
+memory_limit
+mssql.allow_persistent
+mssql.batchsize
+mssql.charset
+mssql.compatability_mode
+mssql.connect_timeout
+mssql.datetimeconvert
+mssql.max_links
+mssql.max_persistent
+mssql.max_procs
+mssql.min_error_severity
+mssql.min_message_severity
+mssql.secure_connection
+mssql.textlimit
+mssql.textsize
+mssql.timeout
+mysql.allow_local_infile
+mysql.allow_persistent
+mysql.cache_size
+mysql.connect_timeout
+mysql.default_host
+mysql.default_password
+mysql.default_port
+mysql.default_socket
+mysql.default_user
+mysql.max_links
+mysql.max_persistent
+mysql.trace_mode
+mysqli.allow_local_infile
+mysqli.allow_persistent
+mysqli.cache_size
+mysqli.default_host
+mysqli.default_port
+mysqli.default_pw
+mysqli.default_socket
+mysqli.default_user
+mysqli.max_links
+mysqli.max_persistent
+mysqli.reconnect
+mysqlnd.collect_memory_statistics
+mysqlnd.collect_statistics
+mysqlnd.net_cmd_buffer_size
+mysqlnd.net_read_buffer_size
+oci8.connection_class
+oci8.default_prefetch
+oci8.events
+oci8.max_persistent
+oci8.old_oci_close_semantics
+oci8.persistent_timeout
+oci8.ping_interval
+oci8.privileged_connect
+oci8.statement_cache_size
+odbc.allow_persistent
+odbc.check_persistent
+odbc.default_db
+odbc.default_pw
+odbc.default_user
+odbc.defaultbinmode
+odbc.defaultlrl
+odbc.max_links
+odbc.max_persistent
+open_basedir
+output_buffering
+output_handler
+pcre.backtrack_limit
+pcre.recursion_limit
+pdo_mysql.cache_size
+pdo_mysql.default_socket
+pdo_odbc.connection_pooling
+pgsql.allow_persistent
+pgsql.auto_reset_persistent
+pgsql.ignore_notice
+pgsql.log_notice
+pgsql.max_links
+pgsql.max_persistent
+phar.cache_list
+phar.readonly
+phar.require_hash
+post_max_size
+realpath_cache_size
+realpath_cache_ttl
+register_argc_argv
+register_globals
+register_long_arrays
+report_memleaks
+report_zend_debug
+request_order
+safe_mode
+safe_mode_allowed_env_vars
+safe_mode_exec_dir
+safe_mode_gid
+safe_mode_include_dir
+safe_mode_protected_env_vars
+sendmail_from
+sendmail_path
+serialize_precision
+session.auto_start
+session.bug_compat_42
+session.bug_compat_warn
+session.cache_expire
+session.cache_limiter
+session.cookie_domain
+session.cookie_httponly
+session.cookie_lifetime
+session.cookie_path
+session.cookie_secure
+session.entropy_file
+session.entropy_length
+session.gc_divisor
+session.gc_maxlifetime
+session.gc_probability
+session.hash_bits_per_character
+session.hash_function
+session.name
+session.referer_check
+session.save_handler
+session.save_path
+session.serialize_handler
+session.use_cookies
+session.use_only_cookies
+session.use_trans_sid
+short_open_tag
+soap.wsdl_cache_dir
+soap.wsdl_cache_enabled
+soap.wsdl_cache_limit
+soap.wsdl_cache_ttl
+sql.safe_mode
+sqlite.assoc_case
+sqlite3.extension_dir
+sybct.allow_persistent
+sybct.deadlock_retry_count
+sybct.hostname
+sybct.login_timeout
+sybct.max_links
+sybct.max_persistent
+sybct.min_client_severity
+sybct.min_server_severity
+sybct.timeout
+sysvshm.init_mem
+tidy.clean_output
+tidy.default_config
+track_errors
+unserialize_callback_func
+upload_max_filesize
+upload_tmp_dir
+url_rewriter.tags
+user_agent
+user_dir
+user_ini.cache_ttl
+user_ini.filename
+variables_order
+xmlrpc_error_number
+xmlrpc_errors
+y2k_compliance
+zlib.output_compression
+zlib.output_compression_level
+zlib.output_handler
+EOF
+"name" = "php-config-directives.data"
+}
+"files" {
+"data" = <<EOF
 # Generic HTTP clients (popular libraries)
 
 # http library
@@ -7464,149 +7095,18 @@ EOF
 }
 "files" {
 "data" = <<EOF
-__halt_compiler
-apache_child_terminate
-base64_decode
-bzdecompress
-call_user_func
-call_user_func_array
-call_user_method
-call_user_method_array
-convert_uudecode
-file_get_contents
-file_put_contents
-fsockopen
-gzdecode
-gzinflate
-gzuncompress
-include_once
-invokeargs
-pcntl_exec
-pcntl_fork
-pfsockopen
-posix_getcwd
-posix_getpwuid
-posix_getuid
-posix_uname
-ReflectionFunction
-require_once
-shell_exec
-str_rot13
-sys_get_temp_dir
-wp_remote_fopen
-wp_remote_get
-wp_remote_head
-wp_remote_post
-wp_remote_request
-wp_safe_remote_get
-wp_safe_remote_head
-wp_safe_remote_post
-wp_safe_remote_request
-zlib_decode
+[java.lang.
+class java.lang.
+java.lang.NullPointerException
+java.rmi.ServerException
+at java.lang.
+onclick="toggle('full exception chain stacktrace')"
+at org.apache.catalina
+at org.apache.coyote.
+at org.apache.tomcat.
+at org.apache.jasper.
 EOF
-"name" = "php-function-names-933150.data"
-}
-"files" {
-"data" = <<EOF
-bin/bash
-bin/csh
-bin/dash
-bin/du
-bin/echo
-bin/less
-bin/ls
-bin/more
-bin/nc
-bin/ps
-bin/rbash
-bin/sh
-bin/sleep
-bin/su
-bin/tcsh
-bin/uname
-dev/fd/
-dev/null
-dev/stderr
-dev/stdin
-dev/stdout
-dev/tcp/
-dev/udp/
-dev/zero
-etc/group
-etc/master.passwd
-etc/passwd
-etc/pwd.db
-etc/shadow
-etc/shells
-etc/spwd.db
-proc/self/
-usr/bin/cc
-usr/bin/clang
-usr/bin/clang++
-usr/bin/curl
-usr/bin/env
-usr/bin/fetch
-usr/bin/file
-usr/bin/find
-usr/bin/ftp
-usr/bin/gcc
-usr/bin/head
-usr/bin/id
-usr/bin/less
-usr/bin/more
-usr/bin/nc
-usr/bin/nice
-usr/bin/nmap
-usr/bin/perl
-usr/bin/php
-usr/bin/php5
-usr/bin/php7
-usr/bin/python
-usr/bin/python2
-usr/bin/python3
-usr/bin/ruby
-usr/bin/tail
-usr/bin/top
-usr/bin/uname
-usr/bin/wget
-usr/bin/who
-usr/bin/whoami
-usr/bin/xargs
-usr/local/bin/bash
-usr/local/bin/curl
-usr/local/bin/nmap
-usr/local/bin/perl
-usr/local/bin/php
-usr/local/bin/python
-usr/local/bin/python2
-usr/local/bin/python3
-usr/local/bin/rbash
-usr/local/bin/ruby
-usr/local/bin/wget
-EOF
-"name" = "unix-shell.data"
-}
-"files" {
-"data" = <<EOF
-/.adSensepostnottherenonobook
-/<invalid>hello.html
-/actSensepostnottherenonotive
-/acunetix-wvs-test-for-some-inexistent-file
-/antidisestablishmentarianism
-/appscan_fingerprint/mac_address
-/arachni-
-/cybercop
-/nessus_is_probing_you_
-/nessustest
-/netsparker-
-/rfiinc.txt
-/thereisnowaythat-you-canbethere
-/w3af/remotefileinclude.html
-appscan_fingerprint
-w00tw00t.at.ISC.SANS.DFind
-w00tw00t.at.blackhats.romanian.anti-sec
-EOF
-"name" = "scanners-urls.data"
+"name" = "java-errors.data"
 }
 "files" {
 "data" = <<EOF
@@ -7851,19 +7351,6 @@ EOF
 }
 "files" {
 "data" = <<EOF
-acunetix-product
-(acunetix web vulnerability scanner
-acunetix-scanning-agreement
-acunetix-user-agreement
-myvar=1234
-x-ratproxy-loop
-bytes=0-,5-0,5-1,5-2,5-3,5-4,5-5,5-6,5-7,5-8,5-9,5-10,5-11,5-12,5-13,5-14
-x-scanner
-EOF
-"name" = "scanners-headers.data"
-}
-"files" {
-"data" = <<EOF
 # Vulnerability scanners, bruteforce password crackers and exploitation tools
 
 # password cracker
@@ -8067,6 +7554,189 @@ EOF
 }
 "files" {
 "data" = <<EOF
+__halt_compiler
+apache_child_terminate
+base64_decode
+bzdecompress
+call_user_func
+call_user_func_array
+call_user_method
+call_user_method_array
+convert_uudecode
+file_get_contents
+file_put_contents
+fsockopen
+gzdecode
+gzinflate
+gzuncompress
+include_once
+invokeargs
+pcntl_exec
+pcntl_fork
+pfsockopen
+posix_getcwd
+posix_getpwuid
+posix_getuid
+posix_uname
+ReflectionFunction
+require_once
+shell_exec
+str_rot13
+sys_get_temp_dir
+wp_remote_fopen
+wp_remote_get
+wp_remote_head
+wp_remote_post
+wp_remote_request
+wp_safe_remote_get
+wp_safe_remote_head
+wp_safe_remote_post
+wp_safe_remote_request
+zlib_decode
+EOF
+"name" = "php-function-names-933150.data"
+}
+"files" {
+"data" = <<EOF
+<jsp:
+javax.servlet
+.addheader
+.createtextfile
+.getfile
+.loadfromfile
+response.binarywrite
+response.write
+scripting.filesystemobject
+server.createobject
+server.execute
+server.htmlencode
+server.mappath
+server.urlencode
+vbscript.encode
+wscript.network
+wscript.shell
+EOF
+"name" = "java-code-leakages.data"
+}
+"files" {
+"data" = <<EOF
+bin/bash
+bin/csh
+bin/dash
+bin/du
+bin/echo
+bin/less
+bin/ls
+bin/more
+bin/nc
+bin/ps
+bin/rbash
+bin/sh
+bin/sleep
+bin/su
+bin/tcsh
+bin/uname
+dev/fd/
+dev/null
+dev/stderr
+dev/stdin
+dev/stdout
+dev/tcp/
+dev/udp/
+dev/zero
+etc/group
+etc/master.passwd
+etc/passwd
+etc/pwd.db
+etc/shadow
+etc/shells
+etc/spwd.db
+proc/self/
+usr/bin/cc
+usr/bin/clang
+usr/bin/clang++
+usr/bin/curl
+usr/bin/env
+usr/bin/fetch
+usr/bin/file
+usr/bin/find
+usr/bin/ftp
+usr/bin/gcc
+usr/bin/head
+usr/bin/id
+usr/bin/less
+usr/bin/more
+usr/bin/nc
+usr/bin/nice
+usr/bin/nmap
+usr/bin/perl
+usr/bin/php
+usr/bin/php5
+usr/bin/php7
+usr/bin/python
+usr/bin/python2
+usr/bin/python3
+usr/bin/ruby
+usr/bin/tail
+usr/bin/top
+usr/bin/uname
+usr/bin/wget
+usr/bin/who
+usr/bin/whoami
+usr/bin/xargs
+usr/local/bin/bash
+usr/local/bin/curl
+usr/local/bin/nmap
+usr/local/bin/perl
+usr/local/bin/php
+usr/local/bin/python
+usr/local/bin/python2
+usr/local/bin/python3
+usr/local/bin/rbash
+usr/local/bin/ruby
+usr/local/bin/wget
+EOF
+"name" = "unix-shell.data"
+}
+"files" {
+"data" = <<EOF
+$GLOBALS
+$HTTP_COOKIE_VARS
+$HTTP_ENV_VARS
+$HTTP_GET_VARS
+$HTTP_POST_FILES
+$HTTP_POST_VARS
+$HTTP_RAW_POST_DATA
+$HTTP_REQUEST_VARS
+$HTTP_SERVER_VARS
+$_COOKIE
+$_ENV
+$_FILES
+$_GET
+$_POST
+$_REQUEST
+$_SERVER
+$_SESSION
+$argc
+$argv
+EOF
+"name" = "php-variables.data"
+}
+"files" {
+"data" = <<EOF
+acunetix-product
+(acunetix web vulnerability scanner
+acunetix-scanning-agreement
+acunetix-user-agreement
+myvar=1234
+x-ratproxy-loop
+bytes=0-,5-0,5-1,5-2,5-3,5-4,5-5,5-6,5-7,5-8,5-9,5-10,5-11,5-12,5-13,5-14
+x-scanner
+EOF
+"name" = "scanners-headers.data"
+}
+"files" {
+"data" = <<EOF
 <h2 style="font:8pt/11pt verdana; color:000000">HTTP 403.6 - Forbidden: IP address rejected<br>
 <TITLE>500 Internal Server Error</TITLE>
 Microsoft VBScript runtime (0x8
@@ -8082,6 +7752,336 @@ ADODB.Command
 Object required: '
 EOF
 "name" = "iis-errors.data"
+}
+"files" {
+"data" = <<EOF
+powershell.exe
+Add-BitsFile
+Add-Computer
+Add-Content
+Add-History
+Add-Member
+Add-PSSnapin
+Add-Type
+Checkpoint-Computer
+Clear-Content
+Clear-EventLog
+Clear-History
+Clear-Item
+Clear-ItemProperty
+Clear-Variable
+Compare-Object
+Complete-BitsTransfer
+Complete-Transaction
+Connect-WSMan
+ConvertFrom-CSV
+ConvertFrom-SecureString
+ConvertFrom-StringData
+Convert-Path
+ConvertTo-CSV
+ConvertTo-Html
+ConvertTo-SecureString
+ConvertTo-XML
+Copy-Item
+Copy-ItemProperty
+Debug-Process
+Disable-ComputerRestore
+Disable-PSBreakpoint
+Disable-PSSessionConfiguration
+Disable-WSManCredSSP
+Disconnect-WSMan
+Enable-ComputerRestore
+Enable-PSBreakpoint
+Enable-PSRemoting
+Enable-PSSessionConfiguration
+Enable-WSManCredSSP
+Enter-PSSession
+Exit-PSSession
+Export-Alias
+Export-Clixml
+Export-Console
+Export-Counter
+Export-CSV
+Export-FormatData
+Export-ModuleMember
+Export-PSSession
+ForEach-Object
+Format-Custom
+Format-List
+Format-Table
+Format-Wide
+Get-Acl
+Get-Alias
+Get-AppLockerFileInformation
+Get-AppLockerPolicy
+Get-AuthenticodeSignature
+Get-BitsTransfer
+Get-ChildItem
+Get-Command
+Get-ComputerRestorePoint
+Get-Content
+Get-Counter
+Get-Credential
+Get-Culture
+Get-Event
+Get-EventLog
+Get-EventSubscriber
+Get-ExecutionPolicy
+Get-FormatData
+Get-History
+Get-Host
+Get-HotFix
+Get-Item
+Get-ItemProperty
+Get-Job
+Get-Location
+Get-Member
+Get-Module
+Get-PfxCertificate
+Get-Process
+Get-PSBreakpoint
+Get-PSCallStack
+Get-PSDrive
+Get-PSProvider
+Get-PSSession
+Get-PSSessionConfiguration
+Get-PSSnapin
+Get-Random
+Get-Service
+Get-TraceSource
+Get-Transaction
+Get-TroubleshootingPack
+Get-UICulture
+Get-Unique
+Get-Variable
+Get-WinEvent
+Get-WmiObject
+Get-WSManCredSSP
+Get-WSManInstance
+Group-Object
+Import-Alias
+Import-Clixml
+Import-Counter
+Import-CSV
+Import-LocalizedData
+Import-Module
+Import-PSSession
+Invoke-Command
+Invoke-Expression
+Invoke-History
+Invoke-Item
+Invoke-TroubleshootingPack
+Invoke-WmiMethod
+Invoke-WSManAction
+Join-Path
+Limit-EventLog
+Measure-Command
+Measure-Object
+Move-Item
+Move-ItemProperty
+New-Alias
+New-AppLockerPolicy
+New-Event
+New-EventLog
+New-Item
+New-ItemProperty
+New-Module
+New-ModuleManifest
+New-Object
+New-PSDrive
+New-PSSession
+New-PSSessionOption
+New-Service
+New-TimeSpan
+New-Variable
+New-WebServiceProxy
+New-WSManInstance
+New-WSManSessionOption
+Out-Default
+Out-File
+Out-GridView
+Out-Host
+Out-Null
+Out-Printer
+Out-String
+Pop-Location
+Push-Location
+Read-Host
+Receive-Job
+Register-EngineEvent
+Register-ObjectEvent
+Register-PSSessionConfiguration
+Register-WmiEvent
+Remove-BitsTransfer
+Remove-Computer
+Remove-Event
+Remove-EventLog
+Remove-Item
+Remove-ItemProperty
+Remove-Job
+Remove-Module
+Remove-PSBreakpoint
+Remove-PSDrive
+Remove-PSSession
+Remove-PSSnapin
+Remove-Variable
+Remove-WmiObject
+Remove-WSManInstance
+Rename-Item
+Rename-ItemProperty
+Reset-ComputerMachinePassword
+Resolve-Path
+Restart-Computer
+Restart-Service
+Restore-Computer
+Resume-BitsTransfer
+Resume-Service
+Select-Object
+Select-String
+Select-XML
+Send-MailMessage
+Set-Acl
+Set-Alias
+Set-AppLockerPolicy
+Set-AuthenticodeSignature
+Set-BitsTransfer
+Set-Content
+Set-Date
+Set-ExecutionPolicy
+Set-Item
+Set-ItemProperty
+Set-Location
+Set-PSBreakpoint
+Set-PSDebug
+Set-PSSessionConfiguration
+Set-Service
+Set-StrictMode
+Set-TraceSource
+Set-Variable
+Set-WmiInstance
+Set-WSManInstance
+Set-WSManQuickConfig
+Show-EventLog
+Sort-Object
+Split-Path
+Start-BitsTransfer
+Start-Job
+Start-Process
+Start-Service
+Start-Sleep
+Start-Transaction
+Start-Transcript
+Stop-Computer
+Stop-Job
+Stop-Process
+Stop-Service
+Stop-Transcript
+Suspend-BitsTransfer
+Suspend-Service
+Tee-Object
+Test-AppLockerPolicy
+Test-ComputerSecureChannel
+Test-Connection
+Test-ModuleManifest
+Test-Path
+Test-WSMan
+Trace-Command
+Undo-Transaction
+Unregister-Event
+Unregister-PSSessionConfiguration
+Update-FormatData
+Update-List
+Update-TypeData
+Use-Transaction
+Wait-Event
+Wait-Job
+Wait-Process
+Where-Object
+Write-Debug
+Write-Error
+Write-EventLog
+Write-Host
+Write-Output
+Write-Progress
+Write-Verbose
+Write-Warning
+-EncodedCommand
+-ExecutionPolicy
+-PSConsoleFile
+EOF
+"name" = "windows-powershell-commands.data"
+}
+"files" {
+"data" = <<EOF
+/.adSensepostnottherenonobook
+/<invalid>hello.html
+/actSensepostnottherenonotive
+/acunetix-wvs-test-for-some-inexistent-file
+/antidisestablishmentarianism
+/appscan_fingerprint/mac_address
+/arachni-
+/cybercop
+/nessus_is_probing_you_
+/nessustest
+/netsparker-
+/rfiinc.txt
+/thereisnowaythat-you-canbethere
+/w3af/remotefileinclude.html
+appscan_fingerprint
+w00tw00t.at.ISC.SANS.DFind
+w00tw00t.at.blackhats.romanian.anti-sec
+EOF
+"name" = "scanners-urls.data"
+}
+"files" {
+"data" = <<EOF
+# Apache
+# (no slash; also guards against old.htaccess, old.htpasswd, etc.)
+.htaccess
+.htdigest
+.htpasswd
+# Version control
+/.git/
+/.gitignore
+/.hg/
+/.hgignore
+/.svn/
+# Wordpress
+wp-config.php
+wp-config.bak
+wp-config.old
+wp-config.temp
+wp-config.tmp
+wp-config.txt
+# Symfony
+/config/config.yml
+/config/config_dev.yml
+/config/config_prod.yml
+/config/config_test.yml
+/config/parameters.yml
+/config/routing.yml
+/config/security.yml
+/config/services.yml
+# Drupal
+/sites/default/default.settings.php
+/sites/default/settings.php
+# Magento
+/app/etc/local.xml
+# Sublime Text
+/sftp-config.json
+# ASP.NET
+/Web.config
+# Node
+/gruntfile.js
+/npm-debug.log
+# Composer
+/composer.json
+/composer.lock
+/packages.json
+# dotenv
+/.env
+EOF
+"name" = "restricted-files.data"
 }
 "tenant_ref" = "${data.avi_tenant.default_tenant.id}"
 "config" {

@@ -82,26 +82,19 @@ func SetDefaultsInAPIRes(api_res interface{}, d_local interface{}, s map[string]
 			//Getting key, value for given d_local
 			default:
 				if _, ok := api_res.(map[string]interface{})[k]; !ok {
-					switch s[k].Type {
-					default:
-						//Cheking if field is present in schema
-						if dval, ok := s[k]; ok {
-							//Getting default values from schema
-							default_val, err := dval.DefaultValue()
-							if err != nil {
-								log.Printf("[ERROR] SetDefaultsInAPIRes %v", err)
-							} else {
-								if default_val != nil {
-									api_res.(map[string]interface{})[k] = default_val
-									log.Printf("[INFO] SetDefaultsInAPIRes setting default for field: %v\t val: %v", k, default_val)
-								}
+					//Cheking if field is present in schema
+					if dval, ok := s[k]; ok {
+						//Getting default values from schema
+						default_val, err := dval.DefaultValue()
+						if err != nil {
+							log.Printf("[ERROR] SetDefaultsInAPIRes %v", err)
+						} else {
+							if default_val != nil {
+								api_res.(map[string]interface{})[k] = default_val
+								log.Printf("[INFO] SetDefaultsInAPIRes setting default for field: %v\t val: %v", k, default_val)
 							}
-
 						}
-					//string fields are being skiped from setting default values. e.g. cloud_ref has default value which will override the value which is
-					//fetched from datasource object.
-					case schema.TypeString:
-						continue
+
 					}
 				}
 			//d_local nested dictionary.
@@ -273,17 +266,13 @@ func ApiCreateOrUpdate(d *schema.ResourceData, meta interface{}, objType string,
 		}
 		log.Printf("[DEBUG] ApiCreateOrUpdate: object %v\n", robj)
 		uuid := robj.(map[string]interface{})["uuid"].(string)
+		url := robj.(map[string]interface{})["url"].(string)
 		d.Set("uuid", uuid)
-		_, prs := s["url"]
-		var id string
-		if prs {
-			url := robj.(map[string]interface{})["url"].(string)
-			id = url
+		if url != "" {
+			d.SetId(url)
 		} else {
-			id = uuid
+			d.SetId(uuid)
 		}
-		d.SetId(id)
-		log.Printf("[DEBUG] ApiRead read object with id %v\n", id)
 		//url = strings.SplitN(url, "#", 2)[0]
 	} else {
 		log.Printf("[ERROR] ApiCreateOrUpdate: Error %v", err)
@@ -350,18 +339,16 @@ func ApiRead(d *schema.ResourceData, meta interface{}, objType string, s map[str
 			log.Printf("[ERROR] ApiRead in modifying api response object %v\n", err)
 		}
 		if _, err := ApiDataToSchema(mod_api_res, d, s); err == nil {
-			uuid := obj.(map[string]interface{})["uuid"].(string)
+			uuid := mod_api_res.(map[string]interface{})["uuid"].(string)
+			url := mod_api_res.(map[string]interface{})["url"].(string)
 			//url = strings.SplitN(url, "#", 2)[0]
-			_, prs := s["url"]
-			var id string
-			if prs {
-				url := obj.(map[string]interface{})["url"].(string)
-				id = url
+			if url != "" {
+				d.SetId(url)
+				log.Printf("[DEBUG] ApiRead read object with id %v\n", url)
 			} else {
-				id = uuid
+				d.SetId(uuid)
+				log.Printf("[DEBUG] ApiRead read object with id %v\n", uuid)
 			}
-			d.SetId(id)
-			log.Printf("[DEBUG] ApiRead read object with id %v\n", id)
 		} else {
 			log.Printf("[ERROR] ApiRead in setting read object %v\n", err)
 		}

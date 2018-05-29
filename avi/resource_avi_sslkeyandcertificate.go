@@ -21,7 +21,8 @@ func ResourceSSLKeyAndCertificateSchema() map[string]*schema.Schema {
 		},
 		"certificate": &schema.Schema{
 			Type:     schema.TypeSet,
-			Required: true, Elem: ResourceSSLCertificateSchema(),
+			Required: true,
+			Elem:     ResourceSSLCertificateSchema(),
 			Set: func(v interface{}) int {
 				return 0
 			},

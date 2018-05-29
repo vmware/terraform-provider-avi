@@ -89,7 +89,7 @@ resource "avi_cloud" "testCloud" {
 "vtype" = "CLOUD_NONE"
 "license_tier" = "ENTERPRISE_18"
 "tenant_ref" = "${data.avi_tenant.default_tenant.id}"
-"dhcp_enabled" = false
+"dhcp_enabled" = true
 "state_based_dns_registration" = true
 "prefer_static_routes" = false
 "license_type" = "LIC_CORES"
@@ -108,7 +108,7 @@ resource "avi_cloud" "testCloud" {
 "vtype" = "CLOUD_NONE"
 "license_tier" = "ENTERPRISE_18"
 "tenant_ref" = "${data.avi_tenant.default_tenant.id}"
-"dhcp_enabled" = false
+"dhcp_enabled" = true
 "state_based_dns_registration" = true
 "prefer_static_routes" = false
 "license_type" = "LIC_CORES"

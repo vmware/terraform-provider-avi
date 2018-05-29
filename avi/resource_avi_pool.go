@@ -14,18 +14,6 @@ import (
 
 func ResourcePoolSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"a_pool": &schema.Schema{
-			Type:     schema.TypeString,
-			Optional: true,
-		},
-		"ab_pool": &schema.Schema{
-			Type:     schema.TypeSet,
-			Optional: true,
-			Elem:     ResourceAbPoolSchema(),
-			Set: func(v interface{}) int {
-				return 0
-			},
-		},
 		"apic_epg_name": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,

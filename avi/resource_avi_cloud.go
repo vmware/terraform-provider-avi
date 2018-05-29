@@ -86,6 +86,11 @@ func ResourceCloudSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  false,
 		},
+		"ip6_autocfg_enabled": &schema.Schema{
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  false,
+		},
 		"ipam_provider_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,

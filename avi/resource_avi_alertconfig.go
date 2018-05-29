@@ -20,7 +20,8 @@ func ResourceAlertConfigSchema() map[string]*schema.Schema {
 		},
 		"alert_rule": &schema.Schema{
 			Type:     schema.TypeSet,
-			Required: true, Elem: ResourceAlertRuleSchema(),
+			Required: true,
+			Elem:     ResourceAlertRuleSchema(),
 			Set: func(v interface{}) int {
 				return 0
 			},

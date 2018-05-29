@@ -33,6 +33,11 @@ func ResourceNetworkSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  false,
 		},
+		"ip6_autocfg_enabled": &schema.Schema{
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  true,
+		},
 		"name": &schema.Schema{
 			Type:     schema.TypeString,
 			Required: true,

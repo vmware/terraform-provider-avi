@@ -30,6 +30,11 @@ func dataSourceAviNetwork() *schema.Resource {
 				Optional: true,
 				Default:  false,
 			},
+			"ip6_autocfg_enabled": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  true,
+			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,

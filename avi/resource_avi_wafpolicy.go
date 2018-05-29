@@ -27,6 +27,14 @@ func ResourceWafPolicySchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
+		"learning": &schema.Schema{
+			Type:     schema.TypeSet,
+			Optional: true,
+			Elem:     ResourceWafLearningSchema(),
+			Set: func(v interface{}) int {
+				return 0
+			},
+		},
 		"mode": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
@@ -59,6 +67,10 @@ func ResourceWafPolicySchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
+		},
+		"waf_crs_ref": &schema.Schema{
+			Type:     schema.TypeString,
+			Optional: true,
 		},
 		"waf_profile_ref": &schema.Schema{
 			Type:     schema.TypeString,

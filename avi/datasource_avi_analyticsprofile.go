@@ -116,6 +116,11 @@ func dataSourceAviAnalyticsProfile() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"disable_ondemand_metrics": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  false,
+			},
 			"disable_se_analytics": &schema.Schema{
 				Type:     schema.TypeBool,
 				Optional: true,
@@ -309,6 +314,11 @@ func dataSourceAviAnalyticsProfile() *schema.Resource {
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+			},
+			"ondemand_metrics_idle_timeout": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Default:  1800,
 			},
 			"ranges": &schema.Schema{
 				Type:     schema.TypeList,

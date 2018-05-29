@@ -24,6 +24,14 @@ func dataSourceAviWafPolicy() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"learning": &schema.Schema{
+				Type:     schema.TypeSet,
+				Optional: true,
+				Elem:     ResourceWafLearningSchema(),
+				Set: func(v interface{}) int {
+					return 0
+				},
+			},
 			"mode": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -51,6 +59,10 @@ func dataSourceAviWafPolicy() *schema.Resource {
 				Optional: true,
 			},
 			"uuid": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"waf_crs_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 			},

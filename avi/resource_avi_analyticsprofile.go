@@ -124,6 +124,11 @@ func ResourceAnalyticsProfileSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
+		"disable_ondemand_metrics": &schema.Schema{
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  false,
+		},
 		"disable_se_analytics": &schema.Schema{
 			Type:     schema.TypeBool,
 			Optional: true,
@@ -337,6 +342,11 @@ func ResourceAnalyticsProfileSchema() map[string]*schema.Schema {
 		"name": &schema.Schema{
 			Type:     schema.TypeString,
 			Required: true,
+		},
+		"ondemand_metrics_idle_timeout": &schema.Schema{
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  1800,
 		},
 		"ranges": &schema.Schema{
 			Type:     schema.TypeList,

@@ -11,22 +11,6 @@ func dataSourceAviPool() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviPoolRead,
 		Schema: map[string]*schema.Schema{
-			"a_pool": &schema.Schema{
-				Type:     schema.TypeString,
-				Optional: true,
-			},
-			"ab_pool": &schema.Schema{
-				Type:     schema.TypeSet,
-				Optional: true,
-				Elem:     ResourceAbPoolSchema(),
-				Set: func(v interface{}) int {
-					return 0
-				},
-			},
-			"ab_priority": &schema.Schema{
-				Type:     schema.TypeInt,
-				Optional: true,
-			},
 			"apic_epg_name": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,

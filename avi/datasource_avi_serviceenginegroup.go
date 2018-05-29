@@ -16,6 +16,11 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Optional: true,
 				Default:  false,
 			},
+			"additional_config_memory": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Default:  20,
+			},
 			"advertise_backend_networks": &schema.Schema{
 				Type:     schema.TypeBool,
 				Optional: true,
@@ -130,12 +135,12 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 			"disable_gro": &schema.Schema{
 				Type:     schema.TypeBool,
 				Optional: true,
-				Default:  true,
+				Default:  false,
 			},
 			"disable_tso": &schema.Schema{
 				Type:     schema.TypeBool,
 				Optional: true,
-				Default:  true,
+				Default:  false,
 			},
 			"disk_per_se": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -200,11 +205,6 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeInt,
 				Optional: true,
 				Default:  0,
-			},
-			"free_list_size": &schema.Schema{
-				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  1024,
 			},
 			"ha_mode": &schema.Schema{
 				Type:     schema.TypeString,
@@ -281,6 +281,16 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Optional: true,
 				Default:  80,
 			},
+			"max_public_ips_per_lb": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Default:  30,
+			},
+			"max_rules_per_lb": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Default:  150,
+			},
 			"max_scaleout_per_vs": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -328,6 +338,16 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Optional: true,
 				Default:  1,
 			},
+			"minimum_required_config_memory": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Default:  10,
+			},
+			"n_log_streaming_threads": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Default:  1,
+			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -356,16 +376,6 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Optional: true,
 			},
 			"os_reserved_memory": &schema.Schema{
-				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  0,
-			},
-			"pcap_reinit_frequency": &schema.Schema{
-				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  0,
-			},
-			"pcap_reinit_threshold": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
 				Default:  0,
@@ -471,6 +481,16 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Optional: true,
 				Default:  256,
 			},
+			"self_se_election": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  false,
+			},
+			"service_ip6_subnets": &schema.Schema{
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceIpAddrPrefixSchema(),
+			},
 			"service_ip_subnets": &schema.Schema{
 				Type:     schema.TypeList,
 				Optional: true,
@@ -533,6 +553,14 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Optional: true,
 				Default:  1,
 			},
+			"vip_asg": &schema.Schema{
+				Type:     schema.TypeSet,
+				Optional: true,
+				Elem:     ResourceVipAutoscaleGroupSchema(),
+				Set: func(v interface{}) int {
+					return 0
+				},
+			},
 			"vs_host_redundancy": &schema.Schema{
 				Type:     schema.TypeBool,
 				Optional: true,
@@ -560,6 +588,21 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Set: func(v interface{}) int {
 					return 0
 				},
+			},
+			"vss_placement_enabled": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  false,
+			},
+			"waf_learning_interval": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Default:  10,
+			},
+			"waf_learning_memory": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Default:  0,
 			},
 			"waf_mempool": &schema.Schema{
 				Type:     schema.TypeBool,

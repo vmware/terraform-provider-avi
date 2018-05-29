@@ -51,7 +51,22 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Optional: true,
 				Default:  true,
 			},
+			"cleanup_expired_authtoken_timeout_period": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Default:  60,
+			},
+			"cleanup_sessions_timeout_period": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Default:  60,
+			},
 			"cluster_ip_gratuitous_arp_period": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Default:  60,
+			},
+			"consistency_check_timeout_period": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
 				Default:  60,
@@ -113,6 +128,16 @@ func dataSourceAviControllerProperties() *schema.Resource {
 			"portal_token": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+			},
+			"process_locked_useraccounts_timeout_period": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Default:  1,
+			},
+			"process_pki_profile_timeout_period": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Default:  1440,
 			},
 			"query_host_fail": &schema.Schema{
 				Type:     schema.TypeInt,
