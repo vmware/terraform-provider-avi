@@ -26,18 +26,22 @@ variable "location" {
   default = "EAST US"
 }
 
+/*
 // This can be removed if have authorization to create new rg
 variable "resource_group_name" {
   description = "Resource group name that will contain various resources"
   default = ""
 }
+*/
 
-variable "vnet_cidr" {
+variable "virtual_network_cidr" {
   description = "CIDR block for Virtual Network"
+  default = ""
 }
 
 variable "subnet_cidr" {
   description = "CIDR block for Subnet within a Virtual Network"
+  default = ""
 }
 
 variable "vm_username" {
@@ -47,3 +51,7 @@ variable "vm_username" {
 variable "vm_password" {
   description = "Enter admin password to SSH into VM"
 }
+
+variable "project_name" {}
+
+variable "project_environment" {}

@@ -1,89 +1,95 @@
 provider "azurerm" {
-  subscription_id 	= "${var.subscription_id}"
-  client_id 		= "${var.client_id}"
+  subscription_id = "${var.subscription_id}"
+  client_id 		  = "${var.client_id}"
   client_secret 	= "${var.client_secret}"
-  tenant_id 		= "${var.tenant_id}"
+  tenant_id 		  = "${var.tenant_id}"
 }
 
-resource "azurerm_resource_group" "terraform_rg" {
-  name 		= "${var.resource_group_name}"
-  location 	= "${var.location}"
-}
-
-resource "azurerm_virtual_network" "terraform_vnet" {
-  name 			= "Terraform-VNet"
-  address_space 	= ["${var.vnet_cidr}"]
-  location 		= "${var.location}"
-  resource_group_name   = "${azurerm_resource_group.terraform_rg.name}"
-
+resource "azurerm_resource_group" "terraform_resource_group" {
+  name 		 = "${var.project_name}-terraform-resource-group"
+  location = "${var.location}"
   tags {
-	group = "TerraformInternal"
+    environment = "${var.project_name}-terraform-${var.project_environment}"
+  }
+}
+
+resource "azurerm_virtual_network" "terraform_virtual_network" {
+  name 			          = "${var.project_name}-terraform-virtual-network"
+  address_space 	    = ["${var.virtual_network_cidr}"]
+  location 		        = "${var.location}"
+  resource_group_name = "${azurerm_resource_group.terraform_resource_group.name}"
+  tags {
+    environment = "${var.project_name}-terraform-${var.project_environment}"
   }
 }
 
 resource "azurerm_subnet" "terraform_subnet" {
-  name 			= "Terraform-Subnet"
-  address_prefix 	= "${var.subnet_cidr}"
-  virtual_network_name 	= "${azurerm_virtual_network.terraform_vnet.name}"
-  resource_group_name 	= "${azurerm_resource_group.terraform_rg.name}"
+  name 			           = "${var.project_name}-terraform-subnet"
+  address_prefix 	     = "${var.subnet_cidr}"
+  virtual_network_name = "${azurerm_virtual_network.terraform_virtual_network.name}"
+  resource_group_name  = "${azurerm_resource_group.terraform_resource_group.name}"
 }
 
-resource "azurerm_storage_account" "terraform_storage" {
-  name 			= "terraformstorage1account"
-  resource_group_name 	= "${azurerm_resource_group.terraform_rg.name}"
-  location 		= "${var.location}"
-  account_tier             = "Standard"
-  account_replication_type = "LRS"
+/*
+data "azurerm_subnet" "terraform_subnet" {
+  name                 = ""
+  virtual_network_name = ""
+  resource_group_name  = "${var.resource_group_name}"
+}
 
+output "subnet_id" {
+  value = "${data.azurerm_subnet.terraform_subnet.id}"
+}
+*/
+
+resource "azurerm_network_interface" "terraform_network_interface" {
+  name 		            = "${var.project_name}-terraform-network-interface"
+  location 	          = "${var.location}"
+  resource_group_name = "${azurerm_resource_group.terraform_resource_group.name}"
+  //resource_group_name = "${var.resource_group_name}"
+  ip_configuration {
+    name 			                    = "${var.project_name}-terraform-private-ip-configuration"
+    subnet_id 			              = "${azurerm_subnet.terraform_subnet.id}"
+    //subnet_id 			              = "${data.azurerm_subnet.terraform_subnet.id}"
+    private_ip_address_allocation = "dynamic"
+  }
   tags {
-	group = "TerraformInternal"
+    environment = "${var.project_name}-terraform-${var.project_environment}"
   }
 }
 
-resource "azurerm_storage_container" "terraform_container" {
-  name 			= "vhds"
-  resource_group_name 	= "${azurerm_resource_group.terraform_rg.name}"
-  storage_account_name 	= "${azurerm_storage_account.terraform_storage.name}"
+output "NIC" {
+  value = "${azurerm_network_interface.terraform_network_interface.private_ip_address}"
+}
+
+resource "azurerm_storage_account" "terraform_storage_account" {
+  name 			               = "${var.project_name}tfstorageaccount"
+  resource_group_name 	   = "${azurerm_resource_group.terraform_resource_group.name}"
+  //resource_group_name = "${var.resource_group_name}"
+  location 		             = "${var.location}"
+  account_tier             = "Standard"
+  account_replication_type = "LRS"
+  tags {
+    environment = "${var.project_name}-terraform-${var.project_environment}"
+  }
+}
+
+resource "azurerm_storage_container" "terraform_storage_container" {
+  name 			            = "${var.project_name}-terraform-storage-container"
+  resource_group_name 	= "${azurerm_resource_group.terraform_resource_group.name}"
+  //resource_group_name = "${var.resource_group_name}"
+  storage_account_name 	= "${azurerm_storage_account.terraform_storage_account.name}"
   container_access_type = "private"
 }
 
-resource "azurerm_public_ip" "terraform_pip" {
-  name 				= "Terraform-PIP"
-  location 			= "${var.location}"
-  resource_group_name 		= "${azurerm_resource_group.terraform_rg.name}"
-  public_ip_address_allocation 	= "static"
-
-  tags {
-	group = "TerraformInternal"
-  }
-}
-
-resource "azurerm_network_interface" "terraform_nic" {
-  name 		      = "Terraform-NIC"
-  location 	      = "${var.location}"
-  resource_group_name = "${azurerm_resource_group.terraform_rg.name}"
-  network_security_group_id = "${azurerm_network_security_group.terraform_web.id}"
-
-  ip_configuration {
-    name 			= "Terraform-ControllerPrivate"
-    subnet_id 			= "${azurerm_subnet.terraform_subnet.id}"
-    private_ip_address_allocation = "dynamic"
-    public_ip_address_id	= "${azurerm_public_ip.terraform_pip.id}"
-  }
-  tags {
-	group = "TerraformInternal"
-  }
-}
-
 resource "azurerm_virtual_machine" "terraform_controller" {
-  name                  = "Terraform-Controller"
-  location              = "${var.location}"
-  resource_group_name   = "${azurerm_resource_group.terraform_rg.name}"
-  network_interface_ids = ["${azurerm_network_interface.terraform_nic.id}"]
-  vm_size               = "Standard_F4s"
-
+  name                          = "${var.project_name}-terraform-controller"
+  location                      = "${var.location}"
+  resource_group_name           = "${azurerm_resource_group.terraform_resource_group.name}"
+  //resource_group_name = "${var.resource_group_name}"
+  network_interface_ids         = ["${azurerm_network_interface.terraform_network_interface.id}"]
+  vm_size                       = "Standard_F4s"
   delete_os_disk_on_termination = true
-
   storage_image_reference {
     publisher = "avi-networks"
     offer     = "avi-vantage-adc"
@@ -91,30 +97,26 @@ resource "azurerm_virtual_machine" "terraform_controller" {
     version   = "latest"
   }
   plan {
-    name= "avi-vantage-adc-byol"
-    publisher= "avi-networks"
-    product= "avi-vantage-adc"
+    name      = "avi-vantage-adc-byol"
+    publisher = "avi-networks"
+    product   = "avi-vantage-adc"
   }
-  
   storage_os_disk {
-    name          = "osdisk"
-    vhd_uri       = "${azurerm_storage_account.terraform_storage.primary_blob_endpoint}${azurerm_storage_container.terraform_container.name}/osdisk.vhd"
+    name          = "${var.project_name}-osdisk"
+    vhd_uri       = "${azurerm_storage_account.terraform_storage_account.primary_blob_endpoint}${azurerm_storage_container.terraform_storage_container.name}/${var.project_name}-osdisk.vhd"
     caching       = "ReadWrite"
     create_option = "FromImage"
   }
-
   os_profile {
-    computer_name  = "ubuntuweb"
+    computer_name  = "${var.project_name}-ubuntu"
     admin_username = "${var.vm_username}"
     admin_password = "${var.vm_password}"
   }
-
   os_profile_linux_config {
     disable_password_authentication = false
   }
-
   tags {
-    group = "TerraformInternal"
+    environment = "${var.project_name}-terraform-${var.project_environment}"
   }
 }
 

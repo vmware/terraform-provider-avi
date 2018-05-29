@@ -1,28 +1,22 @@
 provider "azurerm" {
-  subscription_id 	= "${var.subscription_id}"
-  client_id 		= "${var.client_id}"
+  subscription_id = "${var.subscription_id}"
+  client_id 		  = "${var.client_id}"
   client_secret 	= "${var.client_secret}"
-  tenant_id 		= "${var.tenant_id}"
+  tenant_id 		  = "${var.tenant_id}"
 }
 
-
-data "azurerm_public_ip" "terraform_controller" {
-  name = "${var.avi_controller_name}"
-  resource_group_name = "${var.resource_group_name}"
+data "azurerm_network_interface" "controller_nic" {
+  name                = "${var.project_name}-terraform-network-interface"
+  resource_group_name = "${var.project_name}-terraform-resource-group"
+  //resource_group_name = "${var.resource_group_name}"
 }
-
-
-output "controlller_ip" {
-  value = "${data.azurerm_public_ip.terraform_controller.ip_address}"
-}
-
 
 provider "avi" {
   avi_username   = "${var.avi_username}"
   avi_password   = "${var.avi_password}"
-  avi_controller = "${data.azurerm_public_ip.terraform_controller.ip_address}"
+  avi_controller = "${data.azurerm_network_interface.controller_nic.private_ip_address}"
   avi_tenant     = "admin"
-  avi_version    = "17.2.7"
+  avi_version    = "${var.avi_version}"
 }
 
 data "avi_tenant" "default_tenant" {
@@ -30,7 +24,7 @@ data "avi_tenant" "default_tenant" {
 }
 
 data "avi_cloud" "azure_cloud_cfg" {
-  name = "Azure"
+  name = "AZURE"
 }
 
 data "avi_vrfcontext" "terraform_vrf" {
@@ -40,13 +34,13 @@ data "avi_vrfcontext" "terraform_vrf" {
 
 
 data "avi_pool" "azure-pool-v1" {
-  name = "azure_poolv1"
+  name       = "azure_poolv1"
   tenant_ref = "${data.avi_tenant.default_tenant.id}"
   cloud_ref  = "${data.avi_cloud.azure_cloud_cfg.id}"
 }
 
 data "avi_pool" "azure-pool-v2" {
-  name = "azure_poolv2"
+  name       = "azure_poolv2"
   tenant_ref = "${data.avi_tenant.default_tenant.id}"
   cloud_ref  = "${data.avi_cloud.azure_cloud_cfg.id}"
 }

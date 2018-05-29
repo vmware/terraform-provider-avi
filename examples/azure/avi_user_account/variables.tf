@@ -3,13 +3,11 @@ variable "subscription_id" {
   default = ""
 }
 
-//This can be get after app registration from azure portal
 variable "client_id" {
   description = "Enter Client ID for Application created in Azure AD"
   default = ""
 }
 
-//This can be get after app registration from azure portal
 variable "client_secret" {
   description = "Enter Client secret for Application in Azure AD"
   default = ""
@@ -20,29 +18,14 @@ variable "tenant_id" {
   default = ""
 }
 
-variable "location" {
-  description = "Azure region for the resource provisioning, must be smallcaps without space inbetween for se creation"
-  default = "eastus"
-}
-
-/*
-// This can be removed if have authorization to create new rg
-variable "resource_group_name" {
-  description = "Resource group name that will contain various resources"
-  default = ""
-}
-*/
-
-variable "azure_username" {}
-
-variable "azure_password" {}
-
 variable "avi_username" {
   default = "admin"
 }
 
-variable "avi_password" {}
-
 variable "avi_version" {}
+
+variable "avi_current_password" {}
+
+variable "avi_new_password" {}
 
 variable "project_name" {}
