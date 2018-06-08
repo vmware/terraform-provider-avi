@@ -182,10 +182,6 @@ func dataSourceAviPool() *schema.Resource {
 				Optional: true,
 				Elem:     ResourcePlacementNetworkSchema(),
 			},
-			"prst_hdr_name": &schema.Schema{
-				Type:     schema.TypeString,
-				Optional: true,
-			},
 			"request_queue_depth": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -205,16 +201,6 @@ func dataSourceAviPool() *schema.Resource {
 				Type:     schema.TypeBool,
 				Optional: true,
 				Default:  false,
-			},
-			"server_auto_scale": &schema.Schema{
-				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  false,
-			},
-			"server_count": &schema.Schema{
-				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  0,
 			},
 			"server_name": &schema.Schema{
 				Type:     schema.TypeString,

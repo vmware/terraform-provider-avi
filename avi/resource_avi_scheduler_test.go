@@ -89,10 +89,10 @@ data "avi_backupconfiguration" "default_backupconfig" {
         name= "Backup-Configuration"
 }
 resource "avi_scheduler" "testScheduler" {
-"start_date_time" = "2018-02-20T05:26:57.098859"
+"start_date_time" = "2018-04-06T07:05:32.242307"
 "enabled" = true
 "tenant_ref" = "${data.avi_tenant.default_tenant.id}"
-"frequency_unit" = "SCHEDULER_FREQUENCY_UNIT_WEEK"
+"frequency_unit" = "SCHEDULER_FREQUENCY_UNIT_DAY"
 "backup_config_ref" = "${data.avi_backupconfiguration.default_backupconfig.id}"
 "frequency" = "1"
 "scheduler_action" = "SCHEDULER_ACTION_BACKUP"
@@ -109,10 +109,10 @@ data "avi_backupconfiguration" "default_backupconfig" {
         name= "Backup-Configuration"
 }
 resource "avi_scheduler" "testScheduler" {
-"start_date_time" = "2018-02-20T05:26:57.098859"
+"start_date_time" = "2018-04-06T07:05:32.242307"
 "enabled" = true
 "tenant_ref" = "${data.avi_tenant.default_tenant.id}"
-"frequency_unit" = "SCHEDULER_FREQUENCY_UNIT_WEEK"
+"frequency_unit" = "SCHEDULER_FREQUENCY_UNIT_DAY"
 "backup_config_ref" = "${data.avi_backupconfiguration.default_backupconfig.id}"
 "frequency" = "1"
 "scheduler_action" = "SCHEDULER_ACTION_BACKUP"
