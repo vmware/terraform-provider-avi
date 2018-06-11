@@ -27,6 +27,10 @@ func dataSourceAviVirtualService() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"apic_contract_graph": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"application_profile_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,

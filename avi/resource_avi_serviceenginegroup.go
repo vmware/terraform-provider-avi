@@ -19,11 +19,6 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  false,
 		},
-		"additional_config_memory": &schema.Schema{
-			Type:     schema.TypeInt,
-			Optional: true,
-			Default:  20,
-		},
 		"advertise_backend_networks": &schema.Schema{
 			Type:     schema.TypeBool,
 			Optional: true,
@@ -139,12 +134,17 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 		"disable_gro": &schema.Schema{
 			Type:     schema.TypeBool,
 			Optional: true,
+			Default:  true,
+		},
+		"disable_se_memory_check": &schema.Schema{
+			Type:     schema.TypeBool,
+			Optional: true,
 			Default:  false,
 		},
 		"disable_tso": &schema.Schema{
 			Type:     schema.TypeBool,
 			Optional: true,
-			Default:  false,
+			Default:  true,
 		},
 		"disk_per_se": &schema.Schema{
 			Type:     schema.TypeInt,
@@ -211,6 +211,11 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  0,
 		},
+		"free_list_size": &schema.Schema{
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  1024,
+		},
 		"ha_mode": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
@@ -219,6 +224,11 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 		"hardwaresecuritymodulegroup_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
+		},
+		"heap_minimum_config_memory": &schema.Schema{
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  8,
 		},
 		"hm_on_standby": &schema.Schema{
 			Type:     schema.TypeBool,
@@ -319,6 +329,11 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  true,
 		},
+		"memory_for_config_update": &schema.Schema{
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  15,
+		},
 		"memory_per_se": &schema.Schema{
 			Type:     schema.TypeInt,
 			Optional: true,
@@ -346,10 +361,10 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  1,
 		},
-		"minimum_required_config_memory": &schema.Schema{
+		"minimum_connection_memory": &schema.Schema{
 			Type:     schema.TypeInt,
 			Optional: true,
-			Default:  10,
+			Default:  20,
 		},
 		"n_log_streaming_threads": &schema.Schema{
 			Type:     schema.TypeInt,
@@ -505,6 +520,11 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Type:     schema.TypeList,
 			Optional: true,
 			Elem:     ResourceIpAddrPrefixSchema(),
+		},
+		"shm_minimum_config_memory": &schema.Schema{
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  4,
 		},
 		"significant_log_throttle": &schema.Schema{
 			Type:     schema.TypeInt,

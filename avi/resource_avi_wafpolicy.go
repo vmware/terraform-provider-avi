@@ -27,6 +27,11 @@ func ResourceWafPolicySchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
+		"failure_mode": &schema.Schema{
+			Type:     schema.TypeString,
+			Optional: true,
+			Default:  "WAF_FAILURE_MODE_OPEN",
+		},
 		"learning": &schema.Schema{
 			Type:     schema.TypeSet,
 			Optional: true,

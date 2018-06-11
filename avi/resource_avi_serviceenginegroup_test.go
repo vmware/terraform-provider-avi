@@ -121,6 +121,7 @@ resource "avi_serviceenginegroup" "testServiceEngineGroup" {
 "se_remote_punt_udp_port" = "1501"
 "ignore_rtt_threshold" = "5000"
 "active_standby" = false
+"distribute_queues" = false
 "disable_csum_offloads" = false
 "enable_vip_on_all_interfaces" = true
 "se_probe_port" = "7"
@@ -211,6 +212,7 @@ resource "avi_serviceenginegroup" "testServiceEngineGroup" {
 "se_remote_punt_udp_port" = "1501"
 "ignore_rtt_threshold" = "5000"
 "active_standby" = false
+"distribute_queues" = false
 "disable_csum_offloads" = false
 "enable_vip_on_all_interfaces" = true
 "se_probe_port" = "7"
