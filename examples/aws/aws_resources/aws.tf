@@ -21,12 +21,43 @@ resource "aws_instance" "avi_controller" {
   }
 }
 
+resource "aws_instance" "avi_controller_2" {
+  ami           = "${var.avi_controller_ami}"
+  instance_type = "c4.2xlarge"
+  subnet_id     = "${aws_subnet.terraform-subnet.0.id}"
+  iam_instance_profile = "${data.aws_iam_instance_profile.avi_controller_iam.name}"
+
+  tags {
+    Name = "${var.project_name}-terraform-controller-2"
+  }
+}
+
+resource "aws_instance" "avi_controller_3" {
+  ami           = "${var.avi_controller_ami}"
+  instance_type = "c4.2xlarge"
+  subnet_id     = "${aws_subnet.terraform-subnet.0.id}"
+  iam_instance_profile = "${data.aws_iam_instance_profile.avi_controller_iam.name}"
+
+  tags {
+    Name = "${var.project_name}-terraform-controller-3"
+  }
+}
+
+
 output "aws_controller_instance" {
   value = "${aws_instance.avi_controller.tags.Name}"
 }
 
 output "avi_controller_ip" {
   value = "${aws_instance.avi_controller.private_ip}"
+}
+
+output "avi_controller_2_ip" {
+  value = "${aws_instance.avi_controller_2.private_ip}"
+}
+
+output "avi_controller_3_ip" {
+  value = "${aws_instance.avi_controller_3.private_ip}"
 }
 
 output "avi_controller_iam_role" {
@@ -48,3 +79,4 @@ resource "aws_subnet" "terraform-subnet" {
 output "aws_subnets" {
   value = "${aws_subnet.terraform-subnet.*.tags.Name}"
 }
+

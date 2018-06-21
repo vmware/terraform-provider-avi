@@ -3,7 +3,7 @@
 *.dll
 *.so
 *.dylib
-
+*.tfstate.*
 # Test binary, build with `go test -c`
 *.test
 

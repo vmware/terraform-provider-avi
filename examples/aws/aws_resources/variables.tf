@@ -30,6 +30,8 @@ variable "aws_availability_zone" {
 }
 
 variable "aws_subnet_ip" {
+  default = ""
+
 }
 
 variable "aws_subnet_mask" {
@@ -51,11 +53,10 @@ variable "webserver_count" {
 }
 
 variable "aws_creds_file" {
-  default = "/Users/grastogi/.aws/credentials"
+  default = "~/.aws/credentials"
 }
 
 variable "aws_subnets" {
-  //default = ["x.x.x.x"]
 }
 
 
