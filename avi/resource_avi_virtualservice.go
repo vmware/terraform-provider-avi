@@ -6,10 +6,11 @@
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform/helper/schema"
 )
 
 func ResourceVirtualServiceSchema() map[string]*schema.Schema {
@@ -407,7 +408,7 @@ func resourceAviVirtualServiceUpdate(d *schema.ResourceData, meta interface{}) e
 	var mod_api_res interface{}
 	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
-	vspath := "api/virtualservice/" + uuid + "?include_name=true&skip_default=true"
+	vspath := "api/virtualservice/" + uuid + "?include_name=true"
 	err = client.AviSession.Get(vspath, &existingvs)
 	if err == nil {
 		//adding default values to api_response before it overwrites the d (local state).

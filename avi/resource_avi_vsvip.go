@@ -6,10 +6,11 @@
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform/helper/schema"
 )
 
 func ResourceVsVipSchema() map[string]*schema.Schema {
@@ -96,6 +97,47 @@ func resourceAviVsVipCreate(d *schema.ResourceData, meta interface{}) error {
 func resourceAviVsVipUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceVsVipSchema()
 	var err error
+	var existingvip interface{}
+	var apiResponse interface{}
+	var vipobjs []interface{}
+	autoAllocFlag := false
+	client := meta.(*clients.AviClient)
+	uuid := d.Get("uuid").(string)
+	vippath := "api/vsvip/" + uuid + "?include_name=true"
+	err = client.AviSession.Get(vippath, &existingvip)
+	if err == nil {
+		//adding default values to api response before it overwrites the d (local state).
+		//Before GO lang sets zero value to fields which are absent in api response
+		//setting those fields to schema default and then overwritting d (local state)
+		if localData, err := SchemaToAviData(d, s); err == nil {
+			apiResponse, err = SetDefaultsInAPIRes(existingvip, localData, s)
+		} else {
+			log.Printf("[ERROR] resourceAviVSVIPUpdate in SchemaToAviData: %v\n", err)
+		}
+		if vipobj, err := ApiDataToSchema(apiResponse, nil, nil); err == nil {
+			objs := vipobj.(*schema.Set).List()
+			for obj := 0; obj < len(objs); obj++ {
+				vipobjs = objs[obj].(map[string]interface{})["vip"].([]interface{})
+				for ob := 0; ob < len(vipobjs); ob++ {
+					vipob := vipobjs[ob].(map[string]interface{})
+					if value, ok := vipob["auto_allocate_ip"].(bool); ok && value {
+						autoAllocFlag = true
+						break
+					}
+				}
+			}
+			if autoAllocFlag {
+				err = d.Set("vip", vipobjs)
+				if err != nil {
+					log.Printf("[ERROR] resourceAviVSVIPUpdate in Setting vip: %v\n", err)
+				}
+			}
+		} else {
+			log.Printf("[ERROR] resourceAviVSVIPUpdate in ApiDataToSchema: %v\n", err)
+		}
+	} else {
+		log.Printf("[ERROR] resourceAviVSVIPUpdate in GET: %v\n", err)
+	}
 	err = ApiCreateOrUpdate(d, meta, "vsvip", s)
 	if err == nil {
 		err = ResourceAviVsVipRead(d, meta)
