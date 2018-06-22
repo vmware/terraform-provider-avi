@@ -266,9 +266,8 @@ func ApiCreateOrUpdate(d *schema.ResourceData, meta interface{}, objType string,
 		}
 		log.Printf("[DEBUG] ApiCreateOrUpdate: object %v\n", robj)
 		uuid := robj.(map[string]interface{})["uuid"].(string)
-		url := robj.(map[string]interface{})["url"].(string)
 		d.Set("uuid", uuid)
-		if url != "" {
+		if url, ok := robj.(map[string]interface{})["url"].(string); ok && url != "" {
 			d.SetId(url)
 		} else {
 			d.SetId(uuid)
