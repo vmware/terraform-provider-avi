@@ -62,6 +62,46 @@ output "NIC" {
   value = "${azurerm_network_interface.terraform_network_interface.private_ip_address}"
 }
 
+resource "azurerm_network_interface" "terraform_network_interface_2" {
+  name 		            = "${var.project_name}-terraform-network-interface-2"
+  location 	          = "${var.location}"
+  resource_group_name = "${azurerm_resource_group.terraform_resource_group.name}"
+  //resource_group_name = "${var.resource_group_name}"
+  ip_configuration {
+    name 			                    = "${var.project_name}-terraform-private-ip-configuration-2"
+    subnet_id 			              = "${azurerm_subnet.terraform_subnet.id}"
+    //subnet_id 			              = "${data.azurerm_subnet.terraform_subnet.id}"
+    private_ip_address_allocation = "dynamic"
+  }
+  tags {
+    environment = "${var.project_name}-terraform-${var.project_environment}"
+  }
+}
+
+output "NIC-2" {
+  value = "${azurerm_network_interface.terraform_network_interface_2.private_ip_address}"
+}
+
+resource "azurerm_network_interface" "terraform_network_interface_3" {
+  name 		            = "${var.project_name}-terraform-network-interface-3"
+  location 	          = "${var.location}"
+  resource_group_name = "${azurerm_resource_group.terraform_resource_group.name}"
+  //resource_group_name = "${var.resource_group_name}"
+  ip_configuration {
+    name 			                    = "${var.project_name}-terraform-private-ip-configuration-3"
+    subnet_id 			              = "${azurerm_subnet.terraform_subnet.id}"
+    //subnet_id 			              = "${data.azurerm_subnet.terraform_subnet.id}"
+    private_ip_address_allocation = "dynamic"
+  }
+  tags {
+    environment = "${var.project_name}-terraform-${var.project_environment}"
+  }
+}
+
+output "NIC-3" {
+  value = "${azurerm_network_interface.terraform_network_interface_3.private_ip_address}"
+}
+
 resource "azurerm_storage_account" "terraform_storage_account" {
   name 			               = "${var.project_name}tfstorageaccount"
   resource_group_name 	   = "${azurerm_resource_group.terraform_resource_group.name}"
@@ -120,3 +160,78 @@ resource "azurerm_virtual_machine" "terraform_controller" {
   }
 }
 
+resource "azurerm_virtual_machine" "terraform_controller_2" {
+  name                          = "${var.project_name}-terraform-controller-2"
+  location                      = "${var.location}"
+  resource_group_name           = "${azurerm_resource_group.terraform_resource_group.name}"
+  //resource_group_name = "${var.resource_group_name}"
+  network_interface_ids         = ["${azurerm_network_interface.terraform_network_interface_2.id}"]
+  vm_size                       = "Standard_F4s"
+  delete_os_disk_on_termination = true
+  storage_image_reference {
+    publisher = "avi-networks"
+    offer     = "avi-vantage-adc"
+    sku       = "avi-vantage-adc-byol"
+    version   = "latest"
+  }
+  plan {
+    name      = "avi-vantage-adc-byol"
+    publisher = "avi-networks"
+    product   = "avi-vantage-adc"
+  }
+  storage_os_disk {
+    name          = "${var.project_name}-osdisk-2"
+    vhd_uri       = "${azurerm_storage_account.terraform_storage_account.primary_blob_endpoint}${azurerm_storage_container.terraform_storage_container.name}/${var.project_name}-osdisk-2.vhd"
+    caching       = "ReadWrite"
+    create_option = "FromImage"
+  }
+  os_profile {
+    computer_name  = "${var.project_name}-ubuntu"
+    admin_username = "${var.vm_username}"
+    admin_password = "${var.vm_password}"
+  }
+  os_profile_linux_config {
+    disable_password_authentication = false
+  }
+  tags {
+    environment = "${var.project_name}-terraform-${var.project_environment}"
+  }
+}
+
+resource "azurerm_virtual_machine" "terraform_controller_3" {
+  name                          = "${var.project_name}-terraform-controller-3"
+  location                      = "${var.location}"
+  resource_group_name           = "${azurerm_resource_group.terraform_resource_group.name}"
+  //resource_group_name = "${var.resource_group_name}"
+  network_interface_ids         = ["${azurerm_network_interface.terraform_network_interface_3.id}"]
+  vm_size                       = "Standard_F4s"
+  delete_os_disk_on_termination = true
+  storage_image_reference {
+    publisher = "avi-networks"
+    offer     = "avi-vantage-adc"
+    sku       = "avi-vantage-adc-byol"
+    version   = "latest"
+  }
+  plan {
+    name      = "avi-vantage-adc-byol"
+    publisher = "avi-networks"
+    product   = "avi-vantage-adc"
+  }
+  storage_os_disk {
+    name          = "${var.project_name}-osdisk-3"
+    vhd_uri       = "${azurerm_storage_account.terraform_storage_account.primary_blob_endpoint}${azurerm_storage_container.terraform_storage_container.name}/${var.project_name}-osdisk-3.vhd"
+    caching       = "ReadWrite"
+    create_option = "FromImage"
+  }
+  os_profile {
+    computer_name  = "${var.project_name}-ubuntu"
+    admin_username = "${var.vm_username}"
+    admin_password = "${var.vm_password}"
+  }
+  os_profile_linux_config {
+    disable_password_authentication = false
+  }
+  tags {
+    environment = "${var.project_name}-terraform-${var.project_environment}"
+  }
+}
