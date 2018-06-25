@@ -2,7 +2,8 @@ provider "avi" {
   avi_username = "admin"
   avi_tenant = "admin"
   avi_password = "${var.avi_password}"
-  avi_controller= "10.10.25.42"
+  avi_controller= "${var.avi_controller}"
+  avi_version = "18.1.2"
 }
 
 data "avi_applicationprofile" "system_http_profile" {
@@ -73,6 +74,7 @@ resource "avi_vsvip" "test_vsvip" {
       addr= "10.90.64.88",
     }
   }
+  tenant_ref= "${data.avi_tenant.default_tenant.id}"
 }
 
 resource "avi_virtualservice" "test_vs" {
@@ -101,6 +103,7 @@ resource "avi_virtualservice" "test_vs" {
 resource "avi_healthmonitor" "test_hm_1" {
   name = "healthmonitor-42"
   type = "HEALTH_MONITOR_HTTP"
+  tenant_ref= "${data.avi_tenant.default_tenant.id}"
 }
 
 
