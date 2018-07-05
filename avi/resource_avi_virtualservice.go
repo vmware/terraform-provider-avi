@@ -6,11 +6,10 @@
 package avi
 
 import (
-	"log"
-	"strings"
-
 	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform/helper/schema"
+	"log"
+	"strings"
 )
 
 func ResourceVirtualServiceSchema() map[string]*schema.Schema {
@@ -404,21 +403,23 @@ func resourceAviVirtualServiceCreate(d *schema.ResourceData, meta interface{}) e
 func resourceAviVirtualServiceUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceVirtualServiceSchema()
 	var err error
-	var existingvs interface{}
-	var mod_api_res interface{}
+	var existingvirtualservice interface{}
+	var apiResponse interface{}
 	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
-	vspath := "api/virtualservice/" + uuid + "?include_name=true"
-	err = client.AviSession.Get(vspath, &existingvs)
+	virtualservicepath := "api/virtualservice/" + uuid + "?include_name=true"
+	err = client.AviSession.Get(virtualservicepath, &existingvirtualservice)
 	if err == nil {
 		//adding default values to api_response before it overwrites the d (local state).
 		//Before GO lang sets zero value to fields which are absent in api response
 		//setting those fields to schema default and then overwritting d (local state)
-		if local_data, err := SchemaToAviData(d, s); err == nil {
-			mod_api_res, err = SetDefaultsInAPIRes(existingvs, local_data, s)
+		if localData, err := SchemaToAviData(d, s); err == nil {
+			apiResponse, err = SetDefaultsInAPIRes(existingvirtualservice, localData, s)
+		} else {
+			log.Printf("[ERROR] resourceAviVirtualServiceUpdate in SchemaToAviData: %v\n", err)
 		}
-		if vsobj, err := ApiDataToSchema(mod_api_res, nil, nil); err == nil {
-			objs := vsobj.(*schema.Set).List()
+		if virtualserviceobj, err := ApiDataToSchema(apiResponse, nil, nil); err == nil {
+			objs := virtualserviceobj.(*schema.Set).List()
 			for obj := 0; obj < len(objs); obj++ {
 				vsvipref := objs[obj].(map[string]interface{})["vsvip_ref"]
 				err = d.Set("vsvip_ref", vsvipref.(string))

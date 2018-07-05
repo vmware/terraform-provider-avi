@@ -25,6 +25,11 @@ func dataSourceAviSSLKeyAndCertificate() *schema.Resource {
 					return 0
 				},
 			},
+			"certificate_base64": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  false,
+			},
 			"certificate_management_profile_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -46,6 +51,10 @@ func dataSourceAviSSLKeyAndCertificate() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"format": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "SSL_PEM"},
 			"hardwaresecuritymodulegroup_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -54,6 +63,11 @@ func dataSourceAviSSLKeyAndCertificate() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"key_base64": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  false,
+			},
 			"key_params": &schema.Schema{
 				Type:     schema.TypeSet,
 				Optional: true,
@@ -61,6 +75,10 @@ func dataSourceAviSSLKeyAndCertificate() *schema.Resource {
 				Set: func(v interface{}) int {
 					return 0
 				},
+			},
+			"key_passphrase": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
@@ -77,7 +95,7 @@ func dataSourceAviSSLKeyAndCertificate() *schema.Resource {
 			"type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Default:  "SSL_CERTIFICATE_TYPE_VIRTUALSERVICE"},
+			},
 			"uuid": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,

@@ -126,7 +126,7 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 		"persistence_key_rotate_period": &schema.Schema{
 			Type:     schema.TypeInt,
 			Optional: true,
-			Default:  60,
+			Default:  0,
 		},
 		"portal_token": &schema.Schema{
 			Type:     schema.TypeString,
@@ -239,7 +239,7 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 		"vs_key_rotate_period": &schema.Schema{
 			Type:     schema.TypeInt,
 			Optional: true,
-			Default:  60,
+			Default:  360,
 		},
 		"vs_se_attach_ip_fail": &schema.Schema{
 			Type:     schema.TypeInt,

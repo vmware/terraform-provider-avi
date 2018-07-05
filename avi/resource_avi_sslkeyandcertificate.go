@@ -27,6 +27,11 @@ func ResourceSSLKeyAndCertificateSchema() map[string]*schema.Schema {
 				return 0
 			},
 		},
+		"certificate_base64": &schema.Schema{
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  false,
+		},
 		"certificate_management_profile_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
@@ -48,6 +53,11 @@ func ResourceSSLKeyAndCertificateSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
+		"format": &schema.Schema{
+			Type:     schema.TypeString,
+			Optional: true,
+			Default:  "SSL_PEM",
+		},
 		"hardwaresecuritymodulegroup_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
@@ -56,6 +66,11 @@ func ResourceSSLKeyAndCertificateSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
+		"key_base64": &schema.Schema{
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  false,
+		},
 		"key_params": &schema.Schema{
 			Type:     schema.TypeSet,
 			Optional: true,
@@ -63,6 +78,10 @@ func ResourceSSLKeyAndCertificateSchema() map[string]*schema.Schema {
 			Set: func(v interface{}) int {
 				return 0
 			},
+		},
+		"key_passphrase": &schema.Schema{
+			Type:     schema.TypeString,
+			Optional: true,
 		},
 		"name": &schema.Schema{
 			Type:     schema.TypeString,
@@ -80,7 +99,6 @@ func ResourceSSLKeyAndCertificateSchema() map[string]*schema.Schema {
 		"type": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
-			Default:  "SSL_CERTIFICATE_TYPE_VIRTUALSERVICE",
 		},
 		"uuid": &schema.Schema{
 			Type:     schema.TypeString,
