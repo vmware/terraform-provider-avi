@@ -7,10 +7,12 @@ provider "avi" {
 }
 
 resource "avi_serviceenginegroup" "test_se" {
-	name= "Default-Group1",
+	name= "Default-Group",
 	license_type= "LIC_SE_BANDWIDTH",
 	se_bandwidth_type= "SE_BANDWIDTH_200M",
-	algo= "PLACEMENT_ALGO_PACKED"
+	algo= "PLACEMENT_ALGO_PACKED",
+	min_scaleout_per_vs = 2,
+	ha_mode= "HA_MODE_SHARED_PAIR"
 }
 
 resource "avi_tenant" "test_tenant" {
@@ -29,7 +31,8 @@ resource "avi_sslprofile" "system_standard_sslprofile" {
   accepted_versions= {
 		"type"= "SSL_VERSION_TLS1_2"
 	},
-  accepted_ciphers= "ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES128-SHA:ECDHE-ECDSA-AES256-SHA:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-SHA256:ECDHE-ECDSA-AES256-SHA384:AES128-GCM-SHA256:AES256-GCM-SHA384:AES128-SHA256:AES256-SHA256:AES128-SHA:AES256-SHA:DES-CBC3-SHA:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-SHA:ECDHE-RSA-AES128-SHA256:ECDHE-RSA-AES256-SHA:ECDHE-RSA-AES256-SHA384"
+  cipher_enums = ["TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384",
+  "TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256", "TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384", "TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA", "TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256", "TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA"]
 }
 
 data "avi_tenant" "default_tenant"{
