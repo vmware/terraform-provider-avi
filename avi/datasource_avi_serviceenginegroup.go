@@ -135,7 +135,7 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 			"disable_se_memory_check": &schema.Schema{
 				Type:     schema.TypeBool,
 				Optional: true,
-				Default:  false,
+				Default:  true,
 			},
 			"disable_tso": &schema.Schema{
 				Type:     schema.TypeBool,

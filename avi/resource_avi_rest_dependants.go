@@ -3489,6 +3489,11 @@ func ResourceVIControllerVnicInfoSchema() *schema.Resource {
 func ResourceVipAutoscalePolicySchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"dns_cooldown": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Default:  60,
+			},
 			"max_size": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -5372,14 +5377,9 @@ func ResourceHTTPReselectRespCodeSchema() *schema.Resource {
 func ResourceVipAutoscaleZonesSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
-			"availability_zone": &schema.Schema{
+			"subnet_uuid": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-			},
-			"subnet_uuids": &schema.Schema{
-				Type:     schema.TypeList,
-				Optional: true,
-				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
 		},
 	}
@@ -6391,6 +6391,11 @@ func ResourceOpenStackConfigurationSchema() *schema.Resource {
 				Type:     schema.TypeBool,
 				Optional: true,
 				Default:  true,
+			},
+			"contrail_disable_policy": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  false,
 			},
 			"contrail_endpoint": &schema.Schema{
 				Type:     schema.TypeString,
@@ -12469,19 +12474,15 @@ func ResourceIpamDnsGCPProfileSchema() *schema.Resource {
 				Optional: true,
 				Default:  false,
 			},
-			"network_name": &schema.Schema{
-				Type:     schema.TypeString,
-				Optional: true,
-			},
-			"network_project_name": &schema.Schema{
-				Type:     schema.TypeString,
-				Optional: true,
-			},
-			"project_name": &schema.Schema{
+			"network_host_project_id": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 			},
 			"region_name": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"se_project_id": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 			},
@@ -12494,6 +12495,10 @@ func ResourceIpamDnsGCPProfileSchema() *schema.Resource {
 				Type:     schema.TypeBool,
 				Optional: true,
 				Default:  false,
+			},
+			"vpc_network_name": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
 			},
 		},
 	}
@@ -23919,6 +23924,10 @@ func ResourceVserverL7MetricsObjSchema() *schema.Resource {
 				Type:     schema.TypeFloat,
 				Optional: true,
 			},
+			"avg_params_per_req": &schema.Schema{
+				Type:     schema.TypeFloat,
+				Optional: true,
+			},
 			"avg_post_bytes": &schema.Schema{
 				Type:     schema.TypeFloat,
 				Optional: true,
@@ -24396,6 +24405,10 @@ func ResourceVserverL7MetricsObjSchema() *schema.Resource {
 				Optional: true,
 			},
 			"sum_reqs_finished_sessions": &schema.Schema{
+				Type:     schema.TypeFloat,
+				Optional: true,
+			},
+			"sum_reqs_with_params": &schema.Schema{
 				Type:     schema.TypeFloat,
 				Optional: true,
 			},

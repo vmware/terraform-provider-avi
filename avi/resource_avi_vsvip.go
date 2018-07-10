@@ -6,11 +6,10 @@
 package avi
 
 import (
-	"log"
-	"strings"
-
 	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform/helper/schema"
+	"log"
+	"strings"
 )
 
 func ResourceVsVipSchema() map[string]*schema.Schema {
@@ -97,25 +96,25 @@ func resourceAviVsVipCreate(d *schema.ResourceData, meta interface{}) error {
 func resourceAviVsVipUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceVsVipSchema()
 	var err error
-	var existingvip interface{}
+	var existingvsvip interface{}
 	var apiResponse interface{}
-	var vipobjs []interface{}
-	autoAllocFlag := false
 	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
-	vippath := "api/vsvip/" + uuid + "?include_name=true"
-	err = client.AviSession.Get(vippath, &existingvip)
+	vsvippath := "api/vsvip/" + uuid + "?include_name=true"
+	err = client.AviSession.Get(vsvippath, &existingvsvip)
+	var vipobjs []interface{}
+	autoAllocFlag := false
 	if err == nil {
-		//adding default values to api response before it overwrites the d (local state).
+		//adding default values to api_response before it overwrites the d (local state).
 		//Before GO lang sets zero value to fields which are absent in api response
 		//setting those fields to schema default and then overwritting d (local state)
 		if localData, err := SchemaToAviData(d, s); err == nil {
-			apiResponse, err = SetDefaultsInAPIRes(existingvip, localData, s)
+			apiResponse, err = SetDefaultsInAPIRes(existingvsvip, localData, s)
 		} else {
-			log.Printf("[ERROR] resourceAviVSVIPUpdate in SchemaToAviData: %v\n", err)
+			log.Printf("[ERROR] resourceAviVsVipUpdate in SchemaToAviData: %v\n", err)
 		}
-		if vipobj, err := ApiDataToSchema(apiResponse, nil, nil); err == nil {
-			objs := vipobj.(*schema.Set).List()
+		if vsvipobj, err := ApiDataToSchema(apiResponse, nil, nil); err == nil {
+			objs := vsvipobj.(*schema.Set).List()
 			for obj := 0; obj < len(objs); obj++ {
 				vipobjs = objs[obj].(map[string]interface{})["vip"].([]interface{})
 				for ob := 0; ob < len(vipobjs); ob++ {
@@ -133,10 +132,10 @@ func resourceAviVsVipUpdate(d *schema.ResourceData, meta interface{}) error {
 				}
 			}
 		} else {
-			log.Printf("[ERROR] resourceAviVSVIPUpdate in ApiDataToSchema: %v\n", err)
+			log.Printf("[ERROR] resourceAviVsVipUpdate in ApiDataToSchema: %v\n", err)
 		}
 	} else {
-		log.Printf("[ERROR] resourceAviVSVIPUpdate in GET: %v\n", err)
+		log.Printf("[ERROR] resourceAviVsVipUpdate in GET: %v\n", err)
 	}
 	err = ApiCreateOrUpdate(d, meta, "vsvip", s)
 	if err == nil {

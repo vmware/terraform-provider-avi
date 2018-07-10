@@ -207,6 +207,11 @@ func ResourcePoolSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  false,
 		},
+		"server_count": &schema.Schema{
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  0,
+		},
 		"server_name": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
