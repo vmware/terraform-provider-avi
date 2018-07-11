@@ -6,14 +6,17 @@
 package avi
 
 import (
-	"log"
-	"reflect"
-	"strings"
-
 	"github.com/avinetworks/sdk/go/clients"
 	"github.com/avinetworks/sdk/go/session"
 	"github.com/hashicorp/terraform/helper/hashcode"
 	"github.com/hashicorp/terraform/helper/schema"
+	"io/ioutil"
+	"log"
+	"os"
+	"path/filepath"
+	"reflect"
+	"regexp"
+	"strings"
 )
 
 func SchemaToAviData(d interface{}, s map[string]*schema.Schema) (interface{}, error) {
@@ -410,4 +413,120 @@ func ApiDeleteSystemDefaultCheck(d *schema.ResourceData) bool {
 		return true
 	}
 	return false
+}
+
+//Open given file as a file pointer
+func mustOpen(f string) *os.File {
+	r, err := os.Open(f)
+	if err != nil {
+		log.Printf("[ERROR] mustOpen Error while opening file %v", f)
+		panic(err)
+	}
+	return r
+}
+
+func createFilePointer(path string) (*os.File, error) {
+	// detect if file exists
+	var _, err = os.Stat(path)
+	// create file if not exists
+	if os.IsNotExist(err) {
+		var file, err = os.Create(path)
+		if err != nil {
+			return nil, err
+		}
+		log.Printf("[INFO] createFilePointer File created %v", path)
+		return file, err
+	} else {
+		// open file using READ & WRITE permission
+		var file, err = os.OpenFile(path, os.O_RDWR, 0644)
+		log.Printf("[INFO] createFilePointer File exist Reopening %v", path)
+		return file, err
+	}
+}
+
+//Function to make REST API call for upload and download.
+func MultipartUploadOrDownload(d *schema.ResourceData, meta interface{}, s map[string]*schema.Schema) error {
+	client := meta.(*clients.AviClient)
+	uri := d.Get("uri").(string)
+	local_file := d.Get("local_file").(string)
+	var err error
+	var res interface{}
+	var license_file_name string
+	switch upload := d.Get("upload").(bool); upload {
+	case true:
+		//Checking for license URI
+		switch uri := d.Get("uri").(string); uri {
+		case "license":
+			data, err := ioutil.ReadFile(local_file)
+			if err != nil {
+				log.Panicf("failed reading data from file: %s", err)
+			}
+			str_data := string(data)
+			license_data := map[string]string{
+				"license_text": str_data,
+			}
+			uri = "/api/" + uri
+			err = client.AviSession.Put(uri, license_data, &res)
+			log.Printf("[DEBUG] MultipartUploadOrDownload response: %v\n\n", res)
+			if err != nil {
+				log.Printf("[ERROR] MultipartUploadOrDownload %v in PUT of URI %v\n", err, uri)
+				return err
+			}
+			if res != nil {
+				//RegX to fetch license name from controller response.
+				re := regexp.MustCompile(`(?mi)((?:license.*[^"}]))`)
+				result := res.(map[string]interface{})["result"].(string)
+				matched_str := re.FindString(result)
+				splited_str := strings.Split(matched_str, " ")
+				//Iterating over string array if license name contains white spaces. Concatinating strings to get final license name
+				for _, val := range splited_str[1:] {
+					license_file_name = license_file_name + val
+				}
+				//Setting license name as an ID.
+				d.SetId(license_file_name)
+			}
+		default:
+			if _, err := os.Stat(local_file); os.IsNotExist(err) {
+				log.Printf("[ERROR] MultipartUploadOrDownload File path does not exist %v", local_file)
+				return err
+			}
+			local_file_ptr := mustOpen(local_file)
+			err := client.AviSession.PostMultipartRequest("POST", uri, local_file_ptr)
+			if err != nil {
+				log.Printf("[ERROR] MultipartUploadOrDownload Error uploading file %v %v", local_file, err)
+				return err
+			}
+			_, file := filepath.Split(local_file)
+			d.SetId(file)
+		}
+	case false:
+		//For multipart file download
+		//File creation
+		download_file_ptr, err := createFilePointer(local_file)
+		if err != nil {
+			log.Printf("[ERROR] MultipartUploadOrDownload Error for creation of file %v", local_file)
+		}
+		err = client.AviSession.GetMultipartRaw("GET", uri, download_file_ptr)
+		if err != nil {
+			log.Printf("[ERROR] MultipartUploadOrDownload Error downloaing file using uri %v %v", uri, err)
+			return err
+		}
+		_, file := filepath.Split(local_file)
+		d.SetId(file)
+	default:
+		//For multipart file download
+		//File creation
+		download_file_ptr, err := createFilePointer(local_file)
+		if err != nil {
+			log.Printf("[ERROR] MultipartUploadOrDownload Error for creation of file %v", local_file)
+		}
+		err = client.AviSession.GetMultipartRaw("GET", uri, download_file_ptr)
+		if err != nil {
+			log.Printf("[ERROR] MultipartUploadOrDownload Error downloaing file using uri %v %v", uri, err)
+			return err
+		}
+		_, file := filepath.Split(local_file)
+		d.SetId(file)
+	}
+	return err
 }
