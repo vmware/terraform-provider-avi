@@ -66,18 +66,18 @@ application_profile_ref= "${data.avi_applicationprofile.system_https_profile.id}
 Building The Provider
 ---------------------
 
-Clone repository to: `$GOPATH/src/github.com/hashicorp/terraform-provider-avi`
+Clone repository to: `$GOPATH/src/github.com/avinetworks/terraform-provider-avi`
 
 ```sh
-$ mkdir -p $GOPATH/src/github.com/hashicorp; cd $GOPATH/src/github.com/hashicorp
+$ mkdir -p $GOPATH/src/github.com/avinetworks; cd $GOPATH/src/github.com/avinetworks
 $ git clone https://github.com/avinetworks/terraform-provider-avi.git
 ```
 
 Enter the provider directory and build the provider
 
 ```sh
-$ cd $GOPATH/src/github.com/hashicorp/terraform-provider-avi
-$ make build
+$ cd $GOPATH/src/github.com/avinetworks/terraform-provider-avi
+$ make
 ```
 
 Using the provider
