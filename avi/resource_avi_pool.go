@@ -6,6 +6,7 @@
 package avi
 
 import (
+	"errors"
 	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform/helper/schema"
 	"log"
@@ -260,6 +261,11 @@ func ResourcePoolSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
+		"ignore_servers": &schema.Schema{
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  false,
+		},
 	}
 }
 
@@ -292,6 +298,13 @@ func ResourceAviPoolRead(d *schema.ResourceData, meta interface{}) error {
 
 func resourceAviPoolCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourcePoolSchema()
+	if ignore_servers, ok := d.GetOk("ignore_servers"); ok {
+		if servers, ok := d.GetOk("servers"); ok && ignore_servers.(bool) && servers != nil {
+			log.Printf("[ERROR] cannot set ignore_servers and servers together.")
+			err := errors.New("Error Invalid Plan. cannot set ignore_servers and servers together.")
+			return err
+		}
+	}
 	err := ApiCreateOrUpdate(d, meta, "pool", s)
 	if err == nil {
 		err = ResourceAviPoolRead(d, meta)
@@ -300,16 +313,52 @@ func resourceAviPoolCreate(d *schema.ResourceData, meta interface{}) error {
 }
 
 func resourceAviPoolUpdate(d *schema.ResourceData, meta interface{}) error {
-	s := ResourcePoolSchema()
 	var err error
+	set_ignore_servers := false
+	s := ResourcePoolSchema()
+
+	if ignore_servers, ok := d.GetOk("ignore_servers"); ok {
+		if servers, ok := d.GetOk("servers"); ok && ignore_servers.(bool) && servers != nil {
+			log.Printf("[ERROR] cannot set ignore_servers and servers together.")
+			err = errors.New("Error Invalid Plan. cannot set ignore_servers and servers together.")
+			return err
+		}
+		client := meta.(*clients.AviClient)
+		pUUID, pName := UUIDFromID(d.Id())
+		path := "api/pool" + "/" + pUUID + "?include_name=true"
+		log.Printf("[DEBUG] resourceAviPoolUpdate reading object with id %v name %v\n", pUUID, pName)
+		var obj interface{}
+		err = client.AviSession.Get(path, &obj)
+		if err == nil {
+			// found pool so unpack it
+			td := make(map[string]interface{})
+			if _, err := ApiDataToSchema(obj, td, s); err == nil {
+				log.Printf("read servers %v from existing object ", td["servers"])
+				d.Set("servers", td["servers"])
+			}
+		} else {
+			d.SetId("")
+			log.Printf("[ERROR] ApiRead object with uuid %v not found err %v\n", pUUID, err)
+		}
+		set_ignore_servers = true
+	}
 	err = ApiCreateOrUpdate(d, meta, "pool", s)
 	if err == nil {
 		err = ResourceAviPoolRead(d, meta)
 	}
+	d.Set("servers", nil)
+	d.Set("ignore_servers", set_ignore_servers)
 	return err
 }
 
 func resourceAviPoolDelete(d *schema.ResourceData, meta interface{}) error {
+	if ignore_servers, ok := d.GetOk("ignore_servers"); ok {
+		if servers, ok := d.GetOk("servers"); ok && ignore_servers.(bool) && servers != nil {
+			log.Printf("[ERROR] cannot set ignore_servers and servers together.")
+			err := errors.New("Error Invalid Plan. cannot set ignore_servers and servers together.")
+			return err
+		}
+	}
 	objType := "pool"
 	if ApiDeleteSystemDefaultCheck(d) {
 		return nil

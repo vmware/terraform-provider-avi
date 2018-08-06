@@ -71,7 +71,7 @@ resource "avi_vsvip" "test_vsvip" {
     vip_id= "0"
     ip_address {
       type= "V4",
-      addr= "10.90.64.88",
+      addr= "10.90.64.100",
     }
   }
   tenant_ref= "${data.avi_tenant.default_tenant.id}"
@@ -86,7 +86,7 @@ resource "avi_virtualservice" "test_vs" {
     vip_id= "0"
     ip_address {
       type= "V4",
-      addr= "10.90.64.88",
+      addr= "10.90.64.100",
     }
   }
   services {
@@ -123,4 +123,44 @@ resource "avi_pool" "testpool" {
   fail_action= {
     type= "FAIL_ACTION_CLOSE_CONN"
   }
+}
+
+resource "avi_pool" "test-p2" {
+  name= "pool-p2",
+  //health_monitor_refs= ["${avi_healthmonitor.test_hm_1.id}"]
+  tenant_ref= "${data.avi_tenant.default_tenant.id}"
+  cloud_ref= "${data.avi_cloud.default_cloud.id}"
+  application_persistence_profile_ref= "${avi_applicationpersistenceprofile.test_applicationpersistenceprofile.id}"
+  fail_action= {
+    type= "FAIL_ACTION_CLOSE_CONN"
+  }
+  ignore_servers= true
+}
+
+resource "avi_server" "test_server_p21" {
+  ip = "10.90.64.111"
+  port = "80"
+  pool_ref = "${avi_pool.test-p2.id}"
+  hostname = "foo"
+}
+
+resource "avi_server" "test_server_p22" {
+  ip = "10.90.64.112"
+  port = "80"
+  pool_ref = "${avi_pool.test-p2.id}"
+  hostname = "bar1"
+}
+
+resource "avi_server" "test_server_p23" {
+  ip = "10.90.64.113"
+  port = "80"
+  pool_ref = "${avi_pool.test-p2.id}"
+  hostname = "goo"
+}
+
+resource "avi_server" "test_server" {
+  ip = "10.90.64.111"
+  port = "80"
+  pool_ref = "${avi_pool.testpool.id}"
+  hostname = "10.90.64.111"
 }

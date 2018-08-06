@@ -14,7 +14,6 @@ import (
 	"log"
 	"os"
 	"path/filepath"
-	"reflect"
 	"regexp"
 	"strings"
 )
@@ -22,7 +21,7 @@ import (
 func SchemaToAviData(d interface{}, s map[string]*schema.Schema) (interface{}, error) {
 	switch d.(type) {
 	default:
-		log.Printf("[INFO] SchemaToAviData: resource d: %v(%v)", d, reflect.TypeOf(d))
+		//log.Printf("[DEBUG] SchemaToAviData: resource d: %v(%v)", d, reflect.TypeOf(d))
 		//return d, nil
 	case map[string]interface{}:
 		m := make(map[string]interface{})
@@ -94,7 +93,7 @@ func SetDefaultsInAPIRes(api_res interface{}, d_local interface{}, s map[string]
 						} else {
 							if default_val != nil {
 								api_res.(map[string]interface{})[k] = default_val
-								log.Printf("[INFO] SetDefaultsInAPIRes setting default for field: %v\t val: %v", k, default_val)
+								log.Printf("[DEBUG] SetDefaultsInAPIRes setting default for field: %v\t val: %v", k, default_val)
 							}
 						}
 
@@ -105,7 +104,7 @@ func SetDefaultsInAPIRes(api_res interface{}, d_local interface{}, s map[string]
 				s2, err := s[k]
 				//As err returned is boolean value
 				if err {
-					log.Printf("[INFO] SetDefaultsInAPIRes %v", err)
+					log.Printf("[DEBUG] SetDefaultsInAPIRes %v", err)
 				}
 				switch s2.Elem.(type) {
 				default:
@@ -150,7 +149,7 @@ func SetDefaultsInAPIRes(api_res interface{}, d_local interface{}, s map[string]
 
 }
 
-func ApiDataToSchema(adata interface{}, d *schema.ResourceData, t map[string]*schema.Schema) (interface{}, error) {
+func ApiDataToSchema(adata interface{}, d interface{}, t map[string]*schema.Schema) (interface{}, error) {
 	switch adata.(type) {
 	default:
 	case map[string]interface{}:
@@ -176,9 +175,15 @@ func ApiDataToSchema(adata interface{}, d *schema.ResourceData, t map[string]*sc
 				if _, ok := t[k]; ok {
 					// found in the schema
 					if obj, err := ApiDataToSchema(v, nil, nil); err == nil {
-						err := d.Set(k, obj)
-						if err != nil {
-							log.Printf("[ERROR] ApiDataToSchema %v in setting %v", err, obj)
+						switch d.(type) {
+						default:
+						case *schema.ResourceData:
+							err := d.(*schema.ResourceData).Set(k, obj)
+							if err != nil {
+								log.Printf("[ERROR] ApiDataToSchema %v in setting %v", err, obj)
+							}
+						case map[string]interface{}:
+							d.(map[string]interface{})[k] = obj
 						}
 					}
 				}
@@ -529,4 +534,12 @@ func MultipartUploadOrDownload(d *schema.ResourceData, meta interface{}, s map[s
 		d.SetId(file)
 	}
 	return err
+}
+
+func UUIDFromID(Id string) (string, string) {
+	urlParts := strings.Split(Id, "/")
+	idParts := urlParts[len(urlParts)-1]
+	// need to strip #xxx if present
+	nu := strings.Split(idParts, "#")
+	return nu[0], nu[1]
 }
