@@ -21,8 +21,6 @@ import (
 func SchemaToAviData(d interface{}, s map[string]*schema.Schema) (interface{}, error) {
 	switch d.(type) {
 	default:
-		//log.Printf("[DEBUG] SchemaToAviData: resource d: %v(%v)", d, reflect.TypeOf(d))
-		//return d, nil
 	case map[string]interface{}:
 		m := make(map[string]interface{})
 		for k, v := range d.(map[string]interface{}) {
@@ -93,7 +91,6 @@ func SetDefaultsInAPIRes(api_res interface{}, d_local interface{}, s map[string]
 						} else {
 							if default_val != nil {
 								api_res.(map[string]interface{})[k] = default_val
-								log.Printf("[DEBUG] SetDefaultsInAPIRes setting default for field: %v\t val: %v", k, default_val)
 							}
 						}
 
@@ -104,14 +101,14 @@ func SetDefaultsInAPIRes(api_res interface{}, d_local interface{}, s map[string]
 				s2, err := s[k]
 				//As err returned is boolean value
 				if err {
-					log.Printf("[DEBUG] SetDefaultsInAPIRes %v", err)
+					log.Printf("[ERROR] SetDefaultsInAPIRes %v", err)
 				}
 				switch s2.Elem.(type) {
 				default:
 				case *schema.Resource:
 					api_res1, err := SetDefaultsInAPIRes(api_res.(map[string]interface{})[k], v, s2.Elem.(*schema.Resource).Schema)
 					if err != nil {
-						log.Printf("[INFO] SetDefaultsInAPIRes %v", err)
+						log.Printf("[ERROR] SetDefaultsInAPIRes %v", err)
 
 					} else {
 						api_res.(map[string]interface{})[k] = api_res1
@@ -133,7 +130,7 @@ func SetDefaultsInAPIRes(api_res interface{}, d_local interface{}, s map[string]
 					case *schema.Resource:
 						obj, err := SetDefaultsInAPIRes(varray2[x], y, s2.Elem.(*schema.Resource).Schema)
 						if err != nil {
-							log.Printf("[INFO] SetDefaultsInAPIRes %v", err)
+							log.Printf("[ERROR] SetDefaultsInAPIRes %v", err)
 						} else {
 							objList = append(objList, obj)
 						}
@@ -272,7 +269,6 @@ func ApiCreateOrUpdate(d *schema.ResourceData, meta interface{}, objType string,
 			log.Printf("[ERROR] ApiCreateOrUpdate: Error %v path %v id %v\n", err, path, d.Id())
 			return err
 		}
-		log.Printf("[DEBUG] ApiCreateOrUpdate: object %v\n", robj)
 		uuid := robj.(map[string]interface{})["uuid"].(string)
 		d.Set("uuid", uuid)
 		if url, ok := robj.(map[string]interface{})["url"].(string); ok && url != "" {
@@ -291,9 +287,7 @@ func ApiRead(d *schema.ResourceData, meta interface{}, objType string, s map[str
 	client := meta.(*clients.AviClient)
 	var obj interface{}
 	uuid := ""
-	log.Printf("[DEBUG] ApiRead reading object with objType %v id %v\n",
-		objType, d.Id())
-
+	log.Printf("[DEBUG] ApiRead reading object with objType %v id %v\n", objType, d.Id())
 	if d.Id() != "" {
 		// extract the uuid from it.
 		log.Printf("[DEBUG] ApiRead reading object with objType %v id %v \n", objType, d.Id())
@@ -372,8 +366,6 @@ func ResourceImporter(d *schema.ResourceData, meta interface{}, objType string, 
 	var data interface{}
 	client := meta.(*clients.AviClient)
 	path := "api/" + objType + "/?skip_default=true&include_name=true"
-	log.Printf("[DEBUG] ResourceImporter reading object with path %v\n", path)
-
 	err := client.AviSession.Get(path, &data)
 	if err != nil {
 		log.Printf("[ERROR] ResourceImporter %v in GET of path %v\n", err, path)
@@ -472,7 +464,6 @@ func MultipartUploadOrDownload(d *schema.ResourceData, meta interface{}, s map[s
 			}
 			uri = "/api/" + uri
 			err = client.AviSession.Put(uri, license_data, &res)
-			log.Printf("[DEBUG] MultipartUploadOrDownload response: %v\n\n", res)
 			if err != nil {
 				log.Printf("[ERROR] MultipartUploadOrDownload %v in PUT of URI %v\n", err, uri)
 				return err
