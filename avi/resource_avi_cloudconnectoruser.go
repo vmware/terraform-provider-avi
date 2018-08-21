@@ -34,6 +34,14 @@ func ResourceCloudConnectorUserSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Required: true,
 		},
+		"oci_credentials": &schema.Schema{
+			Type:     schema.TypeSet,
+			Optional: true,
+			Elem:     ResourceOCICredentialsSchema(),
+			Set: func(v interface{}) int {
+				return 0
+			},
+		},
 		"password": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,

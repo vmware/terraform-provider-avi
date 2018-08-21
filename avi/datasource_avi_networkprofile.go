@@ -11,6 +11,11 @@ func dataSourceAviNetworkProfile() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviNetworkProfileRead,
 		Schema: map[string]*schema.Schema{
+			"connection_mirror": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  false,
+			},
 			"description": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,

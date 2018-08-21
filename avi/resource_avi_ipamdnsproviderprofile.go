@@ -71,6 +71,14 @@ func ResourceIpamDnsProviderProfileSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Required: true,
 		},
+		"oci_profile": &schema.Schema{
+			Type:     schema.TypeSet,
+			Optional: true,
+			Elem:     ResourceIpamDnsOCIProfileSchema(),
+			Set: func(v interface{}) int {
+				return 0
+			},
+		},
 		"openstack_profile": &schema.Schema{
 			Type:     schema.TypeSet,
 			Optional: true,

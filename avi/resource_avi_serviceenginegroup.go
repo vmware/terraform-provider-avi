@@ -139,7 +139,7 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 		"disable_se_memory_check": &schema.Schema{
 			Type:     schema.TypeBool,
 			Optional: true,
-			Default:  true,
+			Default:  false,
 		},
 		"disable_tso": &schema.Schema{
 			Type:     schema.TypeBool,
@@ -361,6 +361,11 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  1,
 		},
+		"min_se": &schema.Schema{
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  1,
+		},
 		"minimum_connection_memory": &schema.Schema{
 			Type:     schema.TypeInt,
 			Optional: true,
@@ -379,6 +384,11 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Type:     schema.TypeInt,
 			Optional: true,
 			Default:  100,
+		},
+		"num_dispatcher_cores": &schema.Schema{
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  0,
 		},
 		"num_flow_cores_sum_changes_to_ignore": &schema.Schema{
 			Type:     schema.TypeInt,
@@ -438,6 +448,11 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 				return 0
 			},
 		},
+		"se_dpdk_pmd": &schema.Schema{
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  0,
+		},
 		"se_ipc_udp_port": &schema.Schema{
 			Type:     schema.TypeInt,
 			Optional: true,
@@ -447,6 +462,16 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 			Default:  "Avi",
+		},
+		"se_pcap_reinit_frequency": &schema.Schema{
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  0,
+		},
+		"se_pcap_reinit_threshold": &schema.Schema{
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  0,
 		},
 		"se_probe_port": &schema.Schema{
 			Type:     schema.TypeInt,
@@ -496,10 +521,15 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  0,
 		},
+		"se_use_dpdk": &schema.Schema{
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  0,
+		},
 		"se_vs_hb_max_pkts_in_batch": &schema.Schema{
 			Type:     schema.TypeInt,
 			Optional: true,
-			Default:  8,
+			Default:  64,
 		},
 		"se_vs_hb_max_vs_in_pkt": &schema.Schema{
 			Type:     schema.TypeInt,
@@ -530,6 +560,11 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Type:     schema.TypeInt,
 			Optional: true,
 			Default:  100,
+		},
+		"ssl_preprocess_sni_hostname": &schema.Schema{
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  true,
 		},
 		"tenant_ref": &schema.Schema{
 			Type:     schema.TypeString,
