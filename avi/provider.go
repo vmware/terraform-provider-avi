@@ -7,12 +7,13 @@ package avi
 
 import (
 	"fmt"
+	"log"
+
 	"github.com/avinetworks/sdk/go/clients"
 	"github.com/avinetworks/sdk/go/session"
 	"github.com/hashicorp/go-multierror"
 	"github.com/hashicorp/terraform/helper/schema"
 	"github.com/hashicorp/terraform/terraform"
-	"log"
 )
 
 func Provider() terraform.ResourceProvider {
@@ -47,6 +48,12 @@ func Provider() terraform.ResourceProvider {
 				Optional:    true,
 				DefaultFunc: schema.EnvDefaultFunc("AVI_VERSION", nil),
 				Description: "Avi version for Avi Controller.",
+			},
+			"avi_authtoken": &schema.Schema{
+				Type:        schema.TypeString,
+				Optional:    true,
+				DefaultFunc: schema.EnvDefaultFunc("AVI_AUTHTOKEN", nil),
+				Description: "Avi token for Avi Controller.",
 			},
 		},
 		DataSourcesMap: map[string]*schema.Resource{
@@ -193,6 +200,7 @@ func providerConfigure(d *schema.ResourceData) (interface{}, error) {
 		Controller: d.Get("avi_controller").(string),
 		Tenant:     "admin",
 		Version:    "17.2.8",
+		AuthToken:  d.Get("avi_authtoken").(string),
 	}
 	if username, ok := d.GetOk("avi_username"); ok {
 		config.Username = username.(string)
@@ -214,6 +222,7 @@ func providerConfigure(d *schema.ResourceData) (interface{}, error) {
 		session.SetPassword(config.Password),
 		session.SetTenant(config.Tenant),
 		session.SetVersion(config.Version),
+		session.SetAuthToken(config.AuthToken),
 		session.SetInsecure)
 
 	log.Println("Avi Client created for user %v tenant %v version %v",
@@ -228,6 +237,7 @@ type Credentials struct {
 	Port       string
 	Tenant     string
 	Version    string
+	AuthToken  string
 }
 
 func (c *Credentials) validate() error {
@@ -237,8 +247,8 @@ func (c *Credentials) validate() error {
 		err = multierror.Append(err, fmt.Errorf("Avi Controller must be provided"))
 	}
 
-	if c.Password == "" {
-		err = multierror.Append(err, fmt.Errorf("Avi Controller password must be provided"))
+	if c.Password == "" && c.AuthToken == "" {
+		err = multierror.Append(err, fmt.Errorf("Avi Controller password or authtoken must be provided"))
 	}
 	return err.ErrorOrNil()
 }
