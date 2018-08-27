@@ -84,13 +84,17 @@ func testAccPreCheck(t *testing.T) {
 		Controller: os.Getenv("AVI_CONTROLLER"),
 		Tenant:     os.Getenv("AVI_TENANT"),
 		Version:    os.Getenv("AVI_VERSION"),
+		AuthToken:  os.Getenv("AVI_AUTHTOKEN"),
 	}
-	required := []string{"AVI_PASSWORD", "AVI_CONTROLLER"}
-	for _, property := range required {
-		if os.Getenv(property) == "" {
-			t.Fatalf("%s must be set for acceptance test", property)
-		}
+
+	if config.Controller == "" {
+		t.Fatalf("AVI_CONTROLLER must be set for acceptance test")
 	}
+
+	if config.Password == "" && config.AuthToken == "" {
+		t.Fatalf("AVI_PASSWORD or AVI_AUTHTOKEN must be set for acceptance test")
+	}
+
 	if config.Username == "" {
 		config.Username = "admin"
 	}
@@ -105,6 +109,7 @@ func testAccPreCheck(t *testing.T) {
 		session.SetPassword(config.Password),
 		session.SetTenant(config.Tenant),
 		session.SetVersion(config.Version),
+		session.SetAuthToken(config.AuthToken),
 		session.SetInsecure)
 
 	if err != nil {
