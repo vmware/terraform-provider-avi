@@ -88,7 +88,7 @@ data "avi_tenant" "default_tenant"{
 resource "avi_errorpagebody" "testErrorPageBody" {
 "tenant_ref" = "${data.avi_tenant.default_tenant.id}"
 "name" = "testCustom-Error-Page",
-"error_page_body": "<!DOCTYPE html><html><head></head><body><div><p> Please contact our technical support</p></div></body></html>"
+"error_page_body" = "<!DOCTYPE html><html><head></head><body><div><p> Please contact our technical support</p></div></body></html>"
 }
 `
 
@@ -99,6 +99,6 @@ data "avi_tenant" "default_tenant"{
 resource "avi_errorpagebody" "testErrorPageBody" {
 "tenant_ref" = "${data.avi_tenant.default_tenant.id}"
 "name" = "testCustom-Error-Page-abc",
-"error_page_body": "<!DOCTYPE html><html><head></head><body><div><p> Please contact our technical support</p></div></body></html>"
+"error_page_body" = "<!DOCTYPE html><html><head></head><body><div><p> Please contact our technical support</p></div></body></html>"
 }
 `
