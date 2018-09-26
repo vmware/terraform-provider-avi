@@ -10,6 +10,7 @@ import (
 	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+	"time"
 )
 
 func ResourceClusterSchema() map[string]*schema.Schema {
@@ -78,6 +79,9 @@ func ResourceAviClusterRead(d *schema.ResourceData, meta interface{}) error {
 func resourceAviClusterCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceClusterSchema()
 	err := ApiCreateOrUpdate(d, meta, "cluster", s)
+	// Added wait for cluster initialization process as cluster initialization starts after few seconds.
+	// This is necessary to store correct state of initialized cluster.
+	time.Sleep(90 * time.Second)
 	if err == nil {
 		err = ResourceAviClusterRead(d, meta)
 	}
@@ -88,6 +92,9 @@ func resourceAviClusterUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceClusterSchema()
 	var err error
 	err = ApiCreateOrUpdate(d, meta, "cluster", s)
+	// Added wait for cluster initialization process as cluster initialization starts after few seconds.
+	// This is necessary to store correct state of initialized cluster.
+	time.Sleep(90 * time.Second)
 	if err == nil {
 		err = ResourceAviClusterRead(d, meta)
 	}

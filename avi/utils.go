@@ -81,19 +81,21 @@ func SetDefaultsInAPIRes(api_res interface{}, d_local interface{}, s map[string]
 			switch v.(type) {
 			//Getting key, value for given d_local
 			default:
-				if _, ok := api_res.(map[string]interface{})[k]; !ok {
-					//Cheking if field is present in schema
-					if dval, ok := s[k]; ok {
-						//Getting default values from schema
-						default_val, err := dval.DefaultValue()
-						if err != nil {
-							log.Printf("[ERROR] SetDefaultsInAPIRes %v", err)
-						} else {
-							if default_val != nil {
-								api_res.(map[string]interface{})[k] = default_val
+				if api_res.(map[string]interface{})[k] != nil {
+					if _, ok := api_res.(map[string]interface{})[k]; !ok {
+						//Cheking if field is present in schema
+						if dval, ok := s[k]; ok {
+							//Getting default values from schema
+							default_val, err := dval.DefaultValue()
+							if err != nil {
+								log.Printf("[ERROR] SetDefaultsInAPIRes %v", err)
+							} else {
+								if default_val != nil {
+									api_res.(map[string]interface{})[k] = default_val
+								}
 							}
-						}
 
+						}
 					}
 				}
 			//d_local nested dictionary.
@@ -124,18 +126,18 @@ func SetDefaultsInAPIRes(api_res interface{}, d_local interface{}, s map[string]
 				if err {
 					log.Printf("[ERROR] SetDefaultsInAPIRes %v", err)
 				}
-				for x, y := range v.([]interface{}) {
+				for x, y := range varray2 {
 					switch s2.Elem.(type) {
 					default:
 					case *schema.Resource:
-						obj, err := SetDefaultsInAPIRes(varray2[x], y, s2.Elem.(*schema.Resource).Schema)
+						obj, err := SetDefaultsInAPIRes(y, v.([]interface{})[x], s2.Elem.(*schema.Resource).Schema)
 						if err != nil {
 							log.Printf("[ERROR] SetDefaultsInAPIRes %v", err)
 						} else {
 							objList = append(objList, obj)
 						}
 					case *schema.Schema:
-						objList = append(objList, y)
+						objList = append(objList, v.([]interface{})[x])
 					}
 				}
 				api_res.(map[string]interface{})[k] = objList
@@ -287,6 +289,7 @@ func ApiRead(d *schema.ResourceData, meta interface{}, objType string, s map[str
 	client := meta.(*clients.AviClient)
 	var obj interface{}
 	uuid := ""
+	url := ""
 	log.Printf("[DEBUG] ApiRead reading object with objType %v id %v\n", objType, d.Id())
 	if d.Id() != "" {
 		// extract the uuid from it.
@@ -340,8 +343,12 @@ func ApiRead(d *schema.ResourceData, meta interface{}, objType string, s map[str
 			log.Printf("[ERROR] ApiRead in modifying api response object %v\n", err)
 		}
 		if _, err := ApiDataToSchema(mod_api_res, d, s); err == nil {
-			uuid := mod_api_res.(map[string]interface{})["uuid"].(string)
-			url := mod_api_res.(map[string]interface{})["url"].(string)
+			if mod_api_res.(map[string]interface{})["uuid"] != nil {
+				uuid = mod_api_res.(map[string]interface{})["uuid"].(string)
+			}
+			if mod_api_res.(map[string]interface{})["url"] != nil {
+				url = mod_api_res.(map[string]interface{})["url"].(string)
+			}
 			//url = strings.SplitN(url, "#", 2)[0]
 			if url != "" {
 				d.SetId(url)
