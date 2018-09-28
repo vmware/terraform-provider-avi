@@ -126,18 +126,35 @@ func SetDefaultsInAPIRes(api_res interface{}, d_local interface{}, s map[string]
 				if err {
 					log.Printf("[ERROR] SetDefaultsInAPIRes %v", err)
 				}
-				for x, y := range varray2 {
-					switch s2.Elem.(type) {
-					default:
-					case *schema.Resource:
-						obj, err := SetDefaultsInAPIRes(y, v.([]interface{})[x], s2.Elem.(*schema.Resource).Schema)
-						if err != nil {
-							log.Printf("[ERROR] SetDefaultsInAPIRes %v", err)
-						} else {
-							objList = append(objList, obj)
+				if len(varray2) > len(v.([]interface{})) {
+					for x, y := range v.([]interface{}) {
+						switch s2.Elem.(type) {
+						default:
+						case *schema.Resource:
+							obj, err := SetDefaultsInAPIRes(varray2[x], y, s2.Elem.(*schema.Resource).Schema)
+							if err != nil {
+								log.Printf("[ERROR] SetDefaultsInAPIRes %v", err)
+							} else {
+								objList = append(objList, obj)
+							}
+						case *schema.Schema:
+							objList = append(objList, v.([]interface{})[x])
 						}
-					case *schema.Schema:
-						objList = append(objList, v.([]interface{})[x])
+					}
+				} else {
+					for x, y := range varray2 {
+						switch s2.Elem.(type) {
+						default:
+						case *schema.Resource:
+							obj, err := SetDefaultsInAPIRes(y, v.([]interface{})[x], s2.Elem.(*schema.Resource).Schema)
+							if err != nil {
+								log.Printf("[ERROR] SetDefaultsInAPIRes %v", err)
+							} else {
+								objList = append(objList, obj)
+							}
+						case *schema.Schema:
+							objList = append(objList, v.([]interface{})[x])
+						}
 					}
 				}
 				api_res.(map[string]interface{})[k] = objList
