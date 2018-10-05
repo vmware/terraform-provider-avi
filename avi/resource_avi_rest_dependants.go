@@ -722,6 +722,7 @@ func ResourceVIDCInfoSchema() *schema.Resource {
 			"tenant_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"uuid": &schema.Schema{
 				Type:     schema.TypeString,
@@ -1058,6 +1059,7 @@ func ResourceIpamDnsInternalProfileSchema() *schema.Resource {
 			"dns_virtualservice_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ttl": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -1243,6 +1245,7 @@ func ResourceBgpPeerSchema() *schema.Resource {
 			"network_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"peer_ip": &schema.Schema{
 				Type:     schema.TypeSet,
@@ -2041,6 +2044,7 @@ func ResourceSeUpgradeErrorsSchema() *schema.Resource {
 			"from_se_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"num_se": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -2066,10 +2070,12 @@ func ResourceSeUpgradeErrorsSchema() *schema.Resource {
 			"se_group_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"se_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"task": &schema.Schema{
 				Type:     schema.TypeString,
@@ -2078,6 +2084,7 @@ func ResourceSeUpgradeErrorsSchema() *schema.Resource {
 			"to_se_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"traffic_status": &schema.Schema{
 				Type:     schema.TypeString,
@@ -2086,6 +2093,7 @@ func ResourceSeUpgradeErrorsSchema() *schema.Resource {
 			"vs_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 		},
 	}
@@ -2106,6 +2114,7 @@ func ResourceAutoScaleMgrDebugFilterSchema() *schema.Resource {
 			"pool_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 		},
 	}
@@ -2335,6 +2344,7 @@ func ResourceRancherConfigurationSchema() *schema.Resource {
 			"ssh_user_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"use_container_ip_port": &schema.Schema{
 				Type:     schema.TypeBool,
@@ -2410,6 +2420,7 @@ func ResourceSeVnicTxQueueStallEventDetailsSchema() *schema.Resource {
 			"se_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 		},
 	}
@@ -2485,6 +2496,7 @@ func ResourceVlanInterfaceSchema() *schema.Resource {
 			"vrf_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 		},
 	}
@@ -2518,6 +2530,7 @@ func ResourceSCPoolServerStateInfoSchema() *schema.Resource {
 			"tenant_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"uuid": &schema.Schema{
 				Type:     schema.TypeString,
@@ -2893,6 +2906,7 @@ func ResourceVIMgrClusterRuntimeSchema() *schema.Resource {
 			"cloud_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"datacenter_managed_object_id": &schema.Schema{
 				Type:     schema.TypeString,
@@ -2918,6 +2932,7 @@ func ResourceVIMgrClusterRuntimeSchema() *schema.Resource {
 			"tenant_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"type": &schema.Schema{
 				Type:     schema.TypeString,
@@ -2946,6 +2961,7 @@ func ResourceVIPGNameInfoSchema() *schema.Resource {
 			"tenant_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"uuid": &schema.Schema{
 				Type:     schema.TypeString,
@@ -2976,6 +2992,7 @@ func ResourceNetworkRuntimeSchema() *schema.Resource {
 			"tenant_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"uuid": &schema.Schema{
 				Type:     schema.TypeString,
@@ -2992,6 +3009,7 @@ func ResourceVsMigrateParamsSchema() *schema.Resource {
 			"from_se_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"new_vcpus": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -3000,6 +3018,7 @@ func ResourceVsMigrateParamsSchema() *schema.Resource {
 			"to_host_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"to_new_se": &schema.Schema{
 				Type:     schema.TypeBool,
@@ -3009,6 +3028,7 @@ func ResourceVsMigrateParamsSchema() *schema.Resource {
 			"to_se_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"uuid": &schema.Schema{
 				Type:     schema.TypeString,
@@ -3049,6 +3069,7 @@ func ResourceDebugControllerSchema() *schema.Resource {
 			"tenant_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"trace_level": &schema.Schema{
 				Type:     schema.TypeString,
@@ -3344,6 +3365,7 @@ func ResourceVIMgrControllerRuntimeSchema() *schema.Resource {
 			"tenant_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"type": &schema.Schema{
 				Type:     schema.TypeString,
@@ -3412,6 +3434,7 @@ func ResourceVIMgrDCRuntimeSchema() *schema.Resource {
 			"cloud_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"cluster_refs": &schema.Schema{
 				Type:     schema.TypeList,
@@ -3467,6 +3490,7 @@ func ResourceVIMgrDCRuntimeSchema() *schema.Resource {
 			"tenant_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"type": &schema.Schema{
 				Type:     schema.TypeString,
@@ -3812,6 +3836,7 @@ func ResourceVIMgrVcenterRuntimeSchema() *schema.Resource {
 			"cloud_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"datacenter_refs": &schema.Schema{
 				Type:     schema.TypeList,
@@ -3885,6 +3910,7 @@ func ResourceVIMgrVcenterRuntimeSchema() *schema.Resource {
 			"tenant_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"type": &schema.Schema{
 				Type:     schema.TypeString,
@@ -4309,14 +4335,17 @@ func ResourceHealthMonitorSSLAttributesSchema() *schema.Resource {
 			"pki_profile_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ssl_key_and_certificate_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ssl_profile_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 		},
 	}
@@ -4501,6 +4530,7 @@ func ResourceJobEntrySchema() *schema.Resource {
 			"tenant_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"uuid": &schema.Schema{
 				Type:     schema.TypeString,
@@ -4702,6 +4732,7 @@ func ResourceVIMgrNWRuntimeSchema() *schema.Resource {
 			"cloud_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"datacenter_uuid": &schema.Schema{
 				Type:     schema.TypeString,
@@ -4752,6 +4783,7 @@ func ResourceVIMgrNWRuntimeSchema() *schema.Resource {
 			"tenant_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"type": &schema.Schema{
 				Type:     schema.TypeString,
@@ -4779,6 +4811,7 @@ func ResourceVIMgrNWRuntimeSchema() *schema.Resource {
 			"vrf_context_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 		},
 	}
@@ -4825,6 +4858,7 @@ func ResourceSeLicensedBandwdithExceededEventDetailsSchema() *schema.Resource {
 			"se_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 		},
 	}
@@ -5073,6 +5107,7 @@ func ResourceCompressionFilterSchema() *schema.Resource {
 			"devices_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"index": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -5096,6 +5131,7 @@ func ResourceCompressionFilterSchema() *schema.Resource {
 			"ip_addrs_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"level": &schema.Schema{
 				Type:     schema.TypeString,
@@ -5129,6 +5165,7 @@ func ResourcePoolDeploymentFailureInfoSchema() *schema.Resource {
 			"curr_in_service_pool_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ratio": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -5185,6 +5222,7 @@ func ResourceCloneServerSchema() *schema.Resource {
 			"network_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"subnet": &schema.Schema{
 				Type:     schema.TypeSet,
@@ -5391,6 +5429,7 @@ func ResourceVIMgrSEVMRuntimeSchema() *schema.Resource {
 			"cloud_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"connection_state": &schema.Schema{
 				Type:     schema.TypeString,
@@ -5436,6 +5475,7 @@ func ResourceVIMgrSEVMRuntimeSchema() *schema.Resource {
 			"host_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"hostid": &schema.Schema{
 				Type:     schema.TypeString,
@@ -5472,6 +5512,7 @@ func ResourceVIMgrSEVMRuntimeSchema() *schema.Resource {
 			"segroup_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"server_group_uuid": &schema.Schema{
 				Type:     schema.TypeString,
@@ -5480,6 +5521,7 @@ func ResourceVIMgrSEVMRuntimeSchema() *schema.Resource {
 			"tenant_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"type": &schema.Schema{
 				Type:     schema.TypeString,
@@ -5957,6 +5999,7 @@ func ResourceAzureConfigurationSchema() *schema.Resource {
 			"cloud_credentials_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"location": &schema.Schema{
 				Type:     schema.TypeString,
@@ -6045,6 +6088,7 @@ func ResourceCloudRuntimeSchema() *schema.Resource {
 			"tenant_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"uuid": &schema.Schema{
 				Type:     schema.TypeString,
@@ -6188,10 +6232,12 @@ func ResourceVsErrorSchema() *schema.Resource {
 			"se_group_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"tenant_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"traffic_status": &schema.Schema{
 				Type:     schema.TypeString,
@@ -6204,6 +6250,7 @@ func ResourceVsErrorSchema() *schema.Resource {
 			"vs_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 		},
 	}
@@ -6709,6 +6756,7 @@ func ResourceOpenStackConfigurationSchema() *schema.Resource {
 			"se_group_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"security_groups": &schema.Schema{
 				Type:     schema.TypeBool,
@@ -7139,6 +7187,7 @@ func ResourcevNICSchema() *schema.Resource {
 			"network_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"pci_id": &schema.Schema{
 				Type:     schema.TypeString,
@@ -7171,6 +7220,7 @@ func ResourcevNICSchema() *schema.Resource {
 			"vrf_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 		},
 	}
@@ -7186,6 +7236,7 @@ func ResourceL4PoliciesSchema() *schema.Resource {
 			"l4_policy_set_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 		},
 	}
@@ -7957,6 +8008,7 @@ func ResourceMesosConfigurationSchema() *schema.Resource {
 			"ssh_user_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"use_bridge_ip_as_vip": &schema.Schema{
 				Type:     schema.TypeBool,
@@ -14733,6 +14785,7 @@ func ResourceServerSchema() *schema.Resource {
 			"hostname": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ip": &schema.Schema{
 				Type:     schema.TypeSet,

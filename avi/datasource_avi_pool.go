@@ -18,10 +18,12 @@ func dataSourceAviPool() *schema.Resource {
 			"application_persistence_profile_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"autoscale_launch_config_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"autoscale_networks": &schema.Schema{
 				Type:     schema.TypeList,
@@ -31,6 +33,7 @@ func dataSourceAviPool() *schema.Resource {
 			"autoscale_policy_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"capacity_estimation": &schema.Schema{
 				Type:     schema.TypeBool,
@@ -49,6 +52,7 @@ func dataSourceAviPool() *schema.Resource {
 			"cloud_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"connection_ramp_duration": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -123,6 +127,7 @@ func dataSourceAviPool() *schema.Resource {
 			"ipaddrgroup_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"lb_algorithm": &schema.Schema{
 				Type:     schema.TypeString,
@@ -176,6 +181,7 @@ func dataSourceAviPool() *schema.Resource {
 			"pki_profile_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"placement_networks": &schema.Schema{
 				Type:     schema.TypeList,
@@ -232,14 +238,17 @@ func dataSourceAviPool() *schema.Resource {
 			"ssl_key_and_certificate_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ssl_profile_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"tenant_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"use_service_port": &schema.Schema{
 				Type:     schema.TypeBool,
@@ -253,6 +262,7 @@ func dataSourceAviPool() *schema.Resource {
 			"vrf_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 		},
 	}

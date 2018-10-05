@@ -45,6 +45,7 @@ func ResourceAutoScaleLaunchConfigSchema() map[string]*schema.Schema {
 		"tenant_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"use_external_asg": &schema.Schema{
 			Type:     schema.TypeBool,

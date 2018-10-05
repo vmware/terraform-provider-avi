@@ -71,6 +71,7 @@ func ResourceApplicationPersistenceProfileSchema() map[string]*schema.Schema {
 		"tenant_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"uuid": &schema.Schema{
 			Type:     schema.TypeString,

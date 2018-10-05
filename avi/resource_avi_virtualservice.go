@@ -30,6 +30,7 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 		"analytics_profile_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"apic_contract_graph": &schema.Schema{
 			Type:     schema.TypeString,
@@ -38,6 +39,7 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 		"application_profile_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"bulk_sync_kvcache": &schema.Schema{
 			Type:     schema.TypeBool,
@@ -64,6 +66,7 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 		"cloud_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"cloud_type": &schema.Schema{
 			Type:     schema.TypeString,
@@ -182,6 +185,7 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 		"microservice_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"name": &schema.Schema{
 			Type:     schema.TypeString,
@@ -190,10 +194,12 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 		"network_profile_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"network_security_policy_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"nsx_securitygroup": &schema.Schema{
 			Type:     schema.TypeList,
@@ -211,10 +217,12 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 		"pool_group_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"pool_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"remove_listening_port_on_vs_down": &schema.Schema{
 			Type:     schema.TypeBool,
@@ -237,10 +245,12 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 		"se_group_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"server_network_profile_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"service_metadata": &schema.Schema{
 			Type:     schema.TypeString,
@@ -277,6 +287,7 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 		"ssl_profile_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"ssl_sess_cache_avg_size": &schema.Schema{
 			Type:     schema.TypeInt,
@@ -291,10 +302,12 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 		"tenant_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"traffic_clone_profile_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"traffic_enabled": &schema.Schema{
 			Type:     schema.TypeBool,
@@ -338,6 +351,7 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 		"vrf_context_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"vs_datascripts": &schema.Schema{
 			Type:     schema.TypeList,
@@ -351,10 +365,12 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 		"vsvip_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"waf_policy_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"weight": &schema.Schema{
 			Type:     schema.TypeInt,
@@ -407,7 +423,7 @@ func resourceAviVirtualServiceUpdate(d *schema.ResourceData, meta interface{}) e
 	var apiResponse interface{}
 	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
-	virtualservicepath := "api/virtualservice/" + uuid + "?include_name=true"
+	virtualservicepath := "api/virtualservice/" + uuid
 	err = client.AviSession.Get(virtualservicepath, &existingvirtualservice)
 	if err == nil {
 		//adding default values to api_response before it overwrites the d (local state).

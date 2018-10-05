@@ -81,21 +81,19 @@ func SetDefaultsInAPIRes(api_res interface{}, d_local interface{}, s map[string]
 			switch v.(type) {
 			//Getting key, value for given d_local
 			default:
-				if api_res.(map[string]interface{})[k] != nil {
-					if _, ok := api_res.(map[string]interface{})[k]; !ok {
-						//Cheking if field is present in schema
-						if dval, ok := s[k]; ok {
-							//Getting default values from schema
-							default_val, err := dval.DefaultValue()
-							if err != nil {
-								log.Printf("[ERROR] SetDefaultsInAPIRes %v", err)
-							} else {
-								if default_val != nil {
-									api_res.(map[string]interface{})[k] = default_val
-								}
+				if _, ok := api_res.(map[string]interface{})[k]; !ok {
+					//Cheking if field is present in schema
+					if dval, ok := s[k]; ok {
+						//Getting default values from schema
+						default_val, err := dval.DefaultValue()
+						if err != nil {
+							log.Printf("[ERROR] SetDefaultsInAPIRes %v", err)
+						} else {
+							if default_val != nil {
+								api_res.(map[string]interface{})[k] = default_val
 							}
-
 						}
+
 					}
 				}
 			//d_local nested dictionary.
@@ -123,7 +121,7 @@ func SetDefaultsInAPIRes(api_res interface{}, d_local interface{}, s map[string]
 				//getting schema for nested object.
 				s2, err := s[k]
 				//As err returned is boolean value
-				if err {
+				if !err {
 					log.Printf("[ERROR] SetDefaultsInAPIRes %v", err)
 				}
 				if len(varray2) > len(v.([]interface{})) {
@@ -237,10 +235,10 @@ func ApiCreateOrUpdate(d *schema.ResourceData, meta interface{}, objType string,
 	if data, err := SchemaToAviData(obj, s); err == nil {
 		path := "api/" + objType
 		if objType == "cluster" {
-			path = path + "?include_name=true&skip_default=true"
+			path = path + "?skip_default=true"
 			err = client.AviSession.Put(path, data, &robj)
 		} else if uuid, ok := d.GetOk("uuid"); ok {
-			path = path + "/" + uuid.(string) + "?include_name=true&skip_default=true"
+			path = path + "/" + uuid.(string) + "?skip_default=true"
 			err = client.AviSession.Put(path, data, &robj)
 		} else {
 			if name, ok := d.GetOk("name"); ok {
@@ -252,13 +250,12 @@ func ApiCreateOrUpdate(d *schema.ResourceData, meta interface{}, objType string,
 					log.Printf("[INFO] ApiCreateOrUpdate: using cloud %v for obj %v name %s \n",
 						cloudUUID, objType, name)
 					err = client.AviSession.GetObject(objType, session.SetName(name.(string)),
-						session.SetResult(&existing_obj), session.SetCloudUUID(cloudUUID),
-						session.SetIncludeName(true))
+						session.SetResult(&existing_obj), session.SetCloudUUID(cloudUUID), session.SetSkipDefault(true))
 				} else {
 					log.Printf("[INFO] ApiCreateOrUpdate: reading obj %v name %s \n",
 						objType, name)
 					err = client.AviSession.GetObject(objType, session.SetName(name.(string)),
-						session.SetResult(&existing_obj), session.SetIncludeName(true))
+						session.SetResult(&existing_obj), session.SetSkipDefault(true))
 				}
 				if err != nil {
 					// object not found
@@ -272,7 +269,7 @@ func ApiCreateOrUpdate(d *schema.ResourceData, meta interface{}, objType string,
 					uuid = existing_obj.(map[string]interface{})["uuid"].(string)
 					d.Set("uuid", uuid)
 					d.SetId(uuid.(string))
-					path = path + "/" + uuid.(string) + "?include_name=true&skip_default=true"
+					path = path + "/" + uuid.(string) + "?skip_default=true"
 					err = client.AviSession.Put(path, data, &robj)
 				}
 			} else {
@@ -320,7 +317,7 @@ func ApiRead(d *schema.ResourceData, meta interface{}, objType string, s map[str
 		log.Printf("[DEBUG] ApiRead reading object with uuid %v \n", uuid)
 	}
 	if uuid != "" {
-		path := "api/" + objType + "/" + uuid + "?include_name=true&skip_default=true"
+		path := "api/" + objType + "/" + uuid + "?skip_default=true"
 		log.Printf("[DEBUG] ApiRead reading object with id %v path %v\n", uuid, path)
 		err := client.AviSession.Get(path, &obj)
 		if err != nil {
@@ -336,13 +333,11 @@ func ApiRead(d *schema.ResourceData, meta interface{}, objType string, s map[str
 			log.Printf("[DEBUG] ApiRead using cloud %v obj %v name %v\n", cloudUUID,
 				objType, name)
 			err = client.AviSession.GetObject(objType, session.SetName(name.(string)),
-				session.SetResult(&obj), session.SetCloudUUID(cloudUUID),
-				session.SetIncludeName(true), session.SetSkipDefault(true))
+				session.SetResult(&obj), session.SetCloudUUID(cloudUUID), session.SetSkipDefault(true))
 		} else {
 			log.Printf("[DEBUG] ApiRead using name %v \n", name)
 			err = client.AviSession.GetObject(objType, session.SetName(name.(string)),
-				session.SetResult(&obj), session.SetIncludeName(true),
-				session.SetSkipDefault(true))
+				session.SetResult(&obj), session.SetSkipDefault(true))
 		}
 		if err != nil {
 			d.SetId("")
@@ -377,6 +372,8 @@ func ApiRead(d *schema.ResourceData, meta interface{}, objType string, s map[str
 		} else {
 			log.Printf("[ERROR] ApiRead in setting read object %v\n", err)
 		}
+		log.Printf("[DEBUG] type: %v local_data : %v", objType, local_data)
+		log.Printf("[DEBUG] type: %v mod_api_res: %v", objType, mod_api_res)
 	}
 
 	return nil
@@ -389,7 +386,7 @@ func ResourceImporter(d *schema.ResourceData, meta interface{}, objType string, 
 	}
 	var data interface{}
 	client := meta.(*clients.AviClient)
-	path := "api/" + objType + "/?skip_default=true&include_name=true"
+	path := "api/" + objType + "?skip_default=true"
 	err := client.AviSession.Get(path, &data)
 	if err != nil {
 		log.Printf("[ERROR] ResourceImporter %v in GET of path %v\n", err, path)
@@ -551,10 +548,10 @@ func MultipartUploadOrDownload(d *schema.ResourceData, meta interface{}, s map[s
 	return err
 }
 
-func UUIDFromID(Id string) (string, string) {
+func UUIDFromID(Id string) string {
 	urlParts := strings.Split(Id, "/")
 	idParts := urlParts[len(urlParts)-1]
 	// need to strip #xxx if present
 	nu := strings.Split(idParts, "#")
-	return nu[0], nu[1]
+	return nu[0]
 }

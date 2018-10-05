@@ -21,6 +21,7 @@ func ResourceServiceEngineSchema() map[string]*schema.Schema {
 		"cloud_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"container_mode": &schema.Schema{
 			Type:     schema.TypeBool,
@@ -58,6 +59,7 @@ func ResourceServiceEngineSchema() map[string]*schema.Schema {
 		"host_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"hypervisor": &schema.Schema{
 			Type:     schema.TypeString,
@@ -87,10 +89,12 @@ func ResourceServiceEngineSchema() map[string]*schema.Schema {
 		"se_group_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"tenant_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"uuid": &schema.Schema{
 			Type:     schema.TypeString,

@@ -46,10 +46,12 @@ func ResourceBackupConfigurationSchema() map[string]*schema.Schema {
 		"ssh_user_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"tenant_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"upload_to_remote_host": &schema.Schema{
 			Type:     schema.TypeBool,
