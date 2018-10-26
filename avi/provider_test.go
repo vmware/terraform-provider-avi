@@ -102,7 +102,7 @@ func testAccPreCheck(t *testing.T) {
 		config.Tenant = "admin"
 	}
 	if config.Version == "" {
-		config.Version = "18.1.3"
+		config.Version = "18.1.5"
 	}
 	_, err := clients.NewAviClient(
 		config.Controller, config.Username,
