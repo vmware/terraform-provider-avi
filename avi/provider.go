@@ -224,7 +224,7 @@ func providerConfigure(d *schema.ResourceData) (interface{}, error) {
 		session.SetAuthToken(config.AuthToken),
 		session.SetInsecure)
 
-	log.Println("Avi Client created for user %v tenant %v version %v",
+	log.Printf("Avi Client created for user %s tenant %s version %s\n",
 		config.Username, config.Tenant, config.Version)
 	return aviClient, err
 }

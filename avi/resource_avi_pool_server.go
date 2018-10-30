@@ -109,71 +109,91 @@ func resourceAviServerCreateOrUpdate(d *schema.ResourceData, meta interface{}) e
 		// not found
 		newServer := models.Server{}
 		if port, ok := d.GetOk("port"); ok {
-			newServer.Port = int32(port.(int))
+			portV := int32(port.(int))
+			newServer.Port = &portV
 		}
 		pserver = &newServer
 	}
 	log.Printf("[INFO] resourceAviServerCreateOrUpdate pool %v server %v", pUUID, pserver)
 	//set other attributes from server.
 	if hostname, ok := d.GetOk("hostname"); ok {
-		pserver.Hostname = hostname.(string)
+		hostnameStr := hostname.(string)
+		pserver.Hostname = &hostnameStr
 	}
 	if AutoscalingGroupName, ok := d.GetOk("autoscaling_group_name"); ok {
-		pserver.AutoscalingGroupName = AutoscalingGroupName.(string)
+		agV := AutoscalingGroupName.(string)
+		pserver.AutoscalingGroupName = &agV
 	}
 	if AvailabilityZone, ok := d.GetOk("availability_zone"); ok {
-		pserver.AvailabilityZone = AvailabilityZone.(string)
+		az := AvailabilityZone.(string)
+		pserver.AvailabilityZone = &az
 	}
 	if Description, ok := d.GetOk("description"); ok {
-		pserver.Description = Description.(string)
+		desc := Description.(string)
+		pserver.Description = &desc
 	}
 	if DiscoveredNetworks, ok := d.GetOk("discovered_networks"); ok {
 		pserver.DiscoveredNetworks = DiscoveredNetworks.([]*models.DiscoveredNetwork)
 	}
 	if Enabled, ok := d.GetOk("enabled"); ok {
-		pserver.Enabled = Enabled.(bool)
+		en := Enabled.(bool)
+		pserver.Enabled = &en
 	}
 	if ExternalOrchestrationID, ok := d.GetOk("external_orchestration_id"); ok {
-		pserver.ExternalOrchestrationID = ExternalOrchestrationID.(string)
+		extOrc := ExternalOrchestrationID.(string)
+		pserver.ExternalOrchestrationID = &extOrc
 	}
 	if ExternalUUID, ok := d.GetOk("external_uuid"); ok {
-		pserver.ExternalUUID = ExternalUUID.(string)
+		extUUID := ExternalUUID.(string)
+		pserver.ExternalUUID = &extUUID
 	}
 	if Location, ok := d.GetOk("location"); ok {
 		pserver.Location = Location.(*models.GeoLocation)
 	}
 	if MacAddress, ok := d.GetOk("mac_address"); ok {
-		pserver.MacAddress = MacAddress.(string)
+		mac := MacAddress.(string)
+		pserver.MacAddress = &mac
 	}
 	if NwRef, ok := d.GetOk("nw_ref"); ok {
-		pserver.NwRef = NwRef.(string)
+		nRef := NwRef.(string)
+		pserver.NwRef = &nRef
 	}
 	if PrstHdrVal, ok := d.GetOk("prst_hdr_val"); ok {
-		pserver.PrstHdrVal = PrstHdrVal.(string)
+		pHdrVal := PrstHdrVal.(string)
+		pserver.PrstHdrVal = &pHdrVal
 	}
 	if Ratio, ok := d.GetOk("ratio"); ok {
-		pserver.Ratio = Ratio.(int32)
+		r := Ratio.(int32)
+		pserver.Ratio = &r
 	}
 	if ResolveServerByDNS, ok := d.GetOk("resolve_server_by_dns"); ok {
-		pserver.ResolveServerByDNS = ResolveServerByDNS.(bool)
+		resolveSvrByDns := ResolveServerByDNS.(bool)
+		pserver.ResolveServerByDNS = &resolveSvrByDns
 	}
 	if RewriteHostHeader, ok := d.GetOk("rewrite_host_header"); ok {
-		pserver.RewriteHostHeader = RewriteHostHeader.(bool)
+		rewriteHostHdr := RewriteHostHeader.(bool)
+		pserver.RewriteHostHeader = &rewriteHostHdr
 	}
 	if ServerNode, ok := d.GetOk("server_node"); ok {
-		pserver.ServerNode = ServerNode.(string)
+		sn := ServerNode.(string)
+		pserver.ServerNode = &sn
 	}
 	if Static, ok := d.GetOk("static"); ok {
-		pserver.Static = Static.(bool)
+		s := Static.(bool)
+		pserver.Static = &s
 	}
 	if VerifyNetwork, ok := d.GetOk("verify_network"); ok {
-		pserver.VerifyNetwork = VerifyNetwork.(bool)
+		verifyNet := VerifyNetwork.(bool)
+		pserver.VerifyNetwork = &verifyNet
 	}
 	if VMRef, ok := d.GetOk("vm_ref"); ok {
-		pserver.VMRef = VMRef.(string)
+		vmRefStr := VMRef.(string)
+		pserver.VMRef = &vmRefStr
 	}
 	if t, ok := d.GetOk("type"); ok {
-		pserver.IP = &models.IPAddr{Type: t.(string), Addr: d.Get("ip").(string)}
+		tStr := t.(string)
+		ip := d.Get("ip").(string)
+		pserver.IP = &models.IPAddr{Type: &tStr, Addr: &ip}
 	}
 
 	uri := "api/pool/" + pUUID
@@ -206,50 +226,50 @@ func ResourceAviServerRead(d *schema.ResourceData, meta interface{}) error {
 		log.Printf("[INFO] pool %v ip %v port %v", pUUID, ip, portStr)
 		d.SetId(sUUID)
 		// Fill in the server information
-		if pserver.Hostname != "" {
+		if pserver.Hostname != nil {
 			d.Set("hostname", pserver.Hostname)
 		}
 
 		d.Set("enabled", pserver.Enabled)
 
-		if pserver.AutoscalingGroupName != "" {
+		if pserver.AutoscalingGroupName != nil {
 			d.Set("autoscaling_group_name", pserver.AutoscalingGroupName)
 		}
-		if pserver.AvailabilityZone != "" {
+		if pserver.AvailabilityZone != nil {
 			d.Set("availability_zone", pserver.AvailabilityZone)
 		}
-		if pserver.Description != "" {
+		if pserver.Description != nil {
 			d.Set("description", pserver.Description)
 		}
 		if pserver.DiscoveredNetworks != nil {
 			d.Set("discovered_networks", pserver.DiscoveredNetworks)
 		}
 
-		if pserver.ExternalUUID != "" {
+		if pserver.ExternalUUID != nil {
 			d.Set("external_uuid", pserver.ExternalUUID)
 		}
-		if pserver.ExternalOrchestrationID != "" {
+		if pserver.ExternalOrchestrationID != nil {
 			d.Set("external_orchestration_id", pserver.ExternalOrchestrationID)
 		}
 
 		if pserver.Location != nil {
 			d.Set("mac_address", pserver.Location)
 		}
-		if pserver.NwRef != "" {
+		if pserver.NwRef != nil {
 			d.Set("nw_ref", pserver.NwRef)
 		}
-		if pserver.PrstHdrVal != "" {
+		if pserver.PrstHdrVal != nil {
 			d.Set("prst_hdr_val", pserver.PrstHdrVal)
 		}
 		d.Set("ratio", pserver.Ratio)
 		d.Set("resolve_server_by_dns", pserver.ResolveServerByDNS)
 		d.Set("rewrite_host_header", pserver.RewriteHostHeader)
-		if pserver.ServerNode != "" {
+		if pserver.ServerNode != nil {
 			d.Set("server_node", pserver.ServerNode)
 		}
 		d.Set("static", pserver.Static)
 		d.Set("verify_network", pserver.VerifyNetwork)
-		if pserver.VMRef != "" {
+		if pserver.VMRef != nil {
 			d.Set("vm_ref", pserver.VMRef)
 		}
 		// Add more fields to read.
@@ -275,8 +295,8 @@ func resourceAviServerReadApi(d *schema.ResourceData, meta interface{}) (error, 
 	var matchedServer *models.Server = nil
 	for i := 0; i < len(poolObj.Servers); i++ {
 		sObj := poolObj.Servers[i]
-		if sObj.IP.Addr == ip {
-			if (port == nil && sObj.Port == 0) || (port != nil && int32(port.(int)) == sObj.Port) {
+		if *sObj.IP.Addr == ip {
+			if (port == nil && *sObj.Port == 0) || (port != nil && int32(port.(int)) == *sObj.Port) {
 				matchedServer = sObj
 				break
 			}
