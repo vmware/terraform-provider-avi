@@ -26,30 +26,29 @@ data "aws_instance" "avi_controller" {
 }
 
 resource "aws_instance" "terraform-webserver" {
-count         = "${var.webserver_count}"
-ami           = "${var.webserver_ami}"
-instance_type = "${var.webserver_instance_type}"
-subnet_id     = "${data.aws_subnet.terraform-subnets-0.id}"
-
-tags {
-Name    = "${var.project_name}-terraform-webserver-${count.index}"
-Project = "${var.project_name}-terraform-webservers"
-}
+  count         = "${var.webserver_count}"
+  ami           = "${var.webserver_ami}"
+  instance_type = "${var.webserver_instance_type}"
+  subnet_id     = "${data.aws_subnet.terraform-subnets-0.id}"
+  tags {
+    Name    = "${var.project_name}-terraform-webserver-${count.index}"
+    Project = "${var.project_name}-terraform-webservers"
+  }
 }
 
 output "aws_webserver_ips" {
-value = "${aws_instance.terraform-webserver.*.private_ip}"
+  value = "${aws_instance.terraform-webserver.*.private_ip}"
 }
 
 output "aws_webserver_tags" {
-value = "${aws_instance.terraform-webserver.*.tags}"
+  value = "${aws_instance.terraform-webserver.*.tags}"
 }
 
 data "aws_subnet" "terraform-subnets-0" {
-filter {
-name   = "tag:Name"
-values = ["${var.project_name}-terraform-subnet-0"]
-}
+  filter {
+    name   = "tag:Name"
+    values = ["${var.project_name}-terraform-subnet-0"]
+  }
 }
 
 data "aws_subnet" "terraform-subnets-1" {
@@ -243,7 +242,6 @@ resource "avi_pool" "terraform-pool-version2" {
   }
 }
 
-
 resource "avi_pool" "terraform-pool-version3" {
   name                = "poolv3"
   health_monitor_refs = ["${data.avi_healthmonitor.system_http_healthmonitor.id}"]
@@ -257,7 +255,6 @@ resource "avi_pool" "terraform-pool-version3" {
     type = "FAIL_ACTION_CLOSE_CONN"
   }
 }
-
 
 resource "avi_poolgroup" "terraform-poolgroup" {
   name       = "terraform_poolgroup"
@@ -279,7 +276,6 @@ resource "avi_poolgroup" "terraform-poolgroup" {
     ratio    = 10
   }
 }
-
 
 resource "avi_vsvip" "terraform-vip" {
   name            = "aws_vip"
@@ -325,12 +321,9 @@ resource "avi_vsvip" "terraform-vip" {
   }
 }
 
-
 output "aws_vs_vip_0" {
   value = "${avi_vsvip.terraform-vip.vip[0]}"
 }
-
-
 
 resource "avi_virtualservice" "terraform-virtualservice" {
   name                         = "aws_vs"
@@ -400,18 +393,15 @@ resource "avi_virtualservice" "terraform-virtualservice" {
   }
 }
 
-
 output "aws_vs_vip" {
 value = "${avi_virtualservice.terraform-virtualservice.vip}"
 }
-
 
 resource "aws_launch_configuration" "web_app_launch_conf" {
   name          = "${var.project_name}-app-launch-config"
   image_id      = "${var.webserver_ami}"
   instance_type = "${var.webserver_instance_type}"
 }
-
 
 resource "aws_autoscaling_group" "asg_based_pool" {
   name                      = "${var.project_name}-aws-vs-pool3-asg"
