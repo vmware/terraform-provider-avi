@@ -4141,16 +4141,6 @@ func ResourceWafConfigSchema() *schema.Resource {
 				Optional: true,
 				Default:  false,
 			},
-			"client_file_upload_max_body_size": &schema.Schema{
-				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  32,
-			},
-			"client_nonfile_upload_max_body_size": &schema.Schema{
-				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  32,
-			},
 			"cookie_format_version": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
