@@ -26,13 +26,12 @@ func TestAVITenantBasic(t *testing.T) {
 			{
 				Config: testAccUpdatedAVITenantConfig,
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckAVIVSVipExists("avi_tenant.test_tenant"),
+					testAccCheckAVITenantExists("avi_tenant.test_tenant"),
 					resource.TestCheckResourceAttr(
 						"avi_tenant.test_tenant", "name", "tenant-abc")),
 			},
 		},
 	})
-
 }
 
 func testAccCheckAVITenantExists(resourcename string) resource.TestCheckFunc {
