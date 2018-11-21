@@ -22,12 +22,6 @@ type WafConfig struct {
 	// Enable to buffer response body for inspection. Field introduced in 17.2.3.
 	BufferResponseBodyForInspection *bool `json:"buffer_response_body_for_inspection,omitempty"`
 
-	// Maximum size for the client request body for file uploads. Allowed values are 1-32768. Field introduced in 17.2.1.
-	ClientFileUploadMaxBodySize *int32 `json:"client_file_upload_max_body_size,omitempty"`
-
-	// Maximum size for the client request body for non-file uploads. Allowed values are 1-32768. Field introduced in 17.2.1.
-	ClientNonfileUploadMaxBodySize *int32 `json:"client_nonfile_upload_max_body_size,omitempty"`
-
 	// 0  For Netscape Cookies. 1  For version 1 cookies. Allowed values are 0-1. Field introduced in 17.2.1.
 	CookieFormatVersion *int32 `json:"cookie_format_version,omitempty"`
 
