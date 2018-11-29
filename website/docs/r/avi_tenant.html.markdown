@@ -3,7 +3,7 @@ layout: "avi"
 page_title: "Avi: avi_tenant"
 sidebar_current: "docs-avi-resource-tenant"
 description: |-
-Creates and manages Avi Tenant.
+  Creates and manages Avi Tenant.
 ---
 
 # avi_tenant
@@ -28,7 +28,7 @@ The following arguments are supported:
         * `description` - (Optional ) argument_description.
         * `local` - (Optional ) argument_description.
         * `name` - (Required) argument_description.
-        
+
 ### Timeouts
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
@@ -42,4 +42,3 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 In addition to all arguments above, the following attributes are exported:
 
                         * `uuid` - argument_description.
-    

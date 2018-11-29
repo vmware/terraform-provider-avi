@@ -3,7 +3,7 @@ layout: "avi"
 page_title: "Avi: avi_systemconfiguration"
 sidebar_current: "docs-avi-resource-systemconfiguration"
 description: |-
-Creates and manages Avi SystemConfiguration.
+  Creates and manages Avi SystemConfiguration.
 ---
 
 # avi_systemconfiguration
@@ -38,7 +38,7 @@ The following arguments are supported:
         * `snmp_configuration` - (Optional ) argument_description.
         * `ssh_ciphers` - (Optional ) argument_description.
         * `ssh_hmacs` - (Optional ) argument_description.
-        
+
 ### Timeouts
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
@@ -52,4 +52,3 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 In addition to all arguments above, the following attributes are exported:
 
                                                                 * `uuid` - argument_description.
-    

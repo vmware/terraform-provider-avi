@@ -3,7 +3,7 @@ layout: "avi"
 page_title: "AVI: avi_authprofile"
 sidebar_current: "docs-avi-datasource-authprofile"
 description: |-
-Get information of Avi AuthProfile.
+  Get information of Avi AuthProfile.
 ---
 
 # avi_authprofile
@@ -37,4 +37,3 @@ In addition to all arguments above, the following attributes are exported:
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `type` - Type of the auth profile.
 * `uuid` - Uuid of the auth profile.
-

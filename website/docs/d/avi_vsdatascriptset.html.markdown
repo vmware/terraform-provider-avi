@@ -3,7 +3,7 @@ layout: "avi"
 page_title: "AVI: avi_vsdatascriptset"
 sidebar_current: "docs-avi-datasource-vsdatascriptset"
 description: |-
-Get information of Avi VSDataScriptSet.
+  Get information of Avi VSDataScriptSet.
 ---
 
 # avi_vsdatascriptset
@@ -38,4 +38,3 @@ In addition to all arguments above, the following attributes are exported:
 * `string_group_refs` - Uuid of string groups that could be referred by vsdatascriptset objects.
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `uuid` - Uuid of the virtual service datascript collection.
-

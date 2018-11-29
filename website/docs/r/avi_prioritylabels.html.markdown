@@ -3,7 +3,7 @@ layout: "avi"
 page_title: "Avi: avi_prioritylabels"
 sidebar_current: "docs-avi-resource-prioritylabels"
 description: |-
-Creates and manages Avi PriorityLabels.
+  Creates and manages Avi PriorityLabels.
 ---
 
 # avi_prioritylabels
@@ -28,7 +28,7 @@ The following arguments are supported:
         * `equivalent_labels` - (Optional ) argument_description.
         * `name` - (Required) argument_description.
         * `tenant_ref` - (Optional ) argument_description.
-        
+
 ### Timeouts
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
@@ -42,4 +42,3 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 In addition to all arguments above, the following attributes are exported:
 
                         * `uuid` - argument_description.
-    

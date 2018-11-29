@@ -3,7 +3,7 @@ layout: "avi"
 page_title: "AVI: avi_autoscalelaunchconfig"
 sidebar_current: "docs-avi-datasource-autoscalelaunchconfig"
 description: |-
-Get information of Avi AutoScaleLaunchConfig.
+  Get information of Avi AutoScaleLaunchConfig.
 ---
 
 # avi_autoscalelaunchconfig
@@ -36,4 +36,3 @@ In addition to all arguments above, the following attributes are exported:
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `use_external_asg` - If set to true, serverautoscalepolicy will use the autoscaling group (external_autoscaling_groups) from pool to perform scale up and scale down.
 * `uuid` - General description.
-

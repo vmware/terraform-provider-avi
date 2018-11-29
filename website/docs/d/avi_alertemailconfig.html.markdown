@@ -3,7 +3,7 @@ layout: "avi"
 page_title: "AVI: avi_alertemailconfig"
 sidebar_current: "docs-avi-datasource-alertemailconfig"
 description: |-
-Get information of Avi AlertEmailConfig.
+  Get information of Avi AlertEmailConfig.
 ---
 
 # avi_alertemailconfig
@@ -34,4 +34,3 @@ In addition to all arguments above, the following attributes are exported:
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `to_emails` - Alerts are sent to the comma separated list of  email recipients.
 * `uuid` - General description.
-

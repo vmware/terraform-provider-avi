@@ -3,7 +3,7 @@ layout: "avi"
 page_title: "AVI: avi_customipamdnsprofile"
 sidebar_current: "docs-avi-datasource-customipamdnsprofile"
 description: |-
-Get information of Avi CustomIpamDnsProfile.
+  Get information of Avi CustomIpamDnsProfile.
 ---
 
 # avi_customipamdnsprofile
@@ -33,4 +33,3 @@ In addition to all arguments above, the following attributes are exported:
 * `script_uri` - Script uri of form controller //ipamdnsscripts/<file-name>.
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `uuid` - Field introduced in 17.1.1.
-

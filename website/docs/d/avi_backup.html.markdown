@@ -3,7 +3,7 @@ layout: "avi"
 page_title: "AVI: avi_backup"
 sidebar_current: "docs-avi-datasource-backup"
 description: |-
-Get information of Avi Backup.
+  Get information of Avi Backup.
 ---
 
 # avi_backup
@@ -36,4 +36,3 @@ In addition to all arguments above, the following attributes are exported:
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `timestamp` - Unix timestamp of when the backup file is created.
 * `uuid` - General description.
-

@@ -3,7 +3,7 @@ layout: "avi"
 page_title: "Avi: avi_controllerproperties"
 sidebar_current: "docs-avi-resource-controllerproperties"
 description: |-
-Creates and manages Avi ControllerProperties.
+  Creates and manages Avi ControllerProperties.
 ---
 
 # avi_controllerproperties
@@ -78,7 +78,7 @@ The following arguments are supported:
         * `vs_se_vnic_ip_fail` - (Optional ) argument_description.
         * `warmstart_se_reconnect_wait_time` - (Optional ) argument_description.
         * `warmstart_vs_resync_wait_time` - (Optional ) argument_description.
-    
+
 ### Timeouts
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
@@ -92,4 +92,3 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 In addition to all arguments above, the following attributes are exported:
 
                                                                                                                                                                                 * `uuid` - argument_description.
-                                                    

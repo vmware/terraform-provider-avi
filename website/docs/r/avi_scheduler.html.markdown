@@ -3,7 +3,7 @@ layout: "avi"
 page_title: "Avi: avi_scheduler"
 sidebar_current: "docs-avi-resource-scheduler"
 description: |-
-Creates and manages Avi Scheduler.
+  Creates and manages Avi Scheduler.
 ---
 
 # avi_scheduler
@@ -34,7 +34,7 @@ The following arguments are supported:
         * `scheduler_action` - (Optional ) argument_description.
         * `start_date_time` - (Optional ) argument_description.
         * `tenant_ref` - (Optional ) argument_description.
-        
+
 ### Timeouts
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
@@ -48,4 +48,3 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 In addition to all arguments above, the following attributes are exported:
 
                                                 * `uuid` - argument_description.
-    

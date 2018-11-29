@@ -3,7 +3,7 @@ layout: "avi"
 page_title: "AVI: avi_tenant"
 sidebar_current: "docs-avi-datasource-tenant"
 description: |-
-Get information of Avi Tenant.
+  Get information of Avi Tenant.
 ---
 
 # avi_tenant
@@ -34,4 +34,3 @@ In addition to all arguments above, the following attributes are exported:
 * `local` - General description.
 * `name` - General description.
 * `uuid` - General description.
-

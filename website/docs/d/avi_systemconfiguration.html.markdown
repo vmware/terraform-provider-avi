@@ -3,7 +3,7 @@ layout: "avi"
 page_title: "AVI: avi_systemconfiguration"
 sidebar_current: "docs-avi-datasource-systemconfiguration"
 description: |-
-Get information of Avi SystemConfiguration.
+  Get information of Avi SystemConfiguration.
 ---
 
 # avi_systemconfiguration
@@ -44,4 +44,3 @@ In addition to all arguments above, the following attributes are exported:
 * `ssh_ciphers` - Allowed ciphers list for ssh to the management interface on the controller and service engines.
 * `ssh_hmacs` - Allowed hmac list for ssh to the management interface on the controller and service engines.
 * `uuid` - General description.
-

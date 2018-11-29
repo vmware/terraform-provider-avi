@@ -3,7 +3,7 @@ layout: "avi"
 page_title: "AVI: avi_ipamdnsproviderprofile"
 sidebar_current: "docs-avi-datasource-ipamdnsproviderprofile"
 description: |-
-Get information of Avi IpamDnsProviderProfile.
+  Get information of Avi IpamDnsProviderProfile.
 ---
 
 # avi_ipamdnsproviderprofile
@@ -42,4 +42,3 @@ In addition to all arguments above, the following attributes are exported:
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `type` - Provider type for the ipam/dns provider profile.
 * `uuid` - Uuid of the ipam/dns provider profile.
-

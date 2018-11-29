@@ -3,7 +3,7 @@ layout: "avi"
 page_title: "AVI: avi_l4policyset"
 sidebar_current: "docs-avi-datasource-l4policyset"
 description: |-
-Get information of Avi L4PolicySet.
+  Get information of Avi L4PolicySet.
 ---
 
 # avi_l4policyset
@@ -35,4 +35,3 @@ In addition to all arguments above, the following attributes are exported:
 * `name` - Name of the l4 policy set.
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `uuid` - Id of the l4 policy set.
-

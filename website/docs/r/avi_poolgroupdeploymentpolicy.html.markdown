@@ -3,7 +3,7 @@ layout: "avi"
 page_title: "Avi: avi_poolgroupdeploymentpolicy"
 sidebar_current: "docs-avi-resource-poolgroupdeploymentpolicy"
 description: |-
-Creates and manages Avi PoolGroupDeploymentPolicy.
+  Creates and manages Avi PoolGroupDeploymentPolicy.
 ---
 
 # avi_poolgroupdeploymentpolicy
@@ -33,7 +33,7 @@ The following arguments are supported:
         * `tenant_ref` - (Optional ) argument_description.
         * `test_traffic_ratio_rampup` - (Optional ) argument_description.
             * `webhook_ref` - (Optional ) argument_description.
-    
+
 ### Timeouts
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
@@ -47,4 +47,3 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 In addition to all arguments above, the following attributes are exported:
 
                                         * `uuid` - argument_description.
-        

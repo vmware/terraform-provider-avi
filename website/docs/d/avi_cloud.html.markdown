@@ -3,7 +3,7 @@ layout: "avi"
 page_title: "AVI: avi_cloud"
 sidebar_current: "docs-avi-datasource-cloud"
 description: |-
-Get information of Avi Cloud.
+  Get information of Avi Cloud.
 ---
 
 # avi_cloud
@@ -61,4 +61,3 @@ In addition to all arguments above, the following attributes are exported:
 * `vca_configuration` - General description.
 * `vcenter_configuration` - General description.
 * `vtype` - Cloud type.
-

@@ -3,7 +3,7 @@ layout: "avi"
 page_title: "Avi: avi_networksecuritypolicy"
 sidebar_current: "docs-avi-resource-networksecuritypolicy"
 description: |-
-Creates and manages Avi NetworkSecurityPolicy.
+  Creates and manages Avi NetworkSecurityPolicy.
 ---
 
 # avi_networksecuritypolicy
@@ -29,7 +29,7 @@ The following arguments are supported:
         * `name` - (Optional ) argument_description.
         * `rules` - (Optional ) argument_description.
         * `tenant_ref` - (Optional ) argument_description.
-        
+
 ### Timeouts
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
@@ -43,4 +43,3 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 In addition to all arguments above, the following attributes are exported:
 
                             * `uuid` - argument_description.
-    

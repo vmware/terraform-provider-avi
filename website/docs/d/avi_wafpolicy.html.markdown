@@ -3,7 +3,7 @@ layout: "avi"
 page_title: "AVI: avi_wafpolicy"
 sidebar_current: "docs-avi-datasource-wafpolicy"
 description: |-
-Get information of Avi WafPolicy.
+  Get information of Avi WafPolicy.
 ---
 
 # avi_wafpolicy
@@ -42,4 +42,3 @@ In addition to all arguments above, the following attributes are exported:
 * `uuid` - Field introduced in 17.2.1.
 * `waf_crs_ref` - Waf core ruleset used for the crs part of this policy.
 * `waf_profile_ref` - Waf profile for waf policy.
-

@@ -3,7 +3,7 @@ layout: "avi"
 page_title: "AVI: avi_cloudconnectoruser"
 sidebar_current: "docs-avi-datasource-cloudconnectoruser"
 description: |-
-Get information of Avi CloudConnectorUser.
+  Get information of Avi CloudConnectorUser.
 ---
 
 # avi_cloudconnectoruser
@@ -37,4 +37,3 @@ In addition to all arguments above, the following attributes are exported:
 * `public_key` - General description.
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `uuid` - General description.
-

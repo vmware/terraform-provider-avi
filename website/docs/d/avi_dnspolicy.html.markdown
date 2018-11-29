@@ -3,7 +3,7 @@ layout: "avi"
 page_title: "AVI: avi_dnspolicy"
 sidebar_current: "docs-avi-datasource-dnspolicy"
 description: |-
-Get information of Avi DnsPolicy.
+  Get information of Avi DnsPolicy.
 ---
 
 # avi_dnspolicy
@@ -34,4 +34,3 @@ In addition to all arguments above, the following attributes are exported:
 * `rule` - Dns rules.
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `uuid` - Uuid of the dns policy.
-

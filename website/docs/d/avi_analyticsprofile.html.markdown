@@ -3,7 +3,7 @@ layout: "avi"
 page_title: "AVI: avi_analyticsprofile"
 sidebar_current: "docs-avi-datasource-analyticsprofile"
 description: |-
-Get information of Avi AnalyticsProfile.
+  Get information of Avi AnalyticsProfile.
 ---
 
 # avi_analyticsprofile
@@ -99,4 +99,3 @@ In addition to all arguments above, the following attributes are exported:
 * `sensitive_log_profile` - Rules applied to the http application log for filtering sensitive information.
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `uuid` - Uuid of the analytics profile.
-

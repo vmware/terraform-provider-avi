@@ -3,7 +3,7 @@ layout: "avi"
 page_title: "AVI: avi_networkprofile"
 sidebar_current: "docs-avi-datasource-networkprofile"
 description: |-
-Get information of Avi NetworkProfile.
+  Get information of Avi NetworkProfile.
 ---
 
 # avi_networkprofile
@@ -34,4 +34,3 @@ In addition to all arguments above, the following attributes are exported:
 * `profile` - General description.
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `uuid` - Uuid of the network profile.
-

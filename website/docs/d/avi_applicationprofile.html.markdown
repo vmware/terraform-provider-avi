@@ -3,7 +3,7 @@ layout: "avi"
 page_title: "AVI: avi_applicationprofile"
 sidebar_current: "docs-avi-datasource-applicationprofile"
 description: |-
-Get information of Avi ApplicationProfile.
+  Get information of Avi ApplicationProfile.
 ---
 
 # avi_applicationprofile
@@ -40,4 +40,3 @@ In addition to all arguments above, the following attributes are exported:
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `type` - Specifies which application layer proxy is enabled for the virtual service.
 * `uuid` - Uuid of the application profile.
-

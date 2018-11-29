@@ -3,7 +3,7 @@ layout: "avi"
 page_title: "AVI: avi_virtualservice"
 sidebar_current: "docs-avi-datasource-virtualservice"
 description: |-
-Get information of Avi VirtualService.
+  Get information of Avi VirtualService.
 ---
 
 # avi_virtualservice
@@ -25,7 +25,7 @@ data "VirtualService" "foo_VirtualService" {
 * `name` - (Optional) Search VirtualService by name.
 * `uuid` - (Optional) Search VirtualService by uuid.
 * `cloud_ref` - (Optional) Search VirtualService by cloud_ref.
-  
+
 ## Attributes Reference
 
 In addition to all arguments above, the following attributes are exported:
@@ -101,4 +101,3 @@ In addition to all arguments above, the following attributes are exported:
 * `vsvip_ref` - Mostly used during the creation of shared vs, this field refers to entities that can be shared across virtual services.
 * `waf_policy_ref` - Waf policy for the virtual service.
 * `weight` - The quality of service weight to assign to traffic transmitted from this virtual service.
-

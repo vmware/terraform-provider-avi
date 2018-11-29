@@ -3,7 +3,7 @@ layout: "avi"
 page_title: "Avi: avi_backupconfiguration"
 sidebar_current: "docs-avi-resource-backupconfiguration"
 description: |-
-Creates and manages Avi BackupConfiguration.
+  Creates and manages Avi BackupConfiguration.
 ---
 
 # avi_backupconfiguration
@@ -33,7 +33,7 @@ The following arguments are supported:
         * `ssh_user_ref` - (Optional ) argument_description.
         * `tenant_ref` - (Optional ) argument_description.
         * `upload_to_remote_host` - (Optional ) argument_description.
-        
+
 ### Timeouts
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
@@ -47,4 +47,3 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 In addition to all arguments above, the following attributes are exported:
 
                                             * `uuid` - argument_description.
-    

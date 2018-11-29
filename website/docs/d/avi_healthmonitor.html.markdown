@@ -3,7 +3,7 @@ layout: "avi"
 page_title: "AVI: avi_healthmonitor"
 sidebar_current: "docs-avi-datasource-healthmonitor"
 description: |-
-Get information of Avi HealthMonitor.
+  Get information of Avi HealthMonitor.
 ---
 
 # avi_healthmonitor
@@ -46,4 +46,3 @@ In addition to all arguments above, the following attributes are exported:
 * `type` - Type of the health monitor.
 * `udp_monitor` - General description.
 * `uuid` - Uuid of the health monitor.
-

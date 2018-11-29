@@ -3,7 +3,7 @@ layout: "avi"
 page_title: "AVI: avi_networksecuritypolicy"
 sidebar_current: "docs-avi-datasource-networksecuritypolicy"
 description: |-
-Get information of Avi NetworkSecurityPolicy.
+  Get information of Avi NetworkSecurityPolicy.
 ---
 
 # avi_networksecuritypolicy
@@ -35,4 +35,3 @@ In addition to all arguments above, the following attributes are exported:
 * `rules` - General description.
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `uuid` - General description.
-

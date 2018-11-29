@@ -3,7 +3,7 @@ layout: "avi"
 page_title: "AVI: avi_ipaddrgroup"
 sidebar_current: "docs-avi-datasource-ipaddrgroup"
 description: |-
-Get information of Avi IpAddrGroup.
+  Get information of Avi IpAddrGroup.
 ---
 
 # avi_ipaddrgroup
@@ -40,4 +40,3 @@ In addition to all arguments above, the following attributes are exported:
 * `ranges` - Configure ip address range(s).
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `uuid` - Uuid of the ip address group.
-

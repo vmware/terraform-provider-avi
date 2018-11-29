@@ -3,7 +3,7 @@ layout: "avi"
 page_title: "AVI: avi_webhook"
 sidebar_current: "docs-avi-datasource-webhook"
 description: |-
-Get information of Avi Webhook.
+  Get information of Avi Webhook.
 ---
 
 # avi_webhook
@@ -34,4 +34,3 @@ In addition to all arguments above, the following attributes are exported:
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `uuid` - Uuid of the webhook profile.
 * `verification_token` - Verification token sent back with the callback asquery parameters.
-

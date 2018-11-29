@@ -3,7 +3,7 @@ layout: "avi"
 page_title: "AVI: avi_sslprofile"
 sidebar_current: "docs-avi-datasource-sslprofile"
 description: |-
-Get information of Avi SSLProfile.
+  Get information of Avi SSLProfile.
 ---
 
 # avi_sslprofile
@@ -43,4 +43,3 @@ In addition to all arguments above, the following attributes are exported:
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `type` - Ssl profile type.
 * `uuid` - General description.
-

@@ -3,7 +3,7 @@ layout: "avi"
 page_title: "Avi: avi_vsdatascriptset"
 sidebar_current: "docs-avi-resource-vsdatascriptset"
 description: |-
-Creates and manages Avi VSDataScriptSet.
+  Creates and manages Avi VSDataScriptSet.
 ---
 
 # avi_vsdatascriptset
@@ -32,7 +32,7 @@ The following arguments are supported:
         * `pool_refs` - (Optional ) argument_description.
         * `string_group_refs` - (Optional ) argument_description.
         * `tenant_ref` - (Optional ) argument_description.
-        
+
 ### Timeouts
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
@@ -46,4 +46,3 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 In addition to all arguments above, the following attributes are exported:
 
                                         * `uuid` - argument_description.
-    

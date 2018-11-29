@@ -3,7 +3,7 @@ layout: "avi"
 page_title: "AVI: avi_backupconfiguration"
 sidebar_current: "docs-avi-datasource-backupconfiguration"
 description: |-
-Get information of Avi BackupConfiguration.
+  Get information of Avi BackupConfiguration.
 ---
 
 # avi_backupconfiguration
@@ -39,4 +39,3 @@ In addition to all arguments above, the following attributes are exported:
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `upload_to_remote_host` - Remote backup.
 * `uuid` - General description.
-

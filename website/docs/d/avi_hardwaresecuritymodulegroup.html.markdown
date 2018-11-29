@@ -3,7 +3,7 @@ layout: "avi"
 page_title: "AVI: avi_hardwaresecuritymodulegroup"
 sidebar_current: "docs-avi-datasource-hardwaresecuritymodulegroup"
 description: |-
-Get information of Avi HardwareSecurityModuleGroup.
+  Get information of Avi HardwareSecurityModuleGroup.
 ---
 
 # avi_hardwaresecuritymodulegroup
@@ -32,4 +32,3 @@ In addition to all arguments above, the following attributes are exported:
 * `name` - Name of the hsm group configuration object.
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `uuid` - Uuid of the hsm group configuration object.
-

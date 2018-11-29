@@ -3,7 +3,7 @@ layout: "avi"
 page_title: "AVI: avi_cloudproperties"
 sidebar_current: "docs-avi-datasource-cloudproperties"
 description: |-
-Get information of Avi CloudProperties.
+  Get information of Avi CloudProperties.
 ---
 
 # avi_cloudproperties
@@ -33,4 +33,3 @@ In addition to all arguments above, the following attributes are exported:
 * `hyp_props` - Hypervisor properties.
 * `info` - Properties specific to a cloud type.
 * `uuid` - General description.
-

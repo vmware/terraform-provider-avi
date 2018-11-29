@@ -3,7 +3,7 @@ layout: "avi"
 page_title: "AVI: avi_clusterclouddetails"
 sidebar_current: "docs-avi-datasource-clusterclouddetails"
 description: |-
-Get information of Avi ClusterCloudDetails.
+  Get information of Avi ClusterCloudDetails.
 ---
 
 # avi_clusterclouddetails
@@ -32,4 +32,3 @@ In addition to all arguments above, the following attributes are exported:
 * `name` - Field introduced in 17.2.5.
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `uuid` - Field introduced in 17.2.5.
-

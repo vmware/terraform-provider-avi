@@ -3,7 +3,7 @@ layout: "avi"
 page_title: "AVI: avi_controllerproperties"
 sidebar_current: "docs-avi-datasource-controllerproperties"
 description: |-
-Get information of Avi ControllerProperties.
+  Get information of Avi ControllerProperties.
 ---
 
 # avi_controllerproperties
@@ -84,4 +84,3 @@ In addition to all arguments above, the following attributes are exported:
 * `vs_se_vnic_ip_fail` - General description.
 * `warmstart_se_reconnect_wait_time` - General description.
 * `warmstart_vs_resync_wait_time` - Timeout for warmstart vs resync.
-
