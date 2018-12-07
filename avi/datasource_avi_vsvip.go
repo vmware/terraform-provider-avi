@@ -14,6 +14,7 @@ func dataSourceAviVsVip() *schema.Resource {
 			"cloud_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"dns_info": &schema.Schema{
 				Type:     schema.TypeList,
@@ -32,6 +33,7 @@ func dataSourceAviVsVip() *schema.Resource {
 			"tenant_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"uuid": &schema.Schema{
 				Type:     schema.TypeString,
@@ -45,6 +47,7 @@ func dataSourceAviVsVip() *schema.Resource {
 			"vrf_context_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"vsvip_cloud_config_cksum": &schema.Schema{
 				Type:     schema.TypeString,

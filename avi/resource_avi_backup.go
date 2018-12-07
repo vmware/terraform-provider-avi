@@ -10,7 +10,6 @@ import (
 	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
-	"time"
 )
 
 func ResourceBackupSchema() map[string]*schema.Schema {
@@ -18,6 +17,7 @@ func ResourceBackupSchema() map[string]*schema.Schema {
 		"backup_config_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"file_name": &schema.Schema{
 			Type:     schema.TypeString,
@@ -34,10 +34,12 @@ func ResourceBackupSchema() map[string]*schema.Schema {
 		"scheduler_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"tenant_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"timestamp": &schema.Schema{
 			Type:     schema.TypeString,

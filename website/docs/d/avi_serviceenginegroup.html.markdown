@@ -30,7 +30,6 @@ data "ServiceEngineGroup" "foo_ServiceEngineGroup" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `accelerated_networking` - Enable acclerated networking option for azure se.
 * `active_standby` - Service engines in active/standby mode for ha failover.
 * `advertise_backend_networks` - Advertise reach-ability of backend server networks via adc through bgp for default gateway feature.
 * `aggressive_failure_detection` - Enable aggressive failover configuration for ha.
@@ -44,10 +43,8 @@ In addition to all arguments above, the following attributes are exported:
 * `auto_rebalance_criteria` - Set of criteria for se auto rebalance.
 * `auto_rebalance_interval` - Frequency of rebalance, if 'auto rebalance' is enabled.
 * `auto_redistribute_active_standby_load` - Redistribution of virtual services from the takeover se to the replacement se can cause momentary traffic loss.
-* `bgp_state_update_interval` - Bgp peer state update interval.
 * `buffer_se` - Excess service engine capacity provisioned for ha failover.
 * `cloud_ref` - It is a reference to an object of type cloud.
-* `config_debugs_on_all_cores` - Enable config debugs on all cores of se.
 * `connection_memory_percentage` - Percentage of memory for connection state.
 * `cpu_reserve` - General description.
 * `cpu_socket_affinity` - Allocate all the cpu cores for the service engine virtual machines  on the same cpu socket.
@@ -69,8 +66,6 @@ In addition to all arguments above, the following attributes are exported:
 * `enable_routing` - Enable routing for this serviceenginegroup .
 * `enable_vip_on_all_interfaces` - Enable vip on all interfaces of se.
 * `enable_vmac` - Use virtual mac address for interfaces on which floating interface ips are placed.
-* `ephemeral_portrange_end` - End local ephemeral port number for outbound connections.
-* `ephemeral_portrange_start` - Start local ephemeral port number for outbound connections.
 * `extra_config_multiplier` - Multiplier for extra config to support large vs/pool config.
 * `extra_shared_config_memory` - Extra config memory to support large geo db configuration.
 * `floating_intf_ip` - If serviceenginegroup is configured for legacy 1+1 active standby ha mode, floating ip's will be advertised only by the active se in the pair.
@@ -95,7 +90,6 @@ In addition to all arguments above, the following attributes are exported:
 * `license_type` - If no license type is specified then default license enforcement for the cloud type is chosen.
 * `log_disksz` - Maximum disk capacity (in mb) to be allocated to an se.
 * `max_cpu_usage` - When cpu usage on an se exceeds this threshold, virtual services hosted on this se may be rebalanced to other ses to reduce load.
-* `max_memory_per_mempool` - Max bytes that can be allocated in a single mempool.
 * `max_public_ips_per_lb` - Applicable to azure platform only.
 * `max_rules_per_lb` - Applicable to azure platform only.
 * `max_scaleout_per_vs` - Maximum number of active service engines for the virtual service.
@@ -126,8 +120,6 @@ In addition to all arguments above, the following attributes are exported:
 * `se_deprovision_delay` - Duration to preserve unused service engine virtual machines before deleting them.
 * `se_dos_profile` - General description.
 * `se_dpdk_pmd` - Determines if dpdk pool mode driver should be used or not   0  automatically determine based on hypervisor/nic type 1  unconditionally use dpdk poll mode driver 2  don't use dpdk poll mode driver.
-* `se_flow_probe_retries` - Flow probe retry count if no replies are received.
-* `se_flow_probe_timer` - Timeout in milliseconds for flow probe entries.
 * `se_ipc_udp_port` - Udp port for se_dp ipc in docker bridge mode.
 * `se_name_prefix` - Prefix to use for virtual machine name of service engines.
 * `se_pcap_reinit_frequency` - Frequency in seconds at which periodically a pcap reinit check is triggered.
@@ -165,9 +157,6 @@ In addition to all arguments above, the following attributes are exported:
 * `vs_scalein_timeout` - Time to wait for the scaled in se to drain existing flows before marking the scalein done.
 * `vs_scalein_timeout_for_upgrade` - During se upgrade, time to wait for the scaled-in se to drain existing flows before marking the scalein done.
 * `vs_scaleout_timeout` - Time to wait for the scaled out se to become ready before marking the scaleout done.
-* `vs_se_scaleout_additional_wait_time` - Wait time for sending scaleout ready notification after virtual service is marked up.
-* `vs_se_scaleout_ready_timeout` - Timeout in seconds for service engine to sendscaleout ready notification of a virtual service.
-* `vs_switchover_timeout` - During se upgrade in a legacy active/standby segroup, time to wait for the new primary se to accept flows before marking the switchover done.
 * `vss_placement` - Parameters to place virtual services on only a subset of the cores of an se.
 * `vss_placement_enabled` - If set, virtual services will be placed on only a subset of the cores of an se.
 * `waf_learning_interval` - Frequency with which se publishes waf learning.

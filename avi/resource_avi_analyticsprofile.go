@@ -10,7 +10,6 @@ import (
 	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
-	"time"
 )
 
 func ResourceAnalyticsProfileSchema() map[string]*schema.Schema {
@@ -140,11 +139,6 @@ func ResourceAnalyticsProfileSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  false,
 		},
-		"enable_advanced_analytics": &schema.Schema{
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  true,
-		},
 		"exclude_client_close_before_request_as_error": &schema.Schema{
 			Type:     schema.TypeBool,
 			Optional: true,
@@ -200,11 +194,6 @@ func ResourceAnalyticsProfileSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  false,
 		},
-		"exclude_sip_error_codes": &schema.Schema{
-			Type:     schema.TypeList,
-			Optional: true,
-			Elem:     &schema.Schema{Type: schema.TypeInt},
-		},
 		"exclude_syn_retransmit_as_error": &schema.Schema{
 			Type:     schema.TypeBool,
 			Optional: true,
@@ -219,11 +208,6 @@ func ResourceAnalyticsProfileSchema() map[string]*schema.Schema {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  false,
-		},
-		"healthscore_max_server_limit": &schema.Schema{
-			Type:     schema.TypeInt,
-			Optional: true,
-			Default:  20,
 		},
 		"hs_event_throttle_window": &schema.Schema{
 			Type:     schema.TypeInt,
@@ -381,11 +365,6 @@ func ResourceAnalyticsProfileSchema() map[string]*schema.Schema {
 			Set: func(v interface{}) int {
 				return 0
 			},
-		},
-		"sip_log_depth": &schema.Schema{
-			Type:     schema.TypeInt,
-			Optional: true,
-			Default:  20,
 		},
 		"tenant_ref": &schema.Schema{
 			Type:     schema.TypeString,

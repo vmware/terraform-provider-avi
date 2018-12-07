@@ -10,7 +10,6 @@ import (
 	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
-	"time"
 )
 
 func ResourceSystemConfigurationSchema() map[string]*schema.Schema {
@@ -98,14 +97,6 @@ func ResourceSystemConfigurationSchema() map[string]*schema.Schema {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceProxyConfigurationSchema(),
-			Set: func(v interface{}) int {
-				return 0
-			},
-		},
-		"secure_channel_configuration": &schema.Schema{
-			Type:     schema.TypeSet,
-			Optional: true,
-			Elem:     ResourceSecureChannelConfigurationSchema(),
 			Set: func(v interface{}) int {
 				return 0
 			},

@@ -97,14 +97,6 @@ func dataSourceAviSystemConfiguration() *schema.Resource {
 					return 0
 				},
 			},
-			"secure_channel_configuration": &schema.Schema{
-				Type:     schema.TypeSet,
-				Optional: true,
-				Elem:     ResourceSecureChannelConfigurationSchema(),
-				Set: func(v interface{}) int {
-					return 0
-				},
-			},
 			"snmp_configuration": &schema.Schema{
 				Type:     schema.TypeSet,
 				Optional: true,

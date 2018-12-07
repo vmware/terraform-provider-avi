@@ -10,7 +10,6 @@ import (
 	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
-	"time"
 )
 
 func ResourceErrorPageBodySchema() map[string]*schema.Schema {

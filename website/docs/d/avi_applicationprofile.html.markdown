@@ -28,8 +28,6 @@ data "ApplicationProfile" "foo_ApplicationProfile" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `cloud_config_cksum` - Checksum of application profiles.
-* `created_by` - Name of the application profile creator.
 * `description` - General description.
 * `dns_service_profile` - Specifies various dns service related controls for virtual service.
 * `dos_rl_profile` - Specifies various security related controls for virtual service.

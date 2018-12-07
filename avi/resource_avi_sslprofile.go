@@ -10,7 +10,6 @@ import (
 	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
-	"time"
 )
 
 func ResourceSSLProfileSchema() map[string]*schema.Schema {
@@ -78,6 +77,7 @@ func ResourceSSLProfileSchema() map[string]*schema.Schema {
 		"tenant_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"type": &schema.Schema{
 			Type:     schema.TypeString,

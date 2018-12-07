@@ -61,6 +61,7 @@ func dataSourceAviCloud() *schema.Resource {
 			"dns_provider_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"docker_configuration": &schema.Schema{
 				Type:     schema.TypeSet,
@@ -73,10 +74,12 @@ func dataSourceAviCloud() *schema.Resource {
 			"east_west_dns_provider_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"east_west_ipam_provider_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"enable_vip_static_routes": &schema.Schema{
 				Type:     schema.TypeBool,
@@ -91,6 +94,7 @@ func dataSourceAviCloud() *schema.Resource {
 			"ipam_provider_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"license_tier": &schema.Schema{
 				Type:     schema.TypeString,
@@ -182,6 +186,7 @@ func dataSourceAviCloud() *schema.Resource {
 			"tenant_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"uuid": &schema.Schema{
 				Type:     schema.TypeString,

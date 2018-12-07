@@ -10,7 +10,6 @@ import (
 	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
-	"time"
 )
 
 func ResourceNetworkSchema() map[string]*schema.Schema {
@@ -18,6 +17,7 @@ func ResourceNetworkSchema() map[string]*schema.Schema {
 		"cloud_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"configured_subnets": &schema.Schema{
 			Type:     schema.TypeList,
@@ -51,6 +51,7 @@ func ResourceNetworkSchema() map[string]*schema.Schema {
 		"tenant_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"uuid": &schema.Schema{
 			Type:     schema.TypeString,
@@ -65,6 +66,7 @@ func ResourceNetworkSchema() map[string]*schema.Schema {
 		"vrf_context_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 	}
 }

@@ -10,7 +10,6 @@ import (
 	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
-	"time"
 )
 
 func ResourceVsVipSchema() map[string]*schema.Schema {
@@ -18,6 +17,7 @@ func ResourceVsVipSchema() map[string]*schema.Schema {
 		"cloud_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"dns_info": &schema.Schema{
 			Type:     schema.TypeList,
@@ -36,6 +36,7 @@ func ResourceVsVipSchema() map[string]*schema.Schema {
 		"tenant_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"uuid": &schema.Schema{
 			Type:     schema.TypeString,
@@ -50,6 +51,7 @@ func ResourceVsVipSchema() map[string]*schema.Schema {
 		"vrf_context_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"vsvip_cloud_config_cksum": &schema.Schema{
 			Type:     schema.TypeString,
@@ -101,7 +103,7 @@ func resourceAviVsVipUpdate(d *schema.ResourceData, meta interface{}) error {
 	var apiResponse interface{}
 	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
-	vsvippath := "api/vsvip/" + uuid + "?include_name=true"
+	vsvippath := "api/vsvip/" + uuid
 	err = client.AviSession.Get(vsvippath, &existingvsvip)
 	var vipobjs []interface{}
 	autoAllocFlag := false

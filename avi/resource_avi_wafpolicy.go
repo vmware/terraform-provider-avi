@@ -10,16 +10,10 @@ import (
 	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
-	"time"
 )
 
 func ResourceWafPolicySchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"allow_mode_delegation": &schema.Schema{
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  true,
-		},
 		"created_by": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,

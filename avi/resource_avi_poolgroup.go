@@ -10,7 +10,6 @@ import (
 	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
-	"time"
 )
 
 func ResourcePoolGroupSchema() map[string]*schema.Schema {
@@ -63,10 +62,6 @@ func ResourcePoolGroupSchema() map[string]*schema.Schema {
 			Required: true,
 		},
 		"priority_labels_ref": &schema.Schema{
-			Type:     schema.TypeString,
-			Optional: true,
-		},
-		"service_metadata": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
 		},

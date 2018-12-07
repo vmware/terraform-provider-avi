@@ -62,10 +62,6 @@ func dataSourceAviPoolGroup() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
-			"service_metadata": &schema.Schema{
-				Type:     schema.TypeString,
-				Optional: true,
-			},
 			"tenant_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,

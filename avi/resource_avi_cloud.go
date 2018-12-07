@@ -10,7 +10,6 @@ import (
 	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
-	"time"
 )
 
 func ResourceCloudSchema() map[string]*schema.Schema {
@@ -65,6 +64,7 @@ func ResourceCloudSchema() map[string]*schema.Schema {
 		"dns_provider_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"docker_configuration": &schema.Schema{
 			Type:     schema.TypeSet,
@@ -77,10 +77,12 @@ func ResourceCloudSchema() map[string]*schema.Schema {
 		"east_west_dns_provider_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"east_west_ipam_provider_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"enable_vip_static_routes": &schema.Schema{
 			Type:     schema.TypeBool,
@@ -95,6 +97,7 @@ func ResourceCloudSchema() map[string]*schema.Schema {
 		"ipam_provider_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"license_tier": &schema.Schema{
 			Type:     schema.TypeString,
@@ -186,6 +189,7 @@ func ResourceCloudSchema() map[string]*schema.Schema {
 		"tenant_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"uuid": &schema.Schema{
 			Type:     schema.TypeString,

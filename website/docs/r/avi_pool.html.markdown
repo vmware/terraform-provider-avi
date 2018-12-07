@@ -23,9 +23,7 @@ resource "Pool" "foo" {
 
 The following arguments are supported:
 
-    * `analytics_policy` - (Optional ) argument_description.
-        * `analytics_profile_ref` - (Optional ) argument_description.
-        * `apic_epg_name` - (Optional ) argument_description.
+    * `apic_epg_name` - (Optional ) argument_description.
         * `application_persistence_profile_ref` - (Optional ) argument_description.
         * `autoscale_launch_config_ref` - (Optional ) argument_description.
         * `autoscale_networks` - (Optional ) argument_description.
@@ -68,9 +66,7 @@ The following arguments are supported:
         * `server_count` - (Optional ) argument_description.
         * `server_name` - (Optional ) argument_description.
         * `server_reselect` - (Optional ) argument_description.
-        * `server_timeout` - (Optional ) argument_description.
         * `servers` - (Optional ) argument_description.
-        * `service_metadata` - (Optional ) argument_description.
         * `sni_enabled` - (Optional ) argument_description.
         * `ssl_key_and_certificate_ref` - (Optional ) argument_description.
         * `ssl_profile_ref` - (Optional ) argument_description.
@@ -90,5 +86,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-                                                                                                                                                                                                                        * `uuid` - argument_description.
+                                                                                                                                                                                                        * `uuid` - argument_description.
         

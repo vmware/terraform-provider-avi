@@ -33,6 +33,7 @@ func dataSourceAviSSLKeyAndCertificate() *schema.Resource {
 			"certificate_management_profile_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"created_by": &schema.Schema{
 				Type:     schema.TypeString,
@@ -58,6 +59,7 @@ func dataSourceAviSSLKeyAndCertificate() *schema.Resource {
 			"hardwaresecuritymodulegroup_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"key": &schema.Schema{
 				Type:     schema.TypeString,
@@ -91,6 +93,7 @@ func dataSourceAviSSLKeyAndCertificate() *schema.Resource {
 			"tenant_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"type": &schema.Schema{
 				Type:     schema.TypeString,

@@ -14,6 +14,7 @@ func dataSourceAviNetwork() *schema.Resource {
 			"cloud_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"configured_subnets": &schema.Schema{
 				Type:     schema.TypeList,
@@ -47,6 +48,7 @@ func dataSourceAviNetwork() *schema.Resource {
 			"tenant_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"uuid": &schema.Schema{
 				Type:     schema.TypeString,
@@ -60,6 +62,7 @@ func dataSourceAviNetwork() *schema.Resource {
 			"vrf_context_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 		},
 	}
