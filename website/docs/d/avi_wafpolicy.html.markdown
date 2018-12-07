@@ -28,6 +28,7 @@ data "WafPolicy" "foo_WafPolicy" {
 
 In addition to all arguments above, the following attributes are exported:
 
+* `allow_mode_delegation` - Allow rules to overwrite the policy mode.
 * `created_by` - Creator name.
 * `crs_groups` - Waf rules are categorized in to groups based on their characterization.
 * `description` - Field introduced in 17.2.1.

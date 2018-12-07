@@ -10,6 +10,7 @@ import (
 	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+	"time"
 )
 
 func ResourceGslbServiceSchema() map[string]*schema.Schema {
@@ -17,7 +18,6 @@ func ResourceGslbServiceSchema() map[string]*schema.Schema {
 		"application_persistence_profile_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
-			Computed: true,
 		},
 		"controller_health_status_enabled": &schema.Schema{
 			Type:     schema.TypeBool,
@@ -96,7 +96,6 @@ func ResourceGslbServiceSchema() map[string]*schema.Schema {
 		"tenant_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
-			Computed: true,
 		},
 		"ttl": &schema.Schema{
 			Type:     schema.TypeInt,

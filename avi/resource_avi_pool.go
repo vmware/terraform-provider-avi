@@ -22,12 +22,10 @@ func ResourcePoolSchema() map[string]*schema.Schema {
 		"application_persistence_profile_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
-			Computed: true,
 		},
 		"autoscale_launch_config_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
-			Computed: true,
 		},
 		"autoscale_networks": &schema.Schema{
 			Type:     schema.TypeList,
@@ -37,7 +35,6 @@ func ResourcePoolSchema() map[string]*schema.Schema {
 		"autoscale_policy_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
-			Computed: true,
 		},
 		"capacity_estimation": &schema.Schema{
 			Type:     schema.TypeBool,
@@ -56,7 +53,6 @@ func ResourcePoolSchema() map[string]*schema.Schema {
 		"cloud_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
-			Computed: true,
 		},
 		"connection_ramp_duration": &schema.Schema{
 			Type:     schema.TypeInt,
@@ -131,7 +127,6 @@ func ResourcePoolSchema() map[string]*schema.Schema {
 		"ipaddrgroup_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
-			Computed: true,
 		},
 		"lb_algorithm": &schema.Schema{
 			Type:     schema.TypeString,
@@ -187,7 +182,6 @@ func ResourcePoolSchema() map[string]*schema.Schema {
 		"pki_profile_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
-			Computed: true,
 		},
 		"placement_networks": &schema.Schema{
 			Type:     schema.TypeList,
@@ -217,7 +211,7 @@ func ResourcePoolSchema() map[string]*schema.Schema {
 		"server_count": &schema.Schema{
 			Type:     schema.TypeInt,
 			Optional: true,
-			Computed: true,
+			Default:  0,
 		},
 		"server_name": &schema.Schema{
 			Type:     schema.TypeString,
@@ -244,17 +238,14 @@ func ResourcePoolSchema() map[string]*schema.Schema {
 		"ssl_key_and_certificate_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
-			Computed: true,
 		},
 		"ssl_profile_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
-			Computed: true,
 		},
 		"tenant_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
-			Computed: true,
 		},
 		"use_service_port": &schema.Schema{
 			Type:     schema.TypeBool,
@@ -269,7 +260,6 @@ func ResourcePoolSchema() map[string]*schema.Schema {
 		"vrf_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
-			Computed: true,
 		},
 		"ignore_servers": &schema.Schema{
 			Type:     schema.TypeBool,
@@ -334,22 +324,16 @@ func resourceAviPoolUpdate(d *schema.ResourceData, meta interface{}) error {
 			return err
 		}
 		client := meta.(*clients.AviClient)
-		pUUID := UUIDFromID(d.Id())
-		path := "api/pool" + "/" + pUUID
-		log.Printf("[DEBUG] resourceAviPoolUpdate reading object with id %v\n", pUUID)
+		pUUID, pName := UUIDFromID(d.Id())
+		path := "api/pool" + "/" + pUUID + "?include_name=true"
+		log.Printf("[DEBUG] resourceAviPoolUpdate reading object with id %v name %v\n", pUUID, pName)
 		var obj interface{}
-		var apiResponse interface{}
 		err = client.AviSession.Get(path, &obj)
 		if err == nil {
 			// found pool so unpack it
 			td := make(map[string]interface{})
-			if localData, err := SchemaToAviData(d, s); err == nil {
-				apiResponse, err = SetDefaultsInAPIRes(obj, localData, s)
-			} else {
-				log.Printf("[ERROR] resourceAviPool in SchemaToAviData: %v\n", err)
-			}
-			if _, err := ApiDataToSchema(apiResponse, td, s); err == nil {
-				log.Printf("[DEBUG] read servers %v from existing object ", td["servers"])
+			if _, err := ApiDataToSchema(obj, td, s); err == nil {
+				log.Printf("read servers %v from existing object ", td["servers"])
 				d.Set("servers", td["servers"])
 			}
 		} else {
@@ -362,6 +346,7 @@ func resourceAviPoolUpdate(d *schema.ResourceData, meta interface{}) error {
 	if err == nil {
 		err = ResourceAviPoolRead(d, meta)
 	}
+	d.Set("servers", nil)
 	d.Set("ignore_servers", set_ignore_servers)
 	return err
 }
@@ -384,7 +369,7 @@ func resourceAviPoolDelete(d *schema.ResourceData, meta interface{}) error {
 		path := "api/" + objType + "/" + uuid
 		err := client.AviSession.Delete(path)
 		if err != nil && !(strings.Contains(err.Error(), "404") || strings.Contains(err.Error(), "204") || strings.Contains(err.Error(), "403")) {
-			log.Println("[ERROR] resourceAviPoolDelete not found")
+			log.Println("[INFO] resourceAviPoolDelete not found")
 			return err
 		}
 		d.SetId("")

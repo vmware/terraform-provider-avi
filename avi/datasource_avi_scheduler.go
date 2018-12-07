@@ -14,7 +14,6 @@ func dataSourceAviScheduler() *schema.Resource {
 			"backup_config_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"enabled": &schema.Schema{
 				Type:     schema.TypeBool,
@@ -44,7 +43,6 @@ func dataSourceAviScheduler() *schema.Resource {
 			"run_script_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"scheduler_action": &schema.Schema{
 				Type:     schema.TypeString,
@@ -57,7 +55,6 @@ func dataSourceAviScheduler() *schema.Resource {
 			"tenant_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"uuid": &schema.Schema{
 				Type:     schema.TypeString,

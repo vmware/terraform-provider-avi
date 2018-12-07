@@ -11,6 +11,11 @@ func dataSourceAviWafPolicy() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviWafPolicyRead,
 		Schema: map[string]*schema.Schema{
+			"allow_mode_delegation": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  true,
+			},
 			"created_by": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,

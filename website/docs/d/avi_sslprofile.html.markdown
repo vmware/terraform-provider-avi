@@ -38,7 +38,7 @@ In addition to all arguments above, the following attributes are exported:
 * `prefer_client_cipher_ordering` - Prefer the ssl cipher ordering presented by the client during the ssl handshake over the one specified in the ssl profile.
 * `send_close_notify` - Send 'close notify' alert message for a clean shutdown of the ssl connection.
 * `ssl_rating` - General description.
-* `ssl_session_timeout` - The amount of time before an ssl session expires.
+* `ssl_session_timeout` - The amount of time in seconds before an ssl session expires.
 * `tags` - General description.
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `type` - Ssl profile type.

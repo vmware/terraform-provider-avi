@@ -23,7 +23,8 @@ resource "ServiceEngineGroup" "foo" {
 
 The following arguments are supported:
 
-    * `active_standby` - (Optional ) argument_description.
+    * `accelerated_networking` - (Optional ) argument_description.
+        * `active_standby` - (Optional ) argument_description.
         * `advertise_backend_networks` - (Optional ) argument_description.
         * `aggressive_failure_detection` - (Optional ) argument_description.
         * `algo` - (Optional ) argument_description.
@@ -36,8 +37,10 @@ The following arguments are supported:
         * `auto_rebalance_criteria` - (Optional ) argument_description.
         * `auto_rebalance_interval` - (Optional ) argument_description.
         * `auto_redistribute_active_standby_load` - (Optional ) argument_description.
+        * `bgp_state_update_interval` - (Optional ) argument_description.
         * `buffer_se` - (Optional ) argument_description.
         * `cloud_ref` - (Optional ) argument_description.
+        * `config_debugs_on_all_cores` - (Optional ) argument_description.
         * `connection_memory_percentage` - (Optional ) argument_description.
         * `cpu_reserve` - (Optional ) argument_description.
         * `cpu_socket_affinity` - (Optional ) argument_description.
@@ -59,6 +62,8 @@ The following arguments are supported:
         * `enable_routing` - (Optional ) argument_description.
         * `enable_vip_on_all_interfaces` - (Optional ) argument_description.
         * `enable_vmac` - (Optional ) argument_description.
+        * `ephemeral_portrange_end` - (Optional ) argument_description.
+        * `ephemeral_portrange_start` - (Optional ) argument_description.
         * `extra_config_multiplier` - (Optional ) argument_description.
         * `extra_shared_config_memory` - (Optional ) argument_description.
         * `floating_intf_ip` - (Optional ) argument_description.
@@ -83,6 +88,7 @@ The following arguments are supported:
         * `license_type` - (Optional ) argument_description.
         * `log_disksz` - (Optional ) argument_description.
         * `max_cpu_usage` - (Optional ) argument_description.
+        * `max_memory_per_mempool` - (Optional ) argument_description.
         * `max_public_ips_per_lb` - (Optional ) argument_description.
         * `max_rules_per_lb` - (Optional ) argument_description.
         * `max_scaleout_per_vs` - (Optional ) argument_description.
@@ -113,6 +119,8 @@ The following arguments are supported:
         * `se_deprovision_delay` - (Optional ) argument_description.
         * `se_dos_profile` - (Optional ) argument_description.
         * `se_dpdk_pmd` - (Optional ) argument_description.
+        * `se_flow_probe_retries` - (Optional ) argument_description.
+        * `se_flow_probe_timer` - (Optional ) argument_description.
         * `se_ipc_udp_port` - (Optional ) argument_description.
         * `se_name_prefix` - (Optional ) argument_description.
         * `se_pcap_reinit_frequency` - (Optional ) argument_description.
@@ -149,6 +157,9 @@ The following arguments are supported:
         * `vs_scalein_timeout` - (Optional ) argument_description.
         * `vs_scalein_timeout_for_upgrade` - (Optional ) argument_description.
         * `vs_scaleout_timeout` - (Optional ) argument_description.
+        * `vs_se_scaleout_additional_wait_time` - (Optional ) argument_description.
+        * `vs_se_scaleout_ready_timeout` - (Optional ) argument_description.
+        * `vs_switchover_timeout` - (Optional ) argument_description.
         * `vss_placement` - (Optional ) argument_description.
         * `vss_placement_enabled` - (Optional ) argument_description.
         * `waf_learning_interval` - (Optional ) argument_description.
@@ -168,5 +179,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                            * `uuid` - argument_description.
-                                                                            
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            * `uuid` - argument_description.
+                                                                                        

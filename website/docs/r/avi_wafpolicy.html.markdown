@@ -23,7 +23,8 @@ resource "WafPolicy" "foo" {
 
 The following arguments are supported:
 
-    * `created_by` - (Optional ) argument_description.
+    * `allow_mode_delegation` - (Optional ) argument_description.
+        * `created_by` - (Optional ) argument_description.
         * `crs_groups` - (Optional ) argument_description.
         * `description` - (Optional ) argument_description.
         * `failure_mode` - (Optional ) argument_description.
@@ -49,5 +50,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-                                                * `uuid` - argument_description.
+                                                    * `uuid` - argument_description.
             

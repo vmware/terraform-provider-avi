@@ -10,6 +10,7 @@ import (
 	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+	"time"
 )
 
 func ResourceAutoScaleLaunchConfigSchema() map[string]*schema.Schema {
@@ -45,7 +46,6 @@ func ResourceAutoScaleLaunchConfigSchema() map[string]*schema.Schema {
 		"tenant_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
-			Computed: true,
 		},
 		"use_external_asg": &schema.Schema{
 			Type:     schema.TypeBool,

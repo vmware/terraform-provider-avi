@@ -10,10 +10,15 @@ import (
 	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+	"time"
 )
 
 func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
+		"accelerated_networking": &schema.Schema{
+			Type:     schema.TypeBool,
+			Optional: true,
+		},
 		"active_standby": &schema.Schema{
 			Type:     schema.TypeBool,
 			Optional: true,
@@ -78,6 +83,11 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  false,
 		},
+		"bgp_state_update_interval": &schema.Schema{
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  10,
+		},
 		"buffer_se": &schema.Schema{
 			Type:     schema.TypeInt,
 			Optional: true,
@@ -86,6 +96,11 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 		"cloud_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
+		},
+		"config_debugs_on_all_cores": &schema.Schema{
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  false,
 		},
 		"connection_memory_percentage": &schema.Schema{
 			Type:     schema.TypeInt,
@@ -125,6 +140,11 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 		"description": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
+		},
+		"disable_avi_securitygroups": &schema.Schema{
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  false,
 		},
 		"disable_csum_offloads": &schema.Schema{
 			Type:     schema.TypeBool,
@@ -185,6 +205,14 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  false,
+		},
+		"ephemeral_portrange_end": &schema.Schema{
+			Type:     schema.TypeInt,
+			Optional: true,
+		},
+		"ephemeral_portrange_start": &schema.Schema{
+			Type:     schema.TypeInt,
+			Optional: true,
 		},
 		"extra_config_multiplier": &schema.Schema{
 			Type:     schema.TypeFloat,
@@ -298,6 +326,11 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Type:     schema.TypeInt,
 			Optional: true,
 			Default:  80,
+		},
+		"max_memory_per_mempool": &schema.Schema{
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  64,
 		},
 		"max_public_ips_per_lb": &schema.Schema{
 			Type:     schema.TypeInt,
@@ -452,6 +485,16 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Type:     schema.TypeInt,
 			Optional: true,
 			Default:  0,
+		},
+		"se_flow_probe_retries": &schema.Schema{
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  2,
+		},
+		"se_flow_probe_timer": &schema.Schema{
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  100,
 		},
 		"se_ipc_udp_port": &schema.Schema{
 			Type:     schema.TypeInt,
@@ -648,6 +691,21 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Type:     schema.TypeInt,
 			Optional: true,
 			Default:  30,
+		},
+		"vs_se_scaleout_additional_wait_time": &schema.Schema{
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  0,
+		},
+		"vs_se_scaleout_ready_timeout": &schema.Schema{
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  25,
+		},
+		"vs_switchover_timeout": &schema.Schema{
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  300,
 		},
 		"vss_placement": &schema.Schema{
 			Type:     schema.TypeSet,

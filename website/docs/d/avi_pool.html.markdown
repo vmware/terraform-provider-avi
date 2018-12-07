@@ -30,6 +30,8 @@ data "Pool" "foo_Pool" {
 
 In addition to all arguments above, the following attributes are exported:
 
+* `analytics_policy` - Determines analytics settings for the pool.
+* `analytics_profile_ref` - Specifies settings related to analytics.
 * `apic_epg_name` - Synchronize cisco apic epg members with pool servers.
 * `application_persistence_profile_ref` - Persistence will ensure the same user sticks to the same server for a desired duration of time.
 * `autoscale_launch_config_ref` - If configured then avi will trigger orchestration of pool server creation and deletion.
@@ -73,7 +75,9 @@ In addition to all arguments above, the following attributes are exported:
 * `server_count` - General description.
 * `server_name` - Fully qualified dns hostname which will be used in the tls sni extension in server connections if sni is enabled.
 * `server_reselect` - Server reselect configuration for http requests.
+* `server_timeout` - Server timeout value specifies the time within which a server connection needs to be established and a request-response exchange completes between avi and the server.
 * `servers` - The pool directs load balanced traffic to this list of destination servers.
+* `service_metadata` - Metadata pertaining to the service provided by this pool.
 * `sni_enabled` - Enable tls sni for server connections.
 * `ssl_key_and_certificate_ref` - Service engines will present a client ssl certificate to the server.
 * `ssl_profile_ref` - When enabled, avi re-encrypts traffic to the backend servers.

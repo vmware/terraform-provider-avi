@@ -10,10 +10,19 @@ import (
 	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+	"time"
 )
 
 func ResourceApplicationProfileSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
+		"cloud_config_cksum": &schema.Schema{
+			Type:     schema.TypeString,
+			Optional: true,
+		},
+		"created_by": &schema.Schema{
+			Type:     schema.TypeString,
+			Optional: true,
+		},
 		"description": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,

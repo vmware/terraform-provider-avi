@@ -23,7 +23,9 @@ resource "ApplicationProfile" "foo" {
 
 The following arguments are supported:
 
-    * `description` - (Optional ) argument_description.
+    * `cloud_config_cksum` - (Optional ) argument_description.
+        * `created_by` - (Optional ) argument_description.
+        * `description` - (Optional ) argument_description.
         * `dns_service_profile` - (Optional ) argument_description.
         * `dos_rl_profile` - (Optional ) argument_description.
         * `http_profile` - (Optional ) argument_description.
@@ -47,5 +49,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-                                                * `uuid` - argument_description.
+                                                        * `uuid` - argument_description.
     

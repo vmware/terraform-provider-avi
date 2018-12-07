@@ -34,6 +34,7 @@ The following arguments are supported:
         * `min_servers` - (Optional ) argument_description.
         * `name` - (Required) argument_description.
         * `priority_labels_ref` - (Optional ) argument_description.
+        * `service_metadata` - (Optional ) argument_description.
         * `tenant_ref` - (Optional ) argument_description.
         
 ### Timeouts
@@ -48,5 +49,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-                                                    * `uuid` - argument_description.
+                                                        * `uuid` - argument_description.
     
