@@ -3,7 +3,7 @@ layout: "avi"
 page_title: "AVI: avi_stringgroup"
 sidebar_current: "docs-avi-datasource-stringgroup"
 description: |-
-Get information of Avi StringGroup.
+  Get information of Avi StringGroup.
 ---
 
 # avi_stringgroup
@@ -34,4 +34,3 @@ In addition to all arguments above, the following attributes are exported:
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `type` - Type of stringgroup.
 * `uuid` - Uuid of the string group.
-

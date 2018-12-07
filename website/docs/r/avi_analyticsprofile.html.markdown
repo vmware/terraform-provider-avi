@@ -3,7 +3,7 @@ layout: "avi"
 page_title: "Avi: avi_analyticsprofile"
 sidebar_current: "docs-avi-resource-analyticsprofile"
 description: |-
-Creates and manages Avi AnalyticsProfile.
+  Creates and manages Avi AnalyticsProfile.
 ---
 
 # avi_analyticsprofile
@@ -93,7 +93,7 @@ The following arguments are supported:
         * `resp_code_block` - (Optional ) argument_description.
         * `sensitive_log_profile` - (Optional ) argument_description.
         * `tenant_ref` - (Optional ) argument_description.
-        
+
 ### Timeouts
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
@@ -107,4 +107,3 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 In addition to all arguments above, the following attributes are exported:
 
                                                                                                                                                                                                                                                                                             * `uuid` - argument_description.
-    

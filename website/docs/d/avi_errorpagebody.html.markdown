@@ -3,7 +3,7 @@ layout: "avi"
 page_title: "AVI: avi_errorpagebody"
 sidebar_current: "docs-avi-datasource-errorpagebody"
 description: |-
-Get information of Avi ErrorPageBody.
+  Get information of Avi ErrorPageBody.
 ---
 
 # avi_errorpagebody
@@ -32,4 +32,3 @@ In addition to all arguments above, the following attributes are exported:
 * `name` - Field introduced in 17.2.4.
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `uuid` - Field introduced in 17.2.4.
-

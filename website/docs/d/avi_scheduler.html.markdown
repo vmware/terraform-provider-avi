@@ -3,7 +3,7 @@ layout: "avi"
 page_title: "AVI: avi_scheduler"
 sidebar_current: "docs-avi-datasource-scheduler"
 description: |-
-Get information of Avi Scheduler.
+  Get information of Avi Scheduler.
 ---
 
 # avi_scheduler
@@ -40,4 +40,3 @@ In addition to all arguments above, the following attributes are exported:
 * `start_date_time` - Scheduler start date and time.
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `uuid` - General description.
-

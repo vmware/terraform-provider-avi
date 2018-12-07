@@ -3,7 +3,7 @@ layout: "avi"
 page_title: "AVI: avi_serviceenginegroup"
 sidebar_current: "docs-avi-datasource-serviceenginegroup"
 description: |-
-Get information of Avi ServiceEngineGroup.
+  Get information of Avi ServiceEngineGroup.
 ---
 
 # avi_serviceenginegroup
@@ -25,7 +25,7 @@ data "ServiceEngineGroup" "foo_ServiceEngineGroup" {
 * `name` - (Optional) Search ServiceEngineGroup by name.
 * `uuid` - (Optional) Search ServiceEngineGroup by uuid.
 * `cloud_ref` - (Optional) Search ServiceEngineGroup by cloud_ref.
-  
+
 ## Attributes Reference
 
 In addition to all arguments above, the following attributes are exported:
@@ -163,4 +163,3 @@ In addition to all arguments above, the following attributes are exported:
 * `waf_learning_memory` - Amount of memory reserved on se for waf learning.
 * `waf_mempool` - Enable memory pool for waf.
 * `waf_mempool_size` - Memory pool size used for waf.
-

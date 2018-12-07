@@ -3,7 +3,7 @@ layout: "avi"
 page_title: "AVI: avi_httppolicyset"
 sidebar_current: "docs-avi-datasource-httppolicyset"
 description: |-
-Get information of Avi HTTPPolicySet.
+  Get information of Avi HTTPPolicySet.
 ---
 
 # avi_httppolicyset
@@ -38,4 +38,3 @@ In addition to all arguments above, the following attributes are exported:
 * `name` - Name of the http policy set.
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `uuid` - Uuid of the http policy set.
-

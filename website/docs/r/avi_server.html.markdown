@@ -3,7 +3,7 @@ layout: "avi"
 page_title: "Avi: avi_server"
 sidebar_current: "docs-avi-resource-server"
 description: |-
-Creates and manages Avi Server.
+  Creates and manages Avi Server.
 ---
 
 # avi_server
@@ -38,7 +38,7 @@ The following arguments are supported:
     * `prst_hdr_val` - (Optional ) argument_description.
     * `rewrite_host_header` - (Optional ) argument_description.
     * `vm_ref` - (Optional ) argument_description.
-    
+
 ### Timeouts
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
@@ -52,4 +52,3 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 In addition to all arguments above, the following attributes are exported:
 
                                                                                                                                                                                                         * `uuid` - argument_description.
-        

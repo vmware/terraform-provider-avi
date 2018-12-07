@@ -3,7 +3,7 @@ layout: "avi"
 page_title: "Avi: avi_pool"
 sidebar_current: "docs-avi-resource-pool"
 description: |-
-Creates and manages Avi Pool.
+  Creates and manages Avi Pool.
 ---
 
 # avi_pool
@@ -73,7 +73,7 @@ The following arguments are supported:
         * `tenant_ref` - (Optional ) argument_description.
         * `use_service_port` - (Optional ) argument_description.
             * `vrf_ref` - (Optional ) argument_description.
-    
+
 ### Timeouts
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
@@ -87,4 +87,3 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 In addition to all arguments above, the following attributes are exported:
 
                                                                                                                                                                                                         * `uuid` - argument_description.
-        

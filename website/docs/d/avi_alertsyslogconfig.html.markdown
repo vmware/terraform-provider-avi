@@ -3,7 +3,7 @@ layout: "avi"
 page_title: "AVI: avi_alertsyslogconfig"
 sidebar_current: "docs-avi-datasource-alertsyslogconfig"
 description: |-
-Get information of Avi AlertSyslogConfig.
+  Get information of Avi AlertSyslogConfig.
 ---
 
 # avi_alertsyslogconfig
@@ -33,4 +33,3 @@ In addition to all arguments above, the following attributes are exported:
 * `syslog_servers` - The list of syslog servers.
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `uuid` - General description.
-

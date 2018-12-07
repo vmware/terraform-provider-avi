@@ -3,7 +3,7 @@ layout: "avi"
 page_title: "AVI: avi_serviceengine"
 sidebar_current: "docs-avi-datasource-serviceengine"
 description: |-
-Get information of Avi ServiceEngine.
+  Get information of Avi ServiceEngine.
 ---
 
 # avi_serviceengine
@@ -25,7 +25,7 @@ data "ServiceEngine" "foo_ServiceEngine" {
 * `name` - (Optional) Search ServiceEngine by name.
 * `uuid` - (Optional) Search ServiceEngine by uuid.
 * `cloud_ref` - (Optional) Search ServiceEngine by cloud_ref.
-  
+
 ## Attributes Reference
 
 In addition to all arguments above, the following attributes are exported:
@@ -47,4 +47,3 @@ In addition to all arguments above, the following attributes are exported:
 * `se_group_ref` - It is a reference to an object of type serviceenginegroup.
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `uuid` - General description.
-

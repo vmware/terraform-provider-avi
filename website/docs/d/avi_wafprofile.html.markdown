@@ -3,7 +3,7 @@ layout: "avi"
 page_title: "AVI: avi_wafprofile"
 sidebar_current: "docs-avi-datasource-wafprofile"
 description: |-
-Get information of Avi WafProfile.
+  Get information of Avi WafProfile.
 ---
 
 # avi_wafprofile
@@ -34,4 +34,3 @@ In addition to all arguments above, the following attributes are exported:
 * `name` - Field introduced in 17.2.1.
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `uuid` - Field introduced in 17.2.1.
-

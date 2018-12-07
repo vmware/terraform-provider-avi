@@ -3,7 +3,7 @@ layout: "avi"
 page_title: "Avi: avi_virtualservice"
 sidebar_current: "docs-avi-resource-virtualservice"
 description: |-
-Creates and manages Avi VirtualService.
+  Creates and manages Avi VirtualService.
 ---
 
 # avi_virtualservice
@@ -93,7 +93,7 @@ The following arguments are supported:
         * `vsvip_ref` - (Optional ) argument_description.
         * `waf_policy_ref` - (Optional ) argument_description.
         * `weight` - (Optional ) argument_description.
-    
+
 ### Timeouts
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
@@ -107,4 +107,3 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 In addition to all arguments above, the following attributes are exported:
 
                                                                                                                                                                                                                                                         * `uuid` - argument_description.
-                                        

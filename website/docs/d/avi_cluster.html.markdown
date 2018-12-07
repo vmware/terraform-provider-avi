@@ -3,7 +3,7 @@ layout: "avi"
 page_title: "AVI: avi_cluster"
 sidebar_current: "docs-avi-datasource-cluster"
 description: |-
-Get information of Avi Cluster.
+  Get information of Avi Cluster.
 ---
 
 # avi_cluster
@@ -34,4 +34,3 @@ In addition to all arguments above, the following attributes are exported:
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `uuid` - General description.
 * `virtual_ip` - A virtual ip address.
-

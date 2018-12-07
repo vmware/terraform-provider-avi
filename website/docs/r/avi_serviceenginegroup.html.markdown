@@ -3,7 +3,7 @@ layout: "avi"
 page_title: "Avi: avi_serviceenginegroup"
 sidebar_current: "docs-avi-resource-serviceenginegroup"
 description: |-
-Creates and manages Avi ServiceEngineGroup.
+  Creates and manages Avi ServiceEngineGroup.
 ---
 
 # avi_serviceenginegroup
@@ -155,7 +155,7 @@ The following arguments are supported:
         * `waf_learning_memory` - (Optional ) argument_description.
         * `waf_mempool` - (Optional ) argument_description.
         * `waf_mempool_size` - (Optional ) argument_description.
-    
+
 ### Timeouts
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
@@ -169,4 +169,3 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 In addition to all arguments above, the following attributes are exported:
 
                                                                                                                                                                                                                                                                                                                                                                                                                                                                             * `uuid` - argument_description.
-                                                                            

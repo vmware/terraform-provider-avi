@@ -3,7 +3,7 @@ layout: "avi"
 page_title: "Avi: avi_wafpolicy"
 sidebar_current: "docs-avi-resource-wafpolicy"
 description: |-
-Creates and manages Avi WafPolicy.
+  Creates and manages Avi WafPolicy.
 ---
 
 # avi_wafpolicy
@@ -36,7 +36,7 @@ The following arguments are supported:
         * `tenant_ref` - (Optional ) argument_description.
             * `waf_crs_ref` - (Optional ) argument_description.
         * `waf_profile_ref` - (Optional ) argument_description.
-    
+
 ### Timeouts
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
@@ -50,4 +50,3 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 In addition to all arguments above, the following attributes are exported:
 
                                                 * `uuid` - argument_description.
-            

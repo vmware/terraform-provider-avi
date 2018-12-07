@@ -3,7 +3,7 @@ layout: "avi"
 page_title: "AVI: avi_seproperties"
 sidebar_current: "docs-avi-datasource-seproperties"
 description: |-
-Get information of Avi SeProperties.
+  Get information of Avi SeProperties.
 ---
 
 # avi_seproperties
@@ -32,4 +32,3 @@ In addition to all arguments above, the following attributes are exported:
 * `se_bootup_properties` - General description.
 * `se_runtime_properties` - General description.
 * `uuid` - General description.
-

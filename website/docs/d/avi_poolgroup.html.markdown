@@ -3,7 +3,7 @@ layout: "avi"
 page_title: "AVI: avi_poolgroup"
 sidebar_current: "docs-avi-datasource-poolgroup"
 description: |-
-Get information of Avi PoolGroup.
+  Get information of Avi PoolGroup.
 ---
 
 # avi_poolgroup
@@ -25,7 +25,7 @@ data "PoolGroup" "foo_PoolGroup" {
 * `name` - (Optional) Search PoolGroup by name.
 * `uuid` - (Optional) Search PoolGroup by uuid.
 * `cloud_ref` - (Optional) Search PoolGroup by cloud_ref.
-  
+
 ## Attributes Reference
 
 In addition to all arguments above, the following attributes are exported:
@@ -43,4 +43,3 @@ In addition to all arguments above, the following attributes are exported:
 * `priority_labels_ref` - Uuid of the priority labels.
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `uuid` - Uuid of the pool group.
-

@@ -3,7 +3,7 @@ layout: "avi"
 page_title: "AVI: avi_useraccountprofile"
 sidebar_current: "docs-avi-datasource-useraccountprofile"
 description: |-
-Get information of Avi UserAccountProfile.
+  Get information of Avi UserAccountProfile.
 ---
 
 # avi_useraccountprofile
@@ -35,4 +35,3 @@ In addition to all arguments above, the following attributes are exported:
 * `max_password_history_count` - Maximum number of passwords to be maintained in the password history.
 * `name` - General description.
 * `uuid` - General description.
-

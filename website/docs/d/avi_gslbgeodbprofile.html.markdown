@@ -3,7 +3,7 @@ layout: "avi"
 page_title: "AVI: avi_gslbgeodbprofile"
 sidebar_current: "docs-avi-datasource-gslbgeodbprofile"
 description: |-
-Get information of Avi GslbGeoDbProfile.
+  Get information of Avi GslbGeoDbProfile.
 ---
 
 # avi_gslbgeodbprofile
@@ -34,4 +34,3 @@ In addition to all arguments above, the following attributes are exported:
 * `name` - A user-friendly name for the geodb profile.
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `uuid` - Uuid of the geodb profile.
-

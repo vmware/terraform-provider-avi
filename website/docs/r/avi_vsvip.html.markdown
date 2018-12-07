@@ -3,7 +3,7 @@ layout: "avi"
 page_title: "Avi: avi_vsvip"
 sidebar_current: "docs-avi-resource-vsvip"
 description: |-
-Creates and manages Avi VsVip.
+  Creates and manages Avi VsVip.
 ---
 
 # avi_vsvip
@@ -31,7 +31,7 @@ The following arguments are supported:
             * `vip` - (Optional ) argument_description.
         * `vrf_context_ref` - (Optional ) argument_description.
         * `vsvip_cloud_config_cksum` - (Optional ) argument_description.
-    
+
 ### Timeouts
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
@@ -45,4 +45,3 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 In addition to all arguments above, the following attributes are exported:
 
                         * `uuid` - argument_description.
-                

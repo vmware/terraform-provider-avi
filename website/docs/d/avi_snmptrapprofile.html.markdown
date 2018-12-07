@@ -3,7 +3,7 @@ layout: "avi"
 page_title: "AVI: avi_snmptrapprofile"
 sidebar_current: "docs-avi-datasource-snmptrapprofile"
 description: |-
-Get information of Avi SnmpTrapProfile.
+  Get information of Avi SnmpTrapProfile.
 ---
 
 # avi_snmptrapprofile
@@ -32,4 +32,3 @@ In addition to all arguments above, the following attributes are exported:
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `trap_servers` - The ip address or hostname of the snmp trap destination server.
 * `uuid` - Uuid of the snmp trap profile object.
-

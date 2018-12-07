@@ -3,7 +3,7 @@ layout: "avi"
 page_title: "AVI: avi_alertconfig"
 sidebar_current: "docs-avi-datasource-alertconfig"
 description: |-
-Get information of Avi AlertConfig.
+  Get information of Avi AlertConfig.
 ---
 
 # avi_alertconfig
@@ -46,4 +46,3 @@ In addition to all arguments above, the following attributes are exported:
 * `threshold` - An alert is created only when the number of events meets or exceeds this number within the chosen time frame.
 * `throttle` - Alerts are suppressed (throttled) for this duration of time since the last alert was raised for this alert config.
 * `uuid` - General description.
-

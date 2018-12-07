@@ -3,7 +3,7 @@ layout: "avi"
 page_title: "AVI: avi_microservicegroup"
 sidebar_current: "docs-avi-datasource-microservicegroup"
 description: |-
-Get information of Avi MicroServiceGroup.
+  Get information of Avi MicroServiceGroup.
 ---
 
 # avi_microservicegroup
@@ -34,4 +34,3 @@ In addition to all arguments above, the following attributes are exported:
 * `service_refs` - Configure microservice(es).
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `uuid` - Uuid of the microservice group.
-

@@ -3,7 +3,7 @@ layout: "avi"
 page_title: "AVI: avi_pool"
 sidebar_current: "docs-avi-datasource-pool"
 description: |-
-Get information of Avi Pool.
+  Get information of Avi Pool.
 ---
 
 # avi_pool
@@ -25,7 +25,7 @@ data "Pool" "foo_Pool" {
 * `name` - (Optional) Search Pool by name.
 * `uuid` - (Optional) Search Pool by uuid.
 * `cloud_ref` - (Optional) Search Pool by cloud_ref.
-  
+
 ## Attributes Reference
 
 In addition to all arguments above, the following attributes are exported:
@@ -81,4 +81,3 @@ In addition to all arguments above, the following attributes are exported:
 * `use_service_port` - Do not translate the client's destination port when sending the connection to the server.
 * `uuid` - Uuid of the pool.
 * `vrf_ref` - Virtual routing context that the pool is bound to.
-

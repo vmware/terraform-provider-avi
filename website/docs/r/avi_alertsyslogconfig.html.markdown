@@ -3,7 +3,7 @@ layout: "avi"
 page_title: "Avi: avi_alertsyslogconfig"
 sidebar_current: "docs-avi-resource-alertsyslogconfig"
 description: |-
-Creates and manages Avi AlertSyslogConfig.
+  Creates and manages Avi AlertSyslogConfig.
 ---
 
 # avi_alertsyslogconfig
@@ -27,7 +27,7 @@ The following arguments are supported:
         * `name` - (Required) argument_description.
         * `syslog_servers` - (Optional ) argument_description.
         * `tenant_ref` - (Optional ) argument_description.
-        
+
 ### Timeouts
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
@@ -41,4 +41,3 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 In addition to all arguments above, the following attributes are exported:
 
                     * `uuid` - argument_description.
-    

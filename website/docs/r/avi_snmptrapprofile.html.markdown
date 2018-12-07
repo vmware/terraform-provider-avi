@@ -3,7 +3,7 @@ layout: "avi"
 page_title: "Avi: avi_snmptrapprofile"
 sidebar_current: "docs-avi-resource-snmptrapprofile"
 description: |-
-Creates and manages Avi SnmpTrapProfile.
+  Creates and manages Avi SnmpTrapProfile.
 ---
 
 # avi_snmptrapprofile
@@ -26,7 +26,7 @@ The following arguments are supported:
     * `name` - (Required) argument_description.
         * `tenant_ref` - (Optional ) argument_description.
         * `trap_servers` - (Optional ) argument_description.
-        
+
 ### Timeouts
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
@@ -40,4 +40,3 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 In addition to all arguments above, the following attributes are exported:
 
                 * `uuid` - argument_description.
-    

@@ -3,7 +3,7 @@ layout: "avi"
 page_title: "AVI: avi_vrfcontext"
 sidebar_current: "docs-avi-datasource-vrfcontext"
 description: |-
-Get information of Avi VrfContext.
+  Get information of Avi VrfContext.
 ---
 
 # avi_vrfcontext
@@ -25,7 +25,7 @@ data "VrfContext" "foo_VrfContext" {
 * `name` - (Optional) Search VrfContext by name.
 * `uuid` - (Optional) Search VrfContext by uuid.
 * `cloud_ref` - (Optional) Search VrfContext by cloud_ref.
-  
+
 ## Attributes Reference
 
 In addition to all arguments above, the following attributes are exported:
@@ -41,4 +41,3 @@ In addition to all arguments above, the following attributes are exported:
 * `system_default` - General description.
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `uuid` - General description.
-

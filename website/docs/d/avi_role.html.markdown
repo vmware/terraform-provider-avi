@@ -3,7 +3,7 @@ layout: "avi"
 page_title: "AVI: avi_role"
 sidebar_current: "docs-avi-datasource-role"
 description: |-
-Get information of Avi Role.
+  Get information of Avi Role.
 ---
 
 # avi_role
@@ -32,4 +32,3 @@ In addition to all arguments above, the following attributes are exported:
 * `privileges` - General description.
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `uuid` - General description.
-

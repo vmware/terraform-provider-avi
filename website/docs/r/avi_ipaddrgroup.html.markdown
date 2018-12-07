@@ -3,7 +3,7 @@ layout: "avi"
 page_title: "Avi: avi_ipaddrgroup"
 sidebar_current: "docs-avi-resource-ipaddrgroup"
 description: |-
-Creates and manages Avi IpAddrGroup.
+  Creates and manages Avi IpAddrGroup.
 ---
 
 # avi_ipaddrgroup
@@ -34,7 +34,7 @@ The following arguments are supported:
         * `prefixes` - (Optional ) argument_description.
         * `ranges` - (Optional ) argument_description.
         * `tenant_ref` - (Optional ) argument_description.
-        
+
 ### Timeouts
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
@@ -48,4 +48,3 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 In addition to all arguments above, the following attributes are exported:
 
                                                 * `uuid` - argument_description.
-    

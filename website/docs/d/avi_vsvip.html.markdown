@@ -3,7 +3,7 @@ layout: "avi"
 page_title: "AVI: avi_vsvip"
 sidebar_current: "docs-avi-datasource-vsvip"
 description: |-
-Get information of Avi VsVip.
+  Get information of Avi VsVip.
 ---
 
 # avi_vsvip
@@ -25,7 +25,7 @@ data "VsVip" "foo_VsVip" {
 * `name` - (Optional) Search VsVip by name.
 * `uuid` - (Optional) Search VsVip by uuid.
 * `cloud_ref` - (Optional) Search VsVip by cloud_ref.
-  
+
 ## Attributes Reference
 
 In addition to all arguments above, the following attributes are exported:
@@ -39,4 +39,3 @@ In addition to all arguments above, the following attributes are exported:
 * `vip` - List of virtual service ips and other shareable entities.
 * `vrf_context_ref` - Virtual routing context that the virtual service is bound to.
 * `vsvip_cloud_config_cksum` - Checksum of cloud configuration for vsvip.
-

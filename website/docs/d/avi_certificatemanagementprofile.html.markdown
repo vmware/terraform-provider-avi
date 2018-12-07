@@ -3,7 +3,7 @@ layout: "avi"
 page_title: "AVI: avi_certificatemanagementprofile"
 sidebar_current: "docs-avi-datasource-certificatemanagementprofile"
 description: |-
-Get information of Avi CertificateManagementProfile.
+  Get information of Avi CertificateManagementProfile.
 ---
 
 # avi_certificatemanagementprofile
@@ -33,4 +33,3 @@ In addition to all arguments above, the following attributes are exported:
 * `script_path` - General description.
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `uuid` - General description.
-

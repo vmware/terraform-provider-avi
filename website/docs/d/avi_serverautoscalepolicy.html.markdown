@@ -3,7 +3,7 @@ layout: "avi"
 page_title: "AVI: avi_serverautoscalepolicy"
 sidebar_current: "docs-avi-datasource-serverautoscalepolicy"
 description: |-
-Get information of Avi ServerAutoScalePolicy.
+  Get information of Avi ServerAutoScalePolicy.
 ---
 
 # avi_serverautoscalepolicy
@@ -44,4 +44,3 @@ In addition to all arguments above, the following attributes are exported:
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `use_predicted_load` - Use predicted load rather than current load.
 * `uuid` - General description.
-
