@@ -30,6 +30,7 @@ func ResourceStringGroupSchema() map[string]*schema.Schema {
 		"tenant_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"type": &schema.Schema{
 			Type:     schema.TypeString,

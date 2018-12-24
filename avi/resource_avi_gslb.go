@@ -67,6 +67,7 @@ func ResourceGslbSchema() map[string]*schema.Schema {
 		"tenant_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"third_party_sites": &schema.Schema{
 			Type:     schema.TypeList,

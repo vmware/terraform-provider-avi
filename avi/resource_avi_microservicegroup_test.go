@@ -90,6 +90,7 @@ data "avi_tenant" "default_tenant"{
 resource "avi_microservicegroup" "testmicroservicegroup" {
 	name = "msg-test"
 	tenant_ref= "${data.avi_tenant.default_tenant.id}"
+    service_refs= []
 }
 `
 
@@ -101,5 +102,6 @@ data "avi_tenant" "default_tenant"{
 resource "avi_microservicegroup" "testmicroservicegroup" {
 	name = "msg-abc"
 	tenant_ref= "${data.avi_tenant.default_tenant.id}"
+    service_refs= []
 }
 `

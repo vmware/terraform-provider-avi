@@ -37,3 +37,4 @@ In addition to all arguments above, the following attributes are exported:
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `type` - Type of the auth profile.
 * `uuid` - Uuid of the auth profile.
+

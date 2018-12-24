@@ -34,6 +34,7 @@ func dataSourceAviSystemConfiguration() *schema.Resource {
 			"dns_virtualservice_refs": &schema.Schema{
 				Type:     schema.TypeList,
 				Optional: true,
+				Computed: true,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
 			"docker_mode": &schema.Schema{
@@ -97,6 +98,14 @@ func dataSourceAviSystemConfiguration() *schema.Resource {
 					return 0
 				},
 			},
+			"secure_channel_configuration": &schema.Schema{
+				Type:     schema.TypeSet,
+				Optional: true,
+				Elem:     ResourceSecureChannelConfigurationSchema(),
+				Set: func(v interface{}) int {
+					return 0
+				},
+			},
 			"snmp_configuration": &schema.Schema{
 				Type:     schema.TypeSet,
 				Optional: true,
@@ -118,6 +127,7 @@ func dataSourceAviSystemConfiguration() *schema.Resource {
 			"uuid": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 		},
 	}

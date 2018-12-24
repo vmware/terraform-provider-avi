@@ -33,3 +33,4 @@ In addition to all arguments above, the following attributes are exported:
 * `script_uri` - Script uri of form controller //ipamdnsscripts/<file-name>.
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `uuid` - Field introduced in 17.1.1.
+

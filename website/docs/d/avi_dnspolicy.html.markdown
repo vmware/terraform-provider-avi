@@ -34,3 +34,4 @@ In addition to all arguments above, the following attributes are exported:
 * `rule` - Dns rules.
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `uuid` - Uuid of the dns policy.
+

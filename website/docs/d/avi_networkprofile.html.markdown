@@ -28,9 +28,10 @@ data "NetworkProfile" "foo_NetworkProfile" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `connection_mirror` - When enabled, avi mirrors all tcp fastpath connections to standby.applicable only in legacy ha mode.
+* `connection_mirror` - When enabled, avi mirrors all tcp fastpath connections to standby.
 * `description` - General description.
 * `name` - The name of the network profile.
 * `profile` - General description.
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `uuid` - Uuid of the network profile.
+

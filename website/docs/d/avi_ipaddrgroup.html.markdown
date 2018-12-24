@@ -40,3 +40,4 @@ In addition to all arguments above, the following attributes are exported:
 * `ranges` - Configure ip address range(s).
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `uuid` - Uuid of the ip address group.
+

@@ -26,6 +26,7 @@ func dataSourceAviVirtualService() *schema.Resource {
 			"analytics_profile_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"apic_contract_graph": &schema.Schema{
 				Type:     schema.TypeString,
@@ -34,6 +35,7 @@ func dataSourceAviVirtualService() *schema.Resource {
 			"application_profile_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"bulk_sync_kvcache": &schema.Schema{
 				Type:     schema.TypeBool,
@@ -60,6 +62,7 @@ func dataSourceAviVirtualService() *schema.Resource {
 			"cloud_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"cloud_type": &schema.Schema{
 				Type:     schema.TypeString,
@@ -130,6 +133,7 @@ func dataSourceAviVirtualService() *schema.Resource {
 			"error_page_profile_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"flow_dist": &schema.Schema{
 				Type:     schema.TypeString,
@@ -175,6 +179,11 @@ func dataSourceAviVirtualService() *schema.Resource {
 			"microservice_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
+			},
+			"min_pools_up": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
@@ -183,10 +192,12 @@ func dataSourceAviVirtualService() *schema.Resource {
 			"network_profile_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"network_security_policy_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"nsx_securitygroup": &schema.Schema{
 				Type:     schema.TypeList,
@@ -204,10 +215,12 @@ func dataSourceAviVirtualService() *schema.Resource {
 			"pool_group_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"pool_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"remove_listening_port_on_vs_down": &schema.Schema{
 				Type:     schema.TypeBool,
@@ -230,10 +243,17 @@ func dataSourceAviVirtualService() *schema.Resource {
 			"se_group_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
+			},
+			"security_policy_ref": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 			"server_network_profile_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"service_metadata": &schema.Schema{
 				Type:     schema.TypeString,
@@ -265,16 +285,26 @@ func dataSourceAviVirtualService() *schema.Resource {
 			"ssl_key_and_certificate_refs": &schema.Schema{
 				Type:     schema.TypeList,
 				Optional: true,
+				Computed: true,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
 			"ssl_profile_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ssl_sess_cache_avg_size": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
 				Default:  1024,
+			},
+			"sso_policy": &schema.Schema{
+				Type:     schema.TypeSet,
+				Optional: true,
+				Elem:     ResourceSSOPolicySchema(),
+				Set: func(v interface{}) int {
+					return 0
+				},
 			},
 			"static_dns_records": &schema.Schema{
 				Type:     schema.TypeList,
@@ -284,10 +314,12 @@ func dataSourceAviVirtualService() *schema.Resource {
 			"tenant_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"traffic_clone_profile_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"traffic_enabled": &schema.Schema{
 				Type:     schema.TypeBool,
@@ -311,6 +343,7 @@ func dataSourceAviVirtualService() *schema.Resource {
 			"uuid": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"vh_domain_name": &schema.Schema{
 				Type:     schema.TypeList,
@@ -329,6 +362,7 @@ func dataSourceAviVirtualService() *schema.Resource {
 			"vrf_context_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"vs_datascripts": &schema.Schema{
 				Type:     schema.TypeList,
@@ -342,10 +376,12 @@ func dataSourceAviVirtualService() *schema.Resource {
 			"vsvip_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"waf_policy_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"weight": &schema.Schema{
 				Type:     schema.TypeInt,

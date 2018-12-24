@@ -39,3 +39,4 @@ In addition to all arguments above, the following attributes are exported:
 * `test_traffic_ratio_rampup` - Ratio of the traffic that is sent to the pool under test.
 * `uuid` - Uuid of the pool group deployment policy.
 * `webhook_ref` - Webhook configured with url that avi controller will pass back information about pool group, old and new pool information and current deployment rule results.
+

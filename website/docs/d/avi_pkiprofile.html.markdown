@@ -38,3 +38,4 @@ In addition to all arguments above, the following attributes are exported:
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `uuid` - General description.
 * `validate_only_leaf_crl` - When enabled, avi will only validate the revocation status of the leaf certificate using crl.
+

@@ -89,6 +89,14 @@ func ResourceCloudSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  false,
 		},
+		"gcp_configuration": &schema.Schema{
+			Type:     schema.TypeSet,
+			Optional: true,
+			Elem:     ResourceGCPConfigurationSchema(),
+			Set: func(v interface{}) int {
+				return 0
+			},
+		},
 		"ip6_autocfg_enabled": &schema.Schema{
 			Type:     schema.TypeBool,
 			Optional: true,

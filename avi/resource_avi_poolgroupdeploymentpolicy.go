@@ -50,6 +50,7 @@ func ResourcePoolGroupDeploymentPolicySchema() map[string]*schema.Schema {
 		"tenant_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"test_traffic_ratio_rampup": &schema.Schema{
 			Type:     schema.TypeInt,
@@ -64,6 +65,7 @@ func ResourcePoolGroupDeploymentPolicySchema() map[string]*schema.Schema {
 		"webhook_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 	}
 }

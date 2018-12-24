@@ -39,3 +39,4 @@ In addition to all arguments above, the following attributes are exported:
 * `syslog_config_ref` - Select the syslog notification configuration to use when sending alerts via syslog.
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `uuid` - General description.
+

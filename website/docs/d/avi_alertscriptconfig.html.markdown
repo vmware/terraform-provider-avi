@@ -32,3 +32,4 @@ In addition to all arguments above, the following attributes are exported:
 * `name` - A user-friendly name of the script.
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `uuid` - General description.
+

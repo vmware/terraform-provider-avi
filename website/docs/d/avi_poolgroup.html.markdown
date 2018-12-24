@@ -25,7 +25,7 @@ data "PoolGroup" "foo_PoolGroup" {
 * `name` - (Optional) Search PoolGroup by name.
 * `uuid` - (Optional) Search PoolGroup by uuid.
 * `cloud_ref` - (Optional) Search PoolGroup by cloud_ref.
-
+  
 ## Attributes Reference
 
 In addition to all arguments above, the following attributes are exported:
@@ -41,5 +41,7 @@ In addition to all arguments above, the following attributes are exported:
 * `min_servers` - The minimum number of servers to distribute traffic to.
 * `name` - The name of the pool group.
 * `priority_labels_ref` - Uuid of the priority labels.
+* `service_metadata` - Metadata pertaining to the service provided by this poolgroup.
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `uuid` - Uuid of the pool group.
+

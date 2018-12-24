@@ -2,12 +2,11 @@ package avi
 
 import (
 	"fmt"
-	"strings"
-	"testing"
-
 	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform/helper/resource"
 	"github.com/hashicorp/terraform/terraform"
+	"strings"
+	"testing"
 )
 
 func TestAVIPoolBasic(t *testing.T) {
@@ -19,16 +18,16 @@ func TestAVIPoolBasic(t *testing.T) {
 			{
 				Config: testAccAVIPoolConfig,
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckAVIPoolExists("avi_pool.testpool"),
+					testAccCheckAVIPoolExists("avi_pool.testPool"),
 					resource.TestCheckResourceAttr(
-						"avi_pool.testpool", "name", "p42-test")),
+						"avi_pool.testPool", "name", "testPool")),
 			},
 			{
-				Config: testAccUpdatedAVIPoolConfig,
+				Config: testAccAVIPoolupdatedConfig,
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckAVIPoolExists("avi_pool.testpool"),
+					testAccCheckAVIPoolExists("avi_pool.testPool"),
 					resource.TestCheckResourceAttr(
-						"avi_pool.testpool", "name", "p42-abc")),
+						"avi_pool.testPool", "name", "testPool-abc")),
 			},
 		},
 	})
@@ -44,7 +43,7 @@ func testAccCheckAVIPoolExists(resourcename string) resource.TestCheckFunc {
 			return fmt.Errorf("Not found: %s", resourcename)
 		}
 		if rs.Primary.ID == "" {
-			return fmt.Errorf("No AVI POOL ID is set")
+			return fmt.Errorf("No AVI Pool ID is set")
 		}
 		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
 		uuid := strings.Split(url, "#")[0]
@@ -84,62 +83,58 @@ func testAccCheckAVIPoolDestroy(s *terraform.State) error {
 
 const testAccAVIPoolConfig = `
 data "avi_tenant" "default_tenant"{
-	name= "admin"
+        name= "admin"
 }
-  
 data "avi_cloud" "default_cloud" {
-	name= "Default-Cloud"
+        name= "Default-Cloud"
 }
-data "avi_vrfcontext" "global_vrf" {
-	name= "global"
+resource "avi_pool" "testPool" {
+"ignore_servers" = false
+"name" = "testPool"
+"health_monitor_refs" = ["/api/healthmonitor/?name=System-HTTP"]
+"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
+"servers" {
+"ip" {
+"type" = "V4"
+"addr" = "10.90.64.66"
 }
-
-resource "avi_pool" "testpool" {
-  name= "p42-test",
-  "tenant_ref" = "${data.avi_tenant.default_tenant.id}"
-  cloud_ref= "${data.avi_cloud.default_cloud.id}"
-  ignore_servers = false
-  servers {
-    ip= {
-      type= "V4",
-      addr= "10.90.64.66",
-    }
-    port= 8080
-	enabled = false
-  }
-  fail_action= {
-    type= "FAIL_ACTION_CLOSE_CONN"
-  }
+"hostname" = "10.90.64.66"
+"ratio" = "1"
+"port" = "8080"
+"enabled" = true
+}
+"cloud_ref" = "${data.avi_cloud.default_cloud.id}"
+"fail_action" {
+"type" = "FAIL_ACTION_CLOSE_CONN"
+}
 }
 `
 
-const testAccUpdatedAVIPoolConfig = `
+const testAccAVIPoolupdatedConfig = `
 data "avi_tenant" "default_tenant"{
-	name= "admin"
+        name= "admin"
 }
-
 data "avi_cloud" "default_cloud" {
-	name= "Default-Cloud"
+        name= "Default-Cloud"
 }
-data "avi_vrfcontext" "global_vrf" {
-	name= "global"
+resource "avi_pool" "testPool" {
+"ignore_servers" = false
+"name" = "testPool-abc"
+"health_monitor_refs" = ["/api/healthmonitor/?name=System-HTTP"]
+"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
+"servers" {
+"ip" {
+"type" = "V4"
+"addr" = "10.90.64.66"
 }
-
-resource "avi_pool" "testpool" {
-  name= "p42-abc",
-  "tenant_ref" = "${data.avi_tenant.default_tenant.id}"
-  cloud_ref= "${data.avi_cloud.default_cloud.id}"
-  ignore_servers = false
-  servers {
-    ip= {
-      type= "V4",
-      addr= "10.90.64.66",
-    }
-    port= 8080
-	enabled = false
-  }
-  fail_action= {
-    type= "FAIL_ACTION_CLOSE_CONN"
-  }
+"hostname" = "10.90.64.66"
+"ratio" = "1"
+"port" = "8080"
+"enabled" = true
+}
+"cloud_ref" = "${data.avi_cloud.default_cloud.id}"
+"fail_action" {
+"type" = "FAIL_ACTION_CLOSE_CONN"
+}
 }
 `

@@ -26,7 +26,7 @@ The following arguments are supported:
     * `se_agent_properties` - (Optional ) argument_description.
         * `se_bootup_properties` - (Optional ) argument_description.
         * `se_runtime_properties` - (Optional ) argument_description.
-
+        
 ### Timeouts
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
@@ -40,3 +40,4 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 In addition to all arguments above, the following attributes are exported:
 
                 * `uuid` - argument_description.
+    

@@ -30,6 +30,7 @@ In addition to all arguments above, the following attributes are exported:
 
 * `azure_serviceprincipal` - Field introduced in 17.2.1.
 * `azure_userpass` - Field introduced in 17.2.1.
+* `gcp_credentials` - Credentials for google cloud platform.
 * `name` - General description.
 * `oci_credentials` - Credentials for oracle cloud infrastructure.
 * `password` - General description.
@@ -37,3 +38,4 @@ In addition to all arguments above, the following attributes are exported:
 * `public_key` - General description.
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `uuid` - General description.
+

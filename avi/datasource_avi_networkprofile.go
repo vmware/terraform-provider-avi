@@ -27,8 +27,7 @@ func dataSourceAviNetworkProfile() *schema.Resource {
 			"profile": &schema.Schema{
 				Type:     schema.TypeSet,
 				Optional: true,
-
-				Elem: ResourceNetworkProfileUnionSchema(),
+				Elem:     ResourceNetworkProfileUnionSchema(),
 				Set: func(v interface{}) int {
 					return 0
 				},
@@ -41,6 +40,7 @@ func dataSourceAviNetworkProfile() *schema.Resource {
 			"uuid": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 		},
 	}

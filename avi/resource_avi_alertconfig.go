@@ -17,6 +17,7 @@ func ResourceAlertConfigSchema() map[string]*schema.Schema {
 		"action_group_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"alert_rule": &schema.Schema{
 			Type:     schema.TypeSet,
@@ -80,6 +81,7 @@ func ResourceAlertConfigSchema() map[string]*schema.Schema {
 		"tenant_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"threshold": &schema.Schema{
 			Type:     schema.TypeInt,

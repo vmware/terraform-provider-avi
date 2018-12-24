@@ -57,6 +57,7 @@ The following arguments are supported:
         * `limit_doser` - (Optional ) argument_description.
         * `max_cps_per_client` - (Optional ) argument_description.
         * `microservice_ref` - (Optional ) argument_description.
+        * `min_pools_up` - (Optional ) argument_description.
         * `name` - (Required) argument_description.
         * `network_profile_ref` - (Optional ) argument_description.
         * `network_security_policy_ref` - (Optional ) argument_description.
@@ -68,6 +69,7 @@ The following arguments are supported:
         * `requests_rate_limit` - (Optional ) argument_description.
         * `scaleout_ecmp` - (Optional ) argument_description.
         * `se_group_ref` - (Optional ) argument_description.
+        * `security_policy_ref` - (Optional ) argument_description.
         * `server_network_profile_ref` - (Optional ) argument_description.
         * `service_metadata` - (Optional ) argument_description.
         * `service_pool_select` - (Optional ) argument_description.
@@ -77,6 +79,7 @@ The following arguments are supported:
         * `ssl_key_and_certificate_refs` - (Optional ) argument_description.
         * `ssl_profile_ref` - (Optional ) argument_description.
         * `ssl_sess_cache_avg_size` - (Optional ) argument_description.
+        * `sso_policy` - (Optional ) argument_description.
         * `static_dns_records` - (Optional ) argument_description.
         * `tenant_ref` - (Optional ) argument_description.
         * `traffic_clone_profile_ref` - (Optional ) argument_description.
@@ -93,7 +96,7 @@ The following arguments are supported:
         * `vsvip_ref` - (Optional ) argument_description.
         * `waf_policy_ref` - (Optional ) argument_description.
         * `weight` - (Optional ) argument_description.
-
+    
 ### Timeouts
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
@@ -106,4 +109,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-                                                                                                                                                                                                                                                        * `uuid` - argument_description.
+                                                                                                                                                                                                                                                                    * `uuid` - argument_description.
+                                        

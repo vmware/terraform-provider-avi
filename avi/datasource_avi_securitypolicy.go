@@ -7,58 +7,62 @@ package avi
 
 import "github.com/hashicorp/terraform/helper/schema"
 
-func dataSourceAviPoolGroupDeploymentPolicy() *schema.Resource {
+func dataSourceAviSecurityPolicy() *schema.Resource {
 	return &schema.Resource{
-		Read: ResourceAviPoolGroupDeploymentPolicyRead,
+		Read: ResourceAviSecurityPolicyRead,
 		Schema: map[string]*schema.Schema{
-			"auto_disable_old_prod_pools": &schema.Schema{
-				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  true,
-			},
 			"description": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 			},
-			"evaluation_duration": &schema.Schema{
+			"dns_attacks": &schema.Schema{
+				Type:     schema.TypeSet,
+				Optional: true,
+				Elem:     ResourceDnsAttacksSchema(),
+				Set: func(v interface{}) int {
+					return 0
+				},
+			},
+			"dns_policy_index": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
-				Default:  300,
+				Default:  0,
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 			},
-			"rules": &schema.Schema{
-				Type:     schema.TypeList,
-				Optional: true,
-				Elem:     ResourcePGDeploymentRuleSchema(),
-			},
-			"scheme": &schema.Schema{
-				Type:     schema.TypeString,
-				Optional: true,
-				Default:  "BLUE_GREEN"},
-			"target_test_traffic_ratio": &schema.Schema{
+			"network_security_policy_index": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
-				Default:  100,
+				Default:  0,
+			},
+			"oper_mode": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "DETECTION"},
+			"tcp_attacks": &schema.Schema{
+				Type:     schema.TypeSet,
+				Optional: true,
+				Elem:     ResourceTcpAttacksSchema(),
+				Set: func(v interface{}) int {
+					return 0
+				},
 			},
 			"tenant_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
-			"test_traffic_ratio_rampup": &schema.Schema{
-				Type:     schema.TypeInt,
+			"udp_attacks": &schema.Schema{
+				Type:     schema.TypeSet,
 				Optional: true,
-				Default:  100,
+				Elem:     ResourceUdpAttacksSchema(),
+				Set: func(v interface{}) int {
+					return 0
+				},
 			},
 			"uuid": &schema.Schema{
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
-			"webhook_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,

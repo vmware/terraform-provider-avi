@@ -33,3 +33,4 @@ In addition to all arguments above, the following attributes are exported:
 * `hyp_props` - Hypervisor properties.
 * `info` - Properties specific to a cloud type.
 * `uuid` - General description.
+

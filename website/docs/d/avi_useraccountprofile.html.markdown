@@ -35,3 +35,4 @@ In addition to all arguments above, the following attributes are exported:
 * `max_password_history_count` - Maximum number of passwords to be maintained in the password history.
 * `name` - General description.
 * `uuid` - General description.
+

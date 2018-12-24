@@ -33,3 +33,4 @@ In addition to all arguments above, the following attributes are exported:
 * `syslog_servers` - The list of syslog servers.
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `uuid` - General description.
+

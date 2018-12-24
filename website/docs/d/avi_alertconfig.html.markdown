@@ -46,3 +46,4 @@ In addition to all arguments above, the following attributes are exported:
 * `threshold` - An alert is created only when the number of events meets or exceeds this number within the chosen time frame.
 * `throttle` - Alerts are suppressed (throttled) for this duration of time since the last alert was raised for this alert config.
 * `uuid` - General description.
+

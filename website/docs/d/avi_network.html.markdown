@@ -25,7 +25,7 @@ data "Network" "foo_Network" {
 * `name` - (Optional) Search Network by name.
 * `uuid` - (Optional) Search Network by uuid.
 * `cloud_ref` - (Optional) Search Network by cloud_ref.
-
+  
 ## Attributes Reference
 
 In addition to all arguments above, the following attributes are exported:
@@ -41,3 +41,4 @@ In addition to all arguments above, the following attributes are exported:
 * `uuid` - General description.
 * `vcenter_dvs` - General description.
 * `vrf_context_ref` - It is a reference to an object of type vrfcontext.
+

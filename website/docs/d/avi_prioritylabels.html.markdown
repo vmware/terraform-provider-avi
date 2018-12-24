@@ -25,7 +25,7 @@ data "PriorityLabels" "foo_PriorityLabels" {
 * `name` - (Optional) Search PriorityLabels by name.
 * `uuid` - (Optional) Search PriorityLabels by uuid.
 * `cloud_ref` - (Optional) Search PriorityLabels by cloud_ref.
-
+  
 ## Attributes Reference
 
 In addition to all arguments above, the following attributes are exported:
@@ -36,3 +36,4 @@ In addition to all arguments above, the following attributes are exported:
 * `name` - The name of the priority labels.
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `uuid` - Uuid of the priority labels.
+

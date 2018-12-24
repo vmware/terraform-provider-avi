@@ -11,6 +11,19 @@ func dataSourceAviPool() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviPoolRead,
 		Schema: map[string]*schema.Schema{
+			"analytics_policy": &schema.Schema{
+				Type:     schema.TypeSet,
+				Optional: true,
+				Elem:     ResourcePoolAnalyticsPolicySchema(),
+				Set: func(v interface{}) int {
+					return 0
+				},
+			},
+			"analytics_profile_ref": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"apic_epg_name": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -53,6 +66,14 @@ func dataSourceAviPool() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+			"conn_pool_properties": &schema.Schema{
+				Type:     schema.TypeSet,
+				Optional: true,
+				Elem:     ResourceConnPoolPropertiesSchema(),
+				Set: func(v interface{}) int {
+					return 0
+				},
 			},
 			"connection_ramp_duration": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -112,6 +133,7 @@ func dataSourceAviPool() *schema.Resource {
 			"health_monitor_refs": &schema.Schema{
 				Type:     schema.TypeList,
 				Optional: true,
+				Computed: true,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
 			"host_check_enabled": &schema.Schema{
@@ -132,7 +154,8 @@ func dataSourceAviPool() *schema.Resource {
 			"lb_algorithm": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Default:  "LB_ALGORITHM_LEAST_CONNECTIONS"},
+				Default:  "LB_ALGORITHM_LEAST_CONNECTIONS",
+			},
 			"lb_algorithm_consistent_hash_hdr": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -145,7 +168,8 @@ func dataSourceAviPool() *schema.Resource {
 			"lb_algorithm_hash": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Default:  "LB_ALGORITHM_CONSISTENT_HASH_SOURCE_IP_ADDRESS"},
+				Default:  "LB_ALGORITHM_CONSISTENT_HASH_SOURCE_IP_ADDRESS",
+			},
 			"lookup_server_by_name": &schema.Schema{
 				Type:     schema.TypeBool,
 				Optional: true,
@@ -163,6 +187,14 @@ func dataSourceAviPool() *schema.Resource {
 				Set: func(v interface{}) int {
 					return 0
 				},
+			},
+			"min_health_monitors_up": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
+			"min_servers_up": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
@@ -208,11 +240,6 @@ func dataSourceAviPool() *schema.Resource {
 				Optional: true,
 				Default:  false,
 			},
-			"server_count": &schema.Schema{
-				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  0,
-			},
 			"server_name": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -225,10 +252,19 @@ func dataSourceAviPool() *schema.Resource {
 					return 0
 				},
 			},
+			"server_timeout": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Default:  0,
+			},
 			"servers": &schema.Schema{
 				Type:     schema.TypeList,
 				Optional: true,
 				Elem:     ResourceServerSchema(),
+			},
+			"service_metadata": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
 			},
 			"sni_enabled": &schema.Schema{
 				Type:     schema.TypeBool,
@@ -258,6 +294,7 @@ func dataSourceAviPool() *schema.Resource {
 			"uuid": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"vrf_ref": &schema.Schema{
 				Type:     schema.TypeString,

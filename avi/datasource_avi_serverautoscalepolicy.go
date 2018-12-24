@@ -55,6 +55,7 @@ func dataSourceAviServerAutoScalePolicy() *schema.Resource {
 			"scalein_alertconfig_refs": &schema.Schema{
 				Type:     schema.TypeList,
 				Optional: true,
+				Computed: true,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
 			"scalein_cooldown": &schema.Schema{
@@ -65,6 +66,7 @@ func dataSourceAviServerAutoScalePolicy() *schema.Resource {
 			"scaleout_alertconfig_refs": &schema.Schema{
 				Type:     schema.TypeList,
 				Optional: true,
+				Computed: true,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
 			"scaleout_cooldown": &schema.Schema{
@@ -75,6 +77,7 @@ func dataSourceAviServerAutoScalePolicy() *schema.Resource {
 			"tenant_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"use_predicted_load": &schema.Schema{
 				Type:     schema.TypeBool,
@@ -84,6 +87,7 @@ func dataSourceAviServerAutoScalePolicy() *schema.Resource {
 			"uuid": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 		},
 	}

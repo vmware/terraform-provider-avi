@@ -39,3 +39,4 @@ In addition to all arguments above, the following attributes are exported:
 * `server_hm_down_recovery` - Specifies behavior when a persistent server has been marked down by a health monitor.
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `uuid` - Uuid of the persistence profile.
+

@@ -29,7 +29,7 @@ The following arguments are supported:
         * `max_login_failure_count` - (Optional ) argument_description.
         * `max_password_history_count` - (Optional ) argument_description.
         * `name` - (Required) argument_description.
-
+        
 ### Timeouts
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
@@ -43,3 +43,4 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 In addition to all arguments above, the following attributes are exported:
 
                             * `uuid` - argument_description.
+    

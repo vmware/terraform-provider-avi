@@ -14,6 +14,11 @@ import (
 
 func ResourceWafPolicySchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
+		"allow_mode_delegation": &schema.Schema{
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  true,
+		},
 		"created_by": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
@@ -67,6 +72,7 @@ func ResourceWafPolicySchema() map[string]*schema.Schema {
 		"tenant_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"uuid": &schema.Schema{
 			Type:     schema.TypeString,
@@ -76,10 +82,12 @@ func ResourceWafPolicySchema() map[string]*schema.Schema {
 		"waf_crs_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"waf_profile_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 	}
 }

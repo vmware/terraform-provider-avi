@@ -30,6 +30,7 @@ func ResourceVSDataScriptSetSchema() map[string]*schema.Schema {
 		"ipgroup_refs": &schema.Schema{
 			Type:     schema.TypeList,
 			Optional: true,
+			Computed: true,
 			Elem:     &schema.Schema{Type: schema.TypeString},
 		},
 		"name": &schema.Schema{
@@ -39,16 +40,19 @@ func ResourceVSDataScriptSetSchema() map[string]*schema.Schema {
 		"pool_group_refs": &schema.Schema{
 			Type:     schema.TypeList,
 			Optional: true,
+			Computed: true,
 			Elem:     &schema.Schema{Type: schema.TypeString},
 		},
 		"pool_refs": &schema.Schema{
 			Type:     schema.TypeList,
 			Optional: true,
+			Computed: true,
 			Elem:     &schema.Schema{Type: schema.TypeString},
 		},
 		"string_group_refs": &schema.Schema{
 			Type:     schema.TypeList,
 			Optional: true,
+			Computed: true,
 			Elem:     &schema.Schema{Type: schema.TypeString},
 		},
 		"tenant_ref": &schema.Schema{

@@ -40,7 +40,9 @@ In addition to all arguments above, the following attributes are exported:
 * `ntp_configuration` - General description.
 * `portal_configuration` - General description.
 * `proxy_configuration` - General description.
+* `secure_channel_configuration` - Configure secure channel properties.
 * `snmp_configuration` - General description.
 * `ssh_ciphers` - Allowed ciphers list for ssh to the management interface on the controller and service engines.
 * `ssh_hmacs` - Allowed hmac list for ssh to the management interface on the controller and service engines.
 * `uuid` - General description.
+

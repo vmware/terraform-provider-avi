@@ -93,6 +93,10 @@ data "avi_cloud" "default_cloud" {
 resource "avi_vsdatascriptset" "testvsdatascriptset" {
 	name = "vsd-test"
 	tenant_ref= "${data.avi_tenant.default_tenant.id}"
+    ipgroup_refs= []
+    pool_group_refs= []
+    pool_refs= []
+    string_group_refs= []
 }
 `
 
@@ -107,5 +111,9 @@ data "avi_cloud" "default_cloud" {
 resource "avi_vsdatascriptset" "testvsdatascriptset" {
 	name = "vsd-abc"
 	tenant_ref= "${data.avi_tenant.default_tenant.id}"
+    ipgroup_refs= []
+    pool_group_refs= []
+    pool_refs= []
+    string_group_refs= []
 }
 `

@@ -34,6 +34,11 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  15,
 		},
+		"api_perf_logging_threshold": &schema.Schema{
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  10000,
+		},
 		"appviewx_compat_mode": &schema.Schema{
 			Type:     schema.TypeBool,
 			Optional: true,
@@ -64,6 +69,11 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  60,
 		},
+		"cloud_reconcile": &schema.Schema{
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  true,
+		},
 		"cluster_ip_gratuitous_arp_period": &schema.Schema{
 			Type:     schema.TypeInt,
 			Optional: true,
@@ -92,6 +102,11 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 		"dummy": &schema.Schema{
 			Type:     schema.TypeInt,
 			Optional: true,
+		},
+		"enable_api_sharding": &schema.Schema{
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  true,
 		},
 		"enable_memory_balancer": &schema.Schema{
 			Type:     schema.TypeBool,
@@ -160,6 +175,11 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Type:     schema.TypeInt,
 			Optional: true,
 			Default:  300,
+		},
+		"se_from_marketplace": &schema.Schema{
+			Type:     schema.TypeString,
+			Optional: true,
+			Default:  "IMAGE",
 		},
 		"se_offline_del": &schema.Schema{
 			Type:     schema.TypeInt,
@@ -272,6 +292,11 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Default:  120,
 		},
 		"warmstart_se_reconnect_wait_time": &schema.Schema{
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  480,
+		},
+		"warmstart_vs_resync_wait_time": &schema.Schema{
 			Type:     schema.TypeInt,
 			Optional: true,
 			Default:  300,
