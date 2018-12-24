@@ -38,3 +38,4 @@ In addition to all arguments above, the following attributes are exported:
 * `name` - Name of the http policy set.
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `uuid` - Uuid of the http policy set.
+

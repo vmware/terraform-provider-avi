@@ -23,10 +23,6 @@ func ResourceAviPoolServerSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Required: true,
 		},
-		"port": &schema.Schema{
-			Type:     schema.TypeInt,
-			Optional: true,
-		},
 		"type": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
@@ -36,9 +32,18 @@ func ResourceAviPoolServerSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
+		"availability_zone": &schema.Schema{
+			Type:     schema.TypeString,
+			Optional: true,
+		},
 		"description": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
+		},
+		"discovered_networks": &schema.Schema{
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceDiscoveredNetworkSchema(),
 		},
 		"enabled": &schema.Schema{
 			Type:     schema.TypeBool,
@@ -65,16 +70,48 @@ func ResourceAviPoolServerSchema() map[string]*schema.Schema {
 				return 0
 			},
 		},
+		"mac_address": &schema.Schema{
+			Type:     schema.TypeString,
+			Optional: true,
+		},
 		"nw_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
+		"port": &schema.Schema{
+			Type:     schema.TypeInt,
+			Optional: true,
+		},
 		"prst_hdr_val": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
 		},
+		"ratio": &schema.Schema{
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  1,
+		},
+		"resolve_server_by_dns": &schema.Schema{
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  false,
+		},
 		"rewrite_host_header": &schema.Schema{
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  false,
+		},
+		"server_node": &schema.Schema{
+			Type:     schema.TypeString,
+			Optional: true,
+		},
+		"static": &schema.Schema{
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  false,
+		},
+		"verify_network": &schema.Schema{
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  false,
@@ -163,7 +200,7 @@ func resourceAviServerCreateOrUpdate(d *schema.ResourceData, meta interface{}) e
 		pserver.PrstHdrVal = &pHdrVal
 	}
 	if Ratio, ok := d.GetOk("ratio"); ok {
-		r := Ratio.(int32)
+		r := int32(Ratio.(int))
 		pserver.Ratio = &r
 	}
 	if ResolveServerByDNS, ok := d.GetOk("resolve_server_by_dns"); ok {

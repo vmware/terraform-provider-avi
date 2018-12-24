@@ -1,19 +1,19 @@
 ---
 layout: "avi"
-page_title: "Avi: avi_vsdatascriptset"
-sidebar_current: "docs-avi-resource-vsdatascriptset"
+page_title: "Avi: avi_securitypolicy"
+sidebar_current: "docs-avi-resource-securitypolicy"
 description: |-
-  Creates and manages Avi VSDataScriptSet.
+  Creates and manages Avi SecurityPolicy.
 ---
 
-# avi_vsdatascriptset
+# avi_securitypolicy
 
-The VSDataScriptSet resource allows the creation and management of Avi VSDataScriptSet
+The SecurityPolicy resource allows the creation and management of Avi SecurityPolicy
 
 ## Example Usage
 
 ```hcl
-resource "VSDataScriptSet" "foo" {
+resource "SecurityPolicy" "foo" {
     name = "terraform-example-foo"
     tenant = "admin"
 }
@@ -23,15 +23,15 @@ resource "VSDataScriptSet" "foo" {
 
 The following arguments are supported:
 
-    * `created_by` - (Optional ) argument_description.
-        * `datascript` - (Optional ) argument_description.
-        * `description` - (Optional ) argument_description.
-        * `ipgroup_refs` - (Optional ) argument_description.
+    * `description` - (Optional ) argument_description.
+        * `dns_attacks` - (Optional ) argument_description.
+        * `dns_policy_index` - (Optional ) argument_description.
         * `name` - (Required) argument_description.
-        * `pool_group_refs` - (Optional ) argument_description.
-        * `pool_refs` - (Optional ) argument_description.
-        * `string_group_refs` - (Optional ) argument_description.
+        * `network_security_policy_index` - (Optional ) argument_description.
+        * `oper_mode` - (Optional ) argument_description.
+        * `tcp_attacks` - (Optional ) argument_description.
         * `tenant_ref` - (Optional ) argument_description.
+        * `udp_attacks` - (Optional ) argument_description.
         
 ### Timeouts
 

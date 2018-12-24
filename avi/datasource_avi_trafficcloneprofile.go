@@ -19,6 +19,7 @@ func dataSourceAviTrafficCloneProfile() *schema.Resource {
 			"cloud_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
@@ -32,10 +33,12 @@ func dataSourceAviTrafficCloneProfile() *schema.Resource {
 			"tenant_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"uuid": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 		},
 	}

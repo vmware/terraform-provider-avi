@@ -34,3 +34,4 @@ In addition to all arguments above, the following attributes are exported:
 * `service_refs` - Configure microservice(es).
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `uuid` - Uuid of the microservice group.
+

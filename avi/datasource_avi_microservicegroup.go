@@ -26,6 +26,7 @@ func dataSourceAviMicroServiceGroup() *schema.Resource {
 			"service_refs": &schema.Schema{
 				Type:     schema.TypeList,
 				Optional: true,
+				Computed: true,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
 			"tenant_ref": &schema.Schema{
@@ -36,6 +37,7 @@ func dataSourceAviMicroServiceGroup() *schema.Resource {
 			"uuid": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 		},
 	}

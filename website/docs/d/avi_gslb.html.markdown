@@ -42,3 +42,4 @@ In addition to all arguments above, the following attributes are exported:
 * `third_party_sites` - Third party site member belonging to this gslb.
 * `uuid` - Uuid of the gslb object.
 * `view_id` - The view-id is used in change-leader mode to differentiate partitioned groups while they have the same gslb namespace.
+

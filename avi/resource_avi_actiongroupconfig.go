@@ -17,6 +17,7 @@ func ResourceActionGroupConfigSchema() map[string]*schema.Schema {
 		"action_script_config_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"autoscale_trigger_notification": &schema.Schema{
 			Type:     schema.TypeBool,
@@ -30,6 +31,7 @@ func ResourceActionGroupConfigSchema() map[string]*schema.Schema {
 		"email_config_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"external_only": &schema.Schema{
 			Type:     schema.TypeBool,
@@ -46,14 +48,17 @@ func ResourceActionGroupConfigSchema() map[string]*schema.Schema {
 		"snmp_trap_profile_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"syslog_config_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"tenant_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"uuid": &schema.Schema{
 			Type:     schema.TypeString,

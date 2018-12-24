@@ -40,6 +40,7 @@ In addition to all arguments above, the following attributes are exported:
 * `east_west_dns_provider_ref` - Dns profile for east-west services.
 * `east_west_ipam_provider_ref` - Ipam profile for east-west services.
 * `enable_vip_static_routes` - Use static routes for vip side network resolution during virtualservice placement.
+* `gcp_configuration` - Google cloud platform configuration.
 * `ip6_autocfg_enabled` - Enable ipv6 auto configuration.
 * `ipam_provider_ref` - Ipam profile for the cloud.
 * `license_tier` - Specifies the default license tier which would be used by new se groups.
@@ -61,3 +62,4 @@ In addition to all arguments above, the following attributes are exported:
 * `vca_configuration` - General description.
 * `vcenter_configuration` - General description.
 * `vtype` - Cloud type.
+

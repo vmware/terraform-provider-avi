@@ -4085,7 +4085,6 @@ EOF
 "restricted_extensions" = [".asa",".asax",".ascx",".axd",".backup",".bak",".bat",".cdx",".cer",".cfg",".cmd",".com",".config",".conf",".cs",".csproj",".csr",".dat",".db",".dbf",".dll",".dos",".htr",".htw",".ida",".idc",".idq",".inc",".ini",".key",".licx",".lnk",".log",".mdb",".old",".pass",".pdb",".pol",".printer",".pwd",".resources",".resx",".sql",".sys",".vb",".vbs",".vbproj",".vsdisco",".webinfo",".xsd",".xsx"]
 "allowed_http_versions" = ["ONE_ZERO","ONE_ONE"]
 "restricted_headers" = ["Proxy-Connection","Lock-Token","Content-Range","Translate","via","if"]
-"server_response_max_body_size" = "128"
 "argument_separator" = "&"
 }
 "name" = "testSystem-WAF-Profile"
@@ -8096,7 +8095,6 @@ EOF
 "restricted_extensions" = [".asa",".asax",".ascx",".axd",".backup",".bak",".bat",".cdx",".cer",".cfg",".cmd",".com",".config",".conf",".cs",".csproj",".csr",".dat",".db",".dbf",".dll",".dos",".htr",".htw",".ida",".idc",".idq",".inc",".ini",".key",".licx",".lnk",".log",".mdb",".old",".pass",".pdb",".pol",".printer",".pwd",".resources",".resx",".sql",".sys",".vb",".vbs",".vbproj",".vsdisco",".webinfo",".xsd",".xsx"]
 "allowed_http_versions" = ["ONE_ZERO","ONE_ONE"]
 "restricted_headers" = ["Proxy-Connection","Lock-Token","Content-Range","Translate","via","if"]
-"server_response_max_body_size" = "128"
 "argument_separator" = "&"
 }
 "name" = "testSystem-WAF-Profile-abc"

@@ -33,6 +33,7 @@ func dataSourceAviCluster() *schema.Resource {
 			"uuid": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"virtual_ip": &schema.Schema{
 				Type:     schema.TypeSet,

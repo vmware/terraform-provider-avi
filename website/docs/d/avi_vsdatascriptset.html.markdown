@@ -38,3 +38,4 @@ In addition to all arguments above, the following attributes are exported:
 * `string_group_refs` - Uuid of string groups that could be referred by vsdatascriptset objects.
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `uuid` - Uuid of the virtual service datascript collection.
+

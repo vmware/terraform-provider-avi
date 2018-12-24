@@ -14,6 +14,7 @@ func dataSourceAviActionGroupConfig() *schema.Resource {
 			"action_script_config_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"autoscale_trigger_notification": &schema.Schema{
 				Type:     schema.TypeBool,
@@ -27,6 +28,7 @@ func dataSourceAviActionGroupConfig() *schema.Resource {
 			"email_config_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"external_only": &schema.Schema{
 				Type:     schema.TypeBool,
@@ -43,18 +45,22 @@ func dataSourceAviActionGroupConfig() *schema.Resource {
 			"snmp_trap_profile_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"syslog_config_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"tenant_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"uuid": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 		},
 	}

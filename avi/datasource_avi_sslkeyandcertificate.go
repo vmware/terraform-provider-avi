@@ -19,8 +19,7 @@ func dataSourceAviSSLKeyAndCertificate() *schema.Resource {
 			"certificate": &schema.Schema{
 				Type:     schema.TypeSet,
 				Optional: true,
-
-				Elem: ResourceSSLCertificateSchema(),
+				Elem:     ResourceSSLCertificateSchema(),
 				Set: func(v interface{}) int {
 					return 0
 				},
@@ -102,6 +101,7 @@ func dataSourceAviSSLKeyAndCertificate() *schema.Resource {
 			"uuid": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 		},
 	}

@@ -34,7 +34,7 @@ The following arguments are supported:
         * `prefixes` - (Optional ) argument_description.
         * `ranges` - (Optional ) argument_description.
         * `tenant_ref` - (Optional ) argument_description.
-
+        
 ### Timeouts
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
@@ -48,3 +48,4 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 In addition to all arguments above, the following attributes are exported:
 
                                                 * `uuid` - argument_description.
+    

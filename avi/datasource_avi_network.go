@@ -53,6 +53,7 @@ func dataSourceAviNetwork() *schema.Resource {
 			"uuid": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"vcenter_dvs": &schema.Schema{
 				Type:     schema.TypeBool,

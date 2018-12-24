@@ -28,6 +28,7 @@ func dataSourceAviErrorPageProfile() *schema.Resource {
 			"uuid": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 		},
 	}

@@ -15,6 +15,24 @@ import (
 
 func ResourcePoolSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
+		"ignore_servers": &schema.Schema{
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  false,
+		},
+		"analytics_policy": &schema.Schema{
+			Type:     schema.TypeSet,
+			Optional: true,
+			Elem:     ResourcePoolAnalyticsPolicySchema(),
+			Set: func(v interface{}) int {
+				return 0
+			},
+		},
+		"analytics_profile_ref": &schema.Schema{
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
 		"apic_epg_name": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
@@ -57,6 +75,14 @@ func ResourcePoolSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
+		},
+		"conn_pool_properties": &schema.Schema{
+			Type:     schema.TypeSet,
+			Optional: true,
+			Elem:     ResourceConnPoolPropertiesSchema(),
+			Set: func(v interface{}) int {
+				return 0
+			},
 		},
 		"connection_ramp_duration": &schema.Schema{
 			Type:     schema.TypeInt,
@@ -116,6 +142,7 @@ func ResourcePoolSchema() map[string]*schema.Schema {
 		"health_monitor_refs": &schema.Schema{
 			Type:     schema.TypeList,
 			Optional: true,
+			Computed: true,
 			Elem:     &schema.Schema{Type: schema.TypeString},
 		},
 		"host_check_enabled": &schema.Schema{
@@ -170,6 +197,14 @@ func ResourcePoolSchema() map[string]*schema.Schema {
 				return 0
 			},
 		},
+		"min_health_monitors_up": &schema.Schema{
+			Type:     schema.TypeInt,
+			Optional: true,
+		},
+		"min_servers_up": &schema.Schema{
+			Type:     schema.TypeInt,
+			Optional: true,
+		},
 		"name": &schema.Schema{
 			Type:     schema.TypeString,
 			Required: true,
@@ -214,11 +249,6 @@ func ResourcePoolSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  false,
 		},
-		"server_count": &schema.Schema{
-			Type:     schema.TypeInt,
-			Optional: true,
-			Computed: true,
-		},
 		"server_name": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
@@ -231,10 +261,19 @@ func ResourcePoolSchema() map[string]*schema.Schema {
 				return 0
 			},
 		},
+		"server_timeout": &schema.Schema{
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  0,
+		},
 		"servers": &schema.Schema{
 			Type:     schema.TypeList,
 			Optional: true,
 			Elem:     ResourceServerSchema(),
+		},
+		"service_metadata": &schema.Schema{
+			Type:     schema.TypeString,
+			Optional: true,
 		},
 		"sni_enabled": &schema.Schema{
 			Type:     schema.TypeBool,
@@ -270,11 +309,6 @@ func ResourcePoolSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
-		},
-		"ignore_servers": &schema.Schema{
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
 		},
 	}
 }

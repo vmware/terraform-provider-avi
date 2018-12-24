@@ -25,7 +25,7 @@ data "TrafficCloneProfile" "foo_TrafficCloneProfile" {
 * `name` - (Optional) Search TrafficCloneProfile by name.
 * `uuid` - (Optional) Search TrafficCloneProfile by uuid.
 * `cloud_ref` - (Optional) Search TrafficCloneProfile by cloud_ref.
-
+  
 ## Attributes Reference
 
 In addition to all arguments above, the following attributes are exported:
@@ -36,3 +36,4 @@ In addition to all arguments above, the following attributes are exported:
 * `preserve_client_ip` - Specifies if client ip needs to be preserved to clone destination.
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `uuid` - Uuid of the traffic clone profile.
+

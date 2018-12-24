@@ -74,6 +74,7 @@ func dataSourceAviGslb() *schema.Resource {
 			"uuid": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"view_id": &schema.Schema{
 				Type:     schema.TypeInt,

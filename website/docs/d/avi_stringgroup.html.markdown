@@ -34,3 +34,4 @@ In addition to all arguments above, the following attributes are exported:
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `type` - Type of stringgroup.
 * `uuid` - Uuid of the string group.
+

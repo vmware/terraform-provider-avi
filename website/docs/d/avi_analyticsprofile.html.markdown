@@ -52,6 +52,8 @@ In addition to all arguments above, the following attributes are exported:
 * `disable_ondemand_metrics` - Virtual service (vs) metrics are processed only when there is live data traffic on the vs.
 * `disable_se_analytics` - Disable node (service engine) level analytics forvs metrics.
 * `disable_server_analytics` - Disable analytics on backend servers.
+* `disable_vs_analytics` - Disable virtualservice (frontend) analytics.
+* `enable_advanced_analytics` - Enables advanced analytics features like anomaly detection.
 * `exclude_client_close_before_request_as_error` - Exclude client closed connection before an http request could be completed from being classified as an error.
 * `exclude_dns_policy_drop_as_significant` - Exclude dns policy drops from the list of errors.
 * `exclude_gs_down_as_error` - Exclude queries to gslb services that are operationally down from the list of errors.
@@ -63,9 +65,11 @@ In addition to all arguments above, the following attributes are exported:
 * `exclude_persistence_change_as_error` - Exclude persistence server changed while load balancing' from the list of errors.
 * `exclude_server_dns_error_as_error` - Exclude server dns error response from the list of errors.
 * `exclude_server_tcp_reset_as_error` - Exclude server tcp reset from errors.
+* `exclude_sip_error_codes` - List of sip status codes to be excluded from being classified as an error.
 * `exclude_syn_retransmit_as_error` - Exclude 'server unanswered syns' from the list of errors.
 * `exclude_tcp_reset_as_error` - Exclude tcp resets by client from the list of potential errors.
 * `exclude_unsupported_dns_query_as_error` - Exclude unsupported dns queries from the list of errors.
+* `healthscore_max_server_limit` - Skips health score computation of pool servers when number of servers in a pool is more than this setting.
 * `hs_event_throttle_window` - Time window (in secs) within which only unique health change events should occur.
 * `hs_max_anomaly_penalty` - Maximum penalty that may be deducted from health score for anomalies.
 * `hs_max_resources_penalty` - Maximum penalty that may be deducted from health score for high resource utilization.
@@ -97,5 +101,7 @@ In addition to all arguments above, the following attributes are exported:
 * `ranges` - List of http status code ranges to be excluded from being classified as an error.
 * `resp_code_block` - Block of http response codes to be excluded from being classified as an error.
 * `sensitive_log_profile` - Rules applied to the http application log for filtering sensitive information.
+* `sip_log_depth` - Maximum number of sip messages added in logs for a sip transaction.
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `uuid` - Uuid of the analytics profile.
+

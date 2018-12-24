@@ -44,3 +44,4 @@ In addition to all arguments above, the following attributes are exported:
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `use_predicted_load` - Use predicted load rather than current load.
 * `uuid` - General description.
+

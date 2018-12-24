@@ -35,10 +35,11 @@ The following arguments are supported:
         * `ntp_configuration` - (Optional ) argument_description.
         * `portal_configuration` - (Optional ) argument_description.
         * `proxy_configuration` - (Optional ) argument_description.
+        * `secure_channel_configuration` - (Optional ) argument_description.
         * `snmp_configuration` - (Optional ) argument_description.
         * `ssh_ciphers` - (Optional ) argument_description.
         * `ssh_hmacs` - (Optional ) argument_description.
-
+        
 ### Timeouts
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
@@ -51,4 +52,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-                                                                * `uuid` - argument_description.
+                                                                    * `uuid` - argument_description.
+    

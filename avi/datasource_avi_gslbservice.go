@@ -14,6 +14,7 @@ func dataSourceAviGslbService() *schema.Resource {
 			"application_persistence_profile_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"controller_health_status_enabled": &schema.Schema{
 				Type:     schema.TypeBool,
@@ -54,6 +55,7 @@ func dataSourceAviGslbService() *schema.Resource {
 			"health_monitor_refs": &schema.Schema{
 				Type:     schema.TypeList,
 				Optional: true,
+				Computed: true,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
 			"health_monitor_scope": &schema.Schema{
@@ -90,6 +92,7 @@ func dataSourceAviGslbService() *schema.Resource {
 			"tenant_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ttl": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -103,6 +106,7 @@ func dataSourceAviGslbService() *schema.Resource {
 			"uuid": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"wildcard_match": &schema.Schema{
 				Type:     schema.TypeBool,

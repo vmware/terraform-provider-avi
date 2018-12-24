@@ -90,6 +90,8 @@ data "avi_tenant" "default_tenant"{
 resource "avi_serverautoscalepolicy" "testserverautoscalepolicy" {
 	name = "ssp-test"
 	tenant_ref= "${data.avi_tenant.default_tenant.id}"
+    scalein_alertconfig_refs= []
+    scaleout_alertconfig_refs= []
 }
 `
 
@@ -101,5 +103,7 @@ data "avi_tenant" "default_tenant"{
 resource "avi_serverautoscalepolicy" "testserverautoscalepolicy" {
 	name = "ssp-abc"
 	tenant_ref= "${data.avi_tenant.default_tenant.id}"
+    scalein_alertconfig_refs= []
+    scaleout_alertconfig_refs= []
 }
 `

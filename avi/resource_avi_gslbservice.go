@@ -58,6 +58,7 @@ func ResourceGslbServiceSchema() map[string]*schema.Schema {
 		"health_monitor_refs": &schema.Schema{
 			Type:     schema.TypeList,
 			Optional: true,
+			Computed: true,
 			Elem:     &schema.Schema{Type: schema.TypeString},
 		},
 		"health_monitor_scope": &schema.Schema{

@@ -47,6 +47,8 @@ The following arguments are supported:
         * `disable_ondemand_metrics` - (Optional ) argument_description.
         * `disable_se_analytics` - (Optional ) argument_description.
         * `disable_server_analytics` - (Optional ) argument_description.
+        * `disable_vs_analytics` - (Optional ) argument_description.
+        * `enable_advanced_analytics` - (Optional ) argument_description.
         * `exclude_client_close_before_request_as_error` - (Optional ) argument_description.
         * `exclude_dns_policy_drop_as_significant` - (Optional ) argument_description.
         * `exclude_gs_down_as_error` - (Optional ) argument_description.
@@ -58,9 +60,11 @@ The following arguments are supported:
         * `exclude_persistence_change_as_error` - (Optional ) argument_description.
         * `exclude_server_dns_error_as_error` - (Optional ) argument_description.
         * `exclude_server_tcp_reset_as_error` - (Optional ) argument_description.
+        * `exclude_sip_error_codes` - (Optional ) argument_description.
         * `exclude_syn_retransmit_as_error` - (Optional ) argument_description.
         * `exclude_tcp_reset_as_error` - (Optional ) argument_description.
         * `exclude_unsupported_dns_query_as_error` - (Optional ) argument_description.
+        * `healthscore_max_server_limit` - (Optional ) argument_description.
         * `hs_event_throttle_window` - (Optional ) argument_description.
         * `hs_max_anomaly_penalty` - (Optional ) argument_description.
         * `hs_max_resources_penalty` - (Optional ) argument_description.
@@ -92,8 +96,9 @@ The following arguments are supported:
         * `ranges` - (Optional ) argument_description.
         * `resp_code_block` - (Optional ) argument_description.
         * `sensitive_log_profile` - (Optional ) argument_description.
+        * `sip_log_depth` - (Optional ) argument_description.
         * `tenant_ref` - (Optional ) argument_description.
-
+        
 ### Timeouts
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
@@ -106,4 +111,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-                                                                                                                                                                                                                                                                                            * `uuid` - argument_description.
+                                                                                                                                                                                                                                                                                                                * `uuid` - argument_description.
+    

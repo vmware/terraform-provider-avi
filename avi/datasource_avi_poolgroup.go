@@ -18,6 +18,7 @@ func dataSourceAviPoolGroup() *schema.Resource {
 			"cloud_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"created_by": &schema.Schema{
 				Type:     schema.TypeString,
@@ -26,6 +27,7 @@ func dataSourceAviPoolGroup() *schema.Resource {
 			"deployment_policy_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"description": &schema.Schema{
 				Type:     schema.TypeString,
@@ -61,14 +63,21 @@ func dataSourceAviPoolGroup() *schema.Resource {
 			"priority_labels_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
+			},
+			"service_metadata": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
 			},
 			"tenant_ref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"uuid": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 		},
 	}

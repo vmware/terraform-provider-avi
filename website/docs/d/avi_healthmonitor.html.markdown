@@ -46,3 +46,4 @@ In addition to all arguments above, the following attributes are exported:
 * `type` - Type of the health monitor.
 * `udp_monitor` - General description.
 * `uuid` - Uuid of the health monitor.
+

@@ -147,7 +147,6 @@ resource "avi_applicationprofile" "testApplicationProfile" {
 "max_response_headers_size" = "48"
 "xff_alternate_name" = "X-Forwarded-For"
 "max_rps_cip" = "0"
-"client_max_body_size" = "0"
 "enable_fire_and_forget" = false
 "max_rps_unknown_cip" = "0"
 "max_bad_rps_cip_uri" = "0"
@@ -226,7 +225,6 @@ resource "avi_applicationprofile" "testApplicationProfile" {
 "max_response_headers_size" = "48"
 "xff_alternate_name" = "X-Forwarded-For"
 "max_rps_cip" = "0"
-"client_max_body_size" = "0"
 "enable_fire_and_forget" = false
 "max_rps_unknown_cip" = "0"
 "max_bad_rps_cip_uri" = "0"

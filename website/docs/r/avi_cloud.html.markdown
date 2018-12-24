@@ -35,6 +35,7 @@ The following arguments are supported:
         * `east_west_dns_provider_ref` - (Optional ) argument_description.
         * `east_west_ipam_provider_ref` - (Optional ) argument_description.
         * `enable_vip_static_routes` - (Optional ) argument_description.
+        * `gcp_configuration` - (Optional ) argument_description.
         * `ip6_autocfg_enabled` - (Optional ) argument_description.
         * `ipam_provider_ref` - (Optional ) argument_description.
         * `license_tier` - (Optional ) argument_description.
@@ -55,7 +56,7 @@ The following arguments are supported:
             * `vca_configuration` - (Optional ) argument_description.
         * `vcenter_configuration` - (Optional ) argument_description.
         * `vtype` - (Required) argument_description.
-
+    
 ### Timeouts
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
@@ -68,4 +69,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-                                                                                                                        * `uuid` - argument_description.
+                                                                                                                            * `uuid` - argument_description.
+                

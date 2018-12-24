@@ -25,7 +25,7 @@ data "VirtualService" "foo_VirtualService" {
 * `name` - (Optional) Search VirtualService by name.
 * `uuid` - (Optional) Search VirtualService by uuid.
 * `cloud_ref` - (Optional) Search VirtualService by cloud_ref.
-
+  
 ## Attributes Reference
 
 In addition to all arguments above, the following attributes are exported:
@@ -40,7 +40,7 @@ In addition to all arguments above, the following attributes are exported:
 * `close_client_conn_on_config_update` - Close client connection on vs config update.
 * `cloud_config_cksum` - Checksum of cloud configuration for vs.
 * `cloud_ref` - It is a reference to an object of type cloud.
-* `cloud_type` - Enum options - cloud_none, cloud_vcenter, cloud_openstack, cloud_aws, cloud_vca, cloud_apic, cloud_mesos, cloud_linuxserver, cloud_docker_ucp, cloud_rancher, cloud_oshift_k8s, cloud_azure.
+* `cloud_type` - Enum options - cloud_none, cloud_vcenter, cloud_openstack, cloud_aws, cloud_vca, cloud_apic, cloud_mesos, cloud_linuxserver, cloud_docker_ucp, cloud_rancher, cloud_oshift_k8s, cloud_azure, cloud_gcp.
 * `connections_rate_limit` - Rate limit the incoming connections to this virtual service.
 * `content_rewrite` - Profile used to match and rewrite strings in request and/or response body.
 * `created_by` - Creator name.
@@ -64,6 +64,7 @@ In addition to all arguments above, the following attributes are exported:
 * `limit_doser` - Limit potential dos attackers who exceed max_cps_per_client significantly to a fraction of max_cps_per_client for a while.
 * `max_cps_per_client` - Maximum connections per second per client ip.
 * `microservice_ref` - Microservice representing the virtual service.
+* `min_pools_up` - Minimum number of up pools to mark vs up.
 * `name` - Name for the virtual service.
 * `network_profile_ref` - Determines network settings such as protocol, tcp or udp, and related options for the protocol.
 * `network_security_policy_ref` - Network security policies for the virtual service.
@@ -75,6 +76,7 @@ In addition to all arguments above, the following attributes are exported:
 * `requests_rate_limit` - Rate limit the incoming requests to this virtual service.
 * `scaleout_ecmp` - Disable re-distribution of flows across service engines for a virtual service.
 * `se_group_ref` - The service engine group to use for this virtual service.
+* `security_policy_ref` - Security policy applied on the traffic of the virtual service.
 * `server_network_profile_ref` - Determines the network settings profile for the server side of tcp proxied connections.
 * `service_metadata` - Metadata pertaining to the service provided by this virtual service.
 * `service_pool_select` - Select pool based on destination port.
@@ -84,6 +86,7 @@ In addition to all arguments above, the following attributes are exported:
 * `ssl_key_and_certificate_refs` - Select or create one or two certificates, ec and/or rsa, that will be presented to ssl/tls terminated connections.
 * `ssl_profile_ref` - Determines the set of ssl versions and ciphers to accept for ssl/tls terminated connections.
 * `ssl_sess_cache_avg_size` - Expected number of ssl session cache entries (may be exceeded).
+* `sso_policy` - Client authentication and authorization policy for the virtualservice.
 * `static_dns_records` - List of static dns records applied to this virtual service.
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `traffic_clone_profile_ref` - Server network or list of servers for cloning traffic.
@@ -101,3 +104,4 @@ In addition to all arguments above, the following attributes are exported:
 * `vsvip_ref` - Mostly used during the creation of shared vs, this field refers to entities that can be shared across virtual services.
 * `waf_policy_ref` - Waf policy for the virtual service.
 * `weight` - The quality of service weight to assign to traffic transmitted from this virtual service.
+

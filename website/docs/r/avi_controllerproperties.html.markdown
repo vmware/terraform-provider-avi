@@ -34,12 +34,14 @@ The following arguments are supported:
         * `bm_use_ansible` - (Optional ) argument_description.
         * `cleanup_expired_authtoken_timeout_period` - (Optional ) argument_description.
         * `cleanup_sessions_timeout_period` - (Optional ) argument_description.
+        * `cloud_reconcile` - (Optional ) argument_description.
         * `cluster_ip_gratuitous_arp_period` - (Optional ) argument_description.
         * `consistency_check_timeout_period` - (Optional ) argument_description.
         * `crashed_se_reboot` - (Optional ) argument_description.
         * `dead_se_detection_timer` - (Optional ) argument_description.
         * `dns_refresh_period` - (Optional ) argument_description.
         * `dummy` - (Optional ) argument_description.
+        * `enable_api_sharding` - (Optional ) argument_description.
         * `enable_memory_balancer` - (Optional ) argument_description.
         * `fatal_error_lease_time` - (Optional ) argument_description.
         * `max_dead_se_in_grp` - (Optional ) argument_description.
@@ -78,7 +80,7 @@ The following arguments are supported:
         * `vs_se_vnic_ip_fail` - (Optional ) argument_description.
         * `warmstart_se_reconnect_wait_time` - (Optional ) argument_description.
         * `warmstart_vs_resync_wait_time` - (Optional ) argument_description.
-
+    
 ### Timeouts
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
@@ -91,4 +93,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-                                                                                                                                                                                * `uuid` - argument_description.
+                                                                                                                                                                                        * `uuid` - argument_description.
+                                                    

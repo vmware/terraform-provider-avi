@@ -36,3 +36,4 @@ In addition to all arguments above, the following attributes are exported:
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `use_external_asg` - If set to true, serverautoscalepolicy will use the autoscaling group (external_autoscaling_groups) from pool to perform scale up and scale down.
 * `uuid` - General description.
+

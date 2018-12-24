@@ -14,6 +14,14 @@ import (
 
 func ResourceApplicationProfileSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
+		"cloud_config_cksum": &schema.Schema{
+			Type:     schema.TypeString,
+			Optional: true,
+		},
+		"created_by": &schema.Schema{
+			Type:     schema.TypeString,
+			Optional: true,
+		},
 		"description": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
@@ -75,6 +83,7 @@ func ResourceApplicationProfileSchema() map[string]*schema.Schema {
 		"tenant_ref": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"type": &schema.Schema{
 			Type:     schema.TypeString,

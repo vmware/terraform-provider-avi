@@ -39,12 +39,14 @@ In addition to all arguments above, the following attributes are exported:
 * `bm_use_ansible` - Use ansible for se creation in baremetal.
 * `cleanup_expired_authtoken_timeout_period` - Period for auth token cleanup job.
 * `cleanup_sessions_timeout_period` - Period for sessions cleanup job.
+* `cloud_reconcile` - Enable/disable periodic reconcile for all the clouds.
 * `cluster_ip_gratuitous_arp_period` - Period for cluster ip gratuitous arp job.
 * `consistency_check_timeout_period` - Period for consistency check job.
 * `crashed_se_reboot` - General description.
 * `dead_se_detection_timer` - General description.
 * `dns_refresh_period` - Period for refresh pool and gslb dns job.
 * `dummy` - General description.
+* `enable_api_sharding` - This setting enables the controller leader to shard api requests to the followers (if any).
 * `enable_memory_balancer` - Enable/disable memory balancer.
 * `fatal_error_lease_time` - General description.
 * `max_dead_se_in_grp` - General description.
@@ -84,3 +86,4 @@ In addition to all arguments above, the following attributes are exported:
 * `vs_se_vnic_ip_fail` - General description.
 * `warmstart_se_reconnect_wait_time` - General description.
 * `warmstart_vs_resync_wait_time` - Timeout for warmstart vs resync.
+

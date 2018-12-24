@@ -49,3 +49,4 @@ In addition to all arguments above, the following attributes are exported:
 * `use_edns_client_subnet` - Use the client ip subnet from the edns option as source ipaddress for client geo-location and consistent hash algorithm.
 * `uuid` - Uuid of the gslb service.
 * `wildcard_match` - Enable wild-card match of fqdn  if an exact match is not found in the dns table, the longest match is chosen by wild-carding the fqdn in the dns request.
+
