@@ -43,9 +43,6 @@ func ResourceClusterSchema() map[string]*schema.Schema {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceIpAddrSchema(),
-			Set: func(v interface{}) int {
-				return 0
-			},
 		},
 	}
 }

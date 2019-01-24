@@ -60,17 +60,11 @@ func dataSourceAviAnalyticsProfile() *schema.Resource {
 				Type:     schema.TypeSet,
 				Optional: true,
 				Elem:     ResourceClientLogConfigurationSchema(),
-				Set: func(v interface{}) int {
-					return 0
-				},
 			},
 			"client_log_streaming_config": &schema.Schema{
 				Type:     schema.TypeSet,
 				Optional: true,
 				Elem:     ResourceClientLogStreamingConfigSchema(),
-				Set: func(v interface{}) int {
-					return 0
-				},
 			},
 			"conn_lossy_ooo_threshold": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -354,9 +348,6 @@ func dataSourceAviAnalyticsProfile() *schema.Resource {
 				Type:     schema.TypeSet,
 				Optional: true,
 				Elem:     ResourceSensitiveLogProfileSchema(),
-				Set: func(v interface{}) int {
-					return 0
-				},
 			},
 			"sip_log_depth": &schema.Schema{
 				Type:     schema.TypeInt,

@@ -38,9 +38,6 @@ func dataSourceAviGslbService() *schema.Resource {
 				Type:     schema.TypeSet,
 				Optional: true,
 				Elem:     ResourceGslbServiceDownResponseSchema(),
-				Set: func(v interface{}) int {
-					return 0
-				},
 			},
 			"enabled": &schema.Schema{
 				Type:     schema.TypeBool,
@@ -62,6 +59,10 @@ func dataSourceAviGslbService() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Default:  "GSLB_SERVICE_HEALTH_MONITOR_ALL_MEMBERS"},
+			"hm_off": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+			},
 			"is_federated": &schema.Schema{
 				Type:     schema.TypeBool,
 				Optional: true,

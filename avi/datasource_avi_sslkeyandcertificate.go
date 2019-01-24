@@ -20,9 +20,6 @@ func dataSourceAviSSLKeyAndCertificate() *schema.Resource {
 				Type:     schema.TypeSet,
 				Optional: true,
 				Elem:     ResourceSSLCertificateSchema(),
-				Set: func(v interface{}) int {
-					return 0
-				},
 			},
 			"certificate_base64": &schema.Schema{
 				Type:     schema.TypeBool,
@@ -73,9 +70,6 @@ func dataSourceAviSSLKeyAndCertificate() *schema.Resource {
 				Type:     schema.TypeSet,
 				Optional: true,
 				Elem:     ResourceSSLKeyParamsSchema(),
-				Set: func(v interface{}) int {
-					return 0
-				},
 			},
 			"key_passphrase": &schema.Schema{
 				Type:     schema.TypeString,

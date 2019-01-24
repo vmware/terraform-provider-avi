@@ -30,25 +30,16 @@ func ResourceHTTPPolicySetSchema() map[string]*schema.Schema {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceHTTPRequestPolicySchema(),
-			Set: func(v interface{}) int {
-				return 0
-			},
 		},
 		"http_response_policy": &schema.Schema{
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceHTTPResponsePolicySchema(),
-			Set: func(v interface{}) int {
-				return 0
-			},
 		},
 		"http_security_policy": &schema.Schema{
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceHTTPSecurityPolicySchema(),
-			Set: func(v interface{}) int {
-				return 0
-			},
 		},
 		"is_internal_policy": &schema.Schema{
 			Type:     schema.TypeBool,

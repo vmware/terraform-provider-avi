@@ -38,6 +38,11 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeBool,
 				Optional: true,
 			},
+			"app_cache_percent": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Default:  0,
+			},
 			"archive_shm_limit": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -374,9 +379,6 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeSet,
 				Optional: true,
 				Elem:     ResourceIpAddrPrefixSchema(),
-				Set: func(v interface{}) int {
-					return 0
-				},
 			},
 			"min_cpu_usage": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -453,9 +455,6 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeSet,
 				Optional: true,
 				Elem:     ResourceMetricsRealTimeUpdateSchema(),
-				Set: func(v interface{}) int {
-					return 0
-				},
 			},
 			"se_bandwidth_type": &schema.Schema{
 				Type:     schema.TypeString,
@@ -470,9 +469,6 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeSet,
 				Optional: true,
 				Elem:     ResourceDosThresholdProfileSchema(),
-				Set: func(v interface{}) int {
-					return 0
-				},
 			},
 			"se_dpdk_pmd": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -537,9 +533,6 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeSet,
 				Optional: true,
 				Elem:     ResourcePortRangeSchema(),
-				Set: func(v interface{}) int {
-					return 0
-				},
 			},
 			"se_tunnel_mode": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -620,9 +613,6 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeSet,
 				Optional: true,
 				Elem:     ResourceVcenterClustersSchema(),
-				Set: func(v interface{}) int {
-					return 0
-				},
 			},
 			"vcenter_datastore_mode": &schema.Schema{
 				Type:     schema.TypeString,
@@ -646,9 +636,6 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeSet,
 				Optional: true,
 				Elem:     ResourceVcenterHostsSchema(),
-				Set: func(v interface{}) int {
-					return 0
-				},
 			},
 			"vcpus_per_se": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -659,9 +646,6 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeSet,
 				Optional: true,
 				Elem:     ResourceVipAutoscaleGroupSchema(),
-				Set: func(v interface{}) int {
-					return 0
-				},
 			},
 			"vs_host_redundancy": &schema.Schema{
 				Type:     schema.TypeBool,
@@ -702,9 +686,6 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeSet,
 				Optional: true,
 				Elem:     ResourceVssPlacementSchema(),
-				Set: func(v interface{}) int {
-					return 0
-				},
 			},
 			"vss_placement_enabled": &schema.Schema{
 				Type:     schema.TypeBool,

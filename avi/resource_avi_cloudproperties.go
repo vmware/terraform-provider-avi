@@ -18,9 +18,6 @@ func ResourceCloudPropertiesSchema() map[string]*schema.Schema {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceCC_PropertiesSchema(),
-			Set: func(v interface{}) int {
-				return 0
-			},
 		},
 		"cc_vtypes": &schema.Schema{
 			Type:     schema.TypeList,

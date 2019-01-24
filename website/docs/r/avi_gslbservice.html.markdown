@@ -33,6 +33,7 @@ The following arguments are supported:
         * `groups` - (Optional ) argument_description.
         * `health_monitor_refs` - (Optional ) argument_description.
         * `health_monitor_scope` - (Optional ) argument_description.
+        * `hm_off` - (Optional ) argument_description.
         * `is_federated` - (Optional ) argument_description.
         * `min_members` - (Optional ) argument_description.
         * `name` - (Required) argument_description.
@@ -56,5 +57,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-                                                                                * `uuid` - argument_description.
+                                                                                    * `uuid` - argument_description.
         

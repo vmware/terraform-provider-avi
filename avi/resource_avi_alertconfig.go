@@ -23,9 +23,6 @@ func ResourceAlertConfigSchema() map[string]*schema.Schema {
 			Type:     schema.TypeSet,
 			Required: true,
 			Elem:     ResourceAlertRuleSchema(),
-			Set: func(v interface{}) int {
-				return 0
-			},
 		},
 		"autoscale_alert": &schema.Schema{
 			Type:     schema.TypeBool,

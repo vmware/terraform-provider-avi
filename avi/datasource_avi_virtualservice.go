@@ -19,9 +19,6 @@ func dataSourceAviVirtualService() *schema.Resource {
 				Type:     schema.TypeSet,
 				Optional: true,
 				Elem:     ResourceAnalyticsPolicySchema(),
-				Set: func(v interface{}) int {
-					return 0
-				},
 			},
 			"analytics_profile_ref": &schema.Schema{
 				Type:     schema.TypeString,
@@ -46,9 +43,6 @@ func dataSourceAviVirtualService() *schema.Resource {
 				Type:     schema.TypeSet,
 				Optional: true,
 				Elem:     ResourceHTTPClientAuthenticationParamsSchema(),
-				Set: func(v interface{}) int {
-					return 0
-				},
 			},
 			"close_client_conn_on_config_update": &schema.Schema{
 				Type:     schema.TypeBool,
@@ -72,17 +66,11 @@ func dataSourceAviVirtualService() *schema.Resource {
 				Type:     schema.TypeSet,
 				Optional: true,
 				Elem:     ResourceRateProfileSchema(),
-				Set: func(v interface{}) int {
-					return 0
-				},
 			},
 			"content_rewrite": &schema.Schema{
 				Type:     schema.TypeSet,
 				Optional: true,
 				Elem:     ResourceContentRewriteProfileSchema(),
-				Set: func(v interface{}) int {
-					return 0
-				},
 			},
 			"created_by": &schema.Schema{
 				Type:     schema.TypeString,
@@ -208,9 +196,6 @@ func dataSourceAviVirtualService() *schema.Resource {
 				Type:     schema.TypeSet,
 				Optional: true,
 				Elem:     ResourcePerformanceLimitsSchema(),
-				Set: func(v interface{}) int {
-					return 0
-				},
 			},
 			"pool_group_ref": &schema.Schema{
 				Type:     schema.TypeString,
@@ -231,9 +216,6 @@ func dataSourceAviVirtualService() *schema.Resource {
 				Type:     schema.TypeSet,
 				Optional: true,
 				Elem:     ResourceRateProfileSchema(),
-				Set: func(v interface{}) int {
-					return 0
-				},
 			},
 			"scaleout_ecmp": &schema.Schema{
 				Type:     schema.TypeBool,
@@ -273,9 +255,6 @@ func dataSourceAviVirtualService() *schema.Resource {
 				Type:     schema.TypeSet,
 				Optional: true,
 				Elem:     ResourceSidebandProfileSchema(),
-				Set: func(v interface{}) int {
-					return 0
-				},
 			},
 			"snat_ip": &schema.Schema{
 				Type:     schema.TypeList,
@@ -302,9 +281,6 @@ func dataSourceAviVirtualService() *schema.Resource {
 				Type:     schema.TypeSet,
 				Optional: true,
 				Elem:     ResourceSSOPolicySchema(),
-				Set: func(v interface{}) int {
-					return 0
-				},
 			},
 			"static_dns_records": &schema.Schema{
 				Type:     schema.TypeList,

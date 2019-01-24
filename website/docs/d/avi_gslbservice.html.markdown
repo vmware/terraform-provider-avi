@@ -38,6 +38,7 @@ In addition to all arguments above, the following attributes are exported:
 * `groups` - Select list of pools belonging to this gslb service.
 * `health_monitor_refs` - Verify vs health by applying one or more health monitors.
 * `health_monitor_scope` - Health monitor probe can be executed for all the members or it can be executed only for third-party members.
+* `hm_off` - This field is an internal field and is used in se.
 * `is_federated` - This field indicates that this object is replicated across gslb federation.
 * `min_members` - The minimum number of members to distribute traffic to.
 * `name` - Name for the gslb service.

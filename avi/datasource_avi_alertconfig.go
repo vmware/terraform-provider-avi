@@ -20,9 +20,6 @@ func dataSourceAviAlertConfig() *schema.Resource {
 				Type:     schema.TypeSet,
 				Optional: true,
 				Elem:     ResourceAlertRuleSchema(),
-				Set: func(v interface{}) int {
-					return 0
-				},
 			},
 			"autoscale_alert": &schema.Schema{
 				Type:     schema.TypeBool,

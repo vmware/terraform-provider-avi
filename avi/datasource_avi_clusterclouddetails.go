@@ -15,9 +15,6 @@ func dataSourceAviClusterCloudDetails() *schema.Resource {
 				Type:     schema.TypeSet,
 				Optional: true,
 				Elem:     ResourceAzureClusterInfoSchema(),
-				Set: func(v interface{}) int {
-					return 0
-				},
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,

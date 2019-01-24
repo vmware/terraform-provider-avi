@@ -19,17 +19,11 @@ func dataSourceAviHealthMonitor() *schema.Resource {
 				Type:     schema.TypeSet,
 				Optional: true,
 				Elem:     ResourceHealthMonitorDNSSchema(),
-				Set: func(v interface{}) int {
-					return 0
-				},
 			},
 			"external_monitor": &schema.Schema{
 				Type:     schema.TypeSet,
 				Optional: true,
 				Elem:     ResourceHealthMonitorExternalSchema(),
-				Set: func(v interface{}) int {
-					return 0
-				},
 			},
 			"failed_checks": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -40,17 +34,11 @@ func dataSourceAviHealthMonitor() *schema.Resource {
 				Type:     schema.TypeSet,
 				Optional: true,
 				Elem:     ResourceHealthMonitorHttpSchema(),
-				Set: func(v interface{}) int {
-					return 0
-				},
 			},
 			"https_monitor": &schema.Schema{
 				Type:     schema.TypeSet,
 				Optional: true,
 				Elem:     ResourceHealthMonitorHttpSchema(),
-				Set: func(v interface{}) int {
-					return 0
-				},
 			},
 			"is_federated": &schema.Schema{
 				Type:     schema.TypeBool,
@@ -79,9 +67,6 @@ func dataSourceAviHealthMonitor() *schema.Resource {
 				Type:     schema.TypeSet,
 				Optional: true,
 				Elem:     ResourceHealthMonitorSIPSchema(),
-				Set: func(v interface{}) int {
-					return 0
-				},
 			},
 			"successful_checks": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -92,9 +77,6 @@ func dataSourceAviHealthMonitor() *schema.Resource {
 				Type:     schema.TypeSet,
 				Optional: true,
 				Elem:     ResourceHealthMonitorTcpSchema(),
-				Set: func(v interface{}) int {
-					return 0
-				},
 			},
 			"tenant_ref": &schema.Schema{
 				Type:     schema.TypeString,
@@ -109,9 +91,6 @@ func dataSourceAviHealthMonitor() *schema.Resource {
 				Type:     schema.TypeSet,
 				Optional: true,
 				Elem:     ResourceHealthMonitorUdpSchema(),
-				Set: func(v interface{}) int {
-					return 0
-				},
 			},
 			"uuid": &schema.Schema{
 				Type:     schema.TypeString,

@@ -18,25 +18,16 @@ func ResourceSePropertiesSchema() map[string]*schema.Schema {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceSeAgentPropertiesSchema(),
-			Set: func(v interface{}) int {
-				return 0
-			},
 		},
 		"se_bootup_properties": &schema.Schema{
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceSeBootupPropertiesSchema(),
-			Set: func(v interface{}) int {
-				return 0
-			},
 		},
 		"se_runtime_properties": &schema.Schema{
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceSeRuntimePropertiesSchema(),
-			Set: func(v interface{}) int {
-				return 0
-			},
 		},
 		"uuid": &schema.Schema{
 			Type:     schema.TypeString,

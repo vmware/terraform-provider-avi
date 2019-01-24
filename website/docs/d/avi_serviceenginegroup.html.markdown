@@ -36,6 +36,7 @@ In addition to all arguments above, the following attributes are exported:
 * `aggressive_failure_detection` - Enable aggressive failover configuration for ha.
 * `algo` - In compact placement, virtual services are placed on existing ses until max_vs_per_se limit is reached.
 * `allow_burst` - Allow ses to be created using burst license.
+* `app_cache_percent` - A percent value of total se memory reserved for application caching.
 * `archive_shm_limit` - Amount of se memory in gb until which shared memory is collected in core archive.
 * `async_ssl` - Ssl handshakes will be handled by dedicated ssl threads.
 * `async_ssl_threads` - Number of async ssl threads per se_dp.

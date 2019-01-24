@@ -62,9 +62,6 @@ func dataSourceAviServer() *schema.Resource {
 				Type:     schema.TypeSet,
 				Optional: true,
 				Elem:     ResourceGeoLocationSchema(),
-				Set: func(v interface{}) int {
-					return 0
-				},
 			},
 			"mac_address": &schema.Schema{
 				Type:     schema.TypeString,

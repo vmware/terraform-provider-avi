@@ -64,9 +64,6 @@ func dataSourceAviServiceEngine() *schema.Resource {
 				Type:     schema.TypeSet,
 				Optional: true,
 				Elem:     ResourcevNICSchema(),
-				Set: func(v interface{}) int {
-					return 0
-				},
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
@@ -76,9 +73,6 @@ func dataSourceAviServiceEngine() *schema.Resource {
 				Type:     schema.TypeSet,
 				Optional: true,
 				Elem:     ResourceSeResourcesSchema(),
-				Set: func(v interface{}) int {
-					return 0
-				},
 			},
 			"se_group_ref": &schema.Schema{
 				Type:     schema.TypeString,

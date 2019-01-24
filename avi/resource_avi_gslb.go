@@ -23,9 +23,6 @@ func ResourceGslbSchema() map[string]*schema.Schema {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceGslbClientIpAddrGroupSchema(),
-			Set: func(v interface{}) int {
-				return 0
-			},
 		},
 		"description": &schema.Schema{
 			Type:     schema.TypeString,

@@ -28,9 +28,6 @@ func dataSourceAviL4PolicySet() *schema.Resource {
 				Type:     schema.TypeSet,
 				Optional: true,
 				Elem:     ResourceL4ConnectionPolicySchema(),
-				Set: func(v interface{}) int {
-					return 0
-				},
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,

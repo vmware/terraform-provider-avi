@@ -31,9 +31,6 @@ func ResourceL4PolicySetSchema() map[string]*schema.Schema {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceL4ConnectionPolicySchema(),
-			Set: func(v interface{}) int {
-				return 0
-			},
 		},
 		"name": &schema.Schema{
 			Type:     schema.TypeString,

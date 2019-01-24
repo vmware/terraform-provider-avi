@@ -23,9 +23,6 @@ func dataSourceAviAutoScaleLaunchConfig() *schema.Resource {
 				Type:     schema.TypeSet,
 				Optional: true,
 				Elem:     ResourceAutoScaleMesosSettingsSchema(),
-				Set: func(v interface{}) int {
-					return 0
-				},
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
@@ -35,9 +32,6 @@ func dataSourceAviAutoScaleLaunchConfig() *schema.Resource {
 				Type:     schema.TypeSet,
 				Optional: true,
 				Elem:     ResourceAutoScaleOpenStackSettingsSchema(),
-				Set: func(v interface{}) int {
-					return 0
-				},
 			},
 			"tenant_ref": &schema.Schema{
 				Type:     schema.TypeString,

@@ -39,9 +39,6 @@ func dataSourceAviCluster() *schema.Resource {
 				Type:     schema.TypeSet,
 				Optional: true,
 				Elem:     ResourceIpAddrSchema(),
-				Set: func(v interface{}) int {
-					return 0
-				},
 			},
 		},
 	}

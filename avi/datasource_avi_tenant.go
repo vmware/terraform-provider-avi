@@ -15,9 +15,6 @@ func dataSourceAviTenant() *schema.Resource {
 				Type:     schema.TypeSet,
 				Optional: true,
 				Elem:     ResourceTenantConfigurationSchema(),
-				Set: func(v interface{}) int {
-					return 0
-				},
 			},
 			"created_by": &schema.Schema{
 				Type:     schema.TypeString,

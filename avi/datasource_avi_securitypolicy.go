@@ -19,9 +19,6 @@ func dataSourceAviSecurityPolicy() *schema.Resource {
 				Type:     schema.TypeSet,
 				Optional: true,
 				Elem:     ResourceDnsAttacksSchema(),
-				Set: func(v interface{}) int {
-					return 0
-				},
 			},
 			"dns_policy_index": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -45,9 +42,6 @@ func dataSourceAviSecurityPolicy() *schema.Resource {
 				Type:     schema.TypeSet,
 				Optional: true,
 				Elem:     ResourceTcpAttacksSchema(),
-				Set: func(v interface{}) int {
-					return 0
-				},
 			},
 			"tenant_ref": &schema.Schema{
 				Type:     schema.TypeString,
@@ -58,9 +52,6 @@ func dataSourceAviSecurityPolicy() *schema.Resource {
 				Type:     schema.TypeSet,
 				Optional: true,
 				Elem:     ResourceUdpAttacksSchema(),
-				Set: func(v interface{}) int {
-					return 0
-				},
 			},
 			"uuid": &schema.Schema{
 				Type:     schema.TypeString,

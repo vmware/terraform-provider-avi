@@ -37,9 +37,6 @@ func dataSourceAviPoolGroup() *schema.Resource {
 				Type:     schema.TypeSet,
 				Optional: true,
 				Elem:     ResourceFailActionSchema(),
-				Set: func(v interface{}) int {
-					return 0
-				},
 			},
 			"implicit_priority_labels": &schema.Schema{
 				Type:     schema.TypeBool,

@@ -15,9 +15,6 @@ func dataSourceAviVrfContext() *schema.Resource {
 				Type:     schema.TypeSet,
 				Optional: true,
 				Elem:     ResourceBgpProfileSchema(),
-				Set: func(v interface{}) int {
-					return 0
-				},
 			},
 			"cloud_ref": &schema.Schema{
 				Type:     schema.TypeString,
@@ -28,9 +25,6 @@ func dataSourceAviVrfContext() *schema.Resource {
 				Type:     schema.TypeSet,
 				Optional: true,
 				Elem:     ResourceDebugVrfContextSchema(),
-				Set: func(v interface{}) int {
-					return 0
-				},
 			},
 			"description": &schema.Schema{
 				Type:     schema.TypeString,
@@ -45,9 +39,6 @@ func dataSourceAviVrfContext() *schema.Resource {
 				Type:     schema.TypeSet,
 				Optional: true,
 				Elem:     ResourceInternalGatewayMonitorSchema(),
-				Set: func(v interface{}) int {
-					return 0
-				},
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,

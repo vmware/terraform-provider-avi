@@ -18,9 +18,6 @@ func ResourceHardwareSecurityModuleGroupSchema() map[string]*schema.Schema {
 			Type:     schema.TypeSet,
 			Required: true,
 			Elem:     ResourceHardwareSecurityModuleSchema(),
-			Set: func(v interface{}) int {
-				return 0
-			},
 		},
 		"name": &schema.Schema{
 			Type:     schema.TypeString,

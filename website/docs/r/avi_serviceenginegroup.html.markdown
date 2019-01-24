@@ -29,6 +29,7 @@ The following arguments are supported:
         * `aggressive_failure_detection` - (Optional ) argument_description.
         * `algo` - (Optional ) argument_description.
         * `allow_burst` - (Optional ) argument_description.
+        * `app_cache_percent` - (Optional ) argument_description.
         * `archive_shm_limit` - (Optional ) argument_description.
         * `async_ssl` - (Optional ) argument_description.
         * `async_ssl_threads` - (Optional ) argument_description.
@@ -179,5 +180,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            * `uuid` - argument_description.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * `uuid` - argument_description.
                                                                                         

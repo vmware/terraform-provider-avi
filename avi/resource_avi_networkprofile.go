@@ -31,9 +31,6 @@ func ResourceNetworkProfileSchema() map[string]*schema.Schema {
 			Type:     schema.TypeSet,
 			Required: true,
 			Elem:     ResourceNetworkProfileUnionSchema(),
-			Set: func(v interface{}) int {
-				return 0
-			},
 		},
 		"tenant_ref": &schema.Schema{
 			Type:     schema.TypeString,

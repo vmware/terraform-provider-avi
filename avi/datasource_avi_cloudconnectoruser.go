@@ -15,25 +15,16 @@ func dataSourceAviCloudConnectorUser() *schema.Resource {
 				Type:     schema.TypeSet,
 				Optional: true,
 				Elem:     ResourceAzureServicePrincipalCredentialsSchema(),
-				Set: func(v interface{}) int {
-					return 0
-				},
 			},
 			"azure_userpass": &schema.Schema{
 				Type:     schema.TypeSet,
 				Optional: true,
 				Elem:     ResourceAzureUserPassCredentialsSchema(),
-				Set: func(v interface{}) int {
-					return 0
-				},
 			},
 			"gcp_credentials": &schema.Schema{
 				Type:     schema.TypeSet,
 				Optional: true,
 				Elem:     ResourceGCPCredentialsSchema(),
-				Set: func(v interface{}) int {
-					return 0
-				},
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
@@ -43,9 +34,6 @@ func dataSourceAviCloudConnectorUser() *schema.Resource {
 				Type:     schema.TypeSet,
 				Optional: true,
 				Elem:     ResourceOCICredentialsSchema(),
-				Set: func(v interface{}) int {
-					return 0
-				},
 			},
 			"password": &schema.Schema{
 				Type:     schema.TypeString,

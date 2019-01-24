@@ -60,9 +60,6 @@ func ResourceSSLProfileSchema() map[string]*schema.Schema {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceSSLRatingSchema(),
-			Set: func(v interface{}) int {
-				return 0
-			},
 		},
 		"ssl_session_timeout": &schema.Schema{
 			Type:     schema.TypeInt,

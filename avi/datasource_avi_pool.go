@@ -15,9 +15,6 @@ func dataSourceAviPool() *schema.Resource {
 				Type:     schema.TypeSet,
 				Optional: true,
 				Elem:     ResourcePoolAnalyticsPolicySchema(),
-				Set: func(v interface{}) int {
-					return 0
-				},
 			},
 			"analytics_profile_ref": &schema.Schema{
 				Type:     schema.TypeString,
@@ -71,9 +68,6 @@ func dataSourceAviPool() *schema.Resource {
 				Type:     schema.TypeSet,
 				Optional: true,
 				Elem:     ResourceConnPoolPropertiesSchema(),
-				Set: func(v interface{}) int {
-					return 0
-				},
 			},
 			"connection_ramp_duration": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -116,9 +110,6 @@ func dataSourceAviPool() *schema.Resource {
 				Type:     schema.TypeSet,
 				Optional: true,
 				Elem:     ResourceFailActionSchema(),
-				Set: func(v interface{}) int {
-					return 0
-				},
 			},
 			"fewest_tasks_feedback_delay": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -184,9 +175,6 @@ func dataSourceAviPool() *schema.Resource {
 				Type:     schema.TypeSet,
 				Optional: true,
 				Elem:     ResourceRateProfileSchema(),
-				Set: func(v interface{}) int {
-					return 0
-				},
 			},
 			"min_health_monitors_up": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -248,9 +236,6 @@ func dataSourceAviPool() *schema.Resource {
 				Type:     schema.TypeSet,
 				Optional: true,
 				Elem:     ResourceHTTPServerReselectSchema(),
-				Set: func(v interface{}) int {
-					return 0
-				},
 			},
 			"server_timeout": &schema.Schema{
 				Type:     schema.TypeInt,

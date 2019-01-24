@@ -30,25 +30,16 @@ func ResourceApplicationProfileSchema() map[string]*schema.Schema {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceDnsServiceApplicationProfileSchema(),
-			Set: func(v interface{}) int {
-				return 0
-			},
 		},
 		"dos_rl_profile": &schema.Schema{
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceDosRateLimitProfileSchema(),
-			Set: func(v interface{}) int {
-				return 0
-			},
 		},
 		"http_profile": &schema.Schema{
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceHTTPApplicationProfileSchema(),
-			Set: func(v interface{}) int {
-				return 0
-			},
 		},
 		"name": &schema.Schema{
 			Type:     schema.TypeString,
@@ -68,17 +59,11 @@ func ResourceApplicationProfileSchema() map[string]*schema.Schema {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceSipServiceApplicationProfileSchema(),
-			Set: func(v interface{}) int {
-				return 0
-			},
 		},
 		"tcp_app_profile": &schema.Schema{
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceTCPApplicationProfileSchema(),
-			Set: func(v interface{}) int {
-				return 0
-			},
 		},
 		"tenant_ref": &schema.Schema{
 			Type:     schema.TypeString,
