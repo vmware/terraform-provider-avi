@@ -1,3 +1,22 @@
+
+############################################################################
+#
+# AVI CONFIDENTIAL
+# __________________
+#
+# [2013] - [2019] Avi Networks Incorporated
+# All Rights Reserved.
+#
+# NOTICE: All information contained herein is, and remains the property
+# of Avi Networks Incorporated and its suppliers, if any. The intellectual
+# and technical concepts contained herein are proprietary to Avi Networks
+# Incorporated, and its suppliers and are covered by U.S. and Foreign
+# Patents, patents in process, and are protected by trade secret or
+# copyright law, and other laws. Dissemination of this information or
+# reproduction of this material is strictly forbidden unless prior written
+# permission is obtained from Avi Networks Incorporated.
+###
+
 ---
 layout: "avi"
 page_title: "AVI: avi_cloud"
@@ -30,6 +49,7 @@ In addition to all arguments above, the following attributes are exported:
 
 * `apic_configuration` - General description.
 * `apic_mode` - General description.
+* `autoscale_polling_interval` - Cloudconnector polling interval for external autoscale groups.
 * `aws_configuration` - General description.
 * `azure_configuration` - Field introduced in 17.2.1.
 * `cloudstack_configuration` - General description.
@@ -46,7 +66,6 @@ In addition to all arguments above, the following attributes are exported:
 * `license_tier` - Specifies the default license tier which would be used by new se groups.
 * `license_type` - If no license type is specified then default license enforcement for the cloud type is chosen.
 * `linuxserver_configuration` - General description.
-* `mesos_configuration` - General description.
 * `mtu` - Mtu setting for the cloud.
 * `name` - General description.
 * `nsx_configuration` - Configuration parameters for nsx manager.

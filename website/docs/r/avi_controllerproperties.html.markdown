@@ -1,3 +1,22 @@
+
+############################################################################
+#
+# AVI CONFIDENTIAL
+# __________________
+#
+# [2013] - [2019] Avi Networks Incorporated
+# All Rights Reserved.
+#
+# NOTICE: All information contained herein is, and remains the property
+# of Avi Networks Incorporated and its suppliers, if any. The intellectual
+# and technical concepts contained herein are proprietary to Avi Networks
+# Incorporated, and its suppliers and are covered by U.S. and Foreign
+# Patents, patents in process, and are protected by trade secret or
+# copyright law, and other laws. Dissemination of this information or
+# reproduction of this material is strictly forbidden unless prior written
+# permission is obtained from Avi Networks Incorporated.
+###
+
 ---
 layout: "avi"
 page_title: "Avi: avi_controllerproperties"
@@ -72,6 +91,7 @@ The following arguments are supported:
         * `vs_apic_scaleout_timeout` - (Optional ) argument_description.
         * `vs_awaiting_se_timeout` - (Optional ) argument_description.
         * `vs_key_rotate_period` - (Optional ) argument_description.
+        * `vs_scaleout_ready_check_interval` - (Optional ) argument_description.
         * `vs_se_attach_ip_fail` - (Optional ) argument_description.
         * `vs_se_bootup_fail` - (Optional ) argument_description.
         * `vs_se_create_fail` - (Optional ) argument_description.
@@ -94,4 +114,4 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 In addition to all arguments above, the following attributes are exported:
 
                                                                                                                                                                                         * `uuid` - argument_description.
-                                                    
+                                                        

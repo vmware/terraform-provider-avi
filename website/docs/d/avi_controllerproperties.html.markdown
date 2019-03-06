@@ -1,3 +1,22 @@
+
+############################################################################
+#
+# AVI CONFIDENTIAL
+# __________________
+#
+# [2013] - [2019] Avi Networks Incorporated
+# All Rights Reserved.
+#
+# NOTICE: All information contained herein is, and remains the property
+# of Avi Networks Incorporated and its suppliers, if any. The intellectual
+# and technical concepts contained herein are proprietary to Avi Networks
+# Incorporated, and its suppliers and are covered by U.S. and Foreign
+# Patents, patents in process, and are protected by trade secret or
+# copyright law, and other laws. Dissemination of this information or
+# reproduction of this material is strictly forbidden unless prior written
+# permission is obtained from Avi Networks Incorporated.
+###
+
 ---
 layout: "avi"
 page_title: "AVI: avi_controllerproperties"
@@ -78,6 +97,7 @@ In addition to all arguments above, the following attributes are exported:
 * `vs_apic_scaleout_timeout` - Time to wait for the scaled out se to become ready before marking the scaleout done, applies to apic configuration only.
 * `vs_awaiting_se_timeout` - General description.
 * `vs_key_rotate_period` - Period for rotate vs keys job.
+* `vs_scaleout_ready_check_interval` - Interval for checking scaleout_ready status while controller is waiting for scaleoutready rpc from the service engine.
 * `vs_se_attach_ip_fail` - Time to wait before marking attach ip operation on an se as failed.
 * `vs_se_bootup_fail` - General description.
 * `vs_se_create_fail` - General description.
