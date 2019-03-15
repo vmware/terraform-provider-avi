@@ -333,70 +333,68 @@ func ResourcePoolImporter(d *schema.ResourceData, m interface{}) ([]*schema.Reso
 
 func ResourceAviPoolRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourcePoolSchema()
+	ignoreServers := d.Get("ignore_servers").(bool)
 	err := ApiRead(d, meta, "pool", s)
 	if err != nil {
 		log.Printf("[ERROR] in reading object %v\n", err)
+	} else {
+		log.Printf("[ERROR] ignore_servers %v so clearing servers\n", ignoreServers)
+		if ignoreServers {
+			d.Set("servers", nil)
+			d.Set("ignore_servers", ignoreServers)
+		}
 	}
 	return err
 }
 
 func resourceAviPoolCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourcePoolSchema()
+	ignoreServers := false
 	if ignore_servers, ok := d.GetOk("ignore_servers"); ok {
 		if servers, ok := d.GetOk("servers"); ok && ignore_servers.(bool) && servers != nil {
 			log.Printf("[ERROR] cannot set ignore_servers and servers together.")
 			err := errors.New("Error Invalid Plan. cannot set ignore_servers and servers together.")
 			return err
 		}
+		ignoreServers = true
 	}
 	err := ApiCreateOrUpdate(d, meta, "pool", s)
 	if err == nil {
 		err = ResourceAviPoolRead(d, meta)
 	}
+
+	if ignoreServers {
+		log.Printf("[DEBUG] ignore_servers %v so clearing servers\n", ignoreServers)
+		d.Set("servers", nil)
+		d.Set("ignore_servers", ignoreServers)
+	}
+
 	return err
 }
 
 func resourceAviPoolUpdate(d *schema.ResourceData, meta interface{}) error {
 	var err error
-	set_ignore_servers := false
 	s := ResourcePoolSchema()
 
-	if ignore_servers, ok := d.GetOk("ignore_servers"); ok {
+	if ignore_servers, ok := d.GetOk("ignore_servers"); ok && ignore_servers.(bool) {
 		if servers, ok := d.GetOk("servers"); ok && ignore_servers.(bool) && servers != nil {
 			log.Printf("[ERROR] cannot set ignore_servers and servers together.")
 			err = errors.New("Error Invalid Plan. cannot set ignore_servers and servers together.")
 			return err
 		}
-		client := meta.(*clients.AviClient)
-		pUUID := UUIDFromID(d.Id())
-		path := "api/pool" + "/" + pUUID
-		log.Printf("[DEBUG] resourceAviPoolUpdate reading object with id %v\n", pUUID)
-		var obj interface{}
-		var apiResponse interface{}
-		err = client.AviSession.Get(path, &obj)
+		err = ApiCreateOrUpdate(d, meta, "pool", s, true)
 		if err == nil {
-			// found pool so unpack it
-			td := make(map[string]interface{})
-			if localData, err := SchemaToAviData(d, s); err == nil {
-				apiResponse, err = SetDefaultsInAPIRes(obj, localData, s)
-			} else {
-				log.Printf("[ERROR] resourceAviPool in SchemaToAviData: %v\n", err)
-			}
-			if _, err := ApiDataToSchema(apiResponse, td, s); err == nil {
-				log.Printf("[DEBUG] read servers %v from existing object ", td["servers"])
-				d.Set("servers", td["servers"])
-			}
-		} else {
-			d.SetId("")
-			log.Printf("[ERROR] ApiRead object with uuid %v not found err %v\n", pUUID, err)
+			err = ResourceAviPoolRead(d, meta)
 		}
-		set_ignore_servers = true
+		d.Set("servers", nil)
+		d.Set("ignore_servers", true)
+	} else {
+		err = ApiCreateOrUpdate(d, meta, "pool", s)
+		if err == nil {
+			err = ResourceAviPoolRead(d, meta)
+		}
 	}
-	err = ApiCreateOrUpdate(d, meta, "pool", s)
-	if err == nil {
-		err = ResourceAviPoolRead(d, meta)
-	}
-	d.Set("ignore_servers", set_ignore_servers)
+
 	return err
 }
 

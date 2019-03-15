@@ -110,7 +110,6 @@ resource "avi_virtualservice" "test_vs" {
 resource "avi_healthmonitor" "test_hm_1" {
   name = "healthmonitor1"
   type = "HEALTH_MONITOR_HTTP"
-  tenant_ref= "${avi_tenant.test_tenant.id}"
 }
 
 resource "avi_pool" "testpool" {

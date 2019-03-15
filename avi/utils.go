@@ -238,10 +238,16 @@ func SetIDFromObj(d *schema.ResourceData, robj interface{}) {
 	}
 }
 
-func ApiCreateOrUpdate(d *schema.ResourceData, meta interface{}, objType string, s map[string]*schema.Schema) error {
+func ApiCreateOrUpdate(d *schema.ResourceData, meta interface{}, objType string, s map[string]*schema.Schema,
+	opts ...bool) error {
 	client := meta.(*clients.AviClient)
 	var robj interface{}
 	obj := d
+
+	usePatchForUpdate := false
+	if len(opts) > 0 {
+		usePatchForUpdate = opts[0]
+	}
 
 	if data, err := SchemaToAviData(obj, s); err == nil {
 		path := "api/" + objType
@@ -254,7 +260,11 @@ func ApiCreateOrUpdate(d *schema.ResourceData, meta interface{}, objType string,
 			}
 		} else if uuid, ok := d.GetOk("uuid"); ok {
 			path = path + "/" + uuid.(string) + "?skip_default=true"
-			err = client.AviSession.Put(path, data, &robj)
+			if !usePatchForUpdate {
+				err = client.AviSession.Put(path, data, &robj)
+			} else {
+				err = client.AviSession.Patch(path, data, "replace", &robj)
+			}
 			if err != nil {
 				log.Printf("[ERROR] ApiCreateOrUpdate: PUT Error %v path %v id %v\n", err, path, d.Id())
 			}
@@ -300,7 +310,11 @@ func ApiCreateOrUpdate(d *schema.ResourceData, meta interface{}, objType string,
 					SetIDFromObj(d, existing_obj)
 					uuid = existing_obj.(map[string]interface{})["uuid"].(string)
 					path = path + "/" + uuid.(string) + "?skip_default=true"
-					err = client.AviSession.Put(path, data, &robj)
+					if !usePatchForUpdate {
+						err = client.AviSession.Put(path, data, &robj)
+					} else {
+						err = client.AviSession.Patch(path, data, "replace", &robj)
+					}
 					if err != nil {
 						log.Printf("[ERROR] ApiCreateOrUpdate: PUT Error %v path %v id %v\n", err, path, d.Id())
 					}
