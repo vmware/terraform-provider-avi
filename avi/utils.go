@@ -247,14 +247,7 @@ func ApiCreateOrUpdate(d *schema.ResourceData, meta interface{}, objType string,
 
 	if data, err := SchemaToAviData(obj, s); err == nil {
 		path := "api/" + objType
-		specialobj := false
-		for _, o_type := range post_not_allowed {
-			if o_type == objType {
-				log.Printf("[INFO] ApiCreateOrUpdate: Found special object type %v", objType)
-				specialobj = true
-				break
-			}
-		}
+		specialobj := IsPostNotAllowed(objType)
 		if specialobj {
 			path = path + "?skip_default=true"
 			err = client.AviSession.Put(path, data, &robj)
@@ -339,14 +332,7 @@ func ApiRead(d *schema.ResourceData, meta interface{}, objType string, s map[str
 	var path string
 	uuid := ""
 	url := ""
-	specialobj := false
-	for _, o_type := range post_not_allowed {
-		if o_type == objType {
-			log.Printf("[INFO] ApiRead: Found special object type %v", objType)
-			specialobj = true
-			break
-		}
-	}
+	specialobj := IsPostNotAllowed(objType)
 	log.Printf("[DEBUG] ApiRead reading object with objType %v id %v\n", objType, d.Id())
 	if d.Id() != "" {
 		// extract the uuid from it.
@@ -610,4 +596,16 @@ func UUIDFromID(Id string) string {
 	// need to strip #xxx if present
 	nu := strings.Split(idParts, "#")
 	return nu[0]
+}
+
+func IsPostNotAllowed(objtype string) bool {
+	specialobj := false
+	for _, o_type := range post_not_allowed {
+		if o_type == objtype {
+			log.Printf("[INFO] ApiRead: Found special object type %v", objtype)
+			specialobj = true
+			break
+		}
+	}
+	return specialobj
 }
