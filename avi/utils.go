@@ -18,6 +18,8 @@ import (
 	"strings"
 )
 
+var post_not_allowed = [...]string{"systemconfiguration", "cluster"}
+
 func SchemaToAviData(d interface{}, s map[string]*schema.Schema) (interface{}, error) {
 	switch d.(type) {
 	default:
@@ -245,11 +247,19 @@ func ApiCreateOrUpdate(d *schema.ResourceData, meta interface{}, objType string,
 
 	if data, err := SchemaToAviData(obj, s); err == nil {
 		path := "api/" + objType
-		if objType == "cluster" {
+		specialobj := false
+		for _, o_type := range post_not_allowed {
+			if o_type == objType {
+				log.Printf("[INFO] ApiCreateOrUpdate: Found special object type %v", objType)
+				specialobj = true
+				break
+			}
+		}
+		if specialobj {
 			path = path + "?skip_default=true"
 			err = client.AviSession.Put(path, data, &robj)
 			if err != nil {
-				log.Printf("[ERROR] ApiCreateOrUpdate: PUT on Cluster Error %v path %v id %v\n", err, path,
+				log.Printf("[ERROR] ApiCreateOrUpdate: PUT on %v Error %v path %v id %v\n", objType, err, path,
 					d.Id())
 			}
 		} else if uuid, ok := d.GetOk("uuid"); ok {
@@ -326,8 +336,17 @@ func ApiCreateOrUpdate(d *schema.ResourceData, meta interface{}, objType string,
 func ApiRead(d *schema.ResourceData, meta interface{}, objType string, s map[string]*schema.Schema) error {
 	client := meta.(*clients.AviClient)
 	var obj interface{}
+	var path string
 	uuid := ""
 	url := ""
+	specialobj := false
+	for _, o_type := range post_not_allowed {
+		if o_type == objType {
+			log.Printf("[INFO] ApiRead: Found special object type %v", objType)
+			specialobj = true
+			break
+		}
+	}
 	log.Printf("[DEBUG] ApiRead reading object with objType %v id %v\n", objType, d.Id())
 	if d.Id() != "" {
 		// extract the uuid from it.
@@ -341,7 +360,11 @@ func ApiRead(d *schema.ResourceData, meta interface{}, objType string, s map[str
 		log.Printf("[DEBUG] ApiRead reading object with uuid %v \n", uuid)
 	}
 	if uuid != "" {
-		path := "api/" + objType + "/" + uuid + "?skip_default=true"
+		if specialobj {
+			path = "api/" + objType
+		} else {
+			path = "api/" + objType + "/" + uuid + "?skip_default=true"
+		}
 		log.Printf("[DEBUG] ApiRead reading object with id %v path %v\n", uuid, path)
 		err := client.AviSession.Get(path, &obj)
 		if err != nil {
@@ -366,6 +389,15 @@ func ApiRead(d *schema.ResourceData, meta interface{}, objType string, s map[str
 		if err != nil {
 			d.SetId("")
 			log.Printf("[ERROR] ApiRead object with name %v:%v not found err %v\n", objType, name, err)
+			return nil
+		}
+	} else if specialobj {
+		path := "api/" + objType
+		log.Printf("[DEBUG] ApiRead reading special object with path %v\n", path)
+		err := client.AviSession.Get(path, &obj)
+		if err != nil {
+			d.SetId("")
+			log.Printf("[ERROR] ApiRead special object with path %v not found err %v\n", path, err)
 			return nil
 		}
 	} else {
