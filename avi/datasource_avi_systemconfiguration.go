@@ -96,6 +96,11 @@ func dataSourceAviSystemConfiguration() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"welcome_workflow_complete": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  false,
+			},
 		},
 	}
 }

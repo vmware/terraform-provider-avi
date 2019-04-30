@@ -10,6 +10,9 @@ type ServerConfig struct {
 	// Placeholder for description of property def_port of obj type ServerConfig field type str  type boolean
 	DefPort *bool `json:"def_port,omitempty"`
 
+	// hostname of ServerConfig.
+	Hostname *string `json:"hostname,omitempty"`
+
 	// Placeholder for description of property ip_addr of obj type ServerConfig field type str  type object
 	// Required: true
 	IPAddr *IPAddr `json:"ip_addr"`
@@ -30,6 +33,9 @@ type ServerConfig struct {
 	// Number of port.
 	// Required: true
 	Port *int32 `json:"port"`
+
+	// If this is set, propogate this server state to other SEs for this VS. Applicable to EastWest VS and GS HM-sharding.
+	PropogateState *bool `json:"propogate_state,omitempty"`
 
 	// Placeholder for description of property timer_exists of obj type ServerConfig field type str  type boolean
 	TimerExists *bool `json:"timer_exists,omitempty"`

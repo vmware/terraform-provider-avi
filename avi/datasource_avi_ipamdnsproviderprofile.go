@@ -70,6 +70,11 @@ func dataSourceAviIpamDnsProviderProfile() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"tencent_profile": &schema.Schema{
+				Type:     schema.TypeSet,
+				Optional: true,
+				Elem:     ResourceIpamDnsTencentProfileSchema(),
+			},
 			"type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,

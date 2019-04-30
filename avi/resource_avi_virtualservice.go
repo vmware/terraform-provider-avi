@@ -19,6 +19,11 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  "ACTIVE_STANDBY_SE_1",
 		},
+		"allow_invalid_client_cert": &schema.Schema{
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  false,
+		},
 		"analytics_policy": &schema.Schema{
 			Type:     schema.TypeSet,
 			Optional: true,
@@ -224,6 +229,11 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 			Optional: true,
 			Elem:     ResourceRateProfileSchema(),
 		},
+		"saml_sp_config": &schema.Schema{
+			Type:     schema.TypeSet,
+			Optional: true,
+			Elem:     ResourceSAMLSPConfigSchema(),
+		},
 		"scaleout_ecmp": &schema.Schema{
 			Type:     schema.TypeBool,
 			Optional: true,
@@ -279,15 +289,20 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"ssl_profile_selectors": &schema.Schema{
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceSSLProfileSelectorSchema(),
+		},
 		"ssl_sess_cache_avg_size": &schema.Schema{
 			Type:     schema.TypeInt,
 			Optional: true,
 			Default:  1024,
 		},
-		"sso_policy": &schema.Schema{
-			Type:     schema.TypeSet,
+		"sso_policy_ref": &schema.Schema{
+			Type:     schema.TypeString,
 			Optional: true,
-			Elem:     ResourceSSOPolicySchema(),
+			Computed: true,
 		},
 		"static_dns_records": &schema.Schema{
 			Type:     schema.TypeList,
@@ -298,6 +313,11 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
+		},
+		"topology_policies": &schema.Schema{
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceDnsPoliciesSchema(),
 		},
 		"traffic_clone_profile_ref": &schema.Schema{
 			Type:     schema.TypeString,

@@ -1,22 +1,3 @@
-
-############################################################################
-#
-# AVI CONFIDENTIAL
-# __________________
-#
-# [2013] - [2019] Avi Networks Incorporated
-# All Rights Reserved.
-#
-# NOTICE: All information contained herein is, and remains the property
-# of Avi Networks Incorporated and its suppliers, if any. The intellectual
-# and technical concepts contained herein are proprietary to Avi Networks
-# Incorporated, and its suppliers and are covered by U.S. and Foreign
-# Patents, patents in process, and are protected by trade secret or
-# copyright law, and other laws. Dissemination of this information or
-# reproduction of this material is strictly forbidden unless prior written
-# permission is obtained from Avi Networks Incorporated.
-###
-
 ---
 layout: "avi"
 page_title: "AVI: avi_serviceenginegroup"
@@ -56,6 +37,7 @@ In addition to all arguments above, the following attributes are exported:
 * `algo` - In compact placement, virtual services are placed on existing ses until max_vs_per_se limit is reached.
 * `allow_burst` - Allow ses to be created using burst license.
 * `app_cache_percent` - A percent value of total se memory reserved for application caching.
+* `app_learning_memory_percent` - A percent value of total se memory reserved for application learning.
 * `archive_shm_limit` - Amount of se memory in gb until which shared memory is collected in core archive.
 * `async_ssl` - Ssl handshakes will be handled by dedicated ssl threads.
 * `async_ssl_threads` - Number of async ssl threads per se_dp.
@@ -74,6 +56,8 @@ In addition to all arguments above, the following attributes are exported:
 * `custom_securitygroups_data` - Custom security groups to be associated with data vnics for se instances in openstack and aws clouds.
 * `custom_securitygroups_mgmt` - Custom security groups to be associated with management vnic for se instances in openstack and aws clouds.
 * `custom_tag` - Custom tag will be used to create the tags for se instance in aws.
+* `data_network_id` - Subnet used to spin up the data nic for service engines, used only for azure cloud.
+* `datascript_timeout` - Number of instructions before datascript times out.
 * `dedicated_dispatcher_core` - Dedicate the core that handles packet receive/transmit from the network to just the dispatching function.
 * `description` - General description.
 * `disable_avi_securitygroups` - By default, avi creates and manages security groups along with custom sg provided by user.
@@ -108,7 +92,7 @@ In addition to all arguments above, the following attributes are exported:
 * `ignore_rtt_threshold` - Ignore rtt samples if it is above threshold.
 * `ingress_access_data` - Program se security group ingress rules to allow vip data access from remote cidr type.
 * `ingress_access_mgmt` - Program se security group ingress rules to allow ssh/icmp management access from remote cidr type.
-* `instance_flavor` - Instance/flavor type for se instance.
+* `instance_flavor` - Instance/flavor name for se instance.
 * `iptables` - Iptable rules.
 * `least_load_core_selection` - Select core with least load for new flow.
 * `license_tier` - Specifies the license tier which would be used.
@@ -142,6 +126,7 @@ In addition to all arguments above, the following attributes are exported:
 * `per_app` - Per-app se mode is designed for deploying dedicated load balancers per app (vs).
 * `placement_mode` - If placement mode is 'auto', virtual services are automatically placed on service engines.
 * `realtime_se_metrics` - Enable or disable real time se metrics.
+* `reboot_on_stop` - Reboot the system if the se is stopped.
 * `se_bandwidth_type` - Select the se bandwidth for the bandwidth license.
 * `se_deprovision_delay` - Duration to preserve unused service engine virtual machines before deleting them.
 * `se_dos_profile` - General description.
@@ -150,10 +135,12 @@ In addition to all arguments above, the following attributes are exported:
 * `se_flow_probe_timer` - Timeout in milliseconds for flow probe entries.
 * `se_ipc_udp_port` - Udp port for se_dp ipc in docker bridge mode.
 * `se_name_prefix` - Prefix to use for virtual machine name of service engines.
+* `se_pcap_lookahead` - Enables lookahead mode of packet receive in pcap mode.
 * `se_pcap_reinit_frequency` - Frequency in seconds at which periodically a pcap reinit check is triggered.
 * `se_pcap_reinit_threshold` - Threshold for input packet receive errors in pcap mode exceeding which a pcap reinit is triggered.
 * `se_probe_port` - Tcp port on se where echo service will be run.
 * `se_remote_punt_udp_port` - Udp port for punted packets in docker bridge mode.
+* `se_routing` - Enable routing via service engine datapath.
 * `se_sb_dedicated_core` - Sideband traffic will be handled by a dedicated core.
 * `se_sb_threads` - Number of sideband threads per se.
 * `se_thread_multiplier` - Multiplier for se threads based on vcpu.
@@ -172,6 +159,7 @@ In addition to all arguments above, the following attributes are exported:
 * `ssl_preprocess_sni_hostname` - (beta) preprocess ssl client hello for sni hostname extension.if set to true, this will apply sni child's ssl protocol(s), if they are different from sni parent's allowed ssl protocol(s).
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `udf_log_throttle` - This setting limits the number of udf logs generated per second per core on this se.
+* `use_standard_alb` - Use standard sku azure load balancer.
 * `uuid` - General description.
 * `vcenter_clusters` - General description.
 * `vcenter_datastore_mode` - Enum options - vcenter_datastore_any, vcenter_datastore_local, vcenter_datastore_shared.
@@ -190,8 +178,6 @@ In addition to all arguments above, the following attributes are exported:
 * `vs_switchover_timeout` - During se upgrade in a legacy active/standby segroup, time to wait for the new primary se to accept flows before marking the switchover done.
 * `vss_placement` - Parameters to place virtual services on only a subset of the cores of an se.
 * `vss_placement_enabled` - If set, virtual services will be placed on only a subset of the cores of an se.
-* `waf_learning_interval` - Frequency with which se publishes waf learning.
-* `waf_learning_memory` - Amount of memory reserved on se for waf learning.
 * `waf_mempool` - Enable memory pool for waf.
 * `waf_mempool_size` - Memory pool size used for waf.
 

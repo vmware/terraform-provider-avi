@@ -1,22 +1,3 @@
-
-############################################################################
-#
-# AVI CONFIDENTIAL
-# __________________
-#
-# [2013] - [2019] Avi Networks Incorporated
-# All Rights Reserved.
-#
-# NOTICE: All information contained herein is, and remains the property
-# of Avi Networks Incorporated and its suppliers, if any. The intellectual
-# and technical concepts contained herein are proprietary to Avi Networks
-# Incorporated, and its suppliers and are covered by U.S. and Foreign
-# Patents, patents in process, and are protected by trade secret or
-# copyright law, and other laws. Dissemination of this information or
-# reproduction of this material is strictly forbidden unless prior written
-# permission is obtained from Avi Networks Incorporated.
-###
-
 ---
 layout: "avi"
 page_title: "Avi: avi_virtualservice"
@@ -43,6 +24,7 @@ resource "VirtualService" "foo" {
 The following arguments are supported:
 
     * `active_standby_se_tag` - (Optional ) argument_description.
+        * `allow_invalid_client_cert` - (Optional ) argument_description.
         * `analytics_policy` - (Optional ) argument_description.
         * `analytics_profile_ref` - (Optional ) argument_description.
         * `apic_contract_graph` - (Optional ) argument_description.
@@ -86,6 +68,7 @@ The following arguments are supported:
         * `pool_ref` - (Optional ) argument_description.
         * `remove_listening_port_on_vs_down` - (Optional ) argument_description.
         * `requests_rate_limit` - (Optional ) argument_description.
+        * `saml_sp_config` - (Optional ) argument_description.
         * `scaleout_ecmp` - (Optional ) argument_description.
         * `se_group_ref` - (Optional ) argument_description.
         * `security_policy_ref` - (Optional ) argument_description.
@@ -97,10 +80,12 @@ The following arguments are supported:
         * `snat_ip` - (Optional ) argument_description.
         * `ssl_key_and_certificate_refs` - (Optional ) argument_description.
         * `ssl_profile_ref` - (Optional ) argument_description.
+        * `ssl_profile_selectors` - (Optional ) argument_description.
         * `ssl_sess_cache_avg_size` - (Optional ) argument_description.
-        * `sso_policy` - (Optional ) argument_description.
+        * `sso_policy_ref` - (Optional ) argument_description.
         * `static_dns_records` - (Optional ) argument_description.
         * `tenant_ref` - (Optional ) argument_description.
+        * `topology_policies` - (Optional ) argument_description.
         * `traffic_clone_profile_ref` - (Optional ) argument_description.
         * `traffic_enabled` - (Optional ) argument_description.
         * `type` - (Optional ) argument_description.
@@ -128,5 +113,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-                                                                                                                                                                                                                                                                    * `uuid` - argument_description.
+                                                                                                                                                                                                                                                                                    * `uuid` - argument_description.
                                         

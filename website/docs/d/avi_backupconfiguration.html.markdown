@@ -1,22 +1,3 @@
-
-############################################################################
-#
-# AVI CONFIDENTIAL
-# __________________
-#
-# [2013] - [2019] Avi Networks Incorporated
-# All Rights Reserved.
-#
-# NOTICE: All information contained herein is, and remains the property
-# of Avi Networks Incorporated and its suppliers, if any. The intellectual
-# and technical concepts contained herein are proprietary to Avi Networks
-# Incorporated, and its suppliers and are covered by U.S. and Foreign
-# Patents, patents in process, and are protected by trade secret or
-# copyright law, and other laws. Dissemination of this information or
-# reproduction of this material is strictly forbidden unless prior written
-# permission is obtained from Avi Networks Incorporated.
-###
-
 ---
 layout: "avi"
 page_title: "AVI: avi_backupconfiguration"
@@ -47,6 +28,9 @@ data "BackupConfiguration" "foo_BackupConfiguration" {
 
 In addition to all arguments above, the following attributes are exported:
 
+* `aws_access_key` - Aws access key id.
+* `aws_bucket_id` - Aws bucket.
+* `aws_secret_access` - Aws secret access key.
 * `backup_file_prefix` - Prefix of the exported configuration file.
 * `backup_passphrase` - Passphrase of backup configuration.
 * `maximum_backups_stored` - Rotate the backup files based on this count.
@@ -57,5 +41,6 @@ In addition to all arguments above, the following attributes are exported:
 * `ssh_user_ref` - Access credentials for remote destination.
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `upload_to_remote_host` - Remote backup.
+* `upload_to_s3` - Cloud backup.
 * `uuid` - General description.
 

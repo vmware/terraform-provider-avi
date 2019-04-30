@@ -24,6 +24,11 @@ func ResourceCloudSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  false,
 		},
+		"autoscale_polling_interval": &schema.Schema{
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  60,
+		},
 		"aws_configuration": &schema.Schema{
 			Type:     schema.TypeSet,
 			Optional: true,
@@ -101,11 +106,6 @@ func ResourceCloudSchema() map[string]*schema.Schema {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceLinuxServerConfigurationSchema(),
-		},
-		"mesos_configuration": &schema.Schema{
-			Type:     schema.TypeSet,
-			Optional: true,
-			Elem:     ResourceMesosConfigurationSchema(),
 		},
 		"mtu": &schema.Schema{
 			Type:     schema.TypeInt,

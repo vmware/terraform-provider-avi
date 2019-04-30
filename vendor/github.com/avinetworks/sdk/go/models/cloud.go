@@ -17,6 +17,9 @@ type Cloud struct {
 	// Placeholder for description of property apic_mode of obj type Cloud field type str  type boolean
 	ApicMode *bool `json:"apic_mode,omitempty"`
 
+	// CloudConnector polling interval for external autoscale groups. Field introduced in 18.2.2, 19.1.1.
+	AutoscalePollingInterval *int32 `json:"autoscale_polling_interval,omitempty"`
+
 	// Placeholder for description of property aws_configuration of obj type Cloud field type str  type object
 	AwsConfiguration *AwsConfiguration `json:"aws_configuration,omitempty"`
 
@@ -47,6 +50,9 @@ type Cloud struct {
 	// Use static routes for VIP side network resolution during VirtualService placement.
 	EnableVipStaticRoutes *bool `json:"enable_vip_static_routes,omitempty"`
 
+	// Google Cloud Platform Configuration. Field introduced in 18.2.1.
+	GcpConfiguration *GCPConfiguration `json:"gcp_configuration,omitempty"`
+
 	// Enable IPv6 auto configuration. Field introduced in 18.1.1.
 	Ip6AutocfgEnabled *bool `json:"ip6_autocfg_enabled,omitempty"`
 
@@ -62,7 +68,7 @@ type Cloud struct {
 	// Placeholder for description of property linuxserver_configuration of obj type Cloud field type str  type object
 	LinuxserverConfiguration *LinuxServerConfiguration `json:"linuxserver_configuration,omitempty"`
 
-	// Placeholder for description of property mesos_configuration of obj type Cloud field type str  type object
+	//  Field deprecated in 18.2.2,19.1.1.
 	MesosConfiguration *MesosConfiguration `json:"mesos_configuration,omitempty"`
 
 	// MTU setting for the cloud.
@@ -112,7 +118,7 @@ type Cloud struct {
 	// Placeholder for description of property vcenter_configuration of obj type Cloud field type str  type object
 	VcenterConfiguration *VCenterConfiguration `json:"vcenter_configuration,omitempty"`
 
-	// Cloud type. Enum options - CLOUD_NONE, CLOUD_VCENTER, CLOUD_OPENSTACK, CLOUD_AWS, CLOUD_VCA, CLOUD_APIC, CLOUD_MESOS, CLOUD_LINUXSERVER, CLOUD_DOCKER_UCP, CLOUD_RANCHER, CLOUD_OSHIFT_K8S, CLOUD_AZURE.
+	// Cloud type. Enum options - CLOUD_NONE, CLOUD_VCENTER, CLOUD_OPENSTACK, CLOUD_AWS, CLOUD_VCA, CLOUD_APIC, CLOUD_MESOS, CLOUD_LINUXSERVER, CLOUD_DOCKER_UCP, CLOUD_RANCHER, CLOUD_OSHIFT_K8S, CLOUD_AZURE, CLOUD_GCP.
 	// Required: true
 	Vtype *string `json:"vtype"`
 }

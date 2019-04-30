@@ -19,7 +19,7 @@ type VirtualServiceRuntime struct {
 	// Placeholder for description of property east_west of obj type VirtualServiceRuntime field type str  type boolean
 	EastWest *bool `json:"east_west,omitempty"`
 
-	//  Field introduced in 17.1.1.
+	// Deprecated, handled by SE Datastore. Field deprecated in 18.1.5, 18.2.1. Field introduced in 17.1.1.
 	GslbDNSGeoUpdate *GslbDNSGeoUpdate `json:"gslb_dns_geo_update,omitempty"`
 
 	// Placeholder for description of property gslb_dns_update of obj type VirtualServiceRuntime field type str  type object
@@ -31,8 +31,14 @@ type VirtualServiceRuntime struct {
 	// Placeholder for description of property is_dns_vs of obj type VirtualServiceRuntime field type str  type boolean
 	IsDNSVs *bool `json:"is_dns_vs,omitempty"`
 
+	// Number of times keys have been rotated. Field introduced in 18.2.2.
+	KeyRotationCount *int64 `json:"key_rotation_count,omitempty"`
+
 	// Placeholder for description of property last_changed_time of obj type VirtualServiceRuntime field type str  type object
 	LastChangedTime *TimeStamp `json:"last_changed_time,omitempty"`
+
+	// Timestamp of the last key rotation. Field introduced in 18.2.2.
+	LastKeyRotationTime *TimeStamp `json:"last_key_rotation_time,omitempty"`
 
 	// lif of VirtualServiceRuntime.
 	Lif []string `json:"lif,omitempty"`
@@ -61,7 +67,7 @@ type VirtualServiceRuntime struct {
 	// Number of redis_db.
 	RedisDb *int32 `json:"redis_db,omitempty"`
 
-	// redis_ip of VirtualServiceRuntime.
+	//  Field deprecated in 18.1.5, 18.2.1.
 	RedisIP *string `json:"redis_ip,omitempty"`
 
 	// Number of redis_port.
@@ -94,6 +100,6 @@ type VirtualServiceRuntime struct {
 	// Placeholder for description of property vip_runtime of obj type VirtualServiceRuntime field type str  type object
 	VipRuntime []*VipRuntime `json:"vip_runtime,omitempty"`
 
-	// VS update request received before warmstart finished. Field introduced in 18.1.4.
+	// VS update request received before warmstart finished. Field introduced in 18.1.4, 18.2.1.
 	VsUpdatePending *VirtualService `json:"vs_update_pending,omitempty"`
 }

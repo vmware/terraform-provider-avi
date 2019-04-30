@@ -53,6 +53,11 @@ func dataSourceAviHealthMonitor() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"radius_monitor": &schema.Schema{
+				Type:     schema.TypeSet,
+				Optional: true,
+				Elem:     ResourceHealthMonitorRadiusSchema(),
+			},
 			"receive_timeout": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,

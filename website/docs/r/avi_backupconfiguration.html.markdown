@@ -1,22 +1,3 @@
-
-############################################################################
-#
-# AVI CONFIDENTIAL
-# __________________
-#
-# [2013] - [2019] Avi Networks Incorporated
-# All Rights Reserved.
-#
-# NOTICE: All information contained herein is, and remains the property
-# of Avi Networks Incorporated and its suppliers, if any. The intellectual
-# and technical concepts contained herein are proprietary to Avi Networks
-# Incorporated, and its suppliers and are covered by U.S. and Foreign
-# Patents, patents in process, and are protected by trade secret or
-# copyright law, and other laws. Dissemination of this information or
-# reproduction of this material is strictly forbidden unless prior written
-# permission is obtained from Avi Networks Incorporated.
-###
-
 ---
 layout: "avi"
 page_title: "Avi: avi_backupconfiguration"
@@ -42,7 +23,10 @@ resource "BackupConfiguration" "foo" {
 
 The following arguments are supported:
 
-    * `backup_file_prefix` - (Optional ) argument_description.
+    * `aws_access_key` - (Optional ) argument_description.
+        * `aws_bucket_id` - (Optional ) argument_description.
+        * `aws_secret_access` - (Optional ) argument_description.
+        * `backup_file_prefix` - (Optional ) argument_description.
         * `backup_passphrase` - (Optional ) argument_description.
         * `maximum_backups_stored` - (Optional ) argument_description.
         * `name` - (Required) argument_description.
@@ -52,6 +36,7 @@ The following arguments are supported:
         * `ssh_user_ref` - (Optional ) argument_description.
         * `tenant_ref` - (Optional ) argument_description.
         * `upload_to_remote_host` - (Optional ) argument_description.
+        * `upload_to_s3` - (Optional ) argument_description.
         
 ### Timeouts
 
@@ -65,5 +50,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-                                            * `uuid` - argument_description.
+                                                            * `uuid` - argument_description.
     

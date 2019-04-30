@@ -32,15 +32,15 @@ func ResourceWafPolicySchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
+		"enable_app_learning": &schema.Schema{
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  false,
+		},
 		"failure_mode": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
 			Default:  "WAF_FAILURE_MODE_OPEN",
-		},
-		"learning": &schema.Schema{
-			Type:     schema.TypeSet,
-			Optional: true,
-			Elem:     ResourceWafLearningSchema(),
 		},
 		"mode": &schema.Schema{
 			Type:     schema.TypeString,
@@ -55,6 +55,11 @@ func ResourceWafPolicySchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 			Default:  "WAF_PARANOIA_LEVEL_LOW",
+		},
+		"positive_security_model": &schema.Schema{
+			Type:     schema.TypeSet,
+			Optional: true,
+			Elem:     ResourceWafPositiveSecurityModelSchema(),
 		},
 		"post_crs_groups": &schema.Schema{
 			Type:     schema.TypeList,
@@ -85,6 +90,11 @@ func ResourceWafPolicySchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
+		},
+		"whitelist": &schema.Schema{
+			Type:     schema.TypeSet,
+			Optional: true,
+			Elem:     ResourceWafPolicyWhitelistSchema(),
 		},
 	}
 }

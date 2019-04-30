@@ -14,6 +14,11 @@ import (
 
 func ResourceGslbSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
+		"async_interval": &schema.Schema{
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  0,
+		},
 		"clear_on_max_retries": &schema.Schema{
 			Type:     schema.TypeInt,
 			Optional: true,
@@ -55,6 +60,10 @@ func ResourceGslbSchema() map[string]*schema.Schema {
 			Type:     schema.TypeInt,
 			Optional: true,
 			Default:  15,
+		},
+		"send_interval_prior_to_maintenance_mode": &schema.Schema{
+			Type:     schema.TypeInt,
+			Optional: true,
 		},
 		"sites": &schema.Schema{
 			Type:     schema.TypeList,

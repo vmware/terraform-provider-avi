@@ -1,22 +1,3 @@
-
-############################################################################
-#
-# AVI CONFIDENTIAL
-# __________________
-#
-# [2013] - [2019] Avi Networks Incorporated
-# All Rights Reserved.
-#
-# NOTICE: All information contained herein is, and remains the property
-# of Avi Networks Incorporated and its suppliers, if any. The intellectual
-# and technical concepts contained herein are proprietary to Avi Networks
-# Incorporated, and its suppliers and are covered by U.S. and Foreign
-# Patents, patents in process, and are protected by trade secret or
-# copyright law, and other laws. Dissemination of this information or
-# reproduction of this material is strictly forbidden unless prior written
-# permission is obtained from Avi Networks Incorporated.
-###
-
 ---
 layout: "avi"
 page_title: "AVI: avi_vsvip"
@@ -54,6 +35,7 @@ In addition to all arguments above, the following attributes are exported:
 * `east_west_placement` - Force placement on all service engines in the service engine group (container clouds only).
 * `name` - Name for the vsvip object.
 * `tenant_ref` - It is a reference to an object of type tenant.
+* `use_standard_alb` - This overrides the cloud level default and needs to match the se group value in which it will be used if the se group use_standard_alb value is set.
 * `uuid` - Uuid of the vsvip object.
 * `vip` - List of virtual service ips and other shareable entities.
 * `vrf_context_ref` - Virtual routing context that the virtual service is bound to.

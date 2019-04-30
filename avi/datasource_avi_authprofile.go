@@ -29,6 +29,11 @@ func dataSourceAviAuthProfile() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"pa_agent_ref": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"saml": &schema.Schema{
 				Type:     schema.TypeSet,
 				Optional: true,

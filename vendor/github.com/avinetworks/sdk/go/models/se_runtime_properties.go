@@ -235,7 +235,7 @@ type SeRuntimeProperties struct {
 	// Window of time (in seconds) during which se_dp_vnic_restart_on_queue_stall_count number of consecutive stalls results in a SE restart. Field introduced in 17.1.14, 17.2.5, 18.1.1.
 	SeDpVnicStallSeRestartWindow *int32 `json:"se_dp_vnic_stall_se_restart_window,omitempty"`
 
-	// Enable core dump on assert. Field introduced in 18.1.3.
+	// Enable core dump on assert. Field introduced in 18.1.3, 18.2.1.
 	SeDumpCoreOnAssert *bool `json:"se_dump_core_on_assert,omitempty"`
 
 	// Accept/ignore interface routes (i.e, no next hop IP address).
@@ -298,13 +298,13 @@ type SeRuntimeProperties struct {
 	// Number of upstream_connpool_conn_idle_thresh_tmo.
 	UpstreamConnpoolConnIDLEThreshTmo *int32 `json:"upstream_connpool_conn_idle_thresh_tmo,omitempty"`
 
-	// Number of upstream_connpool_conn_idle_tmo.
+	// Deprecated. Field deprecated in 18.2.1.
 	UpstreamConnpoolConnIDLETmo *int32 `json:"upstream_connpool_conn_idle_tmo,omitempty"`
 
-	// Number of upstream_connpool_conn_life_tmo.
+	// Deprecated. Field deprecated in 18.2.1.
 	UpstreamConnpoolConnLifeTmo *int32 `json:"upstream_connpool_conn_life_tmo,omitempty"`
 
-	// Number of upstream_connpool_conn_max_reuse.
+	// Deprecated. Field deprecated in 18.2.1.
 	UpstreamConnpoolConnMaxReuse *int32 `json:"upstream_connpool_conn_max_reuse,omitempty"`
 
 	// Number of upstream_connpool_core_max_cache.
@@ -313,7 +313,7 @@ type SeRuntimeProperties struct {
 	// Placeholder for description of property upstream_connpool_enable of obj type SeRuntimeProperties field type str  type boolean
 	UpstreamConnpoolEnable *bool `json:"upstream_connpool_enable,omitempty"`
 
-	// Number of upstream_connpool_server_max_cache.
+	// Deprecated. Field deprecated in 18.2.1.
 	UpstreamConnpoolServerMaxCache *int32 `json:"upstream_connpool_server_max_cache,omitempty"`
 
 	// Number of upstream_connpool_strategy.

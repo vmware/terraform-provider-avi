@@ -46,6 +46,12 @@ func dataSourceAviVSDataScriptSet() *schema.Resource {
 				Computed: true,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
+			"protocol_parser_refs": &schema.Schema{
+				Type:     schema.TypeList,
+				Optional: true,
+				Computed: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
 			"string_group_refs": &schema.Schema{
 				Type:     schema.TypeList,
 				Optional: true,

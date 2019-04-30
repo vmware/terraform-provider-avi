@@ -14,6 +14,18 @@ import (
 
 func ResourceBackupConfigurationSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
+		"aws_access_key": &schema.Schema{
+			Type:     schema.TypeString,
+			Optional: true,
+		},
+		"aws_bucket_id": &schema.Schema{
+			Type:     schema.TypeString,
+			Optional: true,
+		},
+		"aws_secret_access": &schema.Schema{
+			Type:     schema.TypeString,
+			Optional: true,
+		},
 		"backup_file_prefix": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
@@ -54,6 +66,10 @@ func ResourceBackupConfigurationSchema() map[string]*schema.Schema {
 			Computed: true,
 		},
 		"upload_to_remote_host": &schema.Schema{
+			Type:     schema.TypeBool,
+			Optional: true,
+		},
+		"upload_to_s3": &schema.Schema{
 			Type:     schema.TypeBool,
 			Optional: true,
 		},

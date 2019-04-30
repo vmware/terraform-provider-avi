@@ -18,6 +18,11 @@ func ResourceErrorPageBodySchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
+		"format": &schema.Schema{
+			Type:     schema.TypeString,
+			Optional: true,
+			Default:  "ERROR_PAGE_FORMAT_HTML",
+		},
 		"name": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,

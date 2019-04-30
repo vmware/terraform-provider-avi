@@ -43,6 +43,11 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Optional: true,
 				Default:  0,
 			},
+			"app_learning_memory_percent": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Default:  0,
+			},
 			"archive_shm_limit": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -132,6 +137,15 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				Elem:     ResourceCustomTagSchema(),
+			},
+			"data_network_id": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"datascript_timeout": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Default:  1000000,
 			},
 			"dedicated_dispatcher_core": &schema.Schema{
 				Type:     schema.TypeBool,
@@ -456,6 +470,11 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Optional: true,
 				Elem:     ResourceMetricsRealTimeUpdateSchema(),
 			},
+			"reboot_on_stop": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  false,
+			},
 			"se_bandwidth_type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -494,6 +513,11 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Default:  "Avi"},
+			"se_pcap_lookahead": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  false,
+			},
 			"se_pcap_reinit_frequency": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -513,6 +537,11 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeInt,
 				Optional: true,
 				Default:  1501,
+			},
+			"se_routing": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  true,
 			},
 			"se_sb_dedicated_core": &schema.Schema{
 				Type:     schema.TypeBool,
@@ -604,6 +633,10 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Optional: true,
 				Default:  100,
 			},
+			"use_standard_alb": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+			},
 			"uuid": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -665,7 +698,7 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 			"vs_scaleout_timeout": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
-				Default:  30,
+				Default:  600,
 			},
 			"vs_se_scaleout_additional_wait_time": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -691,16 +724,6 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeBool,
 				Optional: true,
 				Default:  false,
-			},
-			"waf_learning_interval": &schema.Schema{
-				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  10,
-			},
-			"waf_learning_memory": &schema.Schema{
-				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  0,
 			},
 			"waf_mempool": &schema.Schema{
 				Type:     schema.TypeBool,

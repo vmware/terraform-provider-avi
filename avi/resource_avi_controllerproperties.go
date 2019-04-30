@@ -261,10 +261,15 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  360,
 		},
+		"vs_scaleout_ready_check_interval": &schema.Schema{
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  60,
+		},
 		"vs_se_attach_ip_fail": &schema.Schema{
 			Type:     schema.TypeInt,
 			Optional: true,
-			Default:  3600,
+			Default:  600,
 		},
 		"vs_se_bootup_fail": &schema.Schema{
 			Type:     schema.TypeInt,

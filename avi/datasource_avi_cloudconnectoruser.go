@@ -52,6 +52,11 @@ func dataSourceAviCloudConnectorUser() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"tencent_credentials": &schema.Schema{
+				Type:     schema.TypeSet,
+				Optional: true,
+				Elem:     ResourceTencentCredentialsSchema(),
+			},
 			"uuid": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,

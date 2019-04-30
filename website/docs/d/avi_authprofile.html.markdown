@@ -1,22 +1,3 @@
-
-############################################################################
-#
-# AVI CONFIDENTIAL
-# __________________
-#
-# [2013] - [2019] Avi Networks Incorporated
-# All Rights Reserved.
-#
-# NOTICE: All information contained herein is, and remains the property
-# of Avi Networks Incorporated and its suppliers, if any. The intellectual
-# and technical concepts contained herein are proprietary to Avi Networks
-# Incorporated, and its suppliers and are covered by U.S. and Foreign
-# Patents, patents in process, and are protected by trade secret or
-# copyright law, and other laws. Dissemination of this information or
-# reproduction of this material is strictly forbidden unless prior written
-# permission is obtained from Avi Networks Incorporated.
-###
-
 ---
 layout: "avi"
 page_title: "AVI: avi_authprofile"
@@ -51,6 +32,7 @@ In addition to all arguments above, the following attributes are exported:
 * `http` - Http user authentication params.
 * `ldap` - Ldap server and directory settings.
 * `name` - Name of the auth profile.
+* `pa_agent_ref` - Pingaccessagent uuid.
 * `saml` - Saml settings.
 * `tacacs_plus` - Tacacs+ settings.
 * `tenant_ref` - It is a reference to an object of type tenant.

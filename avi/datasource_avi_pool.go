@@ -83,6 +83,11 @@ func dataSourceAviPool() *schema.Resource {
 				Optional: true,
 				Default:  80,
 			},
+			"delete_server_on_dns_refresh": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  true,
+			},
 			"description": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,

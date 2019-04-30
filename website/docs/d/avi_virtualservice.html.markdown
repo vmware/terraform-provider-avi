@@ -1,22 +1,3 @@
-
-############################################################################
-#
-# AVI CONFIDENTIAL
-# __________________
-#
-# [2013] - [2019] Avi Networks Incorporated
-# All Rights Reserved.
-#
-# NOTICE: All information contained herein is, and remains the property
-# of Avi Networks Incorporated and its suppliers, if any. The intellectual
-# and technical concepts contained herein are proprietary to Avi Networks
-# Incorporated, and its suppliers and are covered by U.S. and Foreign
-# Patents, patents in process, and are protected by trade secret or
-# copyright law, and other laws. Dissemination of this information or
-# reproduction of this material is strictly forbidden unless prior written
-# permission is obtained from Avi Networks Incorporated.
-###
-
 ---
 layout: "avi"
 page_title: "AVI: avi_virtualservice"
@@ -50,6 +31,7 @@ data "VirtualService" "foo_VirtualService" {
 In addition to all arguments above, the following attributes are exported:
 
 * `active_standby_se_tag` - This configuration only applies if the virtualservice is in legacy active standby ha mode and load distribution among active standby is enabled.
+* `allow_invalid_client_cert` - Process request even if invalid client certificate is presented.
 * `analytics_policy` - Determines analytics settings for the application.
 * `analytics_profile_ref` - Specifies settings related to analytics.
 * `apic_contract_graph` - The name of the contract/graph associated with the virtual service.
@@ -93,6 +75,7 @@ In addition to all arguments above, the following attributes are exported:
 * `pool_ref` - The pool is an object that contains destination servers and related attributes such as load-balancing and persistence.
 * `remove_listening_port_on_vs_down` - Remove listening port if virtualservice is down.
 * `requests_rate_limit` - Rate limit the incoming requests to this virtual service.
+* `saml_sp_config` - Application-specific saml config.
 * `scaleout_ecmp` - Disable re-distribution of flows across service engines for a virtual service.
 * `se_group_ref` - The service engine group to use for this virtual service.
 * `security_policy_ref` - Security policy applied on the traffic of the virtual service.
@@ -104,10 +87,12 @@ In addition to all arguments above, the following attributes are exported:
 * `snat_ip` - Nat'ted floating source ip address(es) for upstream connection to servers.
 * `ssl_key_and_certificate_refs` - Select or create one or two certificates, ec and/or rsa, that will be presented to ssl/tls terminated connections.
 * `ssl_profile_ref` - Determines the set of ssl versions and ciphers to accept for ssl/tls terminated connections.
+* `ssl_profile_selectors` - Select ssl profile based on client ip address match.
 * `ssl_sess_cache_avg_size` - Expected number of ssl session cache entries (may be exceeded).
-* `sso_policy` - Client authentication and authorization policy for the virtualservice.
+* `sso_policy_ref` - The sso policy attached to the virtualservice.
 * `static_dns_records` - List of static dns records applied to this virtual service.
 * `tenant_ref` - It is a reference to an object of type tenant.
+* `topology_policies` - Topology policies applied on the dns traffic of the virtual service based ongslb topology algorithm.
 * `traffic_clone_profile_ref` - Server network or list of servers for cloning traffic.
 * `traffic_enabled` - Knob to enable the virtual service traffic on its assigned service engines.
 * `type` - Specify if this is a normal virtual service, or if it is the parent or child of an sni-enabled virtual hosted virtual service.
