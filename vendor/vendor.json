@@ -639,17 +639,24 @@
 		},
 		{
 			"path": "github.com/avinetworks/sdk/go/clients",
-			"revision": "d70fa8dc1527a5e82d3fdaab8f23ba67311bf963",
-			"revisionTime": "2018-10-06T01:58:47Z",
-			"version": "18.1.5",
-			"versionExact": "18.1.5"
+			"revision": "56e8780326c59e3f452080f5380b65ba15084dab",
+			"revisionTime": "2019-04-30T23:40:15Z",
+			"version": "18.2.3",
+			"versionExact": "18.2.3"
 		},
 		{
 			"path": "github.com/avinetworks/sdk/go/session",
-			"revision": "d70fa8dc1527a5e82d3fdaab8f23ba67311bf963",
-			"revisionTime": "2018-10-06T01:58:47Z",
-			"version": "18.1.5",
-			"versionExact": "18.1.5"
+			"revision": "56e8780326c59e3f452080f5380b65ba15084dab",
+			"revisionTime": "2019-04-30T23:40:15Z",
+			"version": "18.2.3",
+			"versionExact": "18.2.3"
+		},
+		{
+			"path": "github.com/avinetworks/sdk/go/models",
+			"revision": "56e8780326c59e3f452080f5380b65ba15084dab",
+			"revisionTime": "2019-04-30T23:40:15Z",
+			"version": "18.2.3",
+			"versionExact": "18.2.3"
 		}
 	],
 	"rootPath": "github.com/avinetworks/terraform-provider-avi"
