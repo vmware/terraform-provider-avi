@@ -196,6 +196,11 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Optional: true,
 				Default:  false,
 			},
+			"enable_gratarp_permanent": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  false,
+			},
 			"enable_hsm_priming": &schema.Schema{
 				Type:     schema.TypeBool,
 				Optional: true,
@@ -257,6 +262,11 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeInt,
 				Optional: true,
 				Default:  1024,
+			},
+			"gratarp_permanent_periodicity": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Default:  10,
 			},
 			"ha_mode": &schema.Schema{
 				Type:     schema.TypeString,

@@ -8030,6 +8030,25 @@ func ResourceMemoryBalancerInfoSchema() *schema.Resource {
 	}
 }
 
+func ResourceEventDetailsFilterSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"comparator": &schema.Schema{
+				Type:     schema.TypeString,
+				Required: true,
+			},
+			"event_details_key": &schema.Schema{
+				Type:     schema.TypeString,
+				Required: true,
+			},
+			"event_details_value": &schema.Schema{
+				Type:     schema.TypeString,
+				Required: true,
+			},
+		},
+	}
+}
+
 func ResourceSeMgrEventDetailsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -10927,10 +10946,12 @@ func ResourceSeHBEventDetailsSchema() *schema.Resource {
 			"se_ref1": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"se_ref2": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 		},
 	}
@@ -13401,6 +13422,7 @@ func ResourceCRLSchema() *schema.Resource {
 			"last_refreshed": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"last_update": &schema.Schema{
 				Type:     schema.TypeString,
@@ -14457,25 +14479,6 @@ func ResourceGslbClientIpAddrGroupSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Default:  "GSLB_IP_PUBLIC",
-			},
-		},
-	}
-}
-
-func ResourceEventDetailsFilterSchema() *schema.Resource {
-	return &schema.Resource{
-		Schema: map[string]*schema.Schema{
-			"comparator": &schema.Schema{
-				Type:     schema.TypeString,
-				Required: true,
-			},
-			"event_details_key": &schema.Schema{
-				Type:     schema.TypeString,
-				Required: true,
-			},
-			"event_details_value": &schema.Schema{
-				Type:     schema.TypeString,
-				Required: true,
 			},
 		},
 	}

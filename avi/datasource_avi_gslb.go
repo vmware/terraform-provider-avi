@@ -35,6 +35,11 @@ func dataSourceAviGslb() *schema.Resource {
 				Optional: true,
 				Elem:     ResourceDNSConfigSchema(),
 			},
+			"error_resync_interval": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Default:  0,
+			},
 			"is_federated": &schema.Schema{
 				Type:     schema.TypeBool,
 				Optional: true,
