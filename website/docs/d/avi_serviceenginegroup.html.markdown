@@ -68,6 +68,7 @@ In addition to all arguments above, the following attributes are exported:
 * `disk_per_se` - Amount of disk space for each of the service engine virtual machines.
 * `distribute_load_active_standby` - Use both the active and standby service engines for virtual service placement in the legacy active standby ha mode.
 * `distribute_queues` - Distributes queue ownership among cores so multiple cores handle dispatcher duties.
+* `enable_gratarp_permanent` - Enable gratarp for vip_ip.
 * `enable_hsm_priming` - (this is a beta feature).
 * `enable_multi_lb` - Applicable only for azure cloud with basic sku lb.
 * `enable_routing` - Enable routing for this serviceenginegroup .
@@ -81,6 +82,7 @@ In addition to all arguments above, the following attributes are exported:
 * `floating_intf_ip_se_2` - If serviceenginegroup is configured for legacy 1+1 active standby ha mode, floating ip's will be advertised only by the active se in the pair.
 * `flow_table_new_syn_max_entries` - Maximum number of flow table entries that have not completed tcp three-way handshake yet.
 * `free_list_size` - Number of entries in the free list.
+* `gratarp_permanent_periodicity` - Gratarp periodicity for vip-ip.
 * `ha_mode` - High availability mode for all the virtual services using this service engine group.
 * `hardwaresecuritymodulegroup_ref` - It is a reference to an object of type hardwaresecuritymodulegroup.
 * `heap_minimum_config_memory` - Minimum required heap memory to apply any configuration.

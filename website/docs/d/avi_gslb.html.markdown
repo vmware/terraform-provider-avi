@@ -33,6 +33,7 @@ In addition to all arguments above, the following attributes are exported:
 * `client_ip_addr_group` - Group to specify if the client ip addresses are public or private.
 * `description` - General description.
 * `dns_configs` - Sub domain configuration for the gslb.
+* `error_resync_interval` - Frequency with which errored messages are resynced to follower sites.
 * `is_federated` - This field indicates that this object is replicated across gslb federation.
 * `leader_cluster_uuid` - Mark this site as leader of gslb configuration.
 * `maintenance_mode` - This field disables the configuration operations on the leader for all federated objects.

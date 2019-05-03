@@ -28,6 +28,7 @@ The following arguments are supported:
         * `client_ip_addr_group` - (Optional ) argument_description.
         * `description` - (Optional ) argument_description.
         * `dns_configs` - (Optional ) argument_description.
+        * `error_resync_interval` - (Optional ) argument_description.
         * `is_federated` - (Optional ) argument_description.
         * `leader_cluster_uuid` - (Optional ) argument_description.
         * `maintenance_mode` - (Optional ) argument_description.
@@ -51,5 +52,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-                                                            * `uuid` - argument_description.
+                                                                * `uuid` - argument_description.
         

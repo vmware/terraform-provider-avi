@@ -61,6 +61,7 @@ The following arguments are supported:
         * `disk_per_se` - (Optional ) argument_description.
         * `distribute_load_active_standby` - (Optional ) argument_description.
         * `distribute_queues` - (Optional ) argument_description.
+        * `enable_gratarp_permanent` - (Optional ) argument_description.
         * `enable_hsm_priming` - (Optional ) argument_description.
         * `enable_multi_lb` - (Optional ) argument_description.
         * `enable_routing` - (Optional ) argument_description.
@@ -74,6 +75,7 @@ The following arguments are supported:
         * `floating_intf_ip_se_2` - (Optional ) argument_description.
         * `flow_table_new_syn_max_entries` - (Optional ) argument_description.
         * `free_list_size` - (Optional ) argument_description.
+        * `gratarp_permanent_periodicity` - (Optional ) argument_description.
         * `ha_mode` - (Optional ) argument_description.
         * `hardwaresecuritymodulegroup_ref` - (Optional ) argument_description.
         * `heap_minimum_config_memory` - (Optional ) argument_description.
@@ -185,5 +187,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            * `uuid` - argument_description.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    * `uuid` - argument_description.
                                                                                 

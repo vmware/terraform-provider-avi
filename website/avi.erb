@@ -1,22 +1,4 @@
 
-############################################################################
-#
-# AVI CONFIDENTIAL
-# __________________
-#
-# [2013] - [2019] Avi Networks Incorporated
-# All Rights Reserved.
-#
-# NOTICE: All information contained herein is, and remains the property
-# of Avi Networks Incorporated and its suppliers, if any. The intellectual
-# and technical concepts contained herein are proprietary to Avi Networks
-# Incorporated, and its suppliers and are covered by U.S. and Foreign
-# Patents, patents in process, and are protected by trade secret or
-# copyright law, and other laws. Dissemination of this information or
-# reproduction of this material is strictly forbidden unless prior written
-# permission is obtained from Avi Networks Incorporated.
-###
-
 <% wrap_layout :inner do %>
   <% content_for :sidebar do %>
     <div class="docs-sidebar hidden-print affix-top" role="complementary">
@@ -37,6 +19,9 @@
             </li>
                       <li<%= sidebar_current("docs-avi-role") %>>
               <a href="/docs/providers/avi/d/avi_role.html">Role</a>
+            </li>
+                      <li<%= sidebar_current("docs-avi-natpolicy") %>>
+              <a href="/docs/providers/avi/d/avi_natpolicy.html">NatPolicy</a>
             </li>
                       <li<%= sidebar_current("docs-avi-ipaddrgroup") %>>
               <a href="/docs/providers/avi/d/avi_ipaddrgroup.html">IpAddrGroup</a>
@@ -68,6 +53,9 @@
                       <li<%= sidebar_current("docs-avi-certificatemanagementprofile") %>>
               <a href="/docs/providers/avi/d/avi_certificatemanagementprofile.html">CertificateManagementProfile</a>
             </li>
+                      <li<%= sidebar_current("docs-avi-ssopolicy") %>>
+              <a href="/docs/providers/avi/d/avi_ssopolicy.html">SSOPolicy</a>
+            </li>
                       <li<%= sidebar_current("docs-avi-l4policyset") %>>
               <a href="/docs/providers/avi/d/avi_l4policyset.html">L4PolicySet</a>
             </li>
@@ -95,8 +83,14 @@
                       <li<%= sidebar_current("docs-avi-securitypolicy") %>>
               <a href="/docs/providers/avi/d/avi_securitypolicy.html">SecurityPolicy</a>
             </li>
+                      <li<%= sidebar_current("docs-avi-protocolparser") %>>
+              <a href="/docs/providers/avi/d/avi_protocolparser.html">ProtocolParser</a>
+            </li>
                       <li<%= sidebar_current("docs-avi-cloudproperties") %>>
               <a href="/docs/providers/avi/d/avi_cloudproperties.html">CloudProperties</a>
+            </li>
+                      <li<%= sidebar_current("docs-avi-serviceenginepolicy") %>>
+              <a href="/docs/providers/avi/d/avi_serviceenginepolicy.html">ServiceEnginePolicy</a>
             </li>
                       <li<%= sidebar_current("docs-avi-applicationpersistenceprofile") %>>
               <a href="/docs/providers/avi/d/avi_applicationpersistenceprofile.html">ApplicationPersistenceProfile</a>
@@ -109,6 +103,9 @@
             </li>
                       <li<%= sidebar_current("docs-avi-seproperties") %>>
               <a href="/docs/providers/avi/d/avi_seproperties.html">SeProperties</a>
+            </li>
+                      <li<%= sidebar_current("docs-avi-pingaccessagent") %>>
+              <a href="/docs/providers/avi/d/avi_pingaccessagent.html">PingAccessAgent</a>
             </li>
                       <li<%= sidebar_current("docs-avi-gslbgeodbprofile") %>>
               <a href="/docs/providers/avi/d/avi_gslbgeodbprofile.html">GslbGeoDbProfile</a>
@@ -128,8 +125,14 @@
                       <li<%= sidebar_current("docs-avi-wafpolicy") %>>
               <a href="/docs/providers/avi/d/avi_wafpolicy.html">WafPolicy</a>
             </li>
+                      <li<%= sidebar_current("docs-avi-wafcrs") %>>
+              <a href="/docs/providers/avi/d/avi_wafcrs.html">WafCRS</a>
+            </li>
                       <li<%= sidebar_current("docs-avi-wafprofile") %>>
               <a href="/docs/providers/avi/d/avi_wafprofile.html">WafProfile</a>
+            </li>
+                      <li<%= sidebar_current("docs-avi-wafpolicypsmgroup") %>>
+              <a href="/docs/providers/avi/d/avi_wafpolicypsmgroup.html">WafPolicyPSMGroup</a>
             </li>
                       <li<%= sidebar_current("docs-avi-snmptrapprofile") %>>
               <a href="/docs/providers/avi/d/avi_snmptrapprofile.html">SnmpTrapProfile</a>
@@ -239,6 +242,9 @@
 		              <li<%= sidebar_current("docs-avi-role") %>>
               <a href="/docs/providers/avi/r/avi_role.html">Role</a>
             </li>
+		              <li<%= sidebar_current("docs-avi-natpolicy") %>>
+              <a href="/docs/providers/avi/r/avi_natpolicy.html">NatPolicy</a>
+            </li>
 		              <li<%= sidebar_current("docs-avi-ipaddrgroup") %>>
               <a href="/docs/providers/avi/r/avi_ipaddrgroup.html">IpAddrGroup</a>
             </li>
@@ -269,6 +275,9 @@
 		              <li<%= sidebar_current("docs-avi-certificatemanagementprofile") %>>
               <a href="/docs/providers/avi/r/avi_certificatemanagementprofile.html">CertificateManagementProfile</a>
             </li>
+		              <li<%= sidebar_current("docs-avi-ssopolicy") %>>
+              <a href="/docs/providers/avi/r/avi_ssopolicy.html">SSOPolicy</a>
+            </li>
 		              <li<%= sidebar_current("docs-avi-l4policyset") %>>
               <a href="/docs/providers/avi/r/avi_l4policyset.html">L4PolicySet</a>
             </li>
@@ -296,8 +305,14 @@
 		              <li<%= sidebar_current("docs-avi-securitypolicy") %>>
               <a href="/docs/providers/avi/r/avi_securitypolicy.html">SecurityPolicy</a>
             </li>
+		              <li<%= sidebar_current("docs-avi-protocolparser") %>>
+              <a href="/docs/providers/avi/r/avi_protocolparser.html">ProtocolParser</a>
+            </li>
 		              <li<%= sidebar_current("docs-avi-cloudproperties") %>>
               <a href="/docs/providers/avi/r/avi_cloudproperties.html">CloudProperties</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-serviceenginepolicy") %>>
+              <a href="/docs/providers/avi/r/avi_serviceenginepolicy.html">ServiceEnginePolicy</a>
             </li>
 		              <li<%= sidebar_current("docs-avi-applicationpersistenceprofile") %>>
               <a href="/docs/providers/avi/r/avi_applicationpersistenceprofile.html">ApplicationPersistenceProfile</a>
@@ -310,6 +325,9 @@
             </li>
 		              <li<%= sidebar_current("docs-avi-seproperties") %>>
               <a href="/docs/providers/avi/r/avi_seproperties.html">SeProperties</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-pingaccessagent") %>>
+              <a href="/docs/providers/avi/r/avi_pingaccessagent.html">PingAccessAgent</a>
             </li>
 		              <li<%= sidebar_current("docs-avi-gslbgeodbprofile") %>>
               <a href="/docs/providers/avi/r/avi_gslbgeodbprofile.html">GslbGeoDbProfile</a>
@@ -329,8 +347,14 @@
 		              <li<%= sidebar_current("docs-avi-wafpolicy") %>>
               <a href="/docs/providers/avi/r/avi_wafpolicy.html">WafPolicy</a>
             </li>
+		              <li<%= sidebar_current("docs-avi-wafcrs") %>>
+              <a href="/docs/providers/avi/r/avi_wafcrs.html">WafCRS</a>
+            </li>
 		              <li<%= sidebar_current("docs-avi-wafprofile") %>>
               <a href="/docs/providers/avi/r/avi_wafprofile.html">WafProfile</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-wafpolicypsmgroup") %>>
+              <a href="/docs/providers/avi/r/avi_wafpolicypsmgroup.html">WafPolicyPSMGroup</a>
             </li>
 		              <li<%= sidebar_current("docs-avi-snmptrapprofile") %>>
               <a href="/docs/providers/avi/r/avi_snmptrapprofile.html">SnmpTrapProfile</a>
