@@ -32,5 +32,4 @@ require (
 	github.com/satori/go.uuid v0.0.0-20160927100844-b061729afc07
 	golang.org/x/crypto v0.0.0-20170808112155-b176d7def5d7
 	golang.org/x/net v0.0.0-20170809000501-1c05540f6879
-	k8s.io/kubernetes v1.6.1
 )

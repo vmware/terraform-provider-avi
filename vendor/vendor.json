@@ -630,14 +630,6 @@
 			"revisionTime": "2017-08-04T00:04:37Z"
 		},
 		{
-			"checksumSHA1": "wICWAGQfZcHD2y0dHesz9R2YSiw=",
-			"path": "k8s.io/kubernetes/pkg/apimachinery",
-			"revision": "b0b7a323cc5a4a2019b2e9520c21c7830b7f708e",
-			"revisionTime": "2017-04-03T20:32:25Z",
-			"version": "v1.6.1",
-			"versionExact": "v1.6.1"
-		},
-		{
 			"path": "github.com/avinetworks/sdk/go/clients",
 			"revision": "56e8780326c59e3f452080f5380b65ba15084dab",
 			"revisionTime": "2019-04-30T23:40:15Z",
