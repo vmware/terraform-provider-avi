@@ -26,3 +26,10 @@ matrix:
   allow_failures:
   - go: tip
 
+notifications:
+  email:
+    recipients:
+      - grastogi@avinetworks.com
+      - chaitanya.deshpande@avinetworks.com
+      - shrikant.patil@avinetworks.com
+    on_failure: always
