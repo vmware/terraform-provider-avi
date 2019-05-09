@@ -8073,34 +8073,41 @@ func ResourceVipSchema() *schema.Resource {
 			"floating_ip": &schema.Schema{
 				Type:     schema.TypeSet,
 				Optional: true,
+				Computed: true,
 				Elem:     ResourceIpAddrSchema(),
 			},
 			"floating_ip6": &schema.Schema{
 				Type:     schema.TypeSet,
 				Optional: true,
+				Computed: true,
 				Elem:     ResourceIpAddrSchema(),
 			},
 			"floating_subnet6_uuid": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"floating_subnet_uuid": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ip6_address": &schema.Schema{
 				Type:     schema.TypeSet,
 				Optional: true,
+				Computed: true,
 				Elem:     ResourceIpAddrSchema(),
 			},
 			"ip_address": &schema.Schema{
 				Type:     schema.TypeSet,
 				Optional: true,
+				Computed: true,
 				Elem:     ResourceIpAddrSchema(),
 			},
 			"ipam_network_subnet": &schema.Schema{
 				Type:     schema.TypeSet,
 				Optional: true,
+				Computed: true,
 				Elem:     ResourceIPNetworkSubnetSchema(),
 			},
 			"network_ref": &schema.Schema{
@@ -8111,28 +8118,34 @@ func ResourceVipSchema() *schema.Resource {
 			"port_uuid": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"subnet": &schema.Schema{
 				Type:     schema.TypeSet,
 				Optional: true,
+				Computed: true,
 				Elem:     ResourceIpAddrPrefixSchema(),
 			},
 			"subnet6": &schema.Schema{
 				Type:     schema.TypeSet,
 				Optional: true,
+				Computed: true,
 				Elem:     ResourceIpAddrPrefixSchema(),
 			},
 			"subnet6_uuid": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"subnet_uuid": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"vip_id": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 		},
 	}
