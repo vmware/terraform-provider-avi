@@ -1,6 +1,7 @@
 import shlex
 import logging
 import subprocess
+import pytest
 logging.basicConfig(filename='terraform_tests.log', level=logging.INFO)
 LOG = logging.getLogger(__name__)
 
