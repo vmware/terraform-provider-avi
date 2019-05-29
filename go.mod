@@ -1,4 +1,4 @@
-module github.com/terraform-providers/terraform-provider-avi
+module github.com/avinetworks/terraform-provider-avi
 
 require (
 	github.com/apparentlymart/go-cidr v0.0.0-20170418151526-7e4b007599d4
@@ -10,6 +10,7 @@ require (
 	github.com/davecgh/go-spew v1.1.0
 	github.com/fsouza/go-dockerclient v0.0.0-20160427172547-1d4f4ae73768
 	github.com/go-ini/ini v1.23.1
+	github.com/golang/glog v0.0.0-20160126235308-23def4e6c14b // indirect
 	github.com/hashicorp/errwrap v0.0.0-20141028054710-7554cd9344ce
 	github.com/hashicorp/go-cleanhttp v0.0.0-20170211013415-3573b8b52aa7
 	github.com/hashicorp/go-getter v0.0.0-20170207215532-c3d66e76678d
