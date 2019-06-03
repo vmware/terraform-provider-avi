@@ -96,6 +96,7 @@ func ResourcePoolSchema() map[string]*schema.Schema {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  true,
+			Computed: true,
 		},
 		"description": &schema.Schema{
 			Type:     schema.TypeString,
