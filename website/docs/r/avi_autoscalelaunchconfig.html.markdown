@@ -13,9 +13,9 @@ The AutoScaleLaunchConfig resource allows the creation and management of Avi Aut
 ## Example Usage
 
 ```hcl
-resource "AutoScaleLaunchConfig" "foo" {
+resource "avi_autoscalelaunchconfig" "foo" {
     name = "terraform-example-foo"
-    tenant = "admin"
+    tenant_ref = "/api/tenant/?name=admin"
 }
 ```
 
@@ -23,14 +23,15 @@ resource "AutoScaleLaunchConfig" "foo" {
 
 The following arguments are supported:
 
-    * `description` - (Optional ) argument_description.
-        * `image_id` - (Optional ) argument_description.
-        * `mesos` - (Optional ) argument_description.
-        * `name` - (Required) argument_description.
-        * `openstack` - (Optional ) argument_description.
-        * `tenant_ref` - (Optional ) argument_description.
-        * `use_external_asg` - (Optional ) argument_description.
-        
+* `name` - (Required) Name of the object.
+* `description` - (Optional) User defined description for the object.
+* `image_id` - (Optional) Unique id of the amazon machine image (ami)  or openstack vm id.
+* `mesos` - (Optional) Dict settings for autoscalelaunchconfig.
+* `openstack` - (Optional) Dict settings for autoscalelaunchconfig.
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant.
+* `use_external_asg` - (Optional) If set to true, serverautoscalepolicy will use the autoscaling group (external_autoscaling_groups) from pool to perform scale up and scale down.
+
+
 ### Timeouts
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
@@ -43,5 +44,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-                                * `uuid` - argument_description.
-    
+* `uuid` -  Unique object identifier of the object.
+

@@ -14,36 +14,36 @@ import (
 
 func ResourceUserAccountProfileSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"account_lock_timeout": &schema.Schema{
+		"account_lock_timeout": {
 			Type:     schema.TypeInt,
 			Optional: true,
 			Default:  30,
 		},
-		"credentials_timeout_threshold": &schema.Schema{
+		"credentials_timeout_threshold": {
 			Type:     schema.TypeInt,
 			Optional: true,
 			Default:  180,
 		},
-		"max_concurrent_sessions": &schema.Schema{
+		"max_concurrent_sessions": {
 			Type:     schema.TypeInt,
 			Optional: true,
 			Default:  0,
 		},
-		"max_login_failure_count": &schema.Schema{
+		"max_login_failure_count": {
 			Type:     schema.TypeInt,
 			Optional: true,
 			Default:  3,
 		},
-		"max_password_history_count": &schema.Schema{
+		"max_password_history_count": {
 			Type:     schema.TypeInt,
 			Optional: true,
 			Default:  4,
 		},
-		"name": &schema.Schema{
+		"name": {
 			Type:     schema.TypeString,
 			Required: true,
 		},
-		"uuid": &schema.Schema{
+		"uuid": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,

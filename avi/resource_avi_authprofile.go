@@ -14,49 +14,49 @@ import (
 
 func ResourceAuthProfileSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"description": &schema.Schema{
+		"description": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
-		"http": &schema.Schema{
+		"http": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceAuthProfileHTTPClientParamsSchema(),
 		},
-		"ldap": &schema.Schema{
+		"ldap": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceLdapAuthSettingsSchema(),
 		},
-		"name": &schema.Schema{
+		"name": {
 			Type:     schema.TypeString,
 			Required: true,
 		},
-		"pa_agent_ref": &schema.Schema{
+		"pa_agent_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"saml": &schema.Schema{
+		"saml": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceSamlSettingsSchema(),
 		},
-		"tacacs_plus": &schema.Schema{
+		"tacacs_plus": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceTacacsPlusAuthSettingsSchema(),
 		},
-		"tenant_ref": &schema.Schema{
+		"tenant_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"type": &schema.Schema{
+		"type": {
 			Type:     schema.TypeString,
 			Required: true,
 		},
-		"uuid": &schema.Schema{
+		"uuid": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,

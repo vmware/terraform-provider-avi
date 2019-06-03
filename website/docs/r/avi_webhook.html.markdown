@@ -13,9 +13,9 @@ The Webhook resource allows the creation and management of Avi Webhook
 ## Example Usage
 
 ```hcl
-resource "Webhook" "foo" {
+resource "avi_webhook" "foo" {
     name = "terraform-example-foo"
-    tenant = "admin"
+    tenant_ref = "/api/tenant/?name=admin"
 }
 ```
 
@@ -23,12 +23,13 @@ resource "Webhook" "foo" {
 
 The following arguments are supported:
 
-    * `callback_url` - (Optional ) argument_description.
-        * `description` - (Optional ) argument_description.
-        * `name` - (Required) argument_description.
-        * `tenant_ref` - (Optional ) argument_description.
-            * `verification_token` - (Optional ) argument_description.
-    
+* `name` - (Required) The name of the webhook profile.
+* `callback_url` - (Optional) Callback url for the webhook.
+* `description` - (Optional) Field introduced in 17.1.1.
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant.
+* `verification_token` - (Optional) Verification token sent back with the callback asquery parameters.
+
+
 ### Timeouts
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
@@ -41,5 +42,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-                    * `uuid` - argument_description.
-        
+* `uuid` -  Uuid of the webhook profile.
+

@@ -13,9 +13,9 @@ The NatPolicy resource allows the creation and management of Avi NatPolicy
 ## Example Usage
 
 ```hcl
-resource "NatPolicy" "foo" {
+resource "avi_natpolicy" "foo" {
     name = "terraform-example-foo"
-    tenant = "admin"
+    tenant_ref = "/api/tenant/?name=admin"
 }
 ```
 
@@ -23,12 +23,13 @@ resource "NatPolicy" "foo" {
 
 The following arguments are supported:
 
-    * `created_by` - (Optional ) argument_description.
-        * `description` - (Optional ) argument_description.
-        * `name` - (Optional ) argument_description.
-        * `rules` - (Optional ) argument_description.
-        * `tenant_ref` - (Optional ) argument_description.
-        
+* `created_by` - (Optional) Creator name.
+* `description` - (Optional) Field introduced in 18.2.3.
+* `name` - (Optional) Name of the nat policy.
+* `rules` - (Optional) Nat policy rules.
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant.
+
+
 ### Timeouts
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
@@ -41,5 +42,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-                        * `uuid` - argument_description.
-    
+* `uuid` -  Uuid of the nat policy.
+

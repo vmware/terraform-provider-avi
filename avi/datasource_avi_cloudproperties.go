@@ -11,27 +11,27 @@ func dataSourceAviCloudProperties() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviCloudPropertiesRead,
 		Schema: map[string]*schema.Schema{
-			"cc_props": &schema.Schema{
+			"cc_props": {
 				Type:     schema.TypeSet,
-				Optional: true,
+				Computed: true,
 				Elem:     ResourceCC_PropertiesSchema(),
 			},
-			"cc_vtypes": &schema.Schema{
+			"cc_vtypes": {
 				Type:     schema.TypeList,
-				Optional: true,
+				Computed: true,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
-			"hyp_props": &schema.Schema{
+			"hyp_props": {
 				Type:     schema.TypeList,
-				Optional: true,
+				Computed: true,
 				Elem:     ResourceHypervisor_PropertiesSchema(),
 			},
-			"info": &schema.Schema{
+			"info": {
 				Type:     schema.TypeList,
-				Optional: true,
+				Computed: true,
 				Elem:     ResourceCloudInfoSchema(),
 			},
-			"uuid": &schema.Schema{
+			"uuid": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,

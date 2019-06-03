@@ -13,9 +13,9 @@ The CloudConnectorUser resource allows the creation and management of Avi CloudC
 ## Example Usage
 
 ```hcl
-resource "CloudConnectorUser" "foo" {
+resource "avi_cloudconnectoruser" "foo" {
     name = "terraform-example-foo"
-    tenant = "admin"
+    tenant_ref = "/api/tenant/?name=admin"
 }
 ```
 
@@ -23,17 +23,18 @@ resource "CloudConnectorUser" "foo" {
 
 The following arguments are supported:
 
-    * `azure_serviceprincipal` - (Optional ) argument_description.
-        * `azure_userpass` - (Optional ) argument_description.
-        * `gcp_credentials` - (Optional ) argument_description.
-        * `name` - (Required) argument_description.
-        * `oci_credentials` - (Optional ) argument_description.
-        * `password` - (Optional ) argument_description.
-        * `private_key` - (Optional ) argument_description.
-        * `public_key` - (Optional ) argument_description.
-        * `tenant_ref` - (Optional ) argument_description.
-        * `tencent_credentials` - (Optional ) argument_description.
-        
+* `name` - (Required) Name of the object.
+* `azure_serviceprincipal` - (Optional) Field introduced in 17.2.1.
+* `azure_userpass` - (Optional) Field introduced in 17.2.1.
+* `gcp_credentials` - (Optional) Credentials for google cloud platform.
+* `oci_credentials` - (Optional) Credentials for oracle cloud infrastructure.
+* `password` - (Optional) Placeholder for description of property password of obj type cloudconnectoruser field type string  type str.
+* `private_key` - (Optional) Placeholder for description of property private_key of obj type cloudconnectoruser field type string  type str.
+* `public_key` - (Optional) Placeholder for description of property public_key of obj type cloudconnectoruser field type string  type str.
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant.
+* `tencent_credentials` - (Optional) Credentials for tencent cloud.
+
+
 ### Timeouts
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
@@ -46,5 +47,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-                                            * `uuid` - argument_description.
-    
+* `uuid` -  Unique object identifier of the object.
+

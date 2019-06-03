@@ -11,170 +11,163 @@ func dataSourceAviCloud() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviCloudRead,
 		Schema: map[string]*schema.Schema{
-			"apic_configuration": &schema.Schema{
+			"apic_configuration": {
 				Type:     schema.TypeSet,
-				Optional: true,
+				Computed: true,
 				Elem:     ResourceAPICConfigurationSchema(),
 			},
-			"apic_mode": &schema.Schema{
+			"apic_mode": {
 				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  false,
+				Computed: true,
 			},
-			"autoscale_polling_interval": &schema.Schema{
+			"autoscale_polling_interval": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  60,
+				Computed: true,
 			},
-			"aws_configuration": &schema.Schema{
+			"aws_configuration": {
 				Type:     schema.TypeSet,
-				Optional: true,
+				Computed: true,
 				Elem:     ResourceAwsConfigurationSchema(),
 			},
-			"azure_configuration": &schema.Schema{
+			"azure_configuration": {
 				Type:     schema.TypeSet,
-				Optional: true,
+				Computed: true,
 				Elem:     ResourceAzureConfigurationSchema(),
 			},
-			"cloudstack_configuration": &schema.Schema{
+			"cloudstack_configuration": {
 				Type:     schema.TypeSet,
-				Optional: true,
+				Computed: true,
 				Elem:     ResourceCloudStackConfigurationSchema(),
 			},
-			"custom_tags": &schema.Schema{
+			"custom_tags": {
 				Type:     schema.TypeList,
-				Optional: true,
+				Computed: true,
 				Elem:     ResourceCustomTagSchema(),
 			},
-			"dhcp_enabled": &schema.Schema{
+			"dhcp_enabled": {
 				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  false,
-			},
-			"dns_provider_ref": &schema.Schema{
-				Type:     schema.TypeString,
-				Optional: true,
 				Computed: true,
 			},
-			"docker_configuration": &schema.Schema{
+			"dns_provider_ref": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"docker_configuration": {
 				Type:     schema.TypeSet,
-				Optional: true,
+				Computed: true,
 				Elem:     ResourceDockerConfigurationSchema(),
 			},
-			"east_west_dns_provider_ref": &schema.Schema{
+			"east_west_dns_provider_ref": {
 				Type:     schema.TypeString,
-				Optional: true,
 				Computed: true,
 			},
-			"east_west_ipam_provider_ref": &schema.Schema{
+			"east_west_ipam_provider_ref": {
 				Type:     schema.TypeString,
-				Optional: true,
 				Computed: true,
 			},
-			"enable_vip_static_routes": &schema.Schema{
+			"enable_vip_static_routes": {
 				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  false,
+				Computed: true,
 			},
-			"gcp_configuration": &schema.Schema{
+			"gcp_configuration": {
 				Type:     schema.TypeSet,
-				Optional: true,
+				Computed: true,
 				Elem:     ResourceGCPConfigurationSchema(),
 			},
-			"ip6_autocfg_enabled": &schema.Schema{
+			"ip6_autocfg_enabled": {
 				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  false,
-			},
-			"ipam_provider_ref": &schema.Schema{
-				Type:     schema.TypeString,
-				Optional: true,
 				Computed: true,
 			},
-			"license_tier": &schema.Schema{
+			"ipam_provider_ref": {
 				Type:     schema.TypeString,
-				Optional: true,
+				Computed: true,
 			},
-			"license_type": &schema.Schema{
+			"license_tier": {
 				Type:     schema.TypeString,
-				Optional: true,
+				Computed: true,
 			},
-			"linuxserver_configuration": &schema.Schema{
+			"license_type": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"linuxserver_configuration": {
 				Type:     schema.TypeSet,
-				Optional: true,
+				Computed: true,
 				Elem:     ResourceLinuxServerConfigurationSchema(),
 			},
-			"mtu": &schema.Schema{
+			"mtu": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  1500,
+				Computed: true,
 			},
-			"name": &schema.Schema{
+			"name": {
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
-			"nsx_configuration": &schema.Schema{
+			"nsx_configuration": {
 				Type:     schema.TypeSet,
-				Optional: true,
+				Computed: true,
 				Elem:     ResourceNsxConfigurationSchema(),
 			},
-			"obj_name_prefix": &schema.Schema{
+			"obj_name_prefix": {
 				Type:     schema.TypeString,
-				Optional: true,
+				Computed: true,
 			},
-			"openstack_configuration": &schema.Schema{
+			"openstack_configuration": {
 				Type:     schema.TypeSet,
-				Optional: true,
+				Computed: true,
 				Elem:     ResourceOpenStackConfigurationSchema(),
 			},
-			"oshiftk8s_configuration": &schema.Schema{
+			"oshiftk8s_configuration": {
 				Type:     schema.TypeSet,
-				Optional: true,
+				Computed: true,
 				Elem:     ResourceOShiftK8SConfigurationSchema(),
 			},
-			"prefer_static_routes": &schema.Schema{
+			"prefer_static_routes": {
 				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  false,
+				Computed: true,
 			},
-			"proxy_configuration": &schema.Schema{
+			"proxy_configuration": {
 				Type:     schema.TypeSet,
-				Optional: true,
+				Computed: true,
 				Elem:     ResourceProxyConfigurationSchema(),
 			},
-			"rancher_configuration": &schema.Schema{
+			"rancher_configuration": {
 				Type:     schema.TypeSet,
-				Optional: true,
+				Computed: true,
 				Elem:     ResourceRancherConfigurationSchema(),
 			},
-			"state_based_dns_registration": &schema.Schema{
+			"se_group_template_ref": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"state_based_dns_registration": {
 				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  true,
+				Computed: true,
 			},
-			"tenant_ref": &schema.Schema{
+			"tenant_ref": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
-			"uuid": &schema.Schema{
+			"uuid": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
-			"vca_configuration": &schema.Schema{
+			"vca_configuration": {
 				Type:     schema.TypeSet,
-				Optional: true,
+				Computed: true,
 				Elem:     ResourcevCloudAirConfigurationSchema(),
 			},
-			"vcenter_configuration": &schema.Schema{
+			"vcenter_configuration": {
 				Type:     schema.TypeSet,
-				Optional: true,
+				Computed: true,
 				Elem:     ResourcevCenterConfigurationSchema(),
 			},
-			"vtype": &schema.Schema{
+			"vtype": {
 				Type:     schema.TypeString,
-				Optional: true,
+				Computed: true,
 			},
 		},
 	}

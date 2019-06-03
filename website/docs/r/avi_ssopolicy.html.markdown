@@ -13,9 +13,9 @@ The SSOPolicy resource allows the creation and management of Avi SSOPolicy
 ## Example Usage
 
 ```hcl
-resource "SSOPolicy" "foo" {
+resource "avi_ssopolicy" "foo" {
     name = "terraform-example-foo"
-    tenant = "admin"
+    tenant_ref = "/api/tenant/?name=admin"
 }
 ```
 
@@ -23,10 +23,11 @@ resource "SSOPolicy" "foo" {
 
 The following arguments are supported:
 
-    * `authentication_policy` - (Optional ) argument_description.
-        * `name` - (Optional ) argument_description.
-        * `tenant_ref` - (Optional ) argument_description.
-        
+* `authentication_policy` - (Optional) Authentication policy settings.
+* `name` - (Optional) Name of the sso policy.
+* `tenant_ref` - (Optional) Uuid of the tenant.
+
+
 ### Timeouts
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
@@ -39,5 +40,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-                * `uuid` - argument_description.
-    
+* `uuid` -  Uuid of the sso policy.
+

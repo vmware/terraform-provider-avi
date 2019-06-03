@@ -14,53 +14,53 @@ import (
 
 func ResourceActionGroupConfigSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"action_script_config_ref": &schema.Schema{
+		"action_script_config_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"autoscale_trigger_notification": &schema.Schema{
+		"autoscale_trigger_notification": {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  false,
 		},
-		"description": &schema.Schema{
+		"description": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
-		"email_config_ref": &schema.Schema{
+		"email_config_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"external_only": &schema.Schema{
+		"external_only": {
 			Type:     schema.TypeBool,
 			Required: true,
 		},
-		"level": &schema.Schema{
+		"level": {
 			Type:     schema.TypeString,
 			Required: true,
 		},
-		"name": &schema.Schema{
+		"name": {
 			Type:     schema.TypeString,
 			Required: true,
 		},
-		"snmp_trap_profile_ref": &schema.Schema{
+		"snmp_trap_profile_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"syslog_config_ref": &schema.Schema{
+		"syslog_config_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"tenant_ref": &schema.Schema{
+		"tenant_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"uuid": &schema.Schema{
+		"uuid": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,

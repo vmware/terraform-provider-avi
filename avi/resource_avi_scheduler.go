@@ -14,56 +14,56 @@ import (
 
 func ResourceSchedulerSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"backup_config_ref": &schema.Schema{
+		"backup_config_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"enabled": &schema.Schema{
+		"enabled": {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  true,
 		},
-		"end_date_time": &schema.Schema{
+		"end_date_time": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
-		"frequency": &schema.Schema{
+		"frequency": {
 			Type:     schema.TypeInt,
 			Optional: true,
 		},
-		"frequency_unit": &schema.Schema{
+		"frequency_unit": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
-		"name": &schema.Schema{
+		"name": {
 			Type:     schema.TypeString,
 			Required: true,
 		},
-		"run_mode": &schema.Schema{
+		"run_mode": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
-		"run_script_ref": &schema.Schema{
+		"run_script_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"scheduler_action": &schema.Schema{
+		"scheduler_action": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Default:  "SCHEDULER_ACTION_BACKUP",
 		},
-		"start_date_time": &schema.Schema{
+		"start_date_time": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
-		"tenant_ref": &schema.Schema{
+		"tenant_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"uuid": &schema.Schema{
+		"uuid": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,

@@ -13,8 +13,8 @@ This data source is used to to get avi_networksecuritypolicy objects.
 ## Example Usage
 
 ```hcl
-data "NetworkSecurityPolicy" "foo_NetworkSecurityPolicy" {
-    uuid = "NetworkSecurityPolicy-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
+data "avi_networksecuritypolicy" "foo_networksecuritypolicy" {
+    uuid = "networksecuritypolicy-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
     name = "foo"
 }
 ```
@@ -30,9 +30,9 @@ In addition to all arguments above, the following attributes are exported:
 
 * `cloud_config_cksum` - Checksum of cloud configuration for network sec policy.
 * `created_by` - Creator name.
-* `description` - General description.
-* `name` - General description.
-* `rules` - General description.
+* `description` - User defined description for the object.
+* `name` - Name of the object.
+* `rules` - List of list.
 * `tenant_ref` - It is a reference to an object of type tenant.
-* `uuid` - General description.
+* `uuid` - Unique object identifier of the object.
 

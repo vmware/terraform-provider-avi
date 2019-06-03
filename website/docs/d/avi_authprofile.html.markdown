@@ -13,8 +13,8 @@ This data source is used to to get avi_authprofile objects.
 ## Example Usage
 
 ```hcl
-data "AuthProfile" "foo_AuthProfile" {
-    uuid = "AuthProfile-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
+data "avi_authprofile" "foo_authprofile" {
+    uuid = "authprofile-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
     name = "foo"
 }
 ```
@@ -28,7 +28,7 @@ data "AuthProfile" "foo_AuthProfile" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `description` - General description.
+* `description` - User defined description for the object.
 * `http` - Http user authentication params.
 * `ldap` - Ldap server and directory settings.
 * `name` - Name of the auth profile.

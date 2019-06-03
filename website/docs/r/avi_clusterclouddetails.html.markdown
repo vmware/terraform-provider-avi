@@ -13,9 +13,9 @@ The ClusterCloudDetails resource allows the creation and management of Avi Clust
 ## Example Usage
 
 ```hcl
-resource "ClusterCloudDetails" "foo" {
+resource "avi_clusterclouddetails" "foo" {
     name = "terraform-example-foo"
-    tenant = "admin"
+    tenant_ref = "/api/tenant/?name=admin"
 }
 ```
 
@@ -23,10 +23,11 @@ resource "ClusterCloudDetails" "foo" {
 
 The following arguments are supported:
 
-    * `azure_info` - (Optional ) argument_description.
-        * `name` - (Required) argument_description.
-        * `tenant_ref` - (Optional ) argument_description.
-        
+* `name` - (Required) Field introduced in 17.2.5.
+* `azure_info` - (Optional) Azure info to configure cluster_vip on the controller.
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant.
+
+
 ### Timeouts
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
@@ -39,5 +40,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-                * `uuid` - argument_description.
-    
+* `uuid` -  Field introduced in 17.2.5.
+

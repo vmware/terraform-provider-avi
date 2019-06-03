@@ -13,8 +13,8 @@ This data source is used to to get avi_applicationprofile objects.
 ## Example Usage
 
 ```hcl
-data "ApplicationProfile" "foo_ApplicationProfile" {
-    uuid = "ApplicationProfile-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
+data "avi_applicationprofile" "foo_applicationprofile" {
+    uuid = "applicationprofile-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
     name = "foo"
 }
 ```
@@ -30,7 +30,7 @@ In addition to all arguments above, the following attributes are exported:
 
 * `cloud_config_cksum` - Checksum of application profiles.
 * `created_by` - Name of the application profile creator.
-* `description` - General description.
+* `description` - User defined description for the object.
 * `dns_service_profile` - Specifies various dns service related controls for virtual service.
 * `dos_rl_profile` - Specifies various security related controls for virtual service.
 * `http_profile` - Specifies the http application proxy profile parameters.

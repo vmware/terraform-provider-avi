@@ -13,9 +13,9 @@ The HTTPPolicySet resource allows the creation and management of Avi HTTPPolicyS
 ## Example Usage
 
 ```hcl
-resource "HTTPPolicySet" "foo" {
+resource "avi_httppolicyset" "foo" {
     name = "terraform-example-foo"
-    tenant = "admin"
+    tenant_ref = "/api/tenant/?name=admin"
 }
 ```
 
@@ -23,16 +23,17 @@ resource "HTTPPolicySet" "foo" {
 
 The following arguments are supported:
 
-    * `cloud_config_cksum` - (Optional ) argument_description.
-        * `created_by` - (Optional ) argument_description.
-        * `description` - (Optional ) argument_description.
-        * `http_request_policy` - (Optional ) argument_description.
-        * `http_response_policy` - (Optional ) argument_description.
-        * `http_security_policy` - (Optional ) argument_description.
-        * `is_internal_policy` - (Optional ) argument_description.
-        * `name` - (Required) argument_description.
-        * `tenant_ref` - (Optional ) argument_description.
-        
+* `name` - (Required) Name of the http policy set.
+* `cloud_config_cksum` - (Optional) Checksum of cloud configuration for pool.
+* `created_by` - (Optional) Creator name.
+* `description` - (Optional) User defined description for the object.
+* `http_request_policy` - (Optional) Http request policy for the virtual service.
+* `http_response_policy` - (Optional) Http response policy for the virtual service.
+* `http_security_policy` - (Optional) Http security policy for the virtual service.
+* `is_internal_policy` - (Optional) Boolean flag to set is_internal_policy.
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant.
+
+
 ### Timeouts
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
@@ -45,5 +46,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-                                        * `uuid` - argument_description.
-    
+* `uuid` -  Uuid of the http policy set.
+

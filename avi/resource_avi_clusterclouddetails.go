@@ -14,21 +14,21 @@ import (
 
 func ResourceClusterCloudDetailsSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"azure_info": &schema.Schema{
+		"azure_info": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceAzureClusterInfoSchema(),
 		},
-		"name": &schema.Schema{
+		"name": {
 			Type:     schema.TypeString,
 			Required: true,
 		},
-		"tenant_ref": &schema.Schema{
+		"tenant_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"uuid": &schema.Schema{
+		"uuid": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,

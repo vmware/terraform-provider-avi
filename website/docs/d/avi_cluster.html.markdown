@@ -13,8 +13,8 @@ This data source is used to to get avi_cluster objects.
 ## Example Usage
 
 ```hcl
-data "Cluster" "foo_Cluster" {
-    uuid = "Cluster-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
+data "avi_cluster" "foo_cluster" {
+    uuid = "cluster-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
     name = "foo"
 }
 ```
@@ -28,10 +28,10 @@ data "Cluster" "foo_Cluster" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `name` - General description.
-* `nodes` - General description.
+* `name` - Name of the object.
+* `nodes` - List of list.
 * `rejoin_nodes_automatically` - Re-join cluster nodes automatically in the event one of the node is reset to factory.
 * `tenant_ref` - It is a reference to an object of type tenant.
-* `uuid` - General description.
+* `uuid` - Unique object identifier of the object.
 * `virtual_ip` - A virtual ip address.
 

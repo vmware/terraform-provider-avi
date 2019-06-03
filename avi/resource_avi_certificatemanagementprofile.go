@@ -14,25 +14,25 @@ import (
 
 func ResourceCertificateManagementProfileSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"name": &schema.Schema{
+		"name": {
 			Type:     schema.TypeString,
 			Required: true,
 		},
-		"script_params": &schema.Schema{
+		"script_params": {
 			Type:     schema.TypeList,
 			Optional: true,
 			Elem:     ResourceCustomParamsSchema(),
 		},
-		"script_path": &schema.Schema{
+		"script_path": {
 			Type:     schema.TypeString,
 			Required: true,
 		},
-		"tenant_ref": &schema.Schema{
+		"tenant_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"uuid": &schema.Schema{
+		"uuid": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,

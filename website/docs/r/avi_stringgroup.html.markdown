@@ -13,9 +13,9 @@ The StringGroup resource allows the creation and management of Avi StringGroup
 ## Example Usage
 
 ```hcl
-resource "StringGroup" "foo" {
+resource "avi_stringgroup" "foo" {
     name = "terraform-example-foo"
-    tenant = "admin"
+    tenant_ref = "/api/tenant/?name=admin"
 }
 ```
 
@@ -23,12 +23,13 @@ resource "StringGroup" "foo" {
 
 The following arguments are supported:
 
-    * `description` - (Optional ) argument_description.
-        * `kv` - (Optional ) argument_description.
-        * `name` - (Required) argument_description.
-        * `tenant_ref` - (Optional ) argument_description.
-        * `type` - (Required) argument_description.
-        
+* `name` - (Required) Name of the string group.
+* `type` - (Required) Type of stringgroup.
+* `description` - (Optional) User defined description for the object.
+* `kv` - (Optional) Configure key value in the string group.
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant.
+
+
 ### Timeouts
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
@@ -41,5 +42,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-                        * `uuid` - argument_description.
-    
+* `uuid` -  Uuid of the string group.
+

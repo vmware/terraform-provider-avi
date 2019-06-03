@@ -13,8 +13,8 @@ This data source is used to to get avi_controllerproperties objects.
 ## Example Usage
 
 ```hcl
-data "ControllerProperties" "foo_ControllerProperties" {
-    uuid = "ControllerProperties-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
+data "avi_controllerproperties" "foo_controllerproperties" {
+    uuid = "controllerproperties-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
     name = "foo"
 }
 ```
@@ -30,61 +30,61 @@ In addition to all arguments above, the following attributes are exported:
 
 * `allow_ip_forwarding` - Field introduced in 17.1.1.
 * `allow_unauthenticated_apis` - Allow unauthenticated access for special apis.
-* `allow_unauthenticated_nodes` - General description.
+* `allow_unauthenticated_nodes` - Boolean flag to set allow_unauthenticated_nodes.
 * `api_idle_timeout` - Allowed values are 0-1440.
 * `api_perf_logging_threshold` - Threshold to log request timing in portal_performance.log and server-timing response header.
 * `appviewx_compat_mode` - Export configuration in appviewx compatibility mode.
-* `attach_ip_retry_interval` - General description.
-* `attach_ip_retry_limit` - General description.
+* `attach_ip_retry_interval` - Placeholder for description of property attach_ip_retry_interval of obj type controllerproperties field type integer  type int.
+* `attach_ip_retry_limit` - Placeholder for description of property attach_ip_retry_limit of obj type controllerproperties field type integer  type int.
 * `bm_use_ansible` - Use ansible for se creation in baremetal.
 * `cleanup_expired_authtoken_timeout_period` - Period for auth token cleanup job.
 * `cleanup_sessions_timeout_period` - Period for sessions cleanup job.
 * `cloud_reconcile` - Enable/disable periodic reconcile for all the clouds.
 * `cluster_ip_gratuitous_arp_period` - Period for cluster ip gratuitous arp job.
 * `consistency_check_timeout_period` - Period for consistency check job.
-* `crashed_se_reboot` - General description.
-* `dead_se_detection_timer` - General description.
+* `crashed_se_reboot` - Placeholder for description of property crashed_se_reboot of obj type controllerproperties field type integer  type int.
+* `dead_se_detection_timer` - Placeholder for description of property dead_se_detection_timer of obj type controllerproperties field type integer  type int.
 * `dns_refresh_period` - Period for refresh pool and gslb dns job.
-* `dummy` - General description.
+* `dummy` - Placeholder for description of property dummy of obj type controllerproperties field type integer  type int.
 * `enable_api_sharding` - This setting enables the controller leader to shard api requests to the followers (if any).
 * `enable_memory_balancer` - Enable/disable memory balancer.
-* `fatal_error_lease_time` - General description.
-* `max_dead_se_in_grp` - General description.
+* `fatal_error_lease_time` - Placeholder for description of property fatal_error_lease_time of obj type controllerproperties field type integer  type int.
+* `max_dead_se_in_grp` - Placeholder for description of property max_dead_se_in_grp of obj type controllerproperties field type integer  type int.
 * `max_pcap_per_tenant` - Maximum number of pcap files stored per tenant.
 * `max_seq_attach_ip_failures` - Maximum number of consecutive attach ip failures that halts vs placement.
-* `max_seq_vnic_failures` - General description.
+* `max_seq_vnic_failures` - Placeholder for description of property max_seq_vnic_failures of obj type controllerproperties field type integer  type int.
 * `persistence_key_rotate_period` - Period for rotate app persistence keys job.
 * `portal_token` - Token used for uploading tech-support to portal.
 * `process_locked_useraccounts_timeout_period` - Period for process locked user accounts job.
 * `process_pki_profile_timeout_period` - Period for process pki profile job.
-* `query_host_fail` - General description.
+* `query_host_fail` - Placeholder for description of property query_host_fail of obj type controllerproperties field type integer  type int.
 * `safenet_hsm_version` - Version of the safenet package installed on the controller.
-* `se_create_timeout` - General description.
+* `se_create_timeout` - Placeholder for description of property se_create_timeout of obj type controllerproperties field type integer  type int.
 * `se_failover_attempt_interval` - Interval between attempting failovers to an se.
 * `se_from_marketplace` - This setting decides whether se is to be deployed from the cloud marketplace or to be created by the controller.
-* `se_offline_del` - General description.
-* `se_vnic_cooldown` - General description.
+* `se_offline_del` - Placeholder for description of property se_offline_del of obj type controllerproperties field type integer  type int.
+* `se_vnic_cooldown` - Placeholder for description of property se_vnic_cooldown of obj type controllerproperties field type integer  type int.
 * `secure_channel_cleanup_timeout` - Period for secure channel cleanup job.
-* `secure_channel_controller_token_timeout` - General description.
-* `secure_channel_se_token_timeout` - General description.
+* `secure_channel_controller_token_timeout` - Placeholder for description of property secure_channel_controller_token_timeout of obj type controllerproperties field type integer  type int.
+* `secure_channel_se_token_timeout` - Placeholder for description of property secure_channel_se_token_timeout of obj type controllerproperties field type integer  type int.
 * `seupgrade_fabric_pool_size` - Pool size used for all fabric commands during se upgrade.
 * `seupgrade_segroup_min_dead_timeout` - Time to wait before marking segroup upgrade as stuck.
 * `ssl_certificate_expiry_warning_days` - Number of days for ssl certificate expiry warning.
-* `unresponsive_se_reboot` - General description.
+* `unresponsive_se_reboot` - Placeholder for description of property unresponsive_se_reboot of obj type controllerproperties field type integer  type int.
 * `upgrade_dns_ttl` - Time to account for dns ttl during upgrade.
-* `upgrade_lease_time` - General description.
-* `uuid` - General description.
-* `vnic_op_fail_time` - General description.
+* `upgrade_lease_time` - Placeholder for description of property upgrade_lease_time of obj type controllerproperties field type integer  type int.
+* `uuid` - Unique object identifier of the object.
+* `vnic_op_fail_time` - Placeholder for description of property vnic_op_fail_time of obj type controllerproperties field type integer  type int.
 * `vs_apic_scaleout_timeout` - Time to wait for the scaled out se to become ready before marking the scaleout done, applies to apic configuration only.
-* `vs_awaiting_se_timeout` - General description.
+* `vs_awaiting_se_timeout` - Placeholder for description of property vs_awaiting_se_timeout of obj type controllerproperties field type integer  type int.
 * `vs_key_rotate_period` - Period for rotate vs keys job.
 * `vs_scaleout_ready_check_interval` - Interval for checking scaleout_ready status while controller is waiting for scaleoutready rpc from the service engine.
 * `vs_se_attach_ip_fail` - Time to wait before marking attach ip operation on an se as failed.
-* `vs_se_bootup_fail` - General description.
-* `vs_se_create_fail` - General description.
-* `vs_se_ping_fail` - General description.
-* `vs_se_vnic_fail` - General description.
-* `vs_se_vnic_ip_fail` - General description.
-* `warmstart_se_reconnect_wait_time` - General description.
+* `vs_se_bootup_fail` - Placeholder for description of property vs_se_bootup_fail of obj type controllerproperties field type integer  type int.
+* `vs_se_create_fail` - Placeholder for description of property vs_se_create_fail of obj type controllerproperties field type integer  type int.
+* `vs_se_ping_fail` - Placeholder for description of property vs_se_ping_fail of obj type controllerproperties field type integer  type int.
+* `vs_se_vnic_fail` - Placeholder for description of property vs_se_vnic_fail of obj type controllerproperties field type integer  type int.
+* `vs_se_vnic_ip_fail` - Placeholder for description of property vs_se_vnic_ip_fail of obj type controllerproperties field type integer  type int.
+* `warmstart_se_reconnect_wait_time` - Placeholder for description of property warmstart_se_reconnect_wait_time of obj type controllerproperties field type integer  type int.
 * `warmstart_vs_resync_wait_time` - Timeout for warmstart vs resync.
 

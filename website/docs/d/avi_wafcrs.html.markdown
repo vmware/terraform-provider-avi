@@ -13,8 +13,8 @@ This data source is used to to get avi_wafcrs objects.
 ## Example Usage
 
 ```hcl
-data "WafCRS" "foo_WafCRS" {
-    uuid = "WafCRS-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
+data "avi_wafcrs" "foo_wafcrs" {
+    uuid = "wafcrs-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
     name = "foo"
 }
 ```

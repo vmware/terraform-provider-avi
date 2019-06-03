@@ -13,9 +13,9 @@ The ServiceEngine resource allows the creation and management of Avi ServiceEngi
 ## Example Usage
 
 ```hcl
-resource "ServiceEngine" "foo" {
+resource "avi_serviceengine" "foo" {
     name = "terraform-example-foo"
-    tenant = "admin"
+    tenant_ref = "/api/tenant/?name=admin"
 }
 ```
 
@@ -23,23 +23,24 @@ resource "ServiceEngine" "foo" {
 
 The following arguments are supported:
 
-    * `availability_zone` - (Optional ) argument_description.
-        * `cloud_ref` - (Optional ) argument_description.
-        * `container_mode` - (Optional ) argument_description.
-        * `container_type` - (Optional ) argument_description.
-        * `controller_created` - (Optional ) argument_description.
-        * `controller_ip` - (Optional ) argument_description.
-        * `data_vnics` - (Optional ) argument_description.
-        * `enable_state` - (Optional ) argument_description.
-        * `flavor` - (Optional ) argument_description.
-        * `host_ref` - (Optional ) argument_description.
-        * `hypervisor` - (Optional ) argument_description.
-        * `mgmt_vnic` - (Optional ) argument_description.
-        * `name` - (Optional ) argument_description.
-        * `resources` - (Optional ) argument_description.
-        * `se_group_ref` - (Optional ) argument_description.
-        * `tenant_ref` - (Optional ) argument_description.
-        
+* `availability_zone` - (Optional) Placeholder for description of property availability_zone of obj type serviceengine field type string  type str.
+* `cloud_ref` - (Optional) It is a reference to an object of type cloud.
+* `container_mode` - (Optional) Boolean flag to set container_mode.
+* `container_type` - (Optional) Enum options - container_type_bridge, container_type_host, container_type_host_dpdk.
+* `controller_created` - (Optional) Boolean flag to set controller_created.
+* `controller_ip` - (Optional) Placeholder for description of property controller_ip of obj type serviceengine field type string  type str.
+* `data_vnics` - (Optional) List of list.
+* `enable_state` - (Optional) Inorder to disable se set this field appropriately.
+* `flavor` - (Optional) Placeholder for description of property flavor of obj type serviceengine field type string  type str.
+* `host_ref` - (Optional) It is a reference to an object of type vimgrhostruntime.
+* `hypervisor` - (Optional) Enum options - default, vmware_esx, kvm, vmware_vsan, xen.
+* `mgmt_vnic` - (Optional) Dict settings for serviceengine.
+* `name` - (Optional) Name of the object.
+* `resources` - (Optional) Dict settings for serviceengine.
+* `se_group_ref` - (Optional) It is a reference to an object of type serviceenginegroup.
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant.
+
+
 ### Timeouts
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
@@ -52,5 +53,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-                                                                    * `uuid` - argument_description.
-    
+* `uuid` -  Unique object identifier of the object.
+

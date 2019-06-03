@@ -13,8 +13,8 @@ This data source is used to to get avi_serviceenginegroup objects.
 ## Example Usage
 
 ```hcl
-data "ServiceEngineGroup" "foo_ServiceEngineGroup" {
-    uuid = "ServiceEngineGroup-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
+data "avi_serviceenginegroup" "foo_serviceenginegroup" {
+    uuid = "serviceenginegroup-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
     name = "foo"
     cloud_ref = "/api/cloud/?tenant=admin&name=Default-Cloud"
   }
@@ -51,7 +51,7 @@ In addition to all arguments above, the following attributes are exported:
 * `cloud_ref` - It is a reference to an object of type cloud.
 * `config_debugs_on_all_cores` - Enable config debugs on all cores of se.
 * `connection_memory_percentage` - Percentage of memory for connection state.
-* `cpu_reserve` - General description.
+* `cpu_reserve` - Boolean flag to set cpu_reserve.
 * `cpu_socket_affinity` - Allocate all the cpu cores for the service engine virtual machines  on the same cpu socket.
 * `custom_securitygroups_data` - Custom security groups to be associated with data vnics for se instances in openstack and aws clouds.
 * `custom_securitygroups_mgmt` - Custom security groups to be associated with management vnic for se instances in openstack and aws clouds.
@@ -59,7 +59,7 @@ In addition to all arguments above, the following attributes are exported:
 * `data_network_id` - Subnet used to spin up the data nic for service engines, used only for azure cloud.
 * `datascript_timeout` - Number of instructions before datascript times out.
 * `dedicated_dispatcher_core` - Dedicate the core that handles packet receive/transmit from the network to just the dispatching function.
-* `description` - General description.
+* `description` - User defined description for the object.
 * `disable_avi_securitygroups` - By default, avi creates and manages security groups along with custom sg provided by user.
 * `disable_csum_offloads` - Stop using tcp/udp and ip checksum offload features of nics.
 * `disable_gro` - Disable generic receive offload (gro) in dpdk poll-mode driver packet receive path.
@@ -107,7 +107,7 @@ In addition to all arguments above, the following attributes are exported:
 * `max_scaleout_per_vs` - Maximum number of active service engines for the virtual service.
 * `max_se` - Maximum number of services engines in this group.
 * `max_vs_per_se` - Maximum number of virtual services that can be placed on a single service engine.
-* `mem_reserve` - General description.
+* `mem_reserve` - Boolean flag to set mem_reserve.
 * `memory_for_config_update` - Indicates the percent of memory reserved for config updates.
 * `memory_per_se` - Amount of memory for each of the service engine virtual machines.
 * `mgmt_network_ref` - Management network to use for avi service engines.
@@ -117,7 +117,13 @@ In addition to all arguments above, the following attributes are exported:
 * `min_se` - Minimum number of services engines in this group (relevant for se autorebalance only).
 * `minimum_connection_memory` - Indicates the percent of memory reserved for connections.
 * `n_log_streaming_threads` - Number of threads to use for log streaming.
-* `name` - General description.
+* `name` - Name of the object.
+* `nat_flow_tcp_closed_timeout` - Idle timeout in seconds for nat tcp flows in closed state.
+* `nat_flow_tcp_established_timeout` - Idle timeout in seconds for nat tcp flows in established state.
+* `nat_flow_tcp_half_closed_timeout` - Idle timeout in seconds for nat tcp flows in half closed state.
+* `nat_flow_tcp_handshake_timeout` - Idle timeout in seconds for nat tcp flows in handshake state.
+* `nat_flow_udp_noresponse_timeout` - Idle timeout in seconds for nat udp flows in noresponse state.
+* `nat_flow_udp_response_timeout` - Idle timeout in seconds for nat udp flows in response state.
 * `non_significant_log_throttle` - This setting limits the number of non-significant logs generated per second per core on this se.
 * `num_dispatcher_cores` - Number of dispatcher cores (0,1,2,4,8 or 16).
 * `num_flow_cores_sum_changes_to_ignore` - Number of changes in num flow cores sum to ignore.
@@ -128,13 +134,13 @@ In addition to all arguments above, the following attributes are exported:
 * `per_app` - Per-app se mode is designed for deploying dedicated load balancers per app (vs).
 * `placement_mode` - If placement mode is 'auto', virtual services are automatically placed on service engines.
 * `realtime_se_metrics` - Enable or disable real time se metrics.
-* `reboot_on_stop` - Reboot the system if the se is stopped.
+* `reboot_on_panic` - Reboot the vm or host on kernel panic.
 * `se_bandwidth_type` - Select the se bandwidth for the bandwidth license.
 * `se_deprovision_delay` - Duration to preserve unused service engine virtual machines before deleting them.
-* `se_dos_profile` - General description.
+* `se_dos_profile` - Dict settings for serviceenginegroup.
 * `se_dpdk_pmd` - Determines if dpdk pool mode driver should be used or not   0  automatically determine based on hypervisor/nic type 1  unconditionally use dpdk poll mode driver 2  don't use dpdk poll mode driver.
 * `se_flow_probe_retries` - Flow probe retry count if no replies are received.
-* `se_flow_probe_timer` - Timeout in milliseconds for flow probe entries.
+* `se_flow_probe_retry_timer` - Timeout in milliseconds for flow probe retries.
 * `se_ipc_udp_port` - Udp port for se_dp ipc in docker bridge mode.
 * `se_name_prefix` - Prefix to use for virtual machine name of service engines.
 * `se_pcap_lookahead` - Enables lookahead mode of packet receive in pcap mode.
@@ -162,13 +168,13 @@ In addition to all arguments above, the following attributes are exported:
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `udf_log_throttle` - This setting limits the number of udf logs generated per second per core on this se.
 * `use_standard_alb` - Use standard sku azure load balancer.
-* `uuid` - General description.
-* `vcenter_clusters` - General description.
+* `uuid` - Unique object identifier of the object.
+* `vcenter_clusters` - Dict settings for serviceenginegroup.
 * `vcenter_datastore_mode` - Enum options - vcenter_datastore_any, vcenter_datastore_local, vcenter_datastore_shared.
-* `vcenter_datastores` - General description.
-* `vcenter_datastores_include` - General description.
+* `vcenter_datastores` - List of list.
+* `vcenter_datastores_include` - Boolean flag to set vcenter_datastores_include.
 * `vcenter_folder` - Folder to place all the service engine virtual machines in vcenter.
-* `vcenter_hosts` - General description.
+* `vcenter_hosts` - Dict settings for serviceenginegroup.
 * `vcpus_per_se` - Number of vcpus for each of the service engine virtual machines.
 * `vip_asg` - When vip_asg is set, vip configuration will be managed by avi.user will be able to configure vip_asg or vips individually at the time of create.
 * `vs_host_redundancy` - Ensure primary and secondary service engines are deployed on different physical hosts.

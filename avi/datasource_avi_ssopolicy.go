@@ -11,21 +11,22 @@ func dataSourceAviSSOPolicy() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviSSOPolicyRead,
 		Schema: map[string]*schema.Schema{
-			"authentication_policy": &schema.Schema{
+			"authentication_policy": {
 				Type:     schema.TypeSet,
-				Optional: true,
+				Computed: true,
 				Elem:     ResourceAuthenticationPolicySchema(),
 			},
-			"name": &schema.Schema{
-				Type:     schema.TypeString,
-				Optional: true,
-			},
-			"tenant_ref": &schema.Schema{
+			"name": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
-			"uuid": &schema.Schema{
+			"tenant_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"uuid": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,

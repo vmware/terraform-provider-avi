@@ -13,8 +13,8 @@ This data source is used to to get avi_cloudproperties objects.
 ## Example Usage
 
 ```hcl
-data "CloudProperties" "foo_CloudProperties" {
-    uuid = "CloudProperties-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
+data "avi_cloudproperties" "foo_cloudproperties" {
+    uuid = "cloudproperties-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
     name = "foo"
 }
 ```
@@ -32,5 +32,5 @@ In addition to all arguments above, the following attributes are exported:
 * `cc_vtypes` - Cloud types supported by cloudconnector.
 * `hyp_props` - Hypervisor properties.
 * `info` - Properties specific to a cloud type.
-* `uuid` - General description.
+* `uuid` - Unique object identifier of the object.
 

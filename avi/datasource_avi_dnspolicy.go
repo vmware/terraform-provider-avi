@@ -11,29 +11,30 @@ func dataSourceAviDnsPolicy() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviDnsPolicyRead,
 		Schema: map[string]*schema.Schema{
-			"created_by": &schema.Schema{
+			"created_by": {
 				Type:     schema.TypeString,
-				Optional: true,
+				Computed: true,
 			},
-			"description": &schema.Schema{
+			"description": {
 				Type:     schema.TypeString,
-				Optional: true,
+				Computed: true,
 			},
-			"name": &schema.Schema{
-				Type:     schema.TypeString,
-				Optional: true,
-			},
-			"rule": &schema.Schema{
-				Type:     schema.TypeList,
-				Optional: true,
-				Elem:     ResourceDnsRuleSchema(),
-			},
-			"tenant_ref": &schema.Schema{
+			"name": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
-			"uuid": &schema.Schema{
+			"rule": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceDnsRuleSchema(),
+			},
+			"tenant_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"uuid": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,

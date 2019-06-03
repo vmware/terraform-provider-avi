@@ -13,9 +13,9 @@ The IpAddrGroup resource allows the creation and management of Avi IpAddrGroup
 ## Example Usage
 
 ```hcl
-resource "IpAddrGroup" "foo" {
+resource "avi_ipaddrgroup" "foo" {
     name = "terraform-example-foo"
-    tenant = "admin"
+    tenant_ref = "/api/tenant/?name=admin"
 }
 ```
 
@@ -23,18 +23,19 @@ resource "IpAddrGroup" "foo" {
 
 The following arguments are supported:
 
-    * `addrs` - (Optional ) argument_description.
-        * `apic_epg_name` - (Optional ) argument_description.
-        * `country_codes` - (Optional ) argument_description.
-        * `description` - (Optional ) argument_description.
-        * `ip_ports` - (Optional ) argument_description.
-        * `marathon_app_name` - (Optional ) argument_description.
-        * `marathon_service_port` - (Optional ) argument_description.
-        * `name` - (Required) argument_description.
-        * `prefixes` - (Optional ) argument_description.
-        * `ranges` - (Optional ) argument_description.
-        * `tenant_ref` - (Optional ) argument_description.
-        
+* `name` - (Required) Name of the ip address group.
+* `addrs` - (Optional) Configure ip address(es).
+* `apic_epg_name` - (Optional) Populate ip addresses from members of this cisco apic epg.
+* `country_codes` - (Optional) Populate the ip address ranges from the geo database for this country.
+* `description` - (Optional) User defined description for the object.
+* `ip_ports` - (Optional) Configure (ip address, port) tuple(s).
+* `marathon_app_name` - (Optional) Populate ip addresses from tasks of this marathon app.
+* `marathon_service_port` - (Optional) Task port associated with marathon service port.
+* `prefixes` - (Optional) Configure ip address prefix(es).
+* `ranges` - (Optional) Configure ip address range(s).
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant.
+
+
 ### Timeouts
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
@@ -47,5 +48,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-                                                * `uuid` - argument_description.
-    
+* `uuid` -  Uuid of the ip address group.
+

@@ -13,9 +13,9 @@ The SnmpTrapProfile resource allows the creation and management of Avi SnmpTrapP
 ## Example Usage
 
 ```hcl
-resource "SnmpTrapProfile" "foo" {
+resource "avi_snmptrapprofile" "foo" {
     name = "terraform-example-foo"
-    tenant = "admin"
+    tenant_ref = "/api/tenant/?name=admin"
 }
 ```
 
@@ -23,10 +23,11 @@ resource "SnmpTrapProfile" "foo" {
 
 The following arguments are supported:
 
-    * `name` - (Required) argument_description.
-        * `tenant_ref` - (Optional ) argument_description.
-        * `trap_servers` - (Optional ) argument_description.
-        
+* `name` - (Required) A user-friendly name of the snmp trap configuration.
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant.
+* `trap_servers` - (Optional) The ip address or hostname of the snmp trap destination server.
+
+
 ### Timeouts
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
@@ -39,5 +40,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-                * `uuid` - argument_description.
-    
+* `uuid` -  Uuid of the snmp trap profile object.
+

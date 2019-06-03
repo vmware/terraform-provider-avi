@@ -13,8 +13,8 @@ This data source is used to to get avi_pingaccessagent objects.
 ## Example Usage
 
 ```hcl
-data "PingAccessAgent" "foo_PingAccessAgent" {
-    uuid = "PingAccessAgent-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
+data "avi_pingaccessagent" "foo_pingaccessagent" {
+    uuid = "pingaccessagent-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
     name = "foo"
 }
 ```

@@ -13,8 +13,8 @@ This data source is used to to get avi_certificatemanagementprofile objects.
 ## Example Usage
 
 ```hcl
-data "CertificateManagementProfile" "foo_CertificateManagementProfile" {
-    uuid = "CertificateManagementProfile-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
+data "avi_certificatemanagementprofile" "foo_certificatemanagementprofile" {
+    uuid = "certificatemanagementprofile-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
     name = "foo"
 }
 ```
@@ -29,8 +29,8 @@ data "CertificateManagementProfile" "foo_CertificateManagementProfile" {
 In addition to all arguments above, the following attributes are exported:
 
 * `name` - Name of the pki profile.
-* `script_params` - General description.
-* `script_path` - General description.
+* `script_params` - List of list.
+* `script_path` - Placeholder for description of property script_path of obj type certificatemanagementprofile field type string  type str.
 * `tenant_ref` - It is a reference to an object of type tenant.
-* `uuid` - General description.
+* `uuid` - Unique object identifier of the object.
 

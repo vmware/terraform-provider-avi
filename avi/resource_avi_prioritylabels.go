@@ -14,30 +14,30 @@ import (
 
 func ResourcePriorityLabelsSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"cloud_ref": &schema.Schema{
+		"cloud_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"description": &schema.Schema{
+		"description": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
-		"equivalent_labels": &schema.Schema{
+		"equivalent_labels": {
 			Type:     schema.TypeList,
 			Optional: true,
 			Elem:     ResourceEquivalentLabelsSchema(),
 		},
-		"name": &schema.Schema{
+		"name": {
 			Type:     schema.TypeString,
 			Required: true,
 		},
-		"tenant_ref": &schema.Schema{
+		"tenant_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"uuid": &schema.Schema{
+		"uuid": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,

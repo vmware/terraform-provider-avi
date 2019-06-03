@@ -13,9 +13,9 @@ The PoolGroup resource allows the creation and management of Avi PoolGroup
 ## Example Usage
 
 ```hcl
-resource "PoolGroup" "foo" {
+resource "avi_poolgroup" "foo" {
     name = "terraform-example-foo"
-    tenant = "admin"
+    tenant_ref = "/api/tenant/?name=admin"
 }
 ```
 
@@ -23,20 +23,21 @@ resource "PoolGroup" "foo" {
 
 The following arguments are supported:
 
-    * `cloud_config_cksum` - (Optional ) argument_description.
-        * `cloud_ref` - (Optional ) argument_description.
-        * `created_by` - (Optional ) argument_description.
-        * `deployment_policy_ref` - (Optional ) argument_description.
-        * `description` - (Optional ) argument_description.
-        * `fail_action` - (Optional ) argument_description.
-        * `implicit_priority_labels` - (Optional ) argument_description.
-        * `members` - (Optional ) argument_description.
-        * `min_servers` - (Optional ) argument_description.
-        * `name` - (Required) argument_description.
-        * `priority_labels_ref` - (Optional ) argument_description.
-        * `service_metadata` - (Optional ) argument_description.
-        * `tenant_ref` - (Optional ) argument_description.
-        
+* `name` - (Required) The name of the pool group.
+* `cloud_config_cksum` - (Optional) Checksum of cloud configuration for poolgroup.
+* `cloud_ref` - (Optional) It is a reference to an object of type cloud.
+* `created_by` - (Optional) Name of the user who created the object.
+* `deployment_policy_ref` - (Optional) When setup autoscale manager will automatically promote new pools into production when deployment goals are met.
+* `description` - (Optional) Description of pool group.
+* `fail_action` - (Optional) Enable an action - close connection, http redirect, or local http response - when a pool group failure happens.
+* `implicit_priority_labels` - (Optional) Whether an implicit set of priority labels is generated.
+* `members` - (Optional) List of pool group members object of type poolgroupmember.
+* `min_servers` - (Optional) The minimum number of servers to distribute traffic to.
+* `priority_labels_ref` - (Optional) Uuid of the priority labels.
+* `service_metadata` - (Optional) Metadata pertaining to the service provided by this poolgroup.
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant.
+
+
 ### Timeouts
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
@@ -49,5 +50,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-                                                        * `uuid` - argument_description.
-    
+* `uuid` -  Uuid of the pool group.
+

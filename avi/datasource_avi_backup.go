@@ -11,38 +11,36 @@ func dataSourceAviBackup() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviBackupRead,
 		Schema: map[string]*schema.Schema{
-			"backup_config_ref": &schema.Schema{
+			"backup_config_ref": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"file_name": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"local_file_url": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"remote_file_url": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"scheduler_ref": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"tenant_ref": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
-			"file_name": &schema.Schema{
+			"timestamp": {
 				Type:     schema.TypeString,
-				Optional: true,
-			},
-			"local_file_url": &schema.Schema{
-				Type:     schema.TypeString,
-				Optional: true,
-			},
-			"remote_file_url": &schema.Schema{
-				Type:     schema.TypeString,
-				Optional: true,
-			},
-			"scheduler_ref": &schema.Schema{
-				Type:     schema.TypeString,
-				Optional: true,
 				Computed: true,
 			},
-			"tenant_ref": &schema.Schema{
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
-			"timestamp": &schema.Schema{
-				Type:     schema.TypeString,
-				Optional: true,
-			},
-			"uuid": &schema.Schema{
+			"uuid": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,

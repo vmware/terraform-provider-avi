@@ -13,8 +13,8 @@ This data source is used to to get avi_networkprofile objects.
 ## Example Usage
 
 ```hcl
-data "NetworkProfile" "foo_NetworkProfile" {
-    uuid = "NetworkProfile-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
+data "avi_networkprofile" "foo_networkprofile" {
+    uuid = "networkprofile-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
     name = "foo"
 }
 ```
@@ -29,9 +29,9 @@ data "NetworkProfile" "foo_NetworkProfile" {
 In addition to all arguments above, the following attributes are exported:
 
 * `connection_mirror` - When enabled, avi mirrors all tcp fastpath connections to standby.
-* `description` - General description.
+* `description` - User defined description for the object.
 * `name` - The name of the network profile.
-* `profile` - General description.
+* `profile` - Dict settings for networkprofile.
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `uuid` - Uuid of the network profile.
 

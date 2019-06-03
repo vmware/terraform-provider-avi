@@ -14,45 +14,45 @@ import (
 
 func ResourceWafPolicyPSMGroupSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"description": &schema.Schema{
+		"description": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
-		"enable": &schema.Schema{
+		"enable": {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  true,
 		},
-		"hit_action": &schema.Schema{
+		"hit_action": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Default:  "WAF_ACTION_NO_OP",
 		},
-		"is_learning_group": &schema.Schema{
+		"is_learning_group": {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  false,
 		},
-		"locations": &schema.Schema{
+		"locations": {
 			Type:     schema.TypeList,
 			Optional: true,
 			Elem:     ResourceWafPSMLocationSchema(),
 		},
-		"miss_action": &schema.Schema{
+		"miss_action": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Default:  "WAF_ACTION_NO_OP",
 		},
-		"name": &schema.Schema{
+		"name": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
-		"tenant_ref": &schema.Schema{
+		"tenant_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"uuid": &schema.Schema{
+		"uuid": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,

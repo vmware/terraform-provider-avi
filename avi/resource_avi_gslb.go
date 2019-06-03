@@ -14,83 +14,83 @@ import (
 
 func ResourceGslbSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"async_interval": &schema.Schema{
+		"async_interval": {
 			Type:     schema.TypeInt,
 			Optional: true,
 			Default:  0,
 		},
-		"clear_on_max_retries": &schema.Schema{
+		"clear_on_max_retries": {
 			Type:     schema.TypeInt,
 			Optional: true,
 			Default:  20,
 		},
-		"client_ip_addr_group": &schema.Schema{
+		"client_ip_addr_group": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceGslbClientIpAddrGroupSchema(),
 		},
-		"description": &schema.Schema{
+		"description": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
-		"dns_configs": &schema.Schema{
+		"dns_configs": {
 			Type:     schema.TypeList,
 			Optional: true,
 			Elem:     ResourceDNSConfigSchema(),
 		},
-		"error_resync_interval": &schema.Schema{
+		"error_resync_interval": {
 			Type:     schema.TypeInt,
 			Optional: true,
 			Default:  0,
 		},
-		"is_federated": &schema.Schema{
+		"is_federated": {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  true,
 		},
-		"leader_cluster_uuid": &schema.Schema{
+		"leader_cluster_uuid": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
-		"maintenance_mode": &schema.Schema{
+		"maintenance_mode": {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  false,
 		},
-		"name": &schema.Schema{
+		"name": {
 			Type:     schema.TypeString,
 			Required: true,
 		},
-		"send_interval": &schema.Schema{
+		"send_interval": {
 			Type:     schema.TypeInt,
 			Optional: true,
 			Default:  15,
 		},
-		"send_interval_prior_to_maintenance_mode": &schema.Schema{
+		"send_interval_prior_to_maintenance_mode": {
 			Type:     schema.TypeInt,
 			Optional: true,
 		},
-		"sites": &schema.Schema{
+		"sites": {
 			Type:     schema.TypeList,
 			Optional: true,
 			Elem:     ResourceGslbSiteSchema(),
 		},
-		"tenant_ref": &schema.Schema{
+		"tenant_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"third_party_sites": &schema.Schema{
+		"third_party_sites": {
 			Type:     schema.TypeList,
 			Optional: true,
 			Elem:     ResourceGslbThirdPartySiteSchema(),
 		},
-		"uuid": &schema.Schema{
+		"uuid": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"view_id": &schema.Schema{
+		"view_id": {
 			Type:     schema.TypeInt,
 			Optional: true,
 			Default:  0,

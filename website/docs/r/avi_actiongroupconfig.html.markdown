@@ -13,9 +13,9 @@ The ActionGroupConfig resource allows the creation and management of Avi ActionG
 ## Example Usage
 
 ```hcl
-resource "ActionGroupConfig" "foo" {
+resource "avi_actiongroupconfig" "foo" {
     name = "terraform-example-foo"
-    tenant = "admin"
+    tenant_ref = "/api/tenant/?name=admin"
 }
 ```
 
@@ -23,17 +23,18 @@ resource "ActionGroupConfig" "foo" {
 
 The following arguments are supported:
 
-    * `action_script_config_ref` - (Optional ) argument_description.
-        * `autoscale_trigger_notification` - (Optional ) argument_description.
-        * `description` - (Optional ) argument_description.
-        * `email_config_ref` - (Optional ) argument_description.
-        * `external_only` - (Required) argument_description.
-        * `level` - (Required) argument_description.
-        * `name` - (Required) argument_description.
-        * `snmp_trap_profile_ref` - (Optional ) argument_description.
-        * `syslog_config_ref` - (Optional ) argument_description.
-        * `tenant_ref` - (Optional ) argument_description.
-        
+* `external_only` - (Required) Generate alert only to external destinations.
+* `level` - (Required) When an alert is generated, mark its priority via the alert level.
+* `name` - (Required) Name of the object.
+* `action_script_config_ref` - (Optional) Reference of the action script configuration to be used.
+* `autoscale_trigger_notification` - (Optional) Trigger notification to autoscale manager.
+* `description` - (Optional) User defined description for the object.
+* `email_config_ref` - (Optional) Select the email notification configuration to use when sending alerts via email.
+* `snmp_trap_profile_ref` - (Optional) Select the snmp trap notification to use when sending alerts via snmp trap.
+* `syslog_config_ref` - (Optional) Select the syslog notification configuration to use when sending alerts via syslog.
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant.
+
+
 ### Timeouts
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
@@ -46,5 +47,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-                                            * `uuid` - argument_description.
-    
+* `uuid` -  Unique object identifier of the object.
+

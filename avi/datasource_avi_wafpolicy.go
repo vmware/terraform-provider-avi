@@ -11,83 +11,80 @@ func dataSourceAviWafPolicy() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviWafPolicyRead,
 		Schema: map[string]*schema.Schema{
-			"allow_mode_delegation": &schema.Schema{
+			"allow_mode_delegation": {
 				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  true,
+				Computed: true,
 			},
-			"created_by": &schema.Schema{
+			"created_by": {
 				Type:     schema.TypeString,
-				Optional: true,
+				Computed: true,
 			},
-			"crs_groups": &schema.Schema{
+			"crs_groups": {
 				Type:     schema.TypeList,
-				Optional: true,
+				Computed: true,
 				Elem:     ResourceWafRuleGroupSchema(),
 			},
-			"description": &schema.Schema{
+			"description": {
 				Type:     schema.TypeString,
-				Optional: true,
+				Computed: true,
 			},
-			"enable_app_learning": &schema.Schema{
+			"enable_app_learning": {
 				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  false,
+				Computed: true,
 			},
-			"failure_mode": &schema.Schema{
+			"failure_mode": {
 				Type:     schema.TypeString,
-				Optional: true,
-				Default:  "WAF_FAILURE_MODE_OPEN"},
-			"mode": &schema.Schema{
-				Type:     schema.TypeString,
-				Optional: true,
-				Default:  "WAF_MODE_DETECTION_ONLY"},
-			"name": &schema.Schema{
-				Type:     schema.TypeString,
-				Optional: true,
+				Computed: true,
 			},
-			"paranoia_level": &schema.Schema{
+			"mode": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"name": {
 				Type:     schema.TypeString,
 				Optional: true,
-				Default:  "WAF_PARANOIA_LEVEL_LOW"},
-			"positive_security_model": &schema.Schema{
+				Computed: true,
+			},
+			"paranoia_level": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"positive_security_model": {
 				Type:     schema.TypeSet,
-				Optional: true,
+				Computed: true,
 				Elem:     ResourceWafPositiveSecurityModelSchema(),
 			},
-			"post_crs_groups": &schema.Schema{
+			"post_crs_groups": {
 				Type:     schema.TypeList,
-				Optional: true,
+				Computed: true,
 				Elem:     ResourceWafRuleGroupSchema(),
 			},
-			"pre_crs_groups": &schema.Schema{
+			"pre_crs_groups": {
 				Type:     schema.TypeList,
-				Optional: true,
+				Computed: true,
 				Elem:     ResourceWafRuleGroupSchema(),
 			},
-			"tenant_ref": &schema.Schema{
+			"tenant_ref": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
-			"uuid": &schema.Schema{
+			"uuid": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
-			"waf_crs_ref": &schema.Schema{
+			"waf_crs_ref": {
 				Type:     schema.TypeString,
-				Optional: true,
 				Computed: true,
 			},
-			"waf_profile_ref": &schema.Schema{
+			"waf_profile_ref": {
 				Type:     schema.TypeString,
-				Optional: true,
 				Computed: true,
 			},
-			"whitelist": &schema.Schema{
+			"whitelist": {
 				Type:     schema.TypeSet,
-				Optional: true,
+				Computed: true,
 				Elem:     ResourceWafPolicyWhitelistSchema(),
 			},
 		},

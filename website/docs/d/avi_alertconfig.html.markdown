@@ -13,8 +13,8 @@ This data source is used to to get avi_alertconfig objects.
 ## Example Usage
 
 ```hcl
-data "AlertConfig" "foo_AlertConfig" {
-    uuid = "AlertConfig-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
+data "avi_alertconfig" "foo_alertconfig" {
+    uuid = "alertconfig-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
     name = "foo"
 }
 ```
@@ -38,12 +38,12 @@ In addition to all arguments above, the following attributes are exported:
 * `name` - Name of the alert configuration.
 * `obj_uuid` - Uuid of the resource for which alert was raised.
 * `object_type` - The object type to which the alert config is associated with.
-* `recommendation` - General description.
+* `recommendation` - Placeholder for description of property recommendation of obj type alertconfig field type string  type str.
 * `rolling_window` - Only if the number of events is reached or exceeded within the time window will an alert be generated.
 * `source` - Signifies system events or the type of client logsused in this alert configuration.
 * `summary` - Summary of reason why alert is generated.
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `threshold` - An alert is created only when the number of events meets or exceeds this number within the chosen time frame.
 * `throttle` - Alerts are suppressed (throttled) for this duration of time since the last alert was raised for this alert config.
-* `uuid` - General description.
+* `uuid` - Unique object identifier of the object.
 

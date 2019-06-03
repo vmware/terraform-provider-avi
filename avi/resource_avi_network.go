@@ -14,56 +14,56 @@ import (
 
 func ResourceNetworkSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"cloud_ref": &schema.Schema{
+		"cloud_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"configured_subnets": &schema.Schema{
+		"configured_subnets": {
 			Type:     schema.TypeList,
 			Optional: true,
 			Elem:     ResourceSubnetSchema(),
 		},
-		"dhcp_enabled": &schema.Schema{
+		"dhcp_enabled": {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  true,
 		},
-		"exclude_discovered_subnets": &schema.Schema{
+		"exclude_discovered_subnets": {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  false,
 		},
-		"ip6_autocfg_enabled": &schema.Schema{
+		"ip6_autocfg_enabled": {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  true,
 		},
-		"name": &schema.Schema{
+		"name": {
 			Type:     schema.TypeString,
 			Required: true,
 		},
-		"synced_from_se": &schema.Schema{
+		"synced_from_se": {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  false,
 		},
-		"tenant_ref": &schema.Schema{
+		"tenant_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"uuid": &schema.Schema{
+		"uuid": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"vcenter_dvs": &schema.Schema{
+		"vcenter_dvs": {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  true,
 		},
-		"vrf_context_ref": &schema.Schema{
+		"vrf_context_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,

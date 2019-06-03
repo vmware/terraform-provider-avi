@@ -13,8 +13,8 @@ This data source is used to to get avi_clusterclouddetails objects.
 ## Example Usage
 
 ```hcl
-data "ClusterCloudDetails" "foo_ClusterCloudDetails" {
-    uuid = "ClusterCloudDetails-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
+data "avi_clusterclouddetails" "foo_clusterclouddetails" {
+    uuid = "clusterclouddetails-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
     name = "foo"
 }
 ```

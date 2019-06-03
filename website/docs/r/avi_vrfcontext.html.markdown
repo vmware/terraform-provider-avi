@@ -13,9 +13,9 @@ The VrfContext resource allows the creation and management of Avi VrfContext
 ## Example Usage
 
 ```hcl
-resource "VrfContext" "foo" {
+resource "avi_vrfcontext" "foo" {
     name = "terraform-example-foo"
-    tenant = "admin"
+    tenant_ref = "/api/tenant/?name=admin"
 }
 ```
 
@@ -23,17 +23,18 @@ resource "VrfContext" "foo" {
 
 The following arguments are supported:
 
-    * `bgp_profile` - (Optional ) argument_description.
-        * `cloud_ref` - (Optional ) argument_description.
-        * `debugvrfcontext` - (Optional ) argument_description.
-        * `description` - (Optional ) argument_description.
-        * `gateway_mon` - (Optional ) argument_description.
-        * `internal_gateway_monitor` - (Optional ) argument_description.
-        * `name` - (Required) argument_description.
-        * `static_routes` - (Optional ) argument_description.
-        * `system_default` - (Optional ) argument_description.
-        * `tenant_ref` - (Optional ) argument_description.
-        
+* `name` - (Required) Name of the object.
+* `bgp_profile` - (Optional) Bgp local and peer info.
+* `cloud_ref` - (Optional) It is a reference to an object of type cloud.
+* `debugvrfcontext` - (Optional) Configure debug flags for vrf.
+* `description` - (Optional) User defined description for the object.
+* `gateway_mon` - (Optional) Configure ping based heartbeat check for gateway in service engines of vrf.
+* `internal_gateway_monitor` - (Optional) Configure ping based heartbeat check for all default gateways in service engines of vrf.
+* `static_routes` - (Optional) List of list.
+* `system_default` - (Optional) Boolean flag to set system_default.
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant.
+
+
 ### Timeouts
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
@@ -46,5 +47,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-                                            * `uuid` - argument_description.
-    
+* `uuid` -  Unique object identifier of the object.
+

@@ -13,8 +13,8 @@ This data source is used to to get avi_wafpolicy objects.
 ## Example Usage
 
 ```hcl
-data "WafPolicy" "foo_WafPolicy" {
-    uuid = "WafPolicy-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
+data "avi_wafpolicy" "foo_wafpolicy" {
+    uuid = "wafpolicy-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
     name = "foo"
 }
 ```

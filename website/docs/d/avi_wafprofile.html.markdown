@@ -13,8 +13,8 @@ This data source is used to to get avi_wafprofile objects.
 ## Example Usage
 
 ```hcl
-data "WafProfile" "foo_WafProfile" {
-    uuid = "WafProfile-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
+data "avi_wafprofile" "foo_wafprofile" {
+    uuid = "wafprofile-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
     name = "foo"
 }
 ```

@@ -13,8 +13,8 @@ This data source is used to to get avi_autoscalelaunchconfig objects.
 ## Example Usage
 
 ```hcl
-data "AutoScaleLaunchConfig" "foo_AutoScaleLaunchConfig" {
-    uuid = "AutoScaleLaunchConfig-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
+data "avi_autoscalelaunchconfig" "foo_autoscalelaunchconfig" {
+    uuid = "autoscalelaunchconfig-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
     name = "foo"
 }
 ```
@@ -28,12 +28,12 @@ data "AutoScaleLaunchConfig" "foo_AutoScaleLaunchConfig" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `description` - General description.
+* `description` - User defined description for the object.
 * `image_id` - Unique id of the amazon machine image (ami)  or openstack vm id.
-* `mesos` - General description.
-* `name` - General description.
-* `openstack` - General description.
+* `mesos` - Dict settings for autoscalelaunchconfig.
+* `name` - Name of the object.
+* `openstack` - Dict settings for autoscalelaunchconfig.
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `use_external_asg` - If set to true, serverautoscalepolicy will use the autoscaling group (external_autoscaling_groups) from pool to perform scale up and scale down.
-* `uuid` - General description.
+* `uuid` - Unique object identifier of the object.
 

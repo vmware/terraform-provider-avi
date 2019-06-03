@@ -13,8 +13,8 @@ This data source is used to to get avi_serviceengine objects.
 ## Example Usage
 
 ```hcl
-data "ServiceEngine" "foo_ServiceEngine" {
-    uuid = "ServiceEngine-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
+data "avi_serviceengine" "foo_serviceengine" {
+    uuid = "serviceengine-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
     name = "foo"
     cloud_ref = "/api/cloud/?tenant=admin&name=Default-Cloud"
   }
@@ -30,21 +30,21 @@ data "ServiceEngine" "foo_ServiceEngine" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `availability_zone` - General description.
+* `availability_zone` - Placeholder for description of property availability_zone of obj type serviceengine field type string  type str.
 * `cloud_ref` - It is a reference to an object of type cloud.
-* `container_mode` - General description.
+* `container_mode` - Boolean flag to set container_mode.
 * `container_type` - Enum options - container_type_bridge, container_type_host, container_type_host_dpdk.
-* `controller_created` - General description.
-* `controller_ip` - General description.
-* `data_vnics` - General description.
+* `controller_created` - Boolean flag to set controller_created.
+* `controller_ip` - Placeholder for description of property controller_ip of obj type serviceengine field type string  type str.
+* `data_vnics` - List of list.
 * `enable_state` - Inorder to disable se set this field appropriately.
-* `flavor` - General description.
+* `flavor` - Placeholder for description of property flavor of obj type serviceengine field type string  type str.
 * `host_ref` - It is a reference to an object of type vimgrhostruntime.
 * `hypervisor` - Enum options - default, vmware_esx, kvm, vmware_vsan, xen.
-* `mgmt_vnic` - General description.
-* `name` - General description.
-* `resources` - General description.
+* `mgmt_vnic` - Dict settings for serviceengine.
+* `name` - Name of the object.
+* `resources` - Dict settings for serviceengine.
 * `se_group_ref` - It is a reference to an object of type serviceenginegroup.
 * `tenant_ref` - It is a reference to an object of type tenant.
-* `uuid` - General description.
+* `uuid` - Unique object identifier of the object.
 

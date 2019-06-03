@@ -13,8 +13,8 @@ This data source is used to to get avi_customipamdnsprofile objects.
 ## Example Usage
 
 ```hcl
-data "CustomIpamDnsProfile" "foo_CustomIpamDnsProfile" {
-    uuid = "CustomIpamDnsProfile-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
+data "avi_customipamdnsprofile" "foo_customipamdnsprofile" {
+    uuid = "customipamdnsprofile-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
     name = "foo"
 }
 ```

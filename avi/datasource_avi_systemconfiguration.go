@@ -11,95 +11,92 @@ func dataSourceAviSystemConfiguration() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviSystemConfigurationRead,
 		Schema: map[string]*schema.Schema{
-			"admin_auth_configuration": &schema.Schema{
+			"admin_auth_configuration": {
 				Type:     schema.TypeSet,
-				Optional: true,
+				Computed: true,
 				Elem:     ResourceAdminAuthConfigurationSchema(),
 			},
-			"default_license_tier": &schema.Schema{
+			"default_license_tier": {
 				Type:     schema.TypeString,
-				Optional: true,
-				Default:  "ENTERPRISE_18"},
-			"dns_configuration": &schema.Schema{
+				Computed: true,
+			},
+			"dns_configuration": {
 				Type:     schema.TypeSet,
-				Optional: true,
+				Computed: true,
 				Elem:     ResourceDNSConfigurationSchema(),
 			},
-			"dns_virtualservice_refs": &schema.Schema{
+			"dns_virtualservice_refs": {
 				Type:     schema.TypeList,
-				Optional: true,
 				Computed: true,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
-			"docker_mode": &schema.Schema{
+			"docker_mode": {
 				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  false,
+				Computed: true,
 			},
-			"email_configuration": &schema.Schema{
+			"email_configuration": {
 				Type:     schema.TypeSet,
-				Optional: true,
+				Computed: true,
 				Elem:     ResourceEmailConfigurationSchema(),
 			},
-			"global_tenant_config": &schema.Schema{
+			"global_tenant_config": {
 				Type:     schema.TypeSet,
-				Optional: true,
+				Computed: true,
 				Elem:     ResourceTenantConfigurationSchema(),
 			},
-			"linux_configuration": &schema.Schema{
+			"linux_configuration": {
 				Type:     schema.TypeSet,
-				Optional: true,
+				Computed: true,
 				Elem:     ResourceLinuxConfigurationSchema(),
 			},
-			"mgmt_ip_access_control": &schema.Schema{
+			"mgmt_ip_access_control": {
 				Type:     schema.TypeSet,
-				Optional: true,
+				Computed: true,
 				Elem:     ResourceMgmtIpAccessControlSchema(),
 			},
-			"ntp_configuration": &schema.Schema{
+			"ntp_configuration": {
 				Type:     schema.TypeSet,
-				Optional: true,
+				Computed: true,
 				Elem:     ResourceNTPConfigurationSchema(),
 			},
-			"portal_configuration": &schema.Schema{
+			"portal_configuration": {
 				Type:     schema.TypeSet,
-				Optional: true,
+				Computed: true,
 				Elem:     ResourcePortalConfigurationSchema(),
 			},
-			"proxy_configuration": &schema.Schema{
+			"proxy_configuration": {
 				Type:     schema.TypeSet,
-				Optional: true,
+				Computed: true,
 				Elem:     ResourceProxyConfigurationSchema(),
 			},
-			"secure_channel_configuration": &schema.Schema{
+			"secure_channel_configuration": {
 				Type:     schema.TypeSet,
-				Optional: true,
+				Computed: true,
 				Elem:     ResourceSecureChannelConfigurationSchema(),
 			},
-			"snmp_configuration": &schema.Schema{
+			"snmp_configuration": {
 				Type:     schema.TypeSet,
-				Optional: true,
+				Computed: true,
 				Elem:     ResourceSnmpConfigurationSchema(),
 			},
-			"ssh_ciphers": &schema.Schema{
+			"ssh_ciphers": {
 				Type:     schema.TypeList,
-				Optional: true,
+				Computed: true,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
-			"ssh_hmacs": &schema.Schema{
+			"ssh_hmacs": {
 				Type:     schema.TypeList,
-				Optional: true,
+				Computed: true,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
-			"uuid": &schema.Schema{
+			"uuid": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
-			"welcome_workflow_complete": &schema.Schema{
+			"welcome_workflow_complete": {
 				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  false,
+				Computed: true,
 			},
 		},
 	}

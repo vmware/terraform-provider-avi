@@ -13,9 +13,9 @@ The VirtualService resource allows the creation and management of Avi VirtualSer
 ## Example Usage
 
 ```hcl
-resource "VirtualService" "foo" {
+resource "avi_virtualservice" "foo" {
     name = "terraform-example-foo"
-    tenant = "admin"
+    tenant_ref = "/api/tenant/?name=admin"
 }
 ```
 
@@ -23,84 +23,85 @@ resource "VirtualService" "foo" {
 
 The following arguments are supported:
 
-    * `active_standby_se_tag` - (Optional ) argument_description.
-        * `allow_invalid_client_cert` - (Optional ) argument_description.
-        * `analytics_policy` - (Optional ) argument_description.
-        * `analytics_profile_ref` - (Optional ) argument_description.
-        * `apic_contract_graph` - (Optional ) argument_description.
-        * `application_profile_ref` - (Optional ) argument_description.
-        * `bulk_sync_kvcache` - (Optional ) argument_description.
-        * `client_auth` - (Optional ) argument_description.
-        * `close_client_conn_on_config_update` - (Optional ) argument_description.
-        * `cloud_config_cksum` - (Optional ) argument_description.
-        * `cloud_ref` - (Optional ) argument_description.
-        * `cloud_type` - (Optional ) argument_description.
-        * `connections_rate_limit` - (Optional ) argument_description.
-        * `content_rewrite` - (Optional ) argument_description.
-        * `created_by` - (Optional ) argument_description.
-        * `delay_fairness` - (Optional ) argument_description.
-        * `description` - (Optional ) argument_description.
-        * `dns_info` - (Optional ) argument_description.
-        * `dns_policies` - (Optional ) argument_description.
-        * `east_west_placement` - (Optional ) argument_description.
-        * `enable_autogw` - (Optional ) argument_description.
-        * `enable_rhi` - (Optional ) argument_description.
-        * `enable_rhi_snat` - (Optional ) argument_description.
-        * `enabled` - (Optional ) argument_description.
-        * `error_page_profile_ref` - (Optional ) argument_description.
-        * `flow_dist` - (Optional ) argument_description.
-        * `flow_label_type` - (Optional ) argument_description.
-        * `fqdn` - (Optional ) argument_description.
-        * `host_name_xlate` - (Optional ) argument_description.
-        * `http_policies` - (Optional ) argument_description.
-        * `ign_pool_net_reach` - (Optional ) argument_description.
-        * `l4_policies` - (Optional ) argument_description.
-        * `limit_doser` - (Optional ) argument_description.
-        * `max_cps_per_client` - (Optional ) argument_description.
-        * `microservice_ref` - (Optional ) argument_description.
-        * `min_pools_up` - (Optional ) argument_description.
-        * `name` - (Required) argument_description.
-        * `network_profile_ref` - (Optional ) argument_description.
-        * `network_security_policy_ref` - (Optional ) argument_description.
-        * `nsx_securitygroup` - (Optional ) argument_description.
-        * `performance_limits` - (Optional ) argument_description.
-        * `pool_group_ref` - (Optional ) argument_description.
-        * `pool_ref` - (Optional ) argument_description.
-        * `remove_listening_port_on_vs_down` - (Optional ) argument_description.
-        * `requests_rate_limit` - (Optional ) argument_description.
-        * `saml_sp_config` - (Optional ) argument_description.
-        * `scaleout_ecmp` - (Optional ) argument_description.
-        * `se_group_ref` - (Optional ) argument_description.
-        * `security_policy_ref` - (Optional ) argument_description.
-        * `server_network_profile_ref` - (Optional ) argument_description.
-        * `service_metadata` - (Optional ) argument_description.
-        * `service_pool_select` - (Optional ) argument_description.
-        * `services` - (Optional ) argument_description.
-        * `sideband_profile` - (Optional ) argument_description.
-        * `snat_ip` - (Optional ) argument_description.
-        * `ssl_key_and_certificate_refs` - (Optional ) argument_description.
-        * `ssl_profile_ref` - (Optional ) argument_description.
-        * `ssl_profile_selectors` - (Optional ) argument_description.
-        * `ssl_sess_cache_avg_size` - (Optional ) argument_description.
-        * `sso_policy_ref` - (Optional ) argument_description.
-        * `static_dns_records` - (Optional ) argument_description.
-        * `tenant_ref` - (Optional ) argument_description.
-        * `topology_policies` - (Optional ) argument_description.
-        * `traffic_clone_profile_ref` - (Optional ) argument_description.
-        * `traffic_enabled` - (Optional ) argument_description.
-        * `type` - (Optional ) argument_description.
-        * `use_bridge_ip_as_vip` - (Optional ) argument_description.
-        * `use_vip_as_snat` - (Optional ) argument_description.
-            * `vh_domain_name` - (Optional ) argument_description.
-        * `vh_parent_vs_uuid` - (Optional ) argument_description.
-        * `vip` - (Optional ) argument_description.
-        * `vrf_context_ref` - (Optional ) argument_description.
-        * `vs_datascripts` - (Optional ) argument_description.
-        * `vsvip_cloud_config_cksum` - (Optional ) argument_description.
-        * `vsvip_ref` - (Optional ) argument_description.
-        * `waf_policy_ref` - (Optional ) argument_description.
-        * `weight` - (Optional ) argument_description.
-    
+* `name` - (Required) Name for the virtual service.
+* `active_standby_se_tag` - (Optional) This configuration only applies if the virtualservice is in legacy active standby ha mode and load distribution among active standby is enabled.
+* `allow_invalid_client_cert` - (Optional) Process request even if invalid client certificate is presented.
+* `analytics_policy` - (Optional) Determines analytics settings for the application.
+* `analytics_profile_ref` - (Optional) Specifies settings related to analytics.
+* `apic_contract_graph` - (Optional) The name of the contract/graph associated with the virtual service.
+* `application_profile_ref` - (Optional) Enable application layer specific features for the virtual service.
+* `bulk_sync_kvcache` - (Optional) (this is a beta feature).
+* `client_auth` - (Optional) Http authentication configuration for protected resources.
+* `close_client_conn_on_config_update` - (Optional) Close client connection on vs config update.
+* `cloud_config_cksum` - (Optional) Checksum of cloud configuration for vs.
+* `cloud_ref` - (Optional) It is a reference to an object of type cloud.
+* `cloud_type` - (Optional) Enum options - cloud_none, cloud_vcenter, cloud_openstack, cloud_aws, cloud_vca, cloud_apic, cloud_mesos, cloud_linuxserver, cloud_docker_ucp, cloud_rancher, cloud_oshift_k8s, cloud_azure, cloud_gcp.
+* `connections_rate_limit` - (Optional) Rate limit the incoming connections to this virtual service.
+* `content_rewrite` - (Optional) Profile used to match and rewrite strings in request and/or response body.
+* `created_by` - (Optional) Creator name.
+* `delay_fairness` - (Optional) Select the algorithm for qos fairness.
+* `description` - (Optional) User defined description for the object.
+* `dns_info` - (Optional) Service discovery specific data including fully qualified domain name, type and time-to-live of the dns record.
+* `dns_policies` - (Optional) Dns policies applied on the dns traffic of the virtual service.
+* `east_west_placement` - (Optional) Force placement on all se's in service group (mesos mode only).
+* `enable_autogw` - (Optional) Response traffic to clients will be sent back to the source mac address of the connection, rather than statically sent to a default gateway.
+* `enable_rhi` - (Optional) Enable route health injection using the bgp config in the vrf context.
+* `enable_rhi_snat` - (Optional) Enable route health injection for source nat'ted floating ip address using the bgp config in the vrf context.
+* `enabled` - (Optional) Enable or disable the virtual service.
+* `error_page_profile_ref` - (Optional) Error page profile to be used for this virtualservice.this profile is used to send the custom error page to the client generated by the proxy.
+* `flow_dist` - (Optional) Criteria for flow distribution among ses.
+* `flow_label_type` - (Optional) Criteria for flow labelling.
+* `fqdn` - (Optional) Dns resolvable, fully qualified domain name of the virtualservice.
+* `host_name_xlate` - (Optional) Translate the host name sent to the servers to this value.
+* `http_policies` - (Optional) Http policies applied on the data traffic of the virtual service.
+* `ign_pool_net_reach` - (Optional) Ignore pool servers network reachability constraints for virtual service placement.
+* `l4_policies` - (Optional) L4 policies applied to the data traffic of the virtual service.
+* `limit_doser` - (Optional) Limit potential dos attackers who exceed max_cps_per_client significantly to a fraction of max_cps_per_client for a while.
+* `max_cps_per_client` - (Optional) Maximum connections per second per client ip.
+* `microservice_ref` - (Optional) Microservice representing the virtual service.
+* `min_pools_up` - (Optional) Minimum number of up pools to mark vs up.
+* `network_profile_ref` - (Optional) Determines network settings such as protocol, tcp or udp, and related options for the protocol.
+* `network_security_policy_ref` - (Optional) Network security policies for the virtual service.
+* `nsx_securitygroup` - (Optional) A list of nsx service groups representing the clients which can access the virtual ip of the virtual service.
+* `performance_limits` - (Optional) Optional settings that determine performance limits like max connections or bandwdith etc.
+* `pool_group_ref` - (Optional) The pool group is an object that contains pools.
+* `pool_ref` - (Optional) The pool is an object that contains destination servers and related attributes such as load-balancing and persistence.
+* `remove_listening_port_on_vs_down` - (Optional) Remove listening port if virtualservice is down.
+* `requests_rate_limit` - (Optional) Rate limit the incoming requests to this virtual service.
+* `saml_sp_config` - (Optional) Application-specific saml config.
+* `scaleout_ecmp` - (Optional) Disable re-distribution of flows across service engines for a virtual service.
+* `se_group_ref` - (Optional) The service engine group to use for this virtual service.
+* `security_policy_ref` - (Optional) Security policy applied on the traffic of the virtual service.
+* `server_network_profile_ref` - (Optional) Determines the network settings profile for the server side of tcp proxied connections.
+* `service_metadata` - (Optional) Metadata pertaining to the service provided by this virtual service.
+* `service_pool_select` - (Optional) Select pool based on destination port.
+* `services` - (Optional) List of services defined for this virtual service.
+* `sideband_profile` - (Optional) Sideband configuration to be used for this virtualservice.it can be used for sending traffic to sideband vips for external inspection etc.
+* `snat_ip` - (Optional) Nat'ted floating source ip address(es) for upstream connection to servers.
+* `ssl_key_and_certificate_refs` - (Optional) Select or create one or two certificates, ec and/or rsa, that will be presented to ssl/tls terminated connections.
+* `ssl_profile_ref` - (Optional) Determines the set of ssl versions and ciphers to accept for ssl/tls terminated connections.
+* `ssl_profile_selectors` - (Optional) Select ssl profile based on client ip address match.
+* `ssl_sess_cache_avg_size` - (Optional) Expected number of ssl session cache entries (may be exceeded).
+* `sso_policy_ref` - (Optional) The sso policy attached to the virtualservice.
+* `static_dns_records` - (Optional) List of static dns records applied to this virtual service.
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant.
+* `topology_policies` - (Optional) Topology policies applied on the dns traffic of the virtual service based ongslb topology algorithm.
+* `traffic_clone_profile_ref` - (Optional) Server network or list of servers for cloning traffic.
+* `traffic_enabled` - (Optional) Knob to enable the virtual service traffic on its assigned service engines.
+* `type` - (Optional) Specify if this is a normal virtual service, or if it is the parent or child of an sni-enabled virtual hosted virtual service.
+* `use_bridge_ip_as_vip` - (Optional) Use bridge ip as vip on each host in mesos deployments.
+* `use_vip_as_snat` - (Optional) Use the virtual ip as the snat ip for health monitoring and sending traffic to the backend servers instead of the service engine interface ip.
+* `vh_domain_name` - (Optional) The exact name requested from the client's sni-enabled tls hello domain name field.
+* `vh_parent_vs_uuid` - (Optional) Specifies the virtual service acting as virtual hosting (sni) parent.
+* `vip` - (Optional) List of virtual service ips.
+* `vrf_context_ref` - (Optional) Virtual routing context that the virtual service is bound to.
+* `vs_datascripts` - (Optional) Datascripts applied on the data traffic of the virtual service.
+* `vsvip_cloud_config_cksum` - (Optional) Checksum of cloud configuration for vsvip.
+* `vsvip_ref` - (Optional) Mostly used during the creation of shared vs, this field refers to entities that can be shared across virtual services.
+* `waf_policy_ref` - (Optional) Waf policy for the virtual service.
+* `weight` - (Optional) The quality of service weight to assign to traffic transmitted from this virtual service.
+
+
 ### Timeouts
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
@@ -113,5 +114,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-                                                                                                                                                                                                                                                                                    * `uuid` - argument_description.
-                                        
+* `uuid` -  Uuid of the virtualservice.
+

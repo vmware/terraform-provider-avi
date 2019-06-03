@@ -13,9 +13,9 @@ The ErrorPageProfile resource allows the creation and management of Avi ErrorPag
 ## Example Usage
 
 ```hcl
-resource "ErrorPageProfile" "foo" {
+resource "avi_errorpageprofile" "foo" {
     name = "terraform-example-foo"
-    tenant = "admin"
+    tenant_ref = "/api/tenant/?name=admin"
 }
 ```
 
@@ -23,10 +23,11 @@ resource "ErrorPageProfile" "foo" {
 
 The following arguments are supported:
 
-    * `error_pages` - (Optional ) argument_description.
-        * `name` - (Optional ) argument_description.
-        * `tenant_ref` - (Optional ) argument_description.
-        
+* `error_pages` - (Optional) Defined error pages for http status codes.
+* `name` - (Optional) Field introduced in 17.2.4.
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant.
+
+
 ### Timeouts
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
@@ -39,5 +40,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-                * `uuid` - argument_description.
-    
+* `uuid` -  Field introduced in 17.2.4.
+

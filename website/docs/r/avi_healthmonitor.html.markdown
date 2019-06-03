@@ -13,9 +13,9 @@ The HealthMonitor resource allows the creation and management of Avi HealthMonit
 ## Example Usage
 
 ```hcl
-resource "HealthMonitor" "foo" {
+resource "avi_healthmonitor" "foo" {
     name = "terraform-example-foo"
-    tenant = "admin"
+    tenant_ref = "/api/tenant/?name=admin"
 }
 ```
 
@@ -23,25 +23,26 @@ resource "HealthMonitor" "foo" {
 
 The following arguments are supported:
 
-    * `description` - (Optional ) argument_description.
-        * `dns_monitor` - (Optional ) argument_description.
-        * `external_monitor` - (Optional ) argument_description.
-        * `failed_checks` - (Optional ) argument_description.
-        * `http_monitor` - (Optional ) argument_description.
-        * `https_monitor` - (Optional ) argument_description.
-        * `is_federated` - (Optional ) argument_description.
-        * `monitor_port` - (Optional ) argument_description.
-        * `name` - (Required) argument_description.
-        * `radius_monitor` - (Optional ) argument_description.
-        * `receive_timeout` - (Optional ) argument_description.
-        * `send_interval` - (Optional ) argument_description.
-        * `sip_monitor` - (Optional ) argument_description.
-        * `successful_checks` - (Optional ) argument_description.
-        * `tcp_monitor` - (Optional ) argument_description.
-        * `tenant_ref` - (Optional ) argument_description.
-        * `type` - (Required) argument_description.
-        * `udp_monitor` - (Optional ) argument_description.
-        
+* `name` - (Required) A user friendly name for this health monitor.
+* `type` - (Required) Type of the health monitor.
+* `description` - (Optional) User defined description for the object.
+* `dns_monitor` - (Optional) Dict settings for healthmonitor.
+* `external_monitor` - (Optional) Dict settings for healthmonitor.
+* `failed_checks` - (Optional) Number of continuous failed health checks before the server is marked down.
+* `http_monitor` - (Optional) Dict settings for healthmonitor.
+* `https_monitor` - (Optional) Dict settings for healthmonitor.
+* `is_federated` - (Optional) This field describes the object's replication scope.
+* `monitor_port` - (Optional) Use this port instead of the port defined for the server in the pool.
+* `radius_monitor` - (Optional) Health monitor for radius.
+* `receive_timeout` - (Optional) A valid response from the server is expected within the receive timeout window.
+* `send_interval` - (Optional) Frequency, in seconds, that monitors are sent to a server.
+* `sip_monitor` - (Optional) Health monitor for sip.
+* `successful_checks` - (Optional) Number of continuous successful health checks before server is marked up.
+* `tcp_monitor` - (Optional) Dict settings for healthmonitor.
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant.
+* `udp_monitor` - (Optional) Dict settings for healthmonitor.
+
+
 ### Timeouts
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
@@ -54,5 +55,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-                                                                            * `uuid` - argument_description.
-    
+* `uuid` -  Uuid of the health monitor.
+

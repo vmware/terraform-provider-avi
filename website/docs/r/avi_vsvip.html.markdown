@@ -13,9 +13,9 @@ The VsVip resource allows the creation and management of Avi VsVip
 ## Example Usage
 
 ```hcl
-resource "VsVip" "foo" {
+resource "avi_vsvip" "foo" {
     name = "terraform-example-foo"
-    tenant = "admin"
+    tenant_ref = "/api/tenant/?name=admin"
 }
 ```
 
@@ -23,16 +23,17 @@ resource "VsVip" "foo" {
 
 The following arguments are supported:
 
-    * `cloud_ref` - (Optional ) argument_description.
-        * `dns_info` - (Optional ) argument_description.
-        * `east_west_placement` - (Optional ) argument_description.
-        * `name` - (Required) argument_description.
-        * `tenant_ref` - (Optional ) argument_description.
-        * `use_standard_alb` - (Optional ) argument_description.
-            * `vip` - (Optional ) argument_description.
-        * `vrf_context_ref` - (Optional ) argument_description.
-        * `vsvip_cloud_config_cksum` - (Optional ) argument_description.
-    
+* `name` - (Required) Name for the vsvip object.
+* `cloud_ref` - (Optional) It is a reference to an object of type cloud.
+* `dns_info` - (Optional) Service discovery specific data including fully qualified domain name, type and time-to-live of the dns record.
+* `east_west_placement` - (Optional) Force placement on all service engines in the service engine group (container clouds only).
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant.
+* `use_standard_alb` - (Optional) This overrides the cloud level default and needs to match the se group value in which it will be used if the se group use_standard_alb value is set.
+* `vip` - (Optional) List of virtual service ips and other shareable entities.
+* `vrf_context_ref` - (Optional) Virtual routing context that the virtual service is bound to.
+* `vsvip_cloud_config_cksum` - (Optional) Checksum of cloud configuration for vsvip.
+
+
 ### Timeouts
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
@@ -45,5 +46,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-                            * `uuid` - argument_description.
-                
+* `uuid` -  Uuid of the vsvip object.
+

@@ -11,285 +11,253 @@ func dataSourceAviPool() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviPoolRead,
 		Schema: map[string]*schema.Schema{
-			"analytics_policy": &schema.Schema{
+			"analytics_policy": {
 				Type:     schema.TypeSet,
-				Optional: true,
+				Computed: true,
 				Elem:     ResourcePoolAnalyticsPolicySchema(),
 			},
-			"analytics_profile_ref": &schema.Schema{
+			"analytics_profile_ref": {
 				Type:     schema.TypeString,
-				Optional: true,
 				Computed: true,
 			},
-			"apic_epg_name": &schema.Schema{
+			"apic_epg_name": {
 				Type:     schema.TypeString,
-				Optional: true,
-			},
-			"application_persistence_profile_ref": &schema.Schema{
-				Type:     schema.TypeString,
-				Optional: true,
 				Computed: true,
 			},
-			"autoscale_launch_config_ref": &schema.Schema{
+			"application_persistence_profile_ref": {
 				Type:     schema.TypeString,
-				Optional: true,
 				Computed: true,
 			},
-			"autoscale_networks": &schema.Schema{
+			"autoscale_launch_config_ref": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"autoscale_networks": {
 				Type:     schema.TypeList,
-				Optional: true,
+				Computed: true,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
-			"autoscale_policy_ref": &schema.Schema{
+			"autoscale_policy_ref": {
 				Type:     schema.TypeString,
-				Optional: true,
 				Computed: true,
 			},
-			"capacity_estimation": &schema.Schema{
+			"capacity_estimation": {
 				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  false,
+				Computed: true,
 			},
-			"capacity_estimation_ttfb_thresh": &schema.Schema{
+			"capacity_estimation_ttfb_thresh": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  0,
+				Computed: true,
 			},
-			"cloud_config_cksum": &schema.Schema{
+			"cloud_config_cksum": {
 				Type:     schema.TypeString,
-				Optional: true,
+				Computed: true,
 			},
-			"cloud_ref": &schema.Schema{
+			"cloud_ref": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
-			"conn_pool_properties": &schema.Schema{
+			"conn_pool_properties": {
 				Type:     schema.TypeSet,
-				Optional: true,
+				Computed: true,
 				Elem:     ResourceConnPoolPropertiesSchema(),
 			},
-			"connection_ramp_duration": &schema.Schema{
+			"connection_ramp_duration": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  10,
-			},
-			"created_by": &schema.Schema{
-				Type:     schema.TypeString,
-				Optional: true,
-			},
-			"default_server_port": &schema.Schema{
-				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  80,
-			},
-			"delete_server_on_dns_refresh": &schema.Schema{
-				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  true,
 				Computed: true,
 			},
-			"description": &schema.Schema{
+			"created_by": {
 				Type:     schema.TypeString,
-				Optional: true,
+				Computed: true,
 			},
-			"domain_name": &schema.Schema{
+			"default_server_port": {
+				Type:     schema.TypeInt,
+				Computed: true,
+			},
+			"delete_server_on_dns_refresh": {
+				Type:     schema.TypeBool,
+				Computed: true,
+			},
+			"description": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"domain_name": {
 				Type:     schema.TypeList,
-				Optional: true,
+				Computed: true,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
-			"east_west": &schema.Schema{
+			"east_west": {
 				Type:     schema.TypeBool,
-				Optional: true,
+				Computed: true,
 			},
-			"enabled": &schema.Schema{
+			"enabled": {
 				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  true,
+				Computed: true,
 			},
-			"external_autoscale_groups": &schema.Schema{
+			"external_autoscale_groups": {
 				Type:     schema.TypeList,
-				Optional: true,
+				Computed: true,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
-			"fail_action": &schema.Schema{
+			"fail_action": {
 				Type:     schema.TypeSet,
-				Optional: true,
+				Computed: true,
 				Elem:     ResourceFailActionSchema(),
 			},
-			"fewest_tasks_feedback_delay": &schema.Schema{
+			"fewest_tasks_feedback_delay": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  10,
+				Computed: true,
 			},
-			"graceful_disable_timeout": &schema.Schema{
+			"graceful_disable_timeout": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  1,
+				Computed: true,
 			},
-			"health_monitor_refs": &schema.Schema{
+			"health_monitor_refs": {
 				Type:     schema.TypeList,
-				Optional: true,
 				Computed: true,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
-			"host_check_enabled": &schema.Schema{
+			"host_check_enabled": {
 				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  false,
-			},
-			"inline_health_monitor": &schema.Schema{
-				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  true,
-			},
-			"ipaddrgroup_ref": &schema.Schema{
-				Type:     schema.TypeString,
-				Optional: true,
 				Computed: true,
 			},
-			"lb_algorithm": &schema.Schema{
-				Type:     schema.TypeString,
-				Optional: true,
-				Default:  "LB_ALGORITHM_LEAST_CONNECTIONS",
-			},
-			"lb_algorithm_consistent_hash_hdr": &schema.Schema{
-				Type:     schema.TypeString,
-				Optional: true,
-			},
-			"lb_algorithm_core_nonaffinity": &schema.Schema{
-				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  2,
-			},
-			"lb_algorithm_hash": &schema.Schema{
-				Type:     schema.TypeString,
-				Optional: true,
-				Default:  "LB_ALGORITHM_CONSISTENT_HASH_SOURCE_IP_ADDRESS",
-			},
-			"lookup_server_by_name": &schema.Schema{
+			"inline_health_monitor": {
 				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  false,
+				Computed: true,
 			},
-			"max_concurrent_connections_per_server": &schema.Schema{
+			"ipaddrgroup_ref": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"lb_algorithm": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"lb_algorithm_consistent_hash_hdr": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"lb_algorithm_core_nonaffinity": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  0,
+				Computed: true,
 			},
-			"max_conn_rate_per_server": &schema.Schema{
+			"lb_algorithm_hash": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"lookup_server_by_name": {
+				Type:     schema.TypeBool,
+				Computed: true,
+			},
+			"max_concurrent_connections_per_server": {
+				Type:     schema.TypeInt,
+				Computed: true,
+			},
+			"max_conn_rate_per_server": {
 				Type:     schema.TypeSet,
-				Optional: true,
+				Computed: true,
 				Elem:     ResourceRateProfileSchema(),
 			},
-			"min_health_monitors_up": &schema.Schema{
+			"min_health_monitors_up": {
 				Type:     schema.TypeInt,
-				Optional: true,
+				Computed: true,
 			},
-			"min_servers_up": &schema.Schema{
+			"min_servers_up": {
 				Type:     schema.TypeInt,
-				Optional: true,
+				Computed: true,
 			},
-			"name": &schema.Schema{
+			"name": {
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
-			"networks": &schema.Schema{
+			"networks": {
 				Type:     schema.TypeList,
-				Optional: true,
+				Computed: true,
 				Elem:     ResourceNetworkFilterSchema(),
 			},
-			"nsx_securitygroup": &schema.Schema{
+			"nsx_securitygroup": {
 				Type:     schema.TypeList,
-				Optional: true,
+				Computed: true,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
-			"pki_profile_ref": &schema.Schema{
+			"pki_profile_ref": {
 				Type:     schema.TypeString,
-				Optional: true,
 				Computed: true,
 			},
-			"placement_networks": &schema.Schema{
+			"placement_networks": {
 				Type:     schema.TypeList,
-				Optional: true,
+				Computed: true,
 				Elem:     ResourcePlacementNetworkSchema(),
 			},
-			"request_queue_depth": &schema.Schema{
+			"request_queue_depth": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  128,
+				Computed: true,
 			},
-			"request_queue_enabled": &schema.Schema{
+			"request_queue_enabled": {
 				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  false,
+				Computed: true,
 			},
-			"rewrite_host_header_to_server_name": &schema.Schema{
+			"rewrite_host_header_to_server_name": {
 				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  false,
+				Computed: true,
 			},
-			"rewrite_host_header_to_sni": &schema.Schema{
+			"rewrite_host_header_to_sni": {
 				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  false,
+				Computed: true,
 			},
-			"server_name": &schema.Schema{
+			"server_name": {
 				Type:     schema.TypeString,
-				Optional: true,
+				Computed: true,
 			},
-			"server_reselect": &schema.Schema{
+			"server_reselect": {
 				Type:     schema.TypeSet,
-				Optional: true,
+				Computed: true,
 				Elem:     ResourceHTTPServerReselectSchema(),
 			},
-			"server_timeout": &schema.Schema{
+			"server_timeout": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  0,
+				Computed: true,
 			},
-			"servers": &schema.Schema{
+			"servers": {
 				Type:     schema.TypeList,
-				Optional: true,
+				Computed: true,
 				Elem:     ResourceServerSchema(),
 			},
-			"service_metadata": &schema.Schema{
+			"service_metadata": {
 				Type:     schema.TypeString,
-				Optional: true,
+				Computed: true,
 			},
-			"sni_enabled": &schema.Schema{
+			"sni_enabled": {
 				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  true,
+				Computed: true,
 			},
-			"ssl_key_and_certificate_ref": &schema.Schema{
+			"ssl_key_and_certificate_ref": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"ssl_profile_ref": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"tenant_ref": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
-			"ssl_profile_ref": &schema.Schema{
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
-			"tenant_ref": &schema.Schema{
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
-			"use_service_port": &schema.Schema{
+			"use_service_port": {
 				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  false,
+				Computed: true,
 			},
-			"uuid": &schema.Schema{
+			"uuid": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
-			"vrf_ref": &schema.Schema{
+			"vrf_ref": {
 				Type:     schema.TypeString,
-				Optional: true,
 				Computed: true,
 			},
 		},

@@ -14,50 +14,50 @@ import (
 
 func ResourceVsVipSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"cloud_ref": &schema.Schema{
+		"cloud_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"dns_info": &schema.Schema{
+		"dns_info": {
 			Type:     schema.TypeList,
 			Optional: true,
 			Elem:     ResourceDnsInfoSchema(),
 		},
-		"east_west_placement": &schema.Schema{
+		"east_west_placement": {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  false,
 		},
-		"name": &schema.Schema{
+		"name": {
 			Type:     schema.TypeString,
 			Required: true,
 		},
-		"tenant_ref": &schema.Schema{
+		"tenant_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"use_standard_alb": &schema.Schema{
+		"use_standard_alb": {
 			Type:     schema.TypeBool,
 			Optional: true,
 		},
-		"uuid": &schema.Schema{
+		"uuid": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"vip": &schema.Schema{
+		"vip": {
 			Type:     schema.TypeList,
 			Optional: true,
 			Elem:     ResourceVipSchema(),
 		},
-		"vrf_context_ref": &schema.Schema{
+		"vrf_context_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"vsvip_cloud_config_cksum": &schema.Schema{
+		"vsvip_cloud_config_cksum": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},

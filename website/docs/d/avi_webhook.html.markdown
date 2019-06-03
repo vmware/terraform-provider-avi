@@ -13,8 +13,8 @@ This data source is used to to get avi_webhook objects.
 ## Example Usage
 
 ```hcl
-data "Webhook" "foo_Webhook" {
-    uuid = "Webhook-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
+data "avi_webhook" "foo_webhook" {
+    uuid = "webhook-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
     name = "foo"
 }
 ```

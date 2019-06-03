@@ -13,8 +13,8 @@ This data source is used to to get avi_gslb objects.
 ## Example Usage
 
 ```hcl
-data "Gslb" "foo_Gslb" {
-    uuid = "Gslb-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
+data "avi_gslb" "foo_gslb" {
+    uuid = "gslb-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
     name = "foo"
 }
 ```
@@ -31,7 +31,7 @@ In addition to all arguments above, the following attributes are exported:
 * `async_interval` - Frequency with which messages are propagated to vs mgr.
 * `clear_on_max_retries` - Max retries after which the remote site is treated as a fresh start.
 * `client_ip_addr_group` - Group to specify if the client ip addresses are public or private.
-* `description` - General description.
+* `description` - User defined description for the object.
 * `dns_configs` - Sub domain configuration for the gslb.
 * `error_resync_interval` - Frequency with which errored messages are resynced to follower sites.
 * `is_federated` - This field indicates that this object is replicated across gslb federation.

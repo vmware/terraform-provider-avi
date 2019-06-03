@@ -14,80 +14,80 @@ import (
 
 func ResourceServerAutoScalePolicySchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"description": &schema.Schema{
+		"description": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
-		"intelligent_autoscale": &schema.Schema{
+		"intelligent_autoscale": {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  false,
 		},
-		"intelligent_scalein_margin": &schema.Schema{
+		"intelligent_scalein_margin": {
 			Type:     schema.TypeInt,
 			Optional: true,
 			Default:  40,
 		},
-		"intelligent_scaleout_margin": &schema.Schema{
+		"intelligent_scaleout_margin": {
 			Type:     schema.TypeInt,
 			Optional: true,
 			Default:  20,
 		},
-		"max_scalein_adjustment_step": &schema.Schema{
+		"max_scalein_adjustment_step": {
 			Type:     schema.TypeInt,
 			Optional: true,
 			Default:  1,
 		},
-		"max_scaleout_adjustment_step": &schema.Schema{
+		"max_scaleout_adjustment_step": {
 			Type:     schema.TypeInt,
 			Optional: true,
 			Default:  1,
 		},
-		"max_size": &schema.Schema{
+		"max_size": {
 			Type:     schema.TypeInt,
 			Optional: true,
 		},
-		"min_size": &schema.Schema{
+		"min_size": {
 			Type:     schema.TypeInt,
 			Optional: true,
 		},
-		"name": &schema.Schema{
+		"name": {
 			Type:     schema.TypeString,
 			Required: true,
 		},
-		"scalein_alertconfig_refs": &schema.Schema{
+		"scalein_alertconfig_refs": {
 			Type:     schema.TypeList,
 			Optional: true,
 			Computed: true,
 			Elem:     &schema.Schema{Type: schema.TypeString},
 		},
-		"scalein_cooldown": &schema.Schema{
+		"scalein_cooldown": {
 			Type:     schema.TypeInt,
 			Optional: true,
 			Default:  300,
 		},
-		"scaleout_alertconfig_refs": &schema.Schema{
+		"scaleout_alertconfig_refs": {
 			Type:     schema.TypeList,
 			Optional: true,
 			Computed: true,
 			Elem:     &schema.Schema{Type: schema.TypeString},
 		},
-		"scaleout_cooldown": &schema.Schema{
+		"scaleout_cooldown": {
 			Type:     schema.TypeInt,
 			Optional: true,
 			Default:  300,
 		},
-		"tenant_ref": &schema.Schema{
+		"tenant_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"use_predicted_load": &schema.Schema{
+		"use_predicted_load": {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  false,
 		},
-		"uuid": &schema.Schema{
+		"uuid": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,

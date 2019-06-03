@@ -13,8 +13,8 @@ This data source is used to to get avi_microservicegroup objects.
 ## Example Usage
 
 ```hcl
-data "MicroServiceGroup" "foo_MicroServiceGroup" {
-    uuid = "MicroServiceGroup-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
+data "avi_microservicegroup" "foo_microservicegroup" {
+    uuid = "microservicegroup-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
     name = "foo"
 }
 ```
@@ -29,7 +29,7 @@ data "MicroServiceGroup" "foo_MicroServiceGroup" {
 In addition to all arguments above, the following attributes are exported:
 
 * `created_by` - Creator name.
-* `description` - General description.
+* `description` - User defined description for the object.
 * `name` - Name of the microservice group.
 * `service_refs` - Configure microservice(es).
 * `tenant_ref` - It is a reference to an object of type tenant.

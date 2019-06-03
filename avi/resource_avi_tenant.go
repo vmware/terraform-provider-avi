@@ -14,29 +14,29 @@ import (
 
 func ResourceTenantSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"config_settings": &schema.Schema{
+		"config_settings": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceTenantConfigurationSchema(),
 		},
-		"created_by": &schema.Schema{
+		"created_by": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
-		"description": &schema.Schema{
+		"description": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
-		"local": &schema.Schema{
+		"local": {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  true,
 		},
-		"name": &schema.Schema{
+		"name": {
 			Type:     schema.TypeString,
 			Required: true,
 		},
-		"uuid": &schema.Schema{
+		"uuid": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,

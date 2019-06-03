@@ -13,9 +13,9 @@ The WafPolicy resource allows the creation and management of Avi WafPolicy
 ## Example Usage
 
 ```hcl
-resource "WafPolicy" "foo" {
+resource "avi_wafpolicy" "foo" {
     name = "terraform-example-foo"
-    tenant = "admin"
+    tenant_ref = "/api/tenant/?name=admin"
 }
 ```
 
@@ -23,23 +23,24 @@ resource "WafPolicy" "foo" {
 
 The following arguments are supported:
 
-    * `allow_mode_delegation` - (Optional ) argument_description.
-        * `created_by` - (Optional ) argument_description.
-        * `crs_groups` - (Optional ) argument_description.
-        * `description` - (Optional ) argument_description.
-        * `enable_app_learning` - (Optional ) argument_description.
-        * `failure_mode` - (Optional ) argument_description.
-        * `mode` - (Optional ) argument_description.
-        * `name` - (Required) argument_description.
-        * `paranoia_level` - (Optional ) argument_description.
-        * `positive_security_model` - (Optional ) argument_description.
-        * `post_crs_groups` - (Optional ) argument_description.
-        * `pre_crs_groups` - (Optional ) argument_description.
-        * `tenant_ref` - (Optional ) argument_description.
-            * `waf_crs_ref` - (Optional ) argument_description.
-        * `waf_profile_ref` - (Optional ) argument_description.
-        * `whitelist` - (Optional ) argument_description.
-    
+* `name` - (Required) Field introduced in 17.2.1.
+* `allow_mode_delegation` - (Optional) Allow rules to overwrite the policy mode.
+* `created_by` - (Optional) Creator name.
+* `crs_groups` - (Optional) Waf rules are categorized in to groups based on their characterization.
+* `description` - (Optional) Field introduced in 17.2.1.
+* `enable_app_learning` - (Optional) Enable application learning for this waf policy.
+* `failure_mode` - (Optional) Waf policy failure mode.
+* `mode` - (Optional) Waf policy mode.
+* `paranoia_level` - (Optional) Waf ruleset paranoia  mode.
+* `positive_security_model` - (Optional) The positive security model.
+* `post_crs_groups` - (Optional) Waf rules are categorized in to groups based on their characterization.
+* `pre_crs_groups` - (Optional) Waf rules are categorized in to groups based on their characterization.
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant.
+* `waf_crs_ref` - (Optional) Waf core ruleset used for the crs part of this policy.
+* `waf_profile_ref` - (Optional) Waf profile for waf policy.
+* `whitelist` - (Optional) A set of rules which describe conditions under which the request will bypass the waf.
+
+
 ### Timeouts
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
@@ -52,5 +53,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-                                                        * `uuid` - argument_description.
-                
+* `uuid` -  Field introduced in 17.2.1.
+

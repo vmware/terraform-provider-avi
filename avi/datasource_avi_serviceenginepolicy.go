@@ -11,33 +11,31 @@ func dataSourceAviServiceEnginePolicy() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviServiceEnginePolicyRead,
 		Schema: map[string]*schema.Schema{
-			"name": &schema.Schema{
-				Type:     schema.TypeString,
-				Optional: true,
-			},
-			"nat_policy_ref": &schema.Schema{
+			"name": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
-			"se_group_ref": &schema.Schema{
+			"nat_policy_ref": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"se_group_ref": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"tenant_ref": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
-			"tenant_ref": &schema.Schema{
+			"uuid": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
-			"uuid": &schema.Schema{
+			"vrf_ref": {
 				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
-			"vrf_ref": &schema.Schema{
-				Type:     schema.TypeString,
-				Optional: true,
 				Computed: true,
 			},
 		},

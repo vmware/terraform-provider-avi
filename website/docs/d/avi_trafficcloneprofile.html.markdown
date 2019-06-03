@@ -13,8 +13,8 @@ This data source is used to to get avi_trafficcloneprofile objects.
 ## Example Usage
 
 ```hcl
-data "TrafficCloneProfile" "foo_TrafficCloneProfile" {
-    uuid = "TrafficCloneProfile-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
+data "avi_trafficcloneprofile" "foo_trafficcloneprofile" {
+    uuid = "trafficcloneprofile-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
     name = "foo"
     cloud_ref = "/api/cloud/?tenant=admin&name=Default-Cloud"
   }

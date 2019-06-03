@@ -13,9 +13,9 @@ The NetworkProfile resource allows the creation and management of Avi NetworkPro
 ## Example Usage
 
 ```hcl
-resource "NetworkProfile" "foo" {
+resource "avi_networkprofile" "foo" {
     name = "terraform-example-foo"
-    tenant = "admin"
+    tenant_ref = "/api/tenant/?name=admin"
 }
 ```
 
@@ -23,12 +23,13 @@ resource "NetworkProfile" "foo" {
 
 The following arguments are supported:
 
-    * `connection_mirror` - (Optional ) argument_description.
-        * `description` - (Optional ) argument_description.
-        * `name` - (Required) argument_description.
-        * `profile` - (Required) argument_description.
-        * `tenant_ref` - (Optional ) argument_description.
-        
+* `name` - (Required) The name of the network profile.
+* `profile` - (Required) Dict settings for networkprofile.
+* `connection_mirror` - (Optional) When enabled, avi mirrors all tcp fastpath connections to standby.
+* `description` - (Optional) User defined description for the object.
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant.
+
+
 ### Timeouts
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
@@ -41,5 +42,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-                        * `uuid` - argument_description.
-    
+* `uuid` -  Uuid of the network profile.
+

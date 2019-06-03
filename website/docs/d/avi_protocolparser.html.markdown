@@ -13,8 +13,8 @@ This data source is used to to get avi_protocolparser objects.
 ## Example Usage
 
 ```hcl
-data "ProtocolParser" "foo_ProtocolParser" {
-    uuid = "ProtocolParser-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
+data "avi_protocolparser" "foo_protocolparser" {
+    uuid = "protocolparser-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
     name = "foo"
 }
 ```

@@ -14,90 +14,90 @@ import (
 
 func ResourceSSLKeyAndCertificateSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"ca_certs": &schema.Schema{
+		"ca_certs": {
 			Type:     schema.TypeList,
 			Optional: true,
 			Elem:     ResourceCertificateAuthoritySchema(),
 		},
-		"certificate": &schema.Schema{
+		"certificate": {
 			Type:     schema.TypeSet,
 			Required: true,
 			Elem:     ResourceSSLCertificateSchema(),
 		},
-		"certificate_base64": &schema.Schema{
+		"certificate_base64": {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  false,
 		},
-		"certificate_management_profile_ref": &schema.Schema{
+		"certificate_management_profile_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"created_by": &schema.Schema{
+		"created_by": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
-		"dynamic_params": &schema.Schema{
+		"dynamic_params": {
 			Type:     schema.TypeList,
 			Optional: true,
 			Elem:     ResourceCustomParamsSchema(),
 		},
-		"enckey_base64": &schema.Schema{
+		"enckey_base64": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
-		"enckey_name": &schema.Schema{
+		"enckey_name": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
-		"format": &schema.Schema{
+		"format": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Default:  "SSL_PEM",
 		},
-		"hardwaresecuritymodulegroup_ref": &schema.Schema{
+		"hardwaresecuritymodulegroup_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"key": &schema.Schema{
+		"key": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
-		"key_base64": &schema.Schema{
+		"key_base64": {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  false,
 		},
-		"key_params": &schema.Schema{
+		"key_params": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceSSLKeyParamsSchema(),
 		},
-		"key_passphrase": &schema.Schema{
+		"key_passphrase": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
-		"name": &schema.Schema{
+		"name": {
 			Type:     schema.TypeString,
 			Required: true,
 		},
-		"status": &schema.Schema{
+		"status": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Default:  "SSL_CERTIFICATE_FINISHED",
 		},
-		"tenant_ref": &schema.Schema{
+		"tenant_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"type": &schema.Schema{
+		"type": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
-		"uuid": &schema.Schema{
+		"uuid": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,

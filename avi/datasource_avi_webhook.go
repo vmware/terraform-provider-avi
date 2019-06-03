@@ -11,31 +11,32 @@ func dataSourceAviWebhook() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviWebhookRead,
 		Schema: map[string]*schema.Schema{
-			"callback_url": &schema.Schema{
+			"callback_url": {
 				Type:     schema.TypeString,
-				Optional: true,
+				Computed: true,
 			},
-			"description": &schema.Schema{
+			"description": {
 				Type:     schema.TypeString,
-				Optional: true,
+				Computed: true,
 			},
-			"name": &schema.Schema{
-				Type:     schema.TypeString,
-				Optional: true,
-			},
-			"tenant_ref": &schema.Schema{
+			"name": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
-			"uuid": &schema.Schema{
+			"tenant_ref": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
-			"verification_token": &schema.Schema{
+			"uuid": {
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
+			},
+			"verification_token": {
+				Type:     schema.TypeString,
+				Computed: true,
 			},
 		},
 	}

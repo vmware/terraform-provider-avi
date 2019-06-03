@@ -13,8 +13,8 @@ This data source is used to to get avi_pkiprofile objects.
 ## Example Usage
 
 ```hcl
-data "PKIProfile" "foo_PKIProfile" {
-    uuid = "PKIProfile-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
+data "avi_pkiprofile" "foo_pkiprofile" {
+    uuid = "pkiprofile-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
     name = "foo"
 }
 ```
@@ -36,6 +36,6 @@ In addition to all arguments above, the following attributes are exported:
 * `is_federated` - This field describes the object's replication scope.
 * `name` - Name of the pki profile.
 * `tenant_ref` - It is a reference to an object of type tenant.
-* `uuid` - General description.
+* `uuid` - Unique object identifier of the object.
 * `validate_only_leaf_crl` - When enabled, avi will only validate the revocation status of the leaf certificate using crl.
 

@@ -14,67 +14,67 @@ import (
 
 func ResourceApplicationProfileSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"cloud_config_cksum": &schema.Schema{
+		"cloud_config_cksum": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
-		"created_by": &schema.Schema{
+		"created_by": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
-		"description": &schema.Schema{
+		"description": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
-		"dns_service_profile": &schema.Schema{
+		"dns_service_profile": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceDnsServiceApplicationProfileSchema(),
 		},
-		"dos_rl_profile": &schema.Schema{
+		"dos_rl_profile": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceDosRateLimitProfileSchema(),
 		},
-		"http_profile": &schema.Schema{
+		"http_profile": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceHTTPApplicationProfileSchema(),
 		},
-		"name": &schema.Schema{
+		"name": {
 			Type:     schema.TypeString,
 			Required: true,
 		},
-		"preserve_client_ip": &schema.Schema{
+		"preserve_client_ip": {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  false,
 		},
-		"preserve_client_port": &schema.Schema{
+		"preserve_client_port": {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  false,
 		},
-		"sip_service_profile": &schema.Schema{
+		"sip_service_profile": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceSipServiceApplicationProfileSchema(),
 		},
-		"tcp_app_profile": &schema.Schema{
+		"tcp_app_profile": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceTCPApplicationProfileSchema(),
 		},
-		"tenant_ref": &schema.Schema{
+		"tenant_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"type": &schema.Schema{
+		"type": {
 			Type:     schema.TypeString,
 			Required: true,
 		},
-		"uuid": &schema.Schema{
+		"uuid": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,

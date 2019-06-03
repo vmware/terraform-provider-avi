@@ -13,9 +13,9 @@ The WafPolicyPSMGroup resource allows the creation and management of Avi WafPoli
 ## Example Usage
 
 ```hcl
-resource "WafPolicyPSMGroup" "foo" {
+resource "avi_wafpolicypsmgroup" "foo" {
     name = "terraform-example-foo"
-    tenant = "admin"
+    tenant_ref = "/api/tenant/?name=admin"
 }
 ```
 
@@ -23,15 +23,16 @@ resource "WafPolicyPSMGroup" "foo" {
 
 The following arguments are supported:
 
-    * `description` - (Optional ) argument_description.
-        * `enable` - (Optional ) argument_description.
-        * `hit_action` - (Optional ) argument_description.
-        * `is_learning_group` - (Optional ) argument_description.
-        * `locations` - (Optional ) argument_description.
-        * `miss_action` - (Optional ) argument_description.
-        * `name` - (Optional ) argument_description.
-        * `tenant_ref` - (Optional ) argument_description.
-        
+* `description` - (Optional) Freetext comment about this group.
+* `enable` - (Optional) Enable or disable this waf rule group.
+* `hit_action` - (Optional) If a rule in this group matches the match_value pattern, this action will be executed.
+* `is_learning_group` - (Optional) This field indicates that this group is used for learning.
+* `locations` - (Optional) Positive security model locations.
+* `miss_action` - (Optional) If a rule in this group does not match the match_value pattern, this action will be executed.
+* `name` - (Optional) User defined name of the group.
+* `tenant_ref` - (Optional) Tenant that this object belongs to.
+
+
 ### Timeouts
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
@@ -44,5 +45,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-                                    * `uuid` - argument_description.
-    
+* `uuid` -  Uuid of this object.
+

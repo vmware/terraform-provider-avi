@@ -13,9 +13,9 @@ The ApplicationProfile resource allows the creation and management of Avi Applic
 ## Example Usage
 
 ```hcl
-resource "ApplicationProfile" "foo" {
+resource "avi_applicationprofile" "foo" {
     name = "terraform-example-foo"
-    tenant = "admin"
+    tenant_ref = "/api/tenant/?name=admin"
 }
 ```
 
@@ -23,20 +23,21 @@ resource "ApplicationProfile" "foo" {
 
 The following arguments are supported:
 
-    * `cloud_config_cksum` - (Optional ) argument_description.
-        * `created_by` - (Optional ) argument_description.
-        * `description` - (Optional ) argument_description.
-        * `dns_service_profile` - (Optional ) argument_description.
-        * `dos_rl_profile` - (Optional ) argument_description.
-        * `http_profile` - (Optional ) argument_description.
-        * `name` - (Required) argument_description.
-        * `preserve_client_ip` - (Optional ) argument_description.
-        * `preserve_client_port` - (Optional ) argument_description.
-        * `sip_service_profile` - (Optional ) argument_description.
-        * `tcp_app_profile` - (Optional ) argument_description.
-        * `tenant_ref` - (Optional ) argument_description.
-        * `type` - (Required) argument_description.
-        
+* `name` - (Required) The name of the application profile.
+* `type` - (Required) Specifies which application layer proxy is enabled for the virtual service.
+* `cloud_config_cksum` - (Optional) Checksum of application profiles.
+* `created_by` - (Optional) Name of the application profile creator.
+* `description` - (Optional) User defined description for the object.
+* `dns_service_profile` - (Optional) Specifies various dns service related controls for virtual service.
+* `dos_rl_profile` - (Optional) Specifies various security related controls for virtual service.
+* `http_profile` - (Optional) Specifies the http application proxy profile parameters.
+* `preserve_client_ip` - (Optional) Specifies if client ip needs to be preserved for backend connection.
+* `preserve_client_port` - (Optional) Specifies if we need to preserve client port while preserving client ip for backend connections.
+* `sip_service_profile` - (Optional) Specifies various sip service related controls for virtual service.
+* `tcp_app_profile` - (Optional) Specifies the tcp application proxy profile parameters.
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant.
+
+
 ### Timeouts
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
@@ -49,5 +50,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-                                                        * `uuid` - argument_description.
-    
+* `uuid` -  Uuid of the application profile.
+

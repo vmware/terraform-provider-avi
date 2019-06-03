@@ -14,22 +14,22 @@ import (
 
 func ResourceSePropertiesSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"se_agent_properties": &schema.Schema{
+		"se_agent_properties": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceSeAgentPropertiesSchema(),
 		},
-		"se_bootup_properties": &schema.Schema{
+		"se_bootup_properties": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceSeBootupPropertiesSchema(),
 		},
-		"se_runtime_properties": &schema.Schema{
+		"se_runtime_properties": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceSeRuntimePropertiesSchema(),
 		},
-		"uuid": &schema.Schema{
+		"uuid": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,

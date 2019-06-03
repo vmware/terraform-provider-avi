@@ -15,105 +15,105 @@ import (
 
 func ResourceAviPoolServerSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"pool_ref": &schema.Schema{
+		"pool_ref": {
 			Type:     schema.TypeString,
 			Required: true,
 		},
-		"ip": &schema.Schema{
+		"ip": {
 			Type:     schema.TypeString,
 			Required: true,
 		},
-		"type": &schema.Schema{
+		"type": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Default:  "V4",
 		},
-		"autoscaling_group_name": &schema.Schema{
+		"autoscaling_group_name": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
-		"availability_zone": &schema.Schema{
+		"availability_zone": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
-		"description": &schema.Schema{
+		"description": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
-		"discovered_networks": &schema.Schema{
+		"discovered_networks": {
 			Type:     schema.TypeList,
 			Optional: true,
 			Elem:     ResourceDiscoveredNetworkSchema(),
 		},
-		"enabled": &schema.Schema{
+		"enabled": {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  true,
 		},
-		"external_orchestration_id": &schema.Schema{
+		"external_orchestration_id": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
-		"external_uuid": &schema.Schema{
+		"external_uuid": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
-		"hostname": &schema.Schema{
+		"hostname": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
-		"location": &schema.Schema{
+		"location": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceGeoLocationSchema(),
 		},
-		"mac_address": &schema.Schema{
+		"mac_address": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
-		"nw_ref": &schema.Schema{
+		"nw_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"port": &schema.Schema{
+		"port": {
 			Type:     schema.TypeInt,
 			Optional: true,
 		},
-		"prst_hdr_val": &schema.Schema{
+		"prst_hdr_val": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
-		"ratio": &schema.Schema{
+		"ratio": {
 			Type:     schema.TypeInt,
 			Optional: true,
 			Default:  1,
 		},
-		"resolve_server_by_dns": &schema.Schema{
+		"resolve_server_by_dns": {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  false,
 		},
-		"rewrite_host_header": &schema.Schema{
+		"rewrite_host_header": {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  false,
 		},
-		"server_node": &schema.Schema{
+		"server_node": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
-		"static": &schema.Schema{
+		"static": {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  false,
 		},
-		"verify_network": &schema.Schema{
+		"verify_network": {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  false,
 		},
-		"vm_ref": &schema.Schema{
+		"vm_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,

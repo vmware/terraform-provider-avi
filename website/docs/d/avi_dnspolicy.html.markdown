@@ -13,8 +13,8 @@ This data source is used to to get avi_dnspolicy objects.
 ## Example Usage
 
 ```hcl
-data "DnsPolicy" "foo_DnsPolicy" {
-    uuid = "DnsPolicy-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
+data "avi_dnspolicy" "foo_dnspolicy" {
+    uuid = "dnspolicy-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
     name = "foo"
 }
 ```

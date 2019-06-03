@@ -11,21 +11,22 @@ func dataSourceAviErrorPageProfile() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviErrorPageProfileRead,
 		Schema: map[string]*schema.Schema{
-			"error_pages": &schema.Schema{
+			"error_pages": {
 				Type:     schema.TypeList,
-				Optional: true,
+				Computed: true,
 				Elem:     ResourceErrorPageSchema(),
 			},
-			"name": &schema.Schema{
-				Type:     schema.TypeString,
-				Optional: true,
-			},
-			"tenant_ref": &schema.Schema{
+			"name": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
-			"uuid": &schema.Schema{
+			"tenant_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"uuid": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,

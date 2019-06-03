@@ -14,29 +14,29 @@ import (
 
 func ResourceWebhookSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"callback_url": &schema.Schema{
+		"callback_url": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
-		"description": &schema.Schema{
+		"description": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
-		"name": &schema.Schema{
+		"name": {
 			Type:     schema.TypeString,
 			Required: true,
 		},
-		"tenant_ref": &schema.Schema{
+		"tenant_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"uuid": &schema.Schema{
+		"uuid": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"verification_token": &schema.Schema{
+		"verification_token": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},

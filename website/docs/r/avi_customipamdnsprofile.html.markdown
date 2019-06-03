@@ -13,9 +13,9 @@ The CustomIpamDnsProfile resource allows the creation and management of Avi Cust
 ## Example Usage
 
 ```hcl
-resource "CustomIpamDnsProfile" "foo" {
+resource "avi_customipamdnsprofile" "foo" {
     name = "terraform-example-foo"
-    tenant = "admin"
+    tenant_ref = "/api/tenant/?name=admin"
 }
 ```
 
@@ -23,11 +23,12 @@ resource "CustomIpamDnsProfile" "foo" {
 
 The following arguments are supported:
 
-    * `name` - (Optional ) argument_description.
-        * `script_params` - (Optional ) argument_description.
-        * `script_uri` - (Optional ) argument_description.
-        * `tenant_ref` - (Optional ) argument_description.
-        
+* `name` - (Optional) Name of the custom ipam dns profile.
+* `script_params` - (Optional) Parameters that are always passed to the ipam/dns script.
+* `script_uri` - (Optional) Script uri of form controller //ipamdnsscripts/<file-name>.
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant.
+
+
 ### Timeouts
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
@@ -40,5 +41,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-                    * `uuid` - argument_description.
-    
+* `uuid` -  Field introduced in 17.1.1.
+

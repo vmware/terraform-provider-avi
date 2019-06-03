@@ -13,9 +13,9 @@ The UserAccountProfile resource allows the creation and management of Avi UserAc
 ## Example Usage
 
 ```hcl
-resource "UserAccountProfile" "foo" {
+resource "avi_useraccountprofile" "foo" {
     name = "terraform-example-foo"
-    tenant = "admin"
+    tenant_ref = "/api/tenant/?name=admin"
 }
 ```
 
@@ -23,13 +23,14 @@ resource "UserAccountProfile" "foo" {
 
 The following arguments are supported:
 
-    * `account_lock_timeout` - (Optional ) argument_description.
-        * `credentials_timeout_threshold` - (Optional ) argument_description.
-        * `max_concurrent_sessions` - (Optional ) argument_description.
-        * `max_login_failure_count` - (Optional ) argument_description.
-        * `max_password_history_count` - (Optional ) argument_description.
-        * `name` - (Required) argument_description.
-        
+* `name` - (Required) Name of the object.
+* `account_lock_timeout` - (Optional) Lock timeout period (in minutes).
+* `credentials_timeout_threshold` - (Optional) The time period after which credentials expire.
+* `max_concurrent_sessions` - (Optional) Maximum number of concurrent sessions allowed.
+* `max_login_failure_count` - (Optional) Number of login attempts before lockout.
+* `max_password_history_count` - (Optional) Maximum number of passwords to be maintained in the password history.
+
+
 ### Timeouts
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
@@ -42,5 +43,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-                            * `uuid` - argument_description.
-    
+* `uuid` -  Unique object identifier of the object.
+

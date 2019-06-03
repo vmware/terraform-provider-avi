@@ -14,50 +14,50 @@ import (
 
 func ResourceSecurityPolicySchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"description": &schema.Schema{
+		"description": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
-		"dns_attacks": &schema.Schema{
+		"dns_attacks": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceDnsAttacksSchema(),
 		},
-		"dns_policy_index": &schema.Schema{
+		"dns_policy_index": {
 			Type:     schema.TypeInt,
 			Optional: true,
 			Default:  0,
 		},
-		"name": &schema.Schema{
+		"name": {
 			Type:     schema.TypeString,
 			Required: true,
 		},
-		"network_security_policy_index": &schema.Schema{
+		"network_security_policy_index": {
 			Type:     schema.TypeInt,
 			Optional: true,
 			Default:  0,
 		},
-		"oper_mode": &schema.Schema{
+		"oper_mode": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Default:  "DETECTION",
 		},
-		"tcp_attacks": &schema.Schema{
+		"tcp_attacks": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceTcpAttacksSchema(),
 		},
-		"tenant_ref": &schema.Schema{
+		"tenant_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"udp_attacks": &schema.Schema{
+		"udp_attacks": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceUdpAttacksSchema(),
 		},
-		"uuid": &schema.Schema{
+		"uuid": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,

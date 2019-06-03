@@ -13,8 +13,8 @@ This data source is used to to get avi_scheduler objects.
 ## Example Usage
 
 ```hcl
-data "Scheduler" "foo_Scheduler" {
-    uuid = "Scheduler-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
+data "avi_scheduler" "foo_scheduler" {
+    uuid = "scheduler-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
     name = "foo"
 }
 ```
@@ -29,7 +29,7 @@ data "Scheduler" "foo_Scheduler" {
 In addition to all arguments above, the following attributes are exported:
 
 * `backup_config_ref` - Backup configuration to be executed by this scheduler.
-* `enabled` - General description.
+* `enabled` - Boolean flag to set enabled.
 * `end_date_time` - Scheduler end date and time.
 * `frequency` - Frequency at which custom scheduler will run.
 * `frequency_unit` - Unit at which custom scheduler will run.
@@ -39,5 +39,5 @@ In addition to all arguments above, the following attributes are exported:
 * `scheduler_action` - Define scheduler action.
 * `start_date_time` - Scheduler start date and time.
 * `tenant_ref` - It is a reference to an object of type tenant.
-* `uuid` - General description.
+* `uuid` - Unique object identifier of the object.
 

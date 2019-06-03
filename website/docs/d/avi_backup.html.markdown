@@ -13,8 +13,8 @@ This data source is used to to get avi_backup objects.
 ## Example Usage
 
 ```hcl
-data "Backup" "foo_Backup" {
-    uuid = "Backup-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
+data "avi_backup" "foo_backup" {
+    uuid = "backup-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
     name = "foo"
 }
 ```
@@ -35,5 +35,5 @@ In addition to all arguments above, the following attributes are exported:
 * `scheduler_ref` - Scheduler information.
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `timestamp` - Unix timestamp of when the backup file is created.
-* `uuid` - General description.
+* `uuid` - Unique object identifier of the object.
 

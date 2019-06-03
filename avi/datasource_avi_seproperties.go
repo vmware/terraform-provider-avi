@@ -11,22 +11,22 @@ func dataSourceAviSeProperties() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviSePropertiesRead,
 		Schema: map[string]*schema.Schema{
-			"se_agent_properties": &schema.Schema{
+			"se_agent_properties": {
 				Type:     schema.TypeSet,
-				Optional: true,
+				Computed: true,
 				Elem:     ResourceSeAgentPropertiesSchema(),
 			},
-			"se_bootup_properties": &schema.Schema{
+			"se_bootup_properties": {
 				Type:     schema.TypeSet,
-				Optional: true,
+				Computed: true,
 				Elem:     ResourceSeBootupPropertiesSchema(),
 			},
-			"se_runtime_properties": &schema.Schema{
+			"se_runtime_properties": {
 				Type:     schema.TypeSet,
-				Optional: true,
+				Computed: true,
 				Elem:     ResourceSeRuntimePropertiesSchema(),
 			},
-			"uuid": &schema.Schema{
+			"uuid": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,

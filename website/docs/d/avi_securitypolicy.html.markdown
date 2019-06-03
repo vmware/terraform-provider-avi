@@ -13,8 +13,8 @@ This data source is used to to get avi_securitypolicy objects.
 ## Example Usage
 
 ```hcl
-data "SecurityPolicy" "foo_SecurityPolicy" {
-    uuid = "SecurityPolicy-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
+data "avi_securitypolicy" "foo_securitypolicy" {
+    uuid = "securitypolicy-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
     name = "foo"
 }
 ```

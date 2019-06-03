@@ -11,33 +11,33 @@ func dataSourceAviCluster() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviClusterRead,
 		Schema: map[string]*schema.Schema{
-			"name": &schema.Schema{
+			"name": {
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
-			"nodes": &schema.Schema{
+			"nodes": {
 				Type:     schema.TypeList,
-				Optional: true,
+				Computed: true,
 				Elem:     ResourceClusterNodeSchema(),
 			},
-			"rejoin_nodes_automatically": &schema.Schema{
+			"rejoin_nodes_automatically": {
 				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  true,
+				Computed: true,
 			},
-			"tenant_ref": &schema.Schema{
+			"tenant_ref": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
-			"uuid": &schema.Schema{
+			"uuid": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
-			"virtual_ip": &schema.Schema{
+			"virtual_ip": {
 				Type:     schema.TypeSet,
-				Optional: true,
+				Computed: true,
 				Elem:     ResourceIpAddrSchema(),
 			},
 		},

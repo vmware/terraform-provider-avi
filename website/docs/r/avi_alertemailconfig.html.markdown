@@ -13,9 +13,9 @@ The AlertEmailConfig resource allows the creation and management of Avi AlertEma
 ## Example Usage
 
 ```hcl
-resource "AlertEmailConfig" "foo" {
+resource "avi_alertemailconfig" "foo" {
     name = "terraform-example-foo"
-    tenant = "admin"
+    tenant_ref = "/api/tenant/?name=admin"
 }
 ```
 
@@ -23,12 +23,13 @@ resource "AlertEmailConfig" "foo" {
 
 The following arguments are supported:
 
-    * `cc_emails` - (Optional ) argument_description.
-        * `description` - (Optional ) argument_description.
-        * `name` - (Required) argument_description.
-        * `tenant_ref` - (Optional ) argument_description.
-        * `to_emails` - (Required) argument_description.
-        
+* `name` - (Required) A user-friendly name of the email notification service.
+* `to_emails` - (Required) Alerts are sent to the comma separated list of  email recipients.
+* `cc_emails` - (Optional) Alerts are copied to the comma separated list of  email recipients.
+* `description` - (Optional) User defined description for the object.
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant.
+
+
 ### Timeouts
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
@@ -41,5 +42,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-                        * `uuid` - argument_description.
-    
+* `uuid` -  Unique object identifier of the object.
+

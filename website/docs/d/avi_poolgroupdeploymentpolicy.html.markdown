@@ -13,8 +13,8 @@ This data source is used to to get avi_poolgroupdeploymentpolicy objects.
 ## Example Usage
 
 ```hcl
-data "PoolGroupDeploymentPolicy" "foo_PoolGroupDeploymentPolicy" {
-    uuid = "PoolGroupDeploymentPolicy-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
+data "avi_poolgroupdeploymentpolicy" "foo_poolgroupdeploymentpolicy" {
+    uuid = "poolgroupdeploymentpolicy-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
     name = "foo"
 }
 ```
@@ -29,10 +29,10 @@ data "PoolGroupDeploymentPolicy" "foo_PoolGroupDeploymentPolicy" {
 In addition to all arguments above, the following attributes are exported:
 
 * `auto_disable_old_prod_pools` - It will automatically disable old production pools once there is a new production candidate.
-* `description` - General description.
+* `description` - User defined description for the object.
 * `evaluation_duration` - Duration of evaluation period for automatic deployment.
 * `name` - The name of the pool group deployment policy.
-* `rules` - General description.
+* `rules` - List of list.
 * `scheme` - Deployment scheme.
 * `target_test_traffic_ratio` - Target traffic ratio before pool is made production.
 * `tenant_ref` - It is a reference to an object of type tenant.

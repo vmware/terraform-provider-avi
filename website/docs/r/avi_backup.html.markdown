@@ -13,9 +13,9 @@ The Backup resource allows the creation and management of Avi Backup
 ## Example Usage
 
 ```hcl
-resource "Backup" "foo" {
+resource "avi_backup" "foo" {
     name = "terraform-example-foo"
-    tenant = "admin"
+    tenant_ref = "/api/tenant/?name=admin"
 }
 ```
 
@@ -23,14 +23,15 @@ resource "Backup" "foo" {
 
 The following arguments are supported:
 
-    * `backup_config_ref` - (Optional ) argument_description.
-        * `file_name` - (Required) argument_description.
-        * `local_file_url` - (Optional ) argument_description.
-        * `remote_file_url` - (Optional ) argument_description.
-        * `scheduler_ref` - (Optional ) argument_description.
-        * `tenant_ref` - (Optional ) argument_description.
-        * `timestamp` - (Optional ) argument_description.
-        
+* `file_name` - (Required) The file name of backup.
+* `backup_config_ref` - (Optional) Backupconfiguration information.
+* `local_file_url` - (Optional) Url to download the backup file.
+* `remote_file_url` - (Optional) Url to download the backup file.
+* `scheduler_ref` - (Optional) Scheduler information.
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant.
+* `timestamp` - (Optional) Unix timestamp of when the backup file is created.
+
+
 ### Timeouts
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
@@ -43,5 +44,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-                                * `uuid` - argument_description.
-    
+* `uuid` -  Unique object identifier of the object.
+

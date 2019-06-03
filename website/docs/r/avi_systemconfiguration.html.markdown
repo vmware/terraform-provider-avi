@@ -13,9 +13,9 @@ The SystemConfiguration resource allows the creation and management of Avi Syste
 ## Example Usage
 
 ```hcl
-resource "SystemConfiguration" "foo" {
+resource "avi_systemconfiguration" "foo" {
     name = "terraform-example-foo"
-    tenant = "admin"
+    tenant_ref = "/api/tenant/?name=admin"
 }
 ```
 
@@ -23,24 +23,25 @@ resource "SystemConfiguration" "foo" {
 
 The following arguments are supported:
 
-    * `admin_auth_configuration` - (Optional ) argument_description.
-        * `default_license_tier` - (Optional ) argument_description.
-        * `dns_configuration` - (Optional ) argument_description.
-        * `dns_virtualservice_refs` - (Optional ) argument_description.
-        * `docker_mode` - (Optional ) argument_description.
-        * `email_configuration` - (Optional ) argument_description.
-        * `global_tenant_config` - (Optional ) argument_description.
-        * `linux_configuration` - (Optional ) argument_description.
-        * `mgmt_ip_access_control` - (Optional ) argument_description.
-        * `ntp_configuration` - (Optional ) argument_description.
-        * `portal_configuration` - (Optional ) argument_description.
-        * `proxy_configuration` - (Optional ) argument_description.
-        * `secure_channel_configuration` - (Optional ) argument_description.
-        * `snmp_configuration` - (Optional ) argument_description.
-        * `ssh_ciphers` - (Optional ) argument_description.
-        * `ssh_hmacs` - (Optional ) argument_description.
-            * `welcome_workflow_complete` - (Optional ) argument_description.
-    
+* `admin_auth_configuration` - (Optional) Dict settings for systemconfiguration.
+* `default_license_tier` - (Optional) Specifies the default license tier which would be used by new clouds.
+* `dns_configuration` - (Optional) Dict settings for systemconfiguration.
+* `dns_virtualservice_refs` - (Optional) Dns virtualservices hosting fqdn records for applications across avi vantage.
+* `docker_mode` - (Optional) Boolean flag to set docker_mode.
+* `email_configuration` - (Optional) Dict settings for systemconfiguration.
+* `global_tenant_config` - (Optional) Dict settings for systemconfiguration.
+* `linux_configuration` - (Optional) Dict settings for systemconfiguration.
+* `mgmt_ip_access_control` - (Optional) Configure ip access control for controller to restrict open access.
+* `ntp_configuration` - (Optional) Dict settings for systemconfiguration.
+* `portal_configuration` - (Optional) Dict settings for systemconfiguration.
+* `proxy_configuration` - (Optional) Dict settings for systemconfiguration.
+* `secure_channel_configuration` - (Optional) Configure secure channel properties.
+* `snmp_configuration` - (Optional) Dict settings for systemconfiguration.
+* `ssh_ciphers` - (Optional) Allowed ciphers list for ssh to the management interface on the controller and service engines.
+* `ssh_hmacs` - (Optional) Allowed hmac list for ssh to the management interface on the controller and service engines.
+* `welcome_workflow_complete` - (Optional) This flag is set once the initial controller setup workflow is complete.
+
+
 ### Timeouts
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
@@ -53,5 +54,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-                                                                    * `uuid` - argument_description.
-        
+* `uuid` -  Unique object identifier of the object.
+

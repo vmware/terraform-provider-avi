@@ -14,39 +14,39 @@ import (
 
 func ResourceAutoScaleLaunchConfigSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"description": &schema.Schema{
+		"description": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
-		"image_id": &schema.Schema{
+		"image_id": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
-		"mesos": &schema.Schema{
+		"mesos": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceAutoScaleMesosSettingsSchema(),
 		},
-		"name": &schema.Schema{
+		"name": {
 			Type:     schema.TypeString,
 			Required: true,
 		},
-		"openstack": &schema.Schema{
+		"openstack": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceAutoScaleOpenStackSettingsSchema(),
 		},
-		"tenant_ref": &schema.Schema{
+		"tenant_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"use_external_asg": &schema.Schema{
+		"use_external_asg": {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  true,
 		},
-		"uuid": &schema.Schema{
+		"uuid": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,

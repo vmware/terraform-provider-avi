@@ -13,8 +13,8 @@ This data source is used to to get avi_prioritylabels objects.
 ## Example Usage
 
 ```hcl
-data "PriorityLabels" "foo_PriorityLabels" {
-    uuid = "PriorityLabels-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
+data "avi_prioritylabels" "foo_prioritylabels" {
+    uuid = "prioritylabels-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
     name = "foo"
     cloud_ref = "/api/cloud/?tenant=admin&name=Default-Cloud"
   }

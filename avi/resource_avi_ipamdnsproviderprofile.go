@@ -14,75 +14,75 @@ import (
 
 func ResourceIpamDnsProviderProfileSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"allocate_ip_in_vrf": &schema.Schema{
+		"allocate_ip_in_vrf": {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  false,
 		},
-		"aws_profile": &schema.Schema{
+		"aws_profile": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceIpamDnsAwsProfileSchema(),
 		},
-		"azure_profile": &schema.Schema{
+		"azure_profile": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceIpamDnsAzureProfileSchema(),
 		},
-		"custom_profile": &schema.Schema{
+		"custom_profile": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceIpamDnsCustomProfileSchema(),
 		},
-		"gcp_profile": &schema.Schema{
+		"gcp_profile": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceIpamDnsGCPProfileSchema(),
 		},
-		"infoblox_profile": &schema.Schema{
+		"infoblox_profile": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceIpamDnsInfobloxProfileSchema(),
 		},
-		"internal_profile": &schema.Schema{
+		"internal_profile": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceIpamDnsInternalProfileSchema(),
 		},
-		"name": &schema.Schema{
+		"name": {
 			Type:     schema.TypeString,
 			Required: true,
 		},
-		"oci_profile": &schema.Schema{
+		"oci_profile": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceIpamDnsOCIProfileSchema(),
 		},
-		"openstack_profile": &schema.Schema{
+		"openstack_profile": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceIpamDnsOpenstackProfileSchema(),
 		},
-		"proxy_configuration": &schema.Schema{
+		"proxy_configuration": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceProxyConfigurationSchema(),
 		},
-		"tenant_ref": &schema.Schema{
+		"tenant_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"tencent_profile": &schema.Schema{
+		"tencent_profile": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceIpamDnsTencentProfileSchema(),
 		},
-		"type": &schema.Schema{
+		"type": {
 			Type:     schema.TypeString,
 			Required: true,
 		},
-		"uuid": &schema.Schema{
+		"uuid": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,

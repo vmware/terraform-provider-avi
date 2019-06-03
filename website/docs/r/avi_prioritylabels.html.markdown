@@ -13,9 +13,9 @@ The PriorityLabels resource allows the creation and management of Avi PriorityLa
 ## Example Usage
 
 ```hcl
-resource "PriorityLabels" "foo" {
+resource "avi_prioritylabels" "foo" {
     name = "terraform-example-foo"
-    tenant = "admin"
+    tenant_ref = "/api/tenant/?name=admin"
 }
 ```
 
@@ -23,12 +23,13 @@ resource "PriorityLabels" "foo" {
 
 The following arguments are supported:
 
-    * `cloud_ref` - (Optional ) argument_description.
-        * `description` - (Optional ) argument_description.
-        * `equivalent_labels` - (Optional ) argument_description.
-        * `name` - (Required) argument_description.
-        * `tenant_ref` - (Optional ) argument_description.
-        
+* `name` - (Required) The name of the priority labels.
+* `cloud_ref` - (Optional) It is a reference to an object of type cloud.
+* `description` - (Optional) A description of the priority labels.
+* `equivalent_labels` - (Optional) Equivalent priority labels in descending order.
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant.
+
+
 ### Timeouts
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
@@ -41,5 +42,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-                        * `uuid` - argument_description.
-    
+* `uuid` -  Uuid of the priority labels.
+

@@ -11,39 +11,39 @@ func dataSourceAviAutoScaleLaunchConfig() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviAutoScaleLaunchConfigRead,
 		Schema: map[string]*schema.Schema{
-			"description": &schema.Schema{
+			"description": {
 				Type:     schema.TypeString,
-				Optional: true,
+				Computed: true,
 			},
-			"image_id": &schema.Schema{
+			"image_id": {
 				Type:     schema.TypeString,
-				Optional: true,
+				Computed: true,
 			},
-			"mesos": &schema.Schema{
+			"mesos": {
 				Type:     schema.TypeSet,
-				Optional: true,
+				Computed: true,
 				Elem:     ResourceAutoScaleMesosSettingsSchema(),
 			},
-			"name": &schema.Schema{
-				Type:     schema.TypeString,
-				Optional: true,
-			},
-			"openstack": &schema.Schema{
-				Type:     schema.TypeSet,
-				Optional: true,
-				Elem:     ResourceAutoScaleOpenStackSettingsSchema(),
-			},
-			"tenant_ref": &schema.Schema{
+			"name": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
-			"use_external_asg": &schema.Schema{
-				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  true,
+			"openstack": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceAutoScaleOpenStackSettingsSchema(),
 			},
-			"uuid": &schema.Schema{
+			"tenant_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"use_external_asg": {
+				Type:     schema.TypeBool,
+				Computed: true,
+			},
+			"uuid": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,

@@ -13,9 +13,9 @@ The AlertSyslogConfig resource allows the creation and management of Avi AlertSy
 ## Example Usage
 
 ```hcl
-resource "AlertSyslogConfig" "foo" {
+resource "avi_alertsyslogconfig" "foo" {
     name = "terraform-example-foo"
-    tenant = "admin"
+    tenant_ref = "/api/tenant/?name=admin"
 }
 ```
 
@@ -23,11 +23,12 @@ resource "AlertSyslogConfig" "foo" {
 
 The following arguments are supported:
 
-    * `description` - (Optional ) argument_description.
-        * `name` - (Required) argument_description.
-        * `syslog_servers` - (Optional ) argument_description.
-        * `tenant_ref` - (Optional ) argument_description.
-        
+* `name` - (Required) A user-friendly name of the syslog notification.
+* `description` - (Optional) User defined description for alert syslog config.
+* `syslog_servers` - (Optional) The list of syslog servers.
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant.
+
+
 ### Timeouts
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
@@ -40,5 +41,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-                    * `uuid` - argument_description.
-    
+* `uuid` -  Unique object identifier of the object.
+

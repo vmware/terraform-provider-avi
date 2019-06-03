@@ -14,21 +14,21 @@ import (
 
 func ResourceHardwareSecurityModuleGroupSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"hsm": &schema.Schema{
+		"hsm": {
 			Type:     schema.TypeSet,
 			Required: true,
 			Elem:     ResourceHardwareSecurityModuleSchema(),
 		},
-		"name": &schema.Schema{
+		"name": {
 			Type:     schema.TypeString,
 			Required: true,
 		},
-		"tenant_ref": &schema.Schema{
+		"tenant_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"uuid": &schema.Schema{
+		"uuid": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,

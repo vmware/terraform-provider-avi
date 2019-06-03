@@ -13,8 +13,8 @@ This data source is used to to get avi_gslbservice objects.
 ## Example Usage
 
 ```hcl
-data "GslbService" "foo_GslbService" {
-    uuid = "GslbService-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
+data "avi_gslbservice" "foo_gslbservice" {
+    uuid = "gslbservice-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
     name = "foo"
 }
 ```
@@ -31,7 +31,7 @@ In addition to all arguments above, the following attributes are exported:
 * `application_persistence_profile_ref` - The federated application persistence associated with gslbservice site persistence functionality.
 * `controller_health_status_enabled` - Gs member's overall health status is derived based on a combination of controller and datapath health-status inputs.
 * `created_by` - Creator name.
-* `description` - General description.
+* `description` - User defined description for the object.
 * `domain_names` - Fully qualified domain name of the gslb service.
 * `down_response` - Response to the client query when the gslb service is down.
 * `enabled` - Enable or disable the gslb service.

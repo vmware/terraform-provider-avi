@@ -13,9 +13,9 @@ The PKIProfile resource allows the creation and management of Avi PKIProfile
 ## Example Usage
 
 ```hcl
-resource "PKIProfile" "foo" {
+resource "avi_pkiprofile" "foo" {
     name = "terraform-example-foo"
-    tenant = "admin"
+    tenant_ref = "/api/tenant/?name=admin"
 }
 ```
 
@@ -23,16 +23,17 @@ resource "PKIProfile" "foo" {
 
 The following arguments are supported:
 
-    * `ca_certs` - (Optional ) argument_description.
-        * `created_by` - (Optional ) argument_description.
-        * `crl_check` - (Optional ) argument_description.
-        * `crls` - (Optional ) argument_description.
-        * `ignore_peer_chain` - (Optional ) argument_description.
-        * `is_federated` - (Optional ) argument_description.
-        * `name` - (Required) argument_description.
-        * `tenant_ref` - (Optional ) argument_description.
-            * `validate_only_leaf_crl` - (Optional ) argument_description.
-    
+* `name` - (Required) Name of the pki profile.
+* `ca_certs` - (Optional) List of certificate authorities (root and intermediate) trusted that is used for certificate validation.
+* `created_by` - (Optional) Creator name.
+* `crl_check` - (Optional) When enabled, avi will verify via crl checks that certificates in the trust chain have not been revoked.
+* `crls` - (Optional) Certificate revocation lists.
+* `ignore_peer_chain` - (Optional) When enabled, avi will not trust intermediate and root certs presented by a client.
+* `is_federated` - (Optional) This field describes the object's replication scope.
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant.
+* `validate_only_leaf_crl` - (Optional) When enabled, avi will only validate the revocation status of the leaf certificate using crl.
+
+
 ### Timeouts
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
@@ -45,5 +46,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-                                    * `uuid` - argument_description.
-        
+* `uuid` -  Unique object identifier of the object.
+

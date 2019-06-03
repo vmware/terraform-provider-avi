@@ -14,74 +14,74 @@ import (
 
 func ResourceSSLProfileSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"accepted_ciphers": &schema.Schema{
+		"accepted_ciphers": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Default:  "AES:3DES:RC4",
 		},
-		"accepted_versions": &schema.Schema{
+		"accepted_versions": {
 			Type:     schema.TypeList,
 			Optional: true,
 			Elem:     ResourceSSLVersionSchema(),
 		},
-		"cipher_enums": &schema.Schema{
+		"cipher_enums": {
 			Type:     schema.TypeList,
 			Optional: true,
 			Elem:     &schema.Schema{Type: schema.TypeString},
 		},
-		"description": &schema.Schema{
+		"description": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
-		"dhparam": &schema.Schema{
+		"dhparam": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
-		"enable_ssl_session_reuse": &schema.Schema{
+		"enable_ssl_session_reuse": {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  true,
 		},
-		"name": &schema.Schema{
+		"name": {
 			Type:     schema.TypeString,
 			Required: true,
 		},
-		"prefer_client_cipher_ordering": &schema.Schema{
+		"prefer_client_cipher_ordering": {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  false,
 		},
-		"send_close_notify": &schema.Schema{
+		"send_close_notify": {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  true,
 		},
-		"ssl_rating": &schema.Schema{
+		"ssl_rating": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceSSLRatingSchema(),
 		},
-		"ssl_session_timeout": &schema.Schema{
+		"ssl_session_timeout": {
 			Type:     schema.TypeInt,
 			Optional: true,
 			Default:  86400,
 		},
-		"tags": &schema.Schema{
+		"tags": {
 			Type:     schema.TypeList,
 			Optional: true,
 			Elem:     ResourceTagSchema(),
 		},
-		"tenant_ref": &schema.Schema{
+		"tenant_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"type": &schema.Schema{
+		"type": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Default:  "SSL_PROFILE_TYPE_APPLICATION",
 		},
-		"uuid": &schema.Schema{
+		"uuid": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,

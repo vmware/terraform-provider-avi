@@ -14,54 +14,54 @@ import (
 
 func ResourceApplicationPersistenceProfileSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"app_cookie_persistence_profile": &schema.Schema{
+		"app_cookie_persistence_profile": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceAppCookiePersistenceProfileSchema(),
 		},
-		"description": &schema.Schema{
+		"description": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
-		"hdr_persistence_profile": &schema.Schema{
+		"hdr_persistence_profile": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceHdrPersistenceProfileSchema(),
 		},
-		"http_cookie_persistence_profile": &schema.Schema{
+		"http_cookie_persistence_profile": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceHttpCookiePersistenceProfileSchema(),
 		},
-		"ip_persistence_profile": &schema.Schema{
+		"ip_persistence_profile": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceIPPersistenceProfileSchema(),
 		},
-		"is_federated": &schema.Schema{
+		"is_federated": {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  false,
 		},
-		"name": &schema.Schema{
+		"name": {
 			Type:     schema.TypeString,
 			Required: true,
 		},
-		"persistence_type": &schema.Schema{
+		"persistence_type": {
 			Type:     schema.TypeString,
 			Required: true,
 		},
-		"server_hm_down_recovery": &schema.Schema{
+		"server_hm_down_recovery": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Default:  "HM_DOWN_PICK_NEW_SERVER",
 		},
-		"tenant_ref": &schema.Schema{
+		"tenant_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"uuid": &schema.Schema{
+		"uuid": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,

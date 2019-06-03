@@ -13,9 +13,9 @@ The CloudProperties resource allows the creation and management of Avi CloudProp
 ## Example Usage
 
 ```hcl
-resource "CloudProperties" "foo" {
+resource "avi_cloudproperties" "foo" {
     name = "terraform-example-foo"
-    tenant = "admin"
+    tenant_ref = "/api/tenant/?name=admin"
 }
 ```
 
@@ -23,11 +23,12 @@ resource "CloudProperties" "foo" {
 
 The following arguments are supported:
 
-    * `cc_props` - (Optional ) argument_description.
-        * `cc_vtypes` - (Optional ) argument_description.
-        * `hyp_props` - (Optional ) argument_description.
-        * `info` - (Optional ) argument_description.
-        
+* `cc_props` - (Optional) Cloudconnector properties.
+* `cc_vtypes` - (Optional) Cloud types supported by cloudconnector.
+* `hyp_props` - (Optional) Hypervisor properties.
+* `info` - (Optional) Properties specific to a cloud type.
+
+
 ### Timeouts
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
@@ -40,5 +41,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-                    * `uuid` - argument_description.
-    
+* `uuid` -  Unique object identifier of the object.
+

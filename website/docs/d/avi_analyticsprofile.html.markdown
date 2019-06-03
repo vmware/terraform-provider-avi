@@ -13,8 +13,8 @@ This data source is used to to get avi_analyticsprofile objects.
 ## Example Usage
 
 ```hcl
-data "AnalyticsProfile" "foo_AnalyticsProfile" {
-    uuid = "AnalyticsProfile-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
+data "avi_analyticsprofile" "foo_analyticsprofile" {
+    uuid = "analyticsprofile-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
     name = "foo"
 }
 ```
@@ -48,7 +48,7 @@ In addition to all arguments above, the following attributes are exported:
 * `conn_server_lossy_timeo_rexmt_threshold` - A connection between avi and server is considered lossy when more than this percentage of packets are retransmitted due to timeout.
 * `conn_server_lossy_total_rexmt_threshold` - A connection between avi and server is considered lossy when more than this percentage of packets are retransmitted.
 * `conn_server_lossy_zero_win_size_event_threshold` - A server connection is considered lossy when percentage of times a packet could not be trasmitted due to tcp zero window is above this threshold.
-* `description` - General description.
+* `description` - User defined description for the object.
 * `disable_ondemand_metrics` - Virtual service (vs) metrics are processed only when there is live data traffic on the vs.
 * `disable_se_analytics` - Disable node (service engine) level analytics forvs metrics.
 * `disable_server_analytics` - Disable analytics on backend servers.

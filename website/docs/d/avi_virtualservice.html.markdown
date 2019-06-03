@@ -13,8 +13,8 @@ This data source is used to to get avi_virtualservice objects.
 ## Example Usage
 
 ```hcl
-data "VirtualService" "foo_VirtualService" {
-    uuid = "VirtualService-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
+data "avi_virtualservice" "foo_virtualservice" {
+    uuid = "virtualservice-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
     name = "foo"
     cloud_ref = "/api/cloud/?tenant=admin&name=Default-Cloud"
   }
@@ -46,7 +46,7 @@ In addition to all arguments above, the following attributes are exported:
 * `content_rewrite` - Profile used to match and rewrite strings in request and/or response body.
 * `created_by` - Creator name.
 * `delay_fairness` - Select the algorithm for qos fairness.
-* `description` - General description.
+* `description` - User defined description for the object.
 * `dns_info` - Service discovery specific data including fully qualified domain name, type and time-to-live of the dns record.
 * `dns_policies` - Dns policies applied on the dns traffic of the virtual service.
 * `east_west_placement` - Force placement on all se's in service group (mesos mode only).

@@ -13,8 +13,8 @@ This data source is used to to get avi_vrfcontext objects.
 ## Example Usage
 
 ```hcl
-data "VrfContext" "foo_VrfContext" {
-    uuid = "VrfContext-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
+data "avi_vrfcontext" "foo_vrfcontext" {
+    uuid = "vrfcontext-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
     name = "foo"
     cloud_ref = "/api/cloud/?tenant=admin&name=Default-Cloud"
   }
@@ -33,12 +33,12 @@ In addition to all arguments above, the following attributes are exported:
 * `bgp_profile` - Bgp local and peer info.
 * `cloud_ref` - It is a reference to an object of type cloud.
 * `debugvrfcontext` - Configure debug flags for vrf.
-* `description` - General description.
+* `description` - User defined description for the object.
 * `gateway_mon` - Configure ping based heartbeat check for gateway in service engines of vrf.
 * `internal_gateway_monitor` - Configure ping based heartbeat check for all default gateways in service engines of vrf.
-* `name` - General description.
-* `static_routes` - General description.
-* `system_default` - General description.
+* `name` - Name of the object.
+* `static_routes` - List of list.
+* `system_default` - Boolean flag to set system_default.
 * `tenant_ref` - It is a reference to an object of type tenant.
-* `uuid` - General description.
+* `uuid` - Unique object identifier of the object.
 

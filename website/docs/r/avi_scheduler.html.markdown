@@ -13,9 +13,9 @@ The Scheduler resource allows the creation and management of Avi Scheduler
 ## Example Usage
 
 ```hcl
-resource "Scheduler" "foo" {
+resource "avi_scheduler" "foo" {
     name = "terraform-example-foo"
-    tenant = "admin"
+    tenant_ref = "/api/tenant/?name=admin"
 }
 ```
 
@@ -23,18 +23,19 @@ resource "Scheduler" "foo" {
 
 The following arguments are supported:
 
-    * `backup_config_ref` - (Optional ) argument_description.
-        * `enabled` - (Optional ) argument_description.
-        * `end_date_time` - (Optional ) argument_description.
-        * `frequency` - (Optional ) argument_description.
-        * `frequency_unit` - (Optional ) argument_description.
-        * `name` - (Required) argument_description.
-        * `run_mode` - (Optional ) argument_description.
-        * `run_script_ref` - (Optional ) argument_description.
-        * `scheduler_action` - (Optional ) argument_description.
-        * `start_date_time` - (Optional ) argument_description.
-        * `tenant_ref` - (Optional ) argument_description.
-        
+* `name` - (Required) Name of scheduler.
+* `backup_config_ref` - (Optional) Backup configuration to be executed by this scheduler.
+* `enabled` - (Optional) Boolean flag to set enabled.
+* `end_date_time` - (Optional) Scheduler end date and time.
+* `frequency` - (Optional) Frequency at which custom scheduler will run.
+* `frequency_unit` - (Optional) Unit at which custom scheduler will run.
+* `run_mode` - (Optional) Scheduler run mode.
+* `run_script_ref` - (Optional) Control script to be executed by this scheduler.
+* `scheduler_action` - (Optional) Define scheduler action.
+* `start_date_time` - (Optional) Scheduler start date and time.
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant.
+
+
 ### Timeouts
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
@@ -47,5 +48,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-                                                * `uuid` - argument_description.
-    
+* `uuid` -  Unique object identifier of the object.
+

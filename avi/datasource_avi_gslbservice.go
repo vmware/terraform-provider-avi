@@ -11,108 +11,100 @@ func dataSourceAviGslbService() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviGslbServiceRead,
 		Schema: map[string]*schema.Schema{
-			"application_persistence_profile_ref": &schema.Schema{
+			"application_persistence_profile_ref": {
 				Type:     schema.TypeString,
-				Optional: true,
 				Computed: true,
 			},
-			"controller_health_status_enabled": &schema.Schema{
+			"controller_health_status_enabled": {
 				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  true,
+				Computed: true,
 			},
-			"created_by": &schema.Schema{
+			"created_by": {
 				Type:     schema.TypeString,
-				Optional: true,
+				Computed: true,
 			},
-			"description": &schema.Schema{
+			"description": {
 				Type:     schema.TypeString,
-				Optional: true,
+				Computed: true,
 			},
-			"domain_names": &schema.Schema{
+			"domain_names": {
 				Type:     schema.TypeList,
-				Optional: true,
+				Computed: true,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
-			"down_response": &schema.Schema{
+			"down_response": {
 				Type:     schema.TypeSet,
-				Optional: true,
+				Computed: true,
 				Elem:     ResourceGslbServiceDownResponseSchema(),
 			},
-			"enabled": &schema.Schema{
+			"enabled": {
 				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  true,
+				Computed: true,
 			},
-			"groups": &schema.Schema{
+			"groups": {
 				Type:     schema.TypeList,
-				Optional: true,
+				Computed: true,
 				Elem:     ResourceGslbPoolSchema(),
 			},
-			"health_monitor_refs": &schema.Schema{
+			"health_monitor_refs": {
 				Type:     schema.TypeList,
-				Optional: true,
 				Computed: true,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
-			"health_monitor_scope": &schema.Schema{
+			"health_monitor_scope": {
 				Type:     schema.TypeString,
-				Optional: true,
-				Default:  "GSLB_SERVICE_HEALTH_MONITOR_ALL_MEMBERS"},
-			"hm_off": &schema.Schema{
-				Type:     schema.TypeBool,
-				Optional: true,
+				Computed: true,
 			},
-			"is_federated": &schema.Schema{
+			"hm_off": {
 				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  true,
+				Computed: true,
 			},
-			"min_members": &schema.Schema{
+			"is_federated": {
+				Type:     schema.TypeBool,
+				Computed: true,
+			},
+			"min_members": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  0,
+				Computed: true,
 			},
-			"name": &schema.Schema{
-				Type:     schema.TypeString,
-				Optional: true,
-			},
-			"num_dns_ip": &schema.Schema{
-				Type:     schema.TypeInt,
-				Optional: true,
-			},
-			"pool_algorithm": &schema.Schema{
-				Type:     schema.TypeString,
-				Optional: true,
-				Default:  "GSLB_SERVICE_ALGORITHM_PRIORITY"},
-			"site_persistence_enabled": &schema.Schema{
-				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  false,
-			},
-			"tenant_ref": &schema.Schema{
+			"name": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
-			"ttl": &schema.Schema{
+			"num_dns_ip": {
 				Type:     schema.TypeInt,
-				Optional: true,
+				Computed: true,
 			},
-			"use_edns_client_subnet": &schema.Schema{
+			"pool_algorithm": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"site_persistence_enabled": {
 				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  true,
+				Computed: true,
 			},
-			"uuid": &schema.Schema{
+			"tenant_ref": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
-			"wildcard_match": &schema.Schema{
+			"ttl": {
+				Type:     schema.TypeInt,
+				Computed: true,
+			},
+			"use_edns_client_subnet": {
 				Type:     schema.TypeBool,
+				Computed: true,
+			},
+			"uuid": {
+				Type:     schema.TypeString,
 				Optional: true,
-				Default:  false,
+				Computed: true,
+			},
+			"wildcard_match": {
+				Type:     schema.TypeBool,
+				Computed: true,
 			},
 		},
 	}

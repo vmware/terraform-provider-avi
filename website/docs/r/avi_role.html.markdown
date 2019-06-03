@@ -13,9 +13,9 @@ The Role resource allows the creation and management of Avi Role
 ## Example Usage
 
 ```hcl
-resource "Role" "foo" {
+resource "avi_role" "foo" {
     name = "terraform-example-foo"
-    tenant = "admin"
+    tenant_ref = "/api/tenant/?name=admin"
 }
 ```
 
@@ -23,10 +23,11 @@ resource "Role" "foo" {
 
 The following arguments are supported:
 
-    * `name` - (Required) argument_description.
-        * `privileges` - (Optional ) argument_description.
-        * `tenant_ref` - (Optional ) argument_description.
-        
+* `name` - (Required) Name of the object.
+* `privileges` - (Optional) List of list.
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant.
+
+
 ### Timeouts
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
@@ -39,5 +40,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-                * `uuid` - argument_description.
-    
+* `uuid` -  Unique object identifier of the object.
+

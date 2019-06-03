@@ -13,8 +13,8 @@ This data source is used to to get avi_seproperties objects.
 ## Example Usage
 
 ```hcl
-data "SeProperties" "foo_SeProperties" {
-    uuid = "SeProperties-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
+data "avi_seproperties" "foo_seproperties" {
+    uuid = "seproperties-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
     name = "foo"
 }
 ```
@@ -28,8 +28,8 @@ data "SeProperties" "foo_SeProperties" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `se_agent_properties` - General description.
-* `se_bootup_properties` - General description.
-* `se_runtime_properties` - General description.
-* `uuid` - General description.
+* `se_agent_properties` - Dict settings for seproperties.
+* `se_bootup_properties` - Dict settings for seproperties.
+* `se_runtime_properties` - Dict settings for seproperties.
+* `uuid` - Unique object identifier of the object.
 

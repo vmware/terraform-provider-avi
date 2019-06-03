@@ -13,8 +13,8 @@ This data source is used to to get avi_vsvip objects.
 ## Example Usage
 
 ```hcl
-data "VsVip" "foo_VsVip" {
-    uuid = "VsVip-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
+data "avi_vsvip" "foo_vsvip" {
+    uuid = "vsvip-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
     name = "foo"
     cloud_ref = "/api/cloud/?tenant=admin&name=Default-Cloud"
   }

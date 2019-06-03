@@ -43,35 +43,39 @@ func TestProvider(t *testing.T) {
 	}
 
 	// Validating pool resource in avi provider and datasource for pool
-	var poolconfigs = map[string]interface{}{"name": "", "uuid": "",
-		"health_monitor_refs": make([]string, 0), "servers": make([]string, 0),
-		"fail_action": make([]string, 0)}
+	var poolconfigs_data = map[string]interface{}{"name": ""}
 
 	_, errs = Provider().(*schema.Provider).ValidateDataSource("avi_pool",
-		&terraform.ResourceConfig{Config: poolconfigs})
+		&terraform.ResourceConfig{Config: poolconfigs_data})
 	if errs != nil {
 		t.Fatalf("err: %s", errs)
 	}
 
+	var poolconfigs_res = map[string]interface{}{"name": "", "uuid": "",
+		"health_monitor_refs": make([]string, 0), "servers": make([]string, 0),
+		"fail_action": make([]string, 0)}
+
 	_, errs = Provider().(*schema.Provider).ValidateResource("avi_pool",
-		&terraform.ResourceConfig{Config: poolconfigs})
+		&terraform.ResourceConfig{Config: poolconfigs_res})
 	if errs != nil {
 		t.Fatalf("err: %s", errs)
 	}
 
 	// Validating pool resource in avi provider and datasource for pool
 
-	var hmconfigs = map[string]interface{}{"name": "", "uuid": "",
-		"type": ""}
+	var hmconfigs_data = map[string]interface{}{"name": ""}
 
 	_, errs = Provider().(*schema.Provider).ValidateDataSource(
-		"avi_healthmonitor", &terraform.ResourceConfig{Config: hmconfigs})
+		"avi_healthmonitor", &terraform.ResourceConfig{Config: hmconfigs_data})
 	if errs != nil {
 		t.Fatalf("err: %s", errs)
 	}
 
+	var hmconfigs_res = map[string]interface{}{"name": "", "uuid": "",
+		"type": ""}
+
 	_, errs = Provider().(*schema.Provider).ValidateResource(
-		"avi_healthmonitor", &terraform.ResourceConfig{Config: hmconfigs})
+		"avi_healthmonitor", &terraform.ResourceConfig{Config: hmconfigs_res})
 	if errs != nil {
 		t.Fatalf("err: %s", errs)
 	}

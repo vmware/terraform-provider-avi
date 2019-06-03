@@ -14,21 +14,21 @@ import (
 
 func ResourceErrorPageProfileSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"error_pages": &schema.Schema{
+		"error_pages": {
 			Type:     schema.TypeList,
 			Optional: true,
 			Elem:     ResourceErrorPageSchema(),
 		},
-		"name": &schema.Schema{
+		"name": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
-		"tenant_ref": &schema.Schema{
+		"tenant_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"uuid": &schema.Schema{
+		"uuid": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,

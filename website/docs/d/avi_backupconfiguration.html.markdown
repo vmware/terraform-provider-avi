@@ -13,8 +13,8 @@ This data source is used to to get avi_backupconfiguration objects.
 ## Example Usage
 
 ```hcl
-data "BackupConfiguration" "foo_BackupConfiguration" {
-    uuid = "BackupConfiguration-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
+data "avi_backupconfiguration" "foo_backupconfiguration" {
+    uuid = "backupconfiguration-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
     name = "foo"
 }
 ```
@@ -42,5 +42,5 @@ In addition to all arguments above, the following attributes are exported:
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `upload_to_remote_host` - Remote backup.
 * `upload_to_s3` - Cloud backup.
-* `uuid` - General description.
+* `uuid` - Unique object identifier of the object.
 

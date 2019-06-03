@@ -13,8 +13,8 @@ This data source is used to to get avi_alertscriptconfig objects.
 ## Example Usage
 
 ```hcl
-data "AlertScriptConfig" "foo_AlertScriptConfig" {
-    uuid = "AlertScriptConfig-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
+data "avi_alertscriptconfig" "foo_alertscriptconfig" {
+    uuid = "alertscriptconfig-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
     name = "foo"
 }
 ```
@@ -31,5 +31,5 @@ In addition to all arguments above, the following attributes are exported:
 * `action_script` - User defined alert action script.
 * `name` - A user-friendly name of the script.
 * `tenant_ref` - It is a reference to an object of type tenant.
-* `uuid` - General description.
+* `uuid` - Unique object identifier of the object.
 

@@ -13,8 +13,8 @@ This data source is used to to get avi_wafpolicypsmgroup objects.
 ## Example Usage
 
 ```hcl
-data "WafPolicyPSMGroup" "foo_WafPolicyPSMGroup" {
-    uuid = "WafPolicyPSMGroup-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
+data "avi_wafpolicypsmgroup" "foo_wafpolicypsmgroup" {
+    uuid = "wafpolicypsmgroup-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
     name = "foo"
 }
 ```

@@ -13,9 +13,9 @@ The BackupConfiguration resource allows the creation and management of Avi Backu
 ## Example Usage
 
 ```hcl
-resource "BackupConfiguration" "foo" {
+resource "avi_backupconfiguration" "foo" {
     name = "terraform-example-foo"
-    tenant = "admin"
+    tenant_ref = "/api/tenant/?name=admin"
 }
 ```
 
@@ -23,21 +23,22 @@ resource "BackupConfiguration" "foo" {
 
 The following arguments are supported:
 
-    * `aws_access_key` - (Optional ) argument_description.
-        * `aws_bucket_id` - (Optional ) argument_description.
-        * `aws_secret_access` - (Optional ) argument_description.
-        * `backup_file_prefix` - (Optional ) argument_description.
-        * `backup_passphrase` - (Optional ) argument_description.
-        * `maximum_backups_stored` - (Optional ) argument_description.
-        * `name` - (Required) argument_description.
-        * `remote_directory` - (Optional ) argument_description.
-        * `remote_hostname` - (Optional ) argument_description.
-        * `save_local` - (Optional ) argument_description.
-        * `ssh_user_ref` - (Optional ) argument_description.
-        * `tenant_ref` - (Optional ) argument_description.
-        * `upload_to_remote_host` - (Optional ) argument_description.
-        * `upload_to_s3` - (Optional ) argument_description.
-        
+* `name` - (Required) Name of backup configuration.
+* `aws_access_key` - (Optional) Aws access key id.
+* `aws_bucket_id` - (Optional) Aws bucket.
+* `aws_secret_access` - (Optional) Aws secret access key.
+* `backup_file_prefix` - (Optional) Prefix of the exported configuration file.
+* `backup_passphrase` - (Optional) Passphrase of backup configuration.
+* `maximum_backups_stored` - (Optional) Rotate the backup files based on this count.
+* `remote_directory` - (Optional) Directory at remote destination with write permission for ssh user.
+* `remote_hostname` - (Optional) Remote destination.
+* `save_local` - (Optional) Local backup.
+* `ssh_user_ref` - (Optional) Access credentials for remote destination.
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant.
+* `upload_to_remote_host` - (Optional) Remote backup.
+* `upload_to_s3` - (Optional) Cloud backup.
+
+
 ### Timeouts
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
@@ -50,5 +51,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-                                                            * `uuid` - argument_description.
-    
+* `uuid` -  Unique object identifier of the object.
+

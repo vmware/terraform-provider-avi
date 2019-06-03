@@ -13,9 +13,9 @@ The PoolGroupDeploymentPolicy resource allows the creation and management of Avi
 ## Example Usage
 
 ```hcl
-resource "PoolGroupDeploymentPolicy" "foo" {
+resource "avi_poolgroupdeploymentpolicy" "foo" {
     name = "terraform-example-foo"
-    tenant = "admin"
+    tenant_ref = "/api/tenant/?name=admin"
 }
 ```
 
@@ -23,17 +23,18 @@ resource "PoolGroupDeploymentPolicy" "foo" {
 
 The following arguments are supported:
 
-    * `auto_disable_old_prod_pools` - (Optional ) argument_description.
-        * `description` - (Optional ) argument_description.
-        * `evaluation_duration` - (Optional ) argument_description.
-        * `name` - (Required) argument_description.
-        * `rules` - (Optional ) argument_description.
-        * `scheme` - (Optional ) argument_description.
-        * `target_test_traffic_ratio` - (Optional ) argument_description.
-        * `tenant_ref` - (Optional ) argument_description.
-        * `test_traffic_ratio_rampup` - (Optional ) argument_description.
-            * `webhook_ref` - (Optional ) argument_description.
-    
+* `name` - (Required) The name of the pool group deployment policy.
+* `auto_disable_old_prod_pools` - (Optional) It will automatically disable old production pools once there is a new production candidate.
+* `description` - (Optional) User defined description for the object.
+* `evaluation_duration` - (Optional) Duration of evaluation period for automatic deployment.
+* `rules` - (Optional) List of list.
+* `scheme` - (Optional) Deployment scheme.
+* `target_test_traffic_ratio` - (Optional) Target traffic ratio before pool is made production.
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant.
+* `test_traffic_ratio_rampup` - (Optional) Ratio of the traffic that is sent to the pool under test.
+* `webhook_ref` - (Optional) Webhook configured with url that avi controller will pass back information about pool group, old and new pool information and current deployment rule results.
+
+
 ### Timeouts
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
@@ -46,5 +47,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-                                        * `uuid` - argument_description.
-        
+* `uuid` -  Uuid of the pool group deployment policy.
+

@@ -11,43 +11,42 @@ func dataSourceAviWafPolicyPSMGroup() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviWafPolicyPSMGroupRead,
 		Schema: map[string]*schema.Schema{
-			"description": &schema.Schema{
+			"description": {
 				Type:     schema.TypeString,
-				Optional: true,
+				Computed: true,
 			},
-			"enable": &schema.Schema{
+			"enable": {
 				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  true,
+				Computed: true,
 			},
-			"hit_action": &schema.Schema{
+			"hit_action": {
 				Type:     schema.TypeString,
-				Optional: true,
-				Default:  "WAF_ACTION_NO_OP"},
-			"is_learning_group": &schema.Schema{
-				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  false,
+				Computed: true,
 			},
-			"locations": &schema.Schema{
+			"is_learning_group": {
+				Type:     schema.TypeBool,
+				Computed: true,
+			},
+			"locations": {
 				Type:     schema.TypeList,
-				Optional: true,
+				Computed: true,
 				Elem:     ResourceWafPSMLocationSchema(),
 			},
-			"miss_action": &schema.Schema{
+			"miss_action": {
 				Type:     schema.TypeString,
-				Optional: true,
-				Default:  "WAF_ACTION_NO_OP"},
-			"name": &schema.Schema{
-				Type:     schema.TypeString,
-				Optional: true,
+				Computed: true,
 			},
-			"tenant_ref": &schema.Schema{
+			"name": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
-			"uuid": &schema.Schema{
+			"tenant_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"uuid": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,

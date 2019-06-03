@@ -14,48 +14,48 @@ import (
 
 func ResourceHTTPPolicySetSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"cloud_config_cksum": &schema.Schema{
+		"cloud_config_cksum": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
-		"created_by": &schema.Schema{
+		"created_by": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
-		"description": &schema.Schema{
+		"description": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
-		"http_request_policy": &schema.Schema{
+		"http_request_policy": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceHTTPRequestPolicySchema(),
 		},
-		"http_response_policy": &schema.Schema{
+		"http_response_policy": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceHTTPResponsePolicySchema(),
 		},
-		"http_security_policy": &schema.Schema{
+		"http_security_policy": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceHTTPSecurityPolicySchema(),
 		},
-		"is_internal_policy": &schema.Schema{
+		"is_internal_policy": {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  false,
 		},
-		"name": &schema.Schema{
+		"name": {
 			Type:     schema.TypeString,
 			Required: true,
 		},
-		"tenant_ref": &schema.Schema{
+		"tenant_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"uuid": &schema.Schema{
+		"uuid": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,

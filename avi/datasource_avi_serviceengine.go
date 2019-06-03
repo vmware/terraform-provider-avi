@@ -11,80 +11,77 @@ func dataSourceAviServiceEngine() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviServiceEngineRead,
 		Schema: map[string]*schema.Schema{
-			"availability_zone": &schema.Schema{
+			"availability_zone": {
 				Type:     schema.TypeString,
-				Optional: true,
+				Computed: true,
 			},
-			"cloud_ref": &schema.Schema{
+			"cloud_ref": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
-			"container_mode": &schema.Schema{
+			"container_mode": {
 				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  false,
+				Computed: true,
 			},
-			"container_type": &schema.Schema{
+			"container_type": {
 				Type:     schema.TypeString,
-				Optional: true,
-				Default:  "CONTAINER_TYPE_HOST"},
-			"controller_created": &schema.Schema{
+				Computed: true,
+			},
+			"controller_created": {
 				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  false,
+				Computed: true,
 			},
-			"controller_ip": &schema.Schema{
+			"controller_ip": {
 				Type:     schema.TypeString,
-				Optional: true,
+				Computed: true,
 			},
-			"data_vnics": &schema.Schema{
+			"data_vnics": {
 				Type:     schema.TypeList,
-				Optional: true,
+				Computed: true,
 				Elem:     ResourcevNICSchema(),
 			},
-			"enable_state": &schema.Schema{
+			"enable_state": {
 				Type:     schema.TypeString,
-				Optional: true,
-				Default:  "SE_STATE_ENABLED"},
-			"flavor": &schema.Schema{
-				Type:     schema.TypeString,
-				Optional: true,
+				Computed: true,
 			},
-			"host_ref": &schema.Schema{
+			"flavor": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"host_ref": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"hypervisor": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"mgmt_vnic": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourcevNICSchema(),
+			},
+			"name": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
-			"hypervisor": &schema.Schema{
-				Type:     schema.TypeString,
-				Optional: true,
-			},
-			"mgmt_vnic": &schema.Schema{
+			"resources": {
 				Type:     schema.TypeSet,
-				Optional: true,
-				Elem:     ResourcevNICSchema(),
-			},
-			"name": &schema.Schema{
-				Type:     schema.TypeString,
-				Optional: true,
-				Default:  "VM name unknown"},
-			"resources": &schema.Schema{
-				Type:     schema.TypeSet,
-				Optional: true,
+				Computed: true,
 				Elem:     ResourceSeResourcesSchema(),
 			},
-			"se_group_ref": &schema.Schema{
+			"se_group_ref": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"tenant_ref": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
-			"tenant_ref": &schema.Schema{
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
-			"uuid": &schema.Schema{
+			"uuid": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,

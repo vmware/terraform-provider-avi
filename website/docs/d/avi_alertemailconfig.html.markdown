@@ -13,8 +13,8 @@ This data source is used to to get avi_alertemailconfig objects.
 ## Example Usage
 
 ```hcl
-data "AlertEmailConfig" "foo_AlertEmailConfig" {
-    uuid = "AlertEmailConfig-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
+data "avi_alertemailconfig" "foo_alertemailconfig" {
+    uuid = "alertemailconfig-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
     name = "foo"
 }
 ```
@@ -29,9 +29,9 @@ data "AlertEmailConfig" "foo_AlertEmailConfig" {
 In addition to all arguments above, the following attributes are exported:
 
 * `cc_emails` - Alerts are copied to the comma separated list of  email recipients.
-* `description` - General description.
+* `description` - User defined description for the object.
 * `name` - A user-friendly name of the email notification service.
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `to_emails` - Alerts are sent to the comma separated list of  email recipients.
-* `uuid` - General description.
+* `uuid` - Unique object identifier of the object.
 

@@ -13,9 +13,9 @@ The ApplicationPersistenceProfile resource allows the creation and management of
 ## Example Usage
 
 ```hcl
-resource "ApplicationPersistenceProfile" "foo" {
+resource "avi_applicationpersistenceprofile" "foo" {
     name = "terraform-example-foo"
-    tenant = "admin"
+    tenant_ref = "/api/tenant/?name=admin"
 }
 ```
 
@@ -23,17 +23,18 @@ resource "ApplicationPersistenceProfile" "foo" {
 
 The following arguments are supported:
 
-    * `app_cookie_persistence_profile` - (Optional ) argument_description.
-        * `description` - (Optional ) argument_description.
-        * `hdr_persistence_profile` - (Optional ) argument_description.
-        * `http_cookie_persistence_profile` - (Optional ) argument_description.
-        * `ip_persistence_profile` - (Optional ) argument_description.
-        * `is_federated` - (Optional ) argument_description.
-        * `name` - (Required) argument_description.
-        * `persistence_type` - (Required) argument_description.
-        * `server_hm_down_recovery` - (Optional ) argument_description.
-        * `tenant_ref` - (Optional ) argument_description.
-        
+* `name` - (Required) A user-friendly name for the persistence profile.
+* `persistence_type` - (Required) Method used to persist clients to the same server for a duration of time or a session.
+* `app_cookie_persistence_profile` - (Optional) Specifies the application cookie persistence profile parameters.
+* `description` - (Optional) User defined description for the object.
+* `hdr_persistence_profile` - (Optional) Specifies the custom http header persistence profile parameters.
+* `http_cookie_persistence_profile` - (Optional) Specifies the http cookie persistence profile parameters.
+* `ip_persistence_profile` - (Optional) Specifies the client ip persistence profile parameters.
+* `is_federated` - (Optional) This field describes the object's replication scope.
+* `server_hm_down_recovery` - (Optional) Specifies behavior when a persistent server has been marked down by a health monitor.
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant.
+
+
 ### Timeouts
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
@@ -46,5 +47,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-                                            * `uuid` - argument_description.
-    
+* `uuid` -  Uuid of the persistence profile.
+

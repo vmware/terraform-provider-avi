@@ -13,9 +13,9 @@ The MicroServiceGroup resource allows the creation and management of Avi MicroSe
 ## Example Usage
 
 ```hcl
-resource "MicroServiceGroup" "foo" {
+resource "avi_microservicegroup" "foo" {
     name = "terraform-example-foo"
-    tenant = "admin"
+    tenant_ref = "/api/tenant/?name=admin"
 }
 ```
 
@@ -23,12 +23,13 @@ resource "MicroServiceGroup" "foo" {
 
 The following arguments are supported:
 
-    * `created_by` - (Optional ) argument_description.
-        * `description` - (Optional ) argument_description.
-        * `name` - (Required) argument_description.
-        * `service_refs` - (Optional ) argument_description.
-        * `tenant_ref` - (Optional ) argument_description.
-        
+* `name` - (Required) Name of the microservice group.
+* `created_by` - (Optional) Creator name.
+* `description` - (Optional) User defined description for the object.
+* `service_refs` - (Optional) Configure microservice(es).
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant.
+
+
 ### Timeouts
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
@@ -41,5 +42,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-                        * `uuid` - argument_description.
-    
+* `uuid` -  Uuid of the microservice group.
+

@@ -13,8 +13,8 @@ This data source is used to to get avi_gslbgeodbprofile objects.
 ## Example Usage
 
 ```hcl
-data "GslbGeoDbProfile" "foo_GslbGeoDbProfile" {
-    uuid = "GslbGeoDbProfile-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
+data "avi_gslbgeodbprofile" "foo_gslbgeodbprofile" {
+    uuid = "gslbgeodbprofile-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
     name = "foo"
 }
 ```

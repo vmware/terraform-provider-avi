@@ -13,8 +13,8 @@ This data source is used to to get avi_role objects.
 ## Example Usage
 
 ```hcl
-data "Role" "foo_Role" {
-    uuid = "Role-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
+data "avi_role" "foo_role" {
+    uuid = "role-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
     name = "foo"
 }
 ```
@@ -28,8 +28,8 @@ data "Role" "foo_Role" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `name` - General description.
-* `privileges` - General description.
+* `name` - Name of the object.
+* `privileges` - List of list.
 * `tenant_ref` - It is a reference to an object of type tenant.
-* `uuid` - General description.
+* `uuid` - Unique object identifier of the object.
 

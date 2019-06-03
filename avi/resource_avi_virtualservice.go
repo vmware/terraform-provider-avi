@@ -14,380 +14,380 @@ import (
 
 func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"active_standby_se_tag": &schema.Schema{
+		"active_standby_se_tag": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Default:  "ACTIVE_STANDBY_SE_1",
 		},
-		"allow_invalid_client_cert": &schema.Schema{
+		"allow_invalid_client_cert": {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  false,
 		},
-		"analytics_policy": &schema.Schema{
+		"analytics_policy": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceAnalyticsPolicySchema(),
 		},
-		"analytics_profile_ref": &schema.Schema{
+		"analytics_profile_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"apic_contract_graph": &schema.Schema{
+		"apic_contract_graph": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
-		"application_profile_ref": &schema.Schema{
+		"application_profile_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"bulk_sync_kvcache": &schema.Schema{
+		"bulk_sync_kvcache": {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  false,
 		},
-		"client_auth": &schema.Schema{
+		"client_auth": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceHTTPClientAuthenticationParamsSchema(),
 		},
-		"close_client_conn_on_config_update": &schema.Schema{
+		"close_client_conn_on_config_update": {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  false,
 		},
-		"cloud_config_cksum": &schema.Schema{
+		"cloud_config_cksum": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
-		"cloud_ref": &schema.Schema{
+		"cloud_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"cloud_type": &schema.Schema{
+		"cloud_type": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Default:  "CLOUD_NONE",
 		},
-		"connections_rate_limit": &schema.Schema{
+		"connections_rate_limit": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceRateProfileSchema(),
 		},
-		"content_rewrite": &schema.Schema{
+		"content_rewrite": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceContentRewriteProfileSchema(),
 		},
-		"created_by": &schema.Schema{
+		"created_by": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
-		"delay_fairness": &schema.Schema{
+		"delay_fairness": {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  false,
 		},
-		"description": &schema.Schema{
+		"description": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
-		"dns_info": &schema.Schema{
+		"dns_info": {
 			Type:     schema.TypeList,
 			Optional: true,
 			Elem:     ResourceDnsInfoSchema(),
 		},
-		"dns_policies": &schema.Schema{
+		"dns_policies": {
 			Type:     schema.TypeList,
 			Optional: true,
 			Elem:     ResourceDnsPoliciesSchema(),
 		},
-		"east_west_placement": &schema.Schema{
+		"east_west_placement": {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  false,
 		},
-		"enable_autogw": &schema.Schema{
+		"enable_autogw": {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  true,
 		},
-		"enable_rhi": &schema.Schema{
+		"enable_rhi": {
 			Type:     schema.TypeBool,
 			Optional: true,
 		},
-		"enable_rhi_snat": &schema.Schema{
+		"enable_rhi_snat": {
 			Type:     schema.TypeBool,
 			Optional: true,
 		},
-		"enabled": &schema.Schema{
+		"enabled": {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  true,
 		},
-		"error_page_profile_ref": &schema.Schema{
+		"error_page_profile_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"flow_dist": &schema.Schema{
+		"flow_dist": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Default:  "LOAD_AWARE",
 		},
-		"flow_label_type": &schema.Schema{
+		"flow_label_type": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Default:  "NO_LABEL",
 		},
-		"fqdn": &schema.Schema{
+		"fqdn": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
-		"host_name_xlate": &schema.Schema{
+		"host_name_xlate": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
-		"http_policies": &schema.Schema{
+		"http_policies": {
 			Type:     schema.TypeList,
 			Optional: true,
 			Elem:     ResourceHTTPPoliciesSchema(),
 		},
-		"ign_pool_net_reach": &schema.Schema{
+		"ign_pool_net_reach": {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  false,
 		},
-		"l4_policies": &schema.Schema{
+		"l4_policies": {
 			Type:     schema.TypeList,
 			Optional: true,
 			Elem:     ResourceL4PoliciesSchema(),
 		},
-		"limit_doser": &schema.Schema{
+		"limit_doser": {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  false,
 		},
-		"max_cps_per_client": &schema.Schema{
+		"max_cps_per_client": {
 			Type:     schema.TypeInt,
 			Optional: true,
 			Default:  0,
 		},
-		"microservice_ref": &schema.Schema{
+		"microservice_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"min_pools_up": &schema.Schema{
+		"min_pools_up": {
 			Type:     schema.TypeInt,
 			Optional: true,
 		},
-		"name": &schema.Schema{
+		"name": {
 			Type:     schema.TypeString,
 			Required: true,
 		},
-		"network_profile_ref": &schema.Schema{
+		"network_profile_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"network_security_policy_ref": &schema.Schema{
+		"network_security_policy_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"nsx_securitygroup": &schema.Schema{
+		"nsx_securitygroup": {
 			Type:     schema.TypeList,
 			Optional: true,
 			Elem:     &schema.Schema{Type: schema.TypeString},
 		},
-		"performance_limits": &schema.Schema{
+		"performance_limits": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourcePerformanceLimitsSchema(),
 		},
-		"pool_group_ref": &schema.Schema{
+		"pool_group_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"pool_ref": &schema.Schema{
+		"pool_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"remove_listening_port_on_vs_down": &schema.Schema{
+		"remove_listening_port_on_vs_down": {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  false,
 		},
-		"requests_rate_limit": &schema.Schema{
+		"requests_rate_limit": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceRateProfileSchema(),
 		},
-		"saml_sp_config": &schema.Schema{
+		"saml_sp_config": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceSAMLSPConfigSchema(),
 		},
-		"scaleout_ecmp": &schema.Schema{
+		"scaleout_ecmp": {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  false,
 		},
-		"se_group_ref": &schema.Schema{
+		"se_group_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"security_policy_ref": &schema.Schema{
+		"security_policy_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"server_network_profile_ref": &schema.Schema{
+		"server_network_profile_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"service_metadata": &schema.Schema{
+		"service_metadata": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
-		"service_pool_select": &schema.Schema{
+		"service_pool_select": {
 			Type:     schema.TypeList,
 			Optional: true,
 			Elem:     ResourceServicePoolSelectorSchema(),
 		},
-		"services": &schema.Schema{
+		"services": {
 			Type:     schema.TypeList,
 			Optional: true,
 			Elem:     ResourceServiceSchema(),
 		},
-		"sideband_profile": &schema.Schema{
+		"sideband_profile": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceSidebandProfileSchema(),
 		},
-		"snat_ip": &schema.Schema{
+		"snat_ip": {
 			Type:     schema.TypeList,
 			Optional: true,
 			Elem:     ResourceIpAddrSchema(),
 		},
-		"ssl_key_and_certificate_refs": &schema.Schema{
+		"ssl_key_and_certificate_refs": {
 			Type:     schema.TypeList,
 			Optional: true,
 			Computed: true,
 			Elem:     &schema.Schema{Type: schema.TypeString},
 		},
-		"ssl_profile_ref": &schema.Schema{
+		"ssl_profile_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"ssl_profile_selectors": &schema.Schema{
+		"ssl_profile_selectors": {
 			Type:     schema.TypeList,
 			Optional: true,
 			Elem:     ResourceSSLProfileSelectorSchema(),
 		},
-		"ssl_sess_cache_avg_size": &schema.Schema{
+		"ssl_sess_cache_avg_size": {
 			Type:     schema.TypeInt,
 			Optional: true,
 			Default:  1024,
 		},
-		"sso_policy_ref": &schema.Schema{
+		"sso_policy_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"static_dns_records": &schema.Schema{
+		"static_dns_records": {
 			Type:     schema.TypeList,
 			Optional: true,
 			Elem:     ResourceDnsRecordSchema(),
 		},
-		"tenant_ref": &schema.Schema{
+		"tenant_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"topology_policies": &schema.Schema{
+		"topology_policies": {
 			Type:     schema.TypeList,
 			Optional: true,
 			Elem:     ResourceDnsPoliciesSchema(),
 		},
-		"traffic_clone_profile_ref": &schema.Schema{
+		"traffic_clone_profile_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"traffic_enabled": &schema.Schema{
+		"traffic_enabled": {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  true,
 		},
-		"type": &schema.Schema{
+		"type": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Default:  "VS_TYPE_NORMAL",
 		},
-		"use_bridge_ip_as_vip": &schema.Schema{
+		"use_bridge_ip_as_vip": {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  false,
 		},
-		"use_vip_as_snat": &schema.Schema{
+		"use_vip_as_snat": {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  false,
 		},
-		"uuid": &schema.Schema{
+		"uuid": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"vh_domain_name": &schema.Schema{
+		"vh_domain_name": {
 			Type:     schema.TypeList,
 			Optional: true,
 			Elem:     &schema.Schema{Type: schema.TypeString},
 		},
-		"vh_parent_vs_uuid": &schema.Schema{
+		"vh_parent_vs_uuid": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
-		"vip": &schema.Schema{
+		"vip": {
 			Type:     schema.TypeList,
 			Optional: true,
 			Elem:     ResourceVipSchema(),
 		},
-		"vrf_context_ref": &schema.Schema{
+		"vrf_context_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"vs_datascripts": &schema.Schema{
+		"vs_datascripts": {
 			Type:     schema.TypeList,
 			Optional: true,
 			Elem:     ResourceVSDataScriptsSchema(),
 		},
-		"vsvip_cloud_config_cksum": &schema.Schema{
+		"vsvip_cloud_config_cksum": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
-		"vsvip_ref": &schema.Schema{
-			Type:     schema.TypeString,
-			Optional: true,
-			Computed: true,
-		},
-		"waf_policy_ref": &schema.Schema{
+		"vsvip_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"weight": &schema.Schema{
+		"waf_policy_ref": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
+		"weight": {
 			Type:     schema.TypeInt,
 			Optional: true,
 			Default:  1,

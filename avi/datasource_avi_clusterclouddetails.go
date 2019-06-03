@@ -11,21 +11,22 @@ func dataSourceAviClusterCloudDetails() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviClusterCloudDetailsRead,
 		Schema: map[string]*schema.Schema{
-			"azure_info": &schema.Schema{
+			"azure_info": {
 				Type:     schema.TypeSet,
-				Optional: true,
+				Computed: true,
 				Elem:     ResourceAzureClusterInfoSchema(),
 			},
-			"name": &schema.Schema{
-				Type:     schema.TypeString,
-				Optional: true,
-			},
-			"tenant_ref": &schema.Schema{
+			"name": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
-			"uuid": &schema.Schema{
+			"tenant_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"uuid": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,

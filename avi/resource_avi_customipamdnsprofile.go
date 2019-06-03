@@ -14,25 +14,25 @@ import (
 
 func ResourceCustomIpamDnsProfileSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"name": &schema.Schema{
+		"name": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
-		"script_params": &schema.Schema{
+		"script_params": {
 			Type:     schema.TypeList,
 			Optional: true,
 			Elem:     ResourceCustomParamsSchema(),
 		},
-		"script_uri": &schema.Schema{
+		"script_uri": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
-		"tenant_ref": &schema.Schema{
+		"tenant_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"uuid": &schema.Schema{
+		"uuid": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,

@@ -14,50 +14,50 @@ import (
 
 func ResourcePKIProfileSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"ca_certs": &schema.Schema{
+		"ca_certs": {
 			Type:     schema.TypeList,
 			Optional: true,
 			Elem:     ResourceSSLCertificateSchema(),
 		},
-		"created_by": &schema.Schema{
+		"created_by": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
-		"crl_check": &schema.Schema{
+		"crl_check": {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  true,
 		},
-		"crls": &schema.Schema{
+		"crls": {
 			Type:     schema.TypeList,
 			Optional: true,
 			Elem:     ResourceCRLSchema(),
 		},
-		"ignore_peer_chain": &schema.Schema{
+		"ignore_peer_chain": {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  false,
 		},
-		"is_federated": &schema.Schema{
+		"is_federated": {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  false,
 		},
-		"name": &schema.Schema{
+		"name": {
 			Type:     schema.TypeString,
 			Required: true,
 		},
-		"tenant_ref": &schema.Schema{
+		"tenant_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"uuid": &schema.Schema{
+		"uuid": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"validate_only_leaf_crl": &schema.Schema{
+		"validate_only_leaf_crl": {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  true,

@@ -11,58 +11,53 @@ func dataSourceAviNetwork() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviNetworkRead,
 		Schema: map[string]*schema.Schema{
-			"cloud_ref": &schema.Schema{
+			"cloud_ref": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
-			"configured_subnets": &schema.Schema{
+			"configured_subnets": {
 				Type:     schema.TypeList,
-				Optional: true,
+				Computed: true,
 				Elem:     ResourceSubnetSchema(),
 			},
-			"dhcp_enabled": &schema.Schema{
+			"dhcp_enabled": {
 				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  true,
+				Computed: true,
 			},
-			"exclude_discovered_subnets": &schema.Schema{
+			"exclude_discovered_subnets": {
 				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  false,
+				Computed: true,
 			},
-			"ip6_autocfg_enabled": &schema.Schema{
+			"ip6_autocfg_enabled": {
 				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  true,
+				Computed: true,
 			},
-			"name": &schema.Schema{
-				Type:     schema.TypeString,
-				Optional: true,
-			},
-			"synced_from_se": &schema.Schema{
-				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  false,
-			},
-			"tenant_ref": &schema.Schema{
+			"name": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
-			"uuid": &schema.Schema{
+			"synced_from_se": {
+				Type:     schema.TypeBool,
+				Computed: true,
+			},
+			"tenant_ref": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
-			"vcenter_dvs": &schema.Schema{
-				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  true,
-			},
-			"vrf_context_ref": &schema.Schema{
+			"uuid": {
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
+			},
+			"vcenter_dvs": {
+				Type:     schema.TypeBool,
+				Computed: true,
+			},
+			"vrf_context_ref": {
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 		},

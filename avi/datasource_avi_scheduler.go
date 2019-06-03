@@ -11,55 +11,53 @@ func dataSourceAviScheduler() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviSchedulerRead,
 		Schema: map[string]*schema.Schema{
-			"backup_config_ref": &schema.Schema{
+			"backup_config_ref": {
 				Type:     schema.TypeString,
-				Optional: true,
 				Computed: true,
 			},
-			"enabled": &schema.Schema{
+			"enabled": {
 				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  true,
+				Computed: true,
 			},
-			"end_date_time": &schema.Schema{
+			"end_date_time": {
 				Type:     schema.TypeString,
-				Optional: true,
+				Computed: true,
 			},
-			"frequency": &schema.Schema{
+			"frequency": {
 				Type:     schema.TypeInt,
-				Optional: true,
+				Computed: true,
 			},
-			"frequency_unit": &schema.Schema{
+			"frequency_unit": {
 				Type:     schema.TypeString,
-				Optional: true,
+				Computed: true,
 			},
-			"name": &schema.Schema{
-				Type:     schema.TypeString,
-				Optional: true,
-			},
-			"run_mode": &schema.Schema{
-				Type:     schema.TypeString,
-				Optional: true,
-			},
-			"run_script_ref": &schema.Schema{
+			"name": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
-			"scheduler_action": &schema.Schema{
+			"run_mode": {
 				Type:     schema.TypeString,
-				Optional: true,
-				Default:  "SCHEDULER_ACTION_BACKUP"},
-			"start_date_time": &schema.Schema{
-				Type:     schema.TypeString,
-				Optional: true,
+				Computed: true,
 			},
-			"tenant_ref": &schema.Schema{
+			"run_script_ref": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"scheduler_action": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"start_date_time": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"tenant_ref": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
-			"uuid": &schema.Schema{
+			"uuid": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,

@@ -14,31 +14,31 @@ import (
 
 func ResourceTrafficCloneProfileSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"clone_servers": &schema.Schema{
+		"clone_servers": {
 			Type:     schema.TypeList,
 			Optional: true,
 			Elem:     ResourceCloneServerSchema(),
 		},
-		"cloud_ref": &schema.Schema{
+		"cloud_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"name": &schema.Schema{
+		"name": {
 			Type:     schema.TypeString,
 			Required: true,
 		},
-		"preserve_client_ip": &schema.Schema{
+		"preserve_client_ip": {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  false,
 		},
-		"tenant_ref": &schema.Schema{
+		"tenant_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"uuid": &schema.Schema{
+		"uuid": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,

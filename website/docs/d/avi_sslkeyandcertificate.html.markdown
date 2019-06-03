@@ -13,8 +13,8 @@ This data source is used to to get avi_sslkeyandcertificate objects.
 ## Example Usage
 
 ```hcl
-data "SSLKeyAndCertificate" "foo_SSLKeyAndCertificate" {
-    uuid = "SSLKeyAndCertificate-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
+data "avi_sslkeyandcertificate" "foo_sslkeyandcertificate" {
+    uuid = "sslkeyandcertificate-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
     name = "foo"
 }
 ```
@@ -29,7 +29,7 @@ data "SSLKeyAndCertificate" "foo_SSLKeyAndCertificate" {
 In addition to all arguments above, the following attributes are exported:
 
 * `ca_certs` - Ca certificates in certificate chain.
-* `certificate` - General description.
+* `certificate` - Dict settings for sslkeyandcertificate.
 * `certificate_base64` - States if the certificate is base64 encoded.
 * `certificate_management_profile_ref` - It is a reference to an object of type certificatemanagementprofile.
 * `created_by` - Creator name.
@@ -40,11 +40,11 @@ In addition to all arguments above, the following attributes are exported:
 * `hardwaresecuritymodulegroup_ref` - It is a reference to an object of type hardwaresecuritymodulegroup.
 * `key` - Private key.
 * `key_base64` - States if the private key is base64 encoded.
-* `key_params` - General description.
+* `key_params` - Dict settings for sslkeyandcertificate.
 * `key_passphrase` - Passphrase used to encrypt the private key.
-* `name` - General description.
+* `name` - Name of the object.
 * `status` - Enum options - ssl_certificate_finished, ssl_certificate_pending.
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `type` - Enum options - ssl_certificate_type_virtualservice, ssl_certificate_type_system, ssl_certificate_type_ca.
-* `uuid` - General description.
+* `uuid` - Unique object identifier of the object.
 

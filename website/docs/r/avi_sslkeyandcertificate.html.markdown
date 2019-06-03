@@ -13,9 +13,9 @@ The SSLKeyAndCertificate resource allows the creation and management of Avi SSLK
 ## Example Usage
 
 ```hcl
-resource "SSLKeyAndCertificate" "foo" {
+resource "avi_sslkeyandcertificate" "foo" {
     name = "terraform-example-foo"
-    tenant = "admin"
+    tenant_ref = "/api/tenant/?name=admin"
 }
 ```
 
@@ -23,25 +23,26 @@ resource "SSLKeyAndCertificate" "foo" {
 
 The following arguments are supported:
 
-    * `ca_certs` - (Optional ) argument_description.
-        * `certificate` - (Required) argument_description.
-        * `certificate_base64` - (Optional ) argument_description.
-        * `certificate_management_profile_ref` - (Optional ) argument_description.
-        * `created_by` - (Optional ) argument_description.
-        * `dynamic_params` - (Optional ) argument_description.
-        * `enckey_base64` - (Optional ) argument_description.
-        * `enckey_name` - (Optional ) argument_description.
-        * `format` - (Optional ) argument_description.
-        * `hardwaresecuritymodulegroup_ref` - (Optional ) argument_description.
-        * `key` - (Optional ) argument_description.
-        * `key_base64` - (Optional ) argument_description.
-        * `key_params` - (Optional ) argument_description.
-        * `key_passphrase` - (Optional ) argument_description.
-        * `name` - (Required) argument_description.
-        * `status` - (Optional ) argument_description.
-        * `tenant_ref` - (Optional ) argument_description.
-        * `type` - (Optional ) argument_description.
-        
+* `certificate` - (Required) Dict settings for sslkeyandcertificate.
+* `name` - (Required) Name of the object.
+* `ca_certs` - (Optional) Ca certificates in certificate chain.
+* `certificate_base64` - (Optional) States if the certificate is base64 encoded.
+* `certificate_management_profile_ref` - (Optional) It is a reference to an object of type certificatemanagementprofile.
+* `created_by` - (Optional) Creator name.
+* `dynamic_params` - (Optional) Dynamic parameters needed for certificate management profile.
+* `enckey_base64` - (Optional) Encrypted private key corresponding to the private key (e.g.
+* `enckey_name` - (Optional) Name of the encrypted private key (e.g.
+* `format` - (Optional) Format of the key/certificate file.
+* `hardwaresecuritymodulegroup_ref` - (Optional) It is a reference to an object of type hardwaresecuritymodulegroup.
+* `key` - (Optional) Private key.
+* `key_base64` - (Optional) States if the private key is base64 encoded.
+* `key_params` - (Optional) Dict settings for sslkeyandcertificate.
+* `key_passphrase` - (Optional) Passphrase used to encrypt the private key.
+* `status` - (Optional) Enum options - ssl_certificate_finished, ssl_certificate_pending.
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant.
+* `type` - (Optional) Enum options - ssl_certificate_type_virtualservice, ssl_certificate_type_system, ssl_certificate_type_ca.
+
+
 ### Timeouts
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
@@ -54,5 +55,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-                                                                            * `uuid` - argument_description.
-    
+* `uuid` -  Unique object identifier of the object.
+

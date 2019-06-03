@@ -13,8 +13,8 @@ This data source is used to to get avi_errorpagebody objects.
 ## Example Usage
 
 ```hcl
-data "ErrorPageBody" "foo_ErrorPageBody" {
-    uuid = "ErrorPageBody-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
+data "avi_errorpagebody" "foo_errorpagebody" {
+    uuid = "errorpagebody-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
     name = "foo"
 }
 ```

@@ -11,355 +11,316 @@ func dataSourceAviAnalyticsProfile() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviAnalyticsProfileRead,
 		Schema: map[string]*schema.Schema{
-			"apdex_response_threshold": &schema.Schema{
+			"apdex_response_threshold": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  500,
+				Computed: true,
 			},
-			"apdex_response_tolerated_factor": &schema.Schema{
+			"apdex_response_tolerated_factor": {
 				Type:     schema.TypeFloat,
-				Optional: true,
-				Default:  "4.0"},
-			"apdex_rtt_threshold": &schema.Schema{
+				Computed: true,
+			},
+			"apdex_rtt_threshold": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  250,
+				Computed: true,
 			},
-			"apdex_rtt_tolerated_factor": &schema.Schema{
+			"apdex_rtt_tolerated_factor": {
 				Type:     schema.TypeFloat,
-				Optional: true,
-				Default:  "4.0"},
-			"apdex_rum_threshold": &schema.Schema{
+				Computed: true,
+			},
+			"apdex_rum_threshold": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  5000,
+				Computed: true,
 			},
-			"apdex_rum_tolerated_factor": &schema.Schema{
+			"apdex_rum_tolerated_factor": {
 				Type:     schema.TypeFloat,
-				Optional: true,
-				Default:  "4.0"},
-			"apdex_server_response_threshold": &schema.Schema{
+				Computed: true,
+			},
+			"apdex_server_response_threshold": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  400,
+				Computed: true,
 			},
-			"apdex_server_response_tolerated_factor": &schema.Schema{
+			"apdex_server_response_tolerated_factor": {
 				Type:     schema.TypeFloat,
-				Optional: true,
-				Default:  "4.0"},
-			"apdex_server_rtt_threshold": &schema.Schema{
+				Computed: true,
+			},
+			"apdex_server_rtt_threshold": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  125,
+				Computed: true,
 			},
-			"apdex_server_rtt_tolerated_factor": &schema.Schema{
+			"apdex_server_rtt_tolerated_factor": {
 				Type:     schema.TypeFloat,
-				Optional: true,
-				Default:  "4.0"},
-			"client_log_config": &schema.Schema{
+				Computed: true,
+			},
+			"client_log_config": {
 				Type:     schema.TypeSet,
-				Optional: true,
+				Computed: true,
 				Elem:     ResourceClientLogConfigurationSchema(),
 			},
-			"client_log_streaming_config": &schema.Schema{
+			"client_log_streaming_config": {
 				Type:     schema.TypeSet,
-				Optional: true,
+				Computed: true,
 				Elem:     ResourceClientLogStreamingConfigSchema(),
 			},
-			"conn_lossy_ooo_threshold": &schema.Schema{
+			"conn_lossy_ooo_threshold": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  50,
+				Computed: true,
 			},
-			"conn_lossy_timeo_rexmt_threshold": &schema.Schema{
+			"conn_lossy_timeo_rexmt_threshold": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  20,
+				Computed: true,
 			},
-			"conn_lossy_total_rexmt_threshold": &schema.Schema{
+			"conn_lossy_total_rexmt_threshold": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  50,
+				Computed: true,
 			},
-			"conn_lossy_zero_win_size_event_threshold": &schema.Schema{
+			"conn_lossy_zero_win_size_event_threshold": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  2,
+				Computed: true,
 			},
-			"conn_server_lossy_ooo_threshold": &schema.Schema{
+			"conn_server_lossy_ooo_threshold": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  50,
+				Computed: true,
 			},
-			"conn_server_lossy_timeo_rexmt_threshold": &schema.Schema{
+			"conn_server_lossy_timeo_rexmt_threshold": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  20,
+				Computed: true,
 			},
-			"conn_server_lossy_total_rexmt_threshold": &schema.Schema{
+			"conn_server_lossy_total_rexmt_threshold": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  50,
+				Computed: true,
 			},
-			"conn_server_lossy_zero_win_size_event_threshold": &schema.Schema{
+			"conn_server_lossy_zero_win_size_event_threshold": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  2,
+				Computed: true,
 			},
-			"description": &schema.Schema{
+			"description": {
 				Type:     schema.TypeString,
-				Optional: true,
+				Computed: true,
 			},
-			"disable_ondemand_metrics": &schema.Schema{
+			"disable_ondemand_metrics": {
 				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  false,
+				Computed: true,
 			},
-			"disable_se_analytics": &schema.Schema{
+			"disable_se_analytics": {
 				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  false,
+				Computed: true,
 			},
-			"disable_server_analytics": &schema.Schema{
+			"disable_server_analytics": {
 				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  false,
+				Computed: true,
 			},
-			"disable_vs_analytics": &schema.Schema{
+			"disable_vs_analytics": {
 				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  false,
+				Computed: true,
 			},
-			"enable_advanced_analytics": &schema.Schema{
+			"enable_advanced_analytics": {
 				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  true,
+				Computed: true,
 			},
-			"exclude_client_close_before_request_as_error": &schema.Schema{
+			"exclude_client_close_before_request_as_error": {
 				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  false,
+				Computed: true,
 			},
-			"exclude_dns_policy_drop_as_significant": &schema.Schema{
+			"exclude_dns_policy_drop_as_significant": {
 				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  false,
+				Computed: true,
 			},
-			"exclude_gs_down_as_error": &schema.Schema{
+			"exclude_gs_down_as_error": {
 				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  false,
+				Computed: true,
 			},
-			"exclude_http_error_codes": &schema.Schema{
+			"exclude_http_error_codes": {
 				Type:     schema.TypeList,
-				Optional: true,
+				Computed: true,
 				Elem:     &schema.Schema{Type: schema.TypeInt},
 			},
-			"exclude_invalid_dns_domain_as_error": &schema.Schema{
+			"exclude_invalid_dns_domain_as_error": {
 				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  false,
+				Computed: true,
 			},
-			"exclude_invalid_dns_query_as_error": &schema.Schema{
+			"exclude_invalid_dns_query_as_error": {
 				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  false,
+				Computed: true,
 			},
-			"exclude_no_dns_record_as_error": &schema.Schema{
+			"exclude_no_dns_record_as_error": {
 				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  false,
+				Computed: true,
 			},
-			"exclude_no_valid_gs_member_as_error": &schema.Schema{
+			"exclude_no_valid_gs_member_as_error": {
 				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  false,
+				Computed: true,
 			},
-			"exclude_persistence_change_as_error": &schema.Schema{
+			"exclude_persistence_change_as_error": {
 				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  false,
+				Computed: true,
 			},
-			"exclude_server_dns_error_as_error": &schema.Schema{
+			"exclude_server_dns_error_as_error": {
 				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  false,
+				Computed: true,
 			},
-			"exclude_server_tcp_reset_as_error": &schema.Schema{
+			"exclude_server_tcp_reset_as_error": {
 				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  false,
+				Computed: true,
 			},
-			"exclude_sip_error_codes": &schema.Schema{
+			"exclude_sip_error_codes": {
 				Type:     schema.TypeList,
-				Optional: true,
+				Computed: true,
 				Elem:     &schema.Schema{Type: schema.TypeInt},
 			},
-			"exclude_syn_retransmit_as_error": &schema.Schema{
+			"exclude_syn_retransmit_as_error": {
 				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  false,
+				Computed: true,
 			},
-			"exclude_tcp_reset_as_error": &schema.Schema{
+			"exclude_tcp_reset_as_error": {
 				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  false,
+				Computed: true,
 			},
-			"exclude_unsupported_dns_query_as_error": &schema.Schema{
+			"exclude_unsupported_dns_query_as_error": {
 				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  false,
+				Computed: true,
 			},
-			"healthscore_max_server_limit": &schema.Schema{
+			"healthscore_max_server_limit": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  20,
+				Computed: true,
 			},
-			"hs_event_throttle_window": &schema.Schema{
+			"hs_event_throttle_window": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  1209600,
+				Computed: true,
 			},
-			"hs_max_anomaly_penalty": &schema.Schema{
+			"hs_max_anomaly_penalty": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  10,
+				Computed: true,
 			},
-			"hs_max_resources_penalty": &schema.Schema{
+			"hs_max_resources_penalty": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  25,
+				Computed: true,
 			},
-			"hs_max_security_penalty": &schema.Schema{
+			"hs_max_security_penalty": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  100,
+				Computed: true,
 			},
-			"hs_min_dos_rate": &schema.Schema{
+			"hs_min_dos_rate": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  1000,
+				Computed: true,
 			},
-			"hs_performance_boost": &schema.Schema{
+			"hs_performance_boost": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  0,
+				Computed: true,
 			},
-			"hs_pscore_traffic_threshold_l4_client": &schema.Schema{
+			"hs_pscore_traffic_threshold_l4_client": {
 				Type:     schema.TypeFloat,
-				Optional: true,
-				Default:  "10.0"},
-			"hs_pscore_traffic_threshold_l4_server": &schema.Schema{
-				Type:     schema.TypeFloat,
-				Optional: true,
-				Default:  "10.0"},
-			"hs_security_certscore_expired": &schema.Schema{
-				Type:     schema.TypeFloat,
-				Optional: true,
-				Default:  "0.0"},
-			"hs_security_certscore_gt30d": &schema.Schema{
-				Type:     schema.TypeFloat,
-				Optional: true,
-				Default:  "5.0"},
-			"hs_security_certscore_le07d": &schema.Schema{
-				Type:     schema.TypeFloat,
-				Optional: true,
-				Default:  "2.0"},
-			"hs_security_certscore_le30d": &schema.Schema{
-				Type:     schema.TypeFloat,
-				Optional: true,
-				Default:  "4.0"},
-			"hs_security_chain_invalidity_penalty": &schema.Schema{
-				Type:     schema.TypeFloat,
-				Optional: true,
-				Default:  "1.0"},
-			"hs_security_cipherscore_eq000b": &schema.Schema{
-				Type:     schema.TypeFloat,
-				Optional: true,
-				Default:  "0.0"},
-			"hs_security_cipherscore_ge128b": &schema.Schema{
-				Type:     schema.TypeFloat,
-				Optional: true,
-				Default:  "5.0"},
-			"hs_security_cipherscore_lt128b": &schema.Schema{
-				Type:     schema.TypeFloat,
-				Optional: true,
-				Default:  "3.5"},
-			"hs_security_encalgo_score_none": &schema.Schema{
-				Type:     schema.TypeFloat,
-				Optional: true,
-				Default:  "0.0"},
-			"hs_security_encalgo_score_rc4": &schema.Schema{
-				Type:     schema.TypeFloat,
-				Optional: true,
-				Default:  "2.5"},
-			"hs_security_hsts_penalty": &schema.Schema{
-				Type:     schema.TypeFloat,
-				Optional: true,
-				Default:  "1.0"},
-			"hs_security_nonpfs_penalty": &schema.Schema{
-				Type:     schema.TypeFloat,
-				Optional: true,
-				Default:  "1.0"},
-			"hs_security_selfsignedcert_penalty": &schema.Schema{
-				Type:     schema.TypeFloat,
-				Optional: true,
-				Default:  "1.0"},
-			"hs_security_ssl30_score": &schema.Schema{
-				Type:     schema.TypeFloat,
-				Optional: true,
-				Default:  "3.5"},
-			"hs_security_tls10_score": &schema.Schema{
-				Type:     schema.TypeFloat,
-				Optional: true,
-				Default:  "5.0"},
-			"hs_security_tls11_score": &schema.Schema{
-				Type:     schema.TypeFloat,
-				Optional: true,
-				Default:  "5.0"},
-			"hs_security_tls12_score": &schema.Schema{
-				Type:     schema.TypeFloat,
-				Optional: true,
-				Default:  "5.0"},
-			"hs_security_weak_signature_algo_penalty": &schema.Schema{
-				Type:     schema.TypeFloat,
-				Optional: true,
-				Default:  "1.0"},
-			"name": &schema.Schema{
-				Type:     schema.TypeString,
-				Optional: true,
+				Computed: true,
 			},
-			"ondemand_metrics_idle_timeout": &schema.Schema{
-				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  1800,
+			"hs_pscore_traffic_threshold_l4_server": {
+				Type:     schema.TypeFloat,
+				Computed: true,
 			},
-			"ranges": &schema.Schema{
-				Type:     schema.TypeList,
-				Optional: true,
-				Elem:     ResourceHTTPStatusRangeSchema(),
+			"hs_security_certscore_expired": {
+				Type:     schema.TypeFloat,
+				Computed: true,
 			},
-			"resp_code_block": &schema.Schema{
-				Type:     schema.TypeList,
-				Optional: true,
-				Elem:     &schema.Schema{Type: schema.TypeString},
+			"hs_security_certscore_gt30d": {
+				Type:     schema.TypeFloat,
+				Computed: true,
 			},
-			"sensitive_log_profile": &schema.Schema{
-				Type:     schema.TypeSet,
-				Optional: true,
-				Elem:     ResourceSensitiveLogProfileSchema(),
+			"hs_security_certscore_le07d": {
+				Type:     schema.TypeFloat,
+				Computed: true,
 			},
-			"sip_log_depth": &schema.Schema{
-				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  20,
+			"hs_security_certscore_le30d": {
+				Type:     schema.TypeFloat,
+				Computed: true,
 			},
-			"tenant_ref": &schema.Schema{
+			"hs_security_chain_invalidity_penalty": {
+				Type:     schema.TypeFloat,
+				Computed: true,
+			},
+			"hs_security_cipherscore_eq000b": {
+				Type:     schema.TypeFloat,
+				Computed: true,
+			},
+			"hs_security_cipherscore_ge128b": {
+				Type:     schema.TypeFloat,
+				Computed: true,
+			},
+			"hs_security_cipherscore_lt128b": {
+				Type:     schema.TypeFloat,
+				Computed: true,
+			},
+			"hs_security_encalgo_score_none": {
+				Type:     schema.TypeFloat,
+				Computed: true,
+			},
+			"hs_security_encalgo_score_rc4": {
+				Type:     schema.TypeFloat,
+				Computed: true,
+			},
+			"hs_security_hsts_penalty": {
+				Type:     schema.TypeFloat,
+				Computed: true,
+			},
+			"hs_security_nonpfs_penalty": {
+				Type:     schema.TypeFloat,
+				Computed: true,
+			},
+			"hs_security_selfsignedcert_penalty": {
+				Type:     schema.TypeFloat,
+				Computed: true,
+			},
+			"hs_security_ssl30_score": {
+				Type:     schema.TypeFloat,
+				Computed: true,
+			},
+			"hs_security_tls10_score": {
+				Type:     schema.TypeFloat,
+				Computed: true,
+			},
+			"hs_security_tls11_score": {
+				Type:     schema.TypeFloat,
+				Computed: true,
+			},
+			"hs_security_tls12_score": {
+				Type:     schema.TypeFloat,
+				Computed: true,
+			},
+			"hs_security_weak_signature_algo_penalty": {
+				Type:     schema.TypeFloat,
+				Computed: true,
+			},
+			"name": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
-			"uuid": &schema.Schema{
+			"ondemand_metrics_idle_timeout": {
+				Type:     schema.TypeInt,
+				Computed: true,
+			},
+			"ranges": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceHTTPStatusRangeSchema(),
+			},
+			"resp_code_block": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
+			"sensitive_log_profile": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceSensitiveLogProfileSchema(),
+			},
+			"sip_log_depth": {
+				Type:     schema.TypeInt,
+				Computed: true,
+			},
+			"tenant_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"uuid": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,

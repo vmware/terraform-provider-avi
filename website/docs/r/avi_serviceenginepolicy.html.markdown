@@ -13,9 +13,9 @@ The ServiceEnginePolicy resource allows the creation and management of Avi Servi
 ## Example Usage
 
 ```hcl
-resource "ServiceEnginePolicy" "foo" {
+resource "avi_serviceenginepolicy" "foo" {
     name = "terraform-example-foo"
-    tenant = "admin"
+    tenant_ref = "/api/tenant/?name=admin"
 }
 ```
 
@@ -23,12 +23,13 @@ resource "ServiceEnginePolicy" "foo" {
 
 The following arguments are supported:
 
-    * `name` - (Optional ) argument_description.
-        * `nat_policy_ref` - (Optional ) argument_description.
-        * `se_group_ref` - (Optional ) argument_description.
-        * `tenant_ref` - (Optional ) argument_description.
-            * `vrf_ref` - (Optional ) argument_description.
-    
+* `name` - (Optional) Name of the service engine policy.
+* `nat_policy_ref` - (Optional) Nat policy.
+* `se_group_ref` - (Optional) Service engine group to which the policy is applied.
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant.
+* `vrf_ref` - (Optional) Vrf context to which the policy is scoped.
+
+
 ### Timeouts
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
@@ -41,5 +42,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-                    * `uuid` - argument_description.
-        
+* `uuid` -  Uuid of the service engine policy.
+

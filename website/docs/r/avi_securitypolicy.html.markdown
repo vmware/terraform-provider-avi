@@ -13,9 +13,9 @@ The SecurityPolicy resource allows the creation and management of Avi SecurityPo
 ## Example Usage
 
 ```hcl
-resource "SecurityPolicy" "foo" {
+resource "avi_securitypolicy" "foo" {
     name = "terraform-example-foo"
-    tenant = "admin"
+    tenant_ref = "/api/tenant/?name=admin"
 }
 ```
 
@@ -23,16 +23,17 @@ resource "SecurityPolicy" "foo" {
 
 The following arguments are supported:
 
-    * `description` - (Optional ) argument_description.
-        * `dns_attacks` - (Optional ) argument_description.
-        * `dns_policy_index` - (Optional ) argument_description.
-        * `name` - (Required) argument_description.
-        * `network_security_policy_index` - (Optional ) argument_description.
-        * `oper_mode` - (Optional ) argument_description.
-        * `tcp_attacks` - (Optional ) argument_description.
-        * `tenant_ref` - (Optional ) argument_description.
-        * `udp_attacks` - (Optional ) argument_description.
-        
+* `name` - (Required) The name of the security policy.
+* `description` - (Optional) Security policy is used to specify various configuration information used to perform distributed denial of service (ddos) attacks detection and mitigation.
+* `dns_attacks` - (Optional) Attacks utilizing the dns protocol operations.
+* `dns_policy_index` - (Optional) Index of the dns policy to use for the mitigation rules applied to the dns attacks.
+* `network_security_policy_index` - (Optional) Index of the network security policy to use for the mitigation rules applied to the attacks.
+* `oper_mode` - (Optional) Mode of dealing with the attacks - perform detection only, or detect and mitigate the attacks.
+* `tcp_attacks` - (Optional) Attacks utilizing the tcp protocol operations.
+* `tenant_ref` - (Optional) Tenancy of the security policy.
+* `udp_attacks` - (Optional) Attacks utilizing the udp protocol operations.
+
+
 ### Timeouts
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
@@ -45,5 +46,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-                                        * `uuid` - argument_description.
-    
+* `uuid` -  The uuid of the security policy.
+

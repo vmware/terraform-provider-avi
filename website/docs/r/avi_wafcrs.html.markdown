@@ -13,9 +13,9 @@ The WafCRS resource allows the creation and management of Avi WafCRS
 ## Example Usage
 
 ```hcl
-resource "WafCRS" "foo" {
+resource "avi_wafcrs" "foo" {
     name = "terraform-example-foo"
-    tenant = "admin"
+    tenant_ref = "/api/tenant/?name=admin"
 }
 ```
 
@@ -23,14 +23,15 @@ resource "WafCRS" "foo" {
 
 The following arguments are supported:
 
-    * `description` - (Optional ) argument_description.
-        * `groups` - (Optional ) argument_description.
-        * `integrity` - (Optional ) argument_description.
-        * `name` - (Optional ) argument_description.
-        * `release_date` - (Optional ) argument_description.
-        * `tenant_ref` - (Optional ) argument_description.
-            * `version` - (Optional ) argument_description.
-    
+* `description` - (Optional) A short description of this ruleset.
+* `groups` - (Optional) Waf rules are sorted in groups based on their characterization.
+* `integrity` - (Optional) Integrity protection value.
+* `name` - (Optional) The name of this ruleset object.
+* `release_date` - (Optional) The release date of this version in rfc 3339 / iso 8601 format.
+* `tenant_ref` - (Optional) Tenant that this object belongs to.
+* `version` - (Optional) The version of this ruleset object.
+
+
 ### Timeouts
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
@@ -43,5 +44,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-                            * `uuid` - argument_description.
-        
+* `uuid` -  Field introduced in 18.1.1.
+

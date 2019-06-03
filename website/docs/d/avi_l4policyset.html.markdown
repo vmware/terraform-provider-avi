@@ -13,8 +13,8 @@ This data source is used to to get avi_l4policyset objects.
 ## Example Usage
 
 ```hcl
-data "L4PolicySet" "foo_L4PolicySet" {
-    uuid = "L4PolicySet-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
+data "avi_l4policyset" "foo_l4policyset" {
+    uuid = "l4policyset-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
     name = "foo"
 }
 ```

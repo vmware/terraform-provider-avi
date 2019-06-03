@@ -13,8 +13,8 @@ This data source is used to to get avi_applicationpersistenceprofile objects.
 ## Example Usage
 
 ```hcl
-data "ApplicationPersistenceProfile" "foo_ApplicationPersistenceProfile" {
-    uuid = "ApplicationPersistenceProfile-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
+data "avi_applicationpersistenceprofile" "foo_applicationpersistenceprofile" {
+    uuid = "applicationpersistenceprofile-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
     name = "foo"
 }
 ```
@@ -29,7 +29,7 @@ data "ApplicationPersistenceProfile" "foo_ApplicationPersistenceProfile" {
 In addition to all arguments above, the following attributes are exported:
 
 * `app_cookie_persistence_profile` - Specifies the application cookie persistence profile parameters.
-* `description` - General description.
+* `description` - User defined description for the object.
 * `hdr_persistence_profile` - Specifies the custom http header persistence profile parameters.
 * `http_cookie_persistence_profile` - Specifies the http cookie persistence profile parameters.
 * `ip_persistence_profile` - Specifies the client ip persistence profile parameters.

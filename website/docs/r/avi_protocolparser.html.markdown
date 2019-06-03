@@ -13,9 +13,9 @@ The ProtocolParser resource allows the creation and management of Avi ProtocolPa
 ## Example Usage
 
 ```hcl
-resource "ProtocolParser" "foo" {
+resource "avi_protocolparser" "foo" {
     name = "terraform-example-foo"
-    tenant = "admin"
+    tenant_ref = "/api/tenant/?name=admin"
 }
 ```
 
@@ -23,11 +23,12 @@ resource "ProtocolParser" "foo" {
 
 The following arguments are supported:
 
-    * `description` - (Optional ) argument_description.
-        * `name` - (Optional ) argument_description.
-        * `parser_code` - (Optional ) argument_description.
-        * `tenant_ref` - (Optional ) argument_description.
-        
+* `description` - (Optional) Description of the protocol parser.
+* `name` - (Optional) Name of the protocol parser.
+* `parser_code` - (Optional) Command script provided inline.
+* `tenant_ref` - (Optional) Tenant uuid of the protocol parser.
+
+
 ### Timeouts
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
@@ -40,5 +41,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-                    * `uuid` - argument_description.
-    
+* `uuid` -  Uuid of the protocol parser.
+

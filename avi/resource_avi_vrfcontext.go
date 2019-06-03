@@ -14,55 +14,55 @@ import (
 
 func ResourceVrfContextSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"bgp_profile": &schema.Schema{
+		"bgp_profile": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceBgpProfileSchema(),
 		},
-		"cloud_ref": &schema.Schema{
+		"cloud_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"debugvrfcontext": &schema.Schema{
+		"debugvrfcontext": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceDebugVrfContextSchema(),
 		},
-		"description": &schema.Schema{
+		"description": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
-		"gateway_mon": &schema.Schema{
+		"gateway_mon": {
 			Type:     schema.TypeList,
 			Optional: true,
 			Elem:     ResourceGatewayMonitorSchema(),
 		},
-		"internal_gateway_monitor": &schema.Schema{
+		"internal_gateway_monitor": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceInternalGatewayMonitorSchema(),
 		},
-		"name": &schema.Schema{
+		"name": {
 			Type:     schema.TypeString,
 			Required: true,
 		},
-		"static_routes": &schema.Schema{
+		"static_routes": {
 			Type:     schema.TypeList,
 			Optional: true,
 			Elem:     ResourceStaticRouteSchema(),
 		},
-		"system_default": &schema.Schema{
+		"system_default": {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  false,
 		},
-		"tenant_ref": &schema.Schema{
+		"tenant_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"uuid": &schema.Schema{
+		"uuid": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,

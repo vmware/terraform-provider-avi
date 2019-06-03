@@ -13,8 +13,8 @@ This data source is used to to get avi_natpolicy objects.
 ## Example Usage
 
 ```hcl
-data "NatPolicy" "foo_NatPolicy" {
-    uuid = "NatPolicy-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
+data "avi_natpolicy" "foo_natpolicy" {
+    uuid = "natpolicy-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
     name = "foo"
 }
 ```

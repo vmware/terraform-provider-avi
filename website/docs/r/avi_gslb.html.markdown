@@ -13,9 +13,9 @@ The Gslb resource allows the creation and management of Avi Gslb
 ## Example Usage
 
 ```hcl
-resource "Gslb" "foo" {
+resource "avi_gslb" "foo" {
     name = "terraform-example-foo"
-    tenant = "admin"
+    tenant_ref = "/api/tenant/?name=admin"
 }
 ```
 
@@ -23,23 +23,24 @@ resource "Gslb" "foo" {
 
 The following arguments are supported:
 
-    * `async_interval` - (Optional ) argument_description.
-        * `clear_on_max_retries` - (Optional ) argument_description.
-        * `client_ip_addr_group` - (Optional ) argument_description.
-        * `description` - (Optional ) argument_description.
-        * `dns_configs` - (Optional ) argument_description.
-        * `error_resync_interval` - (Optional ) argument_description.
-        * `is_federated` - (Optional ) argument_description.
-        * `leader_cluster_uuid` - (Optional ) argument_description.
-        * `maintenance_mode` - (Optional ) argument_description.
-        * `name` - (Required) argument_description.
-        * `send_interval` - (Optional ) argument_description.
-        * `send_interval_prior_to_maintenance_mode` - (Optional ) argument_description.
-        * `sites` - (Optional ) argument_description.
-        * `tenant_ref` - (Optional ) argument_description.
-        * `third_party_sites` - (Optional ) argument_description.
-            * `view_id` - (Optional ) argument_description.
-    
+* `name` - (Required) Name for the gslb object.
+* `async_interval` - (Optional) Frequency with which messages are propagated to vs mgr.
+* `clear_on_max_retries` - (Optional) Max retries after which the remote site is treated as a fresh start.
+* `client_ip_addr_group` - (Optional) Group to specify if the client ip addresses are public or private.
+* `description` - (Optional) User defined description for the object.
+* `dns_configs` - (Optional) Sub domain configuration for the gslb.
+* `error_resync_interval` - (Optional) Frequency with which errored messages are resynced to follower sites.
+* `is_federated` - (Optional) This field indicates that this object is replicated across gslb federation.
+* `leader_cluster_uuid` - (Optional) Mark this site as leader of gslb configuration.
+* `maintenance_mode` - (Optional) This field disables the configuration operations on the leader for all federated objects.
+* `send_interval` - (Optional) Frequency with which group members communicate.
+* `send_interval_prior_to_maintenance_mode` - (Optional) The user can specify a send-interval while entering maintenance mode.
+* `sites` - (Optional) Select avi site member belonging to this gslb.
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant.
+* `third_party_sites` - (Optional) Third party site member belonging to this gslb.
+* `view_id` - (Optional) The view-id is used in change-leader mode to differentiate partitioned groups while they have the same gslb namespace.
+
+
 ### Timeouts
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
@@ -52,5 +53,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-                                                                * `uuid` - argument_description.
-        
+* `uuid` -  Uuid of the gslb object.
+

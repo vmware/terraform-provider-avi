@@ -13,9 +13,9 @@ The ServerAutoScalePolicy resource allows the creation and management of Avi Ser
 ## Example Usage
 
 ```hcl
-resource "ServerAutoScalePolicy" "foo" {
+resource "avi_serverautoscalepolicy" "foo" {
     name = "terraform-example-foo"
-    tenant = "admin"
+    tenant_ref = "/api/tenant/?name=admin"
 }
 ```
 
@@ -23,22 +23,23 @@ resource "ServerAutoScalePolicy" "foo" {
 
 The following arguments are supported:
 
-    * `description` - (Optional ) argument_description.
-        * `intelligent_autoscale` - (Optional ) argument_description.
-        * `intelligent_scalein_margin` - (Optional ) argument_description.
-        * `intelligent_scaleout_margin` - (Optional ) argument_description.
-        * `max_scalein_adjustment_step` - (Optional ) argument_description.
-        * `max_scaleout_adjustment_step` - (Optional ) argument_description.
-        * `max_size` - (Optional ) argument_description.
-        * `min_size` - (Optional ) argument_description.
-        * `name` - (Required) argument_description.
-        * `scalein_alertconfig_refs` - (Optional ) argument_description.
-        * `scalein_cooldown` - (Optional ) argument_description.
-        * `scaleout_alertconfig_refs` - (Optional ) argument_description.
-        * `scaleout_cooldown` - (Optional ) argument_description.
-        * `tenant_ref` - (Optional ) argument_description.
-        * `use_predicted_load` - (Optional ) argument_description.
-        
+* `name` - (Required) Name of the object.
+* `description` - (Optional) User defined description for the object.
+* `intelligent_autoscale` - (Optional) Use avi intelligent autoscale algorithm where autoscale is performed by comparing load on the pool against estimated capacity of all the servers.
+* `intelligent_scalein_margin` - (Optional) Maximum extra capacity as percentage of load used by the intelligent scheme.
+* `intelligent_scaleout_margin` - (Optional) Minimum extra capacity as percentage of load used by the intelligent scheme.
+* `max_scalein_adjustment_step` - (Optional) Maximum number of servers to scalein simultaneously.
+* `max_scaleout_adjustment_step` - (Optional) Maximum number of servers to scaleout simultaneously.
+* `max_size` - (Optional) Maximum number of servers after scaleout.
+* `min_size` - (Optional) No scale-in happens once number of operationally up servers reach min_servers.
+* `scalein_alertconfig_refs` - (Optional) Trigger scalein when alerts due to any of these alert configurations are raised.
+* `scalein_cooldown` - (Optional) Cooldown period during which no new scalein is triggered to allow previous scalein to successfully complete.
+* `scaleout_alertconfig_refs` - (Optional) Trigger scaleout when alerts due to any of these alert configurations are raised.
+* `scaleout_cooldown` - (Optional) Cooldown period during which no new scaleout is triggered to allow previous scaleout to successfully complete.
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant.
+* `use_predicted_load` - (Optional) Use predicted load rather than current load.
+
+
 ### Timeouts
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
@@ -51,5 +52,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-                                                                * `uuid` - argument_description.
-    
+* `uuid` -  Unique object identifier of the object.
+

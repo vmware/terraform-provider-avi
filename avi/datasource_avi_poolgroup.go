@@ -11,67 +11,64 @@ func dataSourceAviPoolGroup() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviPoolGroupRead,
 		Schema: map[string]*schema.Schema{
-			"cloud_config_cksum": &schema.Schema{
+			"cloud_config_cksum": {
 				Type:     schema.TypeString,
-				Optional: true,
+				Computed: true,
 			},
-			"cloud_ref": &schema.Schema{
+			"cloud_ref": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
-			"created_by": &schema.Schema{
+			"created_by": {
 				Type:     schema.TypeString,
-				Optional: true,
-			},
-			"deployment_policy_ref": &schema.Schema{
-				Type:     schema.TypeString,
-				Optional: true,
 				Computed: true,
 			},
-			"description": &schema.Schema{
+			"deployment_policy_ref": {
 				Type:     schema.TypeString,
-				Optional: true,
+				Computed: true,
 			},
-			"fail_action": &schema.Schema{
+			"description": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"fail_action": {
 				Type:     schema.TypeSet,
-				Optional: true,
+				Computed: true,
 				Elem:     ResourceFailActionSchema(),
 			},
-			"implicit_priority_labels": &schema.Schema{
+			"implicit_priority_labels": {
 				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  false,
+				Computed: true,
 			},
-			"members": &schema.Schema{
+			"members": {
 				Type:     schema.TypeList,
-				Optional: true,
+				Computed: true,
 				Elem:     ResourcePoolGroupMemberSchema(),
 			},
-			"min_servers": &schema.Schema{
+			"min_servers": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  0,
+				Computed: true,
 			},
-			"name": &schema.Schema{
-				Type:     schema.TypeString,
-				Optional: true,
-			},
-			"priority_labels_ref": &schema.Schema{
+			"name": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
-			"service_metadata": &schema.Schema{
+			"priority_labels_ref": {
 				Type:     schema.TypeString,
-				Optional: true,
+				Computed: true,
 			},
-			"tenant_ref": &schema.Schema{
+			"service_metadata": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"tenant_ref": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
-			"uuid": &schema.Schema{
+			"uuid": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,

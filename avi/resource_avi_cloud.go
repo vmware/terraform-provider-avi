@@ -14,168 +14,173 @@ import (
 
 func ResourceCloudSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"apic_configuration": &schema.Schema{
+		"apic_configuration": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceAPICConfigurationSchema(),
 		},
-		"apic_mode": &schema.Schema{
+		"apic_mode": {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  false,
 		},
-		"autoscale_polling_interval": &schema.Schema{
+		"autoscale_polling_interval": {
 			Type:     schema.TypeInt,
 			Optional: true,
 			Default:  60,
 		},
-		"aws_configuration": &schema.Schema{
+		"aws_configuration": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceAwsConfigurationSchema(),
 		},
-		"azure_configuration": &schema.Schema{
+		"azure_configuration": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceAzureConfigurationSchema(),
 		},
-		"cloudstack_configuration": &schema.Schema{
+		"cloudstack_configuration": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceCloudStackConfigurationSchema(),
 		},
-		"custom_tags": &schema.Schema{
+		"custom_tags": {
 			Type:     schema.TypeList,
 			Optional: true,
 			Elem:     ResourceCustomTagSchema(),
 		},
-		"dhcp_enabled": &schema.Schema{
+		"dhcp_enabled": {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  false,
 		},
-		"dns_provider_ref": &schema.Schema{
+		"dns_provider_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"docker_configuration": &schema.Schema{
+		"docker_configuration": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceDockerConfigurationSchema(),
 		},
-		"east_west_dns_provider_ref": &schema.Schema{
+		"east_west_dns_provider_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"east_west_ipam_provider_ref": &schema.Schema{
+		"east_west_ipam_provider_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"enable_vip_static_routes": &schema.Schema{
+		"enable_vip_static_routes": {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  false,
 		},
-		"gcp_configuration": &schema.Schema{
+		"gcp_configuration": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceGCPConfigurationSchema(),
 		},
-		"ip6_autocfg_enabled": &schema.Schema{
+		"ip6_autocfg_enabled": {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  false,
 		},
-		"ipam_provider_ref": &schema.Schema{
+		"ipam_provider_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"license_tier": &schema.Schema{
+		"license_tier": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
-		"license_type": &schema.Schema{
+		"license_type": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
-		"linuxserver_configuration": &schema.Schema{
+		"linuxserver_configuration": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceLinuxServerConfigurationSchema(),
 		},
-		"mtu": &schema.Schema{
+		"mtu": {
 			Type:     schema.TypeInt,
 			Optional: true,
 			Default:  1500,
 		},
-		"name": &schema.Schema{
+		"name": {
 			Type:     schema.TypeString,
 			Required: true,
 		},
-		"nsx_configuration": &schema.Schema{
+		"nsx_configuration": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceNsxConfigurationSchema(),
 		},
-		"obj_name_prefix": &schema.Schema{
+		"obj_name_prefix": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
-		"openstack_configuration": &schema.Schema{
+		"openstack_configuration": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceOpenStackConfigurationSchema(),
 		},
-		"oshiftk8s_configuration": &schema.Schema{
+		"oshiftk8s_configuration": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceOShiftK8SConfigurationSchema(),
 		},
-		"prefer_static_routes": &schema.Schema{
+		"prefer_static_routes": {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  false,
 		},
-		"proxy_configuration": &schema.Schema{
+		"proxy_configuration": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceProxyConfigurationSchema(),
 		},
-		"rancher_configuration": &schema.Schema{
+		"rancher_configuration": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceRancherConfigurationSchema(),
 		},
-		"state_based_dns_registration": &schema.Schema{
+		"se_group_template_ref": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
+		"state_based_dns_registration": {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  true,
 		},
-		"tenant_ref": &schema.Schema{
+		"tenant_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"uuid": &schema.Schema{
+		"uuid": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"vca_configuration": &schema.Schema{
+		"vca_configuration": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourcevCloudAirConfigurationSchema(),
 		},
-		"vcenter_configuration": &schema.Schema{
+		"vcenter_configuration": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourcevCenterConfigurationSchema(),
 		},
-		"vtype": &schema.Schema{
+		"vtype": {
 			Type:     schema.TypeString,
 			Required: true,
 		},

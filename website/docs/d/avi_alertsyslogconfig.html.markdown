@@ -13,8 +13,8 @@ This data source is used to to get avi_alertsyslogconfig objects.
 ## Example Usage
 
 ```hcl
-data "AlertSyslogConfig" "foo_AlertSyslogConfig" {
-    uuid = "AlertSyslogConfig-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
+data "avi_alertsyslogconfig" "foo_alertsyslogconfig" {
+    uuid = "alertsyslogconfig-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
     name = "foo"
 }
 ```
@@ -32,5 +32,5 @@ In addition to all arguments above, the following attributes are exported:
 * `name` - A user-friendly name of the syslog notification.
 * `syslog_servers` - The list of syslog servers.
 * `tenant_ref` - It is a reference to an object of type tenant.
-* `uuid` - General description.
+* `uuid` - Unique object identifier of the object.
 

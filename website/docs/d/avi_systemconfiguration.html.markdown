@@ -13,8 +13,8 @@ This data source is used to to get avi_systemconfiguration objects.
 ## Example Usage
 
 ```hcl
-data "SystemConfiguration" "foo_SystemConfiguration" {
-    uuid = "SystemConfiguration-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
+data "avi_systemconfiguration" "foo_systemconfiguration" {
+    uuid = "systemconfiguration-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
     name = "foo"
 }
 ```
@@ -28,22 +28,22 @@ data "SystemConfiguration" "foo_SystemConfiguration" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `admin_auth_configuration` - General description.
+* `admin_auth_configuration` - Dict settings for systemconfiguration.
 * `default_license_tier` - Specifies the default license tier which would be used by new clouds.
-* `dns_configuration` - General description.
+* `dns_configuration` - Dict settings for systemconfiguration.
 * `dns_virtualservice_refs` - Dns virtualservices hosting fqdn records for applications across avi vantage.
-* `docker_mode` - General description.
-* `email_configuration` - General description.
-* `global_tenant_config` - General description.
-* `linux_configuration` - General description.
+* `docker_mode` - Boolean flag to set docker_mode.
+* `email_configuration` - Dict settings for systemconfiguration.
+* `global_tenant_config` - Dict settings for systemconfiguration.
+* `linux_configuration` - Dict settings for systemconfiguration.
 * `mgmt_ip_access_control` - Configure ip access control for controller to restrict open access.
-* `ntp_configuration` - General description.
-* `portal_configuration` - General description.
-* `proxy_configuration` - General description.
+* `ntp_configuration` - Dict settings for systemconfiguration.
+* `portal_configuration` - Dict settings for systemconfiguration.
+* `proxy_configuration` - Dict settings for systemconfiguration.
 * `secure_channel_configuration` - Configure secure channel properties.
-* `snmp_configuration` - General description.
+* `snmp_configuration` - Dict settings for systemconfiguration.
 * `ssh_ciphers` - Allowed ciphers list for ssh to the management interface on the controller and service engines.
 * `ssh_hmacs` - Allowed hmac list for ssh to the management interface on the controller and service engines.
-* `uuid` - General description.
+* `uuid` - Unique object identifier of the object.
 * `welcome_workflow_complete` - This flag is set once the initial controller setup workflow is complete.
 

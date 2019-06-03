@@ -13,9 +13,9 @@ The TrafficCloneProfile resource allows the creation and management of Avi Traff
 ## Example Usage
 
 ```hcl
-resource "TrafficCloneProfile" "foo" {
+resource "avi_trafficcloneprofile" "foo" {
     name = "terraform-example-foo"
-    tenant = "admin"
+    tenant_ref = "/api/tenant/?name=admin"
 }
 ```
 
@@ -23,12 +23,13 @@ resource "TrafficCloneProfile" "foo" {
 
 The following arguments are supported:
 
-    * `clone_servers` - (Optional ) argument_description.
-        * `cloud_ref` - (Optional ) argument_description.
-        * `name` - (Required) argument_description.
-        * `preserve_client_ip` - (Optional ) argument_description.
-        * `tenant_ref` - (Optional ) argument_description.
-        
+* `name` - (Required) Name for the traffic clone profile.
+* `clone_servers` - (Optional) Field introduced in 17.1.1.
+* `cloud_ref` - (Optional) It is a reference to an object of type cloud.
+* `preserve_client_ip` - (Optional) Specifies if client ip needs to be preserved to clone destination.
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant.
+
+
 ### Timeouts
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
@@ -41,5 +42,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-                        * `uuid` - argument_description.
-    
+* `uuid` -  Uuid of the traffic clone profile.
+

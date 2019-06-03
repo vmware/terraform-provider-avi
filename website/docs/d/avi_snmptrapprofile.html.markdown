@@ -13,8 +13,8 @@ This data source is used to to get avi_snmptrapprofile objects.
 ## Example Usage
 
 ```hcl
-data "SnmpTrapProfile" "foo_SnmpTrapProfile" {
-    uuid = "SnmpTrapProfile-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
+data "avi_snmptrapprofile" "foo_snmptrapprofile" {
+    uuid = "snmptrapprofile-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
     name = "foo"
 }
 ```

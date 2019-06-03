@@ -14,67 +14,67 @@ import (
 
 func ResourcePoolGroupSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"cloud_config_cksum": &schema.Schema{
+		"cloud_config_cksum": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
-		"cloud_ref": &schema.Schema{
-			Type:     schema.TypeString,
-			Optional: true,
-			Computed: true,
-		},
-		"created_by": &schema.Schema{
-			Type:     schema.TypeString,
-			Optional: true,
-		},
-		"deployment_policy_ref": &schema.Schema{
+		"cloud_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"description": &schema.Schema{
+		"created_by": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
-		"fail_action": &schema.Schema{
+		"deployment_policy_ref": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
+		"description": {
+			Type:     schema.TypeString,
+			Optional: true,
+		},
+		"fail_action": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceFailActionSchema(),
 		},
-		"implicit_priority_labels": &schema.Schema{
+		"implicit_priority_labels": {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  false,
 		},
-		"members": &schema.Schema{
+		"members": {
 			Type:     schema.TypeList,
 			Optional: true,
 			Elem:     ResourcePoolGroupMemberSchema(),
 		},
-		"min_servers": &schema.Schema{
+		"min_servers": {
 			Type:     schema.TypeInt,
 			Optional: true,
 			Default:  0,
 		},
-		"name": &schema.Schema{
+		"name": {
 			Type:     schema.TypeString,
 			Required: true,
 		},
-		"priority_labels_ref": &schema.Schema{
+		"priority_labels_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"service_metadata": &schema.Schema{
+		"service_metadata": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
-		"tenant_ref": &schema.Schema{
+		"tenant_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"uuid": &schema.Schema{
+		"uuid": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,

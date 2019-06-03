@@ -13,9 +13,9 @@ The IpamDnsProviderProfile resource allows the creation and management of Avi Ip
 ## Example Usage
 
 ```hcl
-resource "IpamDnsProviderProfile" "foo" {
+resource "avi_ipamdnsproviderprofile" "foo" {
     name = "terraform-example-foo"
-    tenant = "admin"
+    tenant_ref = "/api/tenant/?name=admin"
 }
 ```
 
@@ -23,21 +23,22 @@ resource "IpamDnsProviderProfile" "foo" {
 
 The following arguments are supported:
 
-    * `allocate_ip_in_vrf` - (Optional ) argument_description.
-        * `aws_profile` - (Optional ) argument_description.
-        * `azure_profile` - (Optional ) argument_description.
-        * `custom_profile` - (Optional ) argument_description.
-        * `gcp_profile` - (Optional ) argument_description.
-        * `infoblox_profile` - (Optional ) argument_description.
-        * `internal_profile` - (Optional ) argument_description.
-        * `name` - (Required) argument_description.
-        * `oci_profile` - (Optional ) argument_description.
-        * `openstack_profile` - (Optional ) argument_description.
-        * `proxy_configuration` - (Optional ) argument_description.
-        * `tenant_ref` - (Optional ) argument_description.
-        * `tencent_profile` - (Optional ) argument_description.
-        * `type` - (Required) argument_description.
-        
+* `name` - (Required) Name for the ipam/dns provider profile.
+* `type` - (Required) Provider type for the ipam/dns provider profile.
+* `allocate_ip_in_vrf` - (Optional) If this flag is set, only allocate ip from networks in the virtual service vrf.
+* `aws_profile` - (Optional) Provider details if type is aws.
+* `azure_profile` - (Optional) Provider details if type is microsoft azure.
+* `custom_profile` - (Optional) Provider details if type is custom.
+* `gcp_profile` - (Optional) Provider details if type is google cloud.
+* `infoblox_profile` - (Optional) Provider details if type is infoblox.
+* `internal_profile` - (Optional) Provider details if type is avi.
+* `oci_profile` - (Optional) Provider details for oracle cloud.
+* `openstack_profile` - (Optional) Provider details if type is openstack.
+* `proxy_configuration` - (Optional) Field introduced in 17.1.1.
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant.
+* `tencent_profile` - (Optional) Provider details for tencent cloud.
+
+
 ### Timeouts
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
@@ -50,5 +51,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-                                                            * `uuid` - argument_description.
-    
+* `uuid` -  Uuid of the ipam/dns provider profile.
+

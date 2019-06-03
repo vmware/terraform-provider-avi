@@ -13,8 +13,8 @@ This data source is used to to get avi_stringgroup objects.
 ## Example Usage
 
 ```hcl
-data "StringGroup" "foo_StringGroup" {
-    uuid = "StringGroup-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
+data "avi_stringgroup" "foo_stringgroup" {
+    uuid = "stringgroup-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
     name = "foo"
 }
 ```
@@ -28,7 +28,7 @@ data "StringGroup" "foo_StringGroup" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `description` - General description.
+* `description` - User defined description for the object.
 * `kv` - Configure key value in the string group.
 * `name` - Name of the string group.
 * `tenant_ref` - It is a reference to an object of type tenant.

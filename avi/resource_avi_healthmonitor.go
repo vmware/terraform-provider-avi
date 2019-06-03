@@ -14,93 +14,93 @@ import (
 
 func ResourceHealthMonitorSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"description": &schema.Schema{
+		"description": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
-		"dns_monitor": &schema.Schema{
+		"dns_monitor": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceHealthMonitorDNSSchema(),
 		},
-		"external_monitor": &schema.Schema{
+		"external_monitor": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceHealthMonitorExternalSchema(),
 		},
-		"failed_checks": &schema.Schema{
+		"failed_checks": {
 			Type:     schema.TypeInt,
 			Optional: true,
 			Default:  2,
 		},
-		"http_monitor": &schema.Schema{
+		"http_monitor": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceHealthMonitorHttpSchema(),
 		},
-		"https_monitor": &schema.Schema{
+		"https_monitor": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceHealthMonitorHttpSchema(),
 		},
-		"is_federated": &schema.Schema{
+		"is_federated": {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  false,
 		},
-		"monitor_port": &schema.Schema{
+		"monitor_port": {
 			Type:     schema.TypeInt,
 			Optional: true,
 		},
-		"name": &schema.Schema{
+		"name": {
 			Type:     schema.TypeString,
 			Required: true,
 		},
-		"radius_monitor": &schema.Schema{
+		"radius_monitor": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceHealthMonitorRadiusSchema(),
 		},
-		"receive_timeout": &schema.Schema{
+		"receive_timeout": {
 			Type:     schema.TypeInt,
 			Optional: true,
 			Default:  4,
 		},
-		"send_interval": &schema.Schema{
+		"send_interval": {
 			Type:     schema.TypeInt,
 			Optional: true,
 			Default:  10,
 		},
-		"sip_monitor": &schema.Schema{
+		"sip_monitor": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceHealthMonitorSIPSchema(),
 		},
-		"successful_checks": &schema.Schema{
+		"successful_checks": {
 			Type:     schema.TypeInt,
 			Optional: true,
 			Default:  2,
 		},
-		"tcp_monitor": &schema.Schema{
+		"tcp_monitor": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceHealthMonitorTcpSchema(),
 		},
-		"tenant_ref": &schema.Schema{
+		"tenant_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"type": &schema.Schema{
+		"type": {
 			Type:     schema.TypeString,
 			Required: true,
 		},
-		"udp_monitor": &schema.Schema{
+		"udp_monitor": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceHealthMonitorUdpSchema(),
 		},
-		"uuid": &schema.Schema{
+		"uuid": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,

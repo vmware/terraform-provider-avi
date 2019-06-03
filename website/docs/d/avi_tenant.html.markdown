@@ -13,8 +13,8 @@ This data source is used to to get avi_tenant objects.
 ## Example Usage
 
 ```hcl
-data "Tenant" "foo_Tenant" {
-    uuid = "Tenant-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
+data "avi_tenant" "foo_tenant" {
+    uuid = "tenant-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
     name = "foo"
 }
 ```
@@ -28,10 +28,10 @@ data "Tenant" "foo_Tenant" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `config_settings` - General description.
+* `config_settings` - Dict settings for tenant.
 * `created_by` - Creator of this tenant.
-* `description` - General description.
-* `local` - General description.
-* `name` - General description.
-* `uuid` - General description.
+* `description` - User defined description for the object.
+* `local` - Boolean flag to set local.
+* `name` - Name of the object.
+* `uuid` - Unique object identifier of the object.
 

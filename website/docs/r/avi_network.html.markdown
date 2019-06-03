@@ -13,9 +13,9 @@ The Network resource allows the creation and management of Avi Network
 ## Example Usage
 
 ```hcl
-resource "Network" "foo" {
+resource "avi_network" "foo" {
     name = "terraform-example-foo"
-    tenant = "admin"
+    tenant_ref = "/api/tenant/?name=admin"
 }
 ```
 
@@ -23,17 +23,18 @@ resource "Network" "foo" {
 
 The following arguments are supported:
 
-    * `cloud_ref` - (Optional ) argument_description.
-        * `configured_subnets` - (Optional ) argument_description.
-        * `dhcp_enabled` - (Optional ) argument_description.
-        * `exclude_discovered_subnets` - (Optional ) argument_description.
-        * `ip6_autocfg_enabled` - (Optional ) argument_description.
-        * `name` - (Required) argument_description.
-        * `synced_from_se` - (Optional ) argument_description.
-        * `tenant_ref` - (Optional ) argument_description.
-            * `vcenter_dvs` - (Optional ) argument_description.
-        * `vrf_context_ref` - (Optional ) argument_description.
-    
+* `name` - (Required) Name of the object.
+* `cloud_ref` - (Optional) It is a reference to an object of type cloud.
+* `configured_subnets` - (Optional) List of list.
+* `dhcp_enabled` - (Optional) Select the ip address management scheme for this network.
+* `exclude_discovered_subnets` - (Optional) When selected, excludes all discovered subnets in this network from consideration for virtual service placement.
+* `ip6_autocfg_enabled` - (Optional) Enable ipv6 auto configuration.
+* `synced_from_se` - (Optional) Boolean flag to set synced_from_se.
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant.
+* `vcenter_dvs` - (Optional) Boolean flag to set vcenter_dvs.
+* `vrf_context_ref` - (Optional) It is a reference to an object of type vrfcontext.
+
+
 ### Timeouts
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
@@ -46,5 +47,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-                                    * `uuid` - argument_description.
-            
+* `uuid` -  Unique object identifier of the object.
+

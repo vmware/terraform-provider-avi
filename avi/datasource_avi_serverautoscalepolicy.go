@@ -11,80 +11,71 @@ func dataSourceAviServerAutoScalePolicy() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviServerAutoScalePolicyRead,
 		Schema: map[string]*schema.Schema{
-			"description": &schema.Schema{
+			"description": {
 				Type:     schema.TypeString,
-				Optional: true,
+				Computed: true,
 			},
-			"intelligent_autoscale": &schema.Schema{
+			"intelligent_autoscale": {
 				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  false,
+				Computed: true,
 			},
-			"intelligent_scalein_margin": &schema.Schema{
+			"intelligent_scalein_margin": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  40,
+				Computed: true,
 			},
-			"intelligent_scaleout_margin": &schema.Schema{
+			"intelligent_scaleout_margin": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  20,
+				Computed: true,
 			},
-			"max_scalein_adjustment_step": &schema.Schema{
+			"max_scalein_adjustment_step": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  1,
+				Computed: true,
 			},
-			"max_scaleout_adjustment_step": &schema.Schema{
+			"max_scaleout_adjustment_step": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  1,
+				Computed: true,
 			},
-			"max_size": &schema.Schema{
+			"max_size": {
 				Type:     schema.TypeInt,
-				Optional: true,
+				Computed: true,
 			},
-			"min_size": &schema.Schema{
+			"min_size": {
 				Type:     schema.TypeInt,
-				Optional: true,
+				Computed: true,
 			},
-			"name": &schema.Schema{
+			"name": {
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
-			"scalein_alertconfig_refs": &schema.Schema{
+			"scalein_alertconfig_refs": {
 				Type:     schema.TypeList,
-				Optional: true,
 				Computed: true,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
-			"scalein_cooldown": &schema.Schema{
+			"scalein_cooldown": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  300,
+				Computed: true,
 			},
-			"scaleout_alertconfig_refs": &schema.Schema{
+			"scaleout_alertconfig_refs": {
 				Type:     schema.TypeList,
-				Optional: true,
 				Computed: true,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
-			"scaleout_cooldown": &schema.Schema{
+			"scaleout_cooldown": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  300,
+				Computed: true,
 			},
-			"tenant_ref": &schema.Schema{
+			"tenant_ref": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
-			"use_predicted_load": &schema.Schema{
+			"use_predicted_load": {
 				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  false,
+				Computed: true,
 			},
-			"uuid": &schema.Schema{
+			"uuid": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,

@@ -11,33 +11,34 @@ func dataSourceAviNetworkSecurityPolicy() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviNetworkSecurityPolicyRead,
 		Schema: map[string]*schema.Schema{
-			"cloud_config_cksum": &schema.Schema{
+			"cloud_config_cksum": {
 				Type:     schema.TypeString,
-				Optional: true,
+				Computed: true,
 			},
-			"created_by": &schema.Schema{
+			"created_by": {
 				Type:     schema.TypeString,
-				Optional: true,
+				Computed: true,
 			},
-			"description": &schema.Schema{
+			"description": {
 				Type:     schema.TypeString,
-				Optional: true,
+				Computed: true,
 			},
-			"name": &schema.Schema{
-				Type:     schema.TypeString,
-				Optional: true,
-			},
-			"rules": &schema.Schema{
-				Type:     schema.TypeList,
-				Optional: true,
-				Elem:     ResourceNetworkSecurityRuleSchema(),
-			},
-			"tenant_ref": &schema.Schema{
+			"name": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
-			"uuid": &schema.Schema{
+			"rules": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceNetworkSecurityRuleSchema(),
+			},
+			"tenant_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"uuid": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,

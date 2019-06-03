@@ -14,53 +14,53 @@ import (
 
 func ResourceCloudConnectorUserSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"azure_serviceprincipal": &schema.Schema{
+		"azure_serviceprincipal": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceAzureServicePrincipalCredentialsSchema(),
 		},
-		"azure_userpass": &schema.Schema{
+		"azure_userpass": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceAzureUserPassCredentialsSchema(),
 		},
-		"gcp_credentials": &schema.Schema{
+		"gcp_credentials": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceGCPCredentialsSchema(),
 		},
-		"name": &schema.Schema{
+		"name": {
 			Type:     schema.TypeString,
 			Required: true,
 		},
-		"oci_credentials": &schema.Schema{
+		"oci_credentials": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceOCICredentialsSchema(),
 		},
-		"password": &schema.Schema{
+		"password": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
-		"private_key": &schema.Schema{
+		"private_key": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
-		"public_key": &schema.Schema{
+		"public_key": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
-		"tenant_ref": &schema.Schema{
+		"tenant_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"tencent_credentials": &schema.Schema{
+		"tencent_credentials": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Elem:     ResourceTencentCredentialsSchema(),
 		},
-		"uuid": &schema.Schema{
+		"uuid": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,

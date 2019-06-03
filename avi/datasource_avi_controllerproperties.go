@@ -11,296 +11,243 @@ func dataSourceAviControllerProperties() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviControllerPropertiesRead,
 		Schema: map[string]*schema.Schema{
-			"allow_ip_forwarding": &schema.Schema{
+			"allow_ip_forwarding": {
 				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  false,
+				Computed: true,
 			},
-			"allow_unauthenticated_apis": &schema.Schema{
+			"allow_unauthenticated_apis": {
 				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  false,
+				Computed: true,
 			},
-			"allow_unauthenticated_nodes": &schema.Schema{
+			"allow_unauthenticated_nodes": {
 				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  false,
+				Computed: true,
 			},
-			"api_idle_timeout": &schema.Schema{
+			"api_idle_timeout": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  15,
+				Computed: true,
 			},
-			"api_perf_logging_threshold": &schema.Schema{
+			"api_perf_logging_threshold": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  10000,
+				Computed: true,
 			},
-			"appviewx_compat_mode": &schema.Schema{
+			"appviewx_compat_mode": {
 				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  false,
+				Computed: true,
 			},
-			"attach_ip_retry_interval": &schema.Schema{
+			"attach_ip_retry_interval": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  360,
+				Computed: true,
 			},
-			"attach_ip_retry_limit": &schema.Schema{
+			"attach_ip_retry_limit": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  4,
+				Computed: true,
 			},
-			"bm_use_ansible": &schema.Schema{
+			"bm_use_ansible": {
 				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  true,
+				Computed: true,
 			},
-			"cleanup_expired_authtoken_timeout_period": &schema.Schema{
+			"cleanup_expired_authtoken_timeout_period": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  60,
+				Computed: true,
 			},
-			"cleanup_sessions_timeout_period": &schema.Schema{
+			"cleanup_sessions_timeout_period": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  60,
+				Computed: true,
 			},
-			"cloud_reconcile": &schema.Schema{
+			"cloud_reconcile": {
 				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  true,
+				Computed: true,
 			},
-			"cluster_ip_gratuitous_arp_period": &schema.Schema{
+			"cluster_ip_gratuitous_arp_period": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  60,
+				Computed: true,
 			},
-			"consistency_check_timeout_period": &schema.Schema{
+			"consistency_check_timeout_period": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  60,
+				Computed: true,
 			},
-			"crashed_se_reboot": &schema.Schema{
+			"crashed_se_reboot": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  900,
+				Computed: true,
 			},
-			"dead_se_detection_timer": &schema.Schema{
+			"dead_se_detection_timer": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  360,
+				Computed: true,
 			},
-			"dns_refresh_period": &schema.Schema{
+			"dns_refresh_period": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  60,
+				Computed: true,
 			},
-			"dummy": &schema.Schema{
+			"dummy": {
 				Type:     schema.TypeInt,
-				Optional: true,
+				Computed: true,
 			},
-			"enable_api_sharding": &schema.Schema{
+			"enable_api_sharding": {
 				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  true,
+				Computed: true,
 			},
-			"enable_memory_balancer": &schema.Schema{
+			"enable_memory_balancer": {
 				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  true,
+				Computed: true,
 			},
-			"fatal_error_lease_time": &schema.Schema{
+			"fatal_error_lease_time": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  120,
+				Computed: true,
 			},
-			"max_dead_se_in_grp": &schema.Schema{
+			"max_dead_se_in_grp": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  1,
+				Computed: true,
 			},
-			"max_pcap_per_tenant": &schema.Schema{
+			"max_pcap_per_tenant": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  4,
+				Computed: true,
 			},
-			"max_seq_attach_ip_failures": &schema.Schema{
+			"max_seq_attach_ip_failures": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  3,
+				Computed: true,
 			},
-			"max_seq_vnic_failures": &schema.Schema{
+			"max_seq_vnic_failures": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  3,
+				Computed: true,
 			},
-			"persistence_key_rotate_period": &schema.Schema{
+			"persistence_key_rotate_period": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  0,
+				Computed: true,
 			},
-			"portal_token": &schema.Schema{
+			"portal_token": {
 				Type:     schema.TypeString,
-				Optional: true,
+				Computed: true,
 			},
-			"process_locked_useraccounts_timeout_period": &schema.Schema{
+			"process_locked_useraccounts_timeout_period": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  1,
+				Computed: true,
 			},
-			"process_pki_profile_timeout_period": &schema.Schema{
+			"process_pki_profile_timeout_period": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  1440,
+				Computed: true,
 			},
-			"query_host_fail": &schema.Schema{
+			"query_host_fail": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  180,
+				Computed: true,
 			},
-			"safenet_hsm_version": &schema.Schema{
+			"safenet_hsm_version": {
 				Type:     schema.TypeString,
-				Optional: true,
+				Computed: true,
 			},
-			"se_create_timeout": &schema.Schema{
+			"se_create_timeout": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  900,
+				Computed: true,
 			},
-			"se_failover_attempt_interval": &schema.Schema{
+			"se_failover_attempt_interval": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  300,
+				Computed: true,
 			},
-			"se_from_marketplace": &schema.Schema{
+			"se_from_marketplace": {
 				Type:     schema.TypeString,
-				Optional: true,
-				Default:  "IMAGE"},
-			"se_offline_del": &schema.Schema{
-				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  172000,
+				Computed: true,
 			},
-			"se_vnic_cooldown": &schema.Schema{
+			"se_offline_del": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  120,
+				Computed: true,
 			},
-			"secure_channel_cleanup_timeout": &schema.Schema{
+			"se_vnic_cooldown": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  60,
+				Computed: true,
 			},
-			"secure_channel_controller_token_timeout": &schema.Schema{
+			"secure_channel_cleanup_timeout": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  60,
+				Computed: true,
 			},
-			"secure_channel_se_token_timeout": &schema.Schema{
+			"secure_channel_controller_token_timeout": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  60,
+				Computed: true,
 			},
-			"seupgrade_fabric_pool_size": &schema.Schema{
+			"secure_channel_se_token_timeout": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  20,
+				Computed: true,
 			},
-			"seupgrade_segroup_min_dead_timeout": &schema.Schema{
+			"seupgrade_fabric_pool_size": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  360,
+				Computed: true,
 			},
-			"ssl_certificate_expiry_warning_days": &schema.Schema{
+			"seupgrade_segroup_min_dead_timeout": {
+				Type:     schema.TypeInt,
+				Computed: true,
+			},
+			"ssl_certificate_expiry_warning_days": {
 				Type:     schema.TypeList,
-				Optional: true,
+				Computed: true,
 				Elem:     &schema.Schema{Type: schema.TypeInt},
 			},
-			"unresponsive_se_reboot": &schema.Schema{
+			"unresponsive_se_reboot": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  300,
+				Computed: true,
 			},
-			"upgrade_dns_ttl": &schema.Schema{
+			"upgrade_dns_ttl": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  5,
+				Computed: true,
 			},
-			"upgrade_lease_time": &schema.Schema{
+			"upgrade_lease_time": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  360,
+				Computed: true,
 			},
-			"uuid": &schema.Schema{
+			"uuid": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
-			"vnic_op_fail_time": &schema.Schema{
+			"vnic_op_fail_time": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  180,
+				Computed: true,
 			},
-			"vs_apic_scaleout_timeout": &schema.Schema{
+			"vs_apic_scaleout_timeout": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  360,
+				Computed: true,
 			},
-			"vs_awaiting_se_timeout": &schema.Schema{
+			"vs_awaiting_se_timeout": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  60,
+				Computed: true,
 			},
-			"vs_key_rotate_period": &schema.Schema{
+			"vs_key_rotate_period": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  360,
+				Computed: true,
 			},
-			"vs_scaleout_ready_check_interval": &schema.Schema{
+			"vs_scaleout_ready_check_interval": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  60,
+				Computed: true,
 			},
-			"vs_se_attach_ip_fail": &schema.Schema{
+			"vs_se_attach_ip_fail": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  600,
+				Computed: true,
 			},
-			"vs_se_bootup_fail": &schema.Schema{
+			"vs_se_bootup_fail": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  480,
+				Computed: true,
 			},
-			"vs_se_create_fail": &schema.Schema{
+			"vs_se_create_fail": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  1500,
+				Computed: true,
 			},
-			"vs_se_ping_fail": &schema.Schema{
+			"vs_se_ping_fail": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  60,
+				Computed: true,
 			},
-			"vs_se_vnic_fail": &schema.Schema{
+			"vs_se_vnic_fail": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  300,
+				Computed: true,
 			},
-			"vs_se_vnic_ip_fail": &schema.Schema{
+			"vs_se_vnic_ip_fail": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  120,
+				Computed: true,
 			},
-			"warmstart_se_reconnect_wait_time": &schema.Schema{
+			"warmstart_se_reconnect_wait_time": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  480,
+				Computed: true,
 			},
-			"warmstart_vs_resync_wait_time": &schema.Schema{
+			"warmstart_vs_resync_wait_time": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  300,
+				Computed: true,
 			},
 		},
 	}
