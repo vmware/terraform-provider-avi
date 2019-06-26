@@ -76,6 +76,10 @@ func CommonHash(v interface{}) int {
 }
 
 func SetDefaultsInAPIRes(api_res interface{}, d_local interface{}, s map[string]*schema.Schema) (interface{}, error) {
+	if api_res == nil {
+		log.Printf("[ERROR] SetDefaultsInAPIRes got nil for %v", s)
+		return api_res, nil
+	}
 	switch d_local.(type) {
 	default:
 	case map[string]interface{}:
@@ -89,31 +93,27 @@ func SetDefaultsInAPIRes(api_res interface{}, d_local interface{}, s map[string]
 						//Getting default values from schema
 						default_val, err := dval.DefaultValue()
 						if err != nil {
-							log.Printf("[ERROR] SetDefaultsInAPIRes %v", err)
+							log.Printf("[ERROR] SetDefaultsInAPIRes did not get default value from schema err %v %v",
+								err, default_val)
 						} else {
 							if default_val != nil {
 								api_res.(map[string]interface{})[k] = default_val
 							}
 						}
-
 					}
 				}
 			//d_local nested dictionary.
 			case map[string]interface{}:
-				s2, err := s[k]
-				//As err returned is boolean value
-				if err {
-					log.Printf("[ERROR] SetDefaultsInAPIRes %v", err)
-				}
-				switch s2.Elem.(type) {
-				default:
-				case *schema.Resource:
-					api_res1, err := SetDefaultsInAPIRes(api_res.(map[string]interface{})[k], v, s2.Elem.(*schema.Resource).Schema)
-					if err != nil {
-						log.Printf("[ERROR] SetDefaultsInAPIRes %v", err)
-
-					} else {
-						api_res.(map[string]interface{})[k] = api_res1
+				if s2, ok := s[k]; ok {
+					switch s2.Elem.(type) {
+					default:
+					case *schema.Resource:
+						api_res1, err := SetDefaultsInAPIRes(api_res.(map[string]interface{})[k], v, s2.Elem.(*schema.Resource).Schema)
+						if err != nil {
+							log.Printf("[ERROR] SetDefaultsInAPIRes %v", err)
+						} else {
+							api_res.(map[string]interface{})[k] = api_res1
+						}
 					}
 				}
 			//d_local is array of dictionaries.
@@ -123,39 +123,30 @@ func SetDefaultsInAPIRes(api_res interface{}, d_local interface{}, s map[string]
 					varray2 := api_res.(map[string]interface{})[k].([]interface{})
 					//getting schema for nested object.
 					s2, err := s[k]
+					var dst, src []interface{}
 					//As err returned is boolean value
 					if !err {
-						log.Printf("[ERROR] SetDefaultsInAPIRes %v", err)
+						log.Printf("[ERROR] SetDefaultsInAPIRes in fetching k %v err %v", k, err)
 					}
 					if len(varray2) > len(v.([]interface{})) {
-						for x, y := range v.([]interface{}) {
-							switch s2.Elem.(type) {
-							default:
-							case *schema.Resource:
-								obj, err := SetDefaultsInAPIRes(varray2[x], y, s2.Elem.(*schema.Resource).Schema)
-								if err != nil {
-									log.Printf("[ERROR] SetDefaultsInAPIRes %v", err)
-								} else {
-									objList = append(objList, obj)
-								}
-							case *schema.Schema:
-								objList = append(objList, v.([]interface{})[x])
-							}
-						}
+						dst = varray2
+						src = v.([]interface{})
 					} else {
-						for x, y := range varray2 {
-							switch s2.Elem.(type) {
-							default:
-							case *schema.Resource:
-								obj, err := SetDefaultsInAPIRes(y, v.([]interface{})[x], s2.Elem.(*schema.Resource).Schema)
-								if err != nil {
-									log.Printf("[ERROR] SetDefaultsInAPIRes %v", err)
-								} else {
-									objList = append(objList, obj)
-								}
-							case *schema.Schema:
-								objList = append(objList, v.([]interface{})[x])
+						dst = v.([]interface{})
+						src = varray2
+					}
+					for x, y := range src {
+						switch s2.Elem.(type) {
+						default:
+						case *schema.Resource:
+							obj, err := SetDefaultsInAPIRes(dst[x], y, s2.Elem.(*schema.Resource).Schema)
+							if err != nil {
+								log.Printf("[ERROR] SetDefaultsInAPIRes err %v in x %v y %v", err, x, y)
+							} else {
+								objList = append(objList, obj)
 							}
+						case *schema.Schema:
+							objList = append(objList, src[x])
 						}
 					}
 				}
