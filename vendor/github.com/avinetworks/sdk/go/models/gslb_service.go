@@ -41,7 +41,7 @@ type GslbService struct {
 	// Health monitor probe can be executed for all the members or it can be executed only for third-party members. This operational mode is useful to reduce the number of health monitor probes in case of a hybrid scenario. In such a case, Avi members can have controller derived status while Non-Avi members can be probed by via health monitor probes in dataplane. Enum options - GSLB_SERVICE_HEALTH_MONITOR_ALL_MEMBERS, GSLB_SERVICE_HEALTH_MONITOR_ONLY_NON_AVI_MEMBERS.
 	HealthMonitorScope *string `json:"health_monitor_scope,omitempty"`
 
-	// This field is an internal field and is used in SE. Field introduced in 18.2.2, 19.1.1.
+	// This field is an internal field and is used in SE. Field introduced in 18.2.2.
 	HmOff *bool `json:"hm_off,omitempty"`
 
 	// This field indicates that this object is replicated across GSLB federation. Field introduced in 17.1.3.

@@ -2,16 +2,14 @@ package avi
 
 import (
 	"fmt"
-	"strings"
-	"testing"
-
 	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform/helper/resource"
 	"github.com/hashicorp/terraform/terraform"
+	"strings"
+	"testing"
 )
 
 func TestAVIWebhookBasic(t *testing.T) {
-	//updatedConfig := fmt.Sprintf(testAccAVIWebhookConfig, "abc")
 	resource.Test(t, resource.TestCase{
 		PreCheck:     func() { testAccPreCheck(t) },
 		Providers:    testAccProviders,
@@ -20,16 +18,18 @@ func TestAVIWebhookBasic(t *testing.T) {
 			{
 				Config: testAccAVIWebhookConfig,
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckAVIWebhookExists("avi_webhook.testwebhook"),
+					testAccCheckAVIWebhookExists("avi_webhook.testWebhook"),
 					resource.TestCheckResourceAttr(
-						"avi_webhook.testwebhook", "name", "wb-test")),
+						"avi_webhook.testWebhook", "name", "test-wb-test-abc"),
+				),
 			},
 			{
-				Config: updatetestAccAVIWebhookConfig,
+				Config: testAccAVIWebhookupdatedConfig,
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckAVIWebhookExists("avi_webhook.testwebhook"),
+					testAccCheckAVIWebhookExists("avi_webhook.testWebhook"),
 					resource.TestCheckResourceAttr(
-						"avi_webhook.testwebhook", "name", "wb-abc")),
+						"avi_webhook.testWebhook", "name", "test-wb-updated"),
+				),
 			},
 		},
 	})
@@ -45,7 +45,7 @@ func testAccCheckAVIWebhookExists(resourcename string) resource.TestCheckFunc {
 			return fmt.Errorf("Not found: %s", resourcename)
 		}
 		if rs.Primary.ID == "" {
-			return fmt.Errorf("No Webhook ID is set")
+			return fmt.Errorf("No AVI Webhook ID is set")
 		}
 		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
 		uuid := strings.Split(url, "#")[0]
@@ -85,22 +85,20 @@ func testAccCheckAVIWebhookDestroy(s *terraform.State) error {
 
 const testAccAVIWebhookConfig = `
 data "avi_tenant" "default_tenant"{
-	name= "admin"
+    name= "admin"
 }
-
-resource "avi_webhook" "testwebhook" {
-	name = "wb-test"
-	tenant_ref= "${data.avi_tenant.default_tenant.id}"
+resource "avi_webhook" "testWebhook" {
+	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
+	"name" = "test-wb-test-abc"
 }
 `
 
-const updatetestAccAVIWebhookConfig = `
+const testAccAVIWebhookupdatedConfig = `
 data "avi_tenant" "default_tenant"{
-	name= "admin"
+    name= "admin"
 }
-
-resource "avi_webhook" "testwebhook" {
-	name = "wb-abc"
-	tenant_ref= "${data.avi_tenant.default_tenant.id}"
+resource "avi_webhook" "testWebhook" {
+	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
+	"name" = "test-wb-updated"
 }
 `

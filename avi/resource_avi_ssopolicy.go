@@ -19,6 +19,11 @@ func ResourceSSOPolicySchema() map[string]*schema.Schema {
 			Optional: true,
 			Elem:     ResourceAuthenticationPolicySchema(),
 		},
+		"authorization_policy": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Elem:     ResourceAuthorizationPolicySchema(),
+		},
 		"name": {
 			Type:     schema.TypeString,
 			Optional: true,
@@ -27,6 +32,11 @@ func ResourceSSOPolicySchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
+		},
+		"type": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Default:  "SSO_TYPE_SAML",
 		},
 		"uuid": {
 			Type:     schema.TypeString,

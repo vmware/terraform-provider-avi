@@ -16,7 +16,7 @@ type CloudSyncServices struct {
 	// Unique object identifier of se_vm.
 	SeVMUUID *string `json:"se_vm_uuid,omitempty"`
 
-	// List of vips. Field introduced in 18.2.2, 19.1.1.
+	// List of vips. Field introduced in 18.2.2.
 	Vips []*IPAddr `json:"vips,omitempty"`
 
 	//  Enum options - CLOUD_NONE, CLOUD_VCENTER, CLOUD_OPENSTACK, CLOUD_AWS, CLOUD_VCA, CLOUD_APIC, CLOUD_MESOS, CLOUD_LINUXSERVER, CLOUD_DOCKER_UCP, CLOUD_RANCHER, CLOUD_OSHIFT_K8S, CLOUD_AZURE, CLOUD_GCP.

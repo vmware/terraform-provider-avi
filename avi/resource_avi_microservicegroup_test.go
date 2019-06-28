@@ -2,12 +2,11 @@ package avi
 
 import (
 	"fmt"
-	"strings"
-	"testing"
-
 	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform/helper/resource"
 	"github.com/hashicorp/terraform/terraform"
+	"strings"
+	"testing"
 )
 
 func TestAVIMicroServiceGroupBasic(t *testing.T) {
@@ -19,16 +18,18 @@ func TestAVIMicroServiceGroupBasic(t *testing.T) {
 			{
 				Config: testAccAVIMicroServiceGroupConfig,
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckAVIMicroServiceGroupExists("avi_microservicegroup.testmicroservicegroup"),
+					testAccCheckAVIMicroServiceGroupExists("avi_microservicegroup.testMicroServiceGroup"),
 					resource.TestCheckResourceAttr(
-						"avi_microservicegroup.testmicroservicegroup", "name", "msg-test")),
+						"avi_microservicegroup.testMicroServiceGroup", "name", "msg-test-abc"),
+				),
 			},
 			{
-				Config: testAccUpdatedAVIMicroServiceGroupConfig,
+				Config: testAccAVIMicroServiceGroupupdatedConfig,
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckAVIMicroServiceGroupExists("avi_microservicegroup.testmicroservicegroup"),
+					testAccCheckAVIMicroServiceGroupExists("avi_microservicegroup.testMicroServiceGroup"),
 					resource.TestCheckResourceAttr(
-						"avi_microservicegroup.testmicroservicegroup", "name", "msg-abc")),
+						"avi_microservicegroup.testMicroServiceGroup", "name", "msg-updated"),
+				),
 			},
 		},
 	})
@@ -44,7 +45,7 @@ func testAccCheckAVIMicroServiceGroupExists(resourcename string) resource.TestCh
 			return fmt.Errorf("Not found: %s", resourcename)
 		}
 		if rs.Primary.ID == "" {
-			return fmt.Errorf("No Micro Service Group ID is set")
+			return fmt.Errorf("No AVI MicroServiceGroup ID is set")
 		}
 		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
 		uuid := strings.Split(url, "#")[0]
@@ -76,7 +77,7 @@ func testAccCheckAVIMicroServiceGroupDestroy(s *terraform.State) error {
 			return err
 		}
 		if len(obj.(map[string]interface{})) > 0 {
-			return fmt.Errorf("AVI Micro Service Group still exists")
+			return fmt.Errorf("AVI MicroServiceGroup still exists")
 		}
 	}
 	return nil
@@ -84,24 +85,22 @@ func testAccCheckAVIMicroServiceGroupDestroy(s *terraform.State) error {
 
 const testAccAVIMicroServiceGroupConfig = `
 data "avi_tenant" "default_tenant"{
-	name= "admin"
+    name= "admin"
 }
-
-resource "avi_microservicegroup" "testmicroservicegroup" {
-	name = "msg-test"
-	tenant_ref= "${data.avi_tenant.default_tenant.id}"
-    service_refs= []
+resource "avi_microservicegroup" "testMicroServiceGroup" {
+	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
+	"name" = "msg-test-abc"
+	"service_refs" = []
 }
 `
 
-const testAccUpdatedAVIMicroServiceGroupConfig = `
+const testAccAVIMicroServiceGroupupdatedConfig = `
 data "avi_tenant" "default_tenant"{
-	name= "admin"
+    name= "admin"
 }
-
-resource "avi_microservicegroup" "testmicroservicegroup" {
-	name = "msg-abc"
-	tenant_ref= "${data.avi_tenant.default_tenant.id}"
-    service_refs= []
+resource "avi_microservicegroup" "testMicroServiceGroup" {
+	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
+	"name" = "msg-updated"
+	"service_refs" = []
 }
 `

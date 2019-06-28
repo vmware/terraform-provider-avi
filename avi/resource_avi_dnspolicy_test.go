@@ -2,40 +2,41 @@ package avi
 
 import (
 	"fmt"
-	"strings"
-	"testing"
-
 	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform/helper/resource"
 	"github.com/hashicorp/terraform/terraform"
+	"strings"
+	"testing"
 )
 
-func TestAVIDNSPolicyBasic(t *testing.T) {
+func TestAVIDnsPolicyBasic(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		PreCheck:     func() { testAccPreCheck(t) },
 		Providers:    testAccProviders,
-		CheckDestroy: testAccCheckAVIDNSPolicyDestroy,
+		CheckDestroy: testAccCheckAVIDnsPolicyDestroy,
 		Steps: []resource.TestStep{
 			{
-				Config: testAccAVIDNSPolicyConfig,
+				Config: testAccAVIDnsPolicyConfig,
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckAVIDNSPolicyExists("avi_dnspolicy.testdnspolicy"),
+					testAccCheckAVIDnsPolicyExists("avi_dnspolicy.testDnsPolicy"),
 					resource.TestCheckResourceAttr(
-						"avi_dnspolicy.testdnspolicy", "name", "dp-test")),
+						"avi_dnspolicy.testDnsPolicy", "name", "test-dp-abc"),
+				),
 			},
 			{
-				Config: testAccUpdatedAVIDNSPolicyConfig,
+				Config: testAccAVIDnsPolicyupdatedConfig,
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckAVIDNSPolicyExists("avi_dnspolicy.testdnspolicy"),
+					testAccCheckAVIDnsPolicyExists("avi_dnspolicy.testDnsPolicy"),
 					resource.TestCheckResourceAttr(
-						"avi_dnspolicy.testdnspolicy", "name", "dp-abc")),
+						"avi_dnspolicy.testDnsPolicy", "name", "test-dp-updated"),
+				),
 			},
 		},
 	})
 
 }
 
-func testAccCheckAVIDNSPolicyExists(resourcename string) resource.TestCheckFunc {
+func testAccCheckAVIDnsPolicyExists(resourcename string) resource.TestCheckFunc {
 	return func(s *terraform.State) error {
 		conn := testAccProvider.Meta().(*clients.AviClient).AviSession
 		var obj interface{}
@@ -44,7 +45,7 @@ func testAccCheckAVIDNSPolicyExists(resourcename string) resource.TestCheckFunc 
 			return fmt.Errorf("Not found: %s", resourcename)
 		}
 		if rs.Primary.ID == "" {
-			return fmt.Errorf("No DNS Policy ID is set")
+			return fmt.Errorf("No AVI DnsPolicy ID is set")
 		}
 		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
 		uuid := strings.Split(url, "#")[0]
@@ -58,7 +59,7 @@ func testAccCheckAVIDNSPolicyExists(resourcename string) resource.TestCheckFunc 
 
 }
 
-func testAccCheckAVIDNSPolicyDestroy(s *terraform.State) error {
+func testAccCheckAVIDnsPolicyDestroy(s *terraform.State) error {
 	conn := testAccProvider.Meta().(*clients.AviClient).AviSession
 	var obj interface{}
 	for _, rs := range s.RootModule().Resources {
@@ -76,32 +77,30 @@ func testAccCheckAVIDNSPolicyDestroy(s *terraform.State) error {
 			return err
 		}
 		if len(obj.(map[string]interface{})) > 0 {
-			return fmt.Errorf("AVI DNS Policy still exists")
+			return fmt.Errorf("AVI DnsPolicy still exists")
 		}
 	}
 	return nil
 }
 
-const testAccAVIDNSPolicyConfig = `
+const testAccAVIDnsPolicyConfig = `
 data "avi_tenant" "default_tenant"{
-	name= "admin"
+    name= "admin"
 }
-
-resource "avi_dnspolicy" "testdnspolicy" {
-	name = "dp-test"
-	description = "test dns policy"
-	tenant_ref= "${data.avi_tenant.default_tenant.id}"
+resource "avi_dnspolicy" "testDnsPolicy" {
+	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
+	"name" = "test-dp-abc"
+	"description" = "test dns policy"
 }
 `
 
-const testAccUpdatedAVIDNSPolicyConfig = `
+const testAccAVIDnsPolicyupdatedConfig = `
 data "avi_tenant" "default_tenant"{
-	name= "admin"
+    name= "admin"
 }
-
-resource "avi_dnspolicy" "testdnspolicy" {
-	name = "dp-abc"
-	description = "test dns policy"
-	tenant_ref= "${data.avi_tenant.default_tenant.id}"
+resource "avi_dnspolicy" "testDnsPolicy" {
+	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
+	"name" = "test-dp-updated"
+	"description" = "test dns policy"
 }
 `

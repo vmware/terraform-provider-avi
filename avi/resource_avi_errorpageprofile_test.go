@@ -2,12 +2,11 @@ package avi
 
 import (
 	"fmt"
-	"strings"
-	"testing"
-
 	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform/helper/resource"
 	"github.com/hashicorp/terraform/terraform"
+	"strings"
+	"testing"
 )
 
 func TestAVIErrorPageProfileBasic(t *testing.T) {
@@ -19,16 +18,18 @@ func TestAVIErrorPageProfileBasic(t *testing.T) {
 			{
 				Config: testAccAVIErrorPageProfileConfig,
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckAVIErrorPageProfileExists("avi_errorpageprofile.testerrorpageprofile"),
+					testAccCheckAVIErrorPageProfileExists("avi_errorpageprofile.testErrorPageProfile"),
 					resource.TestCheckResourceAttr(
-						"avi_errorpageprofile.testerrorpageprofile", "name", "epp-test")),
+						"avi_errorpageprofile.testErrorPageProfile", "name", "test-epp-abc"),
+				),
 			},
 			{
-				Config: testAccUpdatedAVIErrorPageProfileConfig,
+				Config: testAccAVIErrorPageProfileupdatedConfig,
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckAVIErrorPageProfileExists("avi_errorpageprofile.testerrorpageprofile"),
+					testAccCheckAVIErrorPageProfileExists("avi_errorpageprofile.testErrorPageProfile"),
 					resource.TestCheckResourceAttr(
-						"avi_errorpageprofile.testerrorpageprofile", "name", "epp-abc")),
+						"avi_errorpageprofile.testErrorPageProfile", "name", "test-epp-updated"),
+				),
 			},
 		},
 	})
@@ -44,7 +45,7 @@ func testAccCheckAVIErrorPageProfileExists(resourcename string) resource.TestChe
 			return fmt.Errorf("Not found: %s", resourcename)
 		}
 		if rs.Primary.ID == "" {
-			return fmt.Errorf("No Error Page Profile ID is set")
+			return fmt.Errorf("No AVI ErrorPageProfile ID is set")
 		}
 		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
 		uuid := strings.Split(url, "#")[0]
@@ -76,7 +77,7 @@ func testAccCheckAVIErrorPageProfileDestroy(s *terraform.State) error {
 			return err
 		}
 		if len(obj.(map[string]interface{})) > 0 {
-			return fmt.Errorf("AVI Error Page Profile still exists")
+			return fmt.Errorf("AVI ErrorPageProfile still exists")
 		}
 	}
 	return nil
@@ -84,22 +85,20 @@ func testAccCheckAVIErrorPageProfileDestroy(s *terraform.State) error {
 
 const testAccAVIErrorPageProfileConfig = `
 data "avi_tenant" "default_tenant"{
-	name= "admin"
+    name= "admin"
 }
-
-resource "avi_errorpageprofile" "testerrorpageprofile" {
-	name = "epp-test"
-	tenant_ref= "${data.avi_tenant.default_tenant.id}"
+resource "avi_errorpageprofile" "testErrorPageProfile" {
+	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
+	"name" = "test-epp-abc"
 }
 `
 
-const testAccUpdatedAVIErrorPageProfileConfig = `
+const testAccAVIErrorPageProfileupdatedConfig = `
 data "avi_tenant" "default_tenant"{
-	name= "admin"
+    name= "admin"
 }
-
-resource "avi_errorpageprofile" "testerrorpageprofile" {
-	name = "epp-abc"
-	tenant_ref= "${data.avi_tenant.default_tenant.id}"
+resource "avi_errorpageprofile" "testErrorPageProfile" {
+	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
+	"name" = "test-epp-updated"
 }
 `

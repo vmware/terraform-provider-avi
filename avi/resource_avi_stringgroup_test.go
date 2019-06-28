@@ -20,14 +20,16 @@ func TestAVIStringGroupBasic(t *testing.T) {
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckAVIStringGroupExists("avi_stringgroup.testStringGroup"),
 					resource.TestCheckResourceAttr(
-						"avi_stringgroup.testStringGroup", "name", "testSystem-Compressible-Content-Types")),
+						"avi_stringgroup.testStringGroup", "name", "test-System-Compressible-Content-Types-abc"),
+				),
 			},
 			{
 				Config: testAccAVIStringGroupupdatedConfig,
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckAVIStringGroupExists("avi_stringgroup.testStringGroup"),
 					resource.TestCheckResourceAttr(
-						"avi_stringgroup.testStringGroup", "name", "testSystem-Compressible-Content-Types-abc")),
+						"avi_stringgroup.testStringGroup", "name", "test-System-Compressible-Content-Types-updated"),
+				),
 			},
 		},
 	})
@@ -83,76 +85,76 @@ func testAccCheckAVIStringGroupDestroy(s *terraform.State) error {
 
 const testAccAVIStringGroupConfig = `
 data "avi_tenant" "default_tenant"{
-        name= "admin"
+    name= "admin"
 }
 resource "avi_stringgroup" "testStringGroup" {
-"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
-"kv" {
-"key" = "text/html"
+	"type" = "SG_TYPE_STRING"
+	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
+	"name" = "test-System-Compressible-Content-Types-abc"
+	"kv" {
+	"key" = "text/html"
 }
 "kv" {
-"key" = "text/xml"
+	"key" = "text/xml"
 }
 "kv" {
-"key" = "text/plain"
+	"key" = "text/plain"
 }
 "kv" {
-"key" = "text/css"
+	"key" = "text/css"
 }
 "kv" {
-"key" = "text/javascript"
+	"key" = "text/javascript"
 }
 "kv" {
-"key" = "application/javascript"
+	"key" = "application/javascript"
 }
 "kv" {
-"key" = "application/x-javascript"
+	"key" = "application/x-javascript"
 }
 "kv" {
-"key" = "application/xml"
+	"key" = "application/xml"
 }
 "kv" {
-"key" = "application/pdf"
+	"key" = "application/pdf"
 }
-"type" = "SG_TYPE_STRING"
-"name" = "testSystem-Compressible-Content-Types"
 }
 `
 
 const testAccAVIStringGroupupdatedConfig = `
 data "avi_tenant" "default_tenant"{
-        name= "admin"
+    name= "admin"
 }
 resource "avi_stringgroup" "testStringGroup" {
-"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
-"kv" {
-"key" = "text/html"
+	"type" = "SG_TYPE_STRING"
+	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
+	"name" = "test-System-Compressible-Content-Types-updated"
+	"kv" {
+	"key" = "text/html"
 }
 "kv" {
-"key" = "text/xml"
+	"key" = "text/xml"
 }
 "kv" {
-"key" = "text/plain"
+	"key" = "text/plain"
 }
 "kv" {
-"key" = "text/css"
+	"key" = "text/css"
 }
 "kv" {
-"key" = "text/javascript"
+	"key" = "text/javascript"
 }
 "kv" {
-"key" = "application/javascript"
+	"key" = "application/javascript"
 }
 "kv" {
-"key" = "application/x-javascript"
+	"key" = "application/x-javascript"
 }
 "kv" {
-"key" = "application/xml"
+	"key" = "application/xml"
 }
 "kv" {
-"key" = "application/pdf"
+	"key" = "application/pdf"
 }
-"type" = "SG_TYPE_STRING"
-"name" = "testSystem-Compressible-Content-Types-abc"
 }
 `

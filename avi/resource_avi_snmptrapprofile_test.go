@@ -2,40 +2,41 @@ package avi
 
 import (
 	"fmt"
-	"strings"
-	"testing"
-
 	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform/helper/resource"
 	"github.com/hashicorp/terraform/terraform"
+	"strings"
+	"testing"
 )
 
-func TestAVISNMPTrapProfileBasic(t *testing.T) {
+func TestAVISnmpTrapProfileBasic(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		PreCheck:     func() { testAccPreCheck(t) },
 		Providers:    testAccProviders,
-		CheckDestroy: testAccCheckAVISNMPTrapProfileDestroy,
+		CheckDestroy: testAccCheckAVISnmpTrapProfileDestroy,
 		Steps: []resource.TestStep{
 			{
-				Config: testAccAVISNMPTrapProfileConfig,
+				Config: testAccAVISnmpTrapProfileConfig,
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckAVISNMPTrapProfileExists("avi_snmptrapprofile.testsnmptrapprofile"),
+					testAccCheckAVISnmpTrapProfileExists("avi_snmptrapprofile.testSnmpTrapProfile"),
 					resource.TestCheckResourceAttr(
-						"avi_snmptrapprofile.testsnmptrapprofile", "name", "snmp-test")),
+						"avi_snmptrapprofile.testSnmpTrapProfile", "name", "test-snmp-test-abc"),
+				),
 			},
 			{
-				Config: testAccUpdatedAVISNMPTrapProfileConfig,
+				Config: testAccAVISnmpTrapProfileupdatedConfig,
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckAVISNMPTrapProfileExists("avi_snmptrapprofile.testsnmptrapprofile"),
+					testAccCheckAVISnmpTrapProfileExists("avi_snmptrapprofile.testSnmpTrapProfile"),
 					resource.TestCheckResourceAttr(
-						"avi_snmptrapprofile.testsnmptrapprofile", "name", "snmp-abc")),
+						"avi_snmptrapprofile.testSnmpTrapProfile", "name", "test-snmp-updated"),
+				),
 			},
 		},
 	})
 
 }
 
-func testAccCheckAVISNMPTrapProfileExists(resourcename string) resource.TestCheckFunc {
+func testAccCheckAVISnmpTrapProfileExists(resourcename string) resource.TestCheckFunc {
 	return func(s *terraform.State) error {
 		conn := testAccProvider.Meta().(*clients.AviClient).AviSession
 		var obj interface{}
@@ -44,7 +45,7 @@ func testAccCheckAVISNMPTrapProfileExists(resourcename string) resource.TestChec
 			return fmt.Errorf("Not found: %s", resourcename)
 		}
 		if rs.Primary.ID == "" {
-			return fmt.Errorf("No SNMP Trap Profile ID is set")
+			return fmt.Errorf("No AVI SnmpTrapProfile ID is set")
 		}
 		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
 		uuid := strings.Split(url, "#")[0]
@@ -58,7 +59,7 @@ func testAccCheckAVISNMPTrapProfileExists(resourcename string) resource.TestChec
 
 }
 
-func testAccCheckAVISNMPTrapProfileDestroy(s *terraform.State) error {
+func testAccCheckAVISnmpTrapProfileDestroy(s *terraform.State) error {
 	conn := testAccProvider.Meta().(*clients.AviClient).AviSession
 	var obj interface{}
 	for _, rs := range s.RootModule().Resources {
@@ -76,30 +77,28 @@ func testAccCheckAVISNMPTrapProfileDestroy(s *terraform.State) error {
 			return err
 		}
 		if len(obj.(map[string]interface{})) > 0 {
-			return fmt.Errorf("AVI SNMP Trap Profile still exists")
+			return fmt.Errorf("AVI SnmpTrapProfile still exists")
 		}
 	}
 	return nil
 }
 
-const testAccAVISNMPTrapProfileConfig = `
+const testAccAVISnmpTrapProfileConfig = `
 data "avi_tenant" "default_tenant"{
-	name= "admin"
+    name= "admin"
 }
-
-resource "avi_snmptrapprofile" "testsnmptrapprofile" {
-	name = "snmp-test"
-	tenant_ref= "${data.avi_tenant.default_tenant.id}"
+resource "avi_snmptrapprofile" "testSnmpTrapProfile" {
+	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
+	"name" = "test-snmp-test-abc"
 }
 `
 
-const testAccUpdatedAVISNMPTrapProfileConfig = `
+const testAccAVISnmpTrapProfileupdatedConfig = `
 data "avi_tenant" "default_tenant"{
-	name= "admin"
+    name= "admin"
 }
-
-resource "avi_snmptrapprofile" "testsnmptrapprofile" {
-	name = "snmp-abc"
-	tenant_ref= "${data.avi_tenant.default_tenant.id}"
+resource "avi_snmptrapprofile" "testSnmpTrapProfile" {
+	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
+	"name" = "test-snmp-updated"
 }
 `

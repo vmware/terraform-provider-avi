@@ -20,14 +20,20 @@ func TestAVIApplicationPersistenceProfileBasic(t *testing.T) {
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckAVIApplicationPersistenceProfileExists("avi_applicationpersistenceprofile.testApplicationPersistenceProfile"),
 					resource.TestCheckResourceAttr(
-						"avi_applicationpersistenceprofile.testApplicationPersistenceProfile", "name", "testSystem-Persistence-Client-IP")),
+						"avi_applicationpersistenceprofile.testApplicationPersistenceProfile", "name", "test-System-Persistence-Client-IP-abc"),
+					resource.TestCheckResourceAttr(
+						"avi_applicationpersistenceprofile.testApplicationPersistenceProfile", "is_federated", "false"),
+				),
 			},
 			{
 				Config: testAccAVIApplicationPersistenceProfileupdatedConfig,
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckAVIApplicationPersistenceProfileExists("avi_applicationpersistenceprofile.testApplicationPersistenceProfile"),
 					resource.TestCheckResourceAttr(
-						"avi_applicationpersistenceprofile.testApplicationPersistenceProfile", "name", "testSystem-Persistence-Client-IP-abc")),
+						"avi_applicationpersistenceprofile.testApplicationPersistenceProfile", "name", "test-System-Persistence-Client-IP-updated"),
+					resource.TestCheckResourceAttr(
+						"avi_applicationpersistenceprofile.testApplicationPersistenceProfile", "is_federated", "false"),
+				),
 			},
 		},
 	})
@@ -83,32 +89,32 @@ func testAccCheckAVIApplicationPersistenceProfileDestroy(s *terraform.State) err
 
 const testAccAVIApplicationPersistenceProfileConfig = `
 data "avi_tenant" "default_tenant"{
-        name= "admin"
+    name= "admin"
 }
 resource "avi_applicationpersistenceprofile" "testApplicationPersistenceProfile" {
-"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
-"is_federated" = false
-"server_hm_down_recovery" = "HM_DOWN_PICK_NEW_SERVER"
-"persistence_type" = "PERSISTENCE_TYPE_CLIENT_IP_ADDRESS"
-"ip_persistence_profile" {
-"ip_persistent_timeout" = "5"
-}
-"name" = "testSystem-Persistence-Client-IP"
+	"name" = "test-System-Persistence-Client-IP-abc"
+	"persistence_type" = "PERSISTENCE_TYPE_CLIENT_IP_ADDRESS"
+	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
+	"server_hm_down_recovery" = "HM_DOWN_PICK_NEW_SERVER"
+	"is_federated" = false
+	"ip_persistence_profile" {
+		"ip_persistent_timeout" = "5"
+	}
 }
 `
 
 const testAccAVIApplicationPersistenceProfileupdatedConfig = `
 data "avi_tenant" "default_tenant"{
-        name= "admin"
+    name= "admin"
 }
 resource "avi_applicationpersistenceprofile" "testApplicationPersistenceProfile" {
-"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
-"is_federated" = false
-"server_hm_down_recovery" = "HM_DOWN_PICK_NEW_SERVER"
-"persistence_type" = "PERSISTENCE_TYPE_CLIENT_IP_ADDRESS"
-"ip_persistence_profile" {
-"ip_persistent_timeout" = "5"
-}
-"name" = "testSystem-Persistence-Client-IP-abc"
+	"name" = "test-System-Persistence-Client-IP-updated"
+	"persistence_type" = "PERSISTENCE_TYPE_CLIENT_IP_ADDRESS"
+	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
+	"server_hm_down_recovery" = "HM_DOWN_PICK_NEW_SERVER"
+	"is_federated" = false
+	"ip_persistence_profile" {
+		"ip_persistent_timeout" = "5"
+	}
 }
 `

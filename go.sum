@@ -3,12 +3,15 @@ github.com/apparentlymart/go-cidr v0.0.0-20170418151526-7e4b007599d4/go.mod h1:E
 github.com/apparentlymart/go-rundeck-api v0.0.0-20160826143032-f6af74d34d1e/go.mod h1:U6OjNHcY3edY04ILn+KNrWZm3j15cPzW7PyjtIQOh1Y=
 github.com/avinetworks/sdk v0.0.0-20190430181015-56e8780326c5 h1:QOQOZKr6rk42EqtbNNB3rEd2VhKSV8HSo3C0A+8krSc=
 github.com/avinetworks/sdk v0.0.0-20190430181015-56e8780326c5/go.mod h1:BcllDeAFx8PtaMrPxvvuCUo7NRS2x6w+3W17WFDu0sk=
+github.com/avinetworks/sdk v0.0.0-20190619144306-a45401034628 h1:mlWv+jjCfvFfEdP5ZlufRrIy0CSgqDW4O9l5PHHCzC4=
+github.com/avinetworks/sdk v0.0.0-20190619144306-a45401034628/go.mod h1:BcllDeAFx8PtaMrPxvvuCUo7NRS2x6w+3W17WFDu0sk=
 github.com/aws/aws-sdk-go v1.8.34 h1:zDNBtR25rYYUi7aEh2HRa2f2WTm6LSHWSAMCNY2WdXA=
 github.com/aws/aws-sdk-go v1.8.34/go.mod h1:ZRmQr0FajVIyZ4ZzBYKG5P3ZqPz9IHG41ZoMu1ADI3k=
 github.com/bgentry/go-netrc v0.0.0-20140422174119-9fd32a8b3d3d h1:xDfNPAt8lFiC1UJrqV3uuy861HCTo708pDMbjHHdCas=
 github.com/bgentry/go-netrc v0.0.0-20140422174119-9fd32a8b3d3d/go.mod h1:6QX/PXZ00z/TKoufEY6K/a0k6AhaJrQKdFe6OfVXsa4=
 github.com/blang/semver v3.5.1+incompatible h1:cQNTCjp13qL8KC3Nbxr/y2Bqb63oX6wdnnjpJbkM4JQ=
 github.com/blang/semver v3.5.1+incompatible/go.mod h1:kRBLl5iJ+tD4TcOOxsy/0fnwebNt5EWlYSAyrTnjyyk=
+github.com/davecgh/go-spew v1.1.0 h1:ZDRjVQ15GmhC3fiQ8ni8+OwkZQO4DARzQgrnXU1Liz8=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/fsouza/go-dockerclient v0.0.0-20160427172547-1d4f4ae73768/go.mod h1:KpcjM623fQYE9MZiTGzKhjfxXAV9wbyX2C1cyRHfhl0=
 github.com/go-ini/ini v1.23.1 h1:amNPHl+tCb4BolL2NAIQaKLY+ZiL1Ju7OqZ9Fx6PTBQ=
@@ -33,6 +36,7 @@ github.com/hashicorp/hcl v0.0.0-20170504190234-a4b07c25de5f h1:UdxlrJz4JOnY8W+Db
 github.com/hashicorp/hcl v0.0.0-20170504190234-a4b07c25de5f/go.mod h1:oZtUIOe8dh44I2q6ScRibXws4Ajl+d+nod3AaR9vL5w=
 github.com/hashicorp/hil v0.0.0-20170512213305-fac2259da677 h1:Yj0RcrbLT/5z2k1UdRW+2r0nDUgrKjUNLQiXzMU4a5k=
 github.com/hashicorp/hil v0.0.0-20170512213305-fac2259da677/go.mod h1:KHvg/R2/dPtaePb16oW4qIyzkMxXOL38xjRN64adsts=
+github.com/hashicorp/logutils v0.0.0-20150609070431-0dc08b1671f3 h1:oD64EFjELI9RY9yoWlfua58r+etdnoIC871z+rr6lkA=
 github.com/hashicorp/logutils v0.0.0-20150609070431-0dc08b1671f3/go.mod h1:QIAnNjmIWmVIIkWDTG1z5v++HQmx9WQRO+LraFDTW64=
 github.com/hashicorp/terraform v0.10.0 h1:qDay454qAPcAThGMoWfO7snCwbtsr6O2DwJiFqfbMSM=
 github.com/hashicorp/terraform v0.10.0/go.mod h1:uN1KUiT7Wdg61fPwsGXQwK3c8PmpIVZrt5Vcb1VrSoM=

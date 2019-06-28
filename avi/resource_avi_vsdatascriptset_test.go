@@ -2,12 +2,11 @@ package avi
 
 import (
 	"fmt"
-	"strings"
-	"testing"
-
 	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform/helper/resource"
 	"github.com/hashicorp/terraform/terraform"
+	"strings"
+	"testing"
 )
 
 func TestAVIVSDataScriptSetBasic(t *testing.T) {
@@ -19,16 +18,18 @@ func TestAVIVSDataScriptSetBasic(t *testing.T) {
 			{
 				Config: testAccAVIVSDataScriptSetConfig,
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckAVIVSDataScriptSetExists("avi_vsdatascriptset.testvsdatascriptset"),
+					testAccCheckAVIVSDataScriptSetExists("avi_vsdatascriptset.testVSDataScriptSet"),
 					resource.TestCheckResourceAttr(
-						"avi_vsdatascriptset.testvsdatascriptset", "name", "vsd-test")),
+						"avi_vsdatascriptset.testVSDataScriptSet", "name", "test-vsd-abc"),
+				),
 			},
 			{
-				Config: testAccUpdatedAVIVSDataScriptSetConfig,
+				Config: testAccAVIVSDataScriptSetupdatedConfig,
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckAVIVSDataScriptSetExists("avi_vsdatascriptset.testvsdatascriptset"),
+					testAccCheckAVIVSDataScriptSetExists("avi_vsdatascriptset.testVSDataScriptSet"),
 					resource.TestCheckResourceAttr(
-						"avi_vsdatascriptset.testvsdatascriptset", "name", "vsd-abc")),
+						"avi_vsdatascriptset.testVSDataScriptSet", "name", "test-vsd-updated"),
+				),
 			},
 		},
 	})
@@ -44,7 +45,7 @@ func testAccCheckAVIVSDataScriptSetExists(resourcename string) resource.TestChec
 			return fmt.Errorf("Not found: %s", resourcename)
 		}
 		if rs.Primary.ID == "" {
-			return fmt.Errorf("No VS DataScript Set ID is set")
+			return fmt.Errorf("No AVI VSDataScriptSet ID is set")
 		}
 		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
 		uuid := strings.Split(url, "#")[0]
@@ -76,7 +77,7 @@ func testAccCheckAVIVSDataScriptSetDestroy(s *terraform.State) error {
 			return err
 		}
 		if len(obj.(map[string]interface{})) > 0 {
-			return fmt.Errorf("AVI VS DataScript Set still exists")
+			return fmt.Errorf("AVI VSDataScriptSet still exists")
 		}
 	}
 	return nil
@@ -84,38 +85,30 @@ func testAccCheckAVIVSDataScriptSetDestroy(s *terraform.State) error {
 
 const testAccAVIVSDataScriptSetConfig = `
 data "avi_tenant" "default_tenant"{
-	name= "admin"
+    name= "admin"
 }
-data "avi_cloud" "default_cloud" {
-	name= "Default-Cloud"
-}
-
-resource "avi_vsdatascriptset" "testvsdatascriptset" {
-	name = "vsd-test"
-	tenant_ref= "${data.avi_tenant.default_tenant.id}"
-    ipgroup_refs= []
-    pool_group_refs= []
-    pool_refs= []
-    string_group_refs= []
-    protocol_parser_refs= []
+resource "avi_vsdatascriptset" "testVSDataScriptSet" {
+	"name" = "test-vsd-abc"
+	"pool_refs" = []
+	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
+	"protocol_parser_refs" = []
+	"pool_group_refs" = []
+	"string_group_refs" = []
+	"ipgroup_refs" = []
 }
 `
 
-const testAccUpdatedAVIVSDataScriptSetConfig = `
+const testAccAVIVSDataScriptSetupdatedConfig = `
 data "avi_tenant" "default_tenant"{
-	name= "admin"
+    name= "admin"
 }
-data "avi_cloud" "default_cloud" {
-	name= "Default-Cloud"
-}
-
-resource "avi_vsdatascriptset" "testvsdatascriptset" {
-	name = "vsd-abc"
-	tenant_ref= "${data.avi_tenant.default_tenant.id}"
-    ipgroup_refs= []
-    pool_group_refs= []
-    pool_refs= []
-    string_group_refs= []
-    protocol_parser_refs= []
+resource "avi_vsdatascriptset" "testVSDataScriptSet" {
+	"name" = "test-vsd-updated"
+	"pool_refs" = []
+	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
+	"protocol_parser_refs" = []
+	"pool_group_refs" = []
+	"string_group_refs" = []
+	"ipgroup_refs" = []
 }
 `

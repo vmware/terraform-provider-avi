@@ -7,6 +7,6 @@ package models
 // swagger:model WafPolicyWhitelist
 type WafPolicyWhitelist struct {
 
-	// Rules to bypass WAF. Field introduced in 19.1.1.
+	// Rules to bypass WAF. Field introduced in 18.2.3.
 	Rules []*WafPolicyWhitelistRule `json:"rules,omitempty"`
 }

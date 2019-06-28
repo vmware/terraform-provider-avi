@@ -2,40 +2,41 @@ package avi
 
 import (
 	"fmt"
-	"strings"
-	"testing"
-
 	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform/helper/resource"
 	"github.com/hashicorp/terraform/terraform"
+	"strings"
+	"testing"
 )
 
-func TestAVINetworkSecuritypolicyBasic(t *testing.T) {
+func TestAVINetworkSecurityPolicyBasic(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		PreCheck:     func() { testAccPreCheck(t) },
 		Providers:    testAccProviders,
-		CheckDestroy: testAccCheckAVINetworkSecuritypolicyDestroy,
+		CheckDestroy: testAccCheckAVINetworkSecurityPolicyDestroy,
 		Steps: []resource.TestStep{
 			{
-				Config: testAccAVINetworkSecuritypolicyConfig,
+				Config: testAccAVINetworkSecurityPolicyConfig,
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckAVINetworkSecuritypolicyExists("avi_networksecuritypolicy.testnetworksecuritypolicy"),
+					testAccCheckAVINetworkSecurityPolicyExists("avi_networksecuritypolicy.testNetworkSecurityPolicy"),
 					resource.TestCheckResourceAttr(
-						"avi_networksecuritypolicy.testnetworksecuritypolicy", "name", "ns-test")),
+						"avi_networksecuritypolicy.testNetworkSecurityPolicy", "name", "ns-abc-abc"),
+				),
 			},
 			{
-				Config: testAccUpdatedAVINetworkSecuritypolicyConfig,
+				Config: testAccAVINetworkSecurityPolicyupdatedConfig,
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckAVINetworkSecuritypolicyExists("avi_networksecuritypolicy.testnetworksecuritypolicy"),
+					testAccCheckAVINetworkSecurityPolicyExists("avi_networksecuritypolicy.testNetworkSecurityPolicy"),
 					resource.TestCheckResourceAttr(
-						"avi_networksecuritypolicy.testnetworksecuritypolicy", "name", "ns-abc")),
+						"avi_networksecuritypolicy.testNetworkSecurityPolicy", "name", "ns-updated"),
+				),
 			},
 		},
 	})
 
 }
 
-func testAccCheckAVINetworkSecuritypolicyExists(resourcename string) resource.TestCheckFunc {
+func testAccCheckAVINetworkSecurityPolicyExists(resourcename string) resource.TestCheckFunc {
 	return func(s *terraform.State) error {
 		conn := testAccProvider.Meta().(*clients.AviClient).AviSession
 		var obj interface{}
@@ -44,7 +45,7 @@ func testAccCheckAVINetworkSecuritypolicyExists(resourcename string) resource.Te
 			return fmt.Errorf("Not found: %s", resourcename)
 		}
 		if rs.Primary.ID == "" {
-			return fmt.Errorf("No Network Security policy ID is set")
+			return fmt.Errorf("No AVI NetworkSecurityPolicy ID is set")
 		}
 		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
 		uuid := strings.Split(url, "#")[0]
@@ -58,7 +59,7 @@ func testAccCheckAVINetworkSecuritypolicyExists(resourcename string) resource.Te
 
 }
 
-func testAccCheckAVINetworkSecuritypolicyDestroy(s *terraform.State) error {
+func testAccCheckAVINetworkSecurityPolicyDestroy(s *terraform.State) error {
 	conn := testAccProvider.Meta().(*clients.AviClient).AviSession
 	var obj interface{}
 	for _, rs := range s.RootModule().Resources {
@@ -76,32 +77,30 @@ func testAccCheckAVINetworkSecuritypolicyDestroy(s *terraform.State) error {
 			return err
 		}
 		if len(obj.(map[string]interface{})) > 0 {
-			return fmt.Errorf("AVI Network Security policy still exists")
+			return fmt.Errorf("AVI NetworkSecurityPolicy still exists")
 		}
 	}
 	return nil
 }
 
-const testAccAVINetworkSecuritypolicyConfig = `
+const testAccAVINetworkSecurityPolicyConfig = `
 data "avi_tenant" "default_tenant"{
-	name= "admin"
+    name= "admin"
 }
-
-resource "avi_networksecuritypolicy" "testnetworksecuritypolicy" {
-	name = "ns-test"
-	description= "test network policy"
-	tenant_ref= "${data.avi_tenant.default_tenant.id}"
+resource "avi_networksecuritypolicy" "testNetworkSecurityPolicy" {
+	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
+	"name" = "ns-abc-abc"
+	"description" = "test network policy"
 }
 `
 
-const testAccUpdatedAVINetworkSecuritypolicyConfig = `
+const testAccAVINetworkSecurityPolicyupdatedConfig = `
 data "avi_tenant" "default_tenant"{
-	name= "admin"
+    name= "admin"
 }
-
-resource "avi_networksecuritypolicy" "testnetworksecuritypolicy" {
-	name = "ns-abc"
-	description= "test network policy"
-	tenant_ref= "${data.avi_tenant.default_tenant.id}"
+resource "avi_networksecuritypolicy" "testNetworkSecurityPolicy" {
+	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
+	"name" = "ns-updated"
+	"description" = "test network policy"
 }
 `

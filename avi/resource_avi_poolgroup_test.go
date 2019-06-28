@@ -2,12 +2,11 @@ package avi
 
 import (
 	"fmt"
-	"strings"
-	"testing"
-
 	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform/helper/resource"
 	"github.com/hashicorp/terraform/terraform"
+	"strings"
+	"testing"
 )
 
 func TestAVIPoolGroupBasic(t *testing.T) {
@@ -19,16 +18,26 @@ func TestAVIPoolGroupBasic(t *testing.T) {
 			{
 				Config: testAccAVIPoolGroupConfig,
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckAVIPoolGroupExists("avi_poolgroup.testpoolgroup"),
+					testAccCheckAVIPoolGroupExists("avi_poolgroup.testPoolGroup"),
 					resource.TestCheckResourceAttr(
-						"avi_poolgroup.testpoolgroup", "name", "pg-test")),
+						"avi_poolgroup.testPoolGroup", "name", "pg-test-abc"),
+					resource.TestCheckResourceAttr(
+						"avi_poolgroup.testPoolGroup", "min_servers", "0"),
+					resource.TestCheckResourceAttr(
+						"avi_poolgroup.testPoolGroup", "implicit_priority_labels", "false"),
+				),
 			},
 			{
-				Config: testAccUpdatedAVIPoolGroupConfig,
+				Config: testAccAVIPoolGroupupdatedConfig,
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckAVIPoolGroupExists("avi_poolgroup.testpoolgroup"),
+					testAccCheckAVIPoolGroupExists("avi_poolgroup.testPoolGroup"),
 					resource.TestCheckResourceAttr(
-						"avi_poolgroup.testpoolgroup", "name", "pg-abc")),
+						"avi_poolgroup.testPoolGroup", "name", "pg-updated"),
+					resource.TestCheckResourceAttr(
+						"avi_poolgroup.testPoolGroup", "min_servers", "0"),
+					resource.TestCheckResourceAttr(
+						"avi_poolgroup.testPoolGroup", "implicit_priority_labels", "false"),
+				),
 			},
 		},
 	})
@@ -44,7 +53,7 @@ func testAccCheckAVIPoolGroupExists(resourcename string) resource.TestCheckFunc 
 			return fmt.Errorf("Not found: %s", resourcename)
 		}
 		if rs.Primary.ID == "" {
-			return fmt.Errorf("No AVI POOL Group ID is set")
+			return fmt.Errorf("No AVI PoolGroup ID is set")
 		}
 		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
 		uuid := strings.Split(url, "#")[0]
@@ -76,7 +85,7 @@ func testAccCheckAVIPoolGroupDestroy(s *terraform.State) error {
 			return err
 		}
 		if len(obj.(map[string]interface{})) > 0 {
-			return fmt.Errorf("AVI Pool Group still exists")
+			return fmt.Errorf("AVI PoolGroup still exists")
 		}
 	}
 	return nil
@@ -84,40 +93,30 @@ func testAccCheckAVIPoolGroupDestroy(s *terraform.State) error {
 
 const testAccAVIPoolGroupConfig = `
 data "avi_tenant" "default_tenant"{
-	name= "admin"
+    name= "admin"
 }
-data "avi_cloud" "default_cloud" {
-	name= "Default-Cloud"
-}
-
-resource "avi_poolgroup" "testpoolgroup" {
-	name = "pg-test"
-	implicit_priority_labels= false
-	min_servers= 0
-	fail_action= {
-		type= "FAIL_ACTION_CLOSE_CONN"
+resource "avi_poolgroup" "testPoolGroup" {
+	"fail_action" {
+		"type" = "FAIL_ACTION_CLOSE_CONN"
 	}
-	tenant_ref= "${data.avi_tenant.default_tenant.id}"
-	cloud_ref= "${data.avi_cloud.default_cloud.id}"
+	"min_servers" = "0"
+	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
+	"name" = "pg-test-abc"
+	"implicit_priority_labels" = false
 }
 `
 
-const testAccUpdatedAVIPoolGroupConfig = `
+const testAccAVIPoolGroupupdatedConfig = `
 data "avi_tenant" "default_tenant"{
-	name= "admin"
+    name= "admin"
 }
-data "avi_cloud" "default_cloud" {
-	name= "Default-Cloud"
-}
-
-resource "avi_poolgroup" "testpoolgroup" {
-	name = "pg-abc"
-	implicit_priority_labels= false
-	min_servers= 0
-	fail_action= {
-		type= "FAIL_ACTION_CLOSE_CONN"
+resource "avi_poolgroup" "testPoolGroup" {
+	"fail_action" {
+		"type" = "FAIL_ACTION_CLOSE_CONN"
 	}
-	tenant_ref= "${data.avi_tenant.default_tenant.id}"
-	cloud_ref= "${data.avi_cloud.default_cloud.id}"
+	"min_servers" = "0"
+	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
+	"name" = "pg-updated"
+	"implicit_priority_labels" = false
 }
 `

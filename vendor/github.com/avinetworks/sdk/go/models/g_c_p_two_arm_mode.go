@@ -7,7 +7,7 @@ package models
 // swagger:model GCPTwoArmMode
 type GCPTwoArmMode struct {
 
-	// Service Engine Backend Data Network Name. Field introduced in 18.2.2, 19.1.1.
+	// Service Engine Backend Data Network Name. Field introduced in 18.2.2.
 	// Required: true
 	BackendDataVpcNetworkName *string `json:"backend_data_vpc_network_name"`
 
@@ -15,7 +15,7 @@ type GCPTwoArmMode struct {
 	// Required: true
 	BackendDataVpcSubnetName *string `json:"backend_data_vpc_subnet_name"`
 
-	// Service Engine Frontend Data Network Name. Field introduced in 18.2.2, 19.1.1.
+	// Service Engine Frontend Data Network Name. Field introduced in 18.2.2.
 	// Required: true
 	FrontendDataVpcNetworkName *string `json:"frontend_data_vpc_network_name"`
 
@@ -26,7 +26,7 @@ type GCPTwoArmMode struct {
 	// Required: true
 	FrontendDataVpcSubnetName *string `json:"frontend_data_vpc_subnet_name"`
 
-	// Service Engine Management Network Name. Field introduced in 18.2.2, 19.1.1.
+	// Service Engine Management Network Name. Field introduced in 18.2.2.
 	// Required: true
 	ManagementVpcNetworkName *string `json:"management_vpc_network_name"`
 

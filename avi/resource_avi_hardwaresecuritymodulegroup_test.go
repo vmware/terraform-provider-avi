@@ -2,12 +2,11 @@ package avi
 
 import (
 	"fmt"
-	"strings"
-	"testing"
-
 	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform/helper/resource"
 	"github.com/hashicorp/terraform/terraform"
+	"strings"
+	"testing"
 )
 
 func TestAVIHardwareSecurityModuleGroupBasic(t *testing.T) {
@@ -19,16 +18,18 @@ func TestAVIHardwareSecurityModuleGroupBasic(t *testing.T) {
 			{
 				Config: testAccAVIHardwareSecurityModuleGroupConfig,
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckAVIHardwareSecurityModuleGroupExists("avi_hardwaresecuritymodulegroup.testhardwaresecuritymodulegroup"),
+					testAccCheckAVIHardwareSecurityModuleGroupExists("avi_hardwaresecuritymodulegroup.testHardwareSecurityModuleGroup"),
 					resource.TestCheckResourceAttr(
-						"avi_hardwaresecuritymodulegroup.testhardwaresecuritymodulegroup", "name", "hsmg-test")),
+						"avi_hardwaresecuritymodulegroup.testHardwareSecurityModuleGroup", "name", "test-hsmg-test-abc"),
+				),
 			},
 			{
-				Config: testAccUpdatedAVIHardwareSecurityModuleGroupConfig,
+				Config: testAccAVIHardwareSecurityModuleGroupupdatedConfig,
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckAVIHardwareSecurityModuleGroupExists("avi_hardwaresecuritymodulegroup.testhardwaresecuritymodulegroup"),
+					testAccCheckAVIHardwareSecurityModuleGroupExists("avi_hardwaresecuritymodulegroup.testHardwareSecurityModuleGroup"),
 					resource.TestCheckResourceAttr(
-						"avi_hardwaresecuritymodulegroup.testhardwaresecuritymodulegroup", "name", "hsmg-abc")),
+						"avi_hardwaresecuritymodulegroup.testHardwareSecurityModuleGroup", "name", "test-hsmg-updated"),
+				),
 			},
 		},
 	})
@@ -44,7 +45,7 @@ func testAccCheckAVIHardwareSecurityModuleGroupExists(resourcename string) resou
 			return fmt.Errorf("Not found: %s", resourcename)
 		}
 		if rs.Primary.ID == "" {
-			return fmt.Errorf("No Hardware Security Module Group ID is set")
+			return fmt.Errorf("No AVI HardwareSecurityModuleGroup ID is set")
 		}
 		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
 		uuid := strings.Split(url, "#")[0]
@@ -76,7 +77,7 @@ func testAccCheckAVIHardwareSecurityModuleGroupDestroy(s *terraform.State) error
 			return err
 		}
 		if len(obj.(map[string]interface{})) > 0 {
-			return fmt.Errorf("AVI Hardware Security Module Group still exists")
+			return fmt.Errorf("AVI HardwareSecurityModuleGroup still exists")
 		}
 	}
 	return nil
@@ -84,50 +85,48 @@ func testAccCheckAVIHardwareSecurityModuleGroupDestroy(s *terraform.State) error
 
 const testAccAVIHardwareSecurityModuleGroupConfig = `
 data "avi_tenant" "default_tenant"{
-	name= "admin"
+    name= "admin"
 }
-
-resource "avi_hardwaresecuritymodulegroup" "testhardwaresecuritymodulegroup" {
-	name = "hsmg-test"
-	tenant_ref= "${data.avi_tenant.default_tenant.id}"
-	hsm= {
-   		type= "HSM_TYPE_THALES_NETHSM"
-   		nethsm= {
-     		remote_ip= {
-				addr= "10.10.15.1"
-				type= "V4"
-			 }
-			remote_port=9005
-     		esn= "580A-F79E-BCD9"
-			priority= 100
-     		module_id= 0
-     		keyhash= "198644ebcba88ba1421ae0c34cdd541edf01deb8"
-   		}
- 	}
+resource "avi_hardwaresecuritymodulegroup" "testHardwareSecurityModuleGroup" {
+	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
+	"name" = "test-hsmg-test-abc"
+	"hsm" {
+		"type" = "HSM_TYPE_THALES_NETHSM"
+		"nethsm" {
+			"remote_port" = "9005"
+			"priority" = "100"
+			"keyhash" = "198644ebcba88ba1421ae0c34cdd541edf01deb8"
+			"module_id" = "0"
+			"esn" = "580A-F79E-BCD9"
+			"remote_ip" {
+				"type" = "V4"
+				"addr" = "10.10.15.1"
+			}
+		}
+	}
 }
 `
 
-const testAccUpdatedAVIHardwareSecurityModuleGroupConfig = `
+const testAccAVIHardwareSecurityModuleGroupupdatedConfig = `
 data "avi_tenant" "default_tenant"{
-	name= "admin"
+    name= "admin"
 }
-
-resource "avi_hardwaresecuritymodulegroup" "testhardwaresecuritymodulegroup" {
-	name = "hsmg-abc"
-	tenant_ref= "${data.avi_tenant.default_tenant.id}"
-	hsm= {
-   		type= "HSM_TYPE_THALES_NETHSM"
-   		nethsm= {
-     		remote_ip= {
-				addr= "10.10.15.1"
-				type= "V4"
-     		}
-			remote_port=3451
-			esn= "580A-F79E-BCD9"
-			priority= 100
-			module_id= 0
-			keyhash= "198644ebcba88ba1421ae0c34cdd541edf01deb8"
-   		}
- 	}
+resource "avi_hardwaresecuritymodulegroup" "testHardwareSecurityModuleGroup" {
+	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
+	"name" = "test-hsmg-updated"
+	"hsm" {
+		"type" = "HSM_TYPE_THALES_NETHSM"
+		"nethsm" {
+			"remote_port" = "9005"
+			"priority" = "100"
+			"keyhash" = "198644ebcba88ba1421ae0c34cdd541edf01deb8"
+			"module_id" = "0"
+			"esn" = "580A-F79E-BCD9"
+			"remote_ip" {
+				"type" = "V4"
+				"addr" = "10.10.15.1"
+			}
+		}
+	}
 }
 `

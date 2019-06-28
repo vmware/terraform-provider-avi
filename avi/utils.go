@@ -570,7 +570,7 @@ func MultipartUploadOrDownload(d *schema.ResourceData, meta interface{}, s map[s
 		if err != nil {
 			log.Printf("[ERROR] MultipartUploadOrDownload Error for creation of file %v", local_file)
 		}
-		err = client.AviSession.GetMultipartRaw("GET", uri, download_file_ptr)
+		err = client.AviSession.GetMultipartRaw("GET", uri, download_file_ptr, "")
 		if err != nil {
 			log.Printf("[ERROR] MultipartUploadOrDownload Error downloaing file using uri %v %v", uri, err)
 			return err
@@ -584,7 +584,7 @@ func MultipartUploadOrDownload(d *schema.ResourceData, meta interface{}, s map[s
 		if err != nil {
 			log.Printf("[ERROR] MultipartUploadOrDownload Error for creation of file %v", local_file)
 		}
-		err = client.AviSession.GetMultipartRaw("GET", uri, download_file_ptr)
+		err = client.AviSession.GetMultipartRaw("GET", uri, download_file_ptr, "")
 		if err != nil {
 			log.Printf("[ERROR] MultipartUploadOrDownload Error downloaing file using uri %v %v", uri, err)
 			return err

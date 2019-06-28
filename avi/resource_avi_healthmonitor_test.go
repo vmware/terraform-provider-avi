@@ -20,14 +20,36 @@ func TestAVIHealthMonitorBasic(t *testing.T) {
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckAVIHealthMonitorExists("avi_healthmonitor.testHealthMonitor"),
 					resource.TestCheckResourceAttr(
-						"avi_healthmonitor.testHealthMonitor", "name", "testSystem-HTTP")),
+						"avi_healthmonitor.testHealthMonitor", "name", "test-System-HTTP-abc"),
+					resource.TestCheckResourceAttr(
+						"avi_healthmonitor.testHealthMonitor", "receive_timeout", "4"),
+					resource.TestCheckResourceAttr(
+						"avi_healthmonitor.testHealthMonitor", "is_federated", "false"),
+					resource.TestCheckResourceAttr(
+						"avi_healthmonitor.testHealthMonitor", "failed_checks", "3"),
+					resource.TestCheckResourceAttr(
+						"avi_healthmonitor.testHealthMonitor", "send_interval", "10"),
+					resource.TestCheckResourceAttr(
+						"avi_healthmonitor.testHealthMonitor", "successful_checks", "3"),
+				),
 			},
 			{
 				Config: testAccAVIHealthMonitorupdatedConfig,
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckAVIHealthMonitorExists("avi_healthmonitor.testHealthMonitor"),
 					resource.TestCheckResourceAttr(
-						"avi_healthmonitor.testHealthMonitor", "name", "testSystem-HTTP-abc")),
+						"avi_healthmonitor.testHealthMonitor", "name", "test-System-HTTP-updated"),
+					resource.TestCheckResourceAttr(
+						"avi_healthmonitor.testHealthMonitor", "receive_timeout", "4"),
+					resource.TestCheckResourceAttr(
+						"avi_healthmonitor.testHealthMonitor", "is_federated", "false"),
+					resource.TestCheckResourceAttr(
+						"avi_healthmonitor.testHealthMonitor", "failed_checks", "3"),
+					resource.TestCheckResourceAttr(
+						"avi_healthmonitor.testHealthMonitor", "send_interval", "10"),
+					resource.TestCheckResourceAttr(
+						"avi_healthmonitor.testHealthMonitor", "successful_checks", "3"),
+				),
 			},
 		},
 	})
@@ -83,42 +105,42 @@ func testAccCheckAVIHealthMonitorDestroy(s *terraform.State) error {
 
 const testAccAVIHealthMonitorConfig = `
 data "avi_tenant" "default_tenant"{
-        name= "admin"
+    name= "admin"
 }
 resource "avi_healthmonitor" "testHealthMonitor" {
-"receive_timeout" = "4"
-"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
-"is_federated" = false
-"failed_checks" = "3"
-"send_interval" = "10"
-"http_monitor" {
-"exact_http_request" = false
-"http_request" = "HEAD / HTTP/1.0"
-"http_response_code" = ["HTTP_2XX","HTTP_3XX"]
-}
-"successful_checks" = "3"
-"type" = "HEALTH_MONITOR_HTTP"
-"name" = "testSystem-HTTP"
+	"receive_timeout" = "4"
+	"name" = "test-System-HTTP-abc"
+	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
+	"is_federated" = false
+	"failed_checks" = "3"
+	"send_interval" = "10"
+	"http_monitor" {
+		"exact_http_request" = false
+		"http_request" = "HEAD / HTTP/1.0"
+		"http_response_code" = ["HTTP_2XX","HTTP_3XX"]
+	}
+	"type" = "HEALTH_MONITOR_HTTP"
+	"successful_checks" = "3"
 }
 `
 
 const testAccAVIHealthMonitorupdatedConfig = `
 data "avi_tenant" "default_tenant"{
-        name= "admin"
+    name= "admin"
 }
 resource "avi_healthmonitor" "testHealthMonitor" {
-"receive_timeout" = "4"
-"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
-"is_federated" = false
-"failed_checks" = "3"
-"send_interval" = "10"
-"http_monitor" {
-"exact_http_request" = false
-"http_request" = "HEAD / HTTP/1.0"
-"http_response_code" = ["HTTP_2XX","HTTP_3XX"]
-}
-"successful_checks" = "3"
-"type" = "HEALTH_MONITOR_HTTP"
-"name" = "testSystem-HTTP-abc"
+	"receive_timeout" = "4"
+	"name" = "test-System-HTTP-updated"
+	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
+	"is_federated" = false
+	"failed_checks" = "3"
+	"send_interval" = "10"
+	"http_monitor" {
+		"exact_http_request" = false
+		"http_request" = "HEAD / HTTP/1.0"
+		"http_response_code" = ["HTTP_2XX","HTTP_3XX"]
+	}
+	"type" = "HEALTH_MONITOR_HTTP"
+	"successful_checks" = "3"
 }
 `

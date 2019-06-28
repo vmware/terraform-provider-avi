@@ -2,12 +2,11 @@ package avi
 
 import (
 	"fmt"
-	"strings"
-	"testing"
-
 	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform/helper/resource"
 	"github.com/hashicorp/terraform/terraform"
+	"strings"
+	"testing"
 )
 
 func TestAVIAlertEmailConfigBasic(t *testing.T) {
@@ -17,18 +16,20 @@ func TestAVIAlertEmailConfigBasic(t *testing.T) {
 		CheckDestroy: testAccCheckAVIAlertEmailConfigDestroy,
 		Steps: []resource.TestStep{
 			{
-				Config: testAccAVIAlertEmailConfig,
+				Config: testAccAVIAlertEmailConfigConfig,
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckAVIAlertEmailConfigExists("avi_alertemailconfig.testalertemailconfig"),
+					testAccCheckAVIAlertEmailConfigExists("avi_alertemailconfig.testAlertEmailConfig"),
 					resource.TestCheckResourceAttr(
-						"avi_alertemailconfig.testalertemailconfig", "name", "aec-test")),
+						"avi_alertemailconfig.testAlertEmailConfig", "name", "test-aec-abc"),
+				),
 			},
 			{
-				Config: testAccUpdatedAVIAlertEmailConfig,
+				Config: testAccAVIAlertEmailConfigupdatedConfig,
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckAVIAlertEmailConfigExists("avi_alertemailconfig.testalertemailconfig"),
+					testAccCheckAVIAlertEmailConfigExists("avi_alertemailconfig.testAlertEmailConfig"),
 					resource.TestCheckResourceAttr(
-						"avi_alertemailconfig.testalertemailconfig", "name", "aec-abc")),
+						"avi_alertemailconfig.testAlertEmailConfig", "name", "test-aec-updated"),
+				),
 			},
 		},
 	})
@@ -44,7 +45,7 @@ func testAccCheckAVIAlertEmailConfigExists(resourcename string) resource.TestChe
 			return fmt.Errorf("Not found: %s", resourcename)
 		}
 		if rs.Primary.ID == "" {
-			return fmt.Errorf("No Alert Email Config ID is set")
+			return fmt.Errorf("No AVI AlertEmailConfig ID is set")
 		}
 		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
 		uuid := strings.Split(url, "#")[0]
@@ -76,36 +77,34 @@ func testAccCheckAVIAlertEmailConfigDestroy(s *terraform.State) error {
 			return err
 		}
 		if len(obj.(map[string]interface{})) > 0 {
-			return fmt.Errorf("AVI Alert Email Config still exists")
+			return fmt.Errorf("AVI AlertEmailConfig still exists")
 		}
 	}
 	return nil
 }
 
-const testAccAVIAlertEmailConfig = `
+const testAccAVIAlertEmailConfigConfig = `
 data "avi_tenant" "default_tenant"{
-	name= "admin"
+    name= "admin"
 }
-
-resource "avi_alertemailconfig" "testalertemailconfig" {
-	name = "aec-test"
-	tenant_ref= "${data.avi_tenant.default_tenant.id}"
-	cc_emails= "admin@avicontroller.net"
-	description= "test alert email"
-	to_emails= "admin@avicontroller.net"
+resource "avi_alertemailconfig" "testAlertEmailConfig" {
+	"to_emails" = "admin@avicontroller.net"
+	"cc_emails" = "admin@avicontroller.net"
+	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
+	"name" = "test-aec-abc"
+	"description" = "test alert email"
 }
 `
 
-const testAccUpdatedAVIAlertEmailConfig = `
+const testAccAVIAlertEmailConfigupdatedConfig = `
 data "avi_tenant" "default_tenant"{
-	name= "admin"
+    name= "admin"
 }
-
-resource "avi_alertemailconfig" "testalertemailconfig" {
-	name = "aec-abc"
-	tenant_ref= "${data.avi_tenant.default_tenant.id}"
-	cc_emails= "admin@avicontroller.net"
-	description= "test alert email"
-	to_emails= "admin@avicontroller.net"
+resource "avi_alertemailconfig" "testAlertEmailConfig" {
+	"to_emails" = "admin@avicontroller.net"
+	"cc_emails" = "admin@avicontroller.net"
+	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
+	"name" = "test-aec-updated"
+	"description" = "test alert email"
 }
 `

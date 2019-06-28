@@ -1,9 +1,11 @@
 module github.com/avinetworks/terraform-provider-avi
 
+go 1.12
+
 require (
 	github.com/apparentlymart/go-cidr v0.0.0-20170418151526-7e4b007599d4
 	github.com/apparentlymart/go-rundeck-api v0.0.0-20160826143032-f6af74d34d1e
-	github.com/avinetworks/sdk v0.0.0-20190430181015-56e8780326c5
+	github.com/avinetworks/sdk v0.0.0-20190619144306-a45401034628
 	github.com/aws/aws-sdk-go v1.8.34
 	github.com/bgentry/go-netrc v0.0.0-20140422174119-9fd32a8b3d3d
 	github.com/blang/semver v3.5.1+incompatible

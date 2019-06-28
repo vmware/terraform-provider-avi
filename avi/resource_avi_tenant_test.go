@@ -2,12 +2,11 @@ package avi
 
 import (
 	"fmt"
-	"strings"
-	"testing"
-
 	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform/helper/resource"
 	"github.com/hashicorp/terraform/terraform"
+	"strings"
+	"testing"
 )
 
 func TestAVITenantBasic(t *testing.T) {
@@ -19,19 +18,26 @@ func TestAVITenantBasic(t *testing.T) {
 			{
 				Config: testAccAVITenantConfig,
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckAVITenantExists("avi_tenant.test_tenant"),
+					testAccCheckAVITenantExists("avi_tenant.testTenant"),
 					resource.TestCheckResourceAttr(
-						"avi_tenant.test_tenant", "name", "tenant-test")),
+						"avi_tenant.testTenant", "name", "test-admin-abc"),
+					resource.TestCheckResourceAttr(
+						"avi_tenant.testTenant", "local", "true"),
+				),
 			},
 			{
-				Config: testAccUpdatedAVITenantConfig,
+				Config: testAccAVITenantupdatedConfig,
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckAVITenantExists("avi_tenant.test_tenant"),
+					testAccCheckAVITenantExists("avi_tenant.testTenant"),
 					resource.TestCheckResourceAttr(
-						"avi_tenant.test_tenant", "name", "tenant-abc")),
+						"avi_tenant.testTenant", "name", "test-admin-updated"),
+					resource.TestCheckResourceAttr(
+						"avi_tenant.testTenant", "local", "true"),
+				),
 			},
 		},
 	})
+
 }
 
 func testAccCheckAVITenantExists(resourcename string) resource.TestCheckFunc {
@@ -54,6 +60,7 @@ func testAccCheckAVITenantExists(resourcename string) resource.TestCheckFunc {
 		}
 		return nil
 	}
+
 }
 
 func testAccCheckAVITenantDestroy(s *terraform.State) error {
@@ -81,13 +88,15 @@ func testAccCheckAVITenantDestroy(s *terraform.State) error {
 }
 
 const testAccAVITenantConfig = `
-resource "avi_tenant" "test_tenant"{
-	name= "tenant-test"
+resource "avi_tenant" "testTenant" {
+	"local" = true
+	"name" = "test-admin-abc"
 }
 `
 
-const testAccUpdatedAVITenantConfig = `
-resource "avi_tenant" "test_tenant"{
-	name= "tenant-abc"
+const testAccAVITenantupdatedConfig = `
+resource "avi_tenant" "testTenant" {
+	"local" = true
+	"name" = "test-admin-updated"
 }
 `

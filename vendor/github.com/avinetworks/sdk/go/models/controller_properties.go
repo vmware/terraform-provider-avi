@@ -165,7 +165,7 @@ type ControllerProperties struct {
 	// Period for rotate VS keys job. Allowed values are 1-1051200. Special values are 0 - 'Disabled'.
 	VsKeyRotatePeriod *int32 `json:"vs_key_rotate_period,omitempty"`
 
-	// Interval for checking scaleout_ready status while controller is waiting for ScaleOutReady RPC from the Service Engine. Field introduced in 18.2.2, 19.1.1.
+	// Interval for checking scaleout_ready status while controller is waiting for ScaleOutReady RPC from the Service Engine. Field introduced in 18.2.2.
 	VsScaleoutReadyCheckInterval *int32 `json:"vs_scaleout_ready_check_interval,omitempty"`
 
 	// Time to wait before marking attach IP operation on an SE as failed. Field introduced in 17.2.2.

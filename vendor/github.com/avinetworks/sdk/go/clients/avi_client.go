@@ -50,6 +50,7 @@ type AviClient struct {
 	ClusterCloudDetails            *ClusterCloudDetailsClient
 	ControllerLicense              *ControllerLicenseClient
 	ControllerProperties           *ControllerPropertiesClient
+	ControllerSite                 *ControllerSiteClient
 	CustomIPAMDNSProfile           *CustomIPAMDNSProfileClient
 	DNSPolicy                      *DNSPolicyClient
 	DebugController                *DebugControllerClient
@@ -70,21 +71,25 @@ type AviClient struct {
 	LogControllerMapping           *LogControllerMappingClient
 	MicroService                   *MicroServiceClient
 	MicroServiceGroup              *MicroServiceGroupClient
+	NatPolicy                      *NatPolicyClient
 	Network                        *NetworkClient
 	NetworkProfile                 *NetworkProfileClient
 	NetworkRuntime                 *NetworkRuntimeClient
 	NetworkSecurityPolicy          *NetworkSecurityPolicyClient
+	NetworkService                 *NetworkServiceClient
 	PKIprofile                     *PKIprofileClient
 	PingAccessAgent                *PingAccessAgentClient
 	Pool                           *PoolClient
 	PoolGroup                      *PoolGroupClient
 	PoolGroupDeploymentPolicy      *PoolGroupDeploymentPolicyClient
 	PriorityLabels                 *PriorityLabelsClient
+	ProtocolParser                 *ProtocolParserClient
 	Role                           *RoleClient
 	SCPoolServerStateInfo          *SCPoolServerStateInfoClient
 	SCVsStateInfo                  *SCVsStateInfoClient
 	SSLKeyAndCertificate           *SSLKeyAndCertificateClient
 	SSLProfile                     *SSLProfileClient
+	SSOPolicy                      *SSOPolicyClient
 	Scheduler                      *SchedulerClient
 	SeProperties                   *SePropertiesClient
 	SecureChannelAvailableLocalIps *SecureChannelAvailableLocalIpsClient
@@ -155,6 +160,7 @@ func NewAviClient(host string, username string, options ...func(*session.AviSess
 	aviClient.ClusterCloudDetails = NewClusterCloudDetailsClient(aviSession)
 	aviClient.ControllerLicense = NewControllerLicenseClient(aviSession)
 	aviClient.ControllerProperties = NewControllerPropertiesClient(aviSession)
+	aviClient.ControllerSite = NewControllerSiteClient(aviSession)
 	aviClient.CustomIPAMDNSProfile = NewCustomIPAMDNSProfileClient(aviSession)
 	aviClient.DNSPolicy = NewDNSPolicyClient(aviSession)
 	aviClient.DebugController = NewDebugControllerClient(aviSession)
@@ -175,21 +181,25 @@ func NewAviClient(host string, username string, options ...func(*session.AviSess
 	aviClient.LogControllerMapping = NewLogControllerMappingClient(aviSession)
 	aviClient.MicroService = NewMicroServiceClient(aviSession)
 	aviClient.MicroServiceGroup = NewMicroServiceGroupClient(aviSession)
+	aviClient.NatPolicy = NewNatPolicyClient(aviSession)
 	aviClient.Network = NewNetworkClient(aviSession)
 	aviClient.NetworkProfile = NewNetworkProfileClient(aviSession)
 	aviClient.NetworkRuntime = NewNetworkRuntimeClient(aviSession)
 	aviClient.NetworkSecurityPolicy = NewNetworkSecurityPolicyClient(aviSession)
+	aviClient.NetworkService = NewNetworkServiceClient(aviSession)
 	aviClient.PKIprofile = NewPKIprofileClient(aviSession)
 	aviClient.PingAccessAgent = NewPingAccessAgentClient(aviSession)
 	aviClient.Pool = NewPoolClient(aviSession)
 	aviClient.PoolGroup = NewPoolGroupClient(aviSession)
 	aviClient.PoolGroupDeploymentPolicy = NewPoolGroupDeploymentPolicyClient(aviSession)
 	aviClient.PriorityLabels = NewPriorityLabelsClient(aviSession)
+	aviClient.ProtocolParser = NewProtocolParserClient(aviSession)
 	aviClient.Role = NewRoleClient(aviSession)
 	aviClient.SCPoolServerStateInfo = NewSCPoolServerStateInfoClient(aviSession)
 	aviClient.SCVsStateInfo = NewSCVsStateInfoClient(aviSession)
 	aviClient.SSLKeyAndCertificate = NewSSLKeyAndCertificateClient(aviSession)
 	aviClient.SSLProfile = NewSSLProfileClient(aviSession)
+	aviClient.SSOPolicy = NewSSOPolicyClient(aviSession)
 	aviClient.Scheduler = NewSchedulerClient(aviSession)
 	aviClient.SeProperties = NewSePropertiesClient(aviSession)
 	aviClient.SecureChannelAvailableLocalIps = NewSecureChannelAvailableLocalIpsClient(aviSession)

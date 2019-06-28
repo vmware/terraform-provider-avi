@@ -20,14 +20,36 @@ func TestAVIUserAccountProfileBasic(t *testing.T) {
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckAVIUserAccountProfileExists("avi_useraccountprofile.testUserAccountProfile"),
 					resource.TestCheckResourceAttr(
-						"avi_useraccountprofile.testUserAccountProfile", "name", "testDefault-User-Account-Profile")),
+						"avi_useraccountprofile.testUserAccountProfile", "name", "test-Default-User-Account-Profile-abc"),
+					resource.TestCheckResourceAttr(
+						"avi_useraccountprofile.testUserAccountProfile", "max_concurrent_sessions", "0"),
+					resource.TestCheckResourceAttr(
+						"avi_useraccountprofile.testUserAccountProfile", "account_lock_timeout", "30"),
+					resource.TestCheckResourceAttr(
+						"avi_useraccountprofile.testUserAccountProfile", "max_login_failure_count", "20"),
+					resource.TestCheckResourceAttr(
+						"avi_useraccountprofile.testUserAccountProfile", "max_password_history_count", "0"),
+					resource.TestCheckResourceAttr(
+						"avi_useraccountprofile.testUserAccountProfile", "credentials_timeout_threshold", "0"),
+				),
 			},
 			{
 				Config: testAccAVIUserAccountProfileupdatedConfig,
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckAVIUserAccountProfileExists("avi_useraccountprofile.testUserAccountProfile"),
 					resource.TestCheckResourceAttr(
-						"avi_useraccountprofile.testUserAccountProfile", "name", "testDefault-User-Account-Profile-abc")),
+						"avi_useraccountprofile.testUserAccountProfile", "name", "test-Default-User-Account-Profile-updated"),
+					resource.TestCheckResourceAttr(
+						"avi_useraccountprofile.testUserAccountProfile", "max_concurrent_sessions", "0"),
+					resource.TestCheckResourceAttr(
+						"avi_useraccountprofile.testUserAccountProfile", "account_lock_timeout", "30"),
+					resource.TestCheckResourceAttr(
+						"avi_useraccountprofile.testUserAccountProfile", "max_login_failure_count", "20"),
+					resource.TestCheckResourceAttr(
+						"avi_useraccountprofile.testUserAccountProfile", "max_password_history_count", "0"),
+					resource.TestCheckResourceAttr(
+						"avi_useraccountprofile.testUserAccountProfile", "credentials_timeout_threshold", "0"),
+				),
 			},
 		},
 	})
@@ -83,22 +105,22 @@ func testAccCheckAVIUserAccountProfileDestroy(s *terraform.State) error {
 
 const testAccAVIUserAccountProfileConfig = `
 resource "avi_useraccountprofile" "testUserAccountProfile" {
-"max_concurrent_sessions" = "0"
-"account_lock_timeout" = "30"
-"max_login_failure_count" = "20"
-"max_password_history_count" = "0"
-"credentials_timeout_threshold" = "0"
-"name" = "testDefault-User-Account-Profile"
+	"max_concurrent_sessions" = "0"
+	"name" = "test-Default-User-Account-Profile-abc"
+	"account_lock_timeout" = "30"
+	"max_login_failure_count" = "20"
+	"max_password_history_count" = "0"
+	"credentials_timeout_threshold" = "0"
 }
 `
 
 const testAccAVIUserAccountProfileupdatedConfig = `
 resource "avi_useraccountprofile" "testUserAccountProfile" {
-"max_concurrent_sessions" = "0"
-"account_lock_timeout" = "30"
-"max_login_failure_count" = "20"
-"max_password_history_count" = "0"
-"credentials_timeout_threshold" = "0"
-"name" = "testDefault-User-Account-Profile-abc"
+	"max_concurrent_sessions" = "0"
+	"name" = "test-Default-User-Account-Profile-updated"
+	"account_lock_timeout" = "30"
+	"max_login_failure_count" = "20"
+	"max_password_history_count" = "0"
+	"credentials_timeout_threshold" = "0"
 }
 `
