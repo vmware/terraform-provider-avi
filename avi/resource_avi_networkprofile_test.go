@@ -2,12 +2,11 @@ package avi
 
 import (
 	"fmt"
-	"strings"
-	"testing"
-
 	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform/helper/resource"
 	"github.com/hashicorp/terraform/terraform"
+	"strings"
+	"testing"
 )
 
 func TestAVINetworkProfileBasic(t *testing.T) {
@@ -21,14 +20,16 @@ func TestAVINetworkProfileBasic(t *testing.T) {
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckAVINetworkProfileExists("avi_networkprofile.testNetworkProfile"),
 					resource.TestCheckResourceAttr(
-						"avi_networkprofile.testNetworkProfile", "name", "testSystem-TCP-Proxy-test")),
+						"avi_networkprofile.testNetworkProfile", "name", "test-System-TCP-Proxy-abc"),
+				),
 			},
 			{
-				Config: testAccUpdatedAVINetworkProfileConfig,
+				Config: testAccAVINetworkProfileupdatedConfig,
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckAVINetworkProfileExists("avi_networkprofile.testNetworkProfile"),
 					resource.TestCheckResourceAttr(
-						"avi_networkprofile.testNetworkProfile", "name", "testSystem-TCP-Proxy-abc")),
+						"avi_networkprofile.testNetworkProfile", "name", "test-System-TCP-Proxy-updated"),
+				),
 			},
 		},
 	})
@@ -84,60 +85,60 @@ func testAccCheckAVINetworkProfileDestroy(s *terraform.State) error {
 
 const testAccAVINetworkProfileConfig = `
 data "avi_tenant" "default_tenant"{
-        name= "admin"
+    name= "admin"
 }
 resource "avi_networkprofile" "testNetworkProfile" {
 	"profile" {
 		"tcp_proxy_profile" {
-			"receive_window" = 3200
-			"time_wait_delay" = 2000
+			"receive_window" = "64"
+			"time_wait_delay" = "2000"
 			"cc_algo" = "CC_ALGO_NEW_RENO"
 			"nagles_algorithm" = false
-			"max_syn_retransmissions" = "6"
+			"max_syn_retransmissions" = "8"
 			"ignore_time_wait" = false
 			"use_interface_mtu" = true
 			"idle_connection_type" = "KEEP_ALIVE"
 			"aggressive_congestion_avoidance" = false
+			"min_rexmt_timeout" = "50"
 			"idle_connection_timeout" = "600"
-			"max_retransmissions" = "6"
+			"reorder_threshold" = "10"
+			"max_retransmissions" = "8"
 			"automatic" = true
 			"ip_dscp" = "0"
-			"reorder_threshold" = "1"
-			"min_rexmt_timeout" = 435
 		}
 		"type" = "PROTOCOL_TYPE_TCP_PROXY"
 	}
 	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
-	"name" = "testSystem-TCP-Proxy-test"
+	"name" = "test-System-TCP-Proxy-abc"
 }
 `
 
-const testAccUpdatedAVINetworkProfileConfig = `
+const testAccAVINetworkProfileupdatedConfig = `
 data "avi_tenant" "default_tenant"{
-        name= "admin"
+    name= "admin"
 }
 resource "avi_networkprofile" "testNetworkProfile" {
 	"profile" {
 		"tcp_proxy_profile" {
-			"receive_window" = 3200
-			"time_wait_delay" = 2000
+			"receive_window" = "64"
+			"time_wait_delay" = "2000"
 			"cc_algo" = "CC_ALGO_NEW_RENO"
 			"nagles_algorithm" = false
-			"max_syn_retransmissions" = "6"
+			"max_syn_retransmissions" = "8"
 			"ignore_time_wait" = false
 			"use_interface_mtu" = true
 			"idle_connection_type" = "KEEP_ALIVE"
 			"aggressive_congestion_avoidance" = false
+			"min_rexmt_timeout" = "50"
 			"idle_connection_timeout" = "600"
-			"max_retransmissions" = "6"
+			"reorder_threshold" = "10"
+			"max_retransmissions" = "8"
 			"automatic" = true
 			"ip_dscp" = "0"
-			"reorder_threshold" = "1"
-			"min_rexmt_timeout" = 435
 		}
 		"type" = "PROTOCOL_TYPE_TCP_PROXY"
 	}
 	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
-	"name" = "testSystem-TCP-Proxy-abc"
+	"name" = "test-System-TCP-Proxy-updated"
 }
 `

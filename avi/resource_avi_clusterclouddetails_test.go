@@ -2,12 +2,11 @@ package avi
 
 import (
 	"fmt"
-	"strings"
-	"testing"
-
 	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform/helper/resource"
 	"github.com/hashicorp/terraform/terraform"
+	"strings"
+	"testing"
 )
 
 func TestAVIClusterCloudDetailsBasic(t *testing.T) {
@@ -19,16 +18,18 @@ func TestAVIClusterCloudDetailsBasic(t *testing.T) {
 			{
 				Config: testAccAVIClusterCloudDetailsConfig,
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckAVIClusterCloudDetailsExists("avi_clusterclouddetails.testclusterclouddetails"),
+					testAccCheckAVIClusterCloudDetailsExists("avi_clusterclouddetails.testClusterCloudDetails"),
 					resource.TestCheckResourceAttr(
-						"avi_clusterclouddetails.testclusterclouddetails", "name", "ccd-test")),
+						"avi_clusterclouddetails.testClusterCloudDetails", "name", "test-ccd-abc"),
+				),
 			},
 			{
-				Config: testAccUpdatedAVIClusterCloudDetailsConfig,
+				Config: testAccAVIClusterCloudDetailsupdatedConfig,
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckAVIClusterCloudDetailsExists("avi_clusterclouddetails.testclusterclouddetails"),
+					testAccCheckAVIClusterCloudDetailsExists("avi_clusterclouddetails.testClusterCloudDetails"),
 					resource.TestCheckResourceAttr(
-						"avi_clusterclouddetails.testclusterclouddetails", "name", "ccd-abc")),
+						"avi_clusterclouddetails.testClusterCloudDetails", "name", "test-ccd-updated"),
+				),
 			},
 		},
 	})
@@ -44,7 +45,7 @@ func testAccCheckAVIClusterCloudDetailsExists(resourcename string) resource.Test
 			return fmt.Errorf("Not found: %s", resourcename)
 		}
 		if rs.Primary.ID == "" {
-			return fmt.Errorf("No Cluster Cloud Details ID is set")
+			return fmt.Errorf("No AVI ClusterCloudDetails ID is set")
 		}
 		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
 		uuid := strings.Split(url, "#")[0]
@@ -76,7 +77,7 @@ func testAccCheckAVIClusterCloudDetailsDestroy(s *terraform.State) error {
 			return err
 		}
 		if len(obj.(map[string]interface{})) > 0 {
-			return fmt.Errorf("AVI Cluster Cloud Details still exists")
+			return fmt.Errorf("AVI ClusterCloudDetails still exists")
 		}
 	}
 	return nil
@@ -84,22 +85,20 @@ func testAccCheckAVIClusterCloudDetailsDestroy(s *terraform.State) error {
 
 const testAccAVIClusterCloudDetailsConfig = `
 data "avi_tenant" "default_tenant"{
-	name= "admin"
+    name= "admin"
 }
-
-resource "avi_clusterclouddetails" "testclusterclouddetails" {
-	name = "ccd-test"
-	tenant_ref= "${data.avi_tenant.default_tenant.id}"
+resource "avi_clusterclouddetails" "testClusterCloudDetails" {
+	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
+	"name" = "test-ccd-abc"
 }
 `
 
-const testAccUpdatedAVIClusterCloudDetailsConfig = `
+const testAccAVIClusterCloudDetailsupdatedConfig = `
 data "avi_tenant" "default_tenant"{
-	name= "admin"
+    name= "admin"
 }
-
-resource "avi_clusterclouddetails" "testclusterclouddetails" {
-	name = "ccd-abc"
-	tenant_ref= "${data.avi_tenant.default_tenant.id}"
+resource "avi_clusterclouddetails" "testClusterCloudDetails" {
+	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
+	"name" = "test-ccd-updated"
 }
 `

@@ -20,14 +20,40 @@ func TestAVICloudBasic(t *testing.T) {
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckAVICloudExists("avi_cloud.testCloud"),
 					resource.TestCheckResourceAttr(
-						"avi_cloud.testCloud", "name", "testDefault-Cloud")),
+						"avi_cloud.testCloud", "name", "test-Default-Cloud-abc"),
+					resource.TestCheckResourceAttr(
+						"avi_cloud.testCloud", "enable_vip_static_routes", "false"),
+					resource.TestCheckResourceAttr(
+						"avi_cloud.testCloud", "prefer_static_routes", "false"),
+					resource.TestCheckResourceAttr(
+						"avi_cloud.testCloud", "mtu", "1500"),
+					resource.TestCheckResourceAttr(
+						"avi_cloud.testCloud", "apic_mode", "false"),
+					resource.TestCheckResourceAttr(
+						"avi_cloud.testCloud", "dhcp_enabled", "false"),
+					resource.TestCheckResourceAttr(
+						"avi_cloud.testCloud", "state_based_dns_registration", "true"),
+				),
 			},
 			{
 				Config: testAccAVICloudupdatedConfig,
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckAVICloudExists("avi_cloud.testCloud"),
 					resource.TestCheckResourceAttr(
-						"avi_cloud.testCloud", "name", "testDefault-Cloud-abc")),
+						"avi_cloud.testCloud", "name", "test-Default-Cloud-updated"),
+					resource.TestCheckResourceAttr(
+						"avi_cloud.testCloud", "enable_vip_static_routes", "false"),
+					resource.TestCheckResourceAttr(
+						"avi_cloud.testCloud", "prefer_static_routes", "false"),
+					resource.TestCheckResourceAttr(
+						"avi_cloud.testCloud", "mtu", "1500"),
+					resource.TestCheckResourceAttr(
+						"avi_cloud.testCloud", "apic_mode", "false"),
+					resource.TestCheckResourceAttr(
+						"avi_cloud.testCloud", "dhcp_enabled", "false"),
+					resource.TestCheckResourceAttr(
+						"avi_cloud.testCloud", "state_based_dns_registration", "true"),
+				),
 			},
 		},
 	})
@@ -83,38 +109,38 @@ func testAccCheckAVICloudDestroy(s *terraform.State) error {
 
 const testAccAVICloudConfig = `
 data "avi_tenant" "default_tenant"{
-        name= "admin"
+    name= "admin"
 }
 resource "avi_cloud" "testCloud" {
-"vtype" = "CLOUD_NONE"
-"license_tier" = "ENTERPRISE_18"
-"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
-"dhcp_enabled" = false
-"state_based_dns_registration" = true
-"prefer_static_routes" = false
-"license_type" = "LIC_CORES"
-"mtu" = "1500"
-"apic_mode" = false
-"enable_vip_static_routes" = false
-"name" = "testDefault-Cloud"
+	"vtype" = "CLOUD_NONE"
+	"license_tier" = "ENTERPRISE_18"
+	"name" = "test-Default-Cloud-abc"
+	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
+	"enable_vip_static_routes" = false
+	"prefer_static_routes" = false
+	"license_type" = "LIC_CORES"
+	"mtu" = "1500"
+	"apic_mode" = false
+	"dhcp_enabled" = false
+	"state_based_dns_registration" = true
 }
 `
 
 const testAccAVICloudupdatedConfig = `
 data "avi_tenant" "default_tenant"{
-        name= "admin"
+    name= "admin"
 }
 resource "avi_cloud" "testCloud" {
-"vtype" = "CLOUD_NONE"
-"license_tier" = "ENTERPRISE_18"
-"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
-"dhcp_enabled" = false
-"state_based_dns_registration" = true
-"prefer_static_routes" = false
-"license_type" = "LIC_CORES"
-"mtu" = "1500"
-"apic_mode" = false
-"enable_vip_static_routes" = false
-"name" = "testDefault-Cloud-abc"
+	"vtype" = "CLOUD_NONE"
+	"license_tier" = "ENTERPRISE_18"
+	"name" = "test-Default-Cloud-updated"
+	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
+	"enable_vip_static_routes" = false
+	"prefer_static_routes" = false
+	"license_type" = "LIC_CORES"
+	"mtu" = "1500"
+	"apic_mode" = false
+	"dhcp_enabled" = false
+	"state_based_dns_registration" = true
 }
 `

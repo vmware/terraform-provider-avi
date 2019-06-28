@@ -7,7 +7,7 @@ package models
 // swagger:model GCPOneArmMode
 type GCPOneArmMode struct {
 
-	// Service Engine Data Network Name. Field introduced in 18.2.2, 19.1.1.
+	// Service Engine Data Network Name. Field introduced in 18.2.2.
 	// Required: true
 	DataVpcNetworkName *string `json:"data_vpc_network_name"`
 
@@ -18,7 +18,7 @@ type GCPOneArmMode struct {
 	// Required: true
 	DataVpcSubnetName *string `json:"data_vpc_subnet_name"`
 
-	// Service Engine Management Network Name. Field introduced in 18.2.2, 19.1.1.
+	// Service Engine Management Network Name. Field introduced in 18.2.2.
 	// Required: true
 	ManagementVpcNetworkName *string `json:"management_vpc_network_name"`
 

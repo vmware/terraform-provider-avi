@@ -20,14 +20,24 @@ func TestAVIActionGroupConfigBasic(t *testing.T) {
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckAVIActionGroupConfigExists("avi_actiongroupconfig.testActionGroupConfig"),
 					resource.TestCheckResourceAttr(
-						"avi_actiongroupconfig.testActionGroupConfig", "name", "testSystem-Alert-Level-High")),
+						"avi_actiongroupconfig.testActionGroupConfig", "name", "test-System-Alert-Level-High-abc"),
+					resource.TestCheckResourceAttr(
+						"avi_actiongroupconfig.testActionGroupConfig", "autoscale_trigger_notification", "false"),
+					resource.TestCheckResourceAttr(
+						"avi_actiongroupconfig.testActionGroupConfig", "external_only", "false"),
+				),
 			},
 			{
 				Config: testAccAVIActionGroupConfigupdatedConfig,
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckAVIActionGroupConfigExists("avi_actiongroupconfig.testActionGroupConfig"),
 					resource.TestCheckResourceAttr(
-						"avi_actiongroupconfig.testActionGroupConfig", "name", "testSystem-Alert-Level-High-abc")),
+						"avi_actiongroupconfig.testActionGroupConfig", "name", "test-System-Alert-Level-High-updated"),
+					resource.TestCheckResourceAttr(
+						"avi_actiongroupconfig.testActionGroupConfig", "autoscale_trigger_notification", "true"),
+					resource.TestCheckResourceAttr(
+						"avi_actiongroupconfig.testActionGroupConfig", "external_only", "false"),
+				),
 			},
 		},
 	})
@@ -83,26 +93,26 @@ func testAccCheckAVIActionGroupConfigDestroy(s *terraform.State) error {
 
 const testAccAVIActionGroupConfigConfig = `
 data "avi_tenant" "default_tenant"{
-        name= "admin"
+    name= "admin"
 }
 resource "avi_actiongroupconfig" "testActionGroupConfig" {
-"level" = "ALERT_HIGH"
-"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
-"autoscale_trigger_notification" = false
-"external_only" = false
-"name" = "testSystem-Alert-Level-High"
+	"autoscale_trigger_notification" = false
+	"external_only" = false
+	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
+	"name" = "test-System-Alert-Level-High-abc"
+	"level" = "ALERT_HIGH"
 }
 `
 
 const testAccAVIActionGroupConfigupdatedConfig = `
 data "avi_tenant" "default_tenant"{
-        name= "admin"
+    name= "admin"
 }
 resource "avi_actiongroupconfig" "testActionGroupConfig" {
-"level" = "ALERT_HIGH"
-"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
-"autoscale_trigger_notification" = false
-"external_only" = false
-"name" = "testSystem-Alert-Level-High-abc"
+	"autoscale_trigger_notification" = true
+	"external_only" = false
+	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
+	"name" = "test-System-Alert-Level-High-updated"
+	"level" = "ALERT_HIGH"
 }
 `

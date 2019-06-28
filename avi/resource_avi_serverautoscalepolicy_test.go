@@ -2,12 +2,11 @@ package avi
 
 import (
 	"fmt"
-	"strings"
-	"testing"
-
 	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform/helper/resource"
 	"github.com/hashicorp/terraform/terraform"
+	"strings"
+	"testing"
 )
 
 func TestAVIServerAutoScalePolicyBasic(t *testing.T) {
@@ -19,23 +18,25 @@ func TestAVIServerAutoScalePolicyBasic(t *testing.T) {
 			{
 				Config: testAccAVIServerAutoScalePolicyConfig,
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckAVIServerAutoScalePolicyBExists("avi_serverautoscalepolicy.testserverautoscalepolicy"),
+					testAccCheckAVIServerAutoScalePolicyExists("avi_serverautoscalepolicy.testServerAutoScalePolicy"),
 					resource.TestCheckResourceAttr(
-						"avi_serverautoscalepolicy.testserverautoscalepolicy", "name", "ssp-test")),
+						"avi_serverautoscalepolicy.testServerAutoScalePolicy", "name", "test-ssp-test-abc"),
+				),
 			},
 			{
-				Config: testAccUpdatedAVIServerAutoScalePolicyConfig,
+				Config: testAccAVIServerAutoScalePolicyupdatedConfig,
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckAVIServerAutoScalePolicyBExists("avi_serverautoscalepolicy.testserverautoscalepolicy"),
+					testAccCheckAVIServerAutoScalePolicyExists("avi_serverautoscalepolicy.testServerAutoScalePolicy"),
 					resource.TestCheckResourceAttr(
-						"avi_serverautoscalepolicy.testserverautoscalepolicy", "name", "ssp-abc")),
+						"avi_serverautoscalepolicy.testServerAutoScalePolicy", "name", "test-ssp-updated"),
+				),
 			},
 		},
 	})
 
 }
 
-func testAccCheckAVIServerAutoScalePolicyBExists(resourcename string) resource.TestCheckFunc {
+func testAccCheckAVIServerAutoScalePolicyExists(resourcename string) resource.TestCheckFunc {
 	return func(s *terraform.State) error {
 		conn := testAccProvider.Meta().(*clients.AviClient).AviSession
 		var obj interface{}
@@ -44,7 +45,7 @@ func testAccCheckAVIServerAutoScalePolicyBExists(resourcename string) resource.T
 			return fmt.Errorf("Not found: %s", resourcename)
 		}
 		if rs.Primary.ID == "" {
-			return fmt.Errorf("No Server Auto Scale Policy ID is set")
+			return fmt.Errorf("No AVI ServerAutoScalePolicy ID is set")
 		}
 		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
 		uuid := strings.Split(url, "#")[0]
@@ -76,7 +77,7 @@ func testAccCheckAVIServerAutoScalePolicyDestroy(s *terraform.State) error {
 			return err
 		}
 		if len(obj.(map[string]interface{})) > 0 {
-			return fmt.Errorf("AVI Server Auto Scale Policy still exists")
+			return fmt.Errorf("AVI ServerAutoScalePolicy still exists")
 		}
 	}
 	return nil
@@ -84,26 +85,24 @@ func testAccCheckAVIServerAutoScalePolicyDestroy(s *terraform.State) error {
 
 const testAccAVIServerAutoScalePolicyConfig = `
 data "avi_tenant" "default_tenant"{
-	name= "admin"
+    name= "admin"
 }
-
-resource "avi_serverautoscalepolicy" "testserverautoscalepolicy" {
-	name = "ssp-test"
-	tenant_ref= "${data.avi_tenant.default_tenant.id}"
-    scalein_alertconfig_refs= []
-    scaleout_alertconfig_refs= []
+resource "avi_serverautoscalepolicy" "testServerAutoScalePolicy" {
+	"scalein_alertconfig_refs" = []
+	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
+	"name" = "test-ssp-test-abc"
+	"scaleout_alertconfig_refs" = []
 }
 `
 
-const testAccUpdatedAVIServerAutoScalePolicyConfig = `
+const testAccAVIServerAutoScalePolicyupdatedConfig = `
 data "avi_tenant" "default_tenant"{
-	name= "admin"
+    name= "admin"
 }
-
-resource "avi_serverautoscalepolicy" "testserverautoscalepolicy" {
-	name = "ssp-abc"
-	tenant_ref= "${data.avi_tenant.default_tenant.id}"
-    scalein_alertconfig_refs= []
-    scaleout_alertconfig_refs= []
+resource "avi_serverautoscalepolicy" "testServerAutoScalePolicy" {
+	"scalein_alertconfig_refs" = []
+	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
+	"name" = "test-ssp-updated"
+	"scaleout_alertconfig_refs" = []
 }
 `

@@ -20,14 +20,20 @@ func TestAVIVrfContextBasic(t *testing.T) {
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckAVIVrfContextExists("avi_vrfcontext.testVrfContext"),
 					resource.TestCheckResourceAttr(
-						"avi_vrfcontext.testVrfContext", "name", "testglobal")),
+						"avi_vrfcontext.testVrfContext", "name", "test-global-abc"),
+					resource.TestCheckResourceAttr(
+						"avi_vrfcontext.testVrfContext", "system_default", "false"),
+				),
 			},
 			{
 				Config: testAccAVIVrfContextupdatedConfig,
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckAVIVrfContextExists("avi_vrfcontext.testVrfContext"),
 					resource.TestCheckResourceAttr(
-						"avi_vrfcontext.testVrfContext", "name", "testglobal-abc")),
+						"avi_vrfcontext.testVrfContext", "name", "test-global-updated"),
+					resource.TestCheckResourceAttr(
+						"avi_vrfcontext.testVrfContext", "system_default", "false"),
+				),
 			},
 		},
 	})
@@ -83,28 +89,28 @@ func testAccCheckAVIVrfContextDestroy(s *terraform.State) error {
 
 const testAccAVIVrfContextConfig = `
 data "avi_tenant" "default_tenant"{
-        name= "admin"
+    name= "admin"
 }
 data "avi_cloud" "default_cloud" {
-        name= "Default-Cloud"
+    name= "Default-Cloud"
 }
 resource "avi_vrfcontext" "testVrfContext" {
-"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
-"cloud_ref" = "${data.avi_cloud.default_cloud.id}"
-"name" = "testglobal"
+	"cloud_ref" = "${data.avi_cloud.default_cloud.id}"
+	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
+	"name" = "test-global-abc"
 }
 `
 
 const testAccAVIVrfContextupdatedConfig = `
 data "avi_tenant" "default_tenant"{
-        name= "admin"
+    name= "admin"
 }
 data "avi_cloud" "default_cloud" {
-        name= "Default-Cloud"
+    name= "Default-Cloud"
 }
 resource "avi_vrfcontext" "testVrfContext" {
-"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
-"cloud_ref" = "${data.avi_cloud.default_cloud.id}"
-"name" = "testglobal-abc"
+	"cloud_ref" = "${data.avi_cloud.default_cloud.id}"
+	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
+	"name" = "test-global-updated"
 }
 `

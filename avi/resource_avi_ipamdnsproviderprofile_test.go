@@ -2,40 +2,45 @@ package avi
 
 import (
 	"fmt"
-	"strings"
-	"testing"
-
 	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform/helper/resource"
 	"github.com/hashicorp/terraform/terraform"
+	"strings"
+	"testing"
 )
 
-func TestAVIIPAMDNSProviderProfileBasic(t *testing.T) {
+func TestAVIIpamDnsProviderProfileBasic(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		PreCheck:     func() { testAccPreCheck(t) },
 		Providers:    testAccProviders,
-		CheckDestroy: testAccCheckAVIIPAMDNSProviderProfileDestroy,
+		CheckDestroy: testAccCheckAVIIpamDnsProviderProfileDestroy,
 		Steps: []resource.TestStep{
 			{
-				Config: testAccAVIIPAMDNSProviderProfileConfig,
+				Config: testAccAVIIpamDnsProviderProfileConfig,
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckAVIIPAMDNSProviderProfileExists("avi_ipamdnsproviderprofile.testipamdnsproviderprofile"),
+					testAccCheckAVIIpamDnsProviderProfileExists("avi_ipamdnsproviderprofile.testIpamDnsProviderProfile"),
 					resource.TestCheckResourceAttr(
-						"avi_ipamdnsproviderprofile.testipamdnsproviderprofile", "name", "ipam-test")),
+						"avi_ipamdnsproviderprofile.testIpamDnsProviderProfile", "name", "test-ipam-abc-abc"),
+					resource.TestCheckResourceAttr(
+						"avi_ipamdnsproviderprofile.testIpamDnsProviderProfile", "allocate_ip_in_vrf", "false"),
+				),
 			},
 			{
-				Config: testAccUpdatedAVIIPAMDNSProviderProfileConfig,
+				Config: testAccAVIIpamDnsProviderProfileupdatedConfig,
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckAVIIPAMDNSProviderProfileExists("avi_ipamdnsproviderprofile.testipamdnsproviderprofile"),
+					testAccCheckAVIIpamDnsProviderProfileExists("avi_ipamdnsproviderprofile.testIpamDnsProviderProfile"),
 					resource.TestCheckResourceAttr(
-						"avi_ipamdnsproviderprofile.testipamdnsproviderprofile", "name", "ipam-abc")),
+						"avi_ipamdnsproviderprofile.testIpamDnsProviderProfile", "name", "test-ipam-updated"),
+					resource.TestCheckResourceAttr(
+						"avi_ipamdnsproviderprofile.testIpamDnsProviderProfile", "allocate_ip_in_vrf", "false"),
+				),
 			},
 		},
 	})
 
 }
 
-func testAccCheckAVIIPAMDNSProviderProfileExists(resourcename string) resource.TestCheckFunc {
+func testAccCheckAVIIpamDnsProviderProfileExists(resourcename string) resource.TestCheckFunc {
 	return func(s *terraform.State) error {
 		conn := testAccProvider.Meta().(*clients.AviClient).AviSession
 		var obj interface{}
@@ -44,7 +49,7 @@ func testAccCheckAVIIPAMDNSProviderProfileExists(resourcename string) resource.T
 			return fmt.Errorf("Not found: %s", resourcename)
 		}
 		if rs.Primary.ID == "" {
-			return fmt.Errorf("No IPAMDNS Provider Profile ID is set")
+			return fmt.Errorf("No AVI IpamDnsProviderProfile ID is set")
 		}
 		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
 		uuid := strings.Split(url, "#")[0]
@@ -58,7 +63,7 @@ func testAccCheckAVIIPAMDNSProviderProfileExists(resourcename string) resource.T
 
 }
 
-func testAccCheckAVIIPAMDNSProviderProfileDestroy(s *terraform.State) error {
+func testAccCheckAVIIpamDnsProviderProfileDestroy(s *terraform.State) error {
 	conn := testAccProvider.Meta().(*clients.AviClient).AviSession
 	var obj interface{}
 	for _, rs := range s.RootModule().Resources {
@@ -76,50 +81,38 @@ func testAccCheckAVIIPAMDNSProviderProfileDestroy(s *terraform.State) error {
 			return err
 		}
 		if len(obj.(map[string]interface{})) > 0 {
-			return fmt.Errorf("AVI IPAMDNS Provider Profile still exists")
+			return fmt.Errorf("AVI IpamDnsProviderProfile still exists")
 		}
 	}
 	return nil
 }
 
-const testAccAVIIPAMDNSProviderProfileConfig = `
+const testAccAVIIpamDnsProviderProfileConfig = `
 data "avi_tenant" "default_tenant"{
-	name= "admin"
+    name= "admin"
 }
-data "avi_cloud" "default_cloud" {
-	name= "Default-Cloud"
-}
-data "avi_vrfcontext" "global_vrf" {
-	name= "global"
-}
-resource "avi_ipamdnsproviderprofile" "testipamdnsproviderprofile" {
-	name = "ipam-test"
-	allocate_ip_in_vrf= false
-  	internal_profile= {
-        ttl= 31
-  	}
-  	type= "IPAMDNS_TYPE_INTERNAL"
-	tenant_ref= "${data.avi_tenant.default_tenant.id}"
+resource "avi_ipamdnsproviderprofile" "testIpamDnsProviderProfile" {
+	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
+	"allocate_ip_in_vrf" = false
+	"type" = "IPAMDNS_TYPE_INTERNAL"
+	"name" = "test-ipam-abc-abc"
+	"internal_profile" {
+		"ttl" = "31"
+	}
 }
 `
 
-const testAccUpdatedAVIIPAMDNSProviderProfileConfig = `
+const testAccAVIIpamDnsProviderProfileupdatedConfig = `
 data "avi_tenant" "default_tenant"{
-	name= "admin"
+    name= "admin"
 }
-data "avi_cloud" "default_cloud" {
-	name= "Default-Cloud"
-}
-data "avi_vrfcontext" "global_vrf" {
-	name= "global"
-}
-resource "avi_ipamdnsproviderprofile" "testipamdnsproviderprofile" {
-	name = "ipam-abc"
-	allocate_ip_in_vrf= false
-    internal_profile= {
-        ttl= 31
-    }
-  	type= "IPAMDNS_TYPE_INTERNAL"
-	tenant_ref= "${data.avi_tenant.default_tenant.id}"
+resource "avi_ipamdnsproviderprofile" "testIpamDnsProviderProfile" {
+	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
+	"allocate_ip_in_vrf" = false
+	"type" = "IPAMDNS_TYPE_INTERNAL"
+	"name" = "test-ipam-updated"
+	"internal_profile" {
+		"ttl" = "31"
+	}
 }
 `

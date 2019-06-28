@@ -17,7 +17,7 @@ type Cloud struct {
 	// Placeholder for description of property apic_mode of obj type Cloud field type str  type boolean
 	ApicMode *bool `json:"apic_mode,omitempty"`
 
-	// CloudConnector polling interval for external autoscale groups. Field introduced in 18.2.2, 19.1.1.
+	// CloudConnector polling interval in seconds for external autoscale groups, minimum 60 seconds. Allowed values are 60-3600. Field introduced in 18.2.2.
 	AutoscalePollingInterval *int32 `json:"autoscale_polling_interval,omitempty"`
 
 	// Placeholder for description of property aws_configuration of obj type Cloud field type str  type object
@@ -68,7 +68,7 @@ type Cloud struct {
 	// Placeholder for description of property linuxserver_configuration of obj type Cloud field type str  type object
 	LinuxserverConfiguration *LinuxServerConfiguration `json:"linuxserver_configuration,omitempty"`
 
-	//  Field deprecated in 18.2.2,19.1.1.
+	//  Field deprecated in 18.2.2.
 	MesosConfiguration *MesosConfiguration `json:"mesos_configuration,omitempty"`
 
 	// MTU setting for the cloud.
@@ -98,6 +98,9 @@ type Cloud struct {
 
 	// Placeholder for description of property rancher_configuration of obj type Cloud field type str  type object
 	RancherConfiguration *RancherConfiguration `json:"rancher_configuration,omitempty"`
+
+	// The Service Engine Group to use as template. It is a reference to an object of type ServiceEngineGroup. Field introduced in 18.2.5.
+	SeGroupTemplateRef *string `json:"se_group_template_ref,omitempty"`
 
 	// DNS records for VIPs are added/deleted based on the operational state of the VIPs. Field introduced in 17.1.12.
 	StateBasedDNSRegistration *bool `json:"state_based_dns_registration,omitempty"`

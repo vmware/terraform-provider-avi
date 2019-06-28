@@ -41,7 +41,7 @@ func ResourceGslbSchema() map[string]*schema.Schema {
 		"error_resync_interval": {
 			Type:     schema.TypeInt,
 			Optional: true,
-			Default:  0,
+			Default:  300,
 		},
 		"is_federated": {
 			Type:     schema.TypeBool,

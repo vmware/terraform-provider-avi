@@ -2,40 +2,41 @@ package avi
 
 import (
 	"fmt"
-	"strings"
-	"testing"
-
 	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform/helper/resource"
 	"github.com/hashicorp/terraform/terraform"
+	"strings"
+	"testing"
 )
 
-func TestAVICustomipamdnsProfileBasic(t *testing.T) {
+func TestAVICustomIpamDnsProfileBasic(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		PreCheck:     func() { testAccPreCheck(t) },
 		Providers:    testAccProviders,
-		CheckDestroy: testAccCheckAVICustomipamdnsProfileDestroy,
+		CheckDestroy: testAccCheckAVICustomIpamDnsProfileDestroy,
 		Steps: []resource.TestStep{
 			{
-				Config: testAccAVICustomipamdnsProfileConfig,
+				Config: testAccAVICustomIpamDnsProfileConfig,
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckAVICustomipamdnsProfileExists("avi_customipamdnsprofile.testipam"),
+					testAccCheckAVICustomIpamDnsProfileExists("avi_customipamdnsprofile.testCustomIpamDnsProfile"),
 					resource.TestCheckResourceAttr(
-						"avi_customipamdnsprofile.testipam", "name", "ipam-test")),
+						"avi_customipamdnsprofile.testCustomIpamDnsProfile", "name", "test-ipam-abc"),
+				),
 			},
 			{
-				Config: testAccUpdatedAVICustomipamdnsProfileConfig,
+				Config: testAccAVICustomIpamDnsProfileupdatedConfig,
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckAVICustomipamdnsProfileExists("avi_customipamdnsprofile.testipam"),
+					testAccCheckAVICustomIpamDnsProfileExists("avi_customipamdnsprofile.testCustomIpamDnsProfile"),
 					resource.TestCheckResourceAttr(
-						"avi_customipamdnsprofile.testipam", "name", "ipam-abc")),
+						"avi_customipamdnsprofile.testCustomIpamDnsProfile", "name", "test-ipam-updated"),
+				),
 			},
 		},
 	})
 
 }
 
-func testAccCheckAVICustomipamdnsProfileExists(resourcename string) resource.TestCheckFunc {
+func testAccCheckAVICustomIpamDnsProfileExists(resourcename string) resource.TestCheckFunc {
 	return func(s *terraform.State) error {
 		conn := testAccProvider.Meta().(*clients.AviClient).AviSession
 		var obj interface{}
@@ -44,7 +45,7 @@ func testAccCheckAVICustomipamdnsProfileExists(resourcename string) resource.Tes
 			return fmt.Errorf("Not found: %s", resourcename)
 		}
 		if rs.Primary.ID == "" {
-			return fmt.Errorf("No Custom ipamdns Profile ID is set")
+			return fmt.Errorf("No AVI CustomIpamDnsProfile ID is set")
 		}
 		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
 		uuid := strings.Split(url, "#")[0]
@@ -58,7 +59,7 @@ func testAccCheckAVICustomipamdnsProfileExists(resourcename string) resource.Tes
 
 }
 
-func testAccCheckAVICustomipamdnsProfileDestroy(s *terraform.State) error {
+func testAccCheckAVICustomIpamDnsProfileDestroy(s *terraform.State) error {
 	conn := testAccProvider.Meta().(*clients.AviClient).AviSession
 	var obj interface{}
 	for _, rs := range s.RootModule().Resources {
@@ -76,32 +77,30 @@ func testAccCheckAVICustomipamdnsProfileDestroy(s *terraform.State) error {
 			return err
 		}
 		if len(obj.(map[string]interface{})) > 0 {
-			return fmt.Errorf("AVI Custom ipamdns Profile still exists")
+			return fmt.Errorf("AVI CustomIpamDnsProfile still exists")
 		}
 	}
 	return nil
 }
 
-const testAccAVICustomipamdnsProfileConfig = `
+const testAccAVICustomIpamDnsProfileConfig = `
 data "avi_tenant" "default_tenant"{
-	name= "admin"
+    name= "admin"
 }
-
-resource "avi_customipamdnsprofile" "testipam" {
-	name = "ipam-test"
-	script_uri = "/"
-	tenant_ref= "${data.avi_tenant.default_tenant.id}"
+resource "avi_customipamdnsprofile" "testCustomIpamDnsProfile" {
+	"script_uri" = "/"
+	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
+	"name" = "test-ipam-abc"
 }
 `
 
-const testAccUpdatedAVICustomipamdnsProfileConfig = `
+const testAccAVICustomIpamDnsProfileupdatedConfig = `
 data "avi_tenant" "default_tenant"{
-	name= "admin"
+    name= "admin"
 }
-
-resource "avi_customipamdnsprofile" "testipam" {
-	name = "ipam-abc"
-	script_uri = "/"
-	tenant_ref= "${data.avi_tenant.default_tenant.id}"
+resource "avi_customipamdnsprofile" "testCustomIpamDnsProfile" {
+	"script_uri" = "/"
+	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
+	"name" = "test-ipam-updated"
 }
 `

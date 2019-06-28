@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"os"
 	"testing"
-
 	"github.com/avinetworks/sdk/go/clients"
 	"github.com/avinetworks/sdk/go/models"
 	"github.com/avinetworks/sdk/go/session"
@@ -12,9 +11,9 @@ import (
 
 func TestCreateHealthmonitor(t *testing.T) {
 	aviClient, err := clients.NewAviClient(os.Getenv("controller"), "admin",
-		session.SetPassword("fr3sca$%^"),
+		session.SetPassword(os.Getenv("password")),
 		session.SetTenant("admin"),
-		session.SetVersion("17.2.8"),
+		session.SetVersion(os.Getenv("version")),
 		session.SetInsecure)
 
 	if err != nil {

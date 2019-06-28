@@ -20,14 +20,16 @@ func TestAVIAlertScriptConfigBasic(t *testing.T) {
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckAVIAlertScriptConfigExists("avi_alertscriptconfig.testAlertScriptConfig"),
 					resource.TestCheckResourceAttr(
-						"avi_alertscriptconfig.testAlertScriptConfig", "name", "testse_grp_cleanup_old_spec_se")),
+						"avi_alertscriptconfig.testAlertScriptConfig", "name", "test-se_grp_cleanup_old_spec_se-abc"),
+				),
 			},
 			{
 				Config: testAccAVIAlertScriptConfigupdatedConfig,
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckAVIAlertScriptConfigExists("avi_alertscriptconfig.testAlertScriptConfig"),
 					resource.TestCheckResourceAttr(
-						"avi_alertscriptconfig.testAlertScriptConfig", "name", "testse_grp_cleanup_old_spec_se-abc")),
+						"avi_alertscriptconfig.testAlertScriptConfig", "name", "test-se_grp_cleanup_old_spec_se-updated"),
+				),
 			},
 		},
 	})
@@ -83,10 +85,12 @@ func testAccCheckAVIAlertScriptConfigDestroy(s *terraform.State) error {
 
 const testAccAVIAlertScriptConfigConfig = `
 data "avi_tenant" "default_tenant"{
-        name= "admin"
+    name= "admin"
 }
 resource "avi_alertscriptconfig" "testAlertScriptConfig" {
-"action_script" = <<EOF
+	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
+	"name" = "test-se_grp_cleanup_old_spec_se-abc"
+	"action_script" = <<EOF
 #!/usr/bin/python
 import os
 import json
@@ -219,17 +223,17 @@ if __name__ == "__main__":
                     tenant_uuid=tenant_uuid) as session:
         cleanup_old_spec_se(se_grp_uuid, session)
 EOF
-"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
-"name" = "testse_grp_cleanup_old_spec_se"
 }
 `
 
 const testAccAVIAlertScriptConfigupdatedConfig = `
 data "avi_tenant" "default_tenant"{
-        name= "admin"
+    name= "admin"
 }
 resource "avi_alertscriptconfig" "testAlertScriptConfig" {
-"action_script" = <<EOF
+	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
+	"name" = "test-se_grp_cleanup_old_spec_se-updated"
+	"action_script" = <<EOF
 #!/usr/bin/python
 import os
 import json
@@ -362,7 +366,5 @@ if __name__ == "__main__":
                     tenant_uuid=tenant_uuid) as session:
         cleanup_old_spec_se(se_grp_uuid, session)
 EOF
-"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
-"name" = "testse_grp_cleanup_old_spec_se-abc"
 }
 `

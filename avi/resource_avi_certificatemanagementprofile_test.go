@@ -2,12 +2,11 @@ package avi
 
 import (
 	"fmt"
-	"strings"
-	"testing"
-
 	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform/helper/resource"
 	"github.com/hashicorp/terraform/terraform"
+	"strings"
+	"testing"
 )
 
 func TestAVICertificateManagementProfileBasic(t *testing.T) {
@@ -19,16 +18,18 @@ func TestAVICertificateManagementProfileBasic(t *testing.T) {
 			{
 				Config: testAccAVICertificateManagementProfileConfig,
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckAVICertificateManagementProfileExists("avi_certificatemanagementprofile.testcertificatemanagementprofile"),
+					testAccCheckAVICertificateManagementProfileExists("avi_certificatemanagementprofile.testCertificateManagementProfile"),
 					resource.TestCheckResourceAttr(
-						"avi_certificatemanagementprofile.testcertificatemanagementprofile", "name", "cert-test")),
+						"avi_certificatemanagementprofile.testCertificateManagementProfile", "name", "test-cert-test-abc"),
+				),
 			},
 			{
-				Config: testAccUpdatedAVICertificateManagementProfileConfig,
+				Config: testAccAVICertificateManagementProfileupdatedConfig,
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckAVICertificateManagementProfileExists("avi_certificatemanagementprofile.testcertificatemanagementprofile"),
+					testAccCheckAVICertificateManagementProfileExists("avi_certificatemanagementprofile.testCertificateManagementProfile"),
 					resource.TestCheckResourceAttr(
-						"avi_certificatemanagementprofile.testcertificatemanagementprofile", "name", "cert-abc")),
+						"avi_certificatemanagementprofile.testCertificateManagementProfile", "name", "test-cert-updated"),
+				),
 			},
 		},
 	})
@@ -44,7 +45,7 @@ func testAccCheckAVICertificateManagementProfileExists(resourcename string) reso
 			return fmt.Errorf("Not found: %s", resourcename)
 		}
 		if rs.Primary.ID == "" {
-			return fmt.Errorf("No Certificate Management Profile ID is set")
+			return fmt.Errorf("No AVI CertificateManagementProfile ID is set")
 		}
 		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
 		uuid := strings.Split(url, "#")[0]
@@ -76,7 +77,7 @@ func testAccCheckAVICertificateManagementProfileDestroy(s *terraform.State) erro
 			return err
 		}
 		if len(obj.(map[string]interface{})) > 0 {
-			return fmt.Errorf("AVI Certificate Management Profile still exists")
+			return fmt.Errorf("AVI CertificateManagementProfile still exists")
 		}
 	}
 	return nil
@@ -84,24 +85,22 @@ func testAccCheckAVICertificateManagementProfileDestroy(s *terraform.State) erro
 
 const testAccAVICertificateManagementProfileConfig = `
 data "avi_tenant" "default_tenant"{
-	name= "admin"
+    name= "admin"
 }
-
-resource "avi_certificatemanagementprofile" "testcertificatemanagementprofile" {
-	name = "cert-test"
-	script_path= "test script path"
-	tenant_ref= "${data.avi_tenant.default_tenant.id}"
+resource "avi_certificatemanagementprofile" "testCertificateManagementProfile" {
+	"script_path" = "test script path"
+	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
+	"name" = "test-cert-test-abc"
 }
 `
 
-const testAccUpdatedAVICertificateManagementProfileConfig = `
+const testAccAVICertificateManagementProfileupdatedConfig = `
 data "avi_tenant" "default_tenant"{
-	name= "admin"
+    name= "admin"
 }
-
-resource "avi_certificatemanagementprofile" "testcertificatemanagementprofile" {
-	name = "cert-abc"
-	script_path= "test script path"
-	tenant_ref= "${data.avi_tenant.default_tenant.id}"
+resource "avi_certificatemanagementprofile" "testCertificateManagementProfile" {
+	"script_path" = "test script path"
+	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
+	"name" = "test-cert-updated"
 }
 `

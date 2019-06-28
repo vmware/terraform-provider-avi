@@ -40,7 +40,7 @@ type EventDetails struct {
 	// Placeholder for description of property azure_info of obj type EventDetails field type str  type object
 	AzureInfo *AzureSetup `json:"azure_info,omitempty"`
 
-	// Azure marketplace license term acceptance event. Field introduced in 18.2.2, 19.1.1.
+	// Azure marketplace license term acceptance event. Field introduced in 18.2.2.
 	AzureMpInfo *AzureMarketplace `json:"azure_mp_info,omitempty"`
 
 	// Placeholder for description of property bind_vs_se_details of obj type EventDetails field type str  type object
@@ -72,6 +72,9 @@ type EventDetails struct {
 
 	// Placeholder for description of property cc_parkintf_details of obj type EventDetails field type str  type object
 	CcParkintfDetails *CloudVipParkingIntf `json:"cc_parkintf_details,omitempty"`
+
+	//  Field introduced in 18.2.5.
+	CcScalesetNotifDetails *CCScaleSetNotifDetails `json:"cc_scaleset_notif_details,omitempty"`
 
 	// Placeholder for description of property cc_se_vm_details of obj type EventDetails field type str  type object
 	CcSeVMDetails *CloudSeVMChange `json:"cc_se_vm_details,omitempty"`
@@ -223,6 +226,12 @@ type EventDetails struct {
 	// Placeholder for description of property metrics_db_disk_details of obj type EventDetails field type str  type object
 	MetricsDbDiskDetails *MetricsDbDiskEventDetails `json:"metrics_db_disk_details,omitempty"`
 
+	// Placeholder for description of property metrics_db_queue_full_details of obj type EventDetails field type str  type object
+	MetricsDbQueueFullDetails *MetricsDbQueueFullEventDetails `json:"metrics_db_queue_full_details,omitempty"`
+
+	// Placeholder for description of property metrics_db_queue_healthy_details of obj type EventDetails field type str  type object
+	MetricsDbQueueHealthyDetails *MetricsDbQueueHealthyEventDetails `json:"metrics_db_queue_healthy_details,omitempty"`
+
 	// Placeholder for description of property mgmt_nw_change_details of obj type EventDetails field type str  type object
 	MgmtNwChangeDetails *VinfraMgmtNwChangeDetails `json:"mgmt_nw_change_details,omitempty"`
 
@@ -337,7 +346,7 @@ type EventDetails struct {
 	// Placeholder for description of property se_licensed_bandwdith_exceeded_event_details of obj type EventDetails field type str  type object
 	SeLicensedBandwdithExceededEventDetails *SeLicensedBandwdithExceededEventDetails `json:"se_licensed_bandwdith_exceeded_event_details,omitempty"`
 
-	//  Field introduced in 18.2.2, 19.1.1.
+	//  Field introduced in 18.2.2.
 	SeMemoryLimitEventDetails *SeMemoryLimitEventDetails `json:"se_memory_limit_event_details,omitempty"`
 
 	// Placeholder for description of property se_persistence_details of obj type EventDetails field type str  type object
@@ -418,11 +427,14 @@ type EventDetails struct {
 	// Placeholder for description of property switchover_fail_details of obj type EventDetails field type str  type object
 	SwitchoverFailDetails *SwitchoverFailEventDetails `json:"switchover_fail_details,omitempty"`
 
-	// Azure cloud sync services event details. Field introduced in 19.1.1.
+	// Azure cloud sync services event details. Field introduced in 18.2.3.
 	SyncServicesInfo *CloudSyncServices `json:"sync_services_info,omitempty"`
 
 	// Placeholder for description of property system_upgrade_details of obj type EventDetails field type str  type object
 	SystemUpgradeDetails *SystemUpgradeDetails `json:"system_upgrade_details,omitempty"`
+
+	// Placeholder for description of property tencent_info of obj type EventDetails field type str  type object
+	TencentInfo *TencentSetup `json:"tencent_info,omitempty"`
 
 	// Placeholder for description of property unbind_vs_se_details of obj type EventDetails field type str  type object
 	UnbindVsSeDetails *RmUnbindVsSeEventDetails `json:"unbind_vs_se_details,omitempty"`

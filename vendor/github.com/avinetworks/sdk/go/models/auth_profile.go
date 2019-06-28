@@ -24,7 +24,7 @@ type AuthProfile struct {
 	// Required: true
 	Name *string `json:"name"`
 
-	// PingAccessAgent uuid. It is a reference to an object of type PingAccessAgent. Field introduced in 19.1.1.
+	// PingAccessAgent uuid. It is a reference to an object of type PingAccessAgent. Field introduced in 18.2.3.
 	PaAgentRef *string `json:"pa_agent_ref,omitempty"`
 
 	// SAML settings. Field introduced in 17.2.3.

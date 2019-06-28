@@ -2,12 +2,11 @@ package avi
 
 import (
 	"fmt"
-	"strings"
-	"testing"
-
 	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform/helper/resource"
 	"github.com/hashicorp/terraform/terraform"
+	"strings"
+	"testing"
 )
 
 func TestAVIPriorityLabelsBasic(t *testing.T) {
@@ -19,16 +18,18 @@ func TestAVIPriorityLabelsBasic(t *testing.T) {
 			{
 				Config: testAccAVIPriorityLabelsConfig,
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckAVIPriorityLabelsExists("avi_prioritylabels.testprioritylabels"),
+					testAccCheckAVIPriorityLabelsExists("avi_prioritylabels.testPriorityLabels"),
 					resource.TestCheckResourceAttr(
-						"avi_prioritylabels.testprioritylabels", "name", "pl-test")),
+						"avi_prioritylabels.testPriorityLabels", "name", "test-pl-test-abc"),
+				),
 			},
 			{
-				Config: testAccUpdatedAVIPriorityLabelsConfig,
+				Config: testAccAVIPriorityLabelsupdatedConfig,
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckAVIPriorityLabelsExists("avi_prioritylabels.testprioritylabels"),
+					testAccCheckAVIPriorityLabelsExists("avi_prioritylabels.testPriorityLabels"),
 					resource.TestCheckResourceAttr(
-						"avi_prioritylabels.testprioritylabels", "name", "pl-abc")),
+						"avi_prioritylabels.testPriorityLabels", "name", "test-pl-updated"),
+				),
 			},
 		},
 	})
@@ -44,7 +45,7 @@ func testAccCheckAVIPriorityLabelsExists(resourcename string) resource.TestCheck
 			return fmt.Errorf("Not found: %s", resourcename)
 		}
 		if rs.Primary.ID == "" {
-			return fmt.Errorf("No Priority Labels ID is set")
+			return fmt.Errorf("No AVI PriorityLabels ID is set")
 		}
 		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
 		uuid := strings.Split(url, "#")[0]
@@ -76,7 +77,7 @@ func testAccCheckAVIPriorityLabelsDestroy(s *terraform.State) error {
 			return err
 		}
 		if len(obj.(map[string]interface{})) > 0 {
-			return fmt.Errorf("AVI Priority Labels still exists")
+			return fmt.Errorf("AVI PriorityLabels still exists")
 		}
 	}
 	return nil
@@ -84,32 +85,22 @@ func testAccCheckAVIPriorityLabelsDestroy(s *terraform.State) error {
 
 const testAccAVIPriorityLabelsConfig = `
 data "avi_tenant" "default_tenant"{
-	name= "admin"
+    name= "admin"
 }
-data "avi_cloud" "default_cloud" {
-	name= "Default-Cloud"
-}
-
-resource "avi_prioritylabels" "testprioritylabels" {
-	name = "pl-test"
-	description = "test priority labels"
-	tenant_ref= "${data.avi_tenant.default_tenant.id}"
-	cloud_ref= "${data.avi_cloud.default_cloud.id}"
+resource "avi_prioritylabels" "testPriorityLabels" {
+	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
+	"name" = "test-pl-test-abc"
+	"description" = "test priority labels"
 }
 `
 
-const testAccUpdatedAVIPriorityLabelsConfig = `
+const testAccAVIPriorityLabelsupdatedConfig = `
 data "avi_tenant" "default_tenant"{
-	name= "admin"
+    name= "admin"
 }
-data "avi_cloud" "default_cloud" {
-	name= "Default-Cloud"
-}
-
-resource "avi_prioritylabels" "testprioritylabels" {
-	name = "pl-abc"
-	description = "test priority labels"
-	tenant_ref= "${data.avi_tenant.default_tenant.id}"
-	cloud_ref= "${data.avi_cloud.default_cloud.id}"
+resource "avi_prioritylabels" "testPriorityLabels" {
+	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
+	"name" = "test-pl-updated"
+	"description" = "test priority labels"
 }
 `

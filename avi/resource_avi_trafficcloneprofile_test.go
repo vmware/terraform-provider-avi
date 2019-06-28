@@ -2,12 +2,11 @@ package avi
 
 import (
 	"fmt"
-	"strings"
-	"testing"
-
 	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform/helper/resource"
 	"github.com/hashicorp/terraform/terraform"
+	"strings"
+	"testing"
 )
 
 func TestAVITrafficCloneProfileBasic(t *testing.T) {
@@ -19,16 +18,18 @@ func TestAVITrafficCloneProfileBasic(t *testing.T) {
 			{
 				Config: testAccAVITrafficCloneProfileConfig,
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckAVITrafficCloneProfileExists("avi_trafficcloneprofile.testtrafficcloneprofile"),
+					testAccCheckAVITrafficCloneProfileExists("avi_trafficcloneprofile.testTrafficCloneProfile"),
 					resource.TestCheckResourceAttr(
-						"avi_trafficcloneprofile.testtrafficcloneprofile", "name", "tp-test")),
+						"avi_trafficcloneprofile.testTrafficCloneProfile", "name", "test-tp-test-abc"),
+				),
 			},
 			{
-				Config: testAccUpdatedAVITrafficCloneProfileConfig,
+				Config: testAccAVITrafficCloneProfileupdatedConfig,
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckAVITrafficCloneProfileExists("avi_trafficcloneprofile.testtrafficcloneprofile"),
+					testAccCheckAVITrafficCloneProfileExists("avi_trafficcloneprofile.testTrafficCloneProfile"),
 					resource.TestCheckResourceAttr(
-						"avi_trafficcloneprofile.testtrafficcloneprofile", "name", "tp-abc")),
+						"avi_trafficcloneprofile.testTrafficCloneProfile", "name", "test-tp-updated"),
+				),
 			},
 		},
 	})
@@ -44,7 +45,7 @@ func testAccCheckAVITrafficCloneProfileExists(resourcename string) resource.Test
 			return fmt.Errorf("Not found: %s", resourcename)
 		}
 		if rs.Primary.ID == "" {
-			return fmt.Errorf("No Traffic Clone Profile ID is set")
+			return fmt.Errorf("No AVI TrafficCloneProfile ID is set")
 		}
 		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
 		uuid := strings.Split(url, "#")[0]
@@ -76,7 +77,7 @@ func testAccCheckAVITrafficCloneProfileDestroy(s *terraform.State) error {
 			return err
 		}
 		if len(obj.(map[string]interface{})) > 0 {
-			return fmt.Errorf("AVI Traffic Clone Profile still exists")
+			return fmt.Errorf("AVI TrafficCloneProfile still exists")
 		}
 	}
 	return nil
@@ -84,30 +85,20 @@ func testAccCheckAVITrafficCloneProfileDestroy(s *terraform.State) error {
 
 const testAccAVITrafficCloneProfileConfig = `
 data "avi_tenant" "default_tenant"{
-	name= "admin"
+    name= "admin"
 }
-data "avi_cloud" "default_cloud" {
-	name= "Default-Cloud"
-}
-
-resource "avi_trafficcloneprofile" "testtrafficcloneprofile" {
-	name = "tp-test"
-	tenant_ref= "${data.avi_tenant.default_tenant.id}"
-	cloud_ref= "${data.avi_cloud.default_cloud.id}"
+resource "avi_trafficcloneprofile" "testTrafficCloneProfile" {
+	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
+	"name" = "test-tp-test-abc"
 }
 `
 
-const testAccUpdatedAVITrafficCloneProfileConfig = `
+const testAccAVITrafficCloneProfileupdatedConfig = `
 data "avi_tenant" "default_tenant"{
-	name= "admin"
+    name= "admin"
 }
-data "avi_cloud" "default_cloud" {
-	name= "Default-Cloud"
-}
-
-resource "avi_trafficcloneprofile" "testtrafficcloneprofile" {
-	name = "tp-abc"
-	tenant_ref= "${data.avi_tenant.default_tenant.id}"
-	cloud_ref= "${data.avi_cloud.default_cloud.id}"
+resource "avi_trafficcloneprofile" "testTrafficCloneProfile" {
+	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
+	"name" = "test-tp-updated"
 }
 `

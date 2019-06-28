@@ -16,6 +16,11 @@ func dataSourceAviSSOPolicy() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceAuthenticationPolicySchema(),
 			},
+			"authorization_policy": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceAuthorizationPolicySchema(),
+			},
 			"name": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -24,6 +29,10 @@ func dataSourceAviSSOPolicy() *schema.Resource {
 			"tenant_ref": {
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
+			},
+			"type": {
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"uuid": {

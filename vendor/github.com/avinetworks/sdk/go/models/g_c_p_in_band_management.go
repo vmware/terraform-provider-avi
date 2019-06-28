@@ -7,7 +7,7 @@ package models
 // swagger:model GCPInBandManagement
 type GCPInBandManagement struct {
 
-	// Service Engine Inband Network Name. Field introduced in 18.2.2, 19.1.1.
+	// Service Engine Inband Network Name. Field introduced in 18.2.2.
 	// Required: true
 	VpcNetworkName *string `json:"vpc_network_name"`
 

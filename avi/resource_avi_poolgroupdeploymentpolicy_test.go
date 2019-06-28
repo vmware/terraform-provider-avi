@@ -2,12 +2,11 @@ package avi
 
 import (
 	"fmt"
-	"strings"
-	"testing"
-
 	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform/helper/resource"
 	"github.com/hashicorp/terraform/terraform"
+	"strings"
+	"testing"
 )
 
 func TestAVIPoolGroupDeploymentPolicyBasic(t *testing.T) {
@@ -19,16 +18,18 @@ func TestAVIPoolGroupDeploymentPolicyBasic(t *testing.T) {
 			{
 				Config: testAccAVIPoolGroupDeploymentPolicyConfig,
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckAVIPoolGroupDeploymentPolicyExists("avi_poolgroupdeploymentpolicy.testpoolgroupdeploymentpolicy"),
+					testAccCheckAVIPoolGroupDeploymentPolicyExists("avi_poolgroupdeploymentpolicy.testPoolGroupDeploymentPolicy"),
 					resource.TestCheckResourceAttr(
-						"avi_poolgroupdeploymentpolicy.testpoolgroupdeploymentpolicy", "name", "pgpp-test")),
+						"avi_poolgroupdeploymentpolicy.testPoolGroupDeploymentPolicy", "name", "test-pgpp-test-abc"),
+				),
 			},
 			{
-				Config: testAccUpdatedAVIPoolGroupDeploymentPolicyConfig,
+				Config: testAccAVIPoolGroupDeploymentPolicyupdatedConfig,
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckAVIPoolGroupDeploymentPolicyExists("avi_poolgroupdeploymentpolicy.testpoolgroupdeploymentpolicy"),
+					testAccCheckAVIPoolGroupDeploymentPolicyExists("avi_poolgroupdeploymentpolicy.testPoolGroupDeploymentPolicy"),
 					resource.TestCheckResourceAttr(
-						"avi_poolgroupdeploymentpolicy.testpoolgroupdeploymentpolicy", "name", "pgpp-abc")),
+						"avi_poolgroupdeploymentpolicy.testPoolGroupDeploymentPolicy", "name", "test-pgpp-updated"),
+				),
 			},
 		},
 	})
@@ -44,7 +45,7 @@ func testAccCheckAVIPoolGroupDeploymentPolicyExists(resourcename string) resourc
 			return fmt.Errorf("Not found: %s", resourcename)
 		}
 		if rs.Primary.ID == "" {
-			return fmt.Errorf("No PoolGroup Deployment Policy ID is set")
+			return fmt.Errorf("No AVI PoolGroupDeploymentPolicy ID is set")
 		}
 		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
 		uuid := strings.Split(url, "#")[0]
@@ -76,7 +77,7 @@ func testAccCheckAVIPoolGroupDeploymentPolicyDestroy(s *terraform.State) error {
 			return err
 		}
 		if len(obj.(map[string]interface{})) > 0 {
-			return fmt.Errorf("AVI PoolGroup Deployment Policy still exists")
+			return fmt.Errorf("AVI PoolGroupDeploymentPolicy still exists")
 		}
 	}
 	return nil
@@ -84,27 +85,20 @@ func testAccCheckAVIPoolGroupDeploymentPolicyDestroy(s *terraform.State) error {
 
 const testAccAVIPoolGroupDeploymentPolicyConfig = `
 data "avi_tenant" "default_tenant"{
-	name= "admin"
+    name= "admin"
 }
-data "avi_cloud" "default_cloud" {
-	name= "Default-Cloud"
-}
-resource "avi_poolgroupdeploymentpolicy" "testpoolgroupdeploymentpolicy" {
-	name = "pgpp-test"
-	tenant_ref= "${data.avi_tenant.default_tenant.id}"
+resource "avi_poolgroupdeploymentpolicy" "testPoolGroupDeploymentPolicy" {
+	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
+	"name" = "test-pgpp-test-abc"
 }
 `
 
-const testAccUpdatedAVIPoolGroupDeploymentPolicyConfig = `
+const testAccAVIPoolGroupDeploymentPolicyupdatedConfig = `
 data "avi_tenant" "default_tenant"{
-	name= "admin"
+    name= "admin"
 }
-data "avi_cloud" "default_cloud" {
-	name= "Default-Cloud"
-}
-
-resource "avi_poolgroupdeploymentpolicy" "testpoolgroupdeploymentpolicy" {
-	name = "pgpp-abc"
-	tenant_ref= "${data.avi_tenant.default_tenant.id}"
+resource "avi_poolgroupdeploymentpolicy" "testPoolGroupDeploymentPolicy" {
+	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
+	"name" = "test-pgpp-updated"
 }
 `

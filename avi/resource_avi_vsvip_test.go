@@ -2,40 +2,41 @@ package avi
 
 import (
 	"fmt"
-	"strings"
-	"testing"
-
 	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform/helper/resource"
 	"github.com/hashicorp/terraform/terraform"
+	"strings"
+	"testing"
 )
 
-func TestAVIVSVipBasic(t *testing.T) {
+func TestAVIVsVipBasic(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		PreCheck:     func() { testAccPreCheck(t) },
 		Providers:    testAccProviders,
-		CheckDestroy: testAccCheckAVIVSVipDestroy,
+		CheckDestroy: testAccCheckAVIVsVipDestroy,
 		Steps: []resource.TestStep{
 			{
-				Config: testAccAVIVSVipConfig,
+				Config: testAccAVIVsVipConfig,
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckAVIVSVipExists("avi_vsvip.testvsvip"),
+					testAccCheckAVIVsVipExists("avi_vsvip.testVsVip"),
 					resource.TestCheckResourceAttr(
-						"avi_vsvip.testvsvip", "name", "vsvip-test")),
+						"avi_vsvip.testVsVip", "name", "test-vsvip-test-abc"),
+				),
 			},
 			{
-				Config: testAccUpdatedAVIVSVipConfig,
+				Config: testAccAVIVsVipupdatedConfig,
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckAVIVSVipExists("avi_vsvip.testvsvip"),
+					testAccCheckAVIVsVipExists("avi_vsvip.testVsVip"),
 					resource.TestCheckResourceAttr(
-						"avi_vsvip.testvsvip", "name", "vsvip-abc")),
+						"avi_vsvip.testVsVip", "name", "test-vsvip-updated"),
+				),
 			},
 		},
 	})
 
 }
 
-func testAccCheckAVIVSVipExists(resourcename string) resource.TestCheckFunc {
+func testAccCheckAVIVsVipExists(resourcename string) resource.TestCheckFunc {
 	return func(s *terraform.State) error {
 		conn := testAccProvider.Meta().(*clients.AviClient).AviSession
 		var obj interface{}
@@ -44,7 +45,7 @@ func testAccCheckAVIVSVipExists(resourcename string) resource.TestCheckFunc {
 			return fmt.Errorf("Not found: %s", resourcename)
 		}
 		if rs.Primary.ID == "" {
-			return fmt.Errorf("No VSVip ID is set")
+			return fmt.Errorf("No AVI VsVip ID is set")
 		}
 		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
 		uuid := strings.Split(url, "#")[0]
@@ -58,7 +59,7 @@ func testAccCheckAVIVSVipExists(resourcename string) resource.TestCheckFunc {
 
 }
 
-func testAccCheckAVIVSVipDestroy(s *terraform.State) error {
+func testAccCheckAVIVsVipDestroy(s *terraform.State) error {
 	conn := testAccProvider.Meta().(*clients.AviClient).AviSession
 	var obj interface{}
 	for _, rs := range s.RootModule().Resources {
@@ -76,70 +77,52 @@ func testAccCheckAVIVSVipDestroy(s *terraform.State) error {
 			return err
 		}
 		if len(obj.(map[string]interface{})) > 0 {
-			return fmt.Errorf("AVI VSVip still exists")
+			return fmt.Errorf("AVI VsVip still exists")
 		}
 	}
 	return nil
 }
 
-const testAccAVIVSVipConfig = `
+const testAccAVIVsVipConfig = `
 data "avi_tenant" "default_tenant"{
-	name= "admin"
+    name= "admin"
 }
-data "avi_cloud" "default_cloud" {
-	name= "Default-Cloud"
+resource "avi_vsvip" "testVsVip" {
+	"vip" {
+	"vip_id" = "1"
+	"avi_allocated_fip" = false
+	"auto_allocate_ip" = false
+	"enabled" = false
+	"auto_allocate_floating_ip" = false
+	"avi_allocated_vip" = false
+	"ip_address" {
+		"type" = "V4"
+		"addr" = "1.2.3.1"
+	}
 }
-data "avi_vrfcontext" "global_vrf" {
-	name= "global"
-}
-
-resource "avi_vsvip" "testvsvip" {
-	name = "vsvip-test"
-	tenant_ref= "${data.avi_tenant.default_tenant.id}"
-	cloud_ref= "${data.avi_cloud.default_cloud.id}"
-	vrf_context_ref= "${data.avi_vrfcontext.global_vrf.id}"
-	vip= [{
-		vip_id= "1"
-		avi_allocated_fip= false
-		auto_allocate_ip= false
-		enabled= false
-		auto_allocate_floating_ip= false
-		avi_allocated_vip= false
-		ip_address= {
-			type= "V4"
-			addr= "1.2.3.1"
-		}
-	}]
+	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
+	"name" = "test-vsvip-test-abc"
 }
 `
 
-const testAccUpdatedAVIVSVipConfig = `
+const testAccAVIVsVipupdatedConfig = `
 data "avi_tenant" "default_tenant"{
-	name= "admin"
+    name= "admin"
 }
-data "avi_cloud" "default_cloud" {
-	name= "Default-Cloud"
+resource "avi_vsvip" "testVsVip" {
+	"vip" {
+	"vip_id" = "1"
+	"avi_allocated_fip" = false
+	"auto_allocate_ip" = false
+	"enabled" = false
+	"auto_allocate_floating_ip" = false
+	"avi_allocated_vip" = false
+	"ip_address" {
+		"type" = "V4"
+		"addr" = "1.2.3.1"
+	}
 }
-data "avi_vrfcontext" "global_vrf" {
-	name= "global"
-}
-
-resource "avi_vsvip" "testvsvip" {
-	name = "vsvip-abc"
-	tenant_ref= "${data.avi_tenant.default_tenant.id}"
-	cloud_ref= "${data.avi_cloud.default_cloud.id}"
-	vrf_context_ref= "${data.avi_vrfcontext.global_vrf.id}"
-	vip= [{
-		vip_id= "1"
-		avi_allocated_fip= false
-		auto_allocate_ip= false
-		enabled= false
-		auto_allocate_floating_ip= false
-		avi_allocated_vip= false
-		ip_address= {
-			type= "V4"
-			addr= "1.2.3.1"
-		}
-	}]
+	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
+	"name" = "test-vsvip-updated"
 }
 `

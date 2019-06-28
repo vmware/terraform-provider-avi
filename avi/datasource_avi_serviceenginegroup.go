@@ -169,6 +169,10 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeBool,
 				Computed: true,
 			},
+			"distribute_vnics": {
+				Type:     schema.TypeBool,
+				Computed: true,
+			},
 			"enable_gratarp_permanent": {
 				Type:     schema.TypeBool,
 				Computed: true,
@@ -374,30 +378,6 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
-			"nat_flow_tcp_closed_timeout": {
-				Type:     schema.TypeInt,
-				Computed: true,
-			},
-			"nat_flow_tcp_established_timeout": {
-				Type:     schema.TypeInt,
-				Computed: true,
-			},
-			"nat_flow_tcp_half_closed_timeout": {
-				Type:     schema.TypeInt,
-				Computed: true,
-			},
-			"nat_flow_tcp_handshake_timeout": {
-				Type:     schema.TypeInt,
-				Computed: true,
-			},
-			"nat_flow_udp_noresponse_timeout": {
-				Type:     schema.TypeInt,
-				Computed: true,
-			},
-			"nat_flow_udp_response_timeout": {
-				Type:     schema.TypeInt,
-				Computed: true,
-			},
 			"non_significant_log_throttle": {
 				Type:     schema.TypeInt,
 				Computed: true,
@@ -457,6 +437,26 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceDosThresholdProfileSchema(),
 			},
+			"se_dp_vnic_queue_stall_event_sleep": {
+				Type:     schema.TypeInt,
+				Computed: true,
+			},
+			"se_dp_vnic_queue_stall_threshold": {
+				Type:     schema.TypeInt,
+				Computed: true,
+			},
+			"se_dp_vnic_queue_stall_timeout": {
+				Type:     schema.TypeInt,
+				Computed: true,
+			},
+			"se_dp_vnic_restart_on_queue_stall_count": {
+				Type:     schema.TypeInt,
+				Computed: true,
+			},
+			"se_dp_vnic_stall_se_restart_window": {
+				Type:     schema.TypeInt,
+				Computed: true,
+			},
 			"se_dpdk_pmd": {
 				Type:     schema.TypeInt,
 				Computed: true,
@@ -473,12 +473,24 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeInt,
 				Computed: true,
 			},
+			"se_lro": {
+				Type:     schema.TypeBool,
+				Computed: true,
+			},
 			"se_name_prefix": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"se_pcap_lookahead": {
 				Type:     schema.TypeBool,
+				Computed: true,
+			},
+			"se_pcap_pkt_count": {
+				Type:     schema.TypeInt,
+				Computed: true,
+			},
+			"se_pcap_pkt_sz": {
+				Type:     schema.TypeInt,
 				Computed: true,
 			},
 			"se_pcap_reinit_frequency": {
@@ -523,6 +535,10 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Computed: true,
 			},
 			"se_tunnel_udp_port": {
+				Type:     schema.TypeInt,
+				Computed: true,
+			},
+			"se_tx_batch_size": {
 				Type:     schema.TypeInt,
 				Computed: true,
 			},

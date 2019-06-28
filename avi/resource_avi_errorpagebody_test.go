@@ -20,14 +20,16 @@ func TestAVIErrorPageBodyBasic(t *testing.T) {
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckAVIErrorPageBodyExists("avi_errorpagebody.testErrorPageBody"),
 					resource.TestCheckResourceAttr(
-						"avi_errorpagebody.testErrorPageBody", "name", "testCustom-Error-Page")),
+						"avi_errorpagebody.testErrorPageBody", "name", "test-Custom-Error-Page-abc"),
+				),
 			},
 			{
 				Config: testAccAVIErrorPageBodyupdatedConfig,
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckAVIErrorPageBodyExists("avi_errorpagebody.testErrorPageBody"),
 					resource.TestCheckResourceAttr(
-						"avi_errorpagebody.testErrorPageBody", "name", "testCustom-Error-Page-abc")),
+						"avi_errorpagebody.testErrorPageBody", "name", "test-Custom-Error-Page-updated"),
+				),
 			},
 		},
 	})
@@ -83,22 +85,22 @@ func testAccCheckAVIErrorPageBodyDestroy(s *terraform.State) error {
 
 const testAccAVIErrorPageBodyConfig = `
 data "avi_tenant" "default_tenant"{
-        name= "admin"
+    name= "admin"
 }
 resource "avi_errorpagebody" "testErrorPageBody" {
-"error_page_body" = "<!DOCTYPE html><html><head></head><body><div><p> Please contact our technical support</p></div></body></html>"
-"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
-"name" = "testCustom-Error-Page"
+	"error_page_body" = "<!DOCTYPE html><html><head></head><body><div><p> Please contact our technical support</p></div></body></html>"
+	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
+	"name" = "test-Custom-Error-Page-abc"
 }
 `
 
 const testAccAVIErrorPageBodyupdatedConfig = `
 data "avi_tenant" "default_tenant"{
-        name= "admin"
+    name= "admin"
 }
 resource "avi_errorpagebody" "testErrorPageBody" {
-"error_page_body" = "<!DOCTYPE html><html><head></head><body><div><p> Please contact our technical support</p></div></body></html>"
-"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
-"name" = "testCustom-Error-Page-abc"
+	"error_page_body" = "<!DOCTYPE html><html><head></head><body><div><p> Please contact our technical support team</p></div></body></html>"
+	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
+	"name" = "test-Custom-Error-Page-updated"
 }
 `

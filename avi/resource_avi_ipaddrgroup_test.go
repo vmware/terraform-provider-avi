@@ -20,14 +20,16 @@ func TestAVIIpAddrGroupBasic(t *testing.T) {
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckAVIIpAddrGroupExists("avi_ipaddrgroup.testIpAddrGroup"),
 					resource.TestCheckResourceAttr(
-						"avi_ipaddrgroup.testIpAddrGroup", "name", "testInternal")),
+						"avi_ipaddrgroup.testIpAddrGroup", "name", "test-Internal-abc"),
+				),
 			},
 			{
 				Config: testAccAVIIpAddrGroupupdatedConfig,
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckAVIIpAddrGroupExists("avi_ipaddrgroup.testIpAddrGroup"),
 					resource.TestCheckResourceAttr(
-						"avi_ipaddrgroup.testIpAddrGroup", "name", "testInternal-abc")),
+						"avi_ipaddrgroup.testIpAddrGroup", "name", "test-Internal-updated"),
+				),
 			},
 		},
 	})
@@ -83,62 +85,62 @@ func testAccCheckAVIIpAddrGroupDestroy(s *terraform.State) error {
 
 const testAccAVIIpAddrGroupConfig = `
 data "avi_tenant" "default_tenant"{
-        name= "admin"
+    name= "admin"
 }
 resource "avi_ipaddrgroup" "testIpAddrGroup" {
-"prefixes" {
-"mask" = "8"
-"ip_addr" {
-"type" = "V4"
-"addr" = "10.0.0.0"
-}
-}
-"prefixes" {
-"mask" = "16"
-"ip_addr" {
-"type" = "V4"
-"addr" = "192.168.0.0"
-}
+	"prefixes" {
+	"mask" = "8"
+	"ip_addr" {
+		"type" = "V4"
+		"addr" = "10.0.0.0"
+	}
 }
 "prefixes" {
-"mask" = "12"
-"ip_addr" {
-"type" = "V4"
-"addr" = "172.16.0.0"
+	"mask" = "16"
+	"ip_addr" {
+		"type" = "V4"
+		"addr" = "192.168.0.0"
+	}
 }
+"prefixes" {
+	"mask" = "12"
+	"ip_addr" {
+		"type" = "V4"
+		"addr" = "172.16.0.0"
+	}
 }
-"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
-"name" = "testInternal"
+	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
+	"name" = "test-Internal-abc"
 }
 `
 
 const testAccAVIIpAddrGroupupdatedConfig = `
 data "avi_tenant" "default_tenant"{
-        name= "admin"
+    name= "admin"
 }
 resource "avi_ipaddrgroup" "testIpAddrGroup" {
-"prefixes" {
-"mask" = "8"
-"ip_addr" {
-"type" = "V4"
-"addr" = "10.0.0.0"
-}
-}
-"prefixes" {
-"mask" = "16"
-"ip_addr" {
-"type" = "V4"
-"addr" = "192.168.0.0"
-}
+	"prefixes" {
+	"mask" = "8"
+	"ip_addr" {
+		"type" = "V4"
+		"addr" = "10.0.0.0"
+	}
 }
 "prefixes" {
-"mask" = "12"
-"ip_addr" {
-"type" = "V4"
-"addr" = "172.16.0.0"
+	"mask" = "16"
+	"ip_addr" {
+		"type" = "V4"
+		"addr" = "192.168.0.0"
+	}
 }
+"prefixes" {
+	"mask" = "12"
+	"ip_addr" {
+		"type" = "V4"
+		"addr" = "172.16.0.0"
+	}
 }
-"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
-"name" = "testInternal-abc"
+	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
+	"name" = "test-Internal-updated"
 }
 `

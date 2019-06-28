@@ -32,8 +32,11 @@ type ServiceEngineGroup struct {
 	// Allow SEs to be created using burst license. Field introduced in 17.2.5.
 	AllowBurst *bool `json:"allow_burst,omitempty"`
 
-	// A percent value of total SE memory reserved for application caching. This is an SE bootup property and requires SE restart. Allowed values are 0 - 100. Special values are 0- 'disable'. Field introduced in 19.1.1.
+	// A percent value of total SE memory reserved for application caching. This is an SE bootup property and requires SE restart. Allowed values are 0 - 100. Special values are 0- 'disable'. Field introduced in 18.2.3.
 	AppCachePercent *int32 `json:"app_cache_percent,omitempty"`
+
+	// A percent value of total SE memory reserved for Application learning. This is an SE bootup property and requires SE restart. Allowed values are 0 - 10. Field introduced in 18.2.3.
+	AppLearningMemoryPercent *int32 `json:"app_learning_memory_percent,omitempty"`
 
 	// Amount of SE memory in GB until which shared memory is collected in core archive. Field introduced in 17.1.3.
 	ArchiveShmLimit *int32 `json:"archive_shm_limit,omitempty"`
@@ -89,6 +92,12 @@ type ServiceEngineGroup struct {
 	// Custom tag will be used to create the tags for SE instance in AWS. Note this is not the same as the prefix for SE name.
 	CustomTag []*CustomTag `json:"custom_tag,omitempty"`
 
+	// Subnet used to spin up the data nic for Service Engines, used only for Azure cloud. Overrides the cloud level setting for Service Engine subnet. Field introduced in 18.2.3.
+	DataNetworkID *string `json:"data_network_id,omitempty"`
+
+	// Number of instructions before datascript times out. Allowed values are 0-100000000. Field introduced in 18.2.3.
+	DatascriptTimeout *int64 `json:"datascript_timeout,omitempty"`
+
 	// Dedicate the core that handles packet receive/transmit from the network to just the dispatching function. Don't use it for TCP/IP and SSL functions.
 	DedicatedDispatcherCore *bool `json:"dedicated_dispatcher_core,omitempty"`
 
@@ -107,7 +116,7 @@ type ServiceEngineGroup struct {
 	// If set, disable the config memory check done in service engine. Field introduced in 18.1.2.
 	DisableSeMemoryCheck *bool `json:"disable_se_memory_check,omitempty"`
 
-	// Disable TCP Segmentation Offload (TSO) in DPDK poll-mode driver packet transmit path.  TSO is on by default on NICs that support it. Field introduced in 17.2.5, 18.1.1.
+	// Disable TCP Segmentation Offload (TSO) in DPDK poll-mode driver packet transmit path. TSO is on by default on NICs that support it. Field introduced in 17.2.5, 18.1.1.
 	DisableTso *bool `json:"disable_tso,omitempty"`
 
 	// Amount of disk space for each of the Service Engine virtual machines.
@@ -118,6 +127,9 @@ type ServiceEngineGroup struct {
 
 	// Distributes queue ownership among cores so multiple cores handle dispatcher duties. Field introduced in 17.2.8.
 	DistributeQueues *bool `json:"distribute_queues,omitempty"`
+
+	// Enable GratArp for VIP_IP. Field introduced in 18.2.3.
+	EnableGratarpPermanent *bool `json:"enable_gratarp_permanent,omitempty"`
 
 	// (This is a beta feature). Enable HSM key priming. If enabled, key handles on the hsm will be synced to SE before processing client connections. Field introduced in 17.2.7, 18.1.1.
 	EnableHsmPriming *bool `json:"enable_hsm_priming,omitempty"`
@@ -158,6 +170,9 @@ type ServiceEngineGroup struct {
 	// Number of entries in the free list. Field introduced in 17.2.10, 18.1.2.
 	FreeListSize *int32 `json:"free_list_size,omitempty"`
 
+	// GratArp periodicity for VIP-IP. Allowed values are 5-30. Field introduced in 18.2.3.
+	GratarpPermanentPeriodicity *int32 `json:"gratarp_permanent_periodicity,omitempty"`
+
 	// High Availability mode for all the Virtual Services using this Service Engine group. Enum options - HA_MODE_SHARED_PAIR, HA_MODE_SHARED, HA_MODE_LEGACY_ACTIVE_STANDBY.
 	HaMode *string `json:"ha_mode,omitempty"`
 
@@ -191,7 +206,7 @@ type ServiceEngineGroup struct {
 	// Program SE security group ingress rules to allow SSH/ICMP management access from remote CIDR type. Enum options - SG_INGRESS_ACCESS_NONE, SG_INGRESS_ACCESS_ALL, SG_INGRESS_ACCESS_VPC. Field introduced in 17.1.5.
 	IngressAccessMgmt *string `json:"ingress_access_mgmt,omitempty"`
 
-	// Instance/Flavor type for SE instance.
+	// Instance/Flavor name for SE instance.
 	InstanceFlavor *string `json:"instance_flavor,omitempty"`
 
 	// Iptable Rules.
@@ -267,6 +282,24 @@ type ServiceEngineGroup struct {
 	// Required: true
 	Name *string `json:"name"`
 
+	// Idle timeout in seconds for nat tcp flows in closed state. Allowed values are 1-3600. Field deprecated in 18.2.5. Field introduced in 18.2.5.
+	NatFlowTCPClosedTimeout *int32 `json:"nat_flow_tcp_closed_timeout,omitempty"`
+
+	// Idle timeout in seconds for nat tcp flows in established state. Allowed values are 1-3600. Field deprecated in 18.2.5. Field introduced in 18.2.5.
+	NatFlowTCPEstablishedTimeout *int32 `json:"nat_flow_tcp_established_timeout,omitempty"`
+
+	// Idle timeout in seconds for nat tcp flows in half closed state. Allowed values are 1-3600. Field deprecated in 18.2.5. Field introduced in 18.2.5.
+	NatFlowTCPHalfClosedTimeout *int32 `json:"nat_flow_tcp_half_closed_timeout,omitempty"`
+
+	// Idle timeout in seconds for nat tcp flows in handshake state. Allowed values are 1-3600. Field deprecated in 18.2.5. Field introduced in 18.2.5.
+	NatFlowTCPHandshakeTimeout *int32 `json:"nat_flow_tcp_handshake_timeout,omitempty"`
+
+	// Idle timeout in seconds for nat udp flows in noresponse state. Allowed values are 1-3600. Field deprecated in 18.2.5. Field introduced in 18.2.5.
+	NatFlowUDPNoresponseTimeout *int32 `json:"nat_flow_udp_noresponse_timeout,omitempty"`
+
+	// Idle timeout in seconds for nat udp flows in response state. Allowed values are 1-3600. Field deprecated in 18.2.5. Field introduced in 18.2.5.
+	NatFlowUDPResponseTimeout *int32 `json:"nat_flow_udp_response_timeout,omitempty"`
+
 	// This setting limits the number of non-significant logs generated per second per core on this SE. Default is 100 logs per second. Set it to zero (0) to disable throttling. Field introduced in 17.1.3.
 	NonSignificantLogThrottle *int32 `json:"non_significant_log_throttle,omitempty"`
 
@@ -300,6 +333,12 @@ type ServiceEngineGroup struct {
 	// Enable or disable real time SE metrics.
 	RealtimeSeMetrics *MetricsRealTimeUpdate `json:"realtime_se_metrics,omitempty"`
 
+	// Reboot the VM or host on kernel panic. Field introduced in 18.2.5.
+	RebootOnPanic *bool `json:"reboot_on_panic,omitempty"`
+
+	// Reboot the system if the SE is stopped. Field deprecated in 18.2.5.
+	RebootOnStop *bool `json:"reboot_on_stop,omitempty"`
+
 	// Select the SE bandwidth for the bandwidth license. Enum options - SE_BANDWIDTH_UNLIMITED, SE_BANDWIDTH_25M, SE_BANDWIDTH_200M, SE_BANDWIDTH_1000M, SE_BANDWIDTH_10000M. Field introduced in 17.2.5.
 	SeBandwidthType *string `json:"se_bandwidth_type,omitempty"`
 
@@ -315,7 +354,10 @@ type ServiceEngineGroup struct {
 	// Flow probe retry count if no replies are received. Allowed values are 0-5. Field introduced in 18.1.4, 18.2.1.
 	SeFlowProbeRetries *int32 `json:"se_flow_probe_retries,omitempty"`
 
-	// Timeout in milliseconds for flow probe entries. Allowed values are 10-200. Field introduced in 18.1.4, 18.2.1.
+	// Timeout in milliseconds for flow probe retries. Allowed values are 20-50. Field introduced in 18.2.5.
+	SeFlowProbeRetryTimer *int32 `json:"se_flow_probe_retry_timer,omitempty"`
+
+	// Timeout in milliseconds for flow probe entries. Allowed values are 10-200. Field deprecated in 18.2.5. Field introduced in 18.1.4, 18.2.1.
 	SeFlowProbeTimer *int32 `json:"se_flow_probe_timer,omitempty"`
 
 	// UDP Port for SE_DP IPC in Docker bridge mode. Field introduced in 17.1.2.
@@ -324,7 +366,10 @@ type ServiceEngineGroup struct {
 	// Prefix to use for virtual machine name of Service Engines.
 	SeNamePrefix *string `json:"se_name_prefix,omitempty"`
 
-	// Frequency in seconds at which periodically a PCAP reinit check is triggered. May be used in conjunction with the configuration pcap_reinit_threshold. [Valid range   15 mins - 12 hours, 0 - disables]. Allowed values are 900-43200. Special values are 0- 'disable'. Field introduced in 17.2.13, 18.1.3, 18.2.1.
+	// Enables lookahead mode of packet receive in PCAP mode. Introduced to overcome an issue with hv_netvsc driver. Lookahead mode attempts to ensure that application and kernel's view of the receive rings are consistent. Field introduced in 18.2.3.
+	SePcapLookahead *bool `json:"se_pcap_lookahead,omitempty"`
+
+	// Frequency in seconds at which periodically a PCAP reinit check is triggered. May be used in conjunction with the configuration pcap_reinit_threshold. (Valid range   15 mins - 12 hours, 0 - disables). Allowed values are 900-43200. Special values are 0- 'disable'. Field introduced in 17.2.13, 18.1.3, 18.2.1.
 	SePcapReinitFrequency *int32 `json:"se_pcap_reinit_frequency,omitempty"`
 
 	// Threshold for input packet receive errors in PCAP mode exceeding which a PCAP reinit is triggered. If not set, an unconditional reinit is performed. This value is checked every pcap_reinit_frequency interval. Field introduced in 17.2.13, 18.1.3, 18.2.1.
@@ -336,7 +381,7 @@ type ServiceEngineGroup struct {
 	// UDP Port for punted packets in Docker bridge mode. Field introduced in 17.1.2.
 	SeRemotePuntUDPPort *int32 `json:"se_remote_punt_udp_port,omitempty"`
 
-	// Enable routing via Service Engine Datapath. When disabled, routing is done by the Linux kernel. IP Routing needs to be enabled in Service Engine Group for SE Routing to be effective. Field introduced in 19.1.1.
+	// Enable routing via Service Engine Datapath. When disabled, routing is done by the Linux kernel. IP Routing needs to be enabled in Service Engine Group for SE Routing to be effective. Field introduced in 18.2.3.
 	SeRouting *bool `json:"se_routing,omitempty"`
 
 	// Sideband traffic will be handled by a dedicated core. Field introduced in 16.5.2, 17.1.9, 17.2.3.
@@ -397,6 +442,9 @@ type ServiceEngineGroup struct {
 	// Read Only: true
 	URL *string `json:"url,omitempty"`
 
+	// Use Standard SKU Azure Load Balancer. By default cloud level flag is set. If not set, it inherits/uses the use_standard_alb flag from the cloud. Field introduced in 18.2.3.
+	UseStandardAlb *bool `json:"use_standard_alb,omitempty"`
+
 	// Unique object identifier of the object.
 	UUID *string `json:"uuid,omitempty"`
 
@@ -451,10 +499,10 @@ type ServiceEngineGroup struct {
 	// If set, Virtual Services will be placed on only a subset of the cores of an SE. Field introduced in 18.1.1.
 	VssPlacementEnabled *bool `json:"vss_placement_enabled,omitempty"`
 
-	// Frequency with which SE publishes WAF learning. Allowed values are 1-43200. Field introduced in 18.1.2.
+	// Frequency with which SE publishes WAF learning. Allowed values are 1-43200. Field deprecated in 18.2.3. Field introduced in 18.1.2.
 	WafLearningInterval *int32 `json:"waf_learning_interval,omitempty"`
 
-	// Amount of memory reserved on SE for WAF learning. This can be atmost 5% of SE memory. Field introduced in 18.1.2.
+	// Amount of memory reserved on SE for WAF learning. This can be atmost 5% of SE memory. Field deprecated in 18.2.3. Field introduced in 18.1.2.
 	WafLearningMemory *int32 `json:"waf_learning_memory,omitempty"`
 
 	// Enable memory pool for WAF. Field introduced in 17.2.3.

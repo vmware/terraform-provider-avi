@@ -183,7 +183,7 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 		"disable_tso": {
 			Type:     schema.TypeBool,
 			Optional: true,
-			Default:  true,
+			Default:  false,
 		},
 		"disk_per_se": {
 			Type:     schema.TypeInt,
@@ -196,6 +196,11 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Default:  false,
 		},
 		"distribute_queues": {
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  false,
+		},
+		"distribute_vnics": {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  false,
@@ -441,36 +446,6 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Required: true,
 		},
-		"nat_flow_tcp_closed_timeout": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Default:  5,
-		},
-		"nat_flow_tcp_established_timeout": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Default:  300,
-		},
-		"nat_flow_tcp_half_closed_timeout": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Default:  30,
-		},
-		"nat_flow_tcp_handshake_timeout": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Default:  10,
-		},
-		"nat_flow_udp_noresponse_timeout": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Default:  10,
-		},
-		"nat_flow_udp_response_timeout": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Default:  30,
-		},
 		"non_significant_log_throttle": {
 			Type:     schema.TypeInt,
 			Optional: true,
@@ -538,6 +513,31 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Elem:     ResourceDosThresholdProfileSchema(),
 		},
+		"se_dp_vnic_queue_stall_event_sleep": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  0,
+		},
+		"se_dp_vnic_queue_stall_threshold": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  2000,
+		},
+		"se_dp_vnic_queue_stall_timeout": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  10000,
+		},
+		"se_dp_vnic_restart_on_queue_stall_count": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  3,
+		},
+		"se_dp_vnic_stall_se_restart_window": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  3600,
+		},
 		"se_dpdk_pmd": {
 			Type:     schema.TypeInt,
 			Optional: true,
@@ -558,6 +558,11 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  1500,
 		},
+		"se_lro": {
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  true,
+		},
 		"se_name_prefix": {
 			Type:     schema.TypeString,
 			Optional: true,
@@ -567,6 +572,16 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  false,
+		},
+		"se_pcap_pkt_count": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  0,
+		},
+		"se_pcap_pkt_sz": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  65536,
 		},
 		"se_pcap_reinit_frequency": {
 			Type:     schema.TypeInt,
@@ -622,6 +637,11 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Type:     schema.TypeInt,
 			Optional: true,
 			Default:  1550,
+		},
+		"se_tx_batch_size": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  64,
 		},
 		"se_udp_encap_ipc": {
 			Type:     schema.TypeInt,
