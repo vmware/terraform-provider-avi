@@ -1,0 +1,61 @@
+package avi
+
+import (
+	"github.com/hashicorp/terraform/helper/resource"
+	"testing"
+)
+
+func TestAVIDataSourcePoolBasic(t *testing.T) {
+	resource.Test(t, resource.TestCase{
+		PreCheck:  func() { testAccPreCheck(t) },
+		Providers: testAccProviders,
+		Steps: []resource.TestStep{
+			{
+				Config: testAccAVIDSPoolConfig,
+				Check: resource.ComposeTestCheckFunc(
+					resource.TestCheckResourceAttr(
+						"avi_pool.testPool", "name", "test-Pool-abc"),
+					resource.TestCheckResourceAttr(
+						"avi_pool.testPool", "ignore_servers", "false"),
+				),
+			},
+		},
+	})
+
+}
+
+const testAccAVIDSPoolConfig = `
+data "avi_tenant" "default_tenant"{
+    name= "admin"
+}
+data "avi_cloud" "default_cloud" {
+    name= "Default-Cloud"
+}
+data "avi_healthmonitor" "default_monitor" {
+    name= "System-HTTP"
+}
+resource "avi_pool" "testPool" {
+	"ignore_servers" = false
+	"name" = "test-Pool-abc"
+	"cloud_ref" = "${data.avi_cloud.default_cloud.id}"
+	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
+	"servers" {
+	"ip" {
+		"type" = "V4"
+		"addr" = "10.90.64.66"
+	}
+	"hostname" = "10.90.64.66"
+	"ratio" = "1"
+	"port" = "8080"
+	"enabled" = true
+}
+	"health_monitor_refs" = ["${data.avi_healthmonitor.default_monitor.id}"]
+	"fail_action" {
+		"type" = "FAIL_ACTION_CLOSE_CONN"
+	}
+}
+
+data "avi_pool" "testPool" {
+    name= "${avi_pool.testPool.name}"
+}
+`
