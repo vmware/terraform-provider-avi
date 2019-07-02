@@ -11,6 +11,11 @@ func dataSourceAviPool() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviPoolRead,
 		Schema: map[string]*schema.Schema{
+			"ignore_servers": {
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  false,
+			},
 			"analytics_policy": {
 				Type:     schema.TypeSet,
 				Computed: true,

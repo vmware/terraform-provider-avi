@@ -5907,58 +5907,24 @@ func ResourceAzureServicePrincipalCredentialsSchema() *schema.Resource {
 	}
 }
 
-func ResourceMatchTargetSchema() *schema.Resource {
+func ResourceCloudSeVmChangeSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
-			"client_ip": {
-				Type:     schema.TypeSet,
+			"cc_id": {
+				Type:     schema.TypeString,
 				Optional: true,
-				Elem:     ResourceIpAddrMatchSchema(),
 			},
-			"cookie": {
-				Type:     schema.TypeSet,
+			"error_string": {
+				Type:     schema.TypeString,
 				Optional: true,
-				Elem:     ResourceCookieMatchSchema(),
 			},
-			"hdrs": {
-				Type:     schema.TypeList,
+			"se_vm_uuid": {
+				Type:     schema.TypeString,
 				Optional: true,
-				Elem:     ResourceHdrMatchSchema(),
 			},
-			"host_hdr": {
-				Type:     schema.TypeSet,
+			"vtype": {
+				Type:     schema.TypeString,
 				Optional: true,
-				Elem:     ResourceHostHdrMatchSchema(),
-			},
-			"method": {
-				Type:     schema.TypeSet,
-				Optional: true,
-				Elem:     ResourceMethodMatchSchema(),
-			},
-			"path": {
-				Type:     schema.TypeSet,
-				Optional: true,
-				Elem:     ResourcePathMatchSchema(),
-			},
-			"protocol": {
-				Type:     schema.TypeSet,
-				Optional: true,
-				Elem:     ResourceProtocolMatchSchema(),
-			},
-			"query": {
-				Type:     schema.TypeSet,
-				Optional: true,
-				Elem:     ResourceQueryMatchSchema(),
-			},
-			"version": {
-				Type:     schema.TypeSet,
-				Optional: true,
-				Elem:     ResourceHTTPVersionMatchSchema(),
-			},
-			"vs_port": {
-				Type:     schema.TypeSet,
-				Optional: true,
-				Elem:     ResourcePortMatchSchema(),
 			},
 		},
 	}
@@ -8006,25 +7972,6 @@ func ResourceMemoryBalancerInfoSchema() *schema.Resource {
 	}
 }
 
-func ResourceEventDetailsFilterSchema() *schema.Resource {
-	return &schema.Resource{
-		Schema: map[string]*schema.Schema{
-			"comparator": {
-				Type:     schema.TypeString,
-				Required: true,
-			},
-			"event_details_key": {
-				Type:     schema.TypeString,
-				Required: true,
-			},
-			"event_details_value": {
-				Type:     schema.TypeString,
-				Required: true,
-			},
-		},
-	}
-}
-
 func ResourceSeMgrEventDetailsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -10011,36 +9958,6 @@ func ResourceIptableRuleSetSchema() *schema.Resource {
 	}
 }
 
-func ResourceServicePoolSelectorSchema() *schema.Resource {
-	return &schema.Resource{
-		Schema: map[string]*schema.Schema{
-			"service_pool_group_ref": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
-			"service_pool_ref": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
-			"service_port": {
-				Type:     schema.TypeInt,
-				Required: true,
-			},
-			"service_port_range_end": {
-				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  0,
-			},
-			"service_protocol": {
-				Type:     schema.TypeString,
-				Optional: true,
-			},
-		},
-	}
-}
-
 func ResourceFullClientLogsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -11153,40 +11070,18 @@ func ResourceClusterNodeRemoveEventSchema() *schema.Resource {
 	}
 }
 
-func ResourceClientLogFilterSchema() *schema.Resource {
+func ResourceGslbDownloadStatusSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
-			"all_headers": {
-				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  false,
-			},
-			"client_ip": {
+			"last_changed_time": {
 				Type:     schema.TypeSet,
 				Optional: true,
-				Elem:     ResourceIpAddrMatchSchema(),
+				Elem:     ResourceTimeStampSchema(),
 			},
-			"duration": {
-				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  30,
-			},
-			"enabled": {
-				Type:     schema.TypeBool,
-				Required: true,
-			},
-			"index": {
-				Type:     schema.TypeInt,
-				Required: true,
-			},
-			"name": {
+			"state": {
 				Type:     schema.TypeString,
-				Required: true,
-			},
-			"uri": {
-				Type:     schema.TypeSet,
 				Optional: true,
-				Elem:     ResourceStringMatchSchema(),
+				Default:  "GSLB_DOWNLOAD_NONE",
 			},
 		},
 	}
@@ -11935,16 +11830,31 @@ func ResourceDisableSeMigrateEventDetailsSchema() *schema.Resource {
 	}
 }
 
-func ResourceAlertFilterSchema() *schema.Resource {
+func ResourceServicePoolSelectorSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
-			"filter_action": {
+			"service_pool_group_ref": {
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
-			"filter_string": {
+			"service_pool_ref": {
 				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"service_port": {
+				Type:     schema.TypeInt,
 				Required: true,
+			},
+			"service_port_range_end": {
+				Type:     schema.TypeInt,
+				Optional: true,
+				Default:  0,
+			},
+			"service_protocol": {
+				Type:     schema.TypeString,
+				Optional: true,
 			},
 		},
 	}
@@ -15341,6 +15251,25 @@ func ResourceGslbClientIpAddrGroupSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Default:  "GSLB_IP_PUBLIC",
+			},
+		},
+	}
+}
+
+func ResourceEventDetailsFilterSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"comparator": {
+				Type:     schema.TypeString,
+				Required: true,
+			},
+			"event_details_key": {
+				Type:     schema.TypeString,
+				Required: true,
+			},
+			"event_details_value": {
+				Type:     schema.TypeString,
+				Required: true,
 			},
 		},
 	}
@@ -19004,66 +18933,6 @@ func ResourceCloudGenericSchema() *schema.Resource {
 	}
 }
 
-func ResourceDockerUCPSetupSchema() *schema.Resource {
-	return &schema.Resource{
-		Schema: map[string]*schema.Schema{
-			"cc_id": {
-				Type:     schema.TypeString,
-				Optional: true,
-			},
-			"docker_ucp_access": {
-				Type:     schema.TypeBool,
-				Optional: true,
-			},
-			"failed_hosts": {
-				Type:     schema.TypeList,
-				Optional: true,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-			},
-			"fleet_endpoint": {
-				Type:     schema.TypeString,
-				Optional: true,
-			},
-			"hosts": {
-				Type:     schema.TypeList,
-				Optional: true,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-			},
-			"missing_hosts": {
-				Type:     schema.TypeList,
-				Optional: true,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-			},
-			"new_hosts": {
-				Type:     schema.TypeList,
-				Optional: true,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-			},
-			"reason": {
-				Type:     schema.TypeString,
-				Optional: true,
-			},
-			"se_deploy_method_access": {
-				Type:     schema.TypeBool,
-				Optional: true,
-			},
-			"se_name": {
-				Type:     schema.TypeString,
-				Optional: true,
-			},
-			"ucp_nodes": {
-				Type:     schema.TypeList,
-				Optional: true,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-			},
-			"version": {
-				Type:     schema.TypeString,
-				Optional: true,
-			},
-		},
-	}
-}
-
 func ResourceHTTPRequestPolicySchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -19709,18 +19578,40 @@ func ResourceBurstLicenseDetailsSchema() *schema.Resource {
 	}
 }
 
-func ResourceGslbDownloadStatusSchema() *schema.Resource {
+func ResourceClientLogFilterSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
-			"last_changed_time": {
+			"all_headers": {
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  false,
+			},
+			"client_ip": {
 				Type:     schema.TypeSet,
 				Optional: true,
-				Elem:     ResourceTimeStampSchema(),
+				Elem:     ResourceIpAddrMatchSchema(),
 			},
-			"state": {
-				Type:     schema.TypeString,
+			"duration": {
+				Type:     schema.TypeInt,
 				Optional: true,
-				Default:  "GSLB_DOWNLOAD_NONE",
+				Default:  30,
+			},
+			"enabled": {
+				Type:     schema.TypeBool,
+				Required: true,
+			},
+			"index": {
+				Type:     schema.TypeInt,
+				Required: true,
+			},
+			"name": {
+				Type:     schema.TypeString,
+				Required: true,
+			},
+			"uri": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Elem:     ResourceStringMatchSchema(),
 			},
 		},
 	}
@@ -20574,6 +20465,21 @@ func ResourceAdminAuthConfigurationSchema() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				Elem:     ResourceAuthMappingRuleSchema(),
+			},
+		},
+	}
+}
+
+func ResourceAlertFilterSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"filter_action": {
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"filter_string": {
+				Type:     schema.TypeString,
+				Required: true,
 			},
 		},
 	}
@@ -22630,24 +22536,58 @@ func ResourceAuthorizationRuleSchema() *schema.Resource {
 	}
 }
 
-func ResourceCloudSeVmChangeSchema() *schema.Resource {
+func ResourceMatchTargetSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
-			"cc_id": {
-				Type:     schema.TypeString,
+			"client_ip": {
+				Type:     schema.TypeSet,
 				Optional: true,
+				Elem:     ResourceIpAddrMatchSchema(),
 			},
-			"error_string": {
-				Type:     schema.TypeString,
+			"cookie": {
+				Type:     schema.TypeSet,
 				Optional: true,
+				Elem:     ResourceCookieMatchSchema(),
 			},
-			"se_vm_uuid": {
-				Type:     schema.TypeString,
+			"hdrs": {
+				Type:     schema.TypeList,
 				Optional: true,
+				Elem:     ResourceHdrMatchSchema(),
 			},
-			"vtype": {
-				Type:     schema.TypeString,
+			"host_hdr": {
+				Type:     schema.TypeSet,
 				Optional: true,
+				Elem:     ResourceHostHdrMatchSchema(),
+			},
+			"method": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Elem:     ResourceMethodMatchSchema(),
+			},
+			"path": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Elem:     ResourcePathMatchSchema(),
+			},
+			"protocol": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Elem:     ResourceProtocolMatchSchema(),
+			},
+			"query": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Elem:     ResourceQueryMatchSchema(),
+			},
+			"version": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Elem:     ResourceHTTPVersionMatchSchema(),
+			},
+			"vs_port": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Elem:     ResourcePortMatchSchema(),
 			},
 		},
 	}
@@ -24207,6 +24147,66 @@ func ResourceRmSeBootupFailEventDetailsSchema() *schema.Resource {
 				Optional: true,
 			},
 			"se_name": {
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+		},
+	}
+}
+
+func ResourceDockerUCPSetupSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"cc_id": {
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"docker_ucp_access": {
+				Type:     schema.TypeBool,
+				Optional: true,
+			},
+			"failed_hosts": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
+			"fleet_endpoint": {
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"hosts": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
+			"missing_hosts": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
+			"new_hosts": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
+			"reason": {
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"se_deploy_method_access": {
+				Type:     schema.TypeBool,
+				Optional: true,
+			},
+			"se_name": {
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"ucp_nodes": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
+			"version": {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
