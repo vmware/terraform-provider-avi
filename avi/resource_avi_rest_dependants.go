@@ -8762,34 +8762,41 @@ func ResourceVipSchema() *schema.Resource {
 			"floating_ip": {
 				Type:     schema.TypeSet,
 				Optional: true,
+				Computed: true,
 				Elem:     ResourceIpAddrSchema(),
 			},
 			"floating_ip6": {
 				Type:     schema.TypeSet,
 				Optional: true,
+				Computed: true,
 				Elem:     ResourceIpAddrSchema(),
 			},
 			"floating_subnet6_uuid": {
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"floating_subnet_uuid": {
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ip6_address": {
 				Type:     schema.TypeSet,
 				Optional: true,
+				Computed: true,
 				Elem:     ResourceIpAddrSchema(),
 			},
 			"ip_address": {
 				Type:     schema.TypeSet,
 				Optional: true,
+				Computed: true,
 				Elem:     ResourceIpAddrSchema(),
 			},
 			"ipam_network_subnet": {
 				Type:     schema.TypeSet,
 				Optional: true,
+				Computed: true,
 				Elem:     ResourceIPNetworkSubnetSchema(),
 			},
 			"network_ref": {
@@ -8805,28 +8812,34 @@ func ResourceVipSchema() *schema.Resource {
 			"port_uuid": {
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"subnet": {
 				Type:     schema.TypeSet,
 				Optional: true,
+				Computed: true,
 				Elem:     ResourceIpAddrPrefixSchema(),
 			},
 			"subnet6": {
 				Type:     schema.TypeSet,
 				Optional: true,
+				Computed: true,
 				Elem:     ResourceIpAddrPrefixSchema(),
 			},
 			"subnet6_uuid": {
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"subnet_uuid": {
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"vip_id": {
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 		},
 	}
