@@ -35,6 +35,12 @@ func TestAVIPoolBasic(t *testing.T) {
 						"avi_pool.testPool", "ignore_servers", "false"),
 				),
 			},
+			{
+				ResourceName:      "avi_pool.testPool",
+				ImportState:       true,
+				ImportStateVerify: false,
+				Config:            testAccAVIPoolConfig,
+			},
 		},
 	})
 

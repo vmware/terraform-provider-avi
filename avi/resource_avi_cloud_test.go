@@ -55,6 +55,12 @@ func TestAVICloudBasic(t *testing.T) {
 						"avi_cloud.testCloud", "state_based_dns_registration", "true"),
 				),
 			},
+			{
+				ResourceName:      "avi_cloud.testCloud",
+				ImportState:       true,
+				ImportStateVerify: false,
+				Config:            testAccAVICloudConfig,
+			},
 		},
 	})
 

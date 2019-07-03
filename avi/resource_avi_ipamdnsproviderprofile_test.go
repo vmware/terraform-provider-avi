@@ -35,6 +35,12 @@ func TestAVIIpamDnsProviderProfileBasic(t *testing.T) {
 						"avi_ipamdnsproviderprofile.testIpamDnsProviderProfile", "allocate_ip_in_vrf", "false"),
 				),
 			},
+			{
+				ResourceName:      "avi_ipamdnsproviderprofile.testIpamDnsProviderProfile",
+				ImportState:       true,
+				ImportStateVerify: false,
+				Config:            testAccAVIIpamDnsProviderProfileConfig,
+			},
 		},
 	})
 

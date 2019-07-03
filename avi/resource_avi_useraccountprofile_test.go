@@ -51,6 +51,12 @@ func TestAVIUserAccountProfileBasic(t *testing.T) {
 						"avi_useraccountprofile.testUserAccountProfile", "credentials_timeout_threshold", "0"),
 				),
 			},
+			{
+				ResourceName:      "avi_useraccountprofile.testUserAccountProfile",
+				ImportState:       true,
+				ImportStateVerify: false,
+				Config:            testAccAVIUserAccountProfileConfig,
+			},
 		},
 	})
 

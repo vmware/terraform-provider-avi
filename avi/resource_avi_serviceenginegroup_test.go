@@ -295,6 +295,12 @@ func TestAVIServiceEngineGroupBasic(t *testing.T) {
 						"avi_serviceenginegroup.testServiceEngineGroup", "vs_host_redundancy", "true"),
 				),
 			},
+			{
+				ResourceName:      "avi_serviceenginegroup.testServiceEngineGroup",
+				ImportState:       true,
+				ImportStateVerify: false,
+				Config:            testAccAVIServiceEngineGroupConfig,
+			},
 		},
 	})
 

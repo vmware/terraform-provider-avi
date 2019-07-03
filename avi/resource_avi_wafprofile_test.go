@@ -31,6 +31,12 @@ func TestAVIWafProfileBasic(t *testing.T) {
 						"avi_wafprofile.testWafProfile", "name", "test-System-WAF-Profile-updated"),
 				),
 			},
+			{
+				ResourceName:      "avi_wafprofile.testWafProfile",
+				ImportState:       true,
+				ImportStateVerify: false,
+				Config:            testAccAVIWafProfileConfig,
+			},
 		},
 	})
 

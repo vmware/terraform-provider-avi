@@ -31,6 +31,12 @@ func TestAVIDnsPolicyBasic(t *testing.T) {
 						"avi_dnspolicy.testDnsPolicy", "name", "test-dp-updated"),
 				),
 			},
+			{
+				ResourceName:      "avi_dnspolicy.testDnsPolicy",
+				ImportState:       true,
+				ImportStateVerify: false,
+				Config:            testAccAVIDnsPolicyConfig,
+			},
 		},
 	})
 

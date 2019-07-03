@@ -31,6 +31,12 @@ func TestAVIClusterCloudDetailsBasic(t *testing.T) {
 						"avi_clusterclouddetails.testClusterCloudDetails", "name", "test-ccd-updated"),
 				),
 			},
+			{
+				ResourceName:      "avi_clusterclouddetails.testClusterCloudDetails",
+				ImportState:       true,
+				ImportStateVerify: false,
+				Config:            testAccAVIClusterCloudDetailsConfig,
+			},
 		},
 	})
 

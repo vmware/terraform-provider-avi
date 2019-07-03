@@ -35,6 +35,12 @@ func TestAVIApplicationPersistenceProfileBasic(t *testing.T) {
 						"avi_applicationpersistenceprofile.testApplicationPersistenceProfile", "is_federated", "false"),
 				),
 			},
+			{
+				ResourceName:      "avi_applicationpersistenceprofile.testApplicationPersistenceProfile",
+				ImportState:       true,
+				ImportStateVerify: false,
+				Config:            testAccAVIApplicationPersistenceProfileConfig,
+			},
 		},
 	})
 

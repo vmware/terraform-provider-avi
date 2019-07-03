@@ -31,6 +31,12 @@ func TestAVIVsVipBasic(t *testing.T) {
 						"avi_vsvip.testVsVip", "name", "test-vsvip-updated"),
 				),
 			},
+			{
+				ResourceName:      "avi_vsvip.testVsVip",
+				ImportState:       true,
+				ImportStateVerify: false,
+				Config:            testAccAVIVsVipConfig,
+			},
 		},
 	})
 

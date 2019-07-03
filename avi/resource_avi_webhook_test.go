@@ -31,6 +31,12 @@ func TestAVIWebhookBasic(t *testing.T) {
 						"avi_webhook.testWebhook", "name", "test-wb-updated"),
 				),
 			},
+			{
+				ResourceName:      "avi_webhook.testWebhook",
+				ImportState:       true,
+				ImportStateVerify: false,
+				Config:            testAccAVIWebhookConfig,
+			},
 		},
 	})
 

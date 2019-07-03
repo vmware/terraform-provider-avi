@@ -31,6 +31,12 @@ func TestAVIErrorPageProfileBasic(t *testing.T) {
 						"avi_errorpageprofile.testErrorPageProfile", "name", "test-epp-updated"),
 				),
 			},
+			{
+				ResourceName:      "avi_errorpageprofile.testErrorPageProfile",
+				ImportState:       true,
+				ImportStateVerify: false,
+				Config:            testAccAVIErrorPageProfileConfig,
+			},
 		},
 	})
 

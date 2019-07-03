@@ -31,6 +31,12 @@ func TestAVIMicroServiceGroupBasic(t *testing.T) {
 						"avi_microservicegroup.testMicroServiceGroup", "name", "msg-updated"),
 				),
 			},
+			{
+				ResourceName:      "avi_microservicegroup.testMicroServiceGroup",
+				ImportState:       true,
+				ImportStateVerify: false,
+				Config:            testAccAVIMicroServiceGroupConfig,
+			},
 		},
 	})
 

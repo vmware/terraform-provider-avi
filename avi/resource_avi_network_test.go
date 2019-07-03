@@ -47,6 +47,12 @@ func TestAVINetworkBasic(t *testing.T) {
 						"avi_network.testNetwork", "vcenter_dvs", "true"),
 				),
 			},
+			{
+				ResourceName:      "avi_network.testNetwork",
+				ImportState:       true,
+				ImportStateVerify: false,
+				Config:            testAccAVINetworkConfig,
+			},
 		},
 	})
 

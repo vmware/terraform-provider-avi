@@ -31,6 +31,12 @@ func TestAVIStringGroupBasic(t *testing.T) {
 						"avi_stringgroup.testStringGroup", "name", "test-System-Compressible-Content-Types-updated"),
 				),
 			},
+			{
+				ResourceName:      "avi_stringgroup.testStringGroup",
+				ImportState:       true,
+				ImportStateVerify: false,
+				Config:            testAccAVIStringGroupConfig,
+			},
 		},
 	})
 

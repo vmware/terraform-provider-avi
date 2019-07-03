@@ -35,6 +35,12 @@ func TestAVIAutoScaleLaunchConfigBasic(t *testing.T) {
 						"avi_autoscalelaunchconfig.testAutoScaleLaunchConfig", "use_external_asg", "true"),
 				),
 			},
+			{
+				ResourceName:      "avi_autoscalelaunchconfig.testAutoScaleLaunchConfig",
+				ImportState:       true,
+				ImportStateVerify: false,
+				Config:            testAccAVIAutoScaleLaunchConfigConfig,
+			},
 		},
 	})
 

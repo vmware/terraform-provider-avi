@@ -31,6 +31,12 @@ func TestAVIAlertEmailConfigBasic(t *testing.T) {
 						"avi_alertemailconfig.testAlertEmailConfig", "name", "test-aec-updated"),
 				),
 			},
+			{
+				ResourceName:      "avi_alertemailconfig.testAlertEmailConfig",
+				ImportState:       true,
+				ImportStateVerify: false,
+				Config:            testAccAVIAlertEmailConfigConfig,
+			},
 		},
 	})
 

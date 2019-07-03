@@ -31,6 +31,12 @@ func TestAVIPriorityLabelsBasic(t *testing.T) {
 						"avi_prioritylabels.testPriorityLabels", "name", "test-pl-updated"),
 				),
 			},
+			{
+				ResourceName:      "avi_prioritylabels.testPriorityLabels",
+				ImportState:       true,
+				ImportStateVerify: false,
+				Config:            testAccAVIPriorityLabelsConfig,
+			},
 		},
 	})
 

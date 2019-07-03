@@ -31,6 +31,12 @@ func TestAVIAlertScriptConfigBasic(t *testing.T) {
 						"avi_alertscriptconfig.testAlertScriptConfig", "name", "test-se_grp_cleanup_old_spec_se-updated"),
 				),
 			},
+			{
+				ResourceName:      "avi_alertscriptconfig.testAlertScriptConfig",
+				ImportState:       true,
+				ImportStateVerify: false,
+				Config:            testAccAVIAlertScriptConfigConfig,
+			},
 		},
 	})
 
