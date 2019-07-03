@@ -26,7 +26,8 @@ var apipooldata = `{
         }
     }`
 
-// Testing avi response conversion, avidata to schema and schema to avidata
+// Testcase to test conversion of avidata to schema and schema to avidata
+// apidata of pool object shoud be equal after conversion of schema to avidata
 func TestApiDataToSchemaViceVersa(t *testing.T) {
 	s := ResourcePoolSchema()
 	var apidata interface{}
@@ -35,9 +36,11 @@ func TestApiDataToSchemaViceVersa(t *testing.T) {
 		t.Errorf("ERROR: Error during JSON unmarshal.")
 		t.Fail()
 	}
+	// Converting apidata into schema
 	if schemadata, err := ApiDataToSchema(apidata, nil, nil); err != nil {
 		t.Errorf("ERROR: ApiDataToSchema conversion failed with error %v", err)
 	} else {
+		// Converting schema into avidata
 		data, _ := SchemaToAviData(schemadata, s)
 		// Return false for not equals
 		if !reflect.DeepEqual(apidata, data) {
@@ -46,8 +49,8 @@ func TestApiDataToSchemaViceVersa(t *testing.T) {
 	}
 }
 
-// Testing avi response conversion, with updated avidata to schema and schema to avidata
-// Negative test case of conversion
+// Testcase to test conversion of avidata to schema and schema to avidata on updated avidata
+// apidata of pool object shoud not be equal after conversion of schema to avidata
 func TestApiDataToSchemaWithUpdatedApiData(t *testing.T) {
 	s := ResourcePoolSchema()
 	var apidata models.Pool
@@ -56,13 +59,16 @@ func TestApiDataToSchemaWithUpdatedApiData(t *testing.T) {
 		t.Errorf("ERROR: Error during JSON unmarshal.")
 		t.Fail()
 	}
+	// converting apidata into schema
 	if schemadata, err := ApiDataToSchema(apidata, nil, nil); err != nil {
 		t.Errorf("ERROR: ApiDataToSchema conversion failed with error %v", err)
 	} else {
+		// Updating the actual configuration of pool object
 		enabled := false
 		apidata.Enabled = &enabled
+		// Converting schema into avidata.
 		data, _ := SchemaToAviData(schemadata, s)
-		// Return false for not equal
+		// Return false for not equal,
 		if reflect.DeepEqual(apidata, data) {
 			t.Fail()
 		}
