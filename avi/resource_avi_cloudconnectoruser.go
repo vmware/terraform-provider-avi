@@ -17,16 +17,19 @@ func ResourceCloudConnectorUserSchema() map[string]*schema.Schema {
 		"azure_serviceprincipal": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceAzureServicePrincipalCredentialsSchema(),
 		},
 		"azure_userpass": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceAzureUserPassCredentialsSchema(),
 		},
 		"gcp_credentials": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceGCPCredentialsSchema(),
 		},
 		"name": {
@@ -36,19 +39,23 @@ func ResourceCloudConnectorUserSchema() map[string]*schema.Schema {
 		"oci_credentials": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceOCICredentialsSchema(),
 		},
 		"password": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"private_key": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"public_key": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"tenant_ref": {
 			Type:     schema.TypeString,
@@ -58,6 +65,7 @@ func ResourceCloudConnectorUserSchema() map[string]*schema.Schema {
 		"tencent_credentials": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceTencentCredentialsSchema(),
 		},
 		"uuid": {

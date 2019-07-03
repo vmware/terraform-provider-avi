@@ -17,6 +17,7 @@ func ResourceGslbGeoDbProfileSchema() map[string]*schema.Schema {
 		"description": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"entries": {
 			Type:     schema.TypeList,

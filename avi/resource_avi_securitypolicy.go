@@ -17,10 +17,12 @@ func ResourceSecurityPolicySchema() map[string]*schema.Schema {
 		"description": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"dns_attacks": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceDnsAttacksSchema(),
 		},
 		"dns_policy_index": {
@@ -45,6 +47,7 @@ func ResourceSecurityPolicySchema() map[string]*schema.Schema {
 		"tcp_attacks": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceTcpAttacksSchema(),
 		},
 		"tenant_ref": {
@@ -55,6 +58,7 @@ func ResourceSecurityPolicySchema() map[string]*schema.Schema {
 		"udp_attacks": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceUdpAttacksSchema(),
 		},
 		"uuid": {

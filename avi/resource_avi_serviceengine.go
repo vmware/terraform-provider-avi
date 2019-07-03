@@ -17,6 +17,7 @@ func ResourceServiceEngineSchema() map[string]*schema.Schema {
 		"availability_zone": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"cloud_ref": {
 			Type:     schema.TypeString,
@@ -41,6 +42,7 @@ func ResourceServiceEngineSchema() map[string]*schema.Schema {
 		"controller_ip": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"data_vnics": {
 			Type:     schema.TypeList,
@@ -55,6 +57,7 @@ func ResourceServiceEngineSchema() map[string]*schema.Schema {
 		"flavor": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"host_ref": {
 			Type:     schema.TypeString,
@@ -64,10 +67,12 @@ func ResourceServiceEngineSchema() map[string]*schema.Schema {
 		"hypervisor": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"mgmt_vnic": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourcevNICSchema(),
 		},
 		"name": {
@@ -78,6 +83,7 @@ func ResourceServiceEngineSchema() map[string]*schema.Schema {
 		"resources": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceSeResourcesSchema(),
 		},
 		"se_group_ref": {

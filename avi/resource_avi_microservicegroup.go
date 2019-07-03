@@ -17,10 +17,12 @@ func ResourceMicroServiceGroupSchema() map[string]*schema.Schema {
 		"created_by": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"description": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"name": {
 			Type:     schema.TypeString,
@@ -29,7 +31,6 @@ func ResourceMicroServiceGroupSchema() map[string]*schema.Schema {
 		"service_refs": {
 			Type:     schema.TypeList,
 			Optional: true,
-			Computed: true,
 			Elem:     &schema.Schema{Type: schema.TypeString},
 		},
 		"tenant_ref": {

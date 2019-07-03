@@ -37,6 +37,7 @@ func ResourceSSLKeyAndCertificateSchema() map[string]*schema.Schema {
 		"created_by": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"dynamic_params": {
 			Type:     schema.TypeList,
@@ -46,10 +47,12 @@ func ResourceSSLKeyAndCertificateSchema() map[string]*schema.Schema {
 		"enckey_base64": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"enckey_name": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"format": {
 			Type:     schema.TypeString,
@@ -64,6 +67,7 @@ func ResourceSSLKeyAndCertificateSchema() map[string]*schema.Schema {
 		"key": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"key_base64": {
 			Type:     schema.TypeBool,
@@ -73,11 +77,13 @@ func ResourceSSLKeyAndCertificateSchema() map[string]*schema.Schema {
 		"key_params": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceSSLKeyParamsSchema(),
 		},
 		"key_passphrase": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"name": {
 			Type:     schema.TypeString,
@@ -96,6 +102,7 @@ func ResourceSSLKeyAndCertificateSchema() map[string]*schema.Schema {
 		"type": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"uuid": {
 			Type:     schema.TypeString,

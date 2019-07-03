@@ -17,6 +17,7 @@ func ResourceCustomIpamDnsProfileSchema() map[string]*schema.Schema {
 		"name": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"script_params": {
 			Type:     schema.TypeList,
@@ -26,6 +27,7 @@ func ResourceCustomIpamDnsProfileSchema() map[string]*schema.Schema {
 		"script_uri": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"tenant_ref": {
 			Type:     schema.TypeString,

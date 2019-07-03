@@ -18,6 +18,7 @@ func TestAVIAlertSyslogConfigBasic(t *testing.T) {
 		Steps: []resource.TestStep{
 			{
 				Config: testAccAVIAlertSyslogConfig,
+				//ImportState: false,
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckAVIAlertSyslogConfigExists("avi_alertsyslogconfig.testalertsyslogconfig"),
 					resource.TestCheckResourceAttr(

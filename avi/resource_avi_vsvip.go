@@ -41,6 +41,7 @@ func ResourceVsVipSchema() map[string]*schema.Schema {
 		"use_standard_alb": {
 			Type:     schema.TypeBool,
 			Optional: true,
+			Computed: true,
 		},
 		"uuid": {
 			Type:     schema.TypeString,
@@ -60,6 +61,7 @@ func ResourceVsVipSchema() map[string]*schema.Schema {
 		"vsvip_cloud_config_cksum": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 	}
 }

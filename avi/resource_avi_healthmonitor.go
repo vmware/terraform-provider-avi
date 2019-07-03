@@ -17,15 +17,18 @@ func ResourceHealthMonitorSchema() map[string]*schema.Schema {
 		"description": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"dns_monitor": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceHealthMonitorDNSSchema(),
 		},
 		"external_monitor": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceHealthMonitorExternalSchema(),
 		},
 		"failed_checks": {
@@ -36,11 +39,13 @@ func ResourceHealthMonitorSchema() map[string]*schema.Schema {
 		"http_monitor": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceHealthMonitorHttpSchema(),
 		},
 		"https_monitor": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceHealthMonitorHttpSchema(),
 		},
 		"is_federated": {
@@ -51,6 +56,7 @@ func ResourceHealthMonitorSchema() map[string]*schema.Schema {
 		"monitor_port": {
 			Type:     schema.TypeInt,
 			Optional: true,
+			Computed: true,
 		},
 		"name": {
 			Type:     schema.TypeString,
@@ -59,6 +65,7 @@ func ResourceHealthMonitorSchema() map[string]*schema.Schema {
 		"radius_monitor": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceHealthMonitorRadiusSchema(),
 		},
 		"receive_timeout": {
@@ -74,6 +81,7 @@ func ResourceHealthMonitorSchema() map[string]*schema.Schema {
 		"sip_monitor": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceHealthMonitorSIPSchema(),
 		},
 		"successful_checks": {
@@ -84,6 +92,7 @@ func ResourceHealthMonitorSchema() map[string]*schema.Schema {
 		"tcp_monitor": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceHealthMonitorTcpSchema(),
 		},
 		"tenant_ref": {
@@ -98,6 +107,7 @@ func ResourceHealthMonitorSchema() map[string]*schema.Schema {
 		"udp_monitor": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceHealthMonitorUdpSchema(),
 		},
 		"uuid": {

@@ -17,10 +17,12 @@ func ResourcePingAccessAgentSchema() map[string]*schema.Schema {
 		"description": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"name": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"pingaccess_pool_ref": {
 			Type:     schema.TypeString,
@@ -30,11 +32,13 @@ func ResourcePingAccessAgentSchema() map[string]*schema.Schema {
 		"primary_server": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourcePoolServerSchema(),
 		},
 		"properties_file_data": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"tenant_ref": {
 			Type:     schema.TypeString,

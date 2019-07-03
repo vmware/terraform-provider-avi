@@ -17,6 +17,7 @@ func ResourceCloudPropertiesSchema() map[string]*schema.Schema {
 		"cc_props": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceCC_PropertiesSchema(),
 		},
 		"cc_vtypes": {

@@ -30,11 +30,11 @@ The following arguments are supported:
 * `aggressive_failure_detection` - (Optional) Enable aggressive failover configuration for ha.
 * `algo` - (Optional) In compact placement, virtual services are placed on existing ses until max_vs_per_se limit is reached.
 * `allow_burst` - (Optional) Allow ses to be created using burst license.
-* `app_cache_percent` - (Optional) A percent value of total se memory reserved for application caching.
+* `app_cache_percent` - (Optional) A percent value of total se memory reserved for applicationcaching.
 * `app_learning_memory_percent` - (Optional) A percent value of total se memory reserved for application learning.
 * `archive_shm_limit` - (Optional) Amount of se memory in gb until which shared memory is collected in core archive.
-* `async_ssl` - (Optional) Ssl handshakes will be handled by dedicated ssl threads.
-* `async_ssl_threads` - (Optional) Number of async ssl threads per se_dp.
+* `async_ssl` - (Optional) Ssl handshakes will be handled by dedicated ssl threads.requires se reboot.
+* `async_ssl_threads` - (Optional) Number of async ssl threads per se_dp.requires se reboot.
 * `auto_rebalance` - (Optional) If set, virtual services will be automatically migrated when load on an se is less than minimum or more than maximum thresholds.
 * `auto_rebalance_capacity_per_se` - (Optional) Capacities of se for auto rebalance for each criteria.
 * `auto_rebalance_criteria` - (Optional) Set of criteria for se auto rebalance.
@@ -61,7 +61,8 @@ The following arguments are supported:
 * `disable_tso` - (Optional) Disable tcp segmentation offload (tso) in dpdk poll-mode driver packet transmit path.
 * `disk_per_se` - (Optional) Amount of disk space for each of the service engine virtual machines.
 * `distribute_load_active_standby` - (Optional) Use both the active and standby service engines for virtual service placement in the legacy active standby ha mode.
-* `distribute_queues` - (Optional) Distributes queue ownership among cores so multiple cores handle dispatcher duties.
+* `distribute_queues` - (Optional) Distributes queue ownership among cores so multiple cores handle dispatcher duties.requires se reboot.
+* `distribute_vnics` - (Optional) Distributes vnic ownership among cores so multiple cores handle dispatcher duties.requires se reboot.
 * `enable_gratarp_permanent` - (Optional) Enable gratarp for vip_ip.
 * `enable_hsm_priming` - (Optional) (this is a beta feature).
 * `enable_multi_lb` - (Optional) Applicable only for azure cloud with basic sku lb.
@@ -111,12 +112,6 @@ The following arguments are supported:
 * `min_se` - (Optional) Minimum number of services engines in this group (relevant for se autorebalance only).
 * `minimum_connection_memory` - (Optional) Indicates the percent of memory reserved for connections.
 * `n_log_streaming_threads` - (Optional) Number of threads to use for log streaming.
-* `nat_flow_tcp_closed_timeout` - (Optional) Idle timeout in seconds for nat tcp flows in closed state.
-* `nat_flow_tcp_established_timeout` - (Optional) Idle timeout in seconds for nat tcp flows in established state.
-* `nat_flow_tcp_half_closed_timeout` - (Optional) Idle timeout in seconds for nat tcp flows in half closed state.
-* `nat_flow_tcp_handshake_timeout` - (Optional) Idle timeout in seconds for nat tcp flows in handshake state.
-* `nat_flow_udp_noresponse_timeout` - (Optional) Idle timeout in seconds for nat udp flows in noresponse state.
-* `nat_flow_udp_response_timeout` - (Optional) Idle timeout in seconds for nat udp flows in response state.
 * `non_significant_log_throttle` - (Optional) This setting limits the number of non-significant logs generated per second per core on this se.
 * `num_dispatcher_cores` - (Optional) Number of dispatcher cores (0,1,2,4,8 or 16).
 * `num_flow_cores_sum_changes_to_ignore` - (Optional) Number of changes in num flow cores sum to ignore.
@@ -131,23 +126,32 @@ The following arguments are supported:
 * `se_bandwidth_type` - (Optional) Select the se bandwidth for the bandwidth license.
 * `se_deprovision_delay` - (Optional) Duration to preserve unused service engine virtual machines before deleting them.
 * `se_dos_profile` - (Optional) Dict settings for serviceenginegroup.
-* `se_dpdk_pmd` - (Optional) Determines if dpdk pool mode driver should be used or not   0  automatically determine based on hypervisor/nic type 1  unconditionally use dpdk poll mode driver 2  don't use dpdk poll mode driver.
-* `se_flow_probe_retries` - (Optional) Flow probe retry count if no replies are received.
-* `se_flow_probe_retry_timer` - (Optional) Timeout in milliseconds for flow probe retries.
+* `se_dp_vnic_queue_stall_event_sleep` - (Optional) Time (in seconds) service engine waits for after generating a vnic transmit queue stall event before resetting thenic.
+* `se_dp_vnic_queue_stall_threshold` - (Optional) Number of consecutive transmit failures to look for before generating a vnic transmit queue stall event.
+* `se_dp_vnic_queue_stall_timeout` - (Optional) Time (in milliseconds) to wait for network/nic recovery on detecting a transmit queue stall after which service engine resets the nic.
+* `se_dp_vnic_restart_on_queue_stall_count` - (Optional) Number of consecutive transmit queue stall events in se_dp_vnic_stall_se_restart_window to look for before restarting se.
+* `se_dp_vnic_stall_se_restart_window` - (Optional) Window of time (in seconds) during which se_dp_vnic_restart_on_queue_stall_count number of consecutive stalls results in a se restart.
+* `se_dpdk_pmd` - (Optional) Determines if dpdk pool mode driver should be used or not   0  automatically determine based on hypervisor/nic type 1  unconditionally use dpdk poll mode driver 2  don't use dpdk poll mode driver.requires se reboot.
+* `se_flow_probe_retries` - (Optional) Flow probe retry count if no replies are received.requires se reboot.
+* `se_flow_probe_retry_timer` - (Optional) Timeout in milliseconds for flow probe retries.requires se reboot.
 * `se_ipc_udp_port` - (Optional) Udp port for se_dp ipc in docker bridge mode.
+* `se_lro` - (Optional) Enable or disable large receive optimization for vnics.
 * `se_name_prefix` - (Optional) Prefix to use for virtual machine name of service engines.
 * `se_pcap_lookahead` - (Optional) Enables lookahead mode of packet receive in pcap mode.
+* `se_pcap_pkt_count` - (Optional) Max number of packets the pcap interface can hold and if the value is 0 the optimum value will be chosen.
+* `se_pcap_pkt_sz` - (Optional) Max size of each packet in the pcap interface.
 * `se_pcap_reinit_frequency` - (Optional) Frequency in seconds at which periodically a pcap reinit check is triggered.
 * `se_pcap_reinit_threshold` - (Optional) Threshold for input packet receive errors in pcap mode exceeding which a pcap reinit is triggered.
 * `se_probe_port` - (Optional) Tcp port on se where echo service will be run.
 * `se_remote_punt_udp_port` - (Optional) Udp port for punted packets in docker bridge mode.
 * `se_routing` - (Optional) Enable routing via service engine datapath.
-* `se_sb_dedicated_core` - (Optional) Sideband traffic will be handled by a dedicated core.
-* `se_sb_threads` - (Optional) Number of sideband threads per se.
+* `se_sb_dedicated_core` - (Optional) Sideband traffic will be handled by a dedicated core.requires se reboot.
+* `se_sb_threads` - (Optional) Number of sideband threads per se.requires se reboot.
 * `se_thread_multiplier` - (Optional) Multiplier for se threads based on vcpu.
 * `se_tracert_port_range` - (Optional) Traceroute port range.
 * `se_tunnel_mode` - (Optional) Determines if dsr from secondary se is active or not  0  automatically determine based on hypervisor type.
-* `se_tunnel_udp_port` - (Optional) Udp port for tunneled packets from secondary to primary se in docker bridge mode.
+* `se_tunnel_udp_port` - (Optional) Udp port for tunneled packets from secondary to primary se in docker bridge mode.requires se reboot.
+* `se_tx_batch_size` - (Optional) Number of packets to batch for transmit to the nic.
 * `se_udp_encap_ipc` - (Optional) Determines if se-se ipc messages are encapsulated in a udp header  0  automatically determine based on hypervisor type.
 * `se_use_dpdk` - (Optional) Determines if dpdk library should be used or not   0  automatically determine based on hypervisor type 1  use dpdk if pcap is not enabled 2  don't use dpdk.
 * `se_vs_hb_max_pkts_in_batch` - (Optional) Maximum number of aggregated vs heartbeat packets to send in a batch.
@@ -178,8 +182,8 @@ The following arguments are supported:
 * `vs_switchover_timeout` - (Optional) During se upgrade in a legacy active/standby segroup, time to wait for the new primary se to accept flows before marking the switchover done.
 * `vss_placement` - (Optional) Parameters to place virtual services on only a subset of the cores of an se.
 * `vss_placement_enabled` - (Optional) If set, virtual services will be placed on only a subset of the cores of an se.
-* `waf_mempool` - (Optional) Enable memory pool for waf.
-* `waf_mempool_size` - (Optional) Memory pool size used for waf.
+* `waf_mempool` - (Optional) Enable memory pool for waf.requires se reboot.
+* `waf_mempool_size` - (Optional) Memory pool size used for waf.requires se reboot.
 
 
 ### Timeouts

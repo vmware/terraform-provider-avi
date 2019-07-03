@@ -42,6 +42,7 @@ func ResourceClusterSchema() map[string]*schema.Schema {
 		"virtual_ip": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceIpAddrSchema(),
 		},
 	}

@@ -17,28 +17,34 @@ func ResourceHTTPPolicySetSchema() map[string]*schema.Schema {
 		"cloud_config_cksum": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"created_by": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"description": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"http_request_policy": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceHTTPRequestPolicySchema(),
 		},
 		"http_response_policy": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceHTTPResponsePolicySchema(),
 		},
 		"http_security_policy": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceHTTPSecurityPolicySchema(),
 		},
 		"is_internal_policy": {

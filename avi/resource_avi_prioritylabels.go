@@ -22,6 +22,7 @@ func ResourcePriorityLabelsSchema() map[string]*schema.Schema {
 		"description": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"equivalent_labels": {
 			Type:     schema.TypeList,

@@ -22,10 +22,12 @@ func ResourceNetworkServiceSchema() map[string]*schema.Schema {
 		"name": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"routing_service": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceRoutingServiceSchema(),
 		},
 		"se_group_ref": {
@@ -36,6 +38,7 @@ func ResourceNetworkServiceSchema() map[string]*schema.Schema {
 		"service_type": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"tenant_ref": {
 			Type:     schema.TypeString,

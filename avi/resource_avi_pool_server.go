@@ -330,9 +330,14 @@ func resourceAviServerReadApi(d *schema.ResourceData, meta interface{}) (error, 
 	for i := 0; i < len(poolObj.Servers); i++ {
 		sObj := poolObj.Servers[i]
 		if *sObj.IP.Addr == ip {
-			if (port == nil && *sObj.Port == 0) || (port != nil && int32(port.(int)) == *sObj.Port) {
+			if port == nil && sObj.Port == nil {
 				matchedServer = sObj
 				break
+			} else if port != nil && sObj.Port != nil {
+				if int32(port.(int)) == *sObj.Port {
+					matchedServer = sObj
+					break
+				}
 			}
 		}
 	}

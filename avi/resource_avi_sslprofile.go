@@ -32,10 +32,12 @@ func ResourceSSLProfileSchema() map[string]*schema.Schema {
 		"description": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"dhparam": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"enable_ssl_session_reuse": {
 			Type:     schema.TypeBool,
@@ -59,6 +61,7 @@ func ResourceSSLProfileSchema() map[string]*schema.Schema {
 		"ssl_rating": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceSSLRatingSchema(),
 		},
 		"ssl_session_timeout": {

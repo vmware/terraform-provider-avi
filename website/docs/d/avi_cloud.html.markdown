@@ -30,7 +30,7 @@ In addition to all arguments above, the following attributes are exported:
 
 * `apic_configuration` - Dict settings for cloud.
 * `apic_mode` - Boolean flag to set apic_mode.
-* `autoscale_polling_interval` - Cloudconnector polling interval for external autoscale groups.
+* `autoscale_polling_interval` - Cloudconnector polling interval in seconds for external autoscale groups, minimum 60 seconds.
 * `aws_configuration` - Dict settings for cloud.
 * `azure_configuration` - Field introduced in 17.2.1.
 * `cloudstack_configuration` - Dict settings for cloud.

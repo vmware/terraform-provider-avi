@@ -17,10 +17,12 @@ func ResourceL4PolicySetSchema() map[string]*schema.Schema {
 		"created_by": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"description": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"is_internal_policy": {
 			Type:     schema.TypeBool,
@@ -30,11 +32,13 @@ func ResourceL4PolicySetSchema() map[string]*schema.Schema {
 		"l4_connection_policy": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceL4ConnectionPolicySchema(),
 		},
 		"name": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"tenant_ref": {
 			Type:     schema.TypeString,

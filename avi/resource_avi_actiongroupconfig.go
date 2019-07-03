@@ -27,6 +27,7 @@ func ResourceActionGroupConfigSchema() map[string]*schema.Schema {
 		"description": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"email_config_ref": {
 			Type:     schema.TypeString,

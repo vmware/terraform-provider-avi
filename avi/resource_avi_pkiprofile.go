@@ -22,6 +22,7 @@ func ResourcePKIProfileSchema() map[string]*schema.Schema {
 		"created_by": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"crl_check": {
 			Type:     schema.TypeBool,

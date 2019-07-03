@@ -17,10 +17,12 @@ func ResourceAlertEmailConfigSchema() map[string]*schema.Schema {
 		"cc_emails": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"description": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"name": {
 			Type:     schema.TypeString,

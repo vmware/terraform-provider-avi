@@ -67,11 +67,13 @@ func ResourceAnalyticsProfileSchema() map[string]*schema.Schema {
 		"client_log_config": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceClientLogConfigurationSchema(),
 		},
 		"client_log_streaming_config": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceClientLogStreamingConfigSchema(),
 		},
 		"conn_lossy_ooo_threshold": {
@@ -117,6 +119,7 @@ func ResourceAnalyticsProfileSchema() map[string]*schema.Schema {
 		"description": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"disable_ondemand_metrics": {
 			Type:     schema.TypeBool,
@@ -375,6 +378,7 @@ func ResourceAnalyticsProfileSchema() map[string]*schema.Schema {
 		"sensitive_log_profile": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceSensitiveLogProfileSchema(),
 		},
 		"sip_log_depth": {

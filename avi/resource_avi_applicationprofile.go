@@ -17,28 +17,34 @@ func ResourceApplicationProfileSchema() map[string]*schema.Schema {
 		"cloud_config_cksum": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"created_by": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"description": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"dns_service_profile": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceDnsServiceApplicationProfileSchema(),
 		},
 		"dos_rl_profile": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceDosRateLimitProfileSchema(),
 		},
 		"http_profile": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceHTTPApplicationProfileSchema(),
 		},
 		"name": {
@@ -58,11 +64,13 @@ func ResourceApplicationProfileSchema() map[string]*schema.Schema {
 		"sip_service_profile": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceSipServiceApplicationProfileSchema(),
 		},
 		"tcp_app_profile": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceTCPApplicationProfileSchema(),
 		},
 		"tenant_ref": {

@@ -102,6 +102,7 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 		"dummy": {
 			Type:     schema.TypeInt,
 			Optional: true,
+			Computed: true,
 		},
 		"enable_api_sharding": {
 			Type:     schema.TypeBool,
@@ -146,6 +147,7 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 		"portal_token": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"process_locked_useraccounts_timeout_period": {
 			Type:     schema.TypeInt,
@@ -165,6 +167,7 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 		"safenet_hsm_version": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"se_create_timeout": {
 			Type:     schema.TypeInt,

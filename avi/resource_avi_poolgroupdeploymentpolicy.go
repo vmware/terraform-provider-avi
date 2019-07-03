@@ -22,6 +22,7 @@ func ResourcePoolGroupDeploymentPolicySchema() map[string]*schema.Schema {
 		"description": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"evaluation_duration": {
 			Type:     schema.TypeInt,

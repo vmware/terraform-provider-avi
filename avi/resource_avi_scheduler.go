@@ -27,14 +27,17 @@ func ResourceSchedulerSchema() map[string]*schema.Schema {
 		"end_date_time": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"frequency": {
 			Type:     schema.TypeInt,
 			Optional: true,
+			Computed: true,
 		},
 		"frequency_unit": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"name": {
 			Type:     schema.TypeString,
@@ -43,6 +46,7 @@ func ResourceSchedulerSchema() map[string]*schema.Schema {
 		"run_mode": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"run_script_ref": {
 			Type:     schema.TypeString,
@@ -57,6 +61,7 @@ func ResourceSchedulerSchema() map[string]*schema.Schema {
 		"start_date_time": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"tenant_ref": {
 			Type:     schema.TypeString,

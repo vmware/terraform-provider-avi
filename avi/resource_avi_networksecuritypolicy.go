@@ -17,18 +17,22 @@ func ResourceNetworkSecurityPolicySchema() map[string]*schema.Schema {
 		"cloud_config_cksum": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"created_by": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"description": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"name": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"rules": {
 			Type:     schema.TypeList,

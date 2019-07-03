@@ -27,6 +27,7 @@ func ResourceAlertConfigSchema() map[string]*schema.Schema {
 		"autoscale_alert": {
 			Type:     schema.TypeBool,
 			Optional: true,
+			Computed: true,
 		},
 		"category": {
 			Type:     schema.TypeString,
@@ -35,6 +36,7 @@ func ResourceAlertConfigSchema() map[string]*schema.Schema {
 		"description": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"enabled": {
 			Type:     schema.TypeBool,
@@ -53,14 +55,17 @@ func ResourceAlertConfigSchema() map[string]*schema.Schema {
 		"obj_uuid": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"object_type": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"recommendation": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"rolling_window": {
 			Type:     schema.TypeInt,
@@ -74,6 +79,7 @@ func ResourceAlertConfigSchema() map[string]*schema.Schema {
 		"summary": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"tenant_ref": {
 			Type:     schema.TypeString,

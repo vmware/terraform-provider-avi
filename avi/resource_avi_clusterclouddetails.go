@@ -17,6 +17,7 @@ func ResourceClusterCloudDetailsSchema() map[string]*schema.Schema {
 		"azure_info": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceAzureClusterInfoSchema(),
 		},
 		"name": {

@@ -17,6 +17,7 @@ func ResourceSystemConfigurationSchema() map[string]*schema.Schema {
 		"admin_auth_configuration": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceAdminAuthConfigurationSchema(),
 		},
 		"default_license_tier": {
@@ -27,12 +28,12 @@ func ResourceSystemConfigurationSchema() map[string]*schema.Schema {
 		"dns_configuration": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceDNSConfigurationSchema(),
 		},
 		"dns_virtualservice_refs": {
 			Type:     schema.TypeList,
 			Optional: true,
-			Computed: true,
 			Elem:     &schema.Schema{Type: schema.TypeString},
 		},
 		"docker_mode": {
@@ -43,46 +44,55 @@ func ResourceSystemConfigurationSchema() map[string]*schema.Schema {
 		"email_configuration": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceEmailConfigurationSchema(),
 		},
 		"global_tenant_config": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceTenantConfigurationSchema(),
 		},
 		"linux_configuration": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceLinuxConfigurationSchema(),
 		},
 		"mgmt_ip_access_control": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceMgmtIpAccessControlSchema(),
 		},
 		"ntp_configuration": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceNTPConfigurationSchema(),
 		},
 		"portal_configuration": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourcePortalConfigurationSchema(),
 		},
 		"proxy_configuration": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceProxyConfigurationSchema(),
 		},
 		"secure_channel_configuration": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceSecureChannelConfigurationSchema(),
 		},
 		"snmp_configuration": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceSnmpConfigurationSchema(),
 		},
 		"ssh_ciphers": {

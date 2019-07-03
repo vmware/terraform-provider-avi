@@ -17,6 +17,7 @@ func ResourceVrfContextSchema() map[string]*schema.Schema {
 		"bgp_profile": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceBgpProfileSchema(),
 		},
 		"cloud_ref": {
@@ -27,11 +28,13 @@ func ResourceVrfContextSchema() map[string]*schema.Schema {
 		"debugvrfcontext": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceDebugVrfContextSchema(),
 		},
 		"description": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"gateway_mon": {
 			Type:     schema.TypeList,
@@ -41,6 +44,7 @@ func ResourceVrfContextSchema() map[string]*schema.Schema {
 		"internal_gateway_monitor": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceInternalGatewayMonitorSchema(),
 		},
 		"name": {

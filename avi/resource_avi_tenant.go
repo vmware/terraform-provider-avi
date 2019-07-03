@@ -17,15 +17,18 @@ func ResourceTenantSchema() map[string]*schema.Schema {
 		"config_settings": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceTenantConfigurationSchema(),
 		},
 		"created_by": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"description": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"local": {
 			Type:     schema.TypeBool,

@@ -17,6 +17,7 @@ func ResourceAlertScriptConfigSchema() map[string]*schema.Schema {
 		"action_script": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"name": {
 			Type:     schema.TypeString,

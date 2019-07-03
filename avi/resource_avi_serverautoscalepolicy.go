@@ -17,6 +17,7 @@ func ResourceServerAutoScalePolicySchema() map[string]*schema.Schema {
 		"description": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"intelligent_autoscale": {
 			Type:     schema.TypeBool,
@@ -46,10 +47,12 @@ func ResourceServerAutoScalePolicySchema() map[string]*schema.Schema {
 		"max_size": {
 			Type:     schema.TypeInt,
 			Optional: true,
+			Computed: true,
 		},
 		"min_size": {
 			Type:     schema.TypeInt,
 			Optional: true,
+			Computed: true,
 		},
 		"name": {
 			Type:     schema.TypeString,
@@ -58,7 +61,6 @@ func ResourceServerAutoScalePolicySchema() map[string]*schema.Schema {
 		"scalein_alertconfig_refs": {
 			Type:     schema.TypeList,
 			Optional: true,
-			Computed: true,
 			Elem:     &schema.Schema{Type: schema.TypeString},
 		},
 		"scalein_cooldown": {
@@ -69,7 +71,6 @@ func ResourceServerAutoScalePolicySchema() map[string]*schema.Schema {
 		"scaleout_alertconfig_refs": {
 			Type:     schema.TypeList,
 			Optional: true,
-			Computed: true,
 			Elem:     &schema.Schema{Type: schema.TypeString},
 		},
 		"scaleout_cooldown": {

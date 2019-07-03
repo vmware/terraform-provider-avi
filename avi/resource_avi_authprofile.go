@@ -17,15 +17,18 @@ func ResourceAuthProfileSchema() map[string]*schema.Schema {
 		"description": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"http": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceAuthProfileHTTPClientParamsSchema(),
 		},
 		"ldap": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceLdapAuthSettingsSchema(),
 		},
 		"name": {
@@ -40,11 +43,13 @@ func ResourceAuthProfileSchema() map[string]*schema.Schema {
 		"saml": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceSamlSettingsSchema(),
 		},
 		"tacacs_plus": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceTacacsPlusAuthSettingsSchema(),
 		},
 		"tenant_ref": {

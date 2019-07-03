@@ -27,11 +27,13 @@ func ResourceGslbSchema() map[string]*schema.Schema {
 		"client_ip_addr_group": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceGslbClientIpAddrGroupSchema(),
 		},
 		"description": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"dns_configs": {
 			Type:     schema.TypeList,
@@ -51,6 +53,7 @@ func ResourceGslbSchema() map[string]*schema.Schema {
 		"leader_cluster_uuid": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"maintenance_mode": {
 			Type:     schema.TypeBool,
@@ -69,6 +72,7 @@ func ResourceGslbSchema() map[string]*schema.Schema {
 		"send_interval_prior_to_maintenance_mode": {
 			Type:     schema.TypeInt,
 			Optional: true,
+			Computed: true,
 		},
 		"sites": {
 			Type:     schema.TypeList,

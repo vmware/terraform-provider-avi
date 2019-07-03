@@ -17,14 +17,17 @@ func ResourceAutoScaleLaunchConfigSchema() map[string]*schema.Schema {
 		"description": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"image_id": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"mesos": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceAutoScaleMesosSettingsSchema(),
 		},
 		"name": {
@@ -34,6 +37,7 @@ func ResourceAutoScaleLaunchConfigSchema() map[string]*schema.Schema {
 		"openstack": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceAutoScaleOpenStackSettingsSchema(),
 		},
 		"tenant_ref": {

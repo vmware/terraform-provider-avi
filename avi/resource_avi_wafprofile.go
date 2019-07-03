@@ -17,11 +17,13 @@ func ResourceWafProfileSchema() map[string]*schema.Schema {
 		"config": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceWafConfigSchema(),
 		},
 		"description": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"files": {
 			Type:     schema.TypeList,

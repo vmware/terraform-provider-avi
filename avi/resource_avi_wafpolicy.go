@@ -22,6 +22,7 @@ func ResourceWafPolicySchema() map[string]*schema.Schema {
 		"created_by": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"crs_groups": {
 			Type:     schema.TypeList,
@@ -31,6 +32,7 @@ func ResourceWafPolicySchema() map[string]*schema.Schema {
 		"description": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"enable_app_learning": {
 			Type:     schema.TypeBool,
@@ -59,6 +61,7 @@ func ResourceWafPolicySchema() map[string]*schema.Schema {
 		"positive_security_model": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceWafPositiveSecurityModelSchema(),
 		},
 		"post_crs_groups": {
@@ -94,6 +97,7 @@ func ResourceWafPolicySchema() map[string]*schema.Schema {
 		"whitelist": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceWafPolicyWhitelistSchema(),
 		},
 	}

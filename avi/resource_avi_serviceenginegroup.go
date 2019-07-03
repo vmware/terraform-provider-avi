@@ -17,6 +17,7 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 		"accelerated_networking": {
 			Type:     schema.TypeBool,
 			Optional: true,
+			Computed: true,
 		},
 		"active_standby": {
 			Type:     schema.TypeBool,
@@ -41,6 +42,7 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 		"allow_burst": {
 			Type:     schema.TypeBool,
 			Optional: true,
+			Computed: true,
 		},
 		"app_cache_percent": {
 			Type:     schema.TypeInt,
@@ -145,6 +147,7 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 		"data_network_id": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"datascript_timeout": {
 			Type:     schema.TypeInt,
@@ -159,6 +162,7 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 		"description": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"disable_avi_securitygroups": {
 			Type:     schema.TypeBool,
@@ -238,10 +242,12 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 		"ephemeral_portrange_end": {
 			Type:     schema.TypeInt,
 			Optional: true,
+			Computed: true,
 		},
 		"ephemeral_portrange_start": {
 			Type:     schema.TypeInt,
 			Optional: true,
+			Computed: true,
 		},
 		"extra_config_multiplier": {
 			Type:     schema.TypeFloat,
@@ -301,10 +307,12 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 		"host_attribute_key": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"host_attribute_value": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"host_gateway_monitor": {
 			Type:     schema.TypeBool,
@@ -314,6 +322,7 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 		"hypervisor": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"ignore_rtt_threshold": {
 			Type:     schema.TypeInt,
@@ -333,6 +342,7 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 		"instance_flavor": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"iptables": {
 			Type:     schema.TypeList,
@@ -347,10 +357,12 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 		"license_tier": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"license_type": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"log_disksz": {
 			Type:     schema.TypeInt,
@@ -415,6 +427,7 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 		"mgmt_subnet": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceIpAddrPrefixSchema(),
 		},
 		"min_cpu_usage": {
@@ -469,10 +482,12 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 		"openstack_mgmt_network_name": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"openstack_mgmt_network_uuid": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"os_reserved_memory": {
 			Type:     schema.TypeInt,
@@ -492,6 +507,7 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 		"realtime_se_metrics": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceMetricsRealTimeUpdateSchema(),
 		},
 		"reboot_on_panic": {
@@ -502,6 +518,7 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 		"se_bandwidth_type": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"se_deprovision_delay": {
 			Type:     schema.TypeInt,
@@ -511,6 +528,7 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 		"se_dos_profile": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceDosThresholdProfileSchema(),
 		},
 		"se_dp_vnic_queue_stall_event_sleep": {
@@ -626,6 +644,7 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 		"se_tracert_port_range": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourcePortRangeSchema(),
 		},
 		"se_tunnel_mode": {
@@ -706,6 +725,7 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 		"use_standard_alb": {
 			Type:     schema.TypeBool,
 			Optional: true,
+			Computed: true,
 		},
 		"uuid": {
 			Type:     schema.TypeString,
@@ -715,6 +735,7 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 		"vcenter_clusters": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceVcenterClustersSchema(),
 		},
 		"vcenter_datastore_mode": {
@@ -740,6 +761,7 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 		"vcenter_hosts": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceVcenterHostsSchema(),
 		},
 		"vcpus_per_se": {
@@ -750,6 +772,7 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 		"vip_asg": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceVipAutoscaleGroupSchema(),
 		},
 		"vs_host_redundancy": {
@@ -790,6 +813,7 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 		"vss_placement": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceVssPlacementSchema(),
 		},
 		"vss_placement_enabled": {

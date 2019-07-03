@@ -13,7 +13,7 @@ test: fmtcheck
 
 testacc: fmtcheck
 	@if [ "${specific_test}" ]; then \
-	TF_ACC=1 go test $(TEST) -v $(TESTARGS) -timeout 120m -run=TestAVI${specific_test}Basic; \
+	TF_ACC=1 go test $(TEST) -v $(TESTARGS) -timeout 120m -run=${specific_test}; \
 	else \
 	TF_ACC=1 go test $(TEST) -v $(TESTARGS) -timeout 120m; \
 	fi

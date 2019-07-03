@@ -17,6 +17,7 @@ func ResourceErrorPageBodySchema() map[string]*schema.Schema {
 		"error_page_body": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"format": {
 			Type:     schema.TypeString,
@@ -26,6 +27,7 @@ func ResourceErrorPageBodySchema() map[string]*schema.Schema {
 		"name": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"tenant_ref": {
 			Type:     schema.TypeString,

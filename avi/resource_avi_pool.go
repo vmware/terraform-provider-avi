@@ -323,15 +323,14 @@ func ResourcePoolImporter(d *schema.ResourceData, m interface{}) ([]*schema.Reso
 
 func ResourceAviPoolRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourcePoolSchema()
-	ignoreServers := d.Get("ignore_servers").(bool)
 	err := ApiRead(d, meta, "pool", s)
 	if err != nil {
-		log.Printf("[ERROR] in reading object %v\n", err)
+		log.Printf("[ERROR] ResourceAviPoolRead in reading object %v\n", err)
 	} else {
-		log.Printf("[ERROR] ignore_servers %v so clearing servers\n", ignoreServers)
-		if ignoreServers {
+		if ignoreServers, ok := d.GetOk("ignore_servers"); ok {
+			log.Printf("[DEBUG] ResourceAviPoolRead ignore_servers %v so clearing servers\n", ignoreServers)
 			d.Set("servers", nil)
-			d.Set("ignore_servers", ignoreServers)
+			d.Set("ignore_servers", ignoreServers.(bool))
 		}
 	}
 	return err

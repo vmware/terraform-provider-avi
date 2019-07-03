@@ -27,6 +27,7 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 		"analytics_policy": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceAnalyticsPolicySchema(),
 		},
 		"analytics_profile_ref": {
@@ -37,6 +38,7 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 		"apic_contract_graph": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"application_profile_ref": {
 			Type:     schema.TypeString,
@@ -51,6 +53,7 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 		"client_auth": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceHTTPClientAuthenticationParamsSchema(),
 		},
 		"close_client_conn_on_config_update": {
@@ -61,6 +64,7 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 		"cloud_config_cksum": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"cloud_ref": {
 			Type:     schema.TypeString,
@@ -75,16 +79,19 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 		"connections_rate_limit": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceRateProfileSchema(),
 		},
 		"content_rewrite": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceContentRewriteProfileSchema(),
 		},
 		"created_by": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"delay_fairness": {
 			Type:     schema.TypeBool,
@@ -94,6 +101,7 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 		"description": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"dns_info": {
 			Type:     schema.TypeList,
@@ -118,10 +126,12 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 		"enable_rhi": {
 			Type:     schema.TypeBool,
 			Optional: true,
+			Computed: true,
 		},
 		"enable_rhi_snat": {
 			Type:     schema.TypeBool,
 			Optional: true,
+			Computed: true,
 		},
 		"enabled": {
 			Type:     schema.TypeBool,
@@ -146,10 +156,12 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 		"fqdn": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"host_name_xlate": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"http_policies": {
 			Type:     schema.TypeList,
@@ -184,6 +196,7 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 		"min_pools_up": {
 			Type:     schema.TypeInt,
 			Optional: true,
+			Computed: true,
 		},
 		"name": {
 			Type:     schema.TypeString,
@@ -207,6 +220,7 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 		"performance_limits": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourcePerformanceLimitsSchema(),
 		},
 		"pool_group_ref": {
@@ -227,11 +241,13 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 		"requests_rate_limit": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceRateProfileSchema(),
 		},
 		"saml_sp_config": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceSAMLSPConfigSchema(),
 		},
 		"scaleout_ecmp": {
@@ -257,6 +273,7 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 		"service_metadata": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"service_pool_select": {
 			Type:     schema.TypeList,
@@ -271,6 +288,7 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 		"sideband_profile": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceSidebandProfileSchema(),
 		},
 		"snat_ip": {
@@ -281,7 +299,6 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 		"ssl_key_and_certificate_refs": {
 			Type:     schema.TypeList,
 			Optional: true,
-			Computed: true,
 			Elem:     &schema.Schema{Type: schema.TypeString},
 		},
 		"ssl_profile_ref": {
@@ -357,6 +374,7 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 		"vh_parent_vs_uuid": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"vip": {
 			Type:     schema.TypeList,
@@ -376,6 +394,7 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 		"vsvip_cloud_config_cksum": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"vsvip_ref": {
 			Type:     schema.TypeString,

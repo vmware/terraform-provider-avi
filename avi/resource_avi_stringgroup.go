@@ -17,6 +17,7 @@ func ResourceStringGroupSchema() map[string]*schema.Schema {
 		"description": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"kv": {
 			Type:     schema.TypeList,

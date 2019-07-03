@@ -17,6 +17,7 @@ func ResourcePoolGroupSchema() map[string]*schema.Schema {
 		"cloud_config_cksum": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"cloud_ref": {
 			Type:     schema.TypeString,
@@ -26,6 +27,7 @@ func ResourcePoolGroupSchema() map[string]*schema.Schema {
 		"created_by": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"deployment_policy_ref": {
 			Type:     schema.TypeString,
@@ -35,10 +37,12 @@ func ResourcePoolGroupSchema() map[string]*schema.Schema {
 		"description": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"fail_action": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceFailActionSchema(),
 		},
 		"implicit_priority_labels": {
@@ -68,6 +72,7 @@ func ResourcePoolGroupSchema() map[string]*schema.Schema {
 		"service_metadata": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"tenant_ref": {
 			Type:     schema.TypeString,

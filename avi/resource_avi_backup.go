@@ -26,10 +26,12 @@ func ResourceBackupSchema() map[string]*schema.Schema {
 		"local_file_url": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"remote_file_url": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"scheduler_ref": {
 			Type:     schema.TypeString,
@@ -44,6 +46,7 @@ func ResourceBackupSchema() map[string]*schema.Schema {
 		"timestamp": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"uuid": {
 			Type:     schema.TypeString,

@@ -24,8 +24,10 @@ resource "avi_ssopolicy" "foo" {
 The following arguments are supported:
 
 * `authentication_policy` - (Optional) Authentication policy settings.
+* `authorization_policy` - (Optional) Authorization policy settings.
 * `name` - (Optional) Name of the sso policy.
 * `tenant_ref` - (Optional) Uuid of the tenant.
+* `type` - (Optional) Sso policy type.
 
 
 ### Timeouts

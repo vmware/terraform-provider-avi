@@ -17,10 +17,12 @@ func ResourceWebhookSchema() map[string]*schema.Schema {
 		"callback_url": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"description": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"name": {
 			Type:     schema.TypeString,
@@ -39,6 +41,7 @@ func ResourceWebhookSchema() map[string]*schema.Schema {
 		"verification_token": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 	}
 }

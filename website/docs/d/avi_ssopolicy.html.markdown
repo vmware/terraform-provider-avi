@@ -29,7 +29,9 @@ data "avi_ssopolicy" "foo_ssopolicy" {
 In addition to all arguments above, the following attributes are exported:
 
 * `authentication_policy` - Authentication policy settings.
+* `authorization_policy` - Authorization policy settings.
 * `name` - Name of the sso policy.
 * `tenant_ref` - Uuid of the tenant.
+* `type` - Sso policy type.
 * `uuid` - Uuid of the sso policy.
 

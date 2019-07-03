@@ -17,10 +17,12 @@ func ResourceControllerSiteSchema() map[string]*schema.Schema {
 		"address": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"name": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"port": {
 			Type:     schema.TypeInt,

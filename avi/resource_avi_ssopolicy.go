@@ -17,16 +17,19 @@ func ResourceSSOPolicySchema() map[string]*schema.Schema {
 		"authentication_policy": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceAuthenticationPolicySchema(),
 		},
 		"authorization_policy": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceAuthorizationPolicySchema(),
 		},
 		"name": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"tenant_ref": {
 			Type:     schema.TypeString,

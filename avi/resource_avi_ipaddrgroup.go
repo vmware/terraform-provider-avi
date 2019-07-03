@@ -22,6 +22,7 @@ func ResourceIpAddrGroupSchema() map[string]*schema.Schema {
 		"apic_epg_name": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"country_codes": {
 			Type:     schema.TypeList,
@@ -31,6 +32,7 @@ func ResourceIpAddrGroupSchema() map[string]*schema.Schema {
 		"description": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"ip_ports": {
 			Type:     schema.TypeList,
@@ -40,10 +42,12 @@ func ResourceIpAddrGroupSchema() map[string]*schema.Schema {
 		"marathon_app_name": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"marathon_service_port": {
 			Type:     schema.TypeInt,
 			Optional: true,
+			Computed: true,
 		},
 		"name": {
 			Type:     schema.TypeString,

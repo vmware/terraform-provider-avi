@@ -17,6 +17,7 @@ func ResourceCloudSchema() map[string]*schema.Schema {
 		"apic_configuration": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceAPICConfigurationSchema(),
 		},
 		"apic_mode": {
@@ -32,16 +33,19 @@ func ResourceCloudSchema() map[string]*schema.Schema {
 		"aws_configuration": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceAwsConfigurationSchema(),
 		},
 		"azure_configuration": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceAzureConfigurationSchema(),
 		},
 		"cloudstack_configuration": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceCloudStackConfigurationSchema(),
 		},
 		"custom_tags": {
@@ -62,6 +66,7 @@ func ResourceCloudSchema() map[string]*schema.Schema {
 		"docker_configuration": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceDockerConfigurationSchema(),
 		},
 		"east_west_dns_provider_ref": {
@@ -82,6 +87,7 @@ func ResourceCloudSchema() map[string]*schema.Schema {
 		"gcp_configuration": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceGCPConfigurationSchema(),
 		},
 		"ip6_autocfg_enabled": {
@@ -97,14 +103,17 @@ func ResourceCloudSchema() map[string]*schema.Schema {
 		"license_tier": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"license_type": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"linuxserver_configuration": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceLinuxServerConfigurationSchema(),
 		},
 		"mtu": {
@@ -119,20 +128,24 @@ func ResourceCloudSchema() map[string]*schema.Schema {
 		"nsx_configuration": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceNsxConfigurationSchema(),
 		},
 		"obj_name_prefix": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"openstack_configuration": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceOpenStackConfigurationSchema(),
 		},
 		"oshiftk8s_configuration": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceOShiftK8SConfigurationSchema(),
 		},
 		"prefer_static_routes": {
@@ -143,11 +156,13 @@ func ResourceCloudSchema() map[string]*schema.Schema {
 		"proxy_configuration": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceProxyConfigurationSchema(),
 		},
 		"rancher_configuration": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceRancherConfigurationSchema(),
 		},
 		"se_group_template_ref": {
@@ -173,11 +188,13 @@ func ResourceCloudSchema() map[string]*schema.Schema {
 		"vca_configuration": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourcevCloudAirConfigurationSchema(),
 		},
 		"vcenter_configuration": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourcevCenterConfigurationSchema(),
 		},
 		"vtype": {

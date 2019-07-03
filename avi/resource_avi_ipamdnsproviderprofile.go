@@ -22,31 +22,37 @@ func ResourceIpamDnsProviderProfileSchema() map[string]*schema.Schema {
 		"aws_profile": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceIpamDnsAwsProfileSchema(),
 		},
 		"azure_profile": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceIpamDnsAzureProfileSchema(),
 		},
 		"custom_profile": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceIpamDnsCustomProfileSchema(),
 		},
 		"gcp_profile": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceIpamDnsGCPProfileSchema(),
 		},
 		"infoblox_profile": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceIpamDnsInfobloxProfileSchema(),
 		},
 		"internal_profile": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceIpamDnsInternalProfileSchema(),
 		},
 		"name": {
@@ -56,16 +62,19 @@ func ResourceIpamDnsProviderProfileSchema() map[string]*schema.Schema {
 		"oci_profile": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceIpamDnsOCIProfileSchema(),
 		},
 		"openstack_profile": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceIpamDnsOpenstackProfileSchema(),
 		},
 		"proxy_configuration": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceProxyConfigurationSchema(),
 		},
 		"tenant_ref": {
@@ -76,6 +85,7 @@ func ResourceIpamDnsProviderProfileSchema() map[string]*schema.Schema {
 		"tencent_profile": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceIpamDnsTencentProfileSchema(),
 		},
 		"type": {

@@ -27,7 +27,7 @@ The following arguments are supported:
 * `vtype` - (Required) Cloud type.
 * `apic_configuration` - (Optional) Dict settings for cloud.
 * `apic_mode` - (Optional) Boolean flag to set apic_mode.
-* `autoscale_polling_interval` - (Optional) Cloudconnector polling interval for external autoscale groups.
+* `autoscale_polling_interval` - (Optional) Cloudconnector polling interval in seconds for external autoscale groups, minimum 60 seconds.
 * `aws_configuration` - (Optional) Dict settings for cloud.
 * `azure_configuration` - (Optional) Field introduced in 17.2.1.
 * `cloudstack_configuration` - (Optional) Dict settings for cloud.

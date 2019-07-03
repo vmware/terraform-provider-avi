@@ -17,25 +17,30 @@ func ResourceApplicationPersistenceProfileSchema() map[string]*schema.Schema {
 		"app_cookie_persistence_profile": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceAppCookiePersistenceProfileSchema(),
 		},
 		"description": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"hdr_persistence_profile": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceHdrPersistenceProfileSchema(),
 		},
 		"http_cookie_persistence_profile": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceHttpCookiePersistenceProfileSchema(),
 		},
 		"ip_persistence_profile": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceIPPersistenceProfileSchema(),
 		},
 		"is_federated": {

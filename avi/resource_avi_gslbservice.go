@@ -27,10 +27,12 @@ func ResourceGslbServiceSchema() map[string]*schema.Schema {
 		"created_by": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"description": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"domain_names": {
 			Type:     schema.TypeList,
@@ -40,6 +42,7 @@ func ResourceGslbServiceSchema() map[string]*schema.Schema {
 		"down_response": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceGslbServiceDownResponseSchema(),
 		},
 		"enabled": {
@@ -55,7 +58,6 @@ func ResourceGslbServiceSchema() map[string]*schema.Schema {
 		"health_monitor_refs": {
 			Type:     schema.TypeList,
 			Optional: true,
-			Computed: true,
 			Elem:     &schema.Schema{Type: schema.TypeString},
 		},
 		"health_monitor_scope": {
@@ -66,6 +68,7 @@ func ResourceGslbServiceSchema() map[string]*schema.Schema {
 		"hm_off": {
 			Type:     schema.TypeBool,
 			Optional: true,
+			Computed: true,
 		},
 		"is_federated": {
 			Type:     schema.TypeBool,
@@ -84,6 +87,7 @@ func ResourceGslbServiceSchema() map[string]*schema.Schema {
 		"num_dns_ip": {
 			Type:     schema.TypeInt,
 			Optional: true,
+			Computed: true,
 		},
 		"pool_algorithm": {
 			Type:     schema.TypeString,
@@ -103,6 +107,7 @@ func ResourceGslbServiceSchema() map[string]*schema.Schema {
 		"ttl": {
 			Type:     schema.TypeInt,
 			Optional: true,
+			Computed: true,
 		},
 		"use_edns_client_subnet": {
 			Type:     schema.TypeBool,
