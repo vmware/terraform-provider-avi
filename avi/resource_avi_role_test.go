@@ -31,6 +31,12 @@ func TestAVIRoleBasic(t *testing.T) {
 						"avi_role.testRole", "name", "test-Application-Admin-updated"),
 				),
 			},
+			{
+				ResourceName:      "avi_role.testRole",
+				ImportState:       true,
+				ImportStateVerify: false,
+				Config:            testAccAVIRoleConfig,
+			},
 		},
 	})
 

@@ -6430,67 +6430,28 @@ func ResourceAzureServicePrincipalCredentialsSchema() *schema.Resource {
 	}
 }
 
-func ResourceMatchTargetSchema() *schema.Resource {
+func ResourceCloudSeVmChangeSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
-			"client_ip": {
-				Type:     schema.TypeSet,
+			"cc_id": {
+				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
-				Elem:     ResourceIpAddrMatchSchema(),
 			},
-			"cookie": {
-				Type:     schema.TypeSet,
+			"error_string": {
+				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
-				Elem:     ResourceCookieMatchSchema(),
 			},
-			"hdrs": {
-				Type:     schema.TypeList,
-				Optional: true,
-				Elem:     ResourceHdrMatchSchema(),
-			},
-			"host_hdr": {
-				Type:     schema.TypeSet,
+			"se_vm_uuid": {
+				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
-				Elem:     ResourceHostHdrMatchSchema(),
 			},
-			"method": {
-				Type:     schema.TypeSet,
+			"vtype": {
+				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
-				Elem:     ResourceMethodMatchSchema(),
-			},
-			"path": {
-				Type:     schema.TypeSet,
-				Optional: true,
-				Computed: true,
-				Elem:     ResourcePathMatchSchema(),
-			},
-			"protocol": {
-				Type:     schema.TypeSet,
-				Optional: true,
-				Computed: true,
-				Elem:     ResourceProtocolMatchSchema(),
-			},
-			"query": {
-				Type:     schema.TypeSet,
-				Optional: true,
-				Computed: true,
-				Elem:     ResourceQueryMatchSchema(),
-			},
-			"version": {
-				Type:     schema.TypeSet,
-				Optional: true,
-				Computed: true,
-				Elem:     ResourceHTTPVersionMatchSchema(),
-			},
-			"vs_port": {
-				Type:     schema.TypeSet,
-				Optional: true,
-				Computed: true,
-				Elem:     ResourcePortMatchSchema(),
 			},
 		},
 	}
@@ -20949,73 +20910,6 @@ func ResourceCloudGenericSchema() *schema.Resource {
 	}
 }
 
-func ResourceDockerUCPSetupSchema() *schema.Resource {
-	return &schema.Resource{
-		Schema: map[string]*schema.Schema{
-			"cc_id": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
-			"docker_ucp_access": {
-				Type:     schema.TypeBool,
-				Optional: true,
-				Computed: true,
-			},
-			"failed_hosts": {
-				Type:     schema.TypeList,
-				Optional: true,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-			},
-			"fleet_endpoint": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
-			"hosts": {
-				Type:     schema.TypeList,
-				Optional: true,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-			},
-			"missing_hosts": {
-				Type:     schema.TypeList,
-				Optional: true,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-			},
-			"new_hosts": {
-				Type:     schema.TypeList,
-				Optional: true,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-			},
-			"reason": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
-			"se_deploy_method_access": {
-				Type:     schema.TypeBool,
-				Optional: true,
-				Computed: true,
-			},
-			"se_name": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
-			"ucp_nodes": {
-				Type:     schema.TypeList,
-				Optional: true,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-			},
-			"version": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
-		},
-	}
-}
-
 func ResourceHTTPRequestPolicySchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -21893,11 +21787,6 @@ func ResourceOpenStackSeVmChangeSchema() *schema.Resource {
 func ResourceSeRuntimePropertiesSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
-			"admin_ssh_enabled": {
-				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  true,
-			},
 			"app_headers": {
 				Type:     schema.TypeList,
 				Optional: true,
@@ -23619,11 +23508,6 @@ func ResourceDnsRecordSchema() *schema.Resource {
 				Optional: true,
 				Elem:     ResourceDnsARdataSchema(),
 			},
-			"metadata": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
 			"ns": {
 				Type:     schema.TypeList,
 				Optional: true,
@@ -24866,28 +24750,67 @@ func ResourceAuthorizationRuleSchema() *schema.Resource {
 	}
 }
 
-func ResourceCloudSeVmChangeSchema() *schema.Resource {
+func ResourceMatchTargetSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
-			"cc_id": {
-				Type:     schema.TypeString,
+			"client_ip": {
+				Type:     schema.TypeSet,
 				Optional: true,
 				Computed: true,
+				Elem:     ResourceIpAddrMatchSchema(),
 			},
-			"error_string": {
-				Type:     schema.TypeString,
+			"cookie": {
+				Type:     schema.TypeSet,
 				Optional: true,
 				Computed: true,
+				Elem:     ResourceCookieMatchSchema(),
 			},
-			"se_vm_uuid": {
-				Type:     schema.TypeString,
+			"hdrs": {
+				Type:     schema.TypeList,
 				Optional: true,
-				Computed: true,
+				Elem:     ResourceHdrMatchSchema(),
 			},
-			"vtype": {
-				Type:     schema.TypeString,
+			"host_hdr": {
+				Type:     schema.TypeSet,
 				Optional: true,
 				Computed: true,
+				Elem:     ResourceHostHdrMatchSchema(),
+			},
+			"method": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceMethodMatchSchema(),
+			},
+			"path": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourcePathMatchSchema(),
+			},
+			"protocol": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceProtocolMatchSchema(),
+			},
+			"query": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceQueryMatchSchema(),
+			},
+			"version": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceHTTPVersionMatchSchema(),
+			},
+			"vs_port": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourcePortMatchSchema(),
 			},
 		},
 	}
@@ -26588,6 +26511,73 @@ func ResourceRmSeBootupFailEventDetailsSchema() *schema.Resource {
 				Computed: true,
 			},
 			"se_name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceDockerUCPSetupSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"cc_id": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"docker_ucp_access": {
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
+			"failed_hosts": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
+			"fleet_endpoint": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"hosts": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
+			"missing_hosts": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
+			"new_hosts": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
+			"reason": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"se_deploy_method_access": {
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
+			"se_name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"ucp_nodes": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
+			"version": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,

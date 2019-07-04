@@ -31,6 +31,12 @@ func TestAVITrafficCloneProfileBasic(t *testing.T) {
 						"avi_trafficcloneprofile.testTrafficCloneProfile", "name", "test-tp-updated"),
 				),
 			},
+			{
+				ResourceName:      "avi_trafficcloneprofile.testTrafficCloneProfile",
+				ImportState:       true,
+				ImportStateVerify: false,
+				Config:            testAccAVITrafficCloneProfileConfig,
+			},
 		},
 	})
 

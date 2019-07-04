@@ -31,6 +31,12 @@ func TestAVINetworkProfileBasic(t *testing.T) {
 						"avi_networkprofile.testNetworkProfile", "name", "test-System-TCP-Proxy-updated"),
 				),
 			},
+			{
+				ResourceName:      "avi_networkprofile.testNetworkProfile",
+				ImportState:       true,
+				ImportStateVerify: false,
+				Config:            testAccAVINetworkProfileConfig,
+			},
 		},
 	})
 

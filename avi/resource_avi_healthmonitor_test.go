@@ -51,6 +51,12 @@ func TestAVIHealthMonitorBasic(t *testing.T) {
 						"avi_healthmonitor.testHealthMonitor", "successful_checks", "3"),
 				),
 			},
+			{
+				ResourceName:      "avi_healthmonitor.testHealthMonitor",
+				ImportState:       true,
+				ImportStateVerify: false,
+				Config:            testAccAVIHealthMonitorConfig,
+			},
 		},
 	})
 

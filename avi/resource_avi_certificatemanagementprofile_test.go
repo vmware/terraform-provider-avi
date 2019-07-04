@@ -31,6 +31,12 @@ func TestAVICertificateManagementProfileBasic(t *testing.T) {
 						"avi_certificatemanagementprofile.testCertificateManagementProfile", "name", "test-cert-updated"),
 				),
 			},
+			{
+				ResourceName:      "avi_certificatemanagementprofile.testCertificateManagementProfile",
+				ImportState:       true,
+				ImportStateVerify: false,
+				Config:            testAccAVICertificateManagementProfileConfig,
+			},
 		},
 	})
 

@@ -267,6 +267,12 @@ func TestAVIAnalyticsProfileBasic(t *testing.T) {
 						"avi_analyticsprofile.testAnalyticsProfile", "exclude_unsupported_dns_query_as_error", "false"),
 				),
 			},
+			{
+				ResourceName:      "avi_analyticsprofile.testAnalyticsProfile",
+				ImportState:       true,
+				ImportStateVerify: false,
+				Config:            testAccAVIAnalyticsProfileConfig,
+			},
 		},
 	})
 

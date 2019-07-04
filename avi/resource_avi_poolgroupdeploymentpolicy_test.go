@@ -31,6 +31,12 @@ func TestAVIPoolGroupDeploymentPolicyBasic(t *testing.T) {
 						"avi_poolgroupdeploymentpolicy.testPoolGroupDeploymentPolicy", "name", "test-pgpp-updated"),
 				),
 			},
+			{
+				ResourceName:      "avi_poolgroupdeploymentpolicy.testPoolGroupDeploymentPolicy",
+				ImportState:       true,
+				ImportStateVerify: false,
+				Config:            testAccAVIPoolGroupDeploymentPolicyConfig,
+			},
 		},
 	})
 

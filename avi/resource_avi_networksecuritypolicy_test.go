@@ -31,6 +31,12 @@ func TestAVINetworkSecurityPolicyBasic(t *testing.T) {
 						"avi_networksecuritypolicy.testNetworkSecurityPolicy", "name", "ns-updated"),
 				),
 			},
+			{
+				ResourceName:      "avi_networksecuritypolicy.testNetworkSecurityPolicy",
+				ImportState:       true,
+				ImportStateVerify: false,
+				Config:            testAccAVINetworkSecurityPolicyConfig,
+			},
 		},
 	})
 

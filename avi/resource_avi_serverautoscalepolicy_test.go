@@ -31,6 +31,12 @@ func TestAVIServerAutoScalePolicyBasic(t *testing.T) {
 						"avi_serverautoscalepolicy.testServerAutoScalePolicy", "name", "test-ssp-updated"),
 				),
 			},
+			{
+				ResourceName:      "avi_serverautoscalepolicy.testServerAutoScalePolicy",
+				ImportState:       true,
+				ImportStateVerify: false,
+				Config:            testAccAVIServerAutoScalePolicyConfig,
+			},
 		},
 	})
 

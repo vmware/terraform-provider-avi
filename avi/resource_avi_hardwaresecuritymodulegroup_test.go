@@ -31,6 +31,12 @@ func TestAVIHardwareSecurityModuleGroupBasic(t *testing.T) {
 						"avi_hardwaresecuritymodulegroup.testHardwareSecurityModuleGroup", "name", "test-hsmg-updated"),
 				),
 			},
+			{
+				ResourceName:      "avi_hardwaresecuritymodulegroup.testHardwareSecurityModuleGroup",
+				ImportState:       true,
+				ImportStateVerify: false,
+				Config:            testAccAVIHardwareSecurityModuleGroupConfig,
+			},
 		},
 	})
 

@@ -39,6 +39,12 @@ func TestAVISchedulerBasic(t *testing.T) {
 						"avi_scheduler.testScheduler", "frequency", "1"),
 				),
 			},
+			{
+				ResourceName:      "avi_scheduler.testScheduler",
+				ImportState:       true,
+				ImportStateVerify: false,
+				Config:            testAccAVISchedulerConfig,
+			},
 		},
 	})
 

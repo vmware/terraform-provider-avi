@@ -31,6 +31,12 @@ func TestAVISnmpTrapProfileBasic(t *testing.T) {
 						"avi_snmptrapprofile.testSnmpTrapProfile", "name", "test-snmp-updated"),
 				),
 			},
+			{
+				ResourceName:      "avi_snmptrapprofile.testSnmpTrapProfile",
+				ImportState:       true,
+				ImportStateVerify: false,
+				Config:            testAccAVISnmpTrapProfileConfig,
+			},
 		},
 	})
 

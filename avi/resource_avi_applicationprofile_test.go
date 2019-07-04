@@ -39,6 +39,12 @@ func TestAVIApplicationProfileBasic(t *testing.T) {
 						"avi_applicationprofile.testApplicationProfile", "preserve_client_ip", "false"),
 				),
 			},
+			{
+				ResourceName:      "avi_applicationprofile.testApplicationProfile",
+				ImportState:       true,
+				ImportStateVerify: false,
+				Config:            testAccAVIApplicationProfileConfig,
+			},
 		},
 	})
 

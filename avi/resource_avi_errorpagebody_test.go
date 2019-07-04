@@ -31,6 +31,12 @@ func TestAVIErrorPageBodyBasic(t *testing.T) {
 						"avi_errorpagebody.testErrorPageBody", "name", "test-Custom-Error-Page-updated"),
 				),
 			},
+			{
+				ResourceName:      "avi_errorpagebody.testErrorPageBody",
+				ImportState:       true,
+				ImportStateVerify: false,
+				Config:            testAccAVIErrorPageBodyConfig,
+			},
 		},
 	})
 

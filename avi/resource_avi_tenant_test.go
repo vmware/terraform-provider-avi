@@ -35,6 +35,12 @@ func TestAVITenantBasic(t *testing.T) {
 						"avi_tenant.testTenant", "local", "true"),
 				),
 			},
+			{
+				ResourceName:      "avi_tenant.testTenant",
+				ImportState:       true,
+				ImportStateVerify: false,
+				Config:            testAccAVITenantConfig,
+			},
 		},
 	})
 

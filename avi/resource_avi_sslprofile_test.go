@@ -47,6 +47,12 @@ func TestAVISSLProfileBasic(t *testing.T) {
 						"avi_sslprofile.testSSLProfile", "send_close_notify", "true"),
 				),
 			},
+			{
+				ResourceName:      "avi_sslprofile.testSSLProfile",
+				ImportState:       true,
+				ImportStateVerify: false,
+				Config:            testAccAVISSLProfileConfig,
+			},
 		},
 	})
 

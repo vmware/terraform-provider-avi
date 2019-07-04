@@ -35,6 +35,12 @@ func TestAVIVrfContextBasic(t *testing.T) {
 						"avi_vrfcontext.testVrfContext", "system_default", "false"),
 				),
 			},
+			{
+				ResourceName:      "avi_vrfcontext.testVrfContext",
+				ImportState:       true,
+				ImportStateVerify: false,
+				Config:            testAccAVIVrfContextConfig,
+			},
 		},
 	})
 

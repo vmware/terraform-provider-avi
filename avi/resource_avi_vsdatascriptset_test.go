@@ -31,6 +31,12 @@ func TestAVIVSDataScriptSetBasic(t *testing.T) {
 						"avi_vsdatascriptset.testVSDataScriptSet", "name", "test-vsd-updated"),
 				),
 			},
+			{
+				ResourceName:      "avi_vsdatascriptset.testVSDataScriptSet",
+				ImportState:       true,
+				ImportStateVerify: false,
+				Config:            testAccAVIVSDataScriptSetConfig,
+			},
 		},
 	})
 

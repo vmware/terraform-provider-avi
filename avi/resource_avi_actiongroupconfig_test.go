@@ -39,6 +39,12 @@ func TestAVIActionGroupConfigBasic(t *testing.T) {
 						"avi_actiongroupconfig.testActionGroupConfig", "external_only", "false"),
 				),
 			},
+			{
+				ResourceName:      "avi_actiongroupconfig.testActionGroupConfig",
+				ImportState:       true,
+				ImportStateVerify: false,
+				Config:            testAccAVIActionGroupConfigConfig,
+			},
 		},
 	})
 

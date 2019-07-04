@@ -39,6 +39,12 @@ func TestAVIPoolGroupBasic(t *testing.T) {
 						"avi_poolgroup.testPoolGroup", "implicit_priority_labels", "false"),
 				),
 			},
+			{
+				ResourceName:      "avi_poolgroup.testPoolGroup",
+				ImportState:       true,
+				ImportStateVerify: false,
+				Config:            testAccAVIPoolGroupConfig,
+			},
 		},
 	})
 

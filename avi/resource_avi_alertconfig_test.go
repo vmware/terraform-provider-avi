@@ -51,6 +51,12 @@ func TestAVIAlertConfigBasic(t *testing.T) {
 						"avi_alertconfig.testAlertConfig", "throttle", "0"),
 				),
 			},
+			{
+				ResourceName:      "avi_alertconfig.testAlertConfig",
+				ImportState:       true,
+				ImportStateVerify: false,
+				Config:            testAccAVIAlertConfigConfig,
+			},
 		},
 	})
 

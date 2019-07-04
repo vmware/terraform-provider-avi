@@ -31,6 +31,12 @@ func TestAVIIpAddrGroupBasic(t *testing.T) {
 						"avi_ipaddrgroup.testIpAddrGroup", "name", "test-Internal-updated"),
 				),
 			},
+			{
+				ResourceName:      "avi_ipaddrgroup.testIpAddrGroup",
+				ImportState:       true,
+				ImportStateVerify: false,
+				Config:            testAccAVIIpAddrGroupConfig,
+			},
 		},
 	})
 

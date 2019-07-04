@@ -31,6 +31,12 @@ func TestAVICustomIpamDnsProfileBasic(t *testing.T) {
 						"avi_customipamdnsprofile.testCustomIpamDnsProfile", "name", "test-ipam-updated"),
 				),
 			},
+			{
+				ResourceName:      "avi_customipamdnsprofile.testCustomIpamDnsProfile",
+				ImportState:       true,
+				ImportStateVerify: false,
+				Config:            testAccAVICustomIpamDnsProfileConfig,
+			},
 		},
 	})
 
