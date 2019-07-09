@@ -1,4 +1,3 @@
-
 variable "avi_controller" {
   description = "Enter Controller IP"
 }
@@ -13,7 +12,7 @@ variable "avi_password" {
 
 variable "avi_tenant" {
   description = "Enter tenant name"
-  default = "admin"
+  default     = "admin"
 }
 
 variable "subscription_id" {
@@ -39,5 +38,4 @@ variable "azure_password" {
 variable "azure_tenant_name" {
   description = "Enter azure tenant"
 }
-
 

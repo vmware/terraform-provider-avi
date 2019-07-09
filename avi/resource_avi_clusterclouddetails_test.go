@@ -94,8 +94,8 @@ data "avi_tenant" "default_tenant"{
     name= "admin"
 }
 resource "avi_clusterclouddetails" "testClusterCloudDetails" {
-	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
-	"name" = "test-ccd-abc"
+	tenant_ref = data.avi_tenant.default_tenant.id
+	name = "test-ccd-abc"
 }
 `
 
@@ -104,7 +104,7 @@ data "avi_tenant" "default_tenant"{
     name= "admin"
 }
 resource "avi_clusterclouddetails" "testClusterCloudDetails" {
-	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
-	"name" = "test-ccd-updated"
+	tenant_ref = data.avi_tenant.default_tenant.id
+	name = "test-ccd-updated"
 }
 `

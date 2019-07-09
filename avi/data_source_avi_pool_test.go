@@ -45,29 +45,28 @@ data "avi_healthmonitor" "default_monitor" {
     name= "System-HTTP"
 }
 resource "avi_pool" "testPool" {
-    "ignore_servers" = false
-    "name" = "test-Pool-abc"
-    "cloud_ref" = "${data.avi_cloud.default_cloud.id}"
-    "tenant_ref" = "${data.avi_tenant.default_tenant.id}"
-	"enabled" = false
-    "servers" {
-	   "ip" {
-		  "type" = "V4"
-		  "addr" = "10.90.64.66"
+    ignore_servers = false
+    name = "test-Pool-abc"
+    cloud_ref = data.avi_cloud.default_cloud.id
+    tenant_ref = data.avi_tenant.default_tenant.id
+	enabled = false
+    servers {
+	   ip {
+		  type = "V4"
+		  addr = "10.90.64.66"
 	   }
-	   "hostname" = "10.90.64.66"
-	   "ratio" = "1"
-	   "port" = "8080"
-	   "enabled" = true
+	   hostname = "10.90.64.66"
+	   ratio = "1"
+	   port = "8080"
+	   enabled = true
     }
-    "health_monitor_refs" = ["${data.avi_healthmonitor.default_monitor.id}"]
-    "fail_action" {
-        "type" = "FAIL_ACTION_CLOSE_CONN"
+    health_monitor_refs = [data.avi_healthmonitor.default_monitor.id]
+    fail_action {
+        type = "FAIL_ACTION_CLOSE_CONN"
 	}
 }
-
 data "avi_pool" "testPool" {
-    name= "${avi_pool.testPool.name}"
+    name= avi_pool.testPool.name
 	ignore_servers= false
 }
 `
@@ -82,25 +81,18 @@ data "avi_healthmonitor" "default_monitor" {
     name= "System-HTTP"
 }
 resource "avi_pool" "testPool2" {
-    "ignore_servers" = true
-    "name" = "test-Pool-2"
-    "cloud_ref" = "${data.avi_cloud.default_cloud.id}"
-    "tenant_ref" = "${data.avi_tenant.default_tenant.id}"
-	"enabled" = false
-    "health_monitor_refs" = ["${data.avi_healthmonitor.default_monitor.id}"]
-    "fail_action" {
-        "type" = "FAIL_ACTION_CLOSE_CONN"
+    ignore_servers = true
+    name = "test-Pool-2"
+    cloud_ref = data.avi_cloud.default_cloud.id
+    tenant_ref = data.avi_tenant.default_tenant.id
+	enabled = false
+    health_monitor_refs = [data.avi_healthmonitor.default_monitor.id]
+    fail_action {
+        type = "FAIL_ACTION_CLOSE_CONN"
 	}
 }
-
-resource "avi_server" "server" {
-  ip = "10.90.64.66"
-  hostname= "10.90.64.66"
-  pool_ref = "${avi_pool.testPool2.id}"
-}
-
 data "avi_pool" "testPool2" {
-    name= "${avi_pool.testPool2.name}"
+    name= avi_pool.testPool2.name
 	ignore_servers= true
 }
 `

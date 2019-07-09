@@ -94,20 +94,20 @@ data "avi_tenant" "default_tenant"{
     name= "admin"
 }
 resource "avi_vsvip" "testVsVip" {
-	"vip" {
-	"vip_id" = "1"
-	"avi_allocated_fip" = false
-	"auto_allocate_ip" = false
-	"enabled" = false
-	"auto_allocate_floating_ip" = false
-	"avi_allocated_vip" = false
-	"ip_address" {
-		"type" = "V4"
-		"addr" = "1.2.3.1"
+	vip {
+	vip_id = "1"
+	avi_allocated_fip = false
+	auto_allocate_ip = false
+	enabled = false
+	auto_allocate_floating_ip = false
+	avi_allocated_vip = false
+	ip_address {
+		type = "V4"
+		addr = "1.2.3.1"
 	}
 }
-	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
-	"name" = "test-vsvip-test-abc"
+	tenant_ref = data.avi_tenant.default_tenant.id
+	name = "test-vsvip-test-abc"
 }
 `
 
@@ -116,19 +116,19 @@ data "avi_tenant" "default_tenant"{
     name= "admin"
 }
 resource "avi_vsvip" "testVsVip" {
-	"vip" {
-	"vip_id" = "1"
-	"avi_allocated_fip" = false
-	"auto_allocate_ip" = false
-	"enabled" = false
-	"auto_allocate_floating_ip" = false
-	"avi_allocated_vip" = false
-	"ip_address" {
-		"type" = "V4"
-		"addr" = "1.2.3.1"
+	vip {
+	vip_id = "1"
+	avi_allocated_fip = false
+	auto_allocate_ip = false
+	enabled = false
+	auto_allocate_floating_ip = false
+	avi_allocated_vip = false
+	ip_address {
+		type = "V4"
+		addr = "1.2.3.1"
 	}
 }
-	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
-	"name" = "test-vsvip-updated"
+	tenant_ref = data.avi_tenant.default_tenant.id
+	name = "test-vsvip-updated"
 }
 `

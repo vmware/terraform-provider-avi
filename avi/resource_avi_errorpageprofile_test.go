@@ -94,8 +94,8 @@ data "avi_tenant" "default_tenant"{
     name= "admin"
 }
 resource "avi_errorpageprofile" "testErrorPageProfile" {
-	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
-	"name" = "test-epp-abc"
+	tenant_ref = data.avi_tenant.default_tenant.id
+	name = "test-epp-abc"
 }
 `
 
@@ -104,7 +104,7 @@ data "avi_tenant" "default_tenant"{
     name= "admin"
 }
 resource "avi_errorpageprofile" "testErrorPageProfile" {
-	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
-	"name" = "test-epp-updated"
+	tenant_ref = data.avi_tenant.default_tenant.id
+	name = "test-epp-updated"
 }
 `

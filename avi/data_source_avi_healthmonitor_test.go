@@ -37,19 +37,19 @@ data "avi_tenant" "default_tenant"{
     name= "admin"
 }
 resource "avi_healthmonitor" "testHealthMonitor" {
-	"receive_timeout" = "4"
-	"name" = "test-System-HTTP-abc"
-	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
-	"is_federated" = false
-	"failed_checks" = "3"
-	"send_interval" = "10"
-	"http_monitor" {
-		"exact_http_request" = false
-		"http_request" = "HEAD / HTTP/1.0"
-		"http_response_code" = ["HTTP_2XX","HTTP_3XX"]
+	receive_timeout = "4"
+	name = "test-System-HTTP-abc"
+	tenant_ref = data.avi_tenant.default_tenant.id
+	is_federated = false
+	failed_checks = "3"
+	send_interval = "10"
+	http_monitor {
+		exact_http_request = false
+		http_request = "HEAD / HTTP/1.0"
+		http_response_code = ["HTTP_2XX","HTTP_3XX"]
 	}
-	"type" = "HEALTH_MONITOR_HTTP"
-	"successful_checks" = "3"
+	type = "HEALTH_MONITOR_HTTP"
+	successful_checks = "3"
 }
 
 data "avi_healthmonitor" "testHealthMonitor" {

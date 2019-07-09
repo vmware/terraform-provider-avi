@@ -94,9 +94,9 @@ data "avi_tenant" "default_tenant"{
     name= "admin"
 }
 resource "avi_microservicegroup" "testMicroServiceGroup" {
-	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
-	"name" = "msg-test-abc"
-	"service_refs" = []
+	tenant_ref = data.avi_tenant.default_tenant.id
+	name = "msg-test-abc"
+	service_refs = []
 }
 `
 
@@ -105,8 +105,8 @@ data "avi_tenant" "default_tenant"{
     name= "admin"
 }
 resource "avi_microservicegroup" "testMicroServiceGroup" {
-	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
-	"name" = "msg-updated"
-	"service_refs" = []
+	tenant_ref = data.avi_tenant.default_tenant.id
+	name = "msg-updated"
+	service_refs = []
 }
 `

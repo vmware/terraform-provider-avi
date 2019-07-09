@@ -1,30 +1,31 @@
 variable "aws_access_key" {
-  default=""
+  default = ""
 }
 
 variable "aws_secret_key" {
-  default =""
+  default = ""
 }
 
 variable "aws_region" {
-  type    = "string"
+  type    = string
   default = "us-west-2"
 }
 
 variable "aws_vpc_id" {
-  type    = "string"
+  type    = string
   default = "vpc-19295f7c"
 }
 
 variable "avi_username" {
-  type    = "string"
+  type    = string
   default = "admin"
 }
 
-variable "avi_password" {}
+variable "avi_password" {
+}
 
 variable "aws_availability_zone" {
-  type    = "string"
+  type    = string
   default = "us-west-2a"
 }
 
@@ -32,14 +33,15 @@ variable "aws_subnet_mask" {
   default = 24
 }
 
-variable "project_name" {}
+variable "project_name" {
+}
 
 variable "aws_creds_file" {
   default = "~/.aws/credentials"
 }
 
 variable "aws_subnets" {
-  type = "list"
+  type    = list(string)
   default = [""]
 }
 
@@ -48,6 +50,7 @@ variable "avi_controller_ami" {
 }
 
 variable "aws_availability_zones" {
-  type = "list"
+  type    = list(string)
   default = ["us-west-2a", "us-west-2b", "us-west-2c"]
 }
+

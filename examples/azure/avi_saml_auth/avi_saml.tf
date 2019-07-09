@@ -1,9 +1,8 @@
-
 provider "azurerm" {
-  subscription_id = "${var.subscription_id}"
-  client_id 	  = "${var.client_id}"
-  client_secret   = "${var.client_secret}"
-  tenant_id 	  = "${var.tenant_id}"
+  subscription_id = var.subscription_id
+  client_id       = var.client_id
+  client_secret   = var.client_secret
+  tenant_id       = var.tenant_id
 }
 
 data "azurerm_network_interface" "controller_nic" {
@@ -13,11 +12,11 @@ data "azurerm_network_interface" "controller_nic" {
 }
 
 provider "avi" {
-  avi_username   = "${var.avi_username}"
-  avi_password   = "${var.avi_password}"
-  avi_controller = "${data.azurerm_network_interface.controller_nic.private_ip_address}"
+  avi_username   = var.avi_username
+  avi_password   = var.avi_password
+  avi_controller = data.azurerm_network_interface.controller_nic.private_ip_address
   avi_tenant     = "admin"
-  avi_version    = "${var.avi_version}"
+  avi_version    = var.avi_version
 }
 
 data "avi_tenant" "default_tenant" {
@@ -25,10 +24,10 @@ data "avi_tenant" "default_tenant" {
 }
 
 resource "avi_authprofile" "samlauthprofile" {
-	name       = "saml-test"
-	type       = "AUTH_PROFILE_SAML"
-	tenant_ref = "${data.avi_tenant.default_tenant.id}"
-  saml = {
+  name       = "saml-test"
+  type       = "AUTH_PROFILE_SAML"
+  tenant_ref = data.avi_tenant.default_tenant.id
+  saml {
     /*
     #This needs to be added after creating/registering app at Service Provider.
     idp = {
@@ -36,7 +35,7 @@ resource "avi_authprofile" "samlauthprofile" {
 EOF
     }
     */
-    sp = {
+    sp {
       org_display_name   = ""
       org_name           = ""
       org_url            = ""

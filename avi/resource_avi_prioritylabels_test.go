@@ -94,9 +94,9 @@ data "avi_tenant" "default_tenant"{
     name= "admin"
 }
 resource "avi_prioritylabels" "testPriorityLabels" {
-	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
-	"name" = "test-pl-test-abc"
-	"description" = "test priority labels"
+	tenant_ref = data.avi_tenant.default_tenant.id
+	name = "test-pl-test-abc"
+	description = "test priority labels"
 }
 `
 
@@ -105,8 +105,8 @@ data "avi_tenant" "default_tenant"{
     name= "admin"
 }
 resource "avi_prioritylabels" "testPriorityLabels" {
-	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
-	"name" = "test-pl-updated"
-	"description" = "test priority labels"
+	tenant_ref = data.avi_tenant.default_tenant.id
+	name = "test-pl-updated"
+	description = "test priority labels"
 }
 `

@@ -35,12 +35,12 @@ data "avi_tenant" "default_tenant"{
     name= "admin"
 }
 resource "avi_network" "testNetwork" {
-	"name" = "test-network-test-abc"
-	"exclude_discovered_subnets" = false
-	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
-	"synced_from_se" = true
-	"dhcp_enabled" = true
-	"vcenter_dvs" = true
+	name = "test-network-test-abc"
+	exclude_discovered_subnets = false
+	tenant_ref = data.avi_tenant.default_tenant.id
+	synced_from_se = true
+	dhcp_enabled = true
+	vcenter_dvs = true
 }
 
 data "avi_network" "testNetwork" {

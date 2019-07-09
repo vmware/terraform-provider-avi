@@ -27,9 +27,9 @@ data "avi_tenant" "default_tenant"{
     name= "admin"
 }
 resource "avi_alertscriptconfig" "testAlertScriptConfig" {
-	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
-	"name" = "test-se_grp_cleanup_old_spec_se-abc"
-	"action_script" = <<EOF
+	tenant_ref = data.avi_tenant.default_tenant.id
+	name = "test-se_grp_cleanup_old_spec_se-abc"
+	action_script = <<EOF
 #!/usr/bin/python
 import os
 import json

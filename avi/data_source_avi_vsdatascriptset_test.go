@@ -27,13 +27,13 @@ data "avi_tenant" "default_tenant"{
     name= "admin"
 }
 resource "avi_vsdatascriptset" "testVSDataScriptSet" {
-	"name" = "test-vsd-abc"
-	"pool_refs" = []
-	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
-	"protocol_parser_refs" = []
-	"pool_group_refs" = []
-	"string_group_refs" = []
-	"ipgroup_refs" = []
+	name = "test-vsd-abc"
+	pool_refs = []
+	tenant_ref = data.avi_tenant.default_tenant.id
+	protocol_parser_refs = []
+	pool_group_refs = []
+	string_group_refs = []
+	ipgroup_refs = []
 }
 
 data "avi_vsdatascriptset" "testVSDataScriptSet" {

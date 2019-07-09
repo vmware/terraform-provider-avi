@@ -1,14 +1,15 @@
 variable "avi_username" {
-  type    = "string"
+  type    = string
   default = "admin"
 }
 
 variable "avi_password" {
-  type    = "string"
+  type    = string
   default = "foo"
 }
 
 variable "avi_controller" {
-  type = "string"
+  type    = string
   default = ""
 }
+

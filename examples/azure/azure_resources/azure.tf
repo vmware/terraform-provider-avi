@@ -1,33 +1,33 @@
 provider "azurerm" {
-  subscription_id = "${var.subscription_id}"
-  client_id 		  = "${var.client_id}"
-  client_secret 	= "${var.client_secret}"
-  tenant_id 		  = "${var.tenant_id}"
+  subscription_id = var.subscription_id
+  client_id       = var.client_id
+  client_secret   = var.client_secret
+  tenant_id       = var.tenant_id
 }
 
 resource "azurerm_resource_group" "terraform_resource_group" {
-  name 		 = "${var.project_name}-terraform-resource-group"
-  location = "${var.location}"
-  tags {
+  name     = "${var.project_name}-terraform-resource-group"
+  location = var.location
+  tags = {
     environment = "${var.project_name}-terraform-${var.project_environment}"
   }
 }
 
 resource "azurerm_virtual_network" "terraform_virtual_network" {
-  name 			          = "${var.project_name}-terraform-virtual-network"
-  address_space 	    = ["${var.virtual_network_cidr}"]
-  location 		        = "${var.location}"
-  resource_group_name = "${azurerm_resource_group.terraform_resource_group.name}"
-  tags {
+  name                = "${var.project_name}-terraform-virtual-network"
+  address_space       = [var.virtual_network_cidr]
+  location            = var.location
+  resource_group_name = azurerm_resource_group.terraform_resource_group.name
+  tags = {
     environment = "${var.project_name}-terraform-${var.project_environment}"
   }
 }
 
 resource "azurerm_subnet" "terraform_subnet" {
-  name 			           = "${var.project_name}-terraform-subnet"
-  address_prefix 	     = "${var.subnet_cidr}"
-  virtual_network_name = "${azurerm_virtual_network.terraform_virtual_network.name}"
-  resource_group_name  = "${azurerm_resource_group.terraform_resource_group.name}"
+  name                 = "${var.project_name}-terraform-subnet"
+  address_prefix       = var.subnet_cidr
+  virtual_network_name = azurerm_virtual_network.terraform_virtual_network.name
+  resource_group_name  = azurerm_resource_group.terraform_resource_group.name
 }
 
 /*
@@ -43,91 +43,100 @@ output "subnet_id" {
 */
 
 resource "azurerm_network_interface" "terraform_network_interface" {
-  name 		            = "${var.project_name}-terraform-network-interface"
-  location 	          = "${var.location}"
-  resource_group_name = "${azurerm_resource_group.terraform_resource_group.name}"
+  name                = "${var.project_name}-terraform-network-interface"
+  location            = var.location
+  resource_group_name = azurerm_resource_group.terraform_resource_group.name
+
   //resource_group_name = "${var.resource_group_name}"
   ip_configuration {
-    name 			                    = "${var.project_name}-terraform-private-ip-configuration"
-    subnet_id 			              = "${azurerm_subnet.terraform_subnet.id}"
+    name      = "${var.project_name}-terraform-private-ip-configuration"
+    subnet_id = azurerm_subnet.terraform_subnet.id
+
     //subnet_id 			              = "${data.azurerm_subnet.terraform_subnet.id}"
     private_ip_address_allocation = "dynamic"
   }
-  tags {
+  tags = {
     environment = "${var.project_name}-terraform-${var.project_environment}"
   }
 }
 
 output "NIC" {
-  value = "${azurerm_network_interface.terraform_network_interface.private_ip_address}"
+  value = azurerm_network_interface.terraform_network_interface.private_ip_address
 }
 
 resource "azurerm_network_interface" "terraform_network_interface_2" {
-  name 		            = "${var.project_name}-terraform-network-interface-2"
-  location 	          = "${var.location}"
-  resource_group_name = "${azurerm_resource_group.terraform_resource_group.name}"
+  name                = "${var.project_name}-terraform-network-interface-2"
+  location            = var.location
+  resource_group_name = azurerm_resource_group.terraform_resource_group.name
+
   //resource_group_name = "${var.resource_group_name}"
   ip_configuration {
-    name 			                    = "${var.project_name}-terraform-private-ip-configuration-2"
-    subnet_id 			              = "${azurerm_subnet.terraform_subnet.id}"
+    name      = "${var.project_name}-terraform-private-ip-configuration-2"
+    subnet_id = azurerm_subnet.terraform_subnet.id
+
     //subnet_id 			              = "${data.azurerm_subnet.terraform_subnet.id}"
     private_ip_address_allocation = "dynamic"
   }
-  tags {
+  tags = {
     environment = "${var.project_name}-terraform-${var.project_environment}"
   }
 }
 
 output "NIC-2" {
-  value = "${azurerm_network_interface.terraform_network_interface_2.private_ip_address}"
+  value = azurerm_network_interface.terraform_network_interface_2.private_ip_address
 }
 
 resource "azurerm_network_interface" "terraform_network_interface_3" {
-  name 		            = "${var.project_name}-terraform-network-interface-3"
-  location 	          = "${var.location}"
-  resource_group_name = "${azurerm_resource_group.terraform_resource_group.name}"
+  name                = "${var.project_name}-terraform-network-interface-3"
+  location            = var.location
+  resource_group_name = azurerm_resource_group.terraform_resource_group.name
+
   //resource_group_name = "${var.resource_group_name}"
   ip_configuration {
-    name 			                    = "${var.project_name}-terraform-private-ip-configuration-3"
-    subnet_id 			              = "${azurerm_subnet.terraform_subnet.id}"
+    name      = "${var.project_name}-terraform-private-ip-configuration-3"
+    subnet_id = azurerm_subnet.terraform_subnet.id
+
     //subnet_id 			              = "${data.azurerm_subnet.terraform_subnet.id}"
     private_ip_address_allocation = "dynamic"
   }
-  tags {
+  tags = {
     environment = "${var.project_name}-terraform-${var.project_environment}"
   }
 }
 
 output "NIC-3" {
-  value = "${azurerm_network_interface.terraform_network_interface_3.private_ip_address}"
+  value = azurerm_network_interface.terraform_network_interface_3.private_ip_address
 }
 
 resource "azurerm_storage_account" "terraform_storage_account" {
-  name 			               = "${var.project_name}tfstorageaccount"
-  resource_group_name 	   = "${azurerm_resource_group.terraform_resource_group.name}"
+  name                = "${var.project_name}tfstorageaccount"
+  resource_group_name = azurerm_resource_group.terraform_resource_group.name
+
   //resource_group_name = "${var.resource_group_name}"
-  location 		             = "${var.location}"
+  location                 = var.location
   account_tier             = "Standard"
   account_replication_type = "LRS"
-  tags {
+  tags = {
     environment = "${var.project_name}-terraform-${var.project_environment}"
   }
 }
 
 resource "azurerm_storage_container" "terraform_storage_container" {
-  name 			            = "${var.project_name}-terraform-storage-container"
-  resource_group_name 	= "${azurerm_resource_group.terraform_resource_group.name}"
+  name                = "${var.project_name}-terraform-storage-container"
+  resource_group_name = azurerm_resource_group.terraform_resource_group.name
+
   //resource_group_name = "${var.resource_group_name}"
-  storage_account_name 	= "${azurerm_storage_account.terraform_storage_account.name}"
+  storage_account_name  = azurerm_storage_account.terraform_storage_account.name
   container_access_type = "private"
 }
 
 resource "azurerm_virtual_machine" "terraform_controller" {
-  name                          = "${var.project_name}-terraform-controller"
-  location                      = "${var.location}"
-  resource_group_name           = "${azurerm_resource_group.terraform_resource_group.name}"
+  name                = "${var.project_name}-terraform-controller"
+  location            = var.location
+  resource_group_name = azurerm_resource_group.terraform_resource_group.name
+
   //resource_group_name = "${var.resource_group_name}"
-  network_interface_ids         = ["${azurerm_network_interface.terraform_network_interface.id}"]
+  network_interface_ids         = [azurerm_network_interface.terraform_network_interface.id]
   vm_size                       = "Standard_F4s"
   delete_os_disk_on_termination = true
   storage_image_reference {
@@ -149,23 +158,24 @@ resource "azurerm_virtual_machine" "terraform_controller" {
   }
   os_profile {
     computer_name  = "${var.project_name}-ubuntu"
-    admin_username = "${var.vm_username}"
-    admin_password = "${var.vm_password}"
+    admin_username = var.vm_username
+    admin_password = var.vm_password
   }
   os_profile_linux_config {
     disable_password_authentication = false
   }
-  tags {
+  tags = {
     environment = "${var.project_name}-terraform-${var.project_environment}"
   }
 }
 
 resource "azurerm_virtual_machine" "terraform_controller_2" {
-  name                          = "${var.project_name}-terraform-controller-2"
-  location                      = "${var.location}"
-  resource_group_name           = "${azurerm_resource_group.terraform_resource_group.name}"
+  name                = "${var.project_name}-terraform-controller-2"
+  location            = var.location
+  resource_group_name = azurerm_resource_group.terraform_resource_group.name
+
   //resource_group_name = "${var.resource_group_name}"
-  network_interface_ids         = ["${azurerm_network_interface.terraform_network_interface_2.id}"]
+  network_interface_ids         = [azurerm_network_interface.terraform_network_interface_2.id]
   vm_size                       = "Standard_F4s"
   delete_os_disk_on_termination = true
   storage_image_reference {
@@ -187,23 +197,24 @@ resource "azurerm_virtual_machine" "terraform_controller_2" {
   }
   os_profile {
     computer_name  = "${var.project_name}-ubuntu"
-    admin_username = "${var.vm_username}"
-    admin_password = "${var.vm_password}"
+    admin_username = var.vm_username
+    admin_password = var.vm_password
   }
   os_profile_linux_config {
     disable_password_authentication = false
   }
-  tags {
+  tags = {
     environment = "${var.project_name}-terraform-${var.project_environment}"
   }
 }
 
 resource "azurerm_virtual_machine" "terraform_controller_3" {
-  name                          = "${var.project_name}-terraform-controller-3"
-  location                      = "${var.location}"
-  resource_group_name           = "${azurerm_resource_group.terraform_resource_group.name}"
+  name                = "${var.project_name}-terraform-controller-3"
+  location            = var.location
+  resource_group_name = azurerm_resource_group.terraform_resource_group.name
+
   //resource_group_name = "${var.resource_group_name}"
-  network_interface_ids         = ["${azurerm_network_interface.terraform_network_interface_3.id}"]
+  network_interface_ids         = [azurerm_network_interface.terraform_network_interface_3.id]
   vm_size                       = "Standard_F4s"
   delete_os_disk_on_termination = true
   storage_image_reference {
@@ -225,13 +236,14 @@ resource "azurerm_virtual_machine" "terraform_controller_3" {
   }
   os_profile {
     computer_name  = "${var.project_name}-ubuntu"
-    admin_username = "${var.vm_username}"
-    admin_password = "${var.vm_password}"
+    admin_username = var.vm_username
+    admin_password = var.vm_password
   }
   os_profile_linux_config {
     disable_password_authentication = false
   }
-  tags {
+  tags = {
     environment = "${var.project_name}-terraform-${var.project_environment}"
   }
 }
+

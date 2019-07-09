@@ -27,8 +27,8 @@ data "avi_tenant" "default_tenant"{
     name= "admin"
 }
 resource "avi_poolgroupdeploymentpolicy" "testPoolGroupDeploymentPolicy" {
-	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
-	"name" = "test-pgpp-test-abc"
+	tenant_ref = data.avi_tenant.default_tenant.id
+	name = "test-pgpp-test-abc"
 }
 
 data "avi_poolgroupdeploymentpolicy" "testPoolGroupDeploymentPolicy" {

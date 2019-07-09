@@ -1,29 +1,28 @@
-
 variable "subscription_id" {
   description = "Enter Subscription ID for provisioning resources in Azure"
-  default = ""
+  default     = ""
 }
 
 //This can be get after app registration from azure portal
 variable "client_id" {
   description = "Enter Client ID for Application created in Azure AD"
-  default = ""
+  default     = ""
 }
 
 //This can be get after app registration from azure portal
 variable "client_secret" {
   description = "Enter Client secret for Application in Azure AD"
-  default = ""
+  default     = ""
 }
 
 variable "tenant_id" {
   description = "Enter Tenant ID / Directory ID of your Azure AD. Run Get-AzureSubscription to know your Tenant ID"
-  default = ""
+  default     = ""
 }
 
 variable "location" {
   description = "The default Azure region for the resource provisioning"
-  default = "EAST US"
+  default     = "EAST US"
 }
 
 /*
@@ -34,20 +33,26 @@ variable "resource_group_name" {
 }
 */
 
-variable "azure_vip_subnet_ip" {}
-
-variable "azure_vip_subnet_mask" {
-    default = 24
+variable "azure_vip_subnet_ip" {
 }
 
-variable "azure_vm_password" {}
+variable "azure_vip_subnet_mask" {
+  default = 24
+}
+
+variable "azure_vm_password" {
+}
 
 variable "avi_username" {
   default = "admin"
 }
 
-variable "avi_password" {}
+variable "avi_password" {
+}
 
-variable "avi_version" {}
+variable "avi_version" {
+}
 
-variable "project_name" {}
+variable "project_name" {
+}
+

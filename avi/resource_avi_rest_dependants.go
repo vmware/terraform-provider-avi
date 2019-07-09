@@ -8694,25 +8694,6 @@ func ResourceMemoryBalancerInfoSchema() *schema.Resource {
 	}
 }
 
-func ResourceEventDetailsFilterSchema() *schema.Resource {
-	return &schema.Resource{
-		Schema: map[string]*schema.Schema{
-			"comparator": {
-				Type:     schema.TypeString,
-				Required: true,
-			},
-			"event_details_key": {
-				Type:     schema.TypeString,
-				Required: true,
-			},
-			"event_details_value": {
-				Type:     schema.TypeString,
-				Required: true,
-			},
-		},
-	}
-}
-
 func ResourceSeMgrEventDetailsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -10770,7 +10751,9 @@ func ResourceCloudInfoSchema() *schema.Resource {
 				Type:     schema.TypeSet,
 				Optional: true,
 				Computed: true,
-				Elem:     ResourceControllerPropertiesSchema(),
+				Elem: &schema.Resource{
+					Schema: ResourceControllerPropertiesSchema(),
+				},
 			},
 			"flavor_props": {
 				Type:     schema.TypeList,
@@ -10942,37 +10925,6 @@ func ResourceIptableRuleSetSchema() *schema.Resource {
 			"table": {
 				Type:     schema.TypeString,
 				Required: true,
-			},
-		},
-	}
-}
-
-func ResourceServicePoolSelectorSchema() *schema.Resource {
-	return &schema.Resource{
-		Schema: map[string]*schema.Schema{
-			"service_pool_group_ref": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
-			"service_pool_ref": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
-			"service_port": {
-				Type:     schema.TypeInt,
-				Required: true,
-			},
-			"service_port_range_end": {
-				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  0,
-			},
-			"service_protocol": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
 			},
 		},
 	}
@@ -12222,42 +12174,19 @@ func ResourceClusterNodeRemoveEventSchema() *schema.Resource {
 	}
 }
 
-func ResourceClientLogFilterSchema() *schema.Resource {
+func ResourceGslbDownloadStatusSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
-			"all_headers": {
-				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  false,
-			},
-			"client_ip": {
+			"last_changed_time": {
 				Type:     schema.TypeSet,
 				Optional: true,
 				Computed: true,
-				Elem:     ResourceIpAddrMatchSchema(),
+				Elem:     ResourceTimeStampSchema(),
 			},
-			"duration": {
-				Type:     schema.TypeInt,
-				Optional: true,
-				Default:  30,
-			},
-			"enabled": {
-				Type:     schema.TypeBool,
-				Required: true,
-			},
-			"index": {
-				Type:     schema.TypeInt,
-				Required: true,
-			},
-			"name": {
+			"state": {
 				Type:     schema.TypeString,
-				Required: true,
-			},
-			"uri": {
-				Type:     schema.TypeSet,
 				Optional: true,
-				Computed: true,
-				Elem:     ResourceStringMatchSchema(),
+				Default:  "GSLB_DOWNLOAD_NONE",
 			},
 		},
 	}
@@ -13081,17 +13010,32 @@ func ResourceDisableSeMigrateEventDetailsSchema() *schema.Resource {
 	}
 }
 
-func ResourceAlertFilterSchema() *schema.Resource {
+func ResourceServicePoolSelectorSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
-			"filter_action": {
+			"service_pool_group_ref": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
-			"filter_string": {
+			"service_pool_ref": {
 				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"service_port": {
+				Type:     schema.TypeInt,
 				Required: true,
+			},
+			"service_port_range_end": {
+				Type:     schema.TypeInt,
+				Optional: true,
+				Default:  0,
+			},
+			"service_protocol": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 		},
 	}
@@ -16922,6 +16866,25 @@ func ResourceGslbClientIpAddrGroupSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Default:  "GSLB_IP_PUBLIC",
+			},
+		},
+	}
+}
+
+func ResourceEventDetailsFilterSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"comparator": {
+				Type:     schema.TypeString,
+				Required: true,
+			},
+			"event_details_key": {
+				Type:     schema.TypeString,
+				Required: true,
+			},
+			"event_details_value": {
+				Type:     schema.TypeString,
+				Required: true,
 			},
 		},
 	}
@@ -21607,19 +21570,42 @@ func ResourceBurstLicenseDetailsSchema() *schema.Resource {
 	}
 }
 
-func ResourceGslbDownloadStatusSchema() *schema.Resource {
+func ResourceClientLogFilterSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
-			"last_changed_time": {
+			"all_headers": {
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  false,
+			},
+			"client_ip": {
 				Type:     schema.TypeSet,
 				Optional: true,
 				Computed: true,
-				Elem:     ResourceTimeStampSchema(),
+				Elem:     ResourceIpAddrMatchSchema(),
 			},
-			"state": {
-				Type:     schema.TypeString,
+			"duration": {
+				Type:     schema.TypeInt,
 				Optional: true,
-				Default:  "GSLB_DOWNLOAD_NONE",
+				Default:  30,
+			},
+			"enabled": {
+				Type:     schema.TypeBool,
+				Required: true,
+			},
+			"index": {
+				Type:     schema.TypeInt,
+				Required: true,
+			},
+			"name": {
+				Type:     schema.TypeString,
+				Required: true,
+			},
+			"uri": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceStringMatchSchema(),
 			},
 		},
 	}
@@ -22517,6 +22503,22 @@ func ResourceAdminAuthConfigurationSchema() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				Elem:     ResourceAuthMappingRuleSchema(),
+			},
+		},
+	}
+}
+
+func ResourceAlertFilterSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"filter_action": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"filter_string": {
+				Type:     schema.TypeString,
+				Required: true,
 			},
 		},
 	}

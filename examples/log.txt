@@ -1,0 +1,25 @@
+2019/07/05 09:48:35 [INFO] Terraform version: 0.12.2  
+2019/07/05 09:48:35 [INFO] Go runtime version: go1.12.4
+2019/07/05 09:48:35 [INFO] CLI args: []string{"/usr/local/bin/terraform", "--version"}
+2019/07/05 09:48:35 [DEBUG] Attempting to open CLI config file: /root/.terraformrc
+2019/07/05 09:48:35 [DEBUG] File doesn't exist, but doesn't need to. Ignoring.
+2019/07/05 09:48:35 [INFO] CLI command args: []string{"version", "--version"}
+2019/07/05 09:48:35 [DEBUG] checking for provider in "."
+2019/07/05 09:48:35 [DEBUG] checking for provider in "/usr/local/bin"
+2019/07/05 09:48:35 [DEBUG] checking for provider in ".terraform/plugins/linux_amd64"
+2019/07/05 09:48:35 [DEBUG] checking for provider in "/root/.terraform.d/plugins"
+2019/07/05 09:48:35 [DEBUG] checking for provider in "/root/.terraform.d/plugins/linux_amd64"
+2019/07/05 09:48:35 [WARN] found legacy provider "terraform-provider-avi"
+2019/07/05 09:48:35 [DEBUG] found valid plugin: "avi", "0.0.0", "/root/.terraform.d/plugins/linux_amd64/terraform-provider-avi"
+2019/07/05 09:48:44 [INFO] Terraform version: 0.12.2  
+2019/07/05 09:48:44 [INFO] Go runtime version: go1.12.4
+2019/07/05 09:48:44 [INFO] CLI args: []string{"/usr/local/bin/terraform", "0.12upgrade"}
+2019/07/05 09:48:44 [DEBUG] Attempting to open CLI config file: /root/.terraformrc
+2019/07/05 09:48:44 [DEBUG] File doesn't exist, but doesn't need to. Ignoring.
+2019/07/05 09:48:44 [INFO] CLI command args: []string{"0.12upgrade"}
+2019/07/05 09:48:51 [INFO] Terraform version: 0.12.2  
+2019/07/05 09:48:51 [INFO] Go runtime version: go1.12.4
+2019/07/05 09:48:51 [INFO] CLI args: []string{"/usr/local/bin/terraform", "plan"}
+2019/07/05 09:48:51 [DEBUG] Attempting to open CLI config file: /root/.terraformrc
+2019/07/05 09:48:51 [DEBUG] File doesn't exist, but doesn't need to. Ignoring.
+2019/07/05 09:48:51 [INFO] CLI command args: []string{"plan"}

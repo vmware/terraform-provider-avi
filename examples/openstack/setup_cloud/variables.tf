@@ -1,22 +1,28 @@
 variable "op_region" {
-  type    = "string"
+  type    = string
   default = "RegionOne"
 }
 
 variable "avi_username" {
-  type    = "string"
+  type    = string
   default = "admin"
 }
 
-variable "avi_controller" {}
+variable "avi_controller" {
+}
 
-variable "avi_password" {}
+variable "avi_password" {
+}
 
-variable "avi_tenant" {}
+variable "avi_tenant" {
+}
 
-variable "openstack_url_ip" {}
+variable "openstack_url_ip" {
+}
 
-variable "openstack_password" {}
+variable "openstack_password" {
+}
 
-variable "network_name" {}
+variable "network_name" {
+}
 

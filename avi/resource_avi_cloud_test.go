@@ -118,17 +118,17 @@ data "avi_tenant" "default_tenant"{
     name= "admin"
 }
 resource "avi_cloud" "testCloud" {
-	"vtype" = "CLOUD_NONE"
-	"license_tier" = "ENTERPRISE_18"
-	"name" = "test-Default-Cloud-abc"
-	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
-	"enable_vip_static_routes" = false
-	"prefer_static_routes" = false
-	"license_type" = "LIC_CORES"
-	"mtu" = "1500"
-	"apic_mode" = false
-	"dhcp_enabled" = false
-	"state_based_dns_registration" = true
+	vtype = "CLOUD_NONE"
+	license_tier = "ENTERPRISE_18"
+	name = "test-Default-Cloud-abc"
+	tenant_ref = data.avi_tenant.default_tenant.id
+	enable_vip_static_routes = false
+	prefer_static_routes = false
+	license_type = "LIC_CORES"
+	mtu = "1500"
+	apic_mode = false
+	dhcp_enabled = false
+	state_based_dns_registration = true
 }
 `
 
@@ -137,16 +137,16 @@ data "avi_tenant" "default_tenant"{
     name= "admin"
 }
 resource "avi_cloud" "testCloud" {
-	"vtype" = "CLOUD_NONE"
-	"license_tier" = "ENTERPRISE_18"
-	"name" = "test-Default-Cloud-updated"
-	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
-	"enable_vip_static_routes" = false
-	"prefer_static_routes" = false
-	"license_type" = "LIC_CORES"
-	"mtu" = "1500"
-	"apic_mode" = false
-	"dhcp_enabled" = false
-	"state_based_dns_registration" = true
+	vtype = "CLOUD_NONE"
+	license_tier = "ENTERPRISE_18"
+	name = "test-Default-Cloud-updated"
+	tenant_ref = data.avi_tenant.default_tenant.id
+	enable_vip_static_routes = false
+	prefer_static_routes = false
+	license_type = "LIC_CORES"
+	mtu = "1500"
+	apic_mode = false
+	dhcp_enabled = false
+	state_based_dns_registration = true
 }
 `

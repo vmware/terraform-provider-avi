@@ -27,10 +27,10 @@ data "avi_tenant" "default_tenant"{
     name= "admin"
 }
 resource "avi_serverautoscalepolicy" "testServerAutoScalePolicy" {
-	"scalein_alertconfig_refs" = []
-	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
-	"name" = "test-ssp-test-abc"
-	"scaleout_alertconfig_refs" = []
+	scalein_alertconfig_refs = []
+	tenant_ref = data.avi_tenant.default_tenant.id
+	name = "test-ssp-test-abc"
+	scaleout_alertconfig_refs = []
 }
 
 data "avi_serverautoscalepolicy" "testServerAutoScalePolicy" {

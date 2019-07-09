@@ -94,11 +94,11 @@ data "avi_tenant" "default_tenant"{
     name= "admin"
 }
 resource "avi_alertemailconfig" "testAlertEmailConfig" {
-	"to_emails" = "admin@avicontroller.net"
-	"cc_emails" = "admin@avicontroller.net"
-	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
-	"name" = "test-aec-abc"
-	"description" = "test alert email"
+	to_emails = "admin@avicontroller.net"
+	cc_emails = "admin@avicontroller.net"
+	tenant_ref = data.avi_tenant.default_tenant.id
+	name = "test-aec-abc"
+	description = "test alert email"
 }
 `
 
@@ -107,10 +107,10 @@ data "avi_tenant" "default_tenant"{
     name= "admin"
 }
 resource "avi_alertemailconfig" "testAlertEmailConfig" {
-	"to_emails" = "admin@avicontroller.net"
-	"cc_emails" = "admin@avicontroller.net"
-	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
-	"name" = "test-aec-updated"
-	"description" = "test alert email"
+	to_emails = "admin@avicontroller.net"
+	cc_emails = "admin@avicontroller.net"
+	tenant_ref = data.avi_tenant.default_tenant.id
+	name = "test-aec-updated"
+	description = "test alert email"
 }
 `

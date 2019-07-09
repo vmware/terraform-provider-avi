@@ -101,9 +101,9 @@ data "avi_cloud" "default_cloud" {
     name= "Default-Cloud"
 }
 resource "avi_vrfcontext" "testVrfContext" {
-	"cloud_ref" = "${data.avi_cloud.default_cloud.id}"
-	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
-	"name" = "test-global-abc"
+	cloud_ref = data.avi_cloud.default_cloud.id
+	tenant_ref = data.avi_tenant.default_tenant.id
+	name = "test-global-abc"
 }
 `
 
@@ -115,8 +115,8 @@ data "avi_cloud" "default_cloud" {
     name= "Default-Cloud"
 }
 resource "avi_vrfcontext" "testVrfContext" {
-	"cloud_ref" = "${data.avi_cloud.default_cloud.id}"
-	"tenant_ref" = "${data.avi_tenant.default_tenant.id}"
-	"name" = "test-global-updated"
+	cloud_ref = data.avi_cloud.default_cloud.id
+	tenant_ref = data.avi_tenant.default_tenant.id
+	name = "test-global-updated"
 }
 `

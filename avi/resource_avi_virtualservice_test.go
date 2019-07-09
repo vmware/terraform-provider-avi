@@ -124,8 +124,8 @@ resource "avi_vsvip" "test_vsvip" {
 	vip {
 	  vip_id= "0"
 	  ip_address {
-		type= "V4",
-		addr= "10.90.64.88",
+		type= "V4"
+		addr= "10.90.64.88"
 	  }
       enabled= true
 	}
@@ -204,8 +204,8 @@ resource "avi_vsvip" "test_vsvip" {
 	vip {
 	  vip_id= "0"
 	  ip_address {
-		type= "V4",
-		addr= "10.90.64.88",
+		type= "V4"
+		addr= "10.90.64.88"
 	  }
       enabled= true
 	}

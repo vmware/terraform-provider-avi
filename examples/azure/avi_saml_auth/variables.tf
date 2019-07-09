@@ -1,21 +1,21 @@
 variable "subscription_id" {
   description = "Enter Subscription ID for provisioning resources in Azure"
-  default = ""
+  default     = ""
 }
 
 variable "client_id" {
   description = "Enter Client ID for Application created in Azure AD"
-  default = ""
+  default     = ""
 }
 
 variable "client_secret" {
   description = "Enter Client secret for Application in Azure AD"
-  default = ""
+  default     = ""
 }
 
 variable "tenant_id" {
   description = "Enter Tenant ID / Directory ID of your Azure AD. Run Get-AzureSubscription to know your Tenant ID"
-  default = ""
+  default     = ""
 }
 
 /*
@@ -35,9 +35,10 @@ variable "avi_version" {
 }
 
 variable "avi_password" {
-  default=""
+  default = ""
 }
 
 variable "project_name" {
-  default=""
+  default = ""
 }
+

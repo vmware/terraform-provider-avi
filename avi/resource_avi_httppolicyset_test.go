@@ -97,37 +97,37 @@ resource "avi_poolgroup" "testpoolgroup" {
 	name = "pg-test"
 	implicit_priority_labels= false
 	min_servers= 0
-	fail_action= {
+	fail_action {
 		type= "FAIL_ACTION_CLOSE_CONN"
 	}
-	tenant_ref= "${data.avi_tenant.default_tenant.id}"
-	cloud_ref= "${data.avi_cloud.default_cloud.id}"
+	tenant_ref= data.avi_tenant.default_tenant.id
+	cloud_ref= data.avi_cloud.default_cloud.id
 }
 
 resource "avi_httppolicyset" "testhttppolicyset" {
 	name = "policy-test"
-	tenant_ref= "${data.avi_tenant.default_tenant.id}"
+	tenant_ref= data.avi_tenant.default_tenant.id
 	is_internal_policy = false
-	http_request_policy= {
-		rules= [{
+	http_request_policy {
+		rules {
          	index= 1
       		enable= true
 			name= "rule-1"
-			match= {
-				hdrs= [{
+			match {
+				hdrs {
 					match_case= "INSENSITIVE"
 					hdr= "User-Agent"
 					value= [
 						"Backup_Pool_Redirect"
 					]
 					match_criteria= "HDR_CONTAINS"
-				}]
+				}
 			}
-			switching_action= {
+			switching_action {
 				action= "HTTP_SWITCHING_SELECT_POOLGROUP"
-				pool_group_ref = "${avi_poolgroup.testpoolgroup.id}"
+				pool_group_ref = avi_poolgroup.testpoolgroup.id
 			}
-		}]
+		}
 	}
 }
 `
@@ -147,37 +147,37 @@ resource "avi_poolgroup" "testpoolgroup" {
 	name = "pg-test"
 	implicit_priority_labels= false
 	min_servers= 0
-	fail_action= {
+	fail_action {
 		type= "FAIL_ACTION_CLOSE_CONN"
 	}
-	tenant_ref= "${data.avi_tenant.default_tenant.id}"
-	cloud_ref= "${data.avi_cloud.default_cloud.id}"
+	tenant_ref= data.avi_tenant.default_tenant.id
+	cloud_ref= data.avi_cloud.default_cloud.id
 }
 
 resource "avi_httppolicyset" "testhttppolicyset" {
 	name = "policy-abc"
-	tenant_ref= "${data.avi_tenant.default_tenant.id}"
+	tenant_ref= data.avi_tenant.default_tenant.id
 	is_internal_policy = false
-	http_request_policy= {
-		rules= [{
+	http_request_policy {
+		rules {
          	index= 1
       		enable= true
 			name= "rule-1"
-			match= {
-				hdrs= [{
+			match {
+				hdrs {
 					match_case= "INSENSITIVE"
 					hdr= "User-Agent"
 					value= [
 						"Backup_Pool_Redirect"
 					]
 					match_criteria= "HDR_CONTAINS"
-				}]
+				}
 			}
-			switching_action= {
+			switching_action {
 				action= "HTTP_SWITCHING_SELECT_POOLGROUP"
-				pool_group_ref = "${avi_poolgroup.testpoolgroup.id}"
+				pool_group_ref = avi_poolgroup.testpoolgroup.id
 			}
-		}]
+		}
 	}
 }
 `
