@@ -229,11 +229,6 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  false,
 		},
-		"enable_vip_on_all_interfaces": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  true,
-		},
 		"enable_vmac": {
 			Type:     schema.TypeBool,
 			Optional: true,
@@ -620,11 +615,6 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Type:     schema.TypeInt,
 			Optional: true,
 			Default:  1501,
-		},
-		"se_routing": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  true,
 		},
 		"se_sb_dedicated_core": {
 			Type:     schema.TypeBool,
