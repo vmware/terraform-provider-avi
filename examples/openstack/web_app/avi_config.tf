@@ -152,19 +152,11 @@ resource "avi_poolgroup" "terraform-poolgroup" {
   }
 }
 
-resource "avi_virtualservice" "terraform-virtualservice" {
-  name                         = "op_vs"
-  cloud_type                   = "CLOUD_OPENSTACK"
-  cloud_ref                    = data.avi_cloud.op_cloud_cfg.id
-  pool_group_ref               = avi_poolgroup.terraform-poolgroup.id
-  tenant_ref                   = data.avi_tenant.default_tenant.id
-  application_profile_ref      = data.avi_applicationprofile.system_https_profile.id
-  network_profile_ref          = data.avi_networkprofile.system_tcp_profile.id
-  analytics_profile_ref        = data.avi_analyticsprofile.system_analytics_profile.id
-  ssl_key_and_certificate_refs = [data.avi_sslkeyandcertificate.system_default_cert.id]
-  ssl_profile_ref              = data.avi_sslprofile.system_standard_sslprofile.id
-  se_group_ref                 = data.avi_serviceenginegroup.se_group.id
-  vrf_context_ref              = data.avi_vrfcontext.terraform_vrf.id
+resource "avi_vsvip" "terraform-vip" {
+  name = "aws_vip"
+  tenant_ref = data.avi_tenant.default_tenant.id
+  cloud_ref = data.avi_cloud.op_cloud_cfg.id
+  vrf_context_ref = data.avi_vrfcontext.terraform_vrf.id
 
   vip {
     vip_id            = "0"
@@ -181,6 +173,21 @@ resource "avi_virtualservice" "terraform-virtualservice" {
       mask = var.op_subnet_mask
     }
   }
+}
+resource "avi_virtualservice" "terraform-virtualservice" {
+  name                         = "op_vs"
+  cloud_type                   = "CLOUD_OPENSTACK"
+  cloud_ref                    = data.avi_cloud.op_cloud_cfg.id
+  pool_group_ref               = avi_poolgroup.terraform-poolgroup.id
+  tenant_ref                   = data.avi_tenant.default_tenant.id
+  application_profile_ref      = data.avi_applicationprofile.system_https_profile.id
+  network_profile_ref          = data.avi_networkprofile.system_tcp_profile.id
+  analytics_profile_ref        = data.avi_analyticsprofile.system_analytics_profile.id
+  ssl_key_and_certificate_refs = [data.avi_sslkeyandcertificate.system_default_cert.id]
+  ssl_profile_ref              = data.avi_sslprofile.system_standard_sslprofile.id
+  se_group_ref                 = data.avi_serviceenginegroup.se_group.id
+  vrf_context_ref              = data.avi_vrfcontext.terraform_vrf.id
+  vsvip_ref                    = avi_vsvip.terraform-vip.id
 
   services {
     port           = 80

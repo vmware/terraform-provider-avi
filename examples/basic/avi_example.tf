@@ -81,13 +81,7 @@ resource "avi_virtualservice" "test_vs" {
   #pool_ref= "${avi_pool.testpool.id}"
   tenant_ref = data.avi_tenant.default_tenant.id
   vsvip_ref  = avi_vsvip.test_vsvip.id
-  vip {
-    vip_id = "0"
-    ip_address {
-      type = "V4"
-      addr = "10.90.64.100"
-    }
-  }
+
   services {
     port           = 80
     enable_ssl     = true
