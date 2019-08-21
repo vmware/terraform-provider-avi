@@ -114,11 +114,15 @@ func SetDefaultsInAPIRes(api_res interface{}, d_local interface{}, s map[string]
 					switch s2.Elem.(type) {
 					default:
 					case *schema.Resource:
-						api_res1, err := SetDefaultsInAPIRes(api_res.(map[string]interface{})[k], v, s2.Elem.(*schema.Resource).Schema)
-						if err != nil {
-							log.Printf("[ERROR] SetDefaultsInAPIRes %v", err)
+						if api_res.(map[string]interface{})[k] != nil {
+							api_res1, err := SetDefaultsInAPIRes(api_res.(map[string]interface{})[k], v, s2.Elem.(*schema.Resource).Schema)
+							if err != nil {
+								log.Printf("[ERROR] SetDefaultsInAPIRes %v", err)
+							} else {
+								api_res.(map[string]interface{})[k] = api_res1
+							}
 						} else {
-							api_res.(map[string]interface{})[k] = api_res1
+							api_res.(map[string]interface{})[k] = v
 						}
 					}
 				}
