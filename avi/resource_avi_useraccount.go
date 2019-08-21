@@ -72,9 +72,13 @@ func resourceAviUserAccountUpdate(d *schema.ResourceData, meta interface{}) erro
 	client := meta.(*clients.AviClient)
 	var robj interface{}
 	obj := d
+	username := d.Get("username")
 	if data, err := SchemaToAviData(obj, s); err == nil {
 		path := "api/useraccount"
 		err = client.AviSession.Put(path, data, &robj)
+		if err != nil {
+			d.Set("username", username)
+		}
 	}
 	return err
 }
