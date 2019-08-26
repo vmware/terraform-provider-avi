@@ -13,6 +13,7 @@ import (
 	"github.com/hashicorp/terraform/helper/schema"
 	"github.com/hashicorp/terraform/terraform"
 	"log"
+	"time"
 )
 
 func Provider() terraform.ResourceProvider {
@@ -53,6 +54,12 @@ func Provider() terraform.ResourceProvider {
 				Optional:    true,
 				DefaultFunc: schema.EnvDefaultFunc("AVI_AUTHTOKEN", nil),
 				Description: "Avi token for Avi Controller.",
+			},
+			"api_timeout": &schema.Schema{
+				Type:        schema.TypeInt,
+				Optional:    true,
+				DefaultFunc: schema.EnvDefaultFunc("AVI_API_TIMEOUT", nil),
+				Description: "Session timeout for Avi Controller.",
 			},
 		},
 		DataSourcesMap: map[string]*schema.Resource{
@@ -218,6 +225,7 @@ func providerConfigure(d *schema.ResourceData) (interface{}, error) {
 		Tenant:     "admin",
 		Version:    "18.2.2",
 		AuthToken:  d.Get("avi_authtoken").(string),
+		Timeout:    time.Duration(time.Duration(d.Get("api_timeout").(int)) * time.Second),
 	}
 	if username, ok := d.GetOk("avi_username"); ok {
 		config.Username = username.(string)
@@ -230,6 +238,10 @@ func providerConfigure(d *schema.ResourceData) (interface{}, error) {
 		config.Tenant = tenant.(string)
 	}
 
+	if timeout, ok := d.GetOk("api_timeout"); ok {
+		config.Timeout = time.Duration(time.Duration(timeout.(int)) * time.Second)
+	}
+
 	if err := config.validate(); err != nil {
 		return nil, err
 	}
@@ -240,7 +252,7 @@ func providerConfigure(d *schema.ResourceData) (interface{}, error) {
 		session.SetTenant(config.Tenant),
 		session.SetVersion(config.Version),
 		session.SetAuthToken(config.AuthToken),
-		session.SetInsecure)
+		session.SetInsecure, session.SetTimeout(config.Timeout))
 
 	log.Printf("Avi Client created for user %s tenant %s version %s\n",
 		config.Username, config.Tenant, config.Version)
@@ -255,6 +267,7 @@ type Credentials struct {
 	Tenant     string
 	Version    string
 	AuthToken  string
+	Timeout    time.Duration
 }
 
 func (c *Credentials) validate() error {
