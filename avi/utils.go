@@ -276,8 +276,6 @@ func ApiCreateOrUpdate(d *schema.ResourceData, meta interface{}, objType string,
 			}
 			if err != nil {
 				log.Printf("[ERROR] ApiCreateOrUpdate: PUT Error %v path %v id %v\n", err, path, d.Id())
-			} else {
-				SetIDFromObj(d, robj)
 			}
 		} else {
 			if name, ok := d.GetOk("name"); ok {
@@ -412,6 +410,9 @@ func ApiRead(d *schema.ResourceData, meta interface{}, objType string, s map[str
 		d.SetId("")
 		log.Printf("[ERROR] ApiRead not found %v\n", d.Get("uuid"))
 		return nil
+	}
+	if objType == "cluster" {
+		update_cluster_state(d, meta, s)
 	}
 	if local_data, err := SchemaToAviData(d, s); err == nil {
 		mod_api_res, err := SetDefaultsInAPIRes(obj, local_data, s)
@@ -631,4 +632,23 @@ func IsPostNotAllowed(objtype string) bool {
 		}
 	}
 	return specialobj
+}
+
+func update_cluster_state(d *schema.ResourceData, meta interface{}, s map[string]*schema.Schema) error {
+	client := meta.(*clients.AviClient)
+	var err error
+	var robj interface{}
+	err = client.AviSession.Get("api/cluster/runtime", &robj)
+	if err == nil {
+		if local_data, err := SchemaToAviData(d, s); err == nil {
+			mod_api_res, err := SetDefaultsInAPIRes(robj, local_data, s)
+			if err != nil {
+				log.Printf("[ERROR] Update Cluster State in modifying api response object %v\n", err)
+			}
+			if _, err := ApiDataToSchema(mod_api_res, d, s); err != nil {
+				log.Printf("[ERROR] Converting ApiDataToSchema object %v\n", err)
+			}
+		}
+	}
+	return err
 }
