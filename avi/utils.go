@@ -276,8 +276,6 @@ func ApiCreateOrUpdate(d *schema.ResourceData, meta interface{}, objType string,
 			}
 			if err != nil {
 				log.Printf("[ERROR] ApiCreateOrUpdate: PUT Error %v path %v id %v\n", err, path, d.Id())
-			} else {
-				SetIDFromObj(d, robj)
 			}
 		} else {
 			if name, ok := d.GetOk("name"); ok {
