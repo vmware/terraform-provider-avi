@@ -80,8 +80,6 @@ func TestAVIServiceEngineGroupBasic(t *testing.T) {
 					resource.TestCheckResourceAttr(
 						"avi_serviceenginegroup.testServiceEngineGroup", "disable_csum_offloads", "false"),
 					resource.TestCheckResourceAttr(
-						"avi_serviceenginegroup.testServiceEngineGroup", "enable_vip_on_all_interfaces", "true"),
-					resource.TestCheckResourceAttr(
 						"avi_serviceenginegroup.testServiceEngineGroup", "se_probe_port", "7"),
 					resource.TestCheckResourceAttr(
 						"avi_serviceenginegroup.testServiceEngineGroup", "se_udp_encap_ipc", "0"),
@@ -219,8 +217,6 @@ func TestAVIServiceEngineGroupBasic(t *testing.T) {
 						"avi_serviceenginegroup.testServiceEngineGroup", "distribute_queues", "false"),
 					resource.TestCheckResourceAttr(
 						"avi_serviceenginegroup.testServiceEngineGroup", "disable_csum_offloads", "false"),
-					resource.TestCheckResourceAttr(
-						"avi_serviceenginegroup.testServiceEngineGroup", "enable_vip_on_all_interfaces", "true"),
 					resource.TestCheckResourceAttr(
 						"avi_serviceenginegroup.testServiceEngineGroup", "se_probe_port", "7"),
 					resource.TestCheckResourceAttr(
@@ -394,7 +390,6 @@ resource "avi_serviceenginegroup" "testServiceEngineGroup" {
 	active_standby = false
 	distribute_queues = false
 	disable_csum_offloads = false
-	enable_vip_on_all_interfaces = true
 	se_probe_port = "7"
 	se_udp_encap_ipc = "0"
 	extra_config_multiplier = "0"
@@ -485,7 +480,6 @@ resource "avi_serviceenginegroup" "testServiceEngineGroup" {
 	active_standby = false
 	distribute_queues = false
 	disable_csum_offloads = false
-	enable_vip_on_all_interfaces = true
 	se_probe_port = "7"
 	se_udp_encap_ipc = "0"
 	extra_config_multiplier = "0"
