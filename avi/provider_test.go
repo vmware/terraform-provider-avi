@@ -7,13 +7,13 @@ package avi
 
 import (
 	"fmt"
-	"os"
-	"testing"
 	"github.com/avinetworks/sdk/go/clients"
 	"github.com/avinetworks/sdk/go/session"
 	"github.com/hashicorp/terraform/helper/schema"
 	"github.com/hashicorp/terraform/terraform"
+	"os"
 	"strconv"
+	"testing"
 	"time"
 )
 
@@ -36,7 +36,7 @@ func TestProvider(t *testing.T) {
 	// Validating Schema for Provider
 
 	var configs = map[string]interface{}{"avi_username": "",
-		"avi_controller": "", "avi_password": "", "avi_tenant": "", "api_timeout": 0}
+		"avi_controller": "", "avi_password": "", "avi_tenant": "", "avi_api_timeout": 0}
 
 	_, errs := Provider().(*schema.Provider).Validate(
 		&terraform.ResourceConfig{Config: configs})

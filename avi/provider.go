@@ -55,7 +55,7 @@ func Provider() terraform.ResourceProvider {
 				DefaultFunc: schema.EnvDefaultFunc("AVI_AUTHTOKEN", nil),
 				Description: "Avi token for Avi Controller.",
 			},
-			"api_timeout": &schema.Schema{
+			"avi_api_timeout": &schema.Schema{
 				Type:        schema.TypeInt,
 				Optional:    true,
 				DefaultFunc: schema.EnvDefaultFunc("AVI_API_TIMEOUT", nil),
@@ -225,7 +225,7 @@ func providerConfigure(d *schema.ResourceData) (interface{}, error) {
 		Tenant:     "admin",
 		Version:    "18.2.2",
 		AuthToken:  d.Get("avi_authtoken").(string),
-		Timeout:    time.Duration(time.Duration(d.Get("api_timeout").(int)) * time.Second),
+		Timeout:    time.Duration(time.Duration(d.Get("avi_api_timeout").(int)) * time.Second),
 	}
 	if username, ok := d.GetOk("avi_username"); ok {
 		config.Username = username.(string)
@@ -238,7 +238,7 @@ func providerConfigure(d *schema.ResourceData) (interface{}, error) {
 		config.Tenant = tenant.(string)
 	}
 
-	if timeout, ok := d.GetOk("api_timeout"); ok {
+	if timeout, ok := d.GetOk("avi_api_timeout"); ok {
 		config.Timeout = time.Duration(time.Duration(timeout.(int)) * time.Second)
 	}
 
