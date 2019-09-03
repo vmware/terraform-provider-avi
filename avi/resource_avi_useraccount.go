@@ -85,7 +85,7 @@ func resourceAviUserAccountUpdate(d *schema.ResourceData, meta interface{}) erro
 		if err != nil {
 			log.Printf("[ERROR] in updating the object %v\n", err)
 		} else {
-			// username is unique in useraccount
+			// we dont get UUID because of nil response and username is unique in useraccount
 			d.SetId(username.(string))
 			d.Set("username", username)
 			d.Set("name", name)
