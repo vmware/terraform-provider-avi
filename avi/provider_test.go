@@ -7,13 +7,14 @@ package avi
 
 import (
 	"fmt"
-	"os"
-	"testing"
-
 	"github.com/avinetworks/sdk/go/clients"
 	"github.com/avinetworks/sdk/go/session"
 	"github.com/hashicorp/terraform/helper/schema"
 	"github.com/hashicorp/terraform/terraform"
+	"os"
+	"strconv"
+	"testing"
+	"time"
 )
 
 var testAccProviders map[string]terraform.ResourceProvider
@@ -33,8 +34,9 @@ func TestProvider(t *testing.T) {
 	}
 
 	// Validating Schema for Provider
+
 	var configs = map[string]interface{}{"avi_username": "",
-		"avi_controller": "", "avi_password": "", "avi_tenant": ""}
+		"avi_controller": "", "avi_password": "", "avi_tenant": "", "avi_api_timeout": 0}
 
 	_, errs := Provider().(*schema.Provider).Validate(
 		&terraform.ResourceConfig{Config: configs})
@@ -82,6 +84,13 @@ func TestProvider(t *testing.T) {
 }
 
 func testAccPreCheck(t *testing.T) {
+	var timeout time.Duration
+	if tm, err := strconv.Atoi(os.Getenv("AVI_API_TIMEOUT")); err == nil {
+		timeout = time.Duration(time.Duration(int(tm)) * time.Second)
+	} else {
+		t.Fatalf("AVI_API_TIMEOUT must be numeric value to set timeout for acceptance test")
+	}
+
 	config := Credentials{
 		Username:   os.Getenv("AVI_USERNAME"),
 		Password:   os.Getenv("AVI_PASSWORD"),
@@ -89,6 +98,7 @@ func testAccPreCheck(t *testing.T) {
 		Tenant:     os.Getenv("AVI_TENANT"),
 		Version:    os.Getenv("AVI_VERSION"),
 		AuthToken:  os.Getenv("AVI_AUTHTOKEN"),
+		Timeout:    timeout,
 	}
 
 	if config.Controller == "" {
@@ -108,13 +118,14 @@ func testAccPreCheck(t *testing.T) {
 	if config.Version == "" {
 		config.Version = "18.2.1"
 	}
+
 	_, err := clients.NewAviClient(
 		config.Controller, config.Username,
 		session.SetPassword(config.Password),
 		session.SetTenant(config.Tenant),
 		session.SetVersion(config.Version),
 		session.SetAuthToken(config.AuthToken),
-		session.SetInsecure)
+		session.SetInsecure, session.SetTimeout(config.Timeout))
 
 	if err != nil {
 		t.Fatal(fmt.Sprintf("%+v", err))

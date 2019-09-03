@@ -4,6 +4,7 @@ provider "avi" {
   avi_password   = var.avi_password
   avi_controller = var.avi_controller
   avi_version    = "18.2.5"
+  avi_api_timeout    = 50
 }
 
 data "avi_applicationprofile" "system_http_profile" {
