@@ -197,6 +197,9 @@ func (avisess *AviSession) initiateSession() error {
 		cred["password"] = avisess.password
 	}
 
+	avisess.csrfToken = ""
+	avisess.sessionid = ""
+
 	rerror = avisess.Post("login", cred, res)
 	if rerror != nil {
 		return rerror
@@ -405,14 +408,15 @@ func (avisess *AviSession) restRequest(verb string, uri string, payload interfac
 		return result, errorResult
 	}
 
-	glog.Infof("Sending req for uri %v", url)
 	resp, err := avisess.client.Do(req)
 	if err != nil {
-		errorResult.err = fmt.Errorf("client.Do failed: %v", err)
+		errorResult.err = fmt.Errorf("client.Do uri %v failed: %v", uri, err)
 		dump, err := httputil.DumpRequestOut(req, true)
 		debug(dump, err)
 		return result, errorResult
 	}
+
+	glog.Infof("Req for uri %v RespCode %v", url, resp.StatusCode)
 
 	errorResult.HttpStatusCode = resp.StatusCode
 	avisess.collectCookiesFromResp(resp)
@@ -450,8 +454,9 @@ func (avisess *AviSession) restRequest(verb string, uri string, payload interfac
 	result, err = ioutil.ReadAll(resp.Body)
 	if err == nil {
 		if resp.StatusCode < 200 || resp.StatusCode > 299 {
-			mres, _ := convertAviResponseToMapInterface(result)
-			glog.Infof("Error resp: %v", mres)
+			mres, merr := convertAviResponseToMapInterface(result)
+			glog.Infof("Error code %v parsed resp: %v err %v",
+				resp.StatusCode, mres, merr)
 			emsg := fmt.Sprintf("%v", mres)
 			errorResult.Message = &emsg
 		} else {
@@ -728,11 +733,18 @@ func (avisess *AviSession) restRequestInterfaceResponse(verb string, url string,
 	if err != nil {
 		return err
 	}
+	if len(opts.params) != 0 {
+		url = updateUri(url, opts)
+	}
 	res, rerror := avisess.restRequest(verb, url, payload, opts.tenant, nil)
-	if rerror != nil || res == nil {
+	if rerror != nil {
 		return rerror
 	}
-	return json.Unmarshal(res, &response)
+	if len(res) == 0 {
+		return nil
+	} else {
+		return json.Unmarshal(res, &response)
+	}
 }
 
 // Get issues a GET request against the avisess REST API.
@@ -778,7 +790,9 @@ func (avisess *AviSession) GetCollectionRaw(uri string, options ...ApiOptionsPar
 	if err != nil {
 		return result, err
 	}
-
+	if len(opts.params) != 0 {
+		uri = updateUri(uri, opts)
+	}
 	res, rerror := avisess.restRequest("GET", uri, nil, opts.tenant, nil)
 	if rerror != nil || res == nil {
 		return result, rerror
@@ -838,6 +852,7 @@ type ApiOptions struct {
 	includeName bool
 	payload     interface{}
 	result      interface{}
+	params      map[string]string
 }
 
 func SetOptTenant(tenant string) func(*ApiOptions) error {
@@ -914,6 +929,17 @@ func SetResult(result interface{}) func(*ApiOptions) error {
 
 func (opts *ApiOptions) setResult(result interface{}) error {
 	opts.result = result
+	return nil
+}
+
+func SetParams(params map[string]string) func(*ApiOptions) error {
+	return func(opts *ApiOptions) error {
+		return opts.setParams(params)
+	}
+}
+
+func (opts *ApiOptions) setParams(params map[string]string) error {
+	opts.params = params
 	return nil
 }
 
@@ -1014,4 +1040,33 @@ func (avisess *AviSession) GetControllerVersion() (string, error) {
 	}
 	version := resp.(map[string]interface{})["version"].(map[string]interface{})["Version"].(string)
 	return version, nil
+}
+
+// Logout performs log out operation of the Avi Controller
+func (avisess *AviSession) Logout() error {
+	url := avisess.prefix + "logout"
+	req, _ := avisess.newAviRequest("POST", url, nil, avisess.tenant)
+	_, err := avisess.client.Do(req)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func updateUri(uri string, opts *ApiOptions) string {
+	if strings.Contains(uri, "?") {
+		uri += "&"
+	} else {
+		uri += "?"
+	}
+	for k, v := range opts.params {
+		if (k == "name" && opts.name != "") || (opts.cloud != "" && k == "cloud") ||
+			(opts.includeName && k == "include_name") || (opts.skipDefault && k == "skip_default") ||
+			(opts.cloudUUID != "" && k == "cloud_ref.uuid") {
+			continue
+		} else {
+			uri += k + "=" + v + "&"
+		}
+	}
+	return uri
 }
