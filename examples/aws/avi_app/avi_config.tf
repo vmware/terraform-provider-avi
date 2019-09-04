@@ -282,7 +282,7 @@ resource "avi_vsvip" "terraform-vip" {
   vrf_context_ref = data.avi_vrfcontext.terraform_vrf.id
 
   dns_info {
-    fqdn = "aws_vs_test.${var.project_name}.awsavi.net"
+    fqdn = "aws_vs.${var.project_name}.awsavi.net"
   }
 
   vip {
@@ -336,43 +336,7 @@ resource "avi_virtualservice" "terraform-virtualservice" {
   ssl_profile_ref              = data.avi_sslprofile.system_standard_sslprofile.id
   se_group_ref                 = data.avi_serviceenginegroup.se_group.id
   vrf_context_ref              = data.avi_vrfcontext.terraform_vrf.id
-
-  //fqdn = "aws_vs.${var.project_name}.awsavi.net"
-  // vsvip_ref                    = "${avi_vsvip.terraform-vip.id}"
-
-  vip {
-    vip_id            = "0"
-    auto_allocate_ip  = true
-    avi_allocated_vip = true
-    availability_zone = var.aws_availability_zone
-    subnet_uuid       = data.aws_subnet.terraform-subnets-0.id
-
-    subnet {
-      ip_addr {
-        addr = var.aws_subnet_ip
-        type = "V4"
-      }
-
-      mask = var.aws_subnet_mask
-    }
-  }
-
-  vip {
-    vip_id            = "1"
-    auto_allocate_ip  = true
-    avi_allocated_vip = true
-    availability_zone = var.aws_availability_zone
-    subnet_uuid       = data.aws_subnet.terraform-subnets-1.id
-
-    subnet {
-      ip_addr {
-        addr = var.aws_subnet_ip
-        type = "V4"
-      }
-
-      mask = var.aws_subnet_mask
-    }
-  }
+  vsvip_ref                    = avi_vsvip.terraform-vip.id
 
   dns_info {
     fqdn = "aws_vs.${var.project_name}.awsavi.net"

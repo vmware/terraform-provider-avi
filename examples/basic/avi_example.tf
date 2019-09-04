@@ -4,6 +4,7 @@ provider "avi" {
   avi_password   = var.avi_password
   avi_controller = var.avi_controller
   avi_version    = "18.2.5"
+  avi_api_timeout    = 50
 }
 
 data "avi_applicationprofile" "system_http_profile" {
@@ -81,13 +82,7 @@ resource "avi_virtualservice" "test_vs" {
   #pool_ref= "${avi_pool.testpool.id}"
   tenant_ref = data.avi_tenant.default_tenant.id
   vsvip_ref  = avi_vsvip.test_vsvip.id
-  vip {
-    vip_id = "0"
-    ip_address {
-      type = "V4"
-      addr = "10.90.64.100"
-    }
-  }
+
   services {
     port           = 80
     enable_ssl     = true
