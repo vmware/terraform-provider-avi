@@ -14,7 +14,7 @@ github.com/apparentlymart/go-cidr/cidr
 github.com/apparentlymart/go-textseg/textseg
 # github.com/armon/go-radix v1.0.0
 github.com/armon/go-radix
-# github.com/avinetworks/sdk v0.0.0-20190703065237-b33a1c1ee58b
+# github.com/avinetworks/sdk v0.0.0-20190903143902-91bccc82a0c1
 github.com/avinetworks/sdk/go/clients
 github.com/avinetworks/sdk/go/models
 github.com/avinetworks/sdk/go/session
