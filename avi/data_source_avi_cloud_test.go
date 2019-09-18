@@ -50,9 +50,10 @@ resource "avi_cloud" "testCloud" {
 	apic_mode = false
 	dhcp_enabled = false
 	state_based_dns_registration = true
+
 }
 
 data "avi_cloud" "testCloud" {
-    name= "${avi_cloud.testCloud.name}"
+    name= avi_cloud.testCloud.name
 }
 `

@@ -37,9 +37,10 @@ resource "avi_applicationpersistenceprofile" "testApplicationPersistenceProfile"
 	ip_persistence_profile {
 		ip_persistent_timeout = "5"
 	}
+
 }
 
 data "avi_applicationpersistenceprofile" "testApplicationPersistenceProfile" {
-    name= "${avi_applicationpersistenceprofile.testApplicationPersistenceProfile.name}"
+    name= avi_applicationpersistenceprofile.testApplicationPersistenceProfile.name
 }
 `

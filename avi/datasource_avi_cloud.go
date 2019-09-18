@@ -52,6 +52,10 @@ func dataSourceAviCloud() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"dns_resolution_on_se": {
+				Type:     schema.TypeBool,
+				Computed: true,
+			},
 			"docker_configuration": {
 				Type:     schema.TypeSet,
 				Computed: true,

@@ -213,9 +213,10 @@ resource "avi_analyticsprofile" "testAnalyticsProfile" {
 	apdex_response_threshold = "500"
 	apdex_rtt_threshold = "250"
 	exclude_unsupported_dns_query_as_error = false
+
 }
 
 data "avi_analyticsprofile" "testAnalyticsProfile" {
-    name= "${avi_analyticsprofile.testAnalyticsProfile.name}"
+    name= avi_analyticsprofile.testAnalyticsProfile.name
 }
 `

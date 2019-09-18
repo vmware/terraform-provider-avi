@@ -27,7 +27,7 @@ func ResourceWafPolicyPSMGroupSchema() map[string]*schema.Schema {
 		"hit_action": {
 			Type:     schema.TypeString,
 			Optional: true,
-			Default:  "WAF_ACTION_NO_OP",
+			Default:  "WAF_ACTION_ALLOW_PARAMETER",
 		},
 		"is_learning_group": {
 			Type:     schema.TypeBool,

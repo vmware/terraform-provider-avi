@@ -41,9 +41,10 @@ resource "avi_vsvip" "testVsVip" {
 }
 	tenant_ref = data.avi_tenant.default_tenant.id
 	name = "test-vsvip-test-abc"
+
 }
 
 data "avi_vsvip" "testVsVip" {
-    name= "${avi_vsvip.testVsVip.name}"
+    name= avi_vsvip.testVsVip.name
 }
 `

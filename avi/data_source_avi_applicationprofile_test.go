@@ -101,9 +101,10 @@ resource "avi_applicationprofile" "testApplicationProfile" {
 	}
 	preserve_client_port = false
 	preserve_client_ip = false
+
 }
 
 data "avi_applicationprofile" "testApplicationProfile" {
-    name= "${avi_applicationprofile.testApplicationProfile.name}"
+    name= avi_applicationprofile.testApplicationProfile.name
 }
 `

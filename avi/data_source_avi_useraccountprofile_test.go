@@ -40,9 +40,10 @@ resource "avi_useraccountprofile" "testUserAccountProfile" {
 	max_login_failure_count = "20"
 	max_password_history_count = "0"
 	credentials_timeout_threshold = "0"
+
 }
 
 data "avi_useraccountprofile" "testUserAccountProfile" {
-    name= "${avi_useraccountprofile.testUserAccountProfile.name}"
+    name= avi_useraccountprofile.testUserAccountProfile.name
 }
 `

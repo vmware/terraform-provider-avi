@@ -35,9 +35,10 @@ resource "avi_vrfcontext" "testVrfContext" {
 	cloud_ref = data.avi_cloud.default_cloud.id
 	tenant_ref = data.avi_tenant.default_tenant.id
 	name = "test-global-abc"
+
 }
 
 data "avi_vrfcontext" "testVrfContext" {
-    name= "${avi_vrfcontext.testVrfContext.name}"
+    name= avi_vrfcontext.testVrfContext.name
 }
 `

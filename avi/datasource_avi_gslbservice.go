@@ -80,6 +80,10 @@ func dataSourceAviGslbService() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"resolve_cname": {
+				Type:     schema.TypeBool,
+				Computed: true,
+			},
 			"site_persistence_enabled": {
 				Type:     schema.TypeBool,
 				Computed: true,

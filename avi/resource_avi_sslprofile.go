@@ -29,6 +29,11 @@ func ResourceSSLProfileSchema() map[string]*schema.Schema {
 			Optional: true,
 			Elem:     &schema.Schema{Type: schema.TypeString},
 		},
+		"ciphersuites": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Default:  "TLS_AES_256_GCM_SHA384:TLS_CHACHA20_POLY1305_SHA256:TLS_AES_128_GCM_SHA256",
+		},
 		"description": {
 			Type:     schema.TypeString,
 			Optional: true,
@@ -38,6 +43,11 @@ func ResourceSSLProfileSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
+		},
+		"enable_early_data": {
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  false,
 		},
 		"enable_ssl_session_reuse": {
 			Type:     schema.TypeBool,

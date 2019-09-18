@@ -30,9 +30,10 @@ resource "avi_dnspolicy" "testDnsPolicy" {
 	tenant_ref = data.avi_tenant.default_tenant.id
 	name = "test-dp-abc"
 	description = "test dns policy"
+
 }
 
 data "avi_dnspolicy" "testDnsPolicy" {
-    name= "${avi_dnspolicy.testDnsPolicy.name}"
+    name= avi_dnspolicy.testDnsPolicy.name
 }
 `

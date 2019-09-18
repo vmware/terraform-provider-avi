@@ -25,12 +25,20 @@ func dataSourceAviSSLProfile() *schema.Resource {
 				Computed: true,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
+			"ciphersuites": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"description": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"dhparam": {
 				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"enable_early_data": {
+				Type:     schema.TypeBool,
 				Computed: true,
 			},
 			"enable_ssl_session_reuse": {

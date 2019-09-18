@@ -58,8 +58,6 @@ func TestAVIDataSourceServiceEngineGroupBasic(t *testing.T) {
 					resource.TestCheckResourceAttr(
 						"avi_serviceenginegroup.testServiceEngineGroup", "vs_scaleout_timeout", "30"),
 					resource.TestCheckResourceAttr(
-						"avi_serviceenginegroup.testServiceEngineGroup", "enable_routing", "false"),
-					resource.TestCheckResourceAttr(
 						"avi_serviceenginegroup.testServiceEngineGroup", "disable_tso", "false"),
 					resource.TestCheckResourceAttr(
 						"avi_serviceenginegroup.testServiceEngineGroup", "se_sb_threads", "1"),
@@ -73,6 +71,8 @@ func TestAVIDataSourceServiceEngineGroupBasic(t *testing.T) {
 						"avi_serviceenginegroup.testServiceEngineGroup", "distribute_queues", "false"),
 					resource.TestCheckResourceAttr(
 						"avi_serviceenginegroup.testServiceEngineGroup", "disable_csum_offloads", "false"),
+					resource.TestCheckResourceAttr(
+						"avi_serviceenginegroup.testServiceEngineGroup", "async_ssl", "false"),
 					resource.TestCheckResourceAttr(
 						"avi_serviceenginegroup.testServiceEngineGroup", "se_probe_port", "7"),
 					resource.TestCheckResourceAttr(
@@ -104,15 +104,13 @@ func TestAVIDataSourceServiceEngineGroupBasic(t *testing.T) {
 					resource.TestCheckResourceAttr(
 						"avi_serviceenginegroup.testServiceEngineGroup", "vcenter_datastores_include", "false"),
 					resource.TestCheckResourceAttr(
-						"avi_serviceenginegroup.testServiceEngineGroup", "advertise_backend_networks", "false"),
-					resource.TestCheckResourceAttr(
 						"avi_serviceenginegroup.testServiceEngineGroup", "per_app", "false"),
 					resource.TestCheckResourceAttr(
 						"avi_serviceenginegroup.testServiceEngineGroup", "non_significant_log_throttle", "100"),
 					resource.TestCheckResourceAttr(
 						"avi_serviceenginegroup.testServiceEngineGroup", "max_cpu_usage", "80"),
 					resource.TestCheckResourceAttr(
-						"avi_serviceenginegroup.testServiceEngineGroup", "async_ssl", "false"),
+						"avi_serviceenginegroup.testServiceEngineGroup", "min_scaleout_per_vs", "1"),
 					resource.TestCheckResourceAttr(
 						"avi_serviceenginegroup.testServiceEngineGroup", "se_vs_hb_max_pkts_in_batch", "8"),
 					resource.TestCheckResourceAttr(
@@ -122,7 +120,7 @@ func TestAVIDataSourceServiceEngineGroupBasic(t *testing.T) {
 					resource.TestCheckResourceAttr(
 						"avi_serviceenginegroup.testServiceEngineGroup", "buffer_se", "1"),
 					resource.TestCheckResourceAttr(
-						"avi_serviceenginegroup.testServiceEngineGroup", "min_scaleout_per_vs", "1"),
+						"avi_serviceenginegroup.testServiceEngineGroup", "mem_reserve", "true"),
 					resource.TestCheckResourceAttr(
 						"avi_serviceenginegroup.testServiceEngineGroup", "flow_table_new_syn_max_entries", "0"),
 					resource.TestCheckResourceAttr(
@@ -138,11 +136,7 @@ func TestAVIDataSourceServiceEngineGroupBasic(t *testing.T) {
 					resource.TestCheckResourceAttr(
 						"avi_serviceenginegroup.testServiceEngineGroup", "waf_mempool_size", "64"),
 					resource.TestCheckResourceAttr(
-						"avi_serviceenginegroup.testServiceEngineGroup", "mem_reserve", "true"),
-					resource.TestCheckResourceAttr(
 						"avi_serviceenginegroup.testServiceEngineGroup", "cpu_reserve", "false"),
-					resource.TestCheckResourceAttr(
-						"avi_serviceenginegroup.testServiceEngineGroup", "enable_vmac", "false"),
 					resource.TestCheckResourceAttr(
 						"avi_serviceenginegroup.testServiceEngineGroup", "vs_host_redundancy", "true"),
 				),
@@ -184,7 +178,6 @@ resource "avi_serviceenginegroup" "testServiceEngineGroup" {
 	se_tunnel_udp_port = "1550"
 	auto_rebalance_interval = "300"
 	vs_scaleout_timeout = "30"
-	enable_routing = false
 	disable_tso = false
 	ha_mode = "HA_MODE_SHARED"
 	se_sb_threads = "1"
@@ -193,6 +186,7 @@ resource "avi_serviceenginegroup" "testServiceEngineGroup" {
 	active_standby = false
 	distribute_queues = false
 	disable_csum_offloads = false
+	async_ssl = false
 	se_probe_port = "7"
 	se_udp_encap_ipc = "0"
 	extra_config_multiplier = "0"
@@ -212,17 +206,16 @@ resource "avi_serviceenginegroup" "testServiceEngineGroup" {
 	ingress_access_data = "SG_INGRESS_ACCESS_ALL"
 	disable_gro = true
 	vcenter_datastores_include = false
-	advertise_backend_networks = false
 	per_app = false
 	non_significant_log_throttle = "100"
 	max_cpu_usage = "80"
-	async_ssl = false
+	min_scaleout_per_vs = "1"
 	se_vs_hb_max_pkts_in_batch = "8"
 	name = "test-Default-Group-abc"
 	host_gateway_monitor = false
 	waf_mempool = true
 	buffer_se = "1"
-	min_scaleout_per_vs = "1"
+	mem_reserve = true
 	flow_table_new_syn_max_entries = "0"
 	tenant_ref = data.avi_tenant.default_tenant.id
 	vcenter_datastore_mode = "VCENTER_DATASTORE_ANY"
@@ -232,16 +225,15 @@ resource "avi_serviceenginegroup" "testServiceEngineGroup" {
 	max_se = "10"
 	significant_log_throttle = "100"
 	waf_mempool_size = "64"
-	mem_reserve = true
 	cpu_reserve = false
 	algo = "PLACEMENT_ALGO_DISTRIBUTED"
 	se_bandwidth_type = "SE_BANDWIDTH_UNLIMITED"
-	enable_vmac = false
 	vs_host_redundancy = true
 	license_type = "LIC_CORES"
+
 }
 
 data "avi_serviceenginegroup" "testServiceEngineGroup" {
-    name= "${avi_serviceenginegroup.testServiceEngineGroup.name}"
+    name= avi_serviceenginegroup.testServiceEngineGroup.name
 }
 `
