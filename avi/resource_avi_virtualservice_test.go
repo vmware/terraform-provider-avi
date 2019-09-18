@@ -129,18 +129,18 @@ resource "avi_vsvip" "test_vsvip" {
 	  }
       enabled= true
 	}
-	tenant_ref= "${data.avi_tenant.default_tenant.id}"
-	cloud_ref= "${data.avi_cloud.default_cloud.id}"
-	vrf_context_ref= "${data.avi_vrfcontext.global_vrf.id}"
+	tenant_ref= data.avi_tenant.default_tenant.id
+	cloud_ref= data.avi_cloud.default_cloud.id
+	vrf_context_ref= data.avi_vrfcontext.global_vrf.id
   }
   
 resource "avi_virtualservice" "testvs" {
 	name= "vs-test"
-	tenant_ref= "${data.avi_tenant.default_tenant.id}"
-	cloud_ref= "${data.avi_cloud.default_cloud.id}"
-	application_profile_ref= "${data.avi_applicationprofile.system_https_profile.id}"
-	network_profile_ref = "${data.avi_networkprofile.system_tcp_profile.id}"
-	vsvip_ref = "${avi_vsvip.test_vsvip.id}"
+	tenant_ref= data.avi_tenant.default_tenant.id
+	cloud_ref= data.avi_cloud.default_cloud.id
+	application_profile_ref= data.avi_applicationprofile.system_https_profile.id
+	network_profile_ref = data.avi_networkprofile.system_tcp_profile.id
+	vsvip_ref = avi_vsvip.test_vsvip.id
 	vip {
 	  vip_id= "0"
 	  ip_address {
@@ -154,11 +154,11 @@ resource "avi_virtualservice" "testvs" {
 	  enable_ssl= true
 	  port_range_end= 80
 	}
-	se_group_ref= "${data.avi_serviceenginegroup.se_group.id}"
-	analytics_profile_ref= "${data.avi_analyticsprofile.system_analytics_profile.id}"
-	ssl_key_and_certificate_refs= ["${data.avi_sslkeyandcertificate.system_default_cert.id}"]
-	ssl_profile_ref= "${data.avi_sslprofile.system_standard_sslprofile.id}"
-	vrf_context_ref= "${data.avi_vrfcontext.global_vrf.id}"
+	se_group_ref= data.avi_serviceenginegroup.se_group.id
+	analytics_profile_ref= data.avi_analyticsprofile.system_analytics_profile.id
+	ssl_key_and_certificate_refs= [data.avi_sslkeyandcertificate.system_default_cert.id]
+	ssl_profile_ref= data.avi_sslprofile.system_standard_sslprofile.id
+	vrf_context_ref= data.avi_vrfcontext.global_vrf.id
   }
 `
 
@@ -209,18 +209,18 @@ resource "avi_vsvip" "test_vsvip" {
 	  }
       enabled= true
 	}
-	tenant_ref= "${data.avi_tenant.default_tenant.id}"
-	cloud_ref= "${data.avi_cloud.default_cloud.id}"
-	vrf_context_ref= "${data.avi_vrfcontext.global_vrf.id}"
+	tenant_ref= data.avi_tenant.default_tenant.id
+	cloud_ref= data.avi_cloud.default_cloud.id
+	vrf_context_ref= data.avi_vrfcontext.global_vrf.id
   }
 
 resource "avi_virtualservice" "testvs" {
 	name= "vs-abc"
-	tenant_ref= "${data.avi_tenant.default_tenant.id}"
-	cloud_ref= "${data.avi_cloud.default_cloud.id}"
-	application_profile_ref= "${data.avi_applicationprofile.system_https_profile.id}"
-	network_profile_ref = "${data.avi_networkprofile.system_tcp_profile.id}"
-	vsvip_ref = "${avi_vsvip.test_vsvip.id}"
+	tenant_ref= data.avi_tenant.default_tenant.id
+	cloud_ref= data.avi_cloud.default_cloud.id
+	application_profile_ref= data.avi_applicationprofile.system_https_profile.id
+	network_profile_ref = data.avi_networkprofile.system_tcp_profile.id
+	vsvip_ref = avi_vsvip.test_vsvip.id
 	vip {
 	  vip_id= "0"
 	  ip_address {
@@ -234,10 +234,10 @@ resource "avi_virtualservice" "testvs" {
 	  enable_ssl= true
 	  port_range_end= 80
 	}
-	se_group_ref= "${data.avi_serviceenginegroup.se_group.id}"
-	analytics_profile_ref= "${data.avi_analyticsprofile.system_analytics_profile.id}"
-	ssl_key_and_certificate_refs= ["${data.avi_sslkeyandcertificate.system_default_cert.id}"]
-	ssl_profile_ref= "${data.avi_sslprofile.system_standard_sslprofile.id}"
-	vrf_context_ref= "${data.avi_vrfcontext.global_vrf.id}"
+	se_group_ref= data.avi_serviceenginegroup.se_group.id
+	analytics_profile_ref= data.avi_analyticsprofile.system_analytics_profile.id
+	ssl_key_and_certificate_refs= [data.avi_sslkeyandcertificate.system_default_cert.id]
+	ssl_profile_ref= data.avi_sslprofile.system_standard_sslprofile.id
+	vrf_context_ref= data.avi_vrfcontext.global_vrf.id
   }
 `
