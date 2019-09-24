@@ -94,6 +94,11 @@ func ResourceGslbServiceSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  "GSLB_SERVICE_ALGORITHM_PRIORITY",
 		},
+		"resolve_cname": {
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  false,
+		},
 		"site_persistence_enabled": {
 			Type:     schema.TypeBool,
 			Optional: true,

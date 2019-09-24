@@ -30,9 +30,10 @@ resource "avi_networksecuritypolicy" "testNetworkSecurityPolicy" {
 	tenant_ref = data.avi_tenant.default_tenant.id
 	name = "ns-abc-abc"
 	description = "test network policy"
+
 }
 
 data "avi_networksecuritypolicy" "testNetworkSecurityPolicy" {
-    name= "${avi_networksecuritypolicy.testNetworkSecurityPolicy.name}"
+    name= avi_networksecuritypolicy.testNetworkSecurityPolicy.name
 }
 `

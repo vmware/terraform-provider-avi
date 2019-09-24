@@ -36,9 +36,10 @@ resource "avi_ipamdnsproviderprofile" "testIpamDnsProviderProfile" {
 	internal_profile {
 		ttl = "31"
 	}
+
 }
 
 data "avi_ipamdnsproviderprofile" "testIpamDnsProviderProfile" {
-    name= "${avi_ipamdnsproviderprofile.testIpamDnsProviderProfile.name}"
+    name= avi_ipamdnsproviderprofile.testIpamDnsProviderProfile.name
 }
 `

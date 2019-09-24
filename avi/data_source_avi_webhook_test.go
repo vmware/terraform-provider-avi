@@ -29,9 +29,10 @@ data "avi_tenant" "default_tenant"{
 resource "avi_webhook" "testWebhook" {
 	tenant_ref = data.avi_tenant.default_tenant.id
 	name = "test-wb-test-abc"
+
 }
 
 data "avi_webhook" "testWebhook" {
-    name= "${avi_webhook.testWebhook.name}"
+    name= avi_webhook.testWebhook.name
 }
 `

@@ -19,10 +19,6 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeBool,
 				Computed: true,
 			},
-			"advertise_backend_networks": {
-				Type:     schema.TypeBool,
-				Computed: true,
-			},
 			"aggressive_failure_detection": {
 				Type:     schema.TypeBool,
 				Computed: true,
@@ -185,15 +181,7 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeBool,
 				Computed: true,
 			},
-			"enable_routing": {
-				Type:     schema.TypeBool,
-				Computed: true,
-			},
-			"enable_vip_on_all_interfaces": {
-				Type:     schema.TypeBool,
-				Computed: true,
-			},
-			"enable_vmac": {
+			"enable_pcap_tx_ring": {
 				Type:     schema.TypeBool,
 				Computed: true,
 			},
@@ -212,16 +200,6 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 			"extra_shared_config_memory": {
 				Type:     schema.TypeInt,
 				Computed: true,
-			},
-			"floating_intf_ip": {
-				Type:     schema.TypeList,
-				Computed: true,
-				Elem:     ResourceIpAddrSchema(),
-			},
-			"floating_intf_ip_se_2": {
-				Type:     schema.TypeList,
-				Computed: true,
-				Elem:     ResourceIpAddrSchema(),
 			},
 			"flow_table_new_syn_max_entries": {
 				Type:     schema.TypeInt,
@@ -473,6 +451,10 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeInt,
 				Computed: true,
 			},
+			"se_kni_burst_factor": {
+				Type:     schema.TypeInt,
+				Computed: true,
+			},
 			"se_lro": {
 				Type:     schema.TypeBool,
 				Computed: true,
@@ -493,6 +475,10 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeInt,
 				Computed: true,
 			},
+			"se_pcap_qdisc_bypass": {
+				Type:     schema.TypeBool,
+				Computed: true,
+			},
 			"se_pcap_reinit_frequency": {
 				Type:     schema.TypeInt,
 				Computed: true,
@@ -509,8 +495,20 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeInt,
 				Computed: true,
 			},
-			"se_routing": {
-				Type:     schema.TypeBool,
+			"se_rum_sampling_nav_interval": {
+				Type:     schema.TypeInt,
+				Computed: true,
+			},
+			"se_rum_sampling_nav_percent": {
+				Type:     schema.TypeInt,
+				Computed: true,
+			},
+			"se_rum_sampling_res_interval": {
+				Type:     schema.TypeInt,
+				Computed: true,
+			},
+			"se_rum_sampling_res_percent": {
+				Type:     schema.TypeInt,
 				Computed: true,
 			},
 			"se_sb_dedicated_core": {
