@@ -1,4 +1,4 @@
-## 0.2.0 (Unreleased)
+## 0.2.0 (October 01, 2019)
 FEATURES:
 - Added new resource and datasource for controllerportalregistration object.
 - Added new resource and datasource for customerportalinfo object.
