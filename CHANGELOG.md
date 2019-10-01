@@ -1,4 +1,4 @@
-## 0.1.3 (Unreleased)
+## 0.2.0 (Unreleased)
 FEATURES:
 - Added new resource and datasource for controllerportalregistration object.
 - Added new resource and datasource for customerportalinfo object.
