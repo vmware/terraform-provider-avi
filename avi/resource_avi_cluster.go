@@ -92,9 +92,15 @@ func ResourceClusterImporter(d *schema.ResourceData, m interface{}) ([]*schema.R
 
 func ResourceAviClusterRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceClusterSchema()
-	err := ApiRead(d, meta, "cluster", s)
-	if err != nil {
-		log.Printf("[ERROR] in reading object %v\n", err)
+	err := read_cluster_state(d, meta, s)
+	if err == nil {
+		err := ApiRead(d, meta, "cluster", s)
+		if err != nil {
+			log.Printf("[ERROR] in reading object %v\n", err)
+			return err
+		}
+	} else {
+		log.Printf("[ERROR] in Updateing cluster state object %v\n", err)
 	}
 	return err
 }
@@ -141,4 +147,27 @@ func resourceAviClusterDelete(d *schema.ResourceData, meta interface{}) error {
 		d.SetId("")
 	}
 	return nil
+}
+
+// Function to get the cluster state and update the exact cluster state into d
+func read_cluster_state(d *schema.ResourceData, meta interface{}, s map[string]*schema.Schema) error {
+	client := meta.(*clients.AviClient)
+	var err error
+	var robj interface{}
+	if err = client.AviSession.Get("api/cluster/runtime", &robj); err == nil {
+		if local_data, err := SchemaToAviData(d, s); err == nil {
+			if mod_api_res, err := SetDefaultsInAPIRes(robj, local_data, s); err == nil {
+				if _, err := ApiDataToSchema(mod_api_res, d, s); err != nil {
+					log.Printf("[ERROR] Converting ApiDataToSchema object %v\n", err)
+					return err
+				}
+			} else {
+				log.Printf("[ERROR] Update Cluster State in modifying api response object %v\n", err)
+				return err
+			}
+		} else {
+			return err
+		}
+	}
+	return err
 }
