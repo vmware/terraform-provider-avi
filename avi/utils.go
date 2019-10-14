@@ -630,4 +630,3 @@ func IsPostNotAllowed(objtype string) bool {
 	}
 	return specialobj
 }
-
