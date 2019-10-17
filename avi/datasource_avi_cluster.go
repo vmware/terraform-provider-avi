@@ -40,6 +40,30 @@ func dataSourceAviCluster() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceIpAddrSchema(),
 			},
+			"cluster_state": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"up_since": {
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"progress": {
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"state": {
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+					},
+				},
+			},
 		},
 	}
 }
