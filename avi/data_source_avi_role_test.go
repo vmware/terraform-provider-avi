@@ -237,10 +237,9 @@ privileges {
 }
 	tenant_ref = data.avi_tenant.default_tenant.id
 	name = "test-Application-Admin-abc"
-
 }
 
 data "avi_role" "testRole" {
-    name= avi_role.testRole.name
+    name= "${avi_role.testRole.name}"
 }
 `

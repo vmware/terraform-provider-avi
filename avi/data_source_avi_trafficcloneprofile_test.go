@@ -29,10 +29,9 @@ data "avi_tenant" "default_tenant"{
 resource "avi_trafficcloneprofile" "testTrafficCloneProfile" {
 	tenant_ref = data.avi_tenant.default_tenant.id
 	name = "test-tp-test-abc"
-
 }
 
 data "avi_trafficcloneprofile" "testTrafficCloneProfile" {
-    name= avi_trafficcloneprofile.testTrafficCloneProfile.name
+    name= "${avi_trafficcloneprofile.testTrafficCloneProfile.name}"
 }
 `

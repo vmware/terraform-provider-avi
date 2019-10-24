@@ -803,7 +803,7 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 		"vs_se_scaleout_ready_timeout": {
 			Type:     schema.TypeInt,
 			Optional: true,
-			Default:  25,
+			Default:  60,
 		},
 		"vs_switchover_timeout": {
 			Type:     schema.TypeInt,

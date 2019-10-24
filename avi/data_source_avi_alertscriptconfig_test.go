@@ -162,10 +162,9 @@ if __name__ == "__main__":
                     tenant_uuid=tenant_uuid) as session:
         cleanup_old_spec_se(se_grp_uuid, session)
 EOF
-
 }
 
 data "avi_alertscriptconfig" "testAlertScriptConfig" {
-    name= avi_alertscriptconfig.testAlertScriptConfig.name
+    name= "${avi_alertscriptconfig.testAlertScriptConfig.name}"
 }
 `

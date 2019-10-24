@@ -57,10 +57,9 @@ kv {
 kv {
 	key = "application/pdf"
 }
-
 }
 
 data "avi_stringgroup" "testStringGroup" {
-    name= avi_stringgroup.testStringGroup.name
+    name= "${avi_stringgroup.testStringGroup.name}"
 }
 `

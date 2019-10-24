@@ -49,10 +49,9 @@ resource "avi_networkprofile" "testNetworkProfile" {
 	}
 	tenant_ref = data.avi_tenant.default_tenant.id
 	name = "test-System-TCP-Proxy-abc"
-
 }
 
 data "avi_networkprofile" "testNetworkProfile" {
-    name= avi_networkprofile.testNetworkProfile.name
+    name= "${avi_networkprofile.testNetworkProfile.name}"
 }
 `
