@@ -50,10 +50,9 @@ prefixes {
 }
 	tenant_ref = data.avi_tenant.default_tenant.id
 	name = "test-Internal-abc"
-
 }
 
 data "avi_ipaddrgroup" "testIpAddrGroup" {
-    name= avi_ipaddrgroup.testIpAddrGroup.name
+    name= "${avi_ipaddrgroup.testIpAddrGroup.name}"
 }
 `

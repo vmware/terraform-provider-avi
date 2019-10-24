@@ -68,10 +68,9 @@ EOF
 		security_score = "100.0"
 		performance_rating = "SSL_SCORE_EXCELLENT"
 	}
-
 }
 
 data "avi_sslprofile" "testSSLProfile" {
-    name= avi_sslprofile.testSSLProfile.name
+    name= "${avi_sslprofile.testSSLProfile.name}"
 }
 `

@@ -29,10 +29,9 @@ data "avi_tenant" "default_tenant"{
 resource "avi_clusterclouddetails" "testClusterCloudDetails" {
 	tenant_ref = data.avi_tenant.default_tenant.id
 	name = "test-ccd-abc"
-
 }
 
 data "avi_clusterclouddetails" "testClusterCloudDetails" {
-    name= avi_clusterclouddetails.testClusterCloudDetails.name
+    name= "${avi_clusterclouddetails.testClusterCloudDetails.name}"
 }
 `
