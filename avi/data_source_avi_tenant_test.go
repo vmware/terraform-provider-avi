@@ -28,9 +28,10 @@ const testAccAVIDSTenantConfig = `
 resource "avi_tenant" "testTenant" {
 	local = true
 	name = "test-admin-abc"
+
 }
 
 data "avi_tenant" "testTenant" {
-    name= "${avi_tenant.testTenant.name}"
+    name= avi_tenant.testTenant.name
 }
 `

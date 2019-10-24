@@ -95,8 +95,8 @@ resource "avi_wafpolicy" "testwafpolicy" {
 	name = "wp"
 	mode= "WAF_MODE_DETECTION_ONLY"
 	paranoia_level= "WAF_PARANOIA_LEVEL_LOW"
-	waf_profile_ref= "${data.avi_wafprofile.wafprofile.id}"
-	tenant_ref= "${data.avi_tenant.default_tenant.id}"
+	waf_profile_ref= data.avi_wafprofile.wafprofile.id
+	tenant_ref= data.avi_tenant.default_tenant.id
 }
 `
 
@@ -112,7 +112,7 @@ resource "avi_wafpolicy" "testwafpolicy" {
 	name = "wp-test"
 	mode= "WAF_MODE_DETECTION_ONLY"
 	paranoia_level= "WAF_PARANOIA_LEVEL_LOW"
-	waf_profile_ref= "${data.avi_wafprofile.wafprofile.id}"
-	tenant_ref= "${data.avi_tenant.default_tenant.id}"
+	waf_profile_ref= data.avi_wafprofile.wafprofile.id
+	tenant_ref= data.avi_tenant.default_tenant.id
 }
 `

@@ -294,9 +294,10 @@ sys_event_rule {
 	threshold = "1"
 	throttle = "0"
 	action_group_ref = data.avi_actiongroupconfig.system_actiongroupconfig.id
+
 }
 
 data "avi_alertconfig" "testAlertConfig" {
-    name= "${avi_alertconfig.testAlertConfig.name}"
+    name= avi_alertconfig.testAlertConfig.name
 }
 `

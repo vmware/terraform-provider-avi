@@ -33,9 +33,10 @@ resource "avi_autoscalelaunchconfig" "testAutoScaleLaunchConfig" {
 	use_external_asg = true
 	tenant_ref = data.avi_tenant.default_tenant.id
 	name = "test-default-autoscalelaunchconfig-abc"
+
 }
 
 data "avi_autoscalelaunchconfig" "testAutoScaleLaunchConfig" {
-    name= "${avi_autoscalelaunchconfig.testAutoScaleLaunchConfig.name}"
+    name= avi_autoscalelaunchconfig.testAutoScaleLaunchConfig.name
 }
 `

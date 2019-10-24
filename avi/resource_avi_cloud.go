@@ -63,6 +63,11 @@ func ResourceCloudSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"dns_resolution_on_se": {
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  false,
+		},
 		"docker_configuration": {
 			Type:     schema.TypeSet,
 			Optional: true,

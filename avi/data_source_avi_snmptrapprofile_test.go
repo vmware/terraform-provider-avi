@@ -29,9 +29,10 @@ data "avi_tenant" "default_tenant"{
 resource "avi_snmptrapprofile" "testSnmpTrapProfile" {
 	tenant_ref = data.avi_tenant.default_tenant.id
 	name = "test-snmp-test-abc"
+
 }
 
 data "avi_snmptrapprofile" "testSnmpTrapProfile" {
-    name= "${avi_snmptrapprofile.testSnmpTrapProfile.name}"
+    name= avi_snmptrapprofile.testSnmpTrapProfile.name
 }
 `

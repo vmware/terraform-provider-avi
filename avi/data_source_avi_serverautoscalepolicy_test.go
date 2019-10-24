@@ -31,9 +31,10 @@ resource "avi_serverautoscalepolicy" "testServerAutoScalePolicy" {
 	tenant_ref = data.avi_tenant.default_tenant.id
 	name = "test-ssp-test-abc"
 	scaleout_alertconfig_refs = []
+
 }
 
 data "avi_serverautoscalepolicy" "testServerAutoScalePolicy" {
-    name= "${avi_serverautoscalepolicy.testServerAutoScalePolicy.name}"
+    name= avi_serverautoscalepolicy.testServerAutoScalePolicy.name
 }
 `

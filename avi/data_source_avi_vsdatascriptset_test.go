@@ -34,9 +34,10 @@ resource "avi_vsdatascriptset" "testVSDataScriptSet" {
 	pool_group_refs = []
 	string_group_refs = []
 	ipgroup_refs = []
+
 }
 
 data "avi_vsdatascriptset" "testVSDataScriptSet" {
-    name= "${avi_vsdatascriptset.testVSDataScriptSet.name}"
+    name= avi_vsdatascriptset.testVSDataScriptSet.name
 }
 `

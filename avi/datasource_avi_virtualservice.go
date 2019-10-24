@@ -281,6 +281,10 @@ func dataSourceAviVirtualService() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"test_se_datastore_level_1_ref": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"topology_policies": {
 				Type:     schema.TypeList,
 				Computed: true,

@@ -4028,9 +4028,10 @@ EOF
 	}
 	tenant_ref = data.avi_tenant.default_tenant.id
 	name = "test-System-WAF-Profile-abc"
+
 }
 
 data "avi_wafprofile" "testWafProfile" {
-    name= "${avi_wafprofile.testWafProfile.name}"
+    name= avi_wafprofile.testWafProfile.name
 }
 `

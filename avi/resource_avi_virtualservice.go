@@ -331,6 +331,11 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"test_se_datastore_level_1_ref": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
 		"topology_policies": {
 			Type:     schema.TypeList,
 			Optional: true,

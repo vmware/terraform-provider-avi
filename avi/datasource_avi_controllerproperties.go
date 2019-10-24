@@ -75,6 +75,10 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Type:     schema.TypeInt,
 				Computed: true,
 			},
+			"default_minimum_api_timeout": {
+				Type:     schema.TypeInt,
+				Computed: true,
+			},
 			"dns_refresh_period": {
 				Type:     schema.TypeInt,
 				Computed: true,
@@ -173,6 +177,10 @@ func dataSourceAviControllerProperties() *schema.Resource {
 			},
 			"seupgrade_segroup_min_dead_timeout": {
 				Type:     schema.TypeInt,
+				Computed: true,
+			},
+			"shared_ssl_certificates": {
+				Type:     schema.TypeBool,
 				Computed: true,
 			},
 			"ssl_certificate_expiry_warning_days": {

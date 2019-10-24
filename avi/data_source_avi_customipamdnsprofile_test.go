@@ -30,9 +30,10 @@ resource "avi_customipamdnsprofile" "testCustomIpamDnsProfile" {
 	script_uri = "/"
 	tenant_ref = data.avi_tenant.default_tenant.id
 	name = "test-ipam-abc"
+
 }
 
 data "avi_customipamdnsprofile" "testCustomIpamDnsProfile" {
-    name= "${avi_customipamdnsprofile.testCustomIpamDnsProfile.name}"
+    name= avi_customipamdnsprofile.testCustomIpamDnsProfile.name
 }
 `
