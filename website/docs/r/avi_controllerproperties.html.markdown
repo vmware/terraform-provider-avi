@@ -39,6 +39,7 @@ The following arguments are supported:
 * `consistency_check_timeout_period` - (Optional) Period for consistency check job.
 * `crashed_se_reboot` - (Optional) Placeholder for description of property crashed_se_reboot of obj type controllerproperties field type integer  type int.
 * `dead_se_detection_timer` - (Optional) Placeholder for description of property dead_se_detection_timer of obj type controllerproperties field type integer  type int.
+* `default_minimum_api_timeout` - (Optional) Minimum api timeout value.if this value is not 60, it will be the default timeout for all apis that do not have a specific timeout.if an api has a specific timeout but is less than this value, this value will become the new timeout.
 * `dns_refresh_period` - (Optional) Period for refresh pool and gslb dns job.
 * `dummy` - (Optional) Placeholder for description of property dummy of obj type controllerproperties field type integer  type int.
 * `enable_api_sharding` - (Optional) This setting enables the controller leader to shard api requests to the followers (if any).
@@ -62,8 +63,10 @@ The following arguments are supported:
 * `secure_channel_cleanup_timeout` - (Optional) Period for secure channel cleanup job.
 * `secure_channel_controller_token_timeout` - (Optional) Placeholder for description of property secure_channel_controller_token_timeout of obj type controllerproperties field type integer  type int.
 * `secure_channel_se_token_timeout` - (Optional) Placeholder for description of property secure_channel_se_token_timeout of obj type controllerproperties field type integer  type int.
+* `seupgrade_copy_pool_size` - (Optional) Pool of scp connections used in copy task during serviceenginegroup upgrade.
 * `seupgrade_fabric_pool_size` - (Optional) Pool size used for all fabric commands during se upgrade.
 * `seupgrade_segroup_min_dead_timeout` - (Optional) Time to wait before marking segroup upgrade as stuck.
+* `shared_ssl_certificates` - (Optional) Ssl certificates in the admin tenant can be used in non-admin tenants.
 * `ssl_certificate_expiry_warning_days` - (Optional) Number of days for ssl certificate expiry warning.
 * `unresponsive_se_reboot` - (Optional) Placeholder for description of property unresponsive_se_reboot of obj type controllerproperties field type integer  type int.
 * `upgrade_dns_ttl` - (Optional) Time to account for dns ttl during upgrade.
