@@ -43,10 +43,9 @@ resource "avi_hardwaresecuritymodulegroup" "testHardwareSecurityModuleGroup" {
 			}
 		}
 	}
-
 }
 
 data "avi_hardwaresecuritymodulegroup" "testHardwareSecurityModuleGroup" {
-    name= avi_hardwaresecuritymodulegroup.testHardwareSecurityModuleGroup.name
+    name= "${avi_hardwaresecuritymodulegroup.testHardwareSecurityModuleGroup.name}"
 }
 `

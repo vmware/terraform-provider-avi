@@ -214,6 +214,11 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  60,
 		},
+		"seupgrade_copy_pool_size": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  5,
+		},
 		"seupgrade_fabric_pool_size": {
 			Type:     schema.TypeInt,
 			Optional: true,

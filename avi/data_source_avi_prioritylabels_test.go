@@ -30,10 +30,9 @@ resource "avi_prioritylabels" "testPriorityLabels" {
 	tenant_ref = data.avi_tenant.default_tenant.id
 	name = "test-pl-test-abc"
 	description = "test priority labels"
-
 }
 
 data "avi_prioritylabels" "testPriorityLabels" {
-    name= avi_prioritylabels.testPriorityLabels.name
+    name= "${avi_prioritylabels.testPriorityLabels.name}"
 }
 `

@@ -36,10 +36,9 @@ resource "avi_actiongroupconfig" "testActionGroupConfig" {
 	tenant_ref = data.avi_tenant.default_tenant.id
 	name = "test-System-Alert-Level-High-abc"
 	level = "ALERT_HIGH"
-
 }
 
 data "avi_actiongroupconfig" "testActionGroupConfig" {
-    name= avi_actiongroupconfig.testActionGroupConfig.name
+    name= "${avi_actiongroupconfig.testActionGroupConfig.name}"
 }
 `

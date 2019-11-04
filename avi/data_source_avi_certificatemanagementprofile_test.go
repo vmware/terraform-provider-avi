@@ -30,10 +30,9 @@ resource "avi_certificatemanagementprofile" "testCertificateManagementProfile" {
 	script_path = "test script path"
 	tenant_ref = data.avi_tenant.default_tenant.id
 	name = "test-cert-test-abc"
-
 }
 
 data "avi_certificatemanagementprofile" "testCertificateManagementProfile" {
-    name= avi_certificatemanagementprofile.testCertificateManagementProfile.name
+    name= "${avi_certificatemanagementprofile.testCertificateManagementProfile.name}"
 }
 `

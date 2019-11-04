@@ -50,10 +50,9 @@ resource "avi_healthmonitor" "testHealthMonitor" {
 	}
 	type = "HEALTH_MONITOR_HTTP"
 	successful_checks = "3"
-
 }
 
 data "avi_healthmonitor" "testHealthMonitor" {
-    name= avi_healthmonitor.testHealthMonitor.name
+    name= "${avi_healthmonitor.testHealthMonitor.name}"
 }
 `
