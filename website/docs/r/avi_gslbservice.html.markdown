@@ -39,6 +39,7 @@ The following arguments are supported:
 * `min_members` - (Optional) The minimum number of members to distribute traffic to.
 * `num_dns_ip` - (Optional) Number of ip addresses of this gslb service to be returned by the dns service.
 * `pool_algorithm` - (Optional) The load balancing algorithm will pick a gslb pool within the gslb service list of available pools.
+* `resolve_cname` - (Optional) This field indicates that for a cname query, respond with resolved cnames in the additional section with a records.
 * `site_persistence_enabled` - (Optional) Enable site-persistence for the gslbservice.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant.
 * `ttl` - (Optional) Ttl value (in seconds) for records served for this gslb service by the dns service.

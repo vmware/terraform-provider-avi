@@ -23,7 +23,7 @@ resource "avi_wafpolicypsmgroup" "foo" {
 
 The following arguments are supported:
 
-* `description` - (Optional) Freetext comment about this group.
+* `description` - (Optional) Free-text comment about this group.
 * `enable` - (Optional) Enable or disable this waf rule group.
 * `hit_action` - (Optional) If a rule in this group matches the match_value pattern, this action will be executed.
 * `is_learning_group` - (Optional) This field indicates that this group is used for learning.

@@ -92,6 +92,7 @@ In addition to all arguments above, the following attributes are exported:
 * `sso_policy_ref` - The sso policy attached to the virtualservice.
 * `static_dns_records` - List of static dns records applied to this virtual service.
 * `tenant_ref` - It is a reference to an object of type tenant.
+* `test_se_datastore_level_1_ref` - Used for testing se datastore upgrade 2.0 functionality.
 * `topology_policies` - Topology policies applied on the dns traffic of the virtual service based ongslb topology algorithm.
 * `traffic_clone_profile_ref` - Server network or list of servers for cloning traffic.
 * `traffic_enabled` - Knob to enable the virtual service traffic on its assigned service engines.
