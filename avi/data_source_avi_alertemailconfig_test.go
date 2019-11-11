@@ -32,10 +32,9 @@ resource "avi_alertemailconfig" "testAlertEmailConfig" {
 	tenant_ref = data.avi_tenant.default_tenant.id
 	name = "test-aec-abc"
 	description = "test alert email"
-
 }
 
 data "avi_alertemailconfig" "testAlertEmailConfig" {
-    name= avi_alertemailconfig.testAlertEmailConfig.name
+    name= "${avi_alertemailconfig.testAlertEmailConfig.name}"
 }
 `

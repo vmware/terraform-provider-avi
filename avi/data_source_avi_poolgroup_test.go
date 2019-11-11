@@ -38,10 +38,9 @@ resource "avi_poolgroup" "testPoolGroup" {
 	tenant_ref = data.avi_tenant.default_tenant.id
 	name = "pg-test-abc"
 	implicit_priority_labels = false
-
 }
 
 data "avi_poolgroup" "testPoolGroup" {
-    name= avi_poolgroup.testPoolGroup.name
+    name= "${avi_poolgroup.testPoolGroup.name}"
 }
 `

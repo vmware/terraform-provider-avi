@@ -28,7 +28,7 @@ data "avi_wafpolicypsmgroup" "foo_wafpolicypsmgroup" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `description` - Freetext comment about this group.
+* `description` - Free-text comment about this group.
 * `enable` - Enable or disable this waf rule group.
 * `hit_action` - If a rule in this group matches the match_value pattern, this action will be executed.
 * `is_learning_group` - This field indicates that this group is used for learning.

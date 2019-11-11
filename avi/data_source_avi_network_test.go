@@ -41,10 +41,9 @@ resource "avi_network" "testNetwork" {
 	synced_from_se = true
 	dhcp_enabled = true
 	vcenter_dvs = true
-
 }
 
 data "avi_network" "testNetwork" {
-    name= avi_network.testNetwork.name
+    name= "${avi_network.testNetwork.name}"
 }
 `

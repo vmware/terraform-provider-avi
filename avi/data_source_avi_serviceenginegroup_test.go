@@ -230,10 +230,9 @@ resource "avi_serviceenginegroup" "testServiceEngineGroup" {
 	se_bandwidth_type = "SE_BANDWIDTH_UNLIMITED"
 	vs_host_redundancy = true
 	license_type = "LIC_CORES"
-
 }
 
 data "avi_serviceenginegroup" "testServiceEngineGroup" {
-    name= avi_serviceenginegroup.testServiceEngineGroup.name
+    name= "${avi_serviceenginegroup.testServiceEngineGroup.name}"
 }
 `

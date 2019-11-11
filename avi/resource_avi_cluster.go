@@ -9,7 +9,6 @@ import (
 	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform/helper/schema"
 	"log"
-	"strings"
 	"time"
 )
 
@@ -131,21 +130,7 @@ func resourceAviClusterUpdate(d *schema.ResourceData, meta interface{}) error {
 }
 
 func resourceAviClusterDelete(d *schema.ResourceData, meta interface{}) error {
-	objType := "cluster"
-	if ApiDeleteSystemDefaultCheck(d) {
-		return nil
-	}
-	client := meta.(*clients.AviClient)
-	uuid := d.Get("uuid").(string)
-	if uuid != "" {
-		path := "api/" + objType + "/" + uuid
-		err := client.AviSession.Delete(path)
-		if err != nil && !(strings.Contains(err.Error(), "404") || strings.Contains(err.Error(), "204") || strings.Contains(err.Error(), "403")) {
-			log.Println("[INFO] resourceAviClusterDelete not found")
-			return err
-		}
-		d.SetId("")
-	}
+	log.Printf("[WARNING] WE can not delete cluster.")
 	return nil
 }
 

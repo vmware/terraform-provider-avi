@@ -44,6 +44,7 @@ In addition to all arguments above, the following attributes are exported:
 * `name` - Name for the gslb service.
 * `num_dns_ip` - Number of ip addresses of this gslb service to be returned by the dns service.
 * `pool_algorithm` - The load balancing algorithm will pick a gslb pool within the gslb service list of available pools.
+* `resolve_cname` - This field indicates that for a cname query, respond with resolved cnames in the additional section with a records.
 * `site_persistence_enabled` - Enable site-persistence for the gslbservice.
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `ttl` - Ttl value (in seconds) for records served for this gslb service by the dns service.

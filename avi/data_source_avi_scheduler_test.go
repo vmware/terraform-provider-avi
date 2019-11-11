@@ -43,10 +43,9 @@ resource "avi_scheduler" "testScheduler" {
 	frequency = "1"
 	scheduler_action = "SCHEDULER_ACTION_BACKUP"
 	run_mode = "RUN_MODE_PERIODIC"
-
 }
 
 data "avi_scheduler" "testScheduler" {
-    name= avi_scheduler.testScheduler.name
+    name= "${avi_scheduler.testScheduler.name}"
 }
 `

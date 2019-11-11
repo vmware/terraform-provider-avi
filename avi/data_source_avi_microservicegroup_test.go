@@ -30,10 +30,9 @@ resource "avi_microservicegroup" "testMicroServiceGroup" {
 	tenant_ref = data.avi_tenant.default_tenant.id
 	name = "msg-test-abc"
 	service_refs = []
-
 }
 
 data "avi_microservicegroup" "testMicroServiceGroup" {
-    name= avi_microservicegroup.testMicroServiceGroup.name
+    name= "${avi_microservicegroup.testMicroServiceGroup.name}"
 }
 `

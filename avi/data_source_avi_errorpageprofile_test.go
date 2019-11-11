@@ -29,10 +29,9 @@ data "avi_tenant" "default_tenant"{
 resource "avi_errorpageprofile" "testErrorPageProfile" {
 	tenant_ref = data.avi_tenant.default_tenant.id
 	name = "test-epp-abc"
-
 }
 
 data "avi_errorpageprofile" "testErrorPageProfile" {
-    name= avi_errorpageprofile.testErrorPageProfile.name
+    name= "${avi_errorpageprofile.testErrorPageProfile.name}"
 }
 `
