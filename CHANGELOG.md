@@ -1,4 +1,17 @@
 ## 0.2.1 (Unreleased)
+FEATURES:
+- Added new resource and datasource for upgradestatussummary object.
+- Added new resource and datasource for testsedatastorelevel1 object.
+- Added new resource and datasource for testsedatastorelevel2 object.
+- Added new resource and datasource for testsedatastorelevel3 object.
+
+IMPROVEMENTS:
+- Updated terraform provider avi with latest gosdk (AV-72035)
+- Added cluster status field to cluster datasource and resource to monitor the cluster status.
+
+BUG FIXES
+- Fixed cluster deletion erroring out due to delete not allowed on cluster.
+
 ## 0.2.0 (October 01, 2019)
 FEATURES:
 - Added new resource and datasource for controllerportalregistration object.
