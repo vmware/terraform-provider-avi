@@ -5,7 +5,7 @@
  */
 package avi
 
-import "github.com/hashicorp/terraform/helper/schema"
+import "github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 
 func dataSourceAviTestSeDatastoreLevel3() *schema.Resource {
 	return &schema.Resource{
