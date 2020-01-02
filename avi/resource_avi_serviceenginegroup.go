@@ -344,6 +344,11 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  10000,
 		},
+		"max_concurrent_external_hm": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Computed: true,
+		},
 		"max_cpu_usage": {
 			Type:     schema.TypeInt,
 			Optional: true,
@@ -358,6 +363,11 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Type:     schema.TypeInt,
 			Optional: true,
 			Default:  30,
+		},
+		"max_queues_per_vnic": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  1,
 		},
 		"max_rules_per_lb": {
 			Type:     schema.TypeInt,

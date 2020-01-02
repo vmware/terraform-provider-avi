@@ -14,6 +14,11 @@ import (
 
 func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
+		"allow_admin_network_updates": {
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  false,
+		},
 		"allow_ip_forwarding": {
 			Type:     schema.TypeBool,
 			Optional: true,
@@ -143,6 +148,11 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Type:     schema.TypeInt,
 			Optional: true,
 			Default:  3,
+		},
+		"permission_scoped_shared_admin_networks": {
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  false,
 		},
 		"persistence_key_rotate_period": {
 			Type:     schema.TypeInt,

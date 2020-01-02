@@ -96,9 +96,11 @@ In addition to all arguments above, the following attributes are exported:
 * `license_tier` - Specifies the license tier which would be used.
 * `license_type` - If no license type is specified then default license enforcement for the cloud type is chosen.
 * `log_disksz` - Maximum disk capacity (in mb) to be allocated to an se.
+* `max_concurrent_external_hm` - Maximum number of external health monitors that can run concurrently in a service engine.
 * `max_cpu_usage` - When cpu usage on an se exceeds this threshold, virtual services hosted on this se may be rebalanced to other ses to reduce load.
 * `max_memory_per_mempool` - Max bytes that can be allocated in a single mempool.
 * `max_public_ips_per_lb` - Applicable to azure platform only.
+* `max_queues_per_vnic` - Maximum number of queues per vnic setting to '0' utilises all queues that are distributed across dispatcher cores.
 * `max_rules_per_lb` - Applicable to azure platform only.
 * `max_scaleout_per_vs` - Maximum number of active service engines for the virtual service.
 * `max_se` - Maximum number of services engines in this group.

@@ -23,6 +23,7 @@ resource "avi_controllerproperties" "foo" {
 
 The following arguments are supported:
 
+* `allow_admin_network_updates` - (Optional) Allow non-admin tenants to update admin vrfcontext and network objects.
 * `allow_ip_forwarding` - (Optional) Field introduced in 17.1.1.
 * `allow_unauthenticated_apis` - (Optional) Allow unauthenticated access for special apis.
 * `allow_unauthenticated_nodes` - (Optional) Boolean flag to set allow_unauthenticated_nodes.
@@ -49,6 +50,7 @@ The following arguments are supported:
 * `max_pcap_per_tenant` - (Optional) Maximum number of pcap files stored per tenant.
 * `max_seq_attach_ip_failures` - (Optional) Maximum number of consecutive attach ip failures that halts vs placement.
 * `max_seq_vnic_failures` - (Optional) Placeholder for description of property max_seq_vnic_failures of obj type controllerproperties field type integer  type int.
+* `permission_scoped_shared_admin_networks` - (Optional) Network and vrfcontext objects from the admin tenant will not be shared to non-admin tenants unless admin permissions are granted.
 * `persistence_key_rotate_period` - (Optional) Period for rotate app persistence keys job.
 * `portal_token` - (Optional) Token used for uploading tech-support to portal.
 * `process_locked_useraccounts_timeout_period` - (Optional) Period for process locked user accounts job.

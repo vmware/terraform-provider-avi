@@ -11,6 +11,10 @@ func dataSourceAviControllerProperties() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviControllerPropertiesRead,
 		Schema: map[string]*schema.Schema{
+			"allow_admin_network_updates": {
+				Type:     schema.TypeBool,
+				Computed: true,
+			},
 			"allow_ip_forwarding": {
 				Type:     schema.TypeBool,
 				Computed: true,
@@ -113,6 +117,10 @@ func dataSourceAviControllerProperties() *schema.Resource {
 			},
 			"max_seq_vnic_failures": {
 				Type:     schema.TypeInt,
+				Computed: true,
+			},
+			"permission_scoped_shared_admin_networks": {
+				Type:     schema.TypeBool,
 				Computed: true,
 			},
 			"persistence_key_rotate_period": {

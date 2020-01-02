@@ -29,6 +29,7 @@ The following arguments are supported:
 * `dhcp_enabled` - (Optional) Select the ip address management scheme for this network.
 * `exclude_discovered_subnets` - (Optional) When selected, excludes all discovered subnets in this network from consideration for virtual service placement.
 * `ip6_autocfg_enabled` - (Optional) Enable ipv6 auto configuration.
+* `labels` - (Optional) Key/value labels which can be used for object access policy permission scoping.
 * `synced_from_se` - (Optional) Boolean flag to set synced_from_se.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant.
 * `vcenter_dvs` - (Optional) Boolean flag to set vcenter_dvs.

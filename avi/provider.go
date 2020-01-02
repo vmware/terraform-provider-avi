@@ -65,6 +65,7 @@ func Provider() terraform.ResourceProvider {
 		DataSourcesMap: map[string]*schema.Resource{
 			"avi_useraccountprofile":            dataSourceAviUserAccountProfile(),
 			"avi_role":                          dataSourceAviRole(),
+			"avi_objectaccesspolicy":            dataSourceAviObjectAccessPolicy(),
 			"avi_natpolicy":                     dataSourceAviNatPolicy(),
 			"avi_image":                         dataSourceAviImage(),
 			"avi_ipaddrgroup":                   dataSourceAviIpAddrGroup(),
@@ -149,6 +150,7 @@ func Provider() terraform.ResourceProvider {
 		ResourcesMap: map[string]*schema.Resource{
 			"avi_useraccountprofile":            resourceAviUserAccountProfile(),
 			"avi_role":                          resourceAviRole(),
+			"avi_objectaccesspolicy":            resourceAviObjectAccessPolicy(),
 			"avi_natpolicy":                     resourceAviNatPolicy(),
 			"avi_image":                         resourceAviImage(),
 			"avi_ipaddrgroup":                   resourceAviIpAddrGroup(),

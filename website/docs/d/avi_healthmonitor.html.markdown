@@ -29,6 +29,7 @@ data "avi_healthmonitor" "foo_healthmonitor" {
 In addition to all arguments above, the following attributes are exported:
 
 * `description` - User defined description for the object.
+* `disable_quickstart` - During addition of a server or healthmonitors or during bootup, avi performs sequential health checks rather than waiting for send-interval to kick in, to mark the server up as soon as possible.
 * `dns_monitor` - Dict settings for healthmonitor.
 * `external_monitor` - Dict settings for healthmonitor.
 * `failed_checks` - Number of continuous failed health checks before the server is marked down.
