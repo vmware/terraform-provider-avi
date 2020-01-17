@@ -282,6 +282,10 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeInt,
 				Computed: true,
 			},
+			"max_concurrent_external_hm": {
+				Type:     schema.TypeInt,
+				Computed: true,
+			},
 			"max_cpu_usage": {
 				Type:     schema.TypeInt,
 				Computed: true,
@@ -291,6 +295,10 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Computed: true,
 			},
 			"max_public_ips_per_lb": {
+				Type:     schema.TypeInt,
+				Computed: true,
+			},
+			"max_queues_per_vnic": {
 				Type:     schema.TypeInt,
 				Computed: true,
 			},

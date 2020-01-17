@@ -85,6 +85,7 @@ The following arguments are supported:
 * `sso_policy_ref` - (Optional) The sso policy attached to the virtualservice.
 * `static_dns_records` - (Optional) List of static dns records applied to this virtual service.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant.
+* `test_se_datastore_level_1_ref` - (Optional) Used for testing se datastore upgrade 2.0 functionality.
 * `topology_policies` - (Optional) Topology policies applied on the dns traffic of the virtual service based ongslb topology algorithm.
 * `traffic_clone_profile_ref` - (Optional) Server network or list of servers for cloning traffic.
 * `traffic_enabled` - (Optional) Knob to enable the virtual service traffic on its assigned service engines.

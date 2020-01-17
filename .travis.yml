@@ -4,6 +4,12 @@ language: go
 go:
 - 1.12.6
 
+before_install:
+  - mkdir -p $HOME/gopath/src/github.com/terraform-providers/terraform-provider-avi
+  - rsync -az ${TRAVIS_BUILD_DIR}/ $HOME/gopath/src/github.com/terraform-providers/terraform-provider-avi
+  - export TRAVIS_BUILD_DIR=$HOME/gopath/src/github.com/terraform-providers/terraform-provider-avi
+  - cd $HOME/gopath/src/github.com/terraform-providers/terraform-provider-avi
+
 install:
 # This script is used by the Travis build to install a cookie for
 # go.googlesource.com so rate limits are higher when using `go get` to fetch
@@ -29,7 +35,8 @@ matrix:
 notifications:
   email:
     recipients:
-      - grastogi@avinetworks.com
+      - rastogiga@vmware.com
       - chaitanya.deshpande@avinetworks.com
       - shrikant.patil@avinetworks.com
+      - rohan.suryawanshi@avinetworks.com
     on_failure: always

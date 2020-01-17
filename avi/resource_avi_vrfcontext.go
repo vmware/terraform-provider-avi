@@ -47,6 +47,11 @@ func ResourceVrfContextSchema() map[string]*schema.Schema {
 			Computed: true,
 			Elem:     ResourceInternalGatewayMonitorSchema(),
 		},
+		"labels": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceKeyValueSchema(),
+		},
 		"name": {
 			Type:     schema.TypeString,
 			Required: true,

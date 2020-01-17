@@ -26,7 +26,6 @@ The following arguments are supported:
 * `name` - (Required) Name of the object.
 * `accelerated_networking` - (Optional) Enable accelerated networking option for azure se.
 * `active_standby` - (Optional) Service engines in active/standby mode for ha failover.
-* `advertise_backend_networks` - (Optional) Advertise reach-ability of backend server networks via adc through bgp for default gateway feature.
 * `aggressive_failure_detection` - (Optional) Enable aggressive failover configuration for ha.
 * `algo` - (Optional) In compact placement, virtual services are placed on existing ses until max_vs_per_se limit is reached.
 * `allow_burst` - (Optional) Allow ses to be created using burst license.
@@ -66,15 +65,11 @@ The following arguments are supported:
 * `enable_gratarp_permanent` - (Optional) Enable gratarp for vip_ip.
 * `enable_hsm_priming` - (Optional) (this is a beta feature).
 * `enable_multi_lb` - (Optional) Applicable only for azure cloud with basic sku lb.
-* `enable_routing` - (Optional) Enable routing for this serviceenginegroup .
-* `enable_vip_on_all_interfaces` - (Optional) Enable vip on all interfaces of se.
-* `enable_vmac` - (Optional) Use virtual mac address for interfaces on which floating interface ips are placed.
+* `enable_pcap_tx_ring` - (Optional) Enable tx ring support in pcap mode of operation.
 * `ephemeral_portrange_end` - (Optional) End local ephemeral port number for outbound connections.
 * `ephemeral_portrange_start` - (Optional) Start local ephemeral port number for outbound connections.
 * `extra_config_multiplier` - (Optional) Multiplier for extra config to support large vs/pool config.
 * `extra_shared_config_memory` - (Optional) Extra config memory to support large geo db configuration.
-* `floating_intf_ip` - (Optional) If serviceenginegroup is configured for legacy 1+1 active standby ha mode, floating ip's will be advertised only by the active se in the pair.
-* `floating_intf_ip_se_2` - (Optional) If serviceenginegroup is configured for legacy 1+1 active standby ha mode, floating ip's will be advertised only by the active se in the pair.
 * `flow_table_new_syn_max_entries` - (Optional) Maximum number of flow table entries that have not completed tcp three-way handshake yet.
 * `free_list_size` - (Optional) Number of entries in the free list.
 * `gratarp_permanent_periodicity` - (Optional) Gratarp periodicity for vip-ip.
@@ -95,9 +90,11 @@ The following arguments are supported:
 * `license_tier` - (Optional) Specifies the license tier which would be used.
 * `license_type` - (Optional) If no license type is specified then default license enforcement for the cloud type is chosen.
 * `log_disksz` - (Optional) Maximum disk capacity (in mb) to be allocated to an se.
+* `max_concurrent_external_hm` - (Optional) Maximum number of external health monitors that can run concurrently in a service engine.
 * `max_cpu_usage` - (Optional) When cpu usage on an se exceeds this threshold, virtual services hosted on this se may be rebalanced to other ses to reduce load.
 * `max_memory_per_mempool` - (Optional) Max bytes that can be allocated in a single mempool.
 * `max_public_ips_per_lb` - (Optional) Applicable to azure platform only.
+* `max_queues_per_vnic` - (Optional) Maximum number of queues per vnic setting to '0' utilises all queues that are distributed across dispatcher cores.
 * `max_rules_per_lb` - (Optional) Applicable to azure platform only.
 * `max_scaleout_per_vs` - (Optional) Maximum number of active service engines for the virtual service.
 * `max_se` - (Optional) Maximum number of services engines in this group.
@@ -135,16 +132,21 @@ The following arguments are supported:
 * `se_flow_probe_retries` - (Optional) Flow probe retry count if no replies are received.requires se reboot.
 * `se_flow_probe_retry_timer` - (Optional) Timeout in milliseconds for flow probe retries.requires se reboot.
 * `se_ipc_udp_port` - (Optional) Udp port for se_dp ipc in docker bridge mode.
+* `se_kni_burst_factor` - (Optional) Knob to control burst size used in polling kni interfaces for traffic sent from kni towards dpdk application also controls burst size used by kni module to read pkts punted from dpdk application towards kni helps minimize drops in non-vip traffic in either pathfactor of (0-2) multiplies/divides burst size by 2^n.
 * `se_lro` - (Optional) Enable or disable large receive optimization for vnics.
 * `se_name_prefix` - (Optional) Prefix to use for virtual machine name of service engines.
 * `se_pcap_lookahead` - (Optional) Enables lookahead mode of packet receive in pcap mode.
 * `se_pcap_pkt_count` - (Optional) Max number of packets the pcap interface can hold and if the value is 0 the optimum value will be chosen.
 * `se_pcap_pkt_sz` - (Optional) Max size of each packet in the pcap interface.
+* `se_pcap_qdisc_bypass` - (Optional) Bypass the kernel's traffic control layer, to deliver packets directly to the driver.
 * `se_pcap_reinit_frequency` - (Optional) Frequency in seconds at which periodically a pcap reinit check is triggered.
 * `se_pcap_reinit_threshold` - (Optional) Threshold for input packet receive errors in pcap mode exceeding which a pcap reinit is triggered.
 * `se_probe_port` - (Optional) Tcp port on se where echo service will be run.
 * `se_remote_punt_udp_port` - (Optional) Udp port for punted packets in docker bridge mode.
-* `se_routing` - (Optional) Enable routing via service engine datapath.
+* `se_rum_sampling_nav_interval` - (Optional) Minimum time to wait on server between taking sampleswhen sampling the navigation timing data from the end user client.
+* `se_rum_sampling_nav_percent` - (Optional) Percentage of navigation timing data from the end user client, used for sampling to get client insights.
+* `se_rum_sampling_res_interval` - (Optional) Minimum time to wait on server between taking sampleswhen sampling the resource timing data from the end user client.
+* `se_rum_sampling_res_percent` - (Optional) Percentage of resource timing data from the end user client used for sampling to get client insight.
 * `se_sb_dedicated_core` - (Optional) Sideband traffic will be handled by a dedicated core.requires se reboot.
 * `se_sb_threads` - (Optional) Number of sideband threads per se.requires se reboot.
 * `se_thread_multiplier` - (Optional) Multiplier for se threads based on vcpu.

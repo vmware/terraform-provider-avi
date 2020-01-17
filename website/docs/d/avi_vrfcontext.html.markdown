@@ -36,6 +36,7 @@ In addition to all arguments above, the following attributes are exported:
 * `description` - User defined description for the object.
 * `gateway_mon` - Configure ping based heartbeat check for gateway in service engines of vrf.
 * `internal_gateway_monitor` - Configure ping based heartbeat check for all default gateways in service engines of vrf.
+* `labels` - Key/value labels which can be used for object access policy permission scoping.
 * `name` - Name of the object.
 * `static_routes` - List of list.
 * `system_default` - Boolean flag to set system_default.

@@ -32,7 +32,6 @@ In addition to all arguments above, the following attributes are exported:
 
 * `accelerated_networking` - Enable accelerated networking option for azure se.
 * `active_standby` - Service engines in active/standby mode for ha failover.
-* `advertise_backend_networks` - Advertise reach-ability of backend server networks via adc through bgp for default gateway feature.
 * `aggressive_failure_detection` - Enable aggressive failover configuration for ha.
 * `algo` - In compact placement, virtual services are placed on existing ses until max_vs_per_se limit is reached.
 * `allow_burst` - Allow ses to be created using burst license.
@@ -72,15 +71,11 @@ In addition to all arguments above, the following attributes are exported:
 * `enable_gratarp_permanent` - Enable gratarp for vip_ip.
 * `enable_hsm_priming` - (this is a beta feature).
 * `enable_multi_lb` - Applicable only for azure cloud with basic sku lb.
-* `enable_routing` - Enable routing for this serviceenginegroup .
-* `enable_vip_on_all_interfaces` - Enable vip on all interfaces of se.
-* `enable_vmac` - Use virtual mac address for interfaces on which floating interface ips are placed.
+* `enable_pcap_tx_ring` - Enable tx ring support in pcap mode of operation.
 * `ephemeral_portrange_end` - End local ephemeral port number for outbound connections.
 * `ephemeral_portrange_start` - Start local ephemeral port number for outbound connections.
 * `extra_config_multiplier` - Multiplier for extra config to support large vs/pool config.
 * `extra_shared_config_memory` - Extra config memory to support large geo db configuration.
-* `floating_intf_ip` - If serviceenginegroup is configured for legacy 1+1 active standby ha mode, floating ip's will be advertised only by the active se in the pair.
-* `floating_intf_ip_se_2` - If serviceenginegroup is configured for legacy 1+1 active standby ha mode, floating ip's will be advertised only by the active se in the pair.
 * `flow_table_new_syn_max_entries` - Maximum number of flow table entries that have not completed tcp three-way handshake yet.
 * `free_list_size` - Number of entries in the free list.
 * `gratarp_permanent_periodicity` - Gratarp periodicity for vip-ip.
@@ -101,9 +96,11 @@ In addition to all arguments above, the following attributes are exported:
 * `license_tier` - Specifies the license tier which would be used.
 * `license_type` - If no license type is specified then default license enforcement for the cloud type is chosen.
 * `log_disksz` - Maximum disk capacity (in mb) to be allocated to an se.
+* `max_concurrent_external_hm` - Maximum number of external health monitors that can run concurrently in a service engine.
 * `max_cpu_usage` - When cpu usage on an se exceeds this threshold, virtual services hosted on this se may be rebalanced to other ses to reduce load.
 * `max_memory_per_mempool` - Max bytes that can be allocated in a single mempool.
 * `max_public_ips_per_lb` - Applicable to azure platform only.
+* `max_queues_per_vnic` - Maximum number of queues per vnic setting to '0' utilises all queues that are distributed across dispatcher cores.
 * `max_rules_per_lb` - Applicable to azure platform only.
 * `max_scaleout_per_vs` - Maximum number of active service engines for the virtual service.
 * `max_se` - Maximum number of services engines in this group.
@@ -142,16 +139,21 @@ In addition to all arguments above, the following attributes are exported:
 * `se_flow_probe_retries` - Flow probe retry count if no replies are received.requires se reboot.
 * `se_flow_probe_retry_timer` - Timeout in milliseconds for flow probe retries.requires se reboot.
 * `se_ipc_udp_port` - Udp port for se_dp ipc in docker bridge mode.
+* `se_kni_burst_factor` - Knob to control burst size used in polling kni interfaces for traffic sent from kni towards dpdk application also controls burst size used by kni module to read pkts punted from dpdk application towards kni helps minimize drops in non-vip traffic in either pathfactor of (0-2) multiplies/divides burst size by 2^n.
 * `se_lro` - Enable or disable large receive optimization for vnics.
 * `se_name_prefix` - Prefix to use for virtual machine name of service engines.
 * `se_pcap_lookahead` - Enables lookahead mode of packet receive in pcap mode.
 * `se_pcap_pkt_count` - Max number of packets the pcap interface can hold and if the value is 0 the optimum value will be chosen.
 * `se_pcap_pkt_sz` - Max size of each packet in the pcap interface.
+* `se_pcap_qdisc_bypass` - Bypass the kernel's traffic control layer, to deliver packets directly to the driver.
 * `se_pcap_reinit_frequency` - Frequency in seconds at which periodically a pcap reinit check is triggered.
 * `se_pcap_reinit_threshold` - Threshold for input packet receive errors in pcap mode exceeding which a pcap reinit is triggered.
 * `se_probe_port` - Tcp port on se where echo service will be run.
 * `se_remote_punt_udp_port` - Udp port for punted packets in docker bridge mode.
-* `se_routing` - Enable routing via service engine datapath.
+* `se_rum_sampling_nav_interval` - Minimum time to wait on server between taking sampleswhen sampling the navigation timing data from the end user client.
+* `se_rum_sampling_nav_percent` - Percentage of navigation timing data from the end user client, used for sampling to get client insights.
+* `se_rum_sampling_res_interval` - Minimum time to wait on server between taking sampleswhen sampling the resource timing data from the end user client.
+* `se_rum_sampling_res_percent` - Percentage of resource timing data from the end user client used for sampling to get client insight.
 * `se_sb_dedicated_core` - Sideband traffic will be handled by a dedicated core.requires se reboot.
 * `se_sb_threads` - Number of sideband threads per se.requires se reboot.
 * `se_thread_multiplier` - Multiplier for se threads based on vcpu.

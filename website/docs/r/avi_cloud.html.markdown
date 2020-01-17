@@ -34,6 +34,7 @@ The following arguments are supported:
 * `custom_tags` - (Optional) Custom tags for all avi created resources in the cloud infrastructure.
 * `dhcp_enabled` - (Optional) Select the ip address management scheme.
 * `dns_provider_ref` - (Optional) Dns profile for the cloud.
+* `dns_resolution_on_se` - (Optional) By default, pool member fqdns are resolved on the controller.
 * `docker_configuration` - (Optional) Dict settings for cloud.
 * `east_west_dns_provider_ref` - (Optional) Dns profile for east-west services.
 * `east_west_ipam_provider_ref` - (Optional) Ipam profile for east-west services.

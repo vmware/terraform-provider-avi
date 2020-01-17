@@ -19,6 +19,11 @@ func ResourceHealthMonitorSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"disable_quickstart": {
+			Type:     schema.TypeBool,
+			Optional: true,
+			Computed: true,
+		},
 		"dns_monitor": {
 			Type:     schema.TypeSet,
 			Optional: true,
