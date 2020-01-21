@@ -1,4 +1,5 @@
-## 0.2.1 (Unreleased)
+## 0.2.2 (Unreleased)
+## 0.2.1 (November 20, 2019)
 FEATURES:
 - Added new resource and datasource for upgradestatussummary object.
 - Added new resource and datasource for testsedatastorelevel1 object.

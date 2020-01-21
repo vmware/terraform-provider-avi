@@ -15,6 +15,10 @@ func dataSourceAviHealthMonitor() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"disable_quickstart": {
+				Type:     schema.TypeBool,
+				Computed: true,
+			},
 			"dns_monitor": {
 				Type:     schema.TypeSet,
 				Computed: true,

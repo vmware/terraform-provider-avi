@@ -84,7 +84,6 @@ resource "avi_applicationprofile" "testApplicationProfile" {
 			mime_types_group_refs = [data.avi_stringgroup.system_cacheablestringgroup.id]
 		}
 		max_rps_unknown_uri = "0"
-		ssl_everywhere_enabled = true
 		spdy_fwd_proxy_mode = false
 		allow_dots_in_header_name = false
 		client_header_timeout = "10000"

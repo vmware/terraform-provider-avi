@@ -90,9 +90,11 @@ The following arguments are supported:
 * `license_tier` - (Optional) Specifies the license tier which would be used.
 * `license_type` - (Optional) If no license type is specified then default license enforcement for the cloud type is chosen.
 * `log_disksz` - (Optional) Maximum disk capacity (in mb) to be allocated to an se.
+* `max_concurrent_external_hm` - (Optional) Maximum number of external health monitors that can run concurrently in a service engine.
 * `max_cpu_usage` - (Optional) When cpu usage on an se exceeds this threshold, virtual services hosted on this se may be rebalanced to other ses to reduce load.
 * `max_memory_per_mempool` - (Optional) Max bytes that can be allocated in a single mempool.
 * `max_public_ips_per_lb` - (Optional) Applicable to azure platform only.
+* `max_queues_per_vnic` - (Optional) Maximum number of queues per vnic setting to '0' utilises all queues that are distributed across dispatcher cores.
 * `max_rules_per_lb` - (Optional) Applicable to azure platform only.
 * `max_scaleout_per_vs` - (Optional) Maximum number of active service engines for the virtual service.
 * `max_se` - (Optional) Maximum number of services engines in this group.
