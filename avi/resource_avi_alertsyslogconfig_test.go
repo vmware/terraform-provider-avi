@@ -6,8 +6,8 @@ import (
 	"testing"
 
 	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/resource"
-	"github.com/hashicorp/terraform-plugin-sdk/terraform"
+	"github.com/hashicorp/terraform/helper/resource"
+	"github.com/hashicorp/terraform/terraform"
 )
 
 func TestAVIAlertSyslogConfigBasic(t *testing.T) {

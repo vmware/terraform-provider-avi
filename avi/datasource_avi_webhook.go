@@ -5,7 +5,7 @@
  */
 package avi
 
-import "github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+import "github.com/hashicorp/terraform/helper/schema"
 
 func dataSourceAviWebhook() *schema.Resource {
 	return &schema.Resource{

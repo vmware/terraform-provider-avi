@@ -5,7 +5,7 @@
  */
 package avi
 
-import "github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+import "github.com/hashicorp/terraform/helper/schema"
 
 func dataSourceAviSeProperties() *schema.Resource {
 	return &schema.Resource{
