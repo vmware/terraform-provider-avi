@@ -62,7 +62,7 @@ func SchemaToAviData(d interface{}, s map[string]*schema.Schema) (interface{}, e
 		m := make(map[string]interface{})
 		r := d.(*schema.ResourceData)
 		for k, v := range s {
-			if data, ok := r.GetOkExists(k); ok {
+			if data, ok := r.GetOk(k); ok {
 				if obj, err := SchemaToAviData(data, nil); err == nil && obj != nil && obj != "" {
 					m[k] = obj
 				} else if err != nil {
