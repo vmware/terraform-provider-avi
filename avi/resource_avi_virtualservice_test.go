@@ -2,15 +2,16 @@ package avi
 
 import (
 	"fmt"
-	"strings"
-	"testing"
-
 	"github.com/avinetworks/sdk/go/clients"
+	"github.com/avinetworks/sdk/go/models"
 	"github.com/hashicorp/terraform/helper/resource"
 	"github.com/hashicorp/terraform/terraform"
+	"strings"
+	"testing"
 )
 
 func TestAVIVirtualServiceBasic(t *testing.T) {
+	var vs models.VirtualService
 	resource.Test(t, resource.TestCase{
 		PreCheck:     func() { testAccPreCheck(t) },
 		Providers:    testAccProviders,
@@ -19,14 +20,20 @@ func TestAVIVirtualServiceBasic(t *testing.T) {
 			{
 				Config: testAccAVIVirtualServiceConfig,
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckAVIVirtualServiceExists("avi_virtualservice.testvs"),
+					testAccCheckAVIVirtualServiceExists("avi_virtualservice.testvs", &vs),
 					resource.TestCheckResourceAttr(
 						"avi_virtualservice.testvs", "name", "vs-test")),
 			},
 			{
 				Config: testAccUpdatedAVIVirtualServiceConfig,
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckAVIVirtualServiceExists("avi_virtualservice.testvs"),
+					testAccCheckAVIVirtualServiceExists("avi_virtualservice.testvs", &vs),
+					testAccCheckAVIVirtualServiceValuesUpdated(&vs, "enabled", false),
+					testAccCheckAVIVirtualServiceValuesUpdated(&vs, "name", "vs-abc"),
+					testAccCheckAVIVirtualServiceValuesUpdated(&vs, "vip.0.enabled", true),
+					testAccCheckAVIVirtualServiceValuesUpdated(&vs, "vip.0.vip_id", "0"),
+					testAccCheckAVIVirtualServiceValuesUpdated(&vs, "min_pools_up", 0),
+					testAccCheckAVIVirtualServiceValuesUpdated(&vs, "max_cps_per_client", 10),
 					resource.TestCheckResourceAttr(
 						"avi_virtualservice.testvs", "name", "vs-abc")),
 			},
@@ -35,10 +42,10 @@ func TestAVIVirtualServiceBasic(t *testing.T) {
 
 }
 
-func testAccCheckAVIVirtualServiceExists(resourcename string) resource.TestCheckFunc {
+func testAccCheckAVIVirtualServiceExists(resourcename string, vs *models.VirtualService) resource.TestCheckFunc {
 	return func(s *terraform.State) error {
 		conn := testAccProvider.Meta().(*clients.AviClient).AviSession
-		var obj interface{}
+		var obj *models.VirtualService
 		rs, ok := s.RootModule().Resources[resourcename]
 		if !ok {
 			return fmt.Errorf("Not found: %s", resourcename)
@@ -53,9 +60,34 @@ func testAccCheckAVIVirtualServiceExists(resourcename string) resource.TestCheck
 		if err != nil {
 			return err
 		}
+		*vs = *obj
 		return nil
 	}
 
+}
+
+func testAccCheckAVIVirtualServiceValuesUpdated(vs *models.VirtualService, key string, val interface{}) resource.TestCheckFunc {
+	return func(s *terraform.State) error {
+		if key == "enabled" && *vs.Enabled != val {
+			return fmt.Errorf("bad enabled, expected \"%v\", got: %#v", val, *vs.Enabled)
+		}
+		if key == "name" && *vs.Name != val {
+			return fmt.Errorf("bad name, expected \"%v\", got: %#v", val, *vs.Name)
+		}
+		if key == "vip.0.enabled" && *vs.Vip[0].Enabled != val {
+			return fmt.Errorf("bad vip enabled, expected \"%v\", got: %#v", val, *vs.Vip[0].Enabled)
+		}
+		if key == "vip.0.vip_id" && *vs.Vip[0].VipID != val {
+			return fmt.Errorf("bad vip_id, expected \"%v\", got: %#v", val, *vs.Vip[0].VipID)
+		}
+		if key == "min_pools_up" && int(*vs.MinPoolsUp) != val {
+			return fmt.Errorf("bad min_pools_up, expected \"%v\", got: %v", val, *vs.MinPoolsUp)
+		}
+		if key == "max_cps_per_client" && int(*vs.MaxCpsPerClient) != val {
+			return fmt.Errorf("bad max_cps_per_client, expected \"%v\", got: %v", val, *vs.MaxCpsPerClient)
+		}
+		return nil
+	}
 }
 
 func testAccCheckAVIVirtualServiceDestroy(s *terraform.State) error {
@@ -154,6 +186,7 @@ resource "avi_virtualservice" "testvs" {
 	  enable_ssl= true
 	  port_range_end= 80
 	}
+	min_pools_up= 2
 	se_group_ref= data.avi_serviceenginegroup.se_group.id
 	analytics_profile_ref= data.avi_analyticsprofile.system_analytics_profile.id
 	ssl_key_and_certificate_refs= [data.avi_sslkeyandcertificate.system_default_cert.id]
@@ -216,6 +249,7 @@ resource "avi_vsvip" "test_vsvip" {
 
 resource "avi_virtualservice" "testvs" {
 	name= "vs-abc"
+	enabled= false
 	tenant_ref= data.avi_tenant.default_tenant.id
 	cloud_ref= data.avi_cloud.default_cloud.id
 	application_profile_ref= data.avi_applicationprofile.system_https_profile.id
@@ -234,6 +268,8 @@ resource "avi_virtualservice" "testvs" {
 	  enable_ssl= true
 	  port_range_end= 80
 	}
+	min_pools_up= 0
+	max_cps_per_client= 10
 	se_group_ref= data.avi_serviceenginegroup.se_group.id
 	analytics_profile_ref= data.avi_analyticsprofile.system_analytics_profile.id
 	ssl_key_and_certificate_refs= [data.avi_sslkeyandcertificate.system_default_cert.id]
