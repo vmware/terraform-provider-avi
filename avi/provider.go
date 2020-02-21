@@ -223,7 +223,7 @@ func providerConfigure(d *schema.ResourceData) (interface{}, error) {
 		Password:   d.Get("avi_password").(string),
 		Controller: d.Get("avi_controller").(string),
 		Tenant:     "admin",
-		Version:    "18.2.2",
+		Version:    "18.2.8",
 		AuthToken:  d.Get("avi_authtoken").(string),
 		Timeout:    time.Duration(time.Duration(d.Get("avi_api_timeout").(int)) * time.Second),
 	}

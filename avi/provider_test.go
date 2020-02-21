@@ -87,8 +87,6 @@ func testAccPreCheck(t *testing.T) {
 	var timeout time.Duration
 	if tm, err := strconv.Atoi(os.Getenv("AVI_API_TIMEOUT")); err == nil {
 		timeout = time.Duration(time.Duration(int(tm)) * time.Second)
-	} else {
-		t.Fatalf("AVI_API_TIMEOUT must be numeric value to set timeout for acceptance test")
 	}
 
 	config := Credentials{
@@ -116,7 +114,7 @@ func testAccPreCheck(t *testing.T) {
 		config.Tenant = "admin"
 	}
 	if config.Version == "" {
-		config.Version = "18.2.1"
+		config.Version = "18.2.8"
 	}
 
 	_, err := clients.NewAviClient(
