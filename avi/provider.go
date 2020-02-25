@@ -272,7 +272,8 @@ func providerConfigure(d *schema.ResourceData) (interface{}, error) {
 		session.SetTenant(config.Tenant),
 		session.SetVersion(config.Version),
 		session.SetAuthToken(config.AuthToken),
-		session.SetInsecure, session.SetTimeout(config.Timeout))
+		session.SetInsecure, session.SetTimeout(config.Timeout),
+		session.SetLazyAuthentication(true))
 
 	log.Printf("Avi Client created for user %s tenant %s version %s\n",
 		config.Username, config.Tenant, config.Version)
