@@ -64,12 +64,12 @@ resource "avi_applicationpersistenceprofile" "test_applicationpersistenceprofile
 }
 
 resource "avi_vsvip" "test_vsvip" {
-  name = "vip-42"
+  name = "terraform-vip"
   vip {
     vip_id = "0"
     ip_address {
       type = "V4"
-      addr = "10.90.64.100"
+      addr = var.avi_terraform_vs_vip
     }
   }
   tenant_ref = data.avi_tenant.default_tenant.id
@@ -77,7 +77,7 @@ resource "avi_vsvip" "test_vsvip" {
 
 resource "avi_virtualservice" "test_vs" {
   name     = "terraform-vs"
-  pool_ref = avi_pool.terraform-pool2.id
+  pool_group_ref = avi_poolgroup.terraform-pg-1.id
 
   #pool_ref= "${avi_pool.testpool.id}"
   tenant_ref = data.avi_tenant.default_tenant.id
@@ -99,8 +99,8 @@ resource "avi_healthmonitor" "test_hm_1" {
   tenant_ref = data.avi_tenant.default_tenant.id
 }
 
-resource "avi_pool" "testpool" {
-  name                                = "terraform-simple-pool"
+resource "avi_pool" "terraform-pool-1" {
+  name                                = "terraform-pool-1"
   health_monitor_refs                 = [avi_healthmonitor.test_hm_1.id]
   tenant_ref                          = data.avi_tenant.default_tenant.id
   cloud_ref                           = data.avi_cloud.default_cloud.id
@@ -108,7 +108,7 @@ resource "avi_pool" "testpool" {
   servers {
     ip {
       type = "V4"
-      addr = "10.90.64.66"
+      addr = var.avi_test_server_p11
     }
     port = 8080
   }
@@ -117,10 +117,8 @@ resource "avi_pool" "testpool" {
   }
 }
 
-resource "avi_pool" "terraform-pool2" {
-  name = "terraform-pool2"
-
-  //health_monitor_refs= ["${avi_healthmonitor.test_hm_1.id}"]
+resource "avi_pool" "terraform-pool-2" {
+  name = "terraform-pool-2"
   tenant_ref                          = data.avi_tenant.default_tenant.id
   cloud_ref                           = data.avi_cloud.default_cloud.id
   application_persistence_profile_ref = avi_applicationpersistenceprofile.test_applicationpersistenceprofile.id
@@ -130,31 +128,48 @@ resource "avi_pool" "terraform-pool2" {
   ignore_servers = true
 }
 
+
+resource "avi_poolgroup" "terraform-pg-1" {
+  name = "terraform-pg-1"
+  tenant_ref                          = data.avi_tenant.default_tenant.id
+  cloud_ref                           = data.avi_cloud.default_cloud.id
+  members {
+    pool_ref = avi_pool.terraform-pool-1.id
+    ratio = 100
+    deployment_state = "IN_SERVICE"
+  }
+  members {
+    pool_ref = avi_pool.terraform-pool-2.id
+    ratio = 0
+    deployment_state = "OUT_OF_SERVICE"
+  }
+}
+
 resource "avi_server" "test_server_p21" {
-  ip       = "10.90.64.111"
+  ip       = var.avi_test_server_p21
   port     = "80"
-  pool_ref = avi_pool.terraform-pool2.id
+  pool_ref = avi_pool.terraform-pool-2.id
   hostname = "foo"
 }
 
 resource "avi_server" "test_server_p22" {
-  ip       = "10.90.64.112"
+  ip       = var.avi_test_server_p22
   port     = "80"
-  pool_ref = avi_pool.terraform-pool2.id
+  pool_ref = avi_pool.terraform-pool-2.id
   hostname = "bar1"
 }
 
-resource "avi_server" "test_server_p23" {
-  ip       = "10.90.64.113"
-  port     = "80"
-  pool_ref = avi_pool.terraform-pool2.id
-  hostname = "goo"
-}
+#resource "avi_server" "test_server_p23" {
+#ip       = var.avi_test_server_p23
+#  port     = "80"
+#  pool_ref = avi_pool.terraform-pool-2.id
+#  hostname = "goo"
+#}
 
 resource "avi_server" "test_server" {
-  ip       = "10.90.64.111"
+  ip       = var.avi_test_server_p12
   port     = "80"
-  pool_ref = avi_pool.testpool.id
-  hostname = "10.90.64.111"
+  pool_ref = avi_pool.terraform-pool-1.id
+  hostname = var.avi_test_server_p12
 }
 
