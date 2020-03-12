@@ -307,6 +307,10 @@ func ResourceAviServerRead(d *schema.ResourceData, meta interface{}) error {
 			d.Set("vm_ref", pserver.VMRef)
 		}
 		// Add more fields to read.
+	} else if err != nil {
+		d.SetId("")
+		log.Printf("[ERROR] ResourceAviServerRead in reading object %v\n", err)
+		return nil
 	}
 	return err
 }
