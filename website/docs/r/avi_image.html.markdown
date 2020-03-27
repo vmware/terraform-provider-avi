@@ -24,12 +24,15 @@ resource "avi_image" "foo" {
 The following arguments are supported:
 
 * `controller_info` - (Optional) Controller package details.
+* `controller_patch_uuid` - (Optional) It references the controller-patch associated with the uber image.
 * `migrations` - (Optional) This field describes the api migration related information.
 * `name` - (Optional) Name of the image.
 * `se_info` - (Optional) Se package details.
+* `se_patch_uuid` - (Optional) It references the service engine patch associated with the uber image.
 * `status` - (Optional) Status to check if the image is present.
 * `tenant_ref` - (Optional) Tenant that this object belongs to.
 * `type` - (Optional) Type of the image patch/system.
+* `uber_bundle` - (Optional) Status to check if the image is an uber bundle.
 
 
 ### Timeouts
