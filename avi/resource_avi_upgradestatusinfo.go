@@ -70,6 +70,11 @@ func ResourceUpgradeStatusInfoSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"patch_list": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourcePatchDataSchema(),
+		},
 		"patch_version": {
 			Type:     schema.TypeString,
 			Optional: true,
@@ -85,6 +90,11 @@ func ResourceUpgradeStatusInfoSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"previous_patch_list": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourcePatchDataSchema(),
+		},
 		"previous_patch_version": {
 			Type:     schema.TypeString,
 			Optional: true,
@@ -94,6 +104,11 @@ func ResourceUpgradeStatusInfoSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
+		},
+		"progress": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  0,
 		},
 		"se_upgrade_events": {
 			Type:     schema.TypeList,
