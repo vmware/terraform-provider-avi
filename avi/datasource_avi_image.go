@@ -16,6 +16,10 @@ func dataSourceAviImage() *schema.Resource {
 				Computed: true,
 				Elem:     ResourcePackageDetailsSchema(),
 			},
+			"controller_patch_uuid": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"migrations": {
 				Type:     schema.TypeSet,
 				Computed: true,
@@ -31,6 +35,10 @@ func dataSourceAviImage() *schema.Resource {
 				Computed: true,
 				Elem:     ResourcePackageDetailsSchema(),
 			},
+			"se_patch_uuid": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"status": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -42,6 +50,10 @@ func dataSourceAviImage() *schema.Resource {
 			},
 			"type": {
 				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"uber_bundle": {
+				Type:     schema.TypeBool,
 				Computed: true,
 			},
 			"uuid": {
