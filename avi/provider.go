@@ -6,10 +6,8 @@
 package avi
 
 import (
-	"fmt"
 	"github.com/avinetworks/sdk/go/clients"
 	"github.com/avinetworks/sdk/go/session"
-	"github.com/hashicorp/go-multierror"
 	"github.com/hashicorp/terraform/helper/schema"
 	"github.com/hashicorp/terraform/terraform"
 	"log"
@@ -82,10 +80,10 @@ func Provider() terraform.ResourceProvider {
 			"avi_l4policyset":                   dataSourceAviL4PolicySet(),
 			"avi_scheduler":                     dataSourceAviScheduler(),
 			"avi_backupconfiguration":           dataSourceAviBackupConfiguration(),
+			"avi_tenant":                        dataSourceAviTenant(),
 			"avi_serviceenginegroup":            dataSourceAviServiceEngineGroup(),
 			"avi_networkservice":                dataSourceAviNetworkService(),
 			"avi_dnspolicy":                     dataSourceAviDnsPolicy(),
-			"avi_tenant":                        dataSourceAviTenant(),
 			"avi_hardwaresecuritymodulegroup":   dataSourceAviHardwareSecurityModuleGroup(),
 			"avi_upgradestatussummary":          dataSourceAviUpgradeStatusSummary(),
 			"avi_upgradestatusinfo":             dataSourceAviUpgradeStatusInfo(),
@@ -118,7 +116,7 @@ func Provider() terraform.ResourceProvider {
 			"avi_errorpageprofile":              dataSourceAviErrorPageProfile(),
 			"avi_customerportalinfo":            dataSourceAviCustomerPortalInfo(),
 			"avi_controllerproperties":          dataSourceAviControllerProperties(),
-			"avi_applicationprofile":            dataSourceAviApplicationProfile(),
+			"avi_healthmonitor":                 dataSourceAviHealthMonitor(),
 			"avi_virtualservice":                dataSourceAviVirtualService(),
 			"avi_vsvip":                         dataSourceAviVsVip(),
 			"avi_analyticsprofile":              dataSourceAviAnalyticsProfile(),
@@ -141,7 +139,7 @@ func Provider() terraform.ResourceProvider {
 			"avi_network":                       dataSourceAviNetwork(),
 			"avi_serverautoscalepolicy":         dataSourceAviServerAutoScalePolicy(),
 			"avi_autoscalelaunchconfig":         dataSourceAviAutoScaleLaunchConfig(),
-			"avi_healthmonitor":                 dataSourceAviHealthMonitor(),
+			"avi_applicationprofile":            dataSourceAviApplicationProfile(),
 			"avi_httppolicyset":                 dataSourceAviHTTPPolicySet(),
 			"avi_serviceengine":                 dataSourceAviServiceEngine(),
 			"avi_fileservice":                   dataSourceAviFileService(),
@@ -167,10 +165,10 @@ func Provider() terraform.ResourceProvider {
 			"avi_l4policyset":                   resourceAviL4PolicySet(),
 			"avi_scheduler":                     resourceAviScheduler(),
 			"avi_backupconfiguration":           resourceAviBackupConfiguration(),
+			"avi_tenant":                        resourceAviTenant(),
 			"avi_serviceenginegroup":            resourceAviServiceEngineGroup(),
 			"avi_networkservice":                resourceAviNetworkService(),
 			"avi_dnspolicy":                     resourceAviDnsPolicy(),
-			"avi_tenant":                        resourceAviTenant(),
 			"avi_hardwaresecuritymodulegroup":   resourceAviHardwareSecurityModuleGroup(),
 			"avi_upgradestatussummary":          resourceAviUpgradeStatusSummary(),
 			"avi_upgradestatusinfo":             resourceAviUpgradeStatusInfo(),
@@ -203,7 +201,7 @@ func Provider() terraform.ResourceProvider {
 			"avi_errorpageprofile":              resourceAviErrorPageProfile(),
 			"avi_customerportalinfo":            resourceAviCustomerPortalInfo(),
 			"avi_controllerproperties":          resourceAviControllerProperties(),
-			"avi_applicationprofile":            resourceAviApplicationProfile(),
+			"avi_healthmonitor":                 resourceAviHealthMonitor(),
 			"avi_virtualservice":                resourceAviVirtualService(),
 			"avi_vsvip":                         resourceAviVsVip(),
 			"avi_analyticsprofile":              resourceAviAnalyticsProfile(),
@@ -226,7 +224,7 @@ func Provider() terraform.ResourceProvider {
 			"avi_network":                       resourceAviNetwork(),
 			"avi_serverautoscalepolicy":         resourceAviServerAutoScalePolicy(),
 			"avi_autoscalelaunchconfig":         resourceAviAutoScaleLaunchConfig(),
-			"avi_healthmonitor":                 resourceAviHealthMonitor(),
+			"avi_applicationprofile":            resourceAviApplicationProfile(),
 			"avi_httppolicyset":                 resourceAviHTTPPolicySet(),
 			"avi_serviceengine":                 resourceAviServiceEngine(),
 			"avi_useraccount":                   resourceAviUserAccount(),
@@ -262,10 +260,6 @@ func providerConfigure(d *schema.ResourceData) (interface{}, error) {
 		config.Timeout = time.Duration(time.Duration(timeout.(int)) * time.Second)
 	}
 
-	if err := config.validate(); err != nil {
-		return nil, err
-	}
-
 	aviClient, err := clients.NewAviClient(
 		config.Controller, config.Username,
 		session.SetPassword(config.Password),
@@ -289,17 +283,4 @@ type Credentials struct {
 	Version    string
 	AuthToken  string
 	Timeout    time.Duration
-}
-
-func (c *Credentials) validate() error {
-	var err *multierror.Error
-
-	if c.Controller == "" {
-		err = multierror.Append(err, fmt.Errorf("Avi Controller must be provided"))
-	}
-
-	if c.Password == "" && c.AuthToken == "" {
-		err = multierror.Append(err, fmt.Errorf("Avi Controller password or authtoken must be provided"))
-	}
-	return err.ErrorOrNil()
 }
