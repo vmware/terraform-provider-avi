@@ -14,6 +14,11 @@ import (
 
 func ResourceHealthMonitorSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
+		"allow_duplicate_monitors": {
+			Type:     schema.TypeBool,
+			Optional: true,
+			Computed: true,
+		},
 		"description": {
 			Type:     schema.TypeString,
 			Optional: true,
