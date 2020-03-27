@@ -20,6 +20,10 @@ func dataSourceAviStringGroup() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceKeyValueSchema(),
 			},
+			"longest_match": {
+				Type:     schema.TypeBool,
+				Computed: true,
+			},
 			"name": {
 				Type:     schema.TypeString,
 				Optional: true,
