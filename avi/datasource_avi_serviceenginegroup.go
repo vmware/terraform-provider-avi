@@ -94,6 +94,14 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeInt,
 				Computed: true,
 			},
+			"core_shm_app_cache": {
+				Type:     schema.TypeBool,
+				Computed: true,
+			},
+			"core_shm_app_learning": {
+				Type:     schema.TypeBool,
+				Computed: true,
+			},
 			"cpu_reserve": {
 				Type:     schema.TypeBool,
 				Computed: true,
@@ -393,6 +401,10 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeInt,
 				Computed: true,
 			},
+			"pcap_tx_mode": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"per_app": {
 				Type:     schema.TypeBool,
 				Computed: true,
@@ -465,6 +477,10 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 			},
 			"se_lro": {
 				Type:     schema.TypeBool,
+				Computed: true,
+			},
+			"se_mtu": {
+				Type:     schema.TypeInt,
 				Computed: true,
 			},
 			"se_name_prefix": {
