@@ -114,16 +114,6 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  50,
 		},
-		"core_shm_app_cache": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
-		},
-		"core_shm_app_learning": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
-		},
 		"cpu_reserve": {
 			Type:     schema.TypeBool,
 			Optional: true,
@@ -232,7 +222,7 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 		"enable_pcap_tx_ring": {
 			Type:     schema.TypeBool,
 			Optional: true,
-			Computed: true,
+			Default:  true,
 		},
 		"ephemeral_portrange_end": {
 			Type:     schema.TypeInt,
@@ -489,11 +479,6 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  0,
 		},
-		"pcap_tx_mode": {
-			Type:     schema.TypeString,
-			Optional: true,
-			Default:  "PCAP_TX_AUTO",
-		},
 		"per_app": {
 			Type:     schema.TypeBool,
 			Optional: true,
@@ -585,11 +570,6 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  true,
-		},
-		"se_mtu": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Computed: true,
 		},
 		"se_name_prefix": {
 			Type:     schema.TypeString,

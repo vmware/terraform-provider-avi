@@ -131,13 +131,14 @@ resource "avi_applicationprofile" "testApplicationProfile" {
 		keepalive_timeout = "30000"
 		ssl_client_certificate_mode = "SSL_CLIENT_CERTIFICATE_NONE"
 		http_to_https = true
+		spdy_enabled = false
 		respond_with_100_continue = true
 		client_body_timeout = "30000"
 		httponly_enabled = true
 		hsts_max_age = "365"
-		max_bad_rps_cip = "0"
-		server_side_redirect_to_https = true
 		client_max_header_size = "12"
+		server_side_redirect_to_https = true
+		max_bad_rps_cip = "0"
 		client_max_request_size = "48"
 		cache_config {
 			min_object_size = "100"
@@ -154,6 +155,7 @@ resource "avi_applicationprofile" "testApplicationProfile" {
 			mime_types_group_refs = [data.avi_stringgroup.system_cacheablestringgroup.id]
 		}
 		max_rps_unknown_uri = "0"
+		spdy_fwd_proxy_mode = false
 		allow_dots_in_header_name = false
 		client_header_timeout = "10000"
 		post_accept_timeout = "30000"
@@ -206,13 +208,14 @@ resource "avi_applicationprofile" "testApplicationProfile" {
 		keepalive_timeout = "30000"
 		ssl_client_certificate_mode = "SSL_CLIENT_CERTIFICATE_NONE"
 		http_to_https = true
+		spdy_enabled = false
 		respond_with_100_continue = true
 		client_body_timeout = "30000"
 		httponly_enabled = true
 		hsts_max_age = "365"
-		max_bad_rps_cip = "0"
-		server_side_redirect_to_https = true
 		client_max_header_size = "12"
+		server_side_redirect_to_https = true
+		max_bad_rps_cip = "0"
 		client_max_request_size = "48"
 		cache_config {
 			min_object_size = "100"
@@ -229,6 +232,7 @@ resource "avi_applicationprofile" "testApplicationProfile" {
 			mime_types_group_refs = [data.avi_stringgroup.system_cacheablestringgroup.id]
 		}
 		max_rps_unknown_uri = "0"
+		spdy_fwd_proxy_mode = false
 		allow_dots_in_header_name = false
 		client_header_timeout = "10000"
 		post_accept_timeout = "30000"

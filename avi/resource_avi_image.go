@@ -20,11 +20,6 @@ func ResourceImageSchema() map[string]*schema.Schema {
 			Computed: true,
 			Elem:     ResourcePackageDetailsSchema(),
 		},
-		"controller_patch_uuid": {
-			Type:     schema.TypeString,
-			Optional: true,
-			Computed: true,
-		},
 		"migrations": {
 			Type:     schema.TypeSet,
 			Optional: true,
@@ -42,11 +37,6 @@ func ResourceImageSchema() map[string]*schema.Schema {
 			Computed: true,
 			Elem:     ResourcePackageDetailsSchema(),
 		},
-		"se_patch_uuid": {
-			Type:     schema.TypeString,
-			Optional: true,
-			Computed: true,
-		},
 		"status": {
 			Type:     schema.TypeString,
 			Optional: true,
@@ -61,11 +51,6 @@ func ResourceImageSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
-		},
-		"uber_bundle": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
 		},
 		"uuid": {
 			Type:     schema.TypeString,

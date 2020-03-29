@@ -29,14 +29,11 @@ data "avi_image" "foo_image" {
 In addition to all arguments above, the following attributes are exported:
 
 * `controller_info` - Controller package details.
-* `controller_patch_uuid` - It references the controller-patch associated with the uber image.
 * `migrations` - This field describes the api migration related information.
 * `name` - Name of the image.
 * `se_info` - Se package details.
-* `se_patch_uuid` - It references the service engine patch associated with the uber image.
 * `status` - Status to check if the image is present.
 * `tenant_ref` - Tenant that this object belongs to.
 * `type` - Type of the image patch/system.
-* `uber_bundle` - Status to check if the image is an uber bundle.
 * `uuid` - Uuid of the image.
 

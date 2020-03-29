@@ -57,11 +57,6 @@ func dataSourceAviUpgradeStatusInfo() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"patch_list": {
-				Type:     schema.TypeList,
-				Computed: true,
-				Elem:     ResourcePatchDataSchema(),
-			},
 			"patch_version": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -74,21 +69,12 @@ func dataSourceAviUpgradeStatusInfo() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"previous_patch_list": {
-				Type:     schema.TypeList,
-				Computed: true,
-				Elem:     ResourcePatchDataSchema(),
-			},
 			"previous_patch_version": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"previous_version": {
 				Type:     schema.TypeString,
-				Computed: true,
-			},
-			"progress": {
-				Type:     schema.TypeInt,
 				Computed: true,
 			},
 			"se_upgrade_events": {
