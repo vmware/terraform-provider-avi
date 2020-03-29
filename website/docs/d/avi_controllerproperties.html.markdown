@@ -70,7 +70,7 @@ In addition to all arguments above, the following attributes are exported:
 * `secure_channel_cleanup_timeout` - Period for secure channel cleanup job.
 * `secure_channel_controller_token_timeout` - Placeholder for description of property secure_channel_controller_token_timeout of obj type controllerproperties field type integer  type int.
 * `secure_channel_se_token_timeout` - Placeholder for description of property secure_channel_se_token_timeout of obj type controllerproperties field type integer  type int.
-* `seupgrade_copy_pool_size` - This parameter defines the number of simultaneous se image downloads in a segroup.
+* `seupgrade_copy_pool_size` - Pool of scp connections used in copy task during serviceenginegroup upgrade.
 * `seupgrade_fabric_pool_size` - Pool size used for all fabric commands during se upgrade.
 * `seupgrade_segroup_min_dead_timeout` - Time to wait before marking segroup upgrade as stuck.
 * `shared_ssl_certificates` - Ssl certificates in the admin tenant can be used in non-admin tenants.

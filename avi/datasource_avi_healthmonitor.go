@@ -11,10 +11,6 @@ func dataSourceAviHealthMonitor() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviHealthMonitorRead,
 		Schema: map[string]*schema.Schema{
-			"allow_duplicate_monitors": {
-				Type:     schema.TypeBool,
-				Computed: true,
-			},
 			"description": {
 				Type:     schema.TypeString,
 				Computed: true,

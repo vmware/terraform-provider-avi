@@ -92,7 +92,6 @@ func resourceAviUserAccountUpdate(d *schema.ResourceData, meta interface{}) erro
 			d.Set("full_name", full_name)
 			d.Set("email", email)
 			d.Set("local", local)
-			client.AviSession.ResetPassword(d.Get("password").(string))
 		}
 	}
 	return err

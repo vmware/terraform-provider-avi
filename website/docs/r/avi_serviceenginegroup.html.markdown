@@ -44,8 +44,6 @@ The following arguments are supported:
 * `cloud_ref` - (Optional) It is a reference to an object of type cloud.
 * `config_debugs_on_all_cores` - (Optional) Enable config debugs on all cores of se.
 * `connection_memory_percentage` - (Optional) Percentage of memory for connection state.
-* `core_shm_app_cache` - (Optional) Include shared memory for app cache in core file.requires se reboot.
-* `core_shm_app_learning` - (Optional) Include shared memory for app learning in core file.requires se reboot.
 * `cpu_reserve` - (Optional) Boolean flag to set cpu_reserve.
 * `cpu_socket_affinity` - (Optional) Allocate all the cpu cores for the service engine virtual machines  on the same cpu socket.
 * `custom_securitygroups_data` - (Optional) Custom security groups to be associated with data vnics for se instances in openstack and aws clouds.
@@ -62,7 +60,7 @@ The following arguments are supported:
 * `disable_tso` - (Optional) Disable tcp segmentation offload (tso) in dpdk poll-mode driver packet transmit path.
 * `disk_per_se` - (Optional) Amount of disk space for each of the service engine virtual machines.
 * `distribute_load_active_standby` - (Optional) Use both the active and standby service engines for virtual service placement in the legacy active standby ha mode.
-* `distribute_queues` - (Optional) Distributes queue ownership among cores so multiple cores handle dispatcher duties.
+* `distribute_queues` - (Optional) Distributes queue ownership among cores so multiple cores handle dispatcher duties.requires se reboot.
 * `distribute_vnics` - (Optional) Distributes vnic ownership among cores so multiple cores handle dispatcher duties.requires se reboot.
 * `enable_gratarp_permanent` - (Optional) Enable gratarp for vip_ip.
 * `enable_hsm_priming` - (Optional) (this is a beta feature).
@@ -118,7 +116,6 @@ The following arguments are supported:
 * `openstack_mgmt_network_name` - (Optional) Avi management network name.
 * `openstack_mgmt_network_uuid` - (Optional) Management network uuid.
 * `os_reserved_memory` - (Optional) Amount of extra memory to be reserved for use by the operating system on a service engine.
-* `pcap_tx_mode` - (Optional) Determines the pcap transmit mode of operation.
 * `per_app` - (Optional) Per-app se mode is designed for deploying dedicated load balancers per app (vs).
 * `placement_mode` - (Optional) If placement mode is 'auto', virtual services are automatically placed on service engines.
 * `realtime_se_metrics` - (Optional) Enable or disable real time se metrics.
@@ -137,7 +134,6 @@ The following arguments are supported:
 * `se_ipc_udp_port` - (Optional) Udp port for se_dp ipc in docker bridge mode.
 * `se_kni_burst_factor` - (Optional) Knob to control burst size used in polling kni interfaces for traffic sent from kni towards dpdk application also controls burst size used by kni module to read pkts punted from dpdk application towards kni helps minimize drops in non-vip traffic in either pathfactor of (0-2) multiplies/divides burst size by 2^n.
 * `se_lro` - (Optional) Enable or disable large receive optimization for vnics.
-* `se_mtu` - (Optional) Mtu for the vnics of ses in the se group.
 * `se_name_prefix` - (Optional) Prefix to use for virtual machine name of service engines.
 * `se_pcap_lookahead` - (Optional) Enables lookahead mode of packet receive in pcap mode.
 * `se_pcap_pkt_count` - (Optional) Max number of packets the pcap interface can hold and if the value is 0 the optimum value will be chosen.

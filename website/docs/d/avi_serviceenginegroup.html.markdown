@@ -50,8 +50,6 @@ In addition to all arguments above, the following attributes are exported:
 * `cloud_ref` - It is a reference to an object of type cloud.
 * `config_debugs_on_all_cores` - Enable config debugs on all cores of se.
 * `connection_memory_percentage` - Percentage of memory for connection state.
-* `core_shm_app_cache` - Include shared memory for app cache in core file.requires se reboot.
-* `core_shm_app_learning` - Include shared memory for app learning in core file.requires se reboot.
 * `cpu_reserve` - Boolean flag to set cpu_reserve.
 * `cpu_socket_affinity` - Allocate all the cpu cores for the service engine virtual machines  on the same cpu socket.
 * `custom_securitygroups_data` - Custom security groups to be associated with data vnics for se instances in openstack and aws clouds.
@@ -68,7 +66,7 @@ In addition to all arguments above, the following attributes are exported:
 * `disable_tso` - Disable tcp segmentation offload (tso) in dpdk poll-mode driver packet transmit path.
 * `disk_per_se` - Amount of disk space for each of the service engine virtual machines.
 * `distribute_load_active_standby` - Use both the active and standby service engines for virtual service placement in the legacy active standby ha mode.
-* `distribute_queues` - Distributes queue ownership among cores so multiple cores handle dispatcher duties.
+* `distribute_queues` - Distributes queue ownership among cores so multiple cores handle dispatcher duties.requires se reboot.
 * `distribute_vnics` - Distributes vnic ownership among cores so multiple cores handle dispatcher duties.requires se reboot.
 * `enable_gratarp_permanent` - Enable gratarp for vip_ip.
 * `enable_hsm_priming` - (this is a beta feature).
@@ -125,7 +123,6 @@ In addition to all arguments above, the following attributes are exported:
 * `openstack_mgmt_network_name` - Avi management network name.
 * `openstack_mgmt_network_uuid` - Management network uuid.
 * `os_reserved_memory` - Amount of extra memory to be reserved for use by the operating system on a service engine.
-* `pcap_tx_mode` - Determines the pcap transmit mode of operation.
 * `per_app` - Per-app se mode is designed for deploying dedicated load balancers per app (vs).
 * `placement_mode` - If placement mode is 'auto', virtual services are automatically placed on service engines.
 * `realtime_se_metrics` - Enable or disable real time se metrics.
@@ -144,7 +141,6 @@ In addition to all arguments above, the following attributes are exported:
 * `se_ipc_udp_port` - Udp port for se_dp ipc in docker bridge mode.
 * `se_kni_burst_factor` - Knob to control burst size used in polling kni interfaces for traffic sent from kni towards dpdk application also controls burst size used by kni module to read pkts punted from dpdk application towards kni helps minimize drops in non-vip traffic in either pathfactor of (0-2) multiplies/divides burst size by 2^n.
 * `se_lro` - Enable or disable large receive optimization for vnics.
-* `se_mtu` - Mtu for the vnics of ses in the se group.
 * `se_name_prefix` - Prefix to use for virtual machine name of service engines.
 * `se_pcap_lookahead` - Enables lookahead mode of packet receive in pcap mode.
 * `se_pcap_pkt_count` - Max number of packets the pcap interface can hold and if the value is 0 the optimum value will be chosen.
