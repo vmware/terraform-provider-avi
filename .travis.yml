@@ -2,7 +2,7 @@ dist: trusty
 sudo: false
 language: go
 go:
-- 1.12.6
+- 1.13.3
 
 before_install:
   - mkdir -p $HOME/gopath/src/github.com/terraform-providers/terraform-provider-avi
