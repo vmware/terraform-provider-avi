@@ -36,8 +36,8 @@ matrix:
 notifications:
   email:
     recipients:
-      - rastogiga@vmware.com
-      - chaitanya.deshpande@avinetworks.com
-      - shrikant.patil@avinetworks.com
+      #- rastogiga@vmware.com
+      #- chaitanya.deshpande@avinetworks.com
+      #- shrikant.patil@avinetworks.com
       - rohan.suryawanshi@avinetworks.com
     on_failure: always
