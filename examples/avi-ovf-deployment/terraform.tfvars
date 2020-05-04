@@ -1,0 +1,12 @@
+vsphere_datacenter = ""
+resource_pool = ""
+vm_datastore = ""
+vm_network = ""
+vm_template = "Avi-Controller-v20.1.1"
+vm_folder = "/folder/path"
+vm_name = "Avi-ctrl"
+content_library = ""
+vsphare_user = ""
+vsphare_password = ""
+vsphere_server = ""
+
