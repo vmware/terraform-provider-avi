@@ -16,7 +16,6 @@ func TestAVIDataSourceUserAccount(t *testing.T) {
 				Check: resource.ComposeTestCheckFunc(
 					resource.TestCheckResourceAttr(
 						"avi_useraccount.avi_user", "username", "admin"),
-
 				),
 			},
 		},
@@ -27,16 +26,16 @@ func TestAVIDataSourceUserAccount(t *testing.T) {
 func testAccAVIDSUserAccountConfig() string {
 	var password = os.Getenv("AVI_PASSWORD")
 	var new_password = password + "123"
-	var useraccount =  `
+	var useraccount = `
 resource "avi_useraccount" "avi_user" {
   username     = "admin"
   old_password = "` + password + `"
-  password     = "` + new_password +`"
+  password     = "` + new_password + `"
 }
 resource "avi_useraccount" "avi_user1" {
   username     = "admin"
   old_password = "` + new_password + `"
-  password     = "` + password +`"
+  password     = "` + password + `"
 }
 `
 	return useraccount
