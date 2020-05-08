@@ -34,3 +34,7 @@ output "controller_3" {
   value = module.vmware_deploy.vsphere_virtual_machine_vm3
 }
 
+output "avi_cluster_output" {
+  value = module.vmware_deploy.avi_cluster_output
+}
+
