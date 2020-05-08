@@ -1,9 +1,9 @@
-variable "vsphere_datacenter" {
+variable "vm_datacenter" {
   type    = string
   default = ""
 }
 
-variable "vsphere_cluster" {
+variable "vm_resource_pool" {
   type    = string
   default = ""
 }
@@ -30,5 +30,21 @@ variable "vm_folder" {
 
 variable "vm_template" {
   type    = string
+  default = ""
+}
+
+// Avi Provider variables
+variable "avi_username" {
+  type = string
+  default = ""
+}
+
+variable "avi_password" {
+  type = string
+  default = ""
+}
+
+variable "avi_new_password" {
+  type = string
   default = ""
 }
