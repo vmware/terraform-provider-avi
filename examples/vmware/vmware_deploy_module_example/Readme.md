@@ -9,19 +9,10 @@ Usage
 Deploy Ova or Ovf as a template on the Vcenter and run the terraform modules by using following commands 
 ```
 terraform init
+terraform plan
+terraform apply
 ```
-To Deploy controller vm on the Vcenter
-```
-terraform apply -target=module.vmware_deploy
-```
-To Set the password for Controller
-```
-terraform apply -target=module.avi_user
-```
-To Create the cluster
-```
-terraform apply -target=module.avi_cluster
-```
+
 How to Deploy Ova or Ovf template on the Vcenter
 -----------------------------------------------------
 Deploy the Ova/Ovf Template on VCenter Using following command 

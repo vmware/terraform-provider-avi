@@ -1,9 +1,31 @@
+
+// Avi Provider variables
+variable "avi_username" {
+  type = string
+  default = ""
+}
+
+variable "avi_password" {
+  type = string
+  default = ""
+}
+
+variable "avi_new_password" {
+  type = string
+  default = ""
+}
+
 variable "vm_datacenter" {
   type    = string
   default = ""
 }
 
 variable "vm_resource_pool" {
+  type    = string
+  default = ""
+}
+
+variable "content_library" {
   type    = string
   default = ""
 }
@@ -33,18 +55,18 @@ variable "vm_template" {
   default = ""
 }
 
-// Avi Provider variables
-variable "avi_username" {
+variable "vsphere_user" {
   type = string
   default = ""
 }
 
-variable "avi_password" {
+variable "vsphere_password" {
   type = string
   default = ""
 }
 
-variable "avi_new_password" {
+variable "vsphere_server" {
   type = string
   default = ""
 }
+
