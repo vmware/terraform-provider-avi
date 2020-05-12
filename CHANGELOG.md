@@ -1,4 +1,12 @@
 ## 0.2.2 (Unreleased)
+FEATURES:
+- Lazy Authentication support. The provider uses lazy authentication so Avi controllers can be created in a plan and it allows password reset.
+- Added examples for VMware Horizon and VMware vsphere
+
+BUG FIXES:
+AV-79347: Terraform: Unable to reconcile state of resources modified outside Terraform
+AV-76349: Avi terraform enable=false is ignored.
+
 ## 0.2.1 (November 20, 2019)
 FEATURES:
 - Added new resource and datasource for upgradestatussummary object.
