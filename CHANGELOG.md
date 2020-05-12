@@ -4,8 +4,8 @@ FEATURES:
 - Added examples for VMware Horizon and VMware vsphere
 
 BUG FIXES:
-AV-79347: Terraform: Unable to reconcile state of resources modified outside Terraform
-AV-76349: Avi terraform enable=false is ignored.
+- AV-79347: Terraform: Unable to reconcile state of resources modified outside Terraform
+- AV-76349: Avi terraform enable=false is ignored.
 
 ## 0.2.1 (November 20, 2019)
 FEATURES:
