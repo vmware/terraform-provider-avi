@@ -1,3 +1,20 @@
+
+// Avi Provider variables
+variable "avi_username" {
+  type = string
+  default = "admin"
+}
+
+variable "avi_password" {
+  type = string
+  default = ""
+}
+
+variable "avi_new_password" {
+  type = string
+  default = ""
+}
+
 variable "vm_datacenter" {
   type    = string
   default = ""
@@ -25,26 +42,26 @@ variable "vm_network" {
 
 variable "vm_folder" {
   type    = string
-  default = ""
+  default = "/Folder/Path"
 }
 
 variable "vm_template" {
   type    = string
-  default = ""
+  default = "Avi-ctrl-template"
 }
 
-// Avi Provider variables
-variable "avi_username" {
+variable "vsphere_user" {
   type = string
   default = ""
 }
 
-variable "avi_password" {
+variable "vsphere_password" {
   type = string
   default = ""
 }
 
-variable "avi_new_password" {
+variable "vsphere_server" {
   type = string
   default = ""
 }
+
