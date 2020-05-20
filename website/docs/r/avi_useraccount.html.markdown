@@ -43,5 +43,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-    * `uuid` - argument_description.
+    * `uuid` - Unique object identifier of the object.
     
