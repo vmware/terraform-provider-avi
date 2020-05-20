@@ -37,13 +37,11 @@ The following arguments are supported:
 
 The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
 
-* `create` - (Defaults to 40 mins) Used when creating the AMI
-* `delete` - (Defaults to 90 mins) Used when deregistering the AMI
+* `update` - (Defaults to 40 mins) Used when updating the AMI
 
 ## Attributes Reference
 
 In addition to all arguments above, the following attributes are exported:
 
     * `uuid` - argument_description.
-
-                                                                                                                                                                                                                                                        * `uuid` - argument_description.
+    
