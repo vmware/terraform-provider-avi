@@ -18,7 +18,7 @@ import (
 	"strings"
 )
 
-var post_not_allowed = [...]string{"systemconfiguration", "cluster"}
+var post_not_allowed = [...]string{"systemconfiguration", "cluster", "seproperties"}
 
 // It takes the terraform plan data and schema and converts it into Avi JSON
 // It recursively resolves the data type of the terraform schema and converts scalar to scalar, Set to dictionary,
