@@ -7,15 +7,15 @@ package models
 // swagger:model RateLimiterEventDetails
 type RateLimiterEventDetails struct {
 
-	// Rate limiter error message. Field introduced in 20.1.1.
+	// Rate limiter error message. Field introduced in 18.2.9.
 	ErrorMessage *string `json:"error_message,omitempty"`
 
-	// Name of the rate limiter. Field introduced in 20.1.1.
+	// Name of the rate limiter. Field introduced in 18.2.9.
 	RlResourceName *string `json:"rl_resource_name,omitempty"`
 
-	// Rate limiter type. Field introduced in 20.1.1.
+	// Rate limiter type. Field introduced in 18.2.9.
 	RlResourceType *string `json:"rl_resource_type,omitempty"`
 
-	// Status. Field introduced in 20.1.1.
+	// Status. Field introduced in 18.2.9.
 	Status *string `json:"status,omitempty"`
 }
