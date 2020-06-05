@@ -53,6 +53,11 @@ func ResourceVSDataScriptSetSchema() map[string]*schema.Schema {
 			Optional: true,
 			Elem:     &schema.Schema{Type: schema.TypeString},
 		},
+		"rate_limiters": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceRateLimiterSchema(),
+		},
 		"string_group_refs": {
 			Type:     schema.TypeList,
 			Optional: true,

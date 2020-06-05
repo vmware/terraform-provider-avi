@@ -36,6 +36,7 @@ In addition to all arguments above, the following attributes are exported:
 * `pool_group_refs` - Uuid of pool groups that could be referred by vsdatascriptset objects.
 * `pool_refs` - Uuid of pools that could be referred by vsdatascriptset objects.
 * `protocol_parser_refs` - List of protocol parsers that could be referred by vsdatascriptset objects.
+* `rate_limiters` - The rate limit definitions needed for this datascript.
 * `string_group_refs` - Uuid of string groups that could be referred by vsdatascriptset objects.
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `uuid` - Uuid of the virtual service datascript collection.

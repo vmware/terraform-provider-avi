@@ -84,6 +84,11 @@ func ResourceCloudSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"enable_vip_on_all_interfaces": {
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  false,
+		},
 		"enable_vip_static_routes": {
 			Type:     schema.TypeBool,
 			Optional: true,

@@ -41,6 +41,7 @@ In addition to all arguments above, the following attributes are exported:
 * `docker_configuration` - Dict settings for cloud.
 * `east_west_dns_provider_ref` - Dns profile for east-west services.
 * `east_west_ipam_provider_ref` - Ipam profile for east-west services.
+* `enable_vip_on_all_interfaces` - Enable vip on all data interfaces for the cloud.
 * `enable_vip_static_routes` - Use static routes for vip side network resolution during virtualservice placement.
 * `gcp_configuration` - Google cloud platform configuration.
 * `ip6_autocfg_enabled` - Enable ipv6 auto configuration.
