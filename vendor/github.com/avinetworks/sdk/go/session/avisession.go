@@ -7,7 +7,6 @@ import (
 	"errors"
 	"flag"
 	"fmt"
-	"github.com/golang/glog"
 	"io"
 	"io/ioutil"
 	"math"
@@ -18,6 +17,8 @@ import (
 	"reflect"
 	"strings"
 	"time"
+
+	"github.com/golang/glog"
 )
 
 type AviResult struct {
@@ -86,6 +87,9 @@ type AviSession struct {
 	// optional callback function passed in by the client which generates django auth token
 	refreshAuthToken func() string
 
+	// optional callback function V2 passed in by the client which generates django auth token with error handling
+	refreshAuthTokenV2 func() (string, error)
+
 	// insecure specifies whether we should perform strict certificate validation
 	// for connections to the Avi Controller.
 	insecure bool
@@ -128,7 +132,7 @@ type AviSession struct {
 const DEFAULT_AVI_VERSION = "17.1.2"
 const DEFAULT_API_TIMEOUT = time.Duration(60 * time.Second)
 const DEFAULT_API_TENANT = "admin"
-const DEFAULT_MAX_API_RETRIES  = 3
+const DEFAULT_MAX_API_RETRIES = 3
 const DEFAULT_API_RETRY_INTERVAL = 500
 
 //NewAviSession initiates a session to AviController and returns it
@@ -200,8 +204,15 @@ func (avisess *AviSession) initiateSession() error {
 
 	// If refresh auth token is provided, use callback function provided
 	if avisess.isTokenAuth() {
-		if avisess.refreshAuthToken != nil {
+		switch {
+		case avisess.refreshAuthToken != nil:
 			avisess.setAuthToken(avisess.refreshAuthToken())
+		case avisess.refreshAuthTokenV2 != nil:
+			if token, err := avisess.refreshAuthTokenV2(); err != nil {
+				return err
+			} else {
+				avisess.setAuthToken(token)
+			}
 		}
 	}
 
@@ -285,6 +296,19 @@ func (avisess *AviSession) setRefreshAuthTokenCallback(f func() string) error {
 	return nil
 }
 
+// SetAuthToken V2 - Use this for NewAviSession option argument for setting authToken with option to return error found
+// during token generation
+func SetRefreshAuthTokenCallbackV2(f func() (string, error)) func(*AviSession) error {
+	return func(sess *AviSession) error {
+		return sess.setRefreshAuthTokenCallbackV2(f)
+	}
+}
+
+func (avisess *AviSession) setRefreshAuthTokenCallbackV2(f func() (string, error)) error {
+	avisess.refreshAuthTokenV2 = f
+	return nil
+}
+
 // SetTenant - Use this for NewAviSession option argument for setting tenant
 func SetTenant(tenant string) func(*AviSession) error {
 	return func(sess *AviSession) error {
@@ -328,7 +352,7 @@ func (avisess *AviSession) setTimeout(timeout time.Duration) error {
 }
 
 func (avisess *AviSession) isTokenAuth() bool {
-	return avisess.authToken != "" || avisess.refreshAuthToken != nil
+	return avisess.authToken != "" || avisess.refreshAuthToken != nil || avisess.refreshAuthTokenV2 != nil
 }
 
 // SetTimeout -
@@ -434,11 +458,18 @@ func (avisess *AviSession) collectCookiesFromResp(resp *http.Response) {
 	}
 }
 
+// RestRequest exports restRequest from the SDK
+// Returns http.Response for accessing the whole http Response struct including headers and response body
+func (avisess *AviSession) RestRequest(verb string, uri string, payload interface{}, tenant string, lastError error,
+	retryNum ...int) (*http.Response, error) {
+	return avisess.restRequest(verb, uri, payload, tenant, nil)
+}
+
 // restRequest makes a REST request to the Avi Controller's REST API.
-// Returns a byte[] if successful
+// Returns http.Response if successful
+// Note: The caller of the function is responsible for doing resp.Body.Close()
 func (avisess *AviSession) restRequest(verb string, uri string, payload interface{}, tenant string, lastError error,
-	retryNum ...int) ([]byte, error) {
-	var result []byte
+	retryNum ...int) (*http.Response, error) {
 	url := avisess.prefix + uri
 
 	// If optional retryNum arg is provided, then count which retry number this is
@@ -458,14 +489,14 @@ func (avisess *AviSession) restRequest(verb string, uri string, payload interfac
 	if payload != nil {
 		jsonStr, err := json.Marshal(payload)
 		if err != nil {
-			return result, AviError{Verb: verb, Url: url, err: err}
+			return nil, AviError{Verb: verb, Url: url, err: err}
 		}
 		payloadIO = bytes.NewBuffer(jsonStr)
 	}
 
 	req, errorResult := avisess.newAviRequest(verb, url, payloadIO, tenant)
 	if errorResult.err != nil {
-		return result, errorResult
+		return nil, errorResult
 	}
 
 	retryReq := false
@@ -478,7 +509,7 @@ func (avisess *AviSession) restRequest(verb string, uri string, payload interfac
 			errorResult.err = fmt.Errorf("client.Do uri %v failed: %v", uri, err)
 			dump, err := httputil.DumpRequestOut(req, true)
 			debug(dump, err)
-			return result, errorResult
+			return nil, errorResult
 		}
 	}
 
@@ -511,7 +542,14 @@ func (avisess *AviSession) restRequest(verb string, uri string, payload interfac
 		return avisess.restRequest(verb, uri, payload, tenant, errorResult, retry+1)
 	}
 
+	return resp, nil
+}
+
+// fetchBody fetches the response body from the http.Response returned from restRequest
+func (avisess *AviSession) fetchBody(verb, uri string, resp *http.Response) (result []byte, err error) {
 	defer resp.Body.Close()
+	url := avisess.prefix + uri
+	errorResult := AviError{HttpStatusCode: resp.StatusCode, Verb: verb, Url: url}
 
 	if resp.StatusCode == 204 {
 		// no content in the response
@@ -755,7 +793,7 @@ func convertAviResponseToMapInterface(resbytes []byte) (interface{}, error) {
 type AviCollectionResult struct {
 	Count   int
 	Results json.RawMessage
-	Next	string
+	Next    string
 }
 
 func debug(data []byte, err error) {
@@ -807,10 +845,16 @@ func (avisess *AviSession) restRequestInterfaceResponse(verb string, url string,
 	if len(opts.params) != 0 {
 		url = updateUri(url, opts)
 	}
-	res, rerror := avisess.restRequest(verb, url, payload, opts.tenant, nil)
+	httpResponse, rerror := avisess.restRequest(verb, url, payload, opts.tenant, nil)
 	if rerror != nil {
 		return rerror
 	}
+
+	var res []byte
+	if res, err = avisess.fetchBody(verb, url, httpResponse); err != nil {
+		return err
+	}
+
 	if len(res) == 0 {
 		return nil
 	} else {
@@ -864,10 +908,16 @@ func (avisess *AviSession) GetCollectionRaw(uri string, options ...ApiOptionsPar
 	if len(opts.params) != 0 {
 		uri = updateUri(uri, opts)
 	}
-	res, rerror := avisess.restRequest("GET", uri, nil, opts.tenant, nil)
-	if rerror != nil || res == nil {
+	httpResponse, rerror := avisess.restRequest("GET", uri, nil, opts.tenant, nil)
+	if rerror != nil || httpResponse == nil {
 		return result, rerror
 	}
+
+	var res []byte
+	if res, err = avisess.fetchBody("GET", uri, httpResponse); err != nil {
+		return result, err
+	}
+
 	if strings.Contains(uri, "cluster?") {
 		result.Results = res
 		result.Count = 1
@@ -890,12 +940,22 @@ func (avisess *AviSession) GetCollection(uri string, objList interface{}, option
 
 // GetRaw performs a GET API call and returns raw data
 func (avisess *AviSession) GetRaw(uri string) ([]byte, error) {
-	return avisess.restRequest("GET", uri, nil, "", nil)
+	resp, rerror := avisess.restRequest("GET", uri, nil, "", nil)
+	if rerror != nil || resp == nil {
+		return nil, rerror
+	}
+
+	return avisess.fetchBody("GET", uri, resp)
 }
 
 // PostRaw performs a POST API call and returns raw data
 func (avisess *AviSession) PostRaw(uri string, payload interface{}) ([]byte, error) {
-	return avisess.restRequest("POST", uri, payload, "", nil)
+	resp, rerror := avisess.restRequest("POST", uri, nil, "", nil)
+	if rerror != nil || resp == nil {
+		return nil, rerror
+	}
+
+	return avisess.fetchBody("POST", uri, resp)
 }
 
 // GetMultipartRaw performs a GET API call and returns multipart raw data (File Download)
