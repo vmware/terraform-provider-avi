@@ -476,19 +476,15 @@ func resourceAviVirtualServiceUpdate(d *schema.ResourceData, meta interface{}) e
 		if virtualserviceobj, err := ApiDataToSchema(apiResponse, nil, nil); err == nil {
 			objs := virtualserviceobj.(*schema.Set).List()
 			for obj := 0; obj < len(objs); obj++ {
-				vsvipref, isVsVip := objs[obj].(map[string]interface{})["vsvip_ref"]
-				if isVsVip {
-					err = d.Set("vsvip_ref", vsvipref.(string))
-					if err != nil {
-						log.Printf("[ERROR] resourceAviVirtualServiceUpdate in Setting vsvip ref: %v\n", err)
-					}
+				vsvipref := objs[obj].(map[string]interface{})["vsvip_ref"]
+				err = d.Set("vsvip_ref", vsvipref.(string))
+				if err != nil {
+					log.Printf("[ERROR] resourceAviVirtualServiceUpdate in Setting vsvip ref: %v\n", err)
 				}
-				vipob, isVip := objs[obj].(map[string]interface{})["vip"]
-				if isVip {
-					err = d.Set("vip", vipob)
-					if err != nil {
-						log.Printf("[ERROR] resourceAviVirtualServiceUpdate in Setting vip: %v\n", err)
-					}
+				vipob := objs[obj].(map[string]interface{})["vip"]
+				err = d.Set("vip", vipob)
+				if err != nil {
+					log.Printf("[ERROR] resourceAviVirtualServiceUpdate in Setting vip: %v\n", err)
 				}
 			}
 		} else {
