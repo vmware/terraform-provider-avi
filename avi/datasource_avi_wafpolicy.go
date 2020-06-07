@@ -15,6 +15,11 @@ func dataSourceAviWafPolicy() *schema.Resource {
 				Type:     schema.TypeBool,
 				Computed: true,
 			},
+			"application_signatures": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceWafApplicationSignaturesSchema(),
+			},
 			"created_by": {
 				Type:     schema.TypeString,
 				Computed: true,

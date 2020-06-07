@@ -44,6 +44,11 @@ func ResourceSSLKeyAndCertificateSchema() map[string]*schema.Schema {
 			Optional: true,
 			Elem:     ResourceCustomParamsSchema(),
 		},
+		"enable_ocsp_stapling": {
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  false,
+		},
 		"enckey_base64": {
 			Type:     schema.TypeString,
 			Optional: true,
@@ -88,6 +93,23 @@ func ResourceSSLKeyAndCertificateSchema() map[string]*schema.Schema {
 		"name": {
 			Type:     schema.TypeString,
 			Required: true,
+		},
+		"ocsp_config": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceOCSPConfigSchema(),
+		},
+		"ocsp_error_status": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
+		"ocsp_response_info": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceOCSPResponseInfoSchema(),
 		},
 		"status": {
 			Type:     schema.TypeString,

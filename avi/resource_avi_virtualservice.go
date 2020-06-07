@@ -19,6 +19,11 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  "ACTIVE_STANDBY_SE_1",
 		},
+		"advertise_down_vs": {
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  false,
+		},
 		"allow_invalid_client_cert": {
 			Type:     schema.TypeBool,
 			Optional: true,
@@ -167,6 +172,11 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 			Type:     schema.TypeList,
 			Optional: true,
 			Elem:     ResourceHTTPPoliciesSchema(),
+		},
+		"icap_request_profile_refs": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     &schema.Schema{Type: schema.TypeString},
 		},
 		"ign_pool_net_reach": {
 			Type:     schema.TypeBool,

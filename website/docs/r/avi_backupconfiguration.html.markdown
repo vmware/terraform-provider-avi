@@ -28,7 +28,7 @@ The following arguments are supported:
 * `aws_bucket_id` - (Optional) Aws bucket.
 * `aws_secret_access` - (Optional) Aws secret access key.
 * `backup_file_prefix` - (Optional) Prefix of the exported configuration file.
-* `backup_passphrase` - (Optional) Passphrase of backup configuration.
+* `backup_passphrase` - (Optional) Default passphrase for configuration export and periodic backup.
 * `maximum_backups_stored` - (Optional) Rotate the backup files based on this count.
 * `remote_directory` - (Optional) Directory at remote destination with write permission for ssh user.
 * `remote_hostname` - (Optional) Remote destination.

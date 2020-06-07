@@ -32,6 +32,7 @@ In addition to all arguments above, the following attributes are exported:
 * `azure_userpass` - Field introduced in 17.2.1.
 * `gcp_credentials` - Credentials for google cloud platform.
 * `name` - Name of the object.
+* `nsxt_credentials` - Credentials to talk to nsx-t manager.
 * `oci_credentials` - Credentials for oracle cloud infrastructure.
 * `password` - Placeholder for description of property password of obj type cloudconnectoruser field type string  type str.
 * `private_key` - Placeholder for description of property private_key of obj type cloudconnectoruser field type string  type str.
@@ -39,4 +40,5 @@ In addition to all arguments above, the following attributes are exported:
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `tencent_credentials` - Credentials for tencent cloud.
 * `uuid` - Unique object identifier of the object.
+* `vcenter_credentials` - Credentials to talk to vcenter.
 

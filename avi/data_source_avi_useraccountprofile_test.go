@@ -34,8 +34,8 @@ func TestAVIDataSourceUserAccountProfileBasic(t *testing.T) {
 
 const testAccAVIDSUserAccountProfileConfig = `
 resource "avi_useraccountprofile" "testUserAccountProfile" {
-	max_concurrent_sessions = "0"
 	name = "test-Default-User-Account-Profile-abc"
+	max_concurrent_sessions = "0"
 	account_lock_timeout = "30"
 	max_login_failure_count = "20"
 	max_password_history_count = "0"

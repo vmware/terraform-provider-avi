@@ -94,9 +94,9 @@ data "avi_tenant" "default_tenant"{
     name= "admin"
 }
 resource "avi_serverautoscalepolicy" "testServerAutoScalePolicy" {
-	scalein_alertconfig_refs = []
-	tenant_ref = data.avi_tenant.default_tenant.id
 	name = "test-ssp-test-abc"
+	tenant_ref = data.avi_tenant.default_tenant.id
+	scalein_alertconfig_refs = []
 	scaleout_alertconfig_refs = []
 }
 `
@@ -106,9 +106,9 @@ data "avi_tenant" "default_tenant"{
     name= "admin"
 }
 resource "avi_serverautoscalepolicy" "testServerAutoScalePolicy" {
-	scalein_alertconfig_refs = []
-	tenant_ref = data.avi_tenant.default_tenant.id
 	name = "test-ssp-updated"
+	tenant_ref = data.avi_tenant.default_tenant.id
+	scalein_alertconfig_refs = []
 	scaleout_alertconfig_refs = []
 }
 `

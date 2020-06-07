@@ -31,6 +31,7 @@ The following arguments are supported:
 * `pool_group_refs` - (Optional) Uuid of pool groups that could be referred by vsdatascriptset objects.
 * `pool_refs` - (Optional) Uuid of pools that could be referred by vsdatascriptset objects.
 * `protocol_parser_refs` - (Optional) List of protocol parsers that could be referred by vsdatascriptset objects.
+* `rate_limiters` - (Optional) The rate limit definitions needed for this datascript.
 * `string_group_refs` - (Optional) Uuid of string groups that could be referred by vsdatascriptset objects.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant.
 

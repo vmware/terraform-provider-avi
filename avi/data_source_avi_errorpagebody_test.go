@@ -27,9 +27,9 @@ data "avi_tenant" "default_tenant"{
     name= "admin"
 }
 resource "avi_errorpagebody" "testErrorPageBody" {
-	error_page_body = "<!DOCTYPE html><html><head></head><body><div><p> Please contact our technical support</p></div></body></html>"
-	tenant_ref = data.avi_tenant.default_tenant.id
 	name = "test-Custom-Error-Page-abc"
+	tenant_ref = data.avi_tenant.default_tenant.id
+	error_page_body = "<!DOCTYPE html><html><head></head><body><div><p> Please contact our technical support</p></div></body></html>"
 }
 
 data "avi_errorpagebody" "testErrorPageBody" {

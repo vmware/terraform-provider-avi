@@ -30,6 +30,7 @@ data "avi_vrfcontext" "foo_vrfcontext" {
 
 In addition to all arguments above, the following attributes are exported:
 
+* `bfd_profile` - Bfd configuration profile.
 * `bgp_profile` - Bgp local and peer info.
 * `cloud_ref` - It is a reference to an object of type cloud.
 * `debugvrfcontext` - Configure debug flags for vrf.
@@ -37,6 +38,7 @@ In addition to all arguments above, the following attributes are exported:
 * `gateway_mon` - Configure ping based heartbeat check for gateway in service engines of vrf.
 * `internal_gateway_monitor` - Configure ping based heartbeat check for all default gateways in service engines of vrf.
 * `labels` - Key/value labels which can be used for object access policy permission scoping.
+* `lldp_enable` - Enable lldp.
 * `name` - Name of the object.
 * `static_routes` - List of list.
 * `system_default` - Boolean flag to set system_default.

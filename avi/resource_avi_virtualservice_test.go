@@ -30,8 +30,6 @@ func TestAVIVirtualServiceBasic(t *testing.T) {
 					testAccCheckAVIVirtualServiceExists("avi_virtualservice.testvs", &vs),
 					testAccCheckAVIVirtualServiceValuesUpdated(&vs, "enabled", false),
 					testAccCheckAVIVirtualServiceValuesUpdated(&vs, "name", "vs-abc"),
-					testAccCheckAVIVirtualServiceValuesUpdated(&vs, "vip.0.enabled", true),
-					testAccCheckAVIVirtualServiceValuesUpdated(&vs, "vip.0.vip_id", "0"),
 					testAccCheckAVIVirtualServiceValuesUpdated(&vs, "min_pools_up", 0),
 					testAccCheckAVIVirtualServiceValuesUpdated(&vs, "max_cps_per_client", 10),
 					resource.TestCheckResourceAttr(
@@ -173,14 +171,6 @@ resource "avi_virtualservice" "testvs" {
 	application_profile_ref= data.avi_applicationprofile.system_https_profile.id
 	network_profile_ref = data.avi_networkprofile.system_tcp_profile.id
 	vsvip_ref = avi_vsvip.test_vsvip.id
-	vip {
-	  vip_id= "0"
-	  ip_address {
-		type= "V4"
-		addr= "10.90.64.88"
-	  }
-      enabled= true
-	}
 	services {
 	  port= 80
 	  enable_ssl= true
@@ -255,14 +245,6 @@ resource "avi_virtualservice" "testvs" {
 	application_profile_ref= data.avi_applicationprofile.system_https_profile.id
 	network_profile_ref = data.avi_networkprofile.system_tcp_profile.id
 	vsvip_ref = avi_vsvip.test_vsvip.id
-	vip {
-	  vip_id= "0"
-	  ip_address {
-		type= "V4"
-		addr= "10.90.64.88"
-	  }
-      enabled= true
-	}
 	services {
 	  port= 80
 	  enable_ssl= true

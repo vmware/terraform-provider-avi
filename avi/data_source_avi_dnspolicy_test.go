@@ -27,9 +27,9 @@ data "avi_tenant" "default_tenant"{
     name= "admin"
 }
 resource "avi_dnspolicy" "testDnsPolicy" {
-	tenant_ref = data.avi_tenant.default_tenant.id
 	name = "test-dp-abc"
 	description = "test dns policy"
+	tenant_ref = data.avi_tenant.default_tenant.id
 }
 
 data "avi_dnspolicy" "testDnsPolicy" {

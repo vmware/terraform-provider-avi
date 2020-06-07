@@ -30,6 +30,7 @@ data "avi_network" "foo_network" {
 
 In addition to all arguments above, the following attributes are exported:
 
+* `attrs` - Key/value network attributes.
 * `cloud_ref` - It is a reference to an object of type cloud.
 * `configured_subnets` - List of list.
 * `dhcp_enabled` - Select the ip address management scheme for this network.

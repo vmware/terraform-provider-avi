@@ -49,6 +49,7 @@ The following arguments are supported:
 * `disable_se_analytics` - (Optional) Disable node (service engine) level analytics forvs metrics.
 * `disable_server_analytics` - (Optional) Disable analytics on backend servers.
 * `disable_vs_analytics` - (Optional) Disable virtualservice (frontend) analytics.
+* `enable_adaptive_config` - (Optional) Enable adaptive configuration for optimizing resource usage.
 * `enable_advanced_analytics` - (Optional) Enables advanced analytics features like anomaly detection.
 * `exclude_client_close_before_request_as_error` - (Optional) Exclude client closed connection before an http request could be completed from being classified as an error.
 * `exclude_dns_policy_drop_as_significant` - (Optional) Exclude dns policy drops from the list of errors.
@@ -56,14 +57,18 @@ The following arguments are supported:
 * `exclude_http_error_codes` - (Optional) List of http status codes to be excluded from being classified as an error.
 * `exclude_invalid_dns_domain_as_error` - (Optional) Exclude dns queries to domains outside the domains configured in the dns application profile from the list of errors.
 * `exclude_invalid_dns_query_as_error` - (Optional) Exclude invalid dns queries from the list of errors.
+* `exclude_issuer_revoked_ocsp_responses_as_error` - (Optional) Exclude the issuer-revoked ocsp responses from the list of errors.
 * `exclude_no_dns_record_as_error` - (Optional) Exclude queries to domains that did not have configured services/records from the list of errors.
 * `exclude_no_valid_gs_member_as_error` - (Optional) Exclude queries to gslb services that have no available members from the list of errors.
 * `exclude_persistence_change_as_error` - (Optional) Exclude persistence server changed while load balancing' from the list of errors.
+* `exclude_revoked_ocsp_responses_as_error` - (Optional) Exclude the revoked ocsp certificate status responses from the list of errors.
 * `exclude_server_dns_error_as_error` - (Optional) Exclude server dns error response from the list of errors.
 * `exclude_server_tcp_reset_as_error` - (Optional) Exclude server tcp reset from errors.
 * `exclude_sip_error_codes` - (Optional) List of sip status codes to be excluded from being classified as an error.
+* `exclude_stale_ocsp_responses_as_error` - (Optional) Exclude the stale ocsp certificate status responses from the list of errors.
 * `exclude_syn_retransmit_as_error` - (Optional) Exclude 'server unanswered syns' from the list of errors.
 * `exclude_tcp_reset_as_error` - (Optional) Exclude tcp resets by client from the list of potential errors.
+* `exclude_unavailable_ocsp_responses_as_error` - (Optional) Exclude the unavailable ocsp responses from the list of errors.
 * `exclude_unsupported_dns_query_as_error` - (Optional) Exclude unsupported dns queries from the list of errors.
 * `healthscore_max_server_limit` - (Optional) Skips health score computation of pool servers when number of servers in a pool is more than this setting.
 * `hs_event_throttle_window` - (Optional) Time window (in secs) within which only unique health change events should occur.

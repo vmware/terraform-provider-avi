@@ -23,6 +23,7 @@ resource "avi_image" "foo" {
 
 The following arguments are supported:
 
+* `cloud_info_values` - (Optional) This field describes the cloud info specific to the base image.
 * `controller_info` - (Optional) Controller package details.
 * `controller_patch_uuid` - (Optional) It references the controller-patch associated with the uber image.
 * `migrations` - (Optional) This field describes the api migration related information.

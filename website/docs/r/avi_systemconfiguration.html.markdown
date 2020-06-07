@@ -14,8 +14,7 @@ The SystemConfiguration resource allows the creation and management of Avi Syste
 
 ```hcl
 resource "avi_systemconfiguration" "foo" {
-    name = "terraform-example-foo"
-    tenant_ref = "/api/tenant/?name=admin"
+    uuid = "default-uuid"
 }
 ```
 
@@ -29,6 +28,7 @@ The following arguments are supported:
 * `dns_virtualservice_refs` - (Optional) Dns virtualservices hosting fqdn records for applications across avi vantage.
 * `docker_mode` - (Optional) Boolean flag to set docker_mode.
 * `email_configuration` - (Optional) Dict settings for systemconfiguration.
+* `fips_mode` - (Optional) Enable fips mode.
 * `global_tenant_config` - (Optional) Dict settings for systemconfiguration.
 * `linux_configuration` - (Optional) Dict settings for systemconfiguration.
 * `mgmt_ip_access_control` - (Optional) Configure ip access control for controller to restrict open access.
