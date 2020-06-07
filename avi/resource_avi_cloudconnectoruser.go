@@ -36,6 +36,12 @@ func ResourceCloudConnectorUserSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Required: true,
 		},
+		"nsxt_credentials": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceNsxtCredentialsSchema(),
+		},
 		"oci_credentials": {
 			Type:     schema.TypeSet,
 			Optional: true,
@@ -72,6 +78,12 @@ func ResourceCloudConnectorUserSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
+		},
+		"vcenter_credentials": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceVCenterCredentialsSchema(),
 		},
 	}
 }

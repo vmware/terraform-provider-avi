@@ -94,6 +94,8 @@ data "avi_tenant" "default_tenant"{
     name= "admin"
 }
 resource "avi_networkprofile" "testNetworkProfile" {
+	name = "test-System-TCP-Proxy-abc"
+	tenant_ref = data.avi_tenant.default_tenant.id
 	profile {
 		tcp_proxy_profile {
 			receive_window = "64"
@@ -102,20 +104,18 @@ resource "avi_networkprofile" "testNetworkProfile" {
 			nagles_algorithm = false
 			max_syn_retransmissions = "8"
 			ignore_time_wait = false
-			use_interface_mtu = true
 			idle_connection_type = "KEEP_ALIVE"
 			aggressive_congestion_avoidance = false
-			min_rexmt_timeout = "50"
 			idle_connection_timeout = "600"
-			reorder_threshold = "10"
 			max_retransmissions = "8"
-			automatic = true
 			ip_dscp = "0"
+			automatic = true
+			use_interface_mtu = true
+			reorder_threshold = "10"
+			min_rexmt_timeout = "50"
 		}
 		type = "PROTOCOL_TYPE_TCP_PROXY"
 	}
-	tenant_ref = data.avi_tenant.default_tenant.id
-	name = "test-System-TCP-Proxy-abc"
 }
 `
 
@@ -124,6 +124,8 @@ data "avi_tenant" "default_tenant"{
     name= "admin"
 }
 resource "avi_networkprofile" "testNetworkProfile" {
+	name = "test-System-TCP-Proxy-updated"
+	tenant_ref = data.avi_tenant.default_tenant.id
 	profile {
 		tcp_proxy_profile {
 			receive_window = "64"
@@ -132,19 +134,17 @@ resource "avi_networkprofile" "testNetworkProfile" {
 			nagles_algorithm = false
 			max_syn_retransmissions = "8"
 			ignore_time_wait = false
-			use_interface_mtu = true
 			idle_connection_type = "KEEP_ALIVE"
 			aggressive_congestion_avoidance = false
-			min_rexmt_timeout = "50"
 			idle_connection_timeout = "600"
-			reorder_threshold = "10"
 			max_retransmissions = "8"
-			automatic = true
 			ip_dscp = "0"
+			automatic = true
+			use_interface_mtu = true
+			reorder_threshold = "10"
+			min_rexmt_timeout = "50"
 		}
 		type = "PROTOCOL_TYPE_TCP_PROXY"
 	}
-	tenant_ref = data.avi_tenant.default_tenant.id
-	name = "test-System-TCP-Proxy-updated"
 }
 `

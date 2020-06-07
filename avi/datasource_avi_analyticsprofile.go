@@ -113,6 +113,10 @@ func dataSourceAviAnalyticsProfile() *schema.Resource {
 				Type:     schema.TypeBool,
 				Computed: true,
 			},
+			"enable_adaptive_config": {
+				Type:     schema.TypeBool,
+				Computed: true,
+			},
 			"enable_advanced_analytics": {
 				Type:     schema.TypeBool,
 				Computed: true,
@@ -142,6 +146,10 @@ func dataSourceAviAnalyticsProfile() *schema.Resource {
 				Type:     schema.TypeBool,
 				Computed: true,
 			},
+			"exclude_issuer_revoked_ocsp_responses_as_error": {
+				Type:     schema.TypeBool,
+				Computed: true,
+			},
 			"exclude_no_dns_record_as_error": {
 				Type:     schema.TypeBool,
 				Computed: true,
@@ -151,6 +159,10 @@ func dataSourceAviAnalyticsProfile() *schema.Resource {
 				Computed: true,
 			},
 			"exclude_persistence_change_as_error": {
+				Type:     schema.TypeBool,
+				Computed: true,
+			},
+			"exclude_revoked_ocsp_responses_as_error": {
 				Type:     schema.TypeBool,
 				Computed: true,
 			},
@@ -167,11 +179,19 @@ func dataSourceAviAnalyticsProfile() *schema.Resource {
 				Computed: true,
 				Elem:     &schema.Schema{Type: schema.TypeInt},
 			},
+			"exclude_stale_ocsp_responses_as_error": {
+				Type:     schema.TypeBool,
+				Computed: true,
+			},
 			"exclude_syn_retransmit_as_error": {
 				Type:     schema.TypeBool,
 				Computed: true,
 			},
 			"exclude_tcp_reset_as_error": {
+				Type:     schema.TypeBool,
+				Computed: true,
+			},
+			"exclude_unavailable_ocsp_responses_as_error": {
 				Type:     schema.TypeBool,
 				Computed: true,
 			},

@@ -23,7 +23,7 @@ func ResourceSystemConfigurationSchema() map[string]*schema.Schema {
 		"default_license_tier": {
 			Type:     schema.TypeString,
 			Optional: true,
-			Default:  "ENTERPRISE_18",
+			Default:  "ENTERPRISE",
 		},
 		"dns_configuration": {
 			Type:     schema.TypeSet,
@@ -46,6 +46,11 @@ func ResourceSystemConfigurationSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 			Elem:     ResourceEmailConfigurationSchema(),
+		},
+		"fips_mode": {
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  false,
 		},
 		"global_tenant_config": {
 			Type:     schema.TypeSet,

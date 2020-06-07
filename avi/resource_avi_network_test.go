@@ -111,8 +111,8 @@ data "avi_tenant" "default_tenant"{
 }
 resource "avi_network" "testNetwork" {
 	name = "test-network-test-abc"
-	exclude_discovered_subnets = false
 	tenant_ref = data.avi_tenant.default_tenant.id
+	exclude_discovered_subnets = false
 	synced_from_se = true
 	dhcp_enabled = true
 	vcenter_dvs = true
@@ -125,8 +125,8 @@ data "avi_tenant" "default_tenant"{
 }
 resource "avi_network" "testNetwork" {
 	name = "test-network-updated"
-	exclude_discovered_subnets = false
 	tenant_ref = data.avi_tenant.default_tenant.id
+	exclude_discovered_subnets = false
 	synced_from_se = true
 	dhcp_enabled = true
 	vcenter_dvs = true

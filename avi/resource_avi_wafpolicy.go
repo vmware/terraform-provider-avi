@@ -19,6 +19,12 @@ func ResourceWafPolicySchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  true,
 		},
+		"application_signatures": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceWafApplicationSignaturesSchema(),
+		},
 		"created_by": {
 			Type:     schema.TypeString,
 			Optional: true,

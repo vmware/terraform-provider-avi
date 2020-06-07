@@ -30,6 +30,7 @@ The following arguments are supported:
 * `algo` - (Optional) In compact placement, virtual services are placed on existing ses until max_vs_per_se limit is reached.
 * `allow_burst` - (Optional) Allow ses to be created using burst license.
 * `app_cache_percent` - (Optional) A percent value of total se memory reserved for applicationcaching.
+* `app_cache_threshold` - (Optional) The max memory that can be allocated for the app cache.
 * `app_learning_memory_percent` - (Optional) A percent value of total se memory reserved for application learning.
 * `archive_shm_limit` - (Optional) Amount of se memory in gb until which shared memory is collected in core archive.
 * `async_ssl` - (Optional) Ssl handshakes will be handled by dedicated ssl threads.requires se reboot.
@@ -39,6 +40,7 @@ The following arguments are supported:
 * `auto_rebalance_criteria` - (Optional) Set of criteria for se auto rebalance.
 * `auto_rebalance_interval` - (Optional) Frequency of rebalance, if 'auto rebalance' is enabled.
 * `auto_redistribute_active_standby_load` - (Optional) Redistribution of virtual services from the takeover se to the replacement se can cause momentary traffic loss.
+* `availability_zone_refs` - (Optional) Availability zones for virtual service high availability.
 * `bgp_state_update_interval` - (Optional) Bgp peer state update interval.
 * `buffer_se` - (Optional) Excess service engine capacity provisioned for ha failover.
 * `cloud_ref` - (Optional) It is a reference to an object of type cloud.
@@ -96,6 +98,7 @@ The following arguments are supported:
 * `max_concurrent_external_hm` - (Optional) Maximum number of external health monitors that can run concurrently in a service engine.
 * `max_cpu_usage` - (Optional) When cpu usage on an se exceeds this threshold, virtual services hosted on this se may be rebalanced to other ses to reduce load.
 * `max_memory_per_mempool` - (Optional) Max bytes that can be allocated in a single mempool.
+* `max_num_se_dps` - (Optional) Configures the maximum number of se_dp processes created on the se, requires se reboot.
 * `max_public_ips_per_lb` - (Optional) Applicable to azure platform only.
 * `max_queues_per_vnic` - (Optional) Maximum number of queues per vnic setting to '0' utilises all queues that are distributed across dispatcher cores.
 * `max_rules_per_lb` - (Optional) Applicable to azure platform only.
@@ -124,9 +127,11 @@ The following arguments are supported:
 * `placement_mode` - (Optional) If placement mode is 'auto', virtual services are automatically placed on service engines.
 * `realtime_se_metrics` - (Optional) Enable or disable real time se metrics.
 * `reboot_on_panic` - (Optional) Reboot the vm or host on kernel panic.
+* `resync_time_interval` - (Optional) Time interval to re-sync se's time with wall clock time.
 * `se_bandwidth_type` - (Optional) Select the se bandwidth for the bandwidth license.
 * `se_deprovision_delay` - (Optional) Duration to preserve unused service engine virtual machines before deleting them.
 * `se_dos_profile` - (Optional) Dict settings for serviceenginegroup.
+* `se_dp_max_hb_version` - (Optional) The highest supported se-se heartbeat protocol version.
 * `se_dp_vnic_queue_stall_event_sleep` - (Optional) Time (in seconds) service engine waits for after generating a vnic transmit queue stall event before resetting thenic.
 * `se_dp_vnic_queue_stall_threshold` - (Optional) Number of consecutive transmit failures to look for before generating a vnic transmit queue stall event.
 * `se_dp_vnic_queue_stall_timeout` - (Optional) Time (in milliseconds) to wait for network/nic recovery on detecting a transmit queue stall after which service engine resets the nic.
@@ -135,7 +140,7 @@ The following arguments are supported:
 * `se_dpdk_pmd` - (Optional) Determines if dpdk pool mode driver should be used or not   0  automatically determine based on hypervisor/nic type 1  unconditionally use dpdk poll mode driver 2  don't use dpdk poll mode driver.requires se reboot.
 * `se_flow_probe_retries` - (Optional) Flow probe retry count if no replies are received.requires se reboot.
 * `se_flow_probe_retry_timer` - (Optional) Timeout in milliseconds for flow probe retries.requires se reboot.
-* `se_ipc_udp_port` - (Optional) Udp port for se_dp ipc in docker bridge mode.
+* `se_hyperthreaded_mode` - (Optional) Controls the distribution of se data path processes on cpus which support hyper-threading.
 * `se_kni_burst_factor` - (Optional) Knob to control burst size used in polling kni interfaces for traffic sent from kni towards dpdk application also controls burst size used by kni module to read pkts punted from dpdk application towards kni helps minimize drops in non-vip traffic in either pathfactor of (0-2) multiplies/divides burst size by 2^n.
 * `se_lro` - (Optional) Enable or disable large receive optimization for vnics.
 * `se_mtu` - (Optional) Mtu for the vnics of ses in the se group.
@@ -147,7 +152,6 @@ The following arguments are supported:
 * `se_pcap_reinit_frequency` - (Optional) Frequency in seconds at which periodically a pcap reinit check is triggered.
 * `se_pcap_reinit_threshold` - (Optional) Threshold for input packet receive errors in pcap mode exceeding which a pcap reinit is triggered.
 * `se_probe_port` - (Optional) Tcp port on se where echo service will be run.
-* `se_remote_punt_udp_port` - (Optional) Udp port for punted packets in docker bridge mode.
 * `se_rl_prop` - (Optional) Rate limiter properties.
 * `se_rum_sampling_nav_interval` - (Optional) Minimum time to wait on server between taking sampleswhen sampling the navigation timing data from the end user client.
 * `se_rum_sampling_nav_percent` - (Optional) Percentage of navigation timing data from the end user client, used for sampling to get client insights.
@@ -162,6 +166,8 @@ The following arguments are supported:
 * `se_tx_batch_size` - (Optional) Number of packets to batch for transmit to the nic.
 * `se_udp_encap_ipc` - (Optional) Determines if se-se ipc messages are encapsulated in a udp header  0  automatically determine based on hypervisor type.
 * `se_use_dpdk` - (Optional) Determines if dpdk library should be used or not   0  automatically determine based on hypervisor type 1  use dpdk if pcap is not enabled 2  don't use dpdk.
+* `se_vnic_tx_sw_queue_flush_frequency` - (Optional) Configure the frequency in milliseconds of software transmit spillover queue flush when enabled.
+* `se_vnic_tx_sw_queue_size` - (Optional) Configure the size of software transmit spillover queue when enabled.
 * `se_vs_hb_max_pkts_in_batch` - (Optional) Maximum number of aggregated vs heartbeat packets to send in a batch.
 * `se_vs_hb_max_vs_in_pkt` - (Optional) Maximum number of virtualservices for which heartbeat messages are aggregated in one packet.
 * `self_se_election` - (Optional) Enable ses to elect a primary amongst themselves in the absence of a connectivity to controller.
@@ -171,7 +177,9 @@ The following arguments are supported:
 * `significant_log_throttle` - (Optional) This setting limits the number of significant logs generated per second per core on this se.
 * `ssl_preprocess_sni_hostname` - (Optional) (beta) preprocess ssl client hello for sni hostname extension.if set to true, this will apply sni child's ssl protocol(s), if they are different from sni parent's allowed ssl protocol(s).
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant.
+* `transient_shared_memory_max` - (Optional) The threshold for the transient shared config memory in the se.
 * `udf_log_throttle` - (Optional) This setting limits the number of udf logs generated per second per core on this se.
+* `use_hyperthreaded_cores` - (Optional) Enables the use of hyper-threaded cores on se.
 * `use_standard_alb` - (Optional) Use standard sku azure load balancer.
 * `vcenter_clusters` - (Optional) Dict settings for serviceenginegroup.
 * `vcenter_datastore_mode` - (Optional) Enum options - vcenter_datastore_any, vcenter_datastore_local, vcenter_datastore_shared.
@@ -179,6 +187,7 @@ The following arguments are supported:
 * `vcenter_datastores_include` - (Optional) Boolean flag to set vcenter_datastores_include.
 * `vcenter_folder` - (Optional) Folder to place all the service engine virtual machines in vcenter.
 * `vcenter_hosts` - (Optional) Dict settings for serviceenginegroup.
+* `vcenters` - (Optional) Vcenter information for scoping at host/cluster level.
 * `vcpus_per_se` - (Optional) Number of vcpus for each of the service engine virtual machines.
 * `vip_asg` - (Optional) When vip_asg is set, vip configuration will be managed by avi.user will be able to configure vip_asg or vips individually at the time of create.
 * `vs_host_redundancy` - (Optional) Ensure primary and secondary service engines are deployed on different physical hosts.

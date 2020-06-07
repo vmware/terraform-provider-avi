@@ -48,6 +48,7 @@ The following arguments are supported:
 * `linuxserver_configuration` - (Optional) Dict settings for cloud.
 * `mtu` - (Optional) Mtu setting for the cloud.
 * `nsx_configuration` - (Optional) Configuration parameters for nsx manager.
+* `nsxt_configuration` - (Optional) Nsx-t cloud platform configuration.
 * `obj_name_prefix` - (Optional) Default prefix for all automatically created objects in this cloud.
 * `openstack_configuration` - (Optional) Dict settings for cloud.
 * `oshiftk8s_configuration` - (Optional) Dict settings for cloud.

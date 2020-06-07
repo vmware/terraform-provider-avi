@@ -29,6 +29,7 @@ The following arguments are supported:
 * `created_by` - (Optional) Name of the user who created the object.
 * `deployment_policy_ref` - (Optional) When setup autoscale manager will automatically promote new pools into production when deployment goals are met.
 * `description` - (Optional) Description of pool group.
+* `enable_http2` - (Optional) Enable http/2 for traffic from virtualservice to all the backend servers in all the pools configured under this poolgroup.
 * `fail_action` - (Optional) Enable an action - close connection, http redirect, or local http response - when a pool group failure happens.
 * `implicit_priority_labels` - (Optional) Whether an implicit set of priority labels is generated.
 * `members` - (Optional) List of pool group members object of type poolgroupmember.

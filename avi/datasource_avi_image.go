@@ -11,6 +11,11 @@ func dataSourceAviImage() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviImageRead,
 		Schema: map[string]*schema.Schema{
+			"cloud_info_values": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceImageCloudDataSchema(),
+			},
 			"controller_info": {
 				Type:     schema.TypeSet,
 				Computed: true,

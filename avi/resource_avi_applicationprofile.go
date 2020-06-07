@@ -61,6 +61,11 @@ func ResourceApplicationProfileSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  false,
 		},
+		"preserve_dest_ip_port": {
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  false,
+		},
 		"sip_service_profile": {
 			Type:     schema.TypeSet,
 			Optional: true,

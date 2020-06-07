@@ -95,12 +95,12 @@ data "avi_tenant" "default_tenant"{
 }
 resource "avi_vsdatascriptset" "testVSDataScriptSet" {
 	name = "test-vsd-abc"
-	pool_refs = []
 	tenant_ref = data.avi_tenant.default_tenant.id
-	protocol_parser_refs = []
-	pool_group_refs = []
-	string_group_refs = []
 	ipgroup_refs = []
+	pool_group_refs = []
+	pool_refs = []
+	string_group_refs = []
+	protocol_parser_refs = []
 }
 `
 
@@ -110,11 +110,11 @@ data "avi_tenant" "default_tenant"{
 }
 resource "avi_vsdatascriptset" "testVSDataScriptSet" {
 	name = "test-vsd-updated"
-	pool_refs = []
 	tenant_ref = data.avi_tenant.default_tenant.id
-	protocol_parser_refs = []
-	pool_group_refs = []
-	string_group_refs = []
 	ipgroup_refs = []
+	pool_group_refs = []
+	pool_refs = []
+	string_group_refs = []
+	protocol_parser_refs = []
 }
 `
