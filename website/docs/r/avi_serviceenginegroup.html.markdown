@@ -42,6 +42,7 @@ The following arguments are supported:
 * `bgp_state_update_interval` - (Optional) Bgp peer state update interval.
 * `buffer_se` - (Optional) Excess service engine capacity provisioned for ha failover.
 * `cloud_ref` - (Optional) It is a reference to an object of type cloud.
+* `compress_ip_rules_for_each_ns_subnet` - (Optional) Compress ip rules into a single subnet based ip rule for each north-south ipam subnet configured in pcap mode in openshift/kubernetes node.
 * `config_debugs_on_all_cores` - (Optional) Enable config debugs on all cores of se.
 * `connection_memory_percentage` - (Optional) Percentage of memory for connection state.
 * `core_shm_app_cache` - (Optional) Include shared memory for app cache in core file.requires se reboot.
@@ -147,6 +148,7 @@ The following arguments are supported:
 * `se_pcap_reinit_threshold` - (Optional) Threshold for input packet receive errors in pcap mode exceeding which a pcap reinit is triggered.
 * `se_probe_port` - (Optional) Tcp port on se where echo service will be run.
 * `se_remote_punt_udp_port` - (Optional) Udp port for punted packets in docker bridge mode.
+* `se_rl_prop` - (Optional) Rate limiter properties.
 * `se_rum_sampling_nav_interval` - (Optional) Minimum time to wait on server between taking sampleswhen sampling the navigation timing data from the end user client.
 * `se_rum_sampling_nav_percent` - (Optional) Percentage of navigation timing data from the end user client, used for sampling to get client insights.
 * `se_rum_sampling_res_interval` - (Optional) Minimum time to wait on server between taking sampleswhen sampling the resource timing data from the end user client.
