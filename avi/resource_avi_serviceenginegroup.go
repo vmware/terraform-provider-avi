@@ -104,6 +104,11 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"compress_ip_rules_for_each_ns_subnet": {
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  true,
+		},
 		"config_debugs_on_all_cores": {
 			Type:     schema.TypeBool,
 			Optional: true,
@@ -635,6 +640,12 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Type:     schema.TypeInt,
 			Optional: true,
 			Default:  1501,
+		},
+		"se_rl_prop": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceRateLimiterPropertiesSchema(),
 		},
 		"se_rum_sampling_nav_interval": {
 			Type:     schema.TypeInt,

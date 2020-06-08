@@ -86,6 +86,10 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"compress_ip_rules_for_each_ns_subnet": {
+				Type:     schema.TypeBool,
+				Computed: true,
+			},
 			"config_debugs_on_all_cores": {
 				Type:     schema.TypeBool,
 				Computed: true,
@@ -518,6 +522,11 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 			"se_remote_punt_udp_port": {
 				Type:     schema.TypeInt,
 				Computed: true,
+			},
+			"se_rl_prop": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceRateLimiterPropertiesSchema(),
 			},
 			"se_rum_sampling_nav_interval": {
 				Type:     schema.TypeInt,
