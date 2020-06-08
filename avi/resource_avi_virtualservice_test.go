@@ -35,6 +35,12 @@ func TestAVIVirtualServiceBasic(t *testing.T) {
 					resource.TestCheckResourceAttr(
 						"avi_virtualservice.testvs", "name", "vs-abc")),
 			},
+			{
+				ResourceName:      "avi_virtualservice.testvs",
+				ImportState:       true,
+				ImportStateVerify: false,
+				Config:            testAccAVIVsVipConfig,
+			},
 		},
 	})
 
