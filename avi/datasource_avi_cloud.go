@@ -69,6 +69,10 @@ func dataSourceAviCloud() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"enable_vip_on_all_interfaces": {
+				Type:     schema.TypeBool,
+				Computed: true,
+			},
 			"enable_vip_static_routes": {
 				Type:     schema.TypeBool,
 				Computed: true,
