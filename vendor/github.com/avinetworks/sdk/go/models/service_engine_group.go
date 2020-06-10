@@ -71,6 +71,9 @@ type ServiceEngineGroup struct {
 	//  It is a reference to an object of type Cloud.
 	CloudRef *string `json:"cloud_ref,omitempty"`
 
+	// Compress IP rules into a single subnet based IP rule for each north-south IPAM subnet configured in PCAP mode in OpenShift/Kubernetes node. Requires SE Reboot. Field introduced in 18.2.9.
+	CompressIPRulesForEachNsSubnet *bool `json:"compress_ip_rules_for_each_ns_subnet,omitempty"`
+
 	// Enable config debugs on all cores of SE. Field introduced in 17.2.13,18.1.5,18.2.1.
 	ConfigDebugsOnAllCores *bool `json:"config_debugs_on_all_cores,omitempty"`
 
@@ -434,6 +437,9 @@ type ServiceEngineGroup struct {
 
 	// UDP Port for punted packets in Docker bridge mode. Field introduced in 17.1.2.
 	SeRemotePuntUDPPort *int32 `json:"se_remote_punt_udp_port,omitempty"`
+
+	// Rate limiter properties. Field introduced in 18.2.9.
+	SeRlProp *RateLimiterProperties `json:"se_rl_prop,omitempty"`
 
 	// Enable routing via Service Engine Datapath. When disabled, routing is done by the Linux kernel. IP Routing needs to be enabled in Service Engine Group for SE Routing to be effective. Field deprecated in 18.2.5. Field introduced in 18.2.3.
 	SeRouting *bool `json:"se_routing,omitempty"`

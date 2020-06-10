@@ -36,6 +36,7 @@ resource "avi_useraccount" "avi_user1" {
   username     = "admin"
   old_password = "` + new_password + `"
   password     = "` + password + `"
+  depends_on = [avi_useraccount.avi_user]
 }
 `
 	return useraccount

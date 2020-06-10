@@ -117,19 +117,11 @@ type AviSession struct {
 	// optional lazy authentication flag. This will trigger login when the first API call is made.
 	// The authentication is not performed when the Session object is created.
 	lazyAuthentication bool
-
-	// optional maximum api retry count
-	max_api_retries int
-
-	// optional api retry interval in milliseconds
-	api_retry_interval int
 }
 
 const DEFAULT_AVI_VERSION = "17.1.2"
 const DEFAULT_API_TIMEOUT = time.Duration(60 * time.Second)
 const DEFAULT_API_TENANT = "admin"
-const DEFAULT_MAX_API_RETRIES  = 3
-const DEFAULT_API_RETRY_INTERVAL = 500
 
 //NewAviSession initiates a session to AviController and returns it
 func NewAviSession(host string, username string, options ...func(*AviSession) error) (*AviSession, error) {
@@ -158,14 +150,6 @@ func NewAviSession(host string, username string, options ...func(*AviSession) er
 	}
 	if avisess.version == "" {
 		avisess.version = DEFAULT_AVI_VERSION
-	}
-
-	if avisess.max_api_retries == 0 {
-		avisess.max_api_retries = DEFAULT_MAX_API_RETRIES
-	}
-
-	if avisess.api_retry_interval == 0 {
-		avisess.api_retry_interval = DEFAULT_API_RETRY_INTERVAL
 	}
 
 	// create default transport object
@@ -343,40 +327,22 @@ func (avisess *AviSession) setLazyAuthentication(lazyAuthentication bool) error 
 	return nil
 }
 
-func SetMaxApiRetries(max_api_retries int) func(*AviSession) error {
-	return func(sess *AviSession) error {
-		return sess.setMaxApiRetries(max_api_retries)
-	}
-}
-
-func (avisess *AviSession) setMaxApiRetries(max_api_retries int) error {
-	avisess.max_api_retries = max_api_retries
-	return nil
-}
-
-func SetApiRetryInterval(api_retry_interval int) func(*AviSession) error {
-	return func(sess *AviSession) error {
-		return sess.setApiRetryInterval(api_retry_interval)
-	}
-}
-
-func (avisess *AviSession) setApiRetryInterval(api_retry_interval int) error {
-	avisess.api_retry_interval = api_retry_interval
-	return nil
-}
-
 func (avisess *AviSession) checkRetryForSleep(retry int, verb string, url string, lastErr error) error {
 	if retry == 0 {
 		return nil
-	} else if retry < avisess.max_api_retries {
-		time.Sleep(time.Duration(avisess.api_retry_interval) * time.Millisecond)
-	} else {
+	} else if retry == 1 {
+		time.Sleep(100 * time.Millisecond)
+	} else if retry == 2 {
+		time.Sleep(500 * time.Millisecond)
+	} else if retry == 3 {
+		time.Sleep(1 * time.Second)
+	} else if retry > 3 {
 		if lastErr != nil {
-			glog.Errorf("Aborting after %v times. Last error %v", retry, lastErr)
+			glog.Errorf("Aborting after 3 times. Last error %v", lastErr)
 			return lastErr
 		}
 		errorResult := AviError{Verb: verb, Url: url}
-		errorResult.err = fmt.Errorf("tried %v times and failed", retry)
+		errorResult.err = fmt.Errorf("tried 3 times and failed")
 		return errorResult
 	}
 	return nil
@@ -486,7 +452,6 @@ func (avisess *AviSession) restRequest(verb string, uri string, payload interfac
 		glog.Infof("Req for uri %v RespCode %v", url, resp.StatusCode)
 		errorResult.HttpStatusCode = resp.StatusCode
 		avisess.collectCookiesFromResp(resp)
-
 		if resp.StatusCode == 401 && len(avisess.sessionid) != 0 && uri != "login" {
 			resp.Body.Close()
 			glog.Infof("Retrying url %s; retry %d due to Status Code %d", url, retry, resp.StatusCode)
@@ -755,7 +720,6 @@ func convertAviResponseToMapInterface(resbytes []byte) (interface{}, error) {
 type AviCollectionResult struct {
 	Count   int
 	Results json.RawMessage
-	Next	string
 }
 
 func debug(data []byte, err error) {
