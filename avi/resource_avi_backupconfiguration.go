@@ -87,7 +87,7 @@ func ResourceBackupConfigurationSchema() map[string]*schema.Schema {
 		"changed": {
                         Type:             schema.TypeBool,
                         Optional:         true,
-			Default:	  true,
+                        Default:          true,
                         DiffSuppressFunc: suppressChangedDiffs,
                 },
 		"uuid": {
