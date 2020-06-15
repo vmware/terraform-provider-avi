@@ -35,9 +35,9 @@ func ResourceBackupConfigurationSchema() map[string]*schema.Schema {
 			Computed: true,
 		},
 		"backup_passphrase": {
-			Type:     	  schema.TypeString,
-			Optional: 	  true,
-			Computed: 	  true,
+			Type:             schema.TypeString,
+			Optional:         true,
+			Computed:         true,
 			DiffSuppressFunc: suppressPassphraseDiffs,
 		},
 		"maximum_backups_stored": {
@@ -85,11 +85,11 @@ func ResourceBackupConfigurationSchema() map[string]*schema.Schema {
 			Computed: true,
 		},
 		"changed": {
-                        Type:             schema.TypeBool,
-                        Optional:         true,
-                        Default:          true,
-                        DiffSuppressFunc: suppressChangedDiffs,
-                },
+			Type:             schema.TypeBool,
+			Optional:         true,
+			Default:          true,
+			DiffSuppressFunc: suppressChangedDiffs,
+		},
 		"uuid": {
 			Type:     schema.TypeString,
 			Optional: true,
