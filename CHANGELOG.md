@@ -1,4 +1,13 @@
 ## 0.3.0 (Unreleased)
+## 0.2.3 (June 15, 2020)
+Features:
+- Updated Avi Go SDK to latest.
+- Update Avi 18.2.9 release
+
+Bugs:
+- AV-85581 Added seproperties into post not allowed list
+- Fix for issue #65
+
 ## 0.2.2 (May 12, 2020)
 FEATURES:
 - Lazy Authentication support. The provider uses lazy authentication so Avi controllers can be created in a plan and it allows password reset.
