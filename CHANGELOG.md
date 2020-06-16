@@ -1,5 +1,4 @@
-## 0.3.0 (Unreleased)
-## 0.2.3 (June 15, 2020)
+## 0.2.3 (Unreleased)
 Features:
 - Updated Avi Go SDK to latest.
 - Update Avi 18.2.9 release
