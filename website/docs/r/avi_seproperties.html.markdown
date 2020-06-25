@@ -14,8 +14,7 @@ The SeProperties resource allows the creation and management of Avi SeProperties
 
 ```hcl
 resource "avi_seproperties" "foo" {
-    name = "terraform-example-foo"
-    tenant_ref = "/api/tenant/?name=admin"
+    uuid = "default-uuid"
 }
 ```
 

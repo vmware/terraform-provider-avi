@@ -39,6 +39,11 @@ func ResourcePoolGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"enable_http2": {
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  false,
+		},
 		"fail_action": {
 			Type:     schema.TypeSet,
 			Optional: true,

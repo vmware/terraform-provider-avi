@@ -29,6 +29,11 @@ func ResourceNetworkSecurityPolicySchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"ip_reputation_db_ref": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
 		"name": {
 			Type:     schema.TypeString,
 			Optional: true,

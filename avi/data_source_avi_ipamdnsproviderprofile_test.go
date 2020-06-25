@@ -29,13 +29,13 @@ data "avi_tenant" "default_tenant"{
     name= "admin"
 }
 resource "avi_ipamdnsproviderprofile" "testIpamDnsProviderProfile" {
-	tenant_ref = data.avi_tenant.default_tenant.id
-	allocate_ip_in_vrf = false
-	type = "IPAMDNS_TYPE_INTERNAL"
 	name = "test-ipam-abc-abc"
+	allocate_ip_in_vrf = false
 	internal_profile {
 		ttl = "31"
 	}
+	type = "IPAMDNS_TYPE_INTERNAL"
+	tenant_ref = data.avi_tenant.default_tenant.id
 }
 
 data "avi_ipamdnsproviderprofile" "testIpamDnsProviderProfile" {

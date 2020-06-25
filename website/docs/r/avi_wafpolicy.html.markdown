@@ -25,6 +25,7 @@ The following arguments are supported:
 
 * `name` - (Required) Field introduced in 17.2.1.
 * `allow_mode_delegation` - (Optional) Allow rules to overwrite the policy mode.
+* `application_signatures` - (Optional) Application specific signatures.
 * `created_by` - (Optional) Creator name.
 * `crs_groups` - (Optional) Waf rules are categorized in to groups based on their characterization.
 * `description` - (Optional) Field introduced in 17.2.1.

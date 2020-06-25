@@ -114,6 +114,11 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"edit_system_limits": {
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  false,
+		},
 		"enable_api_sharding": {
 			Type:     schema.TypeBool,
 			Optional: true,
@@ -129,6 +134,16 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  120,
 		},
+		"federated_datastore_cleanup_duration": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  24,
+		},
+		"file_object_cleanup_period": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  1440,
+		},
 		"max_dead_se_in_grp": {
 			Type:     schema.TypeInt,
 			Optional: true,
@@ -138,6 +153,11 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Type:     schema.TypeInt,
 			Optional: true,
 			Default:  4,
+		},
+		"max_se_spawn_interval_delay": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  1800,
 		},
 		"max_seq_attach_ip_failures": {
 			Type:     schema.TypeInt,
@@ -155,6 +175,16 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Default:  false,
 		},
 		"persistence_key_rotate_period": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  0,
+		},
+		"portal_request_burst_limit": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  0,
+		},
+		"portal_request_rate_limit": {
 			Type:     schema.TypeInt,
 			Optional: true,
 			Default:  0,
@@ -203,6 +233,11 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Type:     schema.TypeInt,
 			Optional: true,
 			Default:  172000,
+		},
+		"se_spawn_retry_interval": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  300,
 		},
 		"se_vnic_cooldown": {
 			Type:     schema.TypeInt,

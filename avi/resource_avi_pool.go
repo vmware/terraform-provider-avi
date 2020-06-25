@@ -110,6 +110,11 @@ func ResourcePoolSchema() map[string]*schema.Schema {
 			Type:     schema.TypeBool,
 			Optional: true,
 		},
+		"enable_http2": {
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  false,
+		},
 		"enabled": {
 			Type:     schema.TypeBool,
 			Optional: true,
@@ -142,6 +147,11 @@ func ResourcePoolSchema() map[string]*schema.Schema {
 			Elem:     &schema.Schema{Type: schema.TypeString},
 		},
 		"host_check_enabled": {
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  false,
+		},
+		"ignore_server_port": {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  false,
@@ -238,6 +248,11 @@ func ResourcePoolSchema() map[string]*schema.Schema {
 			Default:  false,
 		},
 		"rewrite_host_header_to_sni": {
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  false,
+		},
+		"routing_pool": {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  false,

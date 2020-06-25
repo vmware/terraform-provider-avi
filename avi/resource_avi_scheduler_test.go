@@ -105,10 +105,10 @@ data "avi_backupconfiguration" "default_backupconfig" {
     name= "Backup-Configuration"
 }
 resource "avi_scheduler" "testScheduler" {
-	start_date_time = "2018-04-06T07:05:32.242307"
 	name = "test-Default-Scheduler-abc"
 	enabled = true
 	tenant_ref = data.avi_tenant.default_tenant.id
+	start_date_time = "2018-04-06T07:05:32.242307"
 	frequency_unit = "SCHEDULER_FREQUENCY_UNIT_DAY"
 	backup_config_ref = data.avi_backupconfiguration.default_backupconfig.id
 	frequency = "1"
@@ -125,10 +125,10 @@ data "avi_backupconfiguration" "default_backupconfig" {
     name= "Backup-Configuration"
 }
 resource "avi_scheduler" "testScheduler" {
-	start_date_time = "2018-04-06T07:05:32.242307"
 	name = "test-Default-Scheduler-updated"
 	enabled = true
 	tenant_ref = data.avi_tenant.default_tenant.id
+	start_date_time = "2018-04-06T07:05:32.242307"
 	frequency_unit = "SCHEDULER_FREQUENCY_UNIT_DAY"
 	backup_config_ref = data.avi_backupconfiguration.default_backupconfig.id
 	frequency = "1"

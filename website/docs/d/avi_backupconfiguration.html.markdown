@@ -32,7 +32,7 @@ In addition to all arguments above, the following attributes are exported:
 * `aws_bucket_id` - Aws bucket.
 * `aws_secret_access` - Aws secret access key.
 * `backup_file_prefix` - Prefix of the exported configuration file.
-* `backup_passphrase` - Passphrase of backup configuration.
+* `backup_passphrase` - Default passphrase for configuration export and periodic backup.
 * `maximum_backups_stored` - Rotate the backup files based on this count.
 * `name` - Name of backup configuration.
 * `remote_directory` - Directory at remote destination with write permission for ssh user.

@@ -28,6 +28,7 @@ data "avi_image" "foo_image" {
 
 In addition to all arguments above, the following attributes are exported:
 
+* `cloud_info_values` - This field describes the cloud info specific to the base image.
 * `controller_info` - Controller package details.
 * `controller_patch_uuid` - It references the controller-patch associated with the uber image.
 * `migrations` - This field describes the api migration related information.

@@ -30,6 +30,7 @@ The following arguments are supported:
 * `certificate_management_profile_ref` - (Optional) It is a reference to an object of type certificatemanagementprofile.
 * `created_by` - (Optional) Creator name.
 * `dynamic_params` - (Optional) Dynamic parameters needed for certificate management profile.
+* `enable_ocsp_stapling` - (Optional) Enables ocsp stapling.
 * `enckey_base64` - (Optional) Encrypted private key corresponding to the private key (e.g.
 * `enckey_name` - (Optional) Name of the encrypted private key (e.g.
 * `format` - (Optional) Format of the key/certificate file.
@@ -38,6 +39,9 @@ The following arguments are supported:
 * `key_base64` - (Optional) States if the private key is base64 encoded.
 * `key_params` - (Optional) Dict settings for sslkeyandcertificate.
 * `key_passphrase` - (Optional) Passphrase used to encrypt the private key.
+* `ocsp_config` - (Optional) Configuration related to ocsp.
+* `ocsp_error_status` - (Optional) Error reported during ocsp status query.
+* `ocsp_response_info` - (Optional) Information related to ocsp response.
 * `status` - (Optional) Enum options - ssl_certificate_finished, ssl_certificate_pending.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant.
 * `type` - (Optional) Enum options - ssl_certificate_type_virtualservice, ssl_certificate_type_system, ssl_certificate_type_ca.

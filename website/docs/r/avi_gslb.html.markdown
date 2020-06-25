@@ -33,6 +33,7 @@ The following arguments are supported:
 * `is_federated` - (Optional) This field indicates that this object is replicated across gslb federation.
 * `leader_cluster_uuid` - (Optional) Mark this site as leader of gslb configuration.
 * `maintenance_mode` - (Optional) This field disables the configuration operations on the leader for all federated objects.
+* `replication_policy` - (Optional) Policy for replicating configuration to the active follower sites.
 * `send_interval` - (Optional) Frequency with which group members communicate.
 * `send_interval_prior_to_maintenance_mode` - (Optional) The user can specify a send-interval while entering maintenance mode.
 * `sites` - (Optional) Select avi site member belonging to this gslb.

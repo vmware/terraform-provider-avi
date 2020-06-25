@@ -49,6 +49,11 @@ func dataSourceAviVSDataScriptSet() *schema.Resource {
 				Computed: true,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
+			"rate_limiters": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceRateLimiterSchema(),
+			},
 			"string_group_refs": {
 				Type:     schema.TypeList,
 				Computed: true,
