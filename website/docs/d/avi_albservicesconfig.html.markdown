@@ -30,6 +30,7 @@ In addition to all arguments above, the following attributes are exported:
 
 * `asset_contact` - Information about the default contact for this controller cluster.
 * `feature_opt_in_status` - Information about the portal features opted in for controller.
+* `ip_reputation_file_object_expiry_duration` - Ip reputation db file object expiry duration in days.
 * `ip_reputation_sync_interval` - Ip reputation db sync interval in minutes.
 * `polling_interval` - Time interval in minutes.
 * `portal_url` - The fqdn or ip address of the customer portal.

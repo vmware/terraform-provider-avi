@@ -14,6 +14,21 @@ import (
 
 func ResourceUpgradeStatusInfoSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
+		"after_reboot_rollback_fnc": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
+		"after_reboot_task_name": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
+		"clean": {
+			Type:     schema.TypeBool,
+			Optional: true,
+			Computed: true,
+		},
 		"duration": {
 			Type:     schema.TypeInt,
 			Optional: true,
@@ -35,6 +50,11 @@ func ResourceUpgradeStatusInfoSchema() map[string]*schema.Schema {
 			Computed: true,
 		},
 		"enqueue_time": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
+		"image_path": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
@@ -65,6 +85,11 @@ func ResourceUpgradeStatusInfoSchema() map[string]*schema.Schema {
 			Computed: true,
 			Elem:     ResourceUpgradeOpsParamSchema(),
 		},
+		"patch_image_path": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
 		"patch_image_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
@@ -75,7 +100,22 @@ func ResourceUpgradeStatusInfoSchema() map[string]*schema.Schema {
 			Optional: true,
 			Elem:     ResourcePatchDataSchema(),
 		},
+		"patch_reboot": {
+			Type:     schema.TypeBool,
+			Optional: true,
+			Computed: true,
+		},
 		"patch_version": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
+		"prev_image_path": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
+		"prev_patch_image_path": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
@@ -110,10 +150,26 @@ func ResourceUpgradeStatusInfoSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  0,
 		},
+		"se_patch_image_path": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
+		"se_patch_image_ref": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
 		"se_upgrade_events": {
 			Type:     schema.TypeList,
 			Optional: true,
 			Elem:     ResourceSeUpgradeEventsSchema(),
+		},
+		"seg_params": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceUpgradeOpsParamSchema(),
 		},
 		"seg_status": {
 			Type:     schema.TypeSet,

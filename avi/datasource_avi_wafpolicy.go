@@ -20,6 +20,11 @@ func dataSourceAviWafPolicy() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceWafApplicationSignaturesSchema(),
 			},
+			"confidence_override": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceAppLearningConfidenceOverrideSchema(),
+			},
 			"created_by": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -37,7 +42,24 @@ func dataSourceAviWafPolicy() *schema.Resource {
 				Type:     schema.TypeBool,
 				Computed: true,
 			},
+			"enable_auto_rule_updates": {
+				Type:     schema.TypeBool,
+				Computed: true,
+			},
+			"enable_regex_learning": {
+				Type:     schema.TypeBool,
+				Computed: true,
+			},
 			"failure_mode": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"learning_params": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceAppLearningParamsSchema(),
+			},
+			"min_confidence": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},

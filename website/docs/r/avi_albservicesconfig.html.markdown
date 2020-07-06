@@ -25,6 +25,7 @@ The following arguments are supported:
 
 * `asset_contact` - (Optional) Information about the default contact for this controller cluster.
 * `feature_opt_in_status` - (Optional) Information about the portal features opted in for controller.
+* `ip_reputation_file_object_expiry_duration` - (Optional) Ip reputation db file object expiry duration in days.
 * `ip_reputation_sync_interval` - (Optional) Ip reputation db sync interval in minutes.
 * `polling_interval` - (Optional) Time interval in minutes.
 * `portal_url` - (Optional) The fqdn or ip address of the customer portal.

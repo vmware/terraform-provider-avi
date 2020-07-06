@@ -21,6 +21,10 @@ func dataSourceAviImage() *schema.Resource {
 				Computed: true,
 				Elem:     ResourcePackageDetailsSchema(),
 			},
+			"controller_patch_name": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"controller_patch_uuid": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -39,6 +43,10 @@ func dataSourceAviImage() *schema.Resource {
 				Type:     schema.TypeSet,
 				Computed: true,
 				Elem:     ResourcePackageDetailsSchema(),
+			},
+			"se_patch_name": {
+				Type:     schema.TypeString,
+				Computed: true,
 			},
 			"se_patch_uuid": {
 				Type:     schema.TypeString,

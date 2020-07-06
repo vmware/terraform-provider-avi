@@ -61,6 +61,7 @@ func Provider() terraform.ResourceProvider {
 			},
 		},
 		DataSourcesMap: map[string]*schema.Resource{
+			"avi_rmcloudopsproto":                 dataSourceAviRmCloudOpsProto(),
 			"avi_snmptrapprofile":                 dataSourceAviSnmpTrapProfile(),
 			"avi_gslb":                            dataSourceAviGslb(),
 			"avi_gslbservice":                     dataSourceAviGslbService(),
@@ -120,6 +121,7 @@ func Provider() terraform.ResourceProvider {
 			"avi_poolgroup":                       dataSourceAviPoolGroup(),
 			"avi_networksecuritypolicy":           dataSourceAviNetworkSecurityPolicy(),
 			"avi_serviceengine":                   dataSourceAviServiceEngine(),
+			"avi_icapprofile":                     dataSourceAviIcapProfile(),
 			"avi_hardwaresecuritymodulegroup":     dataSourceAviHardwareSecurityModuleGroup(),
 			"avi_autoscalelaunchconfig":           dataSourceAviAutoScaleLaunchConfig(),
 			"avi_serverautoscalepolicy":           dataSourceAviServerAutoScalePolicy(),
@@ -157,6 +159,7 @@ func Provider() terraform.ResourceProvider {
 			"avi_server":                          dataSourceAviServer(),
 		},
 		ResourcesMap: map[string]*schema.Resource{
+			"avi_rmcloudopsproto":                 resourceAviRmCloudOpsProto(),
 			"avi_snmptrapprofile":                 resourceAviSnmpTrapProfile(),
 			"avi_gslb":                            resourceAviGslb(),
 			"avi_gslbservice":                     resourceAviGslbService(),
@@ -216,6 +219,7 @@ func Provider() terraform.ResourceProvider {
 			"avi_poolgroup":                       resourceAviPoolGroup(),
 			"avi_networksecuritypolicy":           resourceAviNetworkSecurityPolicy(),
 			"avi_serviceengine":                   resourceAviServiceEngine(),
+			"avi_icapprofile":                     resourceAviIcapProfile(),
 			"avi_hardwaresecuritymodulegroup":     resourceAviHardwareSecurityModuleGroup(),
 			"avi_autoscalelaunchconfig":           resourceAviAutoScaleLaunchConfig(),
 			"avi_serverautoscalepolicy":           resourceAviServerAutoScalePolicy(),

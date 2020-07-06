@@ -25,10 +25,12 @@ The following arguments are supported:
 
 * `cloud_info_values` - (Optional) This field describes the cloud info specific to the base image.
 * `controller_info` - (Optional) Controller package details.
+* `controller_patch_name` - (Optional) Mandatory controller patch name that is applied along with this base image.
 * `controller_patch_uuid` - (Optional) It references the controller-patch associated with the uber image.
 * `migrations` - (Optional) This field describes the api migration related information.
 * `name` - (Optional) Name of the image.
 * `se_info` - (Optional) Se package details.
+* `se_patch_name` - (Optional) Mandatory serviceengine patch name that is applied along with this base image.
 * `se_patch_uuid` - (Optional) It references the service engine patch associated with the uber image.
 * `status` - (Optional) Status to check if the image is present.
 * `tenant_ref` - (Optional) Tenant that this object belongs to.

@@ -11,6 +11,18 @@ func dataSourceAviUpgradeStatusInfo() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviUpgradeStatusInfoRead,
 		Schema: map[string]*schema.Schema{
+			"after_reboot_rollback_fnc": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"after_reboot_task_name": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"clean": {
+				Type:     schema.TypeBool,
+				Computed: true,
+			},
 			"duration": {
 				Type:     schema.TypeInt,
 				Computed: true,
@@ -28,6 +40,10 @@ func dataSourceAviUpgradeStatusInfo() *schema.Resource {
 				Computed: true,
 			},
 			"enqueue_time": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"image_path": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
@@ -53,6 +69,10 @@ func dataSourceAviUpgradeStatusInfo() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceUpgradeOpsParamSchema(),
 			},
+			"patch_image_path": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"patch_image_ref": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -62,7 +82,19 @@ func dataSourceAviUpgradeStatusInfo() *schema.Resource {
 				Computed: true,
 				Elem:     ResourcePatchDataSchema(),
 			},
+			"patch_reboot": {
+				Type:     schema.TypeBool,
+				Computed: true,
+			},
 			"patch_version": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"prev_image_path": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"prev_patch_image_path": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
@@ -91,10 +123,23 @@ func dataSourceAviUpgradeStatusInfo() *schema.Resource {
 				Type:     schema.TypeInt,
 				Computed: true,
 			},
+			"se_patch_image_path": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"se_patch_image_ref": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"se_upgrade_events": {
 				Type:     schema.TypeList,
 				Computed: true,
 				Elem:     ResourceSeUpgradeEventsSchema(),
+			},
+			"seg_params": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceUpgradeOpsParamSchema(),
 			},
 			"seg_status": {
 				Type:     schema.TypeSet,

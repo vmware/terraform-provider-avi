@@ -131,11 +131,6 @@ func dataSourceAviCloud() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceOpenStackConfigurationSchema(),
 			},
-			"oshiftk8s_configuration": {
-				Type:     schema.TypeSet,
-				Computed: true,
-				Elem:     ResourceOShiftK8SConfigurationSchema(),
-			},
 			"prefer_static_routes": {
 				Type:     schema.TypeBool,
 				Computed: true,

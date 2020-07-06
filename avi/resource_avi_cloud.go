@@ -162,12 +162,6 @@ func ResourceCloudSchema() map[string]*schema.Schema {
 			Computed: true,
 			Elem:     ResourceOpenStackConfigurationSchema(),
 		},
-		"oshiftk8s_configuration": {
-			Type:     schema.TypeSet,
-			Optional: true,
-			Computed: true,
-			Elem:     ResourceOShiftK8SConfigurationSchema(),
-		},
 		"prefer_static_routes": {
 			Type:     schema.TypeBool,
 			Optional: true,
