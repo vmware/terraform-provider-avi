@@ -97,6 +97,12 @@ type EventDetails struct {
 	// Placeholder for description of property cc_vnic_details of obj type EventDetails field type str  type object
 	CcVnicDetails *CloudVnicChange `json:"cc_vnic_details,omitempty"`
 
+	// Placeholder for description of property cloud_asg_notif_details of obj type EventDetails field type str  type object
+	CloudAsgNotifDetails *CloudASGNotifDetails `json:"cloud_asg_notif_details,omitempty"`
+
+	// Placeholder for description of property cloud_autoscaling_config_failure_details of obj type EventDetails field type str  type object
+	CloudAutoscalingConfigFailureDetails *CloudAutoscalingConfigFailureDetails `json:"cloud_autoscaling_config_failure_details,omitempty"`
+
 	// Placeholder for description of property cluster_config_failed_details of obj type EventDetails field type str  type object
 	ClusterConfigFailedDetails *ClusterConfigFailedEvent `json:"cluster_config_failed_details,omitempty"`
 
@@ -294,6 +300,9 @@ type EventDetails struct {
 
 	// Placeholder for description of property psm_program_details of obj type EventDetails field type str  type object
 	PsmProgramDetails *PsmProgramDetails `json:"psm_program_details,omitempty"`
+
+	//  Field introduced in 18.2.9.
+	RateLimiterEventDetails *RateLimiterEventDetails `json:"rate_limiter_event_details,omitempty"`
 
 	// Placeholder for description of property rebalance_migrate_details of obj type EventDetails field type str  type object
 	RebalanceMigrateDetails *RebalanceMigrateEventDetails `json:"rebalance_migrate_details,omitempty"`
