@@ -96,6 +96,7 @@ In addition to all arguments above, the following attributes are exported:
 * `ingress_access_data` - Program se security group ingress rules to allow vip data access from remote cidr type.
 * `ingress_access_mgmt` - Program se security group ingress rules to allow ssh/icmp management access from remote cidr type.
 * `instance_flavor` - Instance/flavor name for se instance.
+* `instance_flavor_info` - Additional information associated with instance_flavor.
 * `iptables` - Iptable rules.
 * `least_load_core_selection` - Select core with least load for new flow.
 * `license_tier` - Specifies the license tier which would be used.

@@ -90,6 +90,7 @@ The following arguments are supported:
 * `ingress_access_data` - (Optional) Program se security group ingress rules to allow vip data access from remote cidr type.
 * `ingress_access_mgmt` - (Optional) Program se security group ingress rules to allow ssh/icmp management access from remote cidr type.
 * `instance_flavor` - (Optional) Instance/flavor name for se instance.
+* `instance_flavor_info` - (Optional) Additional information associated with instance_flavor.
 * `iptables` - (Optional) Iptable rules.
 * `least_load_core_selection` - (Optional) Select core with least load for new flow.
 * `license_tier` - (Optional) Specifies the license tier which would be used.

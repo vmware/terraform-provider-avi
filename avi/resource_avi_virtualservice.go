@@ -468,41 +468,6 @@ func resourceAviVirtualServiceCreate(d *schema.ResourceData, meta interface{}) e
 func resourceAviVirtualServiceUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceVirtualServiceSchema()
 	var err error
-	var existingvirtualservice interface{}
-	var apiResponse interface{}
-	client := meta.(*clients.AviClient)
-	uuid := d.Get("uuid").(string)
-	virtualservicepath := "api/virtualservice/" + uuid
-	err = client.AviSession.Get(virtualservicepath, &existingvirtualservice)
-	if err == nil {
-		//adding default values to api_response before it overwrites the d (local state).
-		//Before GO lang sets zero value to fields which are absent in api response
-		//setting those fields to schema default and then overwritting d (local state)
-		if localData, err := SchemaToAviData(d, s); err == nil {
-			apiResponse, err = SetDefaultsInAPIRes(existingvirtualservice, localData, s)
-		} else {
-			log.Printf("[ERROR] resourceAviVirtualServiceUpdate in SchemaToAviData: %v\n", err)
-		}
-		if virtualserviceobj, err := ApiDataToSchema(apiResponse, nil, nil); err == nil {
-			objs := virtualserviceobj.(*schema.Set).List()
-			for obj := 0; obj < len(objs); obj++ {
-				vsvipref := objs[obj].(map[string]interface{})["vsvip_ref"]
-				err = d.Set("vsvip_ref", vsvipref.(string))
-				if err != nil {
-					log.Printf("[ERROR] resourceAviVirtualServiceUpdate in Setting vsvip ref: %v\n", err)
-				}
-				vipob := objs[obj].(map[string]interface{})["vip"]
-				err = d.Set("vip", vipob)
-				if err != nil {
-					log.Printf("[ERROR] resourceAviVirtualServiceUpdate in Setting vip: %v\n", err)
-				}
-			}
-		} else {
-			log.Printf("[ERROR] resourceAviVirtualServiceUpdate in ApiDataToSchema: %v\n", err)
-		}
-	} else {
-		log.Printf("[ERROR] resourceAviVirtualServiceUpdate in GET: %v\n", err)
-	}
 	err = ApiCreateOrUpdate(d, meta, "virtualservice", s)
 	if err == nil {
 		err = ResourceAviVirtualServiceRead(d, meta)

@@ -7,53 +7,58 @@ package avi
 
 import "github.com/hashicorp/terraform/helper/schema"
 
-func dataSourceAviImage() *schema.Resource {
+func dataSourceAviIcapProfile() *schema.Resource {
 	return &schema.Resource{
-		Read: ResourceAviImageRead,
+		Read: ResourceAviIcapProfileRead,
 		Schema: map[string]*schema.Schema{
-			"cloud_info_values": {
-				Type:     schema.TypeList,
+			"buffer_size": {
+				Type:     schema.TypeInt,
 				Computed: true,
-				Elem:     ResourceImageCloudDataSchema(),
 			},
-			"controller_info": {
-				Type:     schema.TypeSet,
-				Computed: true,
-				Elem:     ResourcePackageDetailsSchema(),
-			},
-			"controller_patch_name": {
+			"buffer_size_exceed_action": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"controller_patch_uuid": {
+			"cloud_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"description": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"migrations": {
-				Type:     schema.TypeSet,
+			"enable_preview": {
+				Type:     schema.TypeBool,
 				Computed: true,
-				Elem:     ResourceSupportedMigrationsSchema(),
+			},
+			"fail_action": {
+				Type:     schema.TypeString,
+				Computed: true,
 			},
 			"name": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
-			"se_info": {
-				Type:     schema.TypeSet,
-				Computed: true,
-				Elem:     ResourcePackageDetailsSchema(),
-			},
-			"se_patch_name": {
+			"pool_group_ref": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"se_patch_uuid": {
+			"preview_size": {
+				Type:     schema.TypeInt,
+				Computed: true,
+			},
+			"response_timeout": {
+				Type:     schema.TypeInt,
+				Computed: true,
+			},
+			"service_uri": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"status": {
-				Type:     schema.TypeString,
+			"slow_response_warning_threshold": {
+				Type:     schema.TypeInt,
 				Computed: true,
 			},
 			"tenant_ref": {
@@ -61,17 +66,13 @@ func dataSourceAviImage() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
-			"type": {
-				Type:     schema.TypeString,
-				Computed: true,
-			},
-			"uber_bundle": {
-				Type:     schema.TypeBool,
-				Computed: true,
-			},
 			"uuid": {
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
+			},
+			"vendor": {
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 		},
