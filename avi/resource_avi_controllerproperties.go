@@ -137,7 +137,7 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 		"federated_datastore_cleanup_duration": {
 			Type:     schema.TypeInt,
 			Optional: true,
-			Default:  24,
+			Default:  120,
 		},
 		"file_object_cleanup_period": {
 			Type:     schema.TypeInt,
@@ -294,10 +294,15 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  5,
 		},
+		"upgrade_fat_se_lease_time": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  1200,
+		},
 		"upgrade_lease_time": {
 			Type:     schema.TypeInt,
 			Optional: true,
-			Default:  360,
+			Default:  600,
 		},
 		"uuid": {
 			Type:     schema.TypeString,

@@ -21,6 +21,10 @@ func dataSourceAviALBServicesConfig() *schema.Resource {
 				Computed: true,
 				Elem:     ResourcePortalFeatureOptInSchema(),
 			},
+			"ip_reputation_file_object_expiry_duration": {
+				Type:     schema.TypeInt,
+				Computed: true,
+			},
 			"ip_reputation_sync_interval": {
 				Type:     schema.TypeInt,
 				Computed: true,

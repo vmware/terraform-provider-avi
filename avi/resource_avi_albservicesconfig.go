@@ -26,6 +26,11 @@ func ResourceALBServicesConfigSchema() map[string]*schema.Schema {
 			Computed: true,
 			Elem:     ResourcePortalFeatureOptInSchema(),
 		},
+		"ip_reputation_file_object_expiry_duration": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  3,
+		},
 		"ip_reputation_sync_interval": {
 			Type:     schema.TypeInt,
 			Optional: true,

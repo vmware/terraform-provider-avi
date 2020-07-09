@@ -236,6 +236,10 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Type:     schema.TypeInt,
 				Computed: true,
 			},
+			"upgrade_fat_se_lease_time": {
+				Type:     schema.TypeInt,
+				Computed: true,
+			},
 			"upgrade_lease_time": {
 				Type:     schema.TypeInt,
 				Computed: true,

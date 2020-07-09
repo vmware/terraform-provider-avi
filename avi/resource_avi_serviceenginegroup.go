@@ -344,6 +344,12 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"instance_flavor_info": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceCloudFlavorSchema(),
+		},
 		"iptables": {
 			Type:     schema.TypeList,
 			Optional: true,

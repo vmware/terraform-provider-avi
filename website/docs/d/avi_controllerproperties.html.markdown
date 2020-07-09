@@ -84,7 +84,8 @@ In addition to all arguments above, the following attributes are exported:
 * `ssl_certificate_expiry_warning_days` - Number of days for ssl certificate expiry warning.
 * `unresponsive_se_reboot` - Placeholder for description of property unresponsive_se_reboot of obj type controllerproperties field type integer  type int.
 * `upgrade_dns_ttl` - Time to account for dns ttl during upgrade.
-* `upgrade_lease_time` - Placeholder for description of property upgrade_lease_time of obj type controllerproperties field type integer  type int.
+* `upgrade_fat_se_lease_time` - Amount of time controller waits for a large-sized se (>=128gb memory) to reconnect after it is rebooted during upgrade.
+* `upgrade_lease_time` - Amount of time controller waits for a regular-sized se (<128gb memory) to reconnect after it is rebooted during upgrade.
 * `uuid` - Unique object identifier of the object.
 * `vnic_op_fail_time` - Placeholder for description of property vnic_op_fail_time of obj type controllerproperties field type integer  type int.
 * `vs_apic_scaleout_timeout` - Time to wait for the scaled out se to become ready before marking the scaleout done, applies to apic configuration only.

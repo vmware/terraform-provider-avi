@@ -282,6 +282,11 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"instance_flavor_info": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceCloudFlavorSchema(),
+			},
 			"iptables": {
 				Type:     schema.TypeList,
 				Computed: true,

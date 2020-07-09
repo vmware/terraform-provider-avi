@@ -51,7 +51,6 @@ The following arguments are supported:
 * `nsxt_configuration` - (Optional) Nsx-t cloud platform configuration.
 * `obj_name_prefix` - (Optional) Default prefix for all automatically created objects in this cloud.
 * `openstack_configuration` - (Optional) Dict settings for cloud.
-* `oshiftk8s_configuration` - (Optional) Dict settings for cloud.
 * `prefer_static_routes` - (Optional) Prefer static routes over interface routes during virtualservice placement.
 * `proxy_configuration` - (Optional) Dict settings for cloud.
 * `rancher_configuration` - (Optional) Dict settings for cloud.

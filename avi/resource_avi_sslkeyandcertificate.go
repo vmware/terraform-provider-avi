@@ -103,7 +103,7 @@ func ResourceSSLKeyAndCertificateSchema() map[string]*schema.Schema {
 		"ocsp_error_status": {
 			Type:     schema.TypeString,
 			Optional: true,
-			Computed: true,
+			Default:  "OCSP_ERR_CERTSTATUS_DISABLED",
 		},
 		"ocsp_response_info": {
 			Type:     schema.TypeSet,

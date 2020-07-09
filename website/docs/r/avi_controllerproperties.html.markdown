@@ -79,7 +79,8 @@ The following arguments are supported:
 * `ssl_certificate_expiry_warning_days` - (Optional) Number of days for ssl certificate expiry warning.
 * `unresponsive_se_reboot` - (Optional) Placeholder for description of property unresponsive_se_reboot of obj type controllerproperties field type integer  type int.
 * `upgrade_dns_ttl` - (Optional) Time to account for dns ttl during upgrade.
-* `upgrade_lease_time` - (Optional) Placeholder for description of property upgrade_lease_time of obj type controllerproperties field type integer  type int.
+* `upgrade_fat_se_lease_time` - (Optional) Amount of time controller waits for a large-sized se (>=128gb memory) to reconnect after it is rebooted during upgrade.
+* `upgrade_lease_time` - (Optional) Amount of time controller waits for a regular-sized se (<128gb memory) to reconnect after it is rebooted during upgrade.
 * `vnic_op_fail_time` - (Optional) Placeholder for description of property vnic_op_fail_time of obj type controllerproperties field type integer  type int.
 * `vs_apic_scaleout_timeout` - (Optional) Time to wait for the scaled out se to become ready before marking the scaleout done, applies to apic configuration only.
 * `vs_awaiting_se_timeout` - (Optional) Placeholder for description of property vs_awaiting_se_timeout of obj type controllerproperties field type integer  type int.
