@@ -95,10 +95,10 @@ func resourceAviFederationCheckpointUpdate(d *schema.ResourceData, meta interfac
 
 func resourceAviFederationCheckpointDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "federationcheckpoint"
+	client := meta.(*clients.AviClient)
 	if ApiDeleteSystemDefaultCheck(d) {
 		return nil
 	}
-	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {
 		path := "api/" + objType + "/" + uuid

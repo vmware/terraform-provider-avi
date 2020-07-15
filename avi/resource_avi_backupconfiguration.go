@@ -15,9 +15,11 @@ import (
 func ResourceBackupConfigurationSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"aws_access_key": {
-			Type:     schema.TypeString,
-			Optional: true,
-			Computed: true,
+			Type:             schema.TypeString,
+			Optional:         true,
+			Computed:         true,
+			Sensitive:        true,
+			DiffSuppressFunc: suppressSensitiveFieldDiffs,
 		},
 		"aws_bucket_id": {
 			Type:     schema.TypeString,
@@ -25,9 +27,11 @@ func ResourceBackupConfigurationSchema() map[string]*schema.Schema {
 			Computed: true,
 		},
 		"aws_secret_access": {
-			Type:     schema.TypeString,
-			Optional: true,
-			Computed: true,
+			Type:             schema.TypeString,
+			Optional:         true,
+			Computed:         true,
+			Sensitive:        true,
+			DiffSuppressFunc: suppressSensitiveFieldDiffs,
 		},
 		"backup_file_prefix": {
 			Type:     schema.TypeString,
@@ -35,9 +39,11 @@ func ResourceBackupConfigurationSchema() map[string]*schema.Schema {
 			Computed: true,
 		},
 		"backup_passphrase": {
-			Type:     schema.TypeString,
-			Optional: true,
-			Computed: true,
+			Type:             schema.TypeString,
+			Optional:         true,
+			Computed:         true,
+			Sensitive:        true,
+			DiffSuppressFunc: suppressSensitiveFieldDiffs,
 		},
 		"maximum_backups_stored": {
 			Type:     schema.TypeInt,
@@ -139,10 +145,10 @@ func resourceAviBackupConfigurationUpdate(d *schema.ResourceData, meta interface
 
 func resourceAviBackupConfigurationDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "backupconfiguration"
+	client := meta.(*clients.AviClient)
 	if ApiDeleteSystemDefaultCheck(d) {
 		return nil
 	}
-	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {
 		path := "api/" + objType + "/" + uuid

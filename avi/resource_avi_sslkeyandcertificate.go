@@ -70,9 +70,11 @@ func ResourceSSLKeyAndCertificateSchema() map[string]*schema.Schema {
 			Computed: true,
 		},
 		"key": {
-			Type:     schema.TypeString,
-			Optional: true,
-			Computed: true,
+			Type:             schema.TypeString,
+			Optional:         true,
+			Computed:         true,
+			Sensitive:        true,
+			DiffSuppressFunc: suppressSensitiveFieldDiffs,
 		},
 		"key_base64": {
 			Type:     schema.TypeBool,
@@ -86,9 +88,11 @@ func ResourceSSLKeyAndCertificateSchema() map[string]*schema.Schema {
 			Elem:     ResourceSSLKeyParamsSchema(),
 		},
 		"key_passphrase": {
-			Type:     schema.TypeString,
-			Optional: true,
-			Computed: true,
+			Type:             schema.TypeString,
+			Optional:         true,
+			Computed:         true,
+			Sensitive:        true,
+			DiffSuppressFunc: suppressSensitiveFieldDiffs,
 		},
 		"name": {
 			Type:     schema.TypeString,
@@ -182,10 +186,10 @@ func resourceAviSSLKeyAndCertificateUpdate(d *schema.ResourceData, meta interfac
 
 func resourceAviSSLKeyAndCertificateDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "sslkeyandcertificate"
+	client := meta.(*clients.AviClient)
 	if ApiDeleteSystemDefaultCheck(d) {
 		return nil
 	}
-	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {
 		path := "api/" + objType + "/" + uuid

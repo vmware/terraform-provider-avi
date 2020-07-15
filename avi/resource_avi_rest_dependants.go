@@ -286,9 +286,11 @@ func ResourceAPICConfigurationSchema() *schema.Resource {
 				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
 			"apic_password": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
+				Type:             schema.TypeString,
+				Optional:         true,
+				Computed:         true,
+				Sensitive:        true,
+				DiffSuppressFunc: suppressSensitiveFieldDiffs,
 			},
 			"apic_username": {
 				Type:     schema.TypeString,
@@ -2300,9 +2302,11 @@ func ResourceAwsConfigurationSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
 			"access_key_id": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
+				Type:             schema.TypeString,
+				Optional:         true,
+				Computed:         true,
+				Sensitive:        true,
+				DiffSuppressFunc: suppressSensitiveFieldDiffs,
 			},
 			"asg_poll_interval": {
 				Type:     schema.TypeInt,
@@ -2347,9 +2351,11 @@ func ResourceAwsConfigurationSchema() *schema.Resource {
 				Elem:     ResourceAwsEncryptionSchema(),
 			},
 			"secret_access_key": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
+				Type:             schema.TypeString,
+				Optional:         true,
+				Computed:         true,
+				Sensitive:        true,
+				DiffSuppressFunc: suppressSensitiveFieldDiffs,
 			},
 			"sqs_encryption": {
 				Type:     schema.TypeSet,
@@ -2650,9 +2656,11 @@ func ResourceAzureServicePrincipalCredentialsSchema() *schema.Resource {
 				Computed: true,
 			},
 			"authentication_token": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
+				Type:             schema.TypeString,
+				Optional:         true,
+				Computed:         true,
+				Sensitive:        true,
+				DiffSuppressFunc: suppressSensitiveFieldDiffs,
 			},
 			"tenant_id": {
 				Type:     schema.TypeString,
@@ -2724,9 +2732,11 @@ func ResourceAzureUserPassCredentialsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
 			"password": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
+				Type:             schema.TypeString,
+				Optional:         true,
+				Computed:         true,
+				Sensitive:        true,
+				DiffSuppressFunc: suppressSensitiveFieldDiffs,
 			},
 			"tenant_name": {
 				Type:     schema.TypeString,
@@ -2835,9 +2845,11 @@ func ResourceBgpPeerSchema() *schema.Resource {
 				Computed: true,
 			},
 			"md5_secret": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
+				Type:             schema.TypeString,
+				Optional:         true,
+				Computed:         true,
+				Sensitive:        true,
+				DiffSuppressFunc: suppressSensitiveFieldDiffs,
 			},
 			"network_ref": {
 				Type:     schema.TypeString,
@@ -4312,8 +4324,10 @@ func ResourceCloudStackConfigurationSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
 			"access_key_id": {
-				Type:     schema.TypeString,
-				Required: true,
+				Type:             schema.TypeString,
+				Required:         true,
+				Sensitive:        true,
+				DiffSuppressFunc: suppressSensitiveFieldDiffs,
 			},
 			"api_url": {
 				Type:     schema.TypeString,
@@ -4339,8 +4353,10 @@ func ResourceCloudStackConfigurationSchema() *schema.Resource {
 				Computed: true,
 			},
 			"secret_access_key": {
-				Type:     schema.TypeString,
-				Required: true,
+				Type:             schema.TypeString,
+				Required:         true,
+				Sensitive:        true,
+				DiffSuppressFunc: suppressSensitiveFieldDiffs,
 			},
 		},
 	}
@@ -4613,9 +4629,11 @@ func ResourceClusterNodeSchema() *schema.Resource {
 				Default:  "node",
 			},
 			"password": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
+				Type:             schema.TypeString,
+				Optional:         true,
+				Computed:         true,
+				Sensitive:        true,
+				DiffSuppressFunc: suppressSensitiveFieldDiffs,
 			},
 			"public_ip_or_name": {
 				Type:     schema.TypeSet,
@@ -6218,9 +6236,11 @@ func ResourceControllerPortalAuthSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
 			"access_token": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
+				Type:             schema.TypeString,
+				Optional:         true,
+				Computed:         true,
+				Sensitive:        true,
+				DiffSuppressFunc: suppressSensitiveFieldDiffs,
 			},
 			"instance_url": {
 				Type:     schema.TypeString,
@@ -6228,9 +6248,11 @@ func ResourceControllerPortalAuthSchema() *schema.Resource {
 				Computed: true,
 			},
 			"jwt_token": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
+				Type:             schema.TypeString,
+				Optional:         true,
+				Computed:         true,
+				Sensitive:        true,
+				DiffSuppressFunc: suppressSensitiveFieldDiffs,
 			},
 		},
 	}
@@ -8495,9 +8517,11 @@ func ResourceDockerRegistrySchema() *schema.Resource {
 				Elem:     ResourceOshiftDockerRegistryMetaDataSchema(),
 			},
 			"password": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
+				Type:             schema.TypeString,
+				Optional:         true,
+				Computed:         true,
+				Sensitive:        true,
+				DiffSuppressFunc: suppressSensitiveFieldDiffs,
 			},
 			"private": {
 				Type:     schema.TypeBool,
@@ -8695,9 +8719,11 @@ func ResourceEmailConfigurationSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
 			"auth_password": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
+				Type:             schema.TypeString,
+				Optional:         true,
+				Computed:         true,
+				Sensitive:        true,
+				DiffSuppressFunc: suppressSensitiveFieldDiffs,
 			},
 			"auth_username": {
 				Type:     schema.TypeString,
@@ -9258,6 +9284,12 @@ func ResourceEventDetailsSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 				Elem:     ResourceRmSeIpFailEventDetailsSchema(),
+			},
+			"ip_threat_db_event_data": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceIPThreatDBEventDataSchema(),
 			},
 			"license_details": {
 				Type:     schema.TypeSet,
@@ -10349,9 +10381,11 @@ func ResourceGCPCredentialsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
 			"service_account_keyfile_data": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
+				Type:             schema.TypeString,
+				Optional:         true,
+				Computed:         true,
+				Sensitive:        true,
+				DiffSuppressFunc: suppressSensitiveFieldDiffs,
 			},
 		},
 	}
@@ -11618,9 +11652,11 @@ func ResourceGslbSiteSchema() *schema.Resource {
 				Computed: true,
 			},
 			"password": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
+				Type:             schema.TypeString,
+				Optional:         true,
+				Computed:         true,
+				Sensitive:        true,
+				DiffSuppressFunc: suppressSensitiveFieldDiffs,
 			},
 			"port": {
 				Type:     schema.TypeInt,
@@ -12323,9 +12359,11 @@ func ResourceHSMAwsCloudHsmSchema() *schema.Resource {
 				Computed: true,
 			},
 			"crypto_user_password": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
+				Type:             schema.TypeString,
+				Optional:         true,
+				Computed:         true,
+				Sensitive:        true,
+				DiffSuppressFunc: suppressSensitiveFieldDiffs,
 			},
 			"hsm_ip": {
 				Type:     schema.TypeList,
@@ -12354,9 +12392,11 @@ func ResourceHSMSafenetClientInfoSchema() *schema.Resource {
 				Required: true,
 			},
 			"client_priv_key": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
+				Type:             schema.TypeString,
+				Optional:         true,
+				Computed:         true,
+				Sensitive:        true,
+				DiffSuppressFunc: suppressSensitiveFieldDiffs,
 			},
 			"session_major_number": {
 				Type:     schema.TypeInt,
@@ -12417,9 +12457,11 @@ func ResourceHSMSafenetLunaServerSchema() *schema.Resource {
 				Computed: true,
 			},
 			"partition_passwd": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
+				Type:             schema.TypeString,
+				Optional:         true,
+				Computed:         true,
+				Sensitive:        true,
+				DiffSuppressFunc: suppressSensitiveFieldDiffs,
 			},
 			"partition_serial_number": {
 				Type:     schema.TypeString,
@@ -13505,14 +13547,18 @@ func ResourceHealthMonitorAuthInfoSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
 			"password": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
+				Type:             schema.TypeString,
+				Optional:         true,
+				Computed:         true,
+				Sensitive:        true,
+				DiffSuppressFunc: suppressSensitiveFieldDiffs,
 			},
 			"username": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
+				Type:             schema.TypeString,
+				Optional:         true,
+				Computed:         true,
+				Sensitive:        true,
+				DiffSuppressFunc: suppressSensitiveFieldDiffs,
 			},
 		},
 	}
@@ -13637,14 +13683,18 @@ func ResourceHealthMonitorRadiusSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
 			"password": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
+				Type:             schema.TypeString,
+				Optional:         true,
+				Computed:         true,
+				Sensitive:        true,
+				DiffSuppressFunc: suppressSensitiveFieldDiffs,
 			},
 			"shared_secret": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
+				Type:             schema.TypeString,
+				Optional:         true,
+				Computed:         true,
+				Sensitive:        true,
+				DiffSuppressFunc: suppressSensitiveFieldDiffs,
 			},
 			"username": {
 				Type:     schema.TypeString,
@@ -14140,6 +14190,28 @@ func ResourceIPReputationTypeMatchSchema() *schema.Resource {
 	}
 }
 
+func ResourceIPThreatDBEventDataSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"reason": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"status": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"version": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
 func ResourceIcapLogSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -14505,9 +14577,11 @@ func ResourceIpamDnsAwsProfileSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
 			"access_key_id": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
+				Type:             schema.TypeString,
+				Optional:         true,
+				Computed:         true,
+				Sensitive:        true,
+				DiffSuppressFunc: suppressSensitiveFieldDiffs,
 			},
 			"egress_service_subnets": {
 				Type:     schema.TypeList,
@@ -14530,9 +14604,11 @@ func ResourceIpamDnsAwsProfileSchema() *schema.Resource {
 				Computed: true,
 			},
 			"secret_access_key": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
+				Type:             schema.TypeString,
+				Optional:         true,
+				Computed:         true,
+				Sensitive:        true,
+				DiffSuppressFunc: suppressSensitiveFieldDiffs,
 			},
 			"ttl": {
 				Type:     schema.TypeInt,
@@ -14724,8 +14800,10 @@ func ResourceIpamDnsInfobloxProfileSchema() *schema.Resource {
 				Default:  "default",
 			},
 			"password": {
-				Type:     schema.TypeString,
-				Required: true,
+				Type:             schema.TypeString,
+				Required:         true,
+				Sensitive:        true,
+				DiffSuppressFunc: suppressSensitiveFieldDiffs,
 			},
 			"usable_alloc_subnets": {
 				Type:     schema.TypeList,
@@ -14818,9 +14896,11 @@ func ResourceIpamDnsOpenstackProfileSchema() *schema.Resource {
 				Computed: true,
 			},
 			"password": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
+				Type:             schema.TypeString,
+				Optional:         true,
+				Computed:         true,
+				Sensitive:        true,
+				DiffSuppressFunc: suppressSensitiveFieldDiffs,
 			},
 			"region": {
 				Type:     schema.TypeString,
@@ -15264,9 +15344,11 @@ func ResourceLdapDirectorySettingsSchema() *schema.Resource {
 				Default:  false,
 			},
 			"password": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
+				Type:             schema.TypeString,
+				Optional:         true,
+				Computed:         true,
+				Sensitive:        true,
+				DiffSuppressFunc: suppressSensitiveFieldDiffs,
 			},
 			"user_attributes": {
 				Type:     schema.TypeList,
@@ -15369,6 +15451,11 @@ func ResourceLicenseExpiryDetailsSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"cpu_cores": {
+				Type:     schema.TypeFloat,
+				Optional: true,
+				Computed: true,
+			},
 			"expiry_at": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -15401,6 +15488,11 @@ func ResourceLicenseExpiryDetailsSchema() *schema.Resource {
 			},
 			"name": {
 				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"service_cores": {
+				Type:     schema.TypeFloat,
 				Optional: true,
 				Computed: true,
 			},
@@ -15719,9 +15811,11 @@ func ResourceMarathonConfigurationSchema() *schema.Resource {
 				Computed: true,
 			},
 			"marathon_password": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
+				Type:             schema.TypeString,
+				Optional:         true,
+				Computed:         true,
+				Sensitive:        true,
+				DiffSuppressFunc: suppressSensitiveFieldDiffs,
 			},
 			"marathon_url": {
 				Type:     schema.TypeString,
@@ -17605,9 +17699,11 @@ func ResourceNsxConfigurationSchema() *schema.Resource {
 				Computed: true,
 			},
 			"nsx_manager_password": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
+				Type:             schema.TypeString,
+				Optional:         true,
+				Computed:         true,
+				Sensitive:        true,
+				DiffSuppressFunc: suppressSensitiveFieldDiffs,
 			},
 			"nsx_manager_username": {
 				Type:     schema.TypeString,
@@ -17681,9 +17777,11 @@ func ResourceNsxtCredentialsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
 			"password": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
+				Type:             schema.TypeString,
+				Optional:         true,
+				Computed:         true,
+				Sensitive:        true,
+				DiffSuppressFunc: suppressSensitiveFieldDiffs,
 			},
 			"username": {
 				Type:     schema.TypeString,
@@ -17806,9 +17904,11 @@ func ResourceNuageSDNControllerSchema() *schema.Resource {
 				Computed: true,
 			},
 			"nuage_password": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
+				Type:             schema.TypeString,
+				Optional:         true,
+				Computed:         true,
+				Sensitive:        true,
+				DiffSuppressFunc: suppressSensitiveFieldDiffs,
 			},
 			"nuage_port": {
 				Type:     schema.TypeInt,
@@ -17863,19 +17963,25 @@ func ResourceOCICredentialsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
 			"fingerprint": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
+				Type:             schema.TypeString,
+				Optional:         true,
+				Computed:         true,
+				Sensitive:        true,
+				DiffSuppressFunc: suppressSensitiveFieldDiffs,
 			},
 			"key_content": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
+				Type:             schema.TypeString,
+				Optional:         true,
+				Computed:         true,
+				Sensitive:        true,
+				DiffSuppressFunc: suppressSensitiveFieldDiffs,
 			},
 			"pass_phrase": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
+				Type:             schema.TypeString,
+				Optional:         true,
+				Computed:         true,
+				Sensitive:        true,
+				DiffSuppressFunc: suppressSensitiveFieldDiffs,
 			},
 			"user": {
 				Type:     schema.TypeString,
@@ -17929,7 +18035,7 @@ func ResourceOCSPConfigSchema() *schema.Resource {
 			"failed_ocsp_jobs_retry_interval": {
 				Type:     schema.TypeInt,
 				Optional: true,
-				Default:  15,
+				Default:  3600,
 			},
 			"ocsp_req_interval": {
 				Type:     schema.TypeInt,
@@ -18183,9 +18289,11 @@ func ResourceOShiftK8SConfigurationSchema() *schema.Resource {
 				Default:  false,
 			},
 			"service_account_token": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
+				Type:             schema.TypeString,
+				Optional:         true,
+				Computed:         true,
+				Sensitive:        true,
+				DiffSuppressFunc: suppressSensitiveFieldDiffs,
 			},
 			"shard_prefix": {
 				Type:     schema.TypeString,
@@ -18456,9 +18564,11 @@ func ResourceOpenStackConfigurationSchema() *schema.Resource {
 				Default:  true,
 			},
 			"password": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
+				Type:             schema.TypeString,
+				Optional:         true,
+				Computed:         true,
+				Sensitive:        true,
+				DiffSuppressFunc: suppressSensitiveFieldDiffs,
 			},
 			"privilege": {
 				Type:     schema.TypeString,
@@ -19695,9 +19805,11 @@ func ResourceProxyConfigurationSchema() *schema.Resource {
 				Required: true,
 			},
 			"password": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
+				Type:             schema.TypeString,
+				Optional:         true,
+				Computed:         true,
+				Sensitive:        true,
+				DiffSuppressFunc: suppressSensitiveFieldDiffs,
 			},
 			"port": {
 				Type:     schema.TypeInt,
@@ -19867,9 +19979,11 @@ func ResourceRancherConfigurationSchema() *schema.Resource {
 				Default:  "/opt/avi",
 			},
 			"secret_key": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
+				Type:             schema.TypeString,
+				Optional:         true,
+				Computed:         true,
+				Sensitive:        true,
+				DiffSuppressFunc: suppressSensitiveFieldDiffs,
 			},
 			"services_accessible_all_interfaces": {
 				Type:     schema.TypeBool,
@@ -25518,6 +25632,11 @@ func ResourceSingleLicenseSchema() *schema.Resource {
 				Optional: true,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
+			"expired": {
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  false,
+			},
 			"last_update": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -25695,9 +25814,11 @@ func ResourceSnmpConfigurationSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
 			"community": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
+				Type:             schema.TypeString,
+				Optional:         true,
+				Computed:         true,
+				Sensitive:        true,
+				DiffSuppressFunc: suppressSensitiveFieldDiffs,
 			},
 			"large_trap_payload": {
 				Type:     schema.TypeBool,
@@ -25733,9 +25854,11 @@ func ResourceSnmpTrapServerSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
 			"community": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
+				Type:             schema.TypeString,
+				Optional:         true,
+				Computed:         true,
+				Sensitive:        true,
+				DiffSuppressFunc: suppressSensitiveFieldDiffs,
 			},
 			"ip_addr": {
 				Type:     schema.TypeSet,
@@ -25784,9 +25907,11 @@ func ResourceSnmpV3UserParamsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
 			"auth_passphrase": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Default:  "avinetworks",
+				Type:             schema.TypeString,
+				Optional:         true,
+				Default:          "avinetworks",
+				Sensitive:        true,
+				DiffSuppressFunc: suppressSensitiveFieldDiffs,
 			},
 			"auth_type": {
 				Type:     schema.TypeString,
@@ -25794,9 +25919,11 @@ func ResourceSnmpV3UserParamsSchema() *schema.Resource {
 				Default:  "SNMP_V3_AUTH_MD5",
 			},
 			"priv_passphrase": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Default:  "avinetworks",
+				Type:             schema.TypeString,
+				Optional:         true,
+				Default:          "avinetworks",
+				Sensitive:        true,
+				DiffSuppressFunc: suppressSensitiveFieldDiffs,
 			},
 			"priv_type": {
 				Type:     schema.TypeString,
@@ -26416,9 +26543,11 @@ func ResourceTacacsPlusAuthSettingsSchema() *schema.Resource {
 				Elem:     ResourceAuthTacacsPlusAttributeValuePairSchema(),
 			},
 			"password": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
+				Type:             schema.TypeString,
+				Optional:         true,
+				Computed:         true,
+				Sensitive:        true,
+				DiffSuppressFunc: suppressSensitiveFieldDiffs,
 			},
 			"port": {
 				Type:     schema.TypeInt,
@@ -26487,14 +26616,18 @@ func ResourceTencentCredentialsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
 			"secret_id": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
+				Type:             schema.TypeString,
+				Optional:         true,
+				Computed:         true,
+				Sensitive:        true,
+				DiffSuppressFunc: suppressSensitiveFieldDiffs,
 			},
 			"secret_key": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
+				Type:             schema.TypeString,
+				Optional:         true,
+				Computed:         true,
+				Sensitive:        true,
+				DiffSuppressFunc: suppressSensitiveFieldDiffs,
 			},
 		},
 	}
@@ -27092,9 +27225,11 @@ func ResourceVCenterCredentialsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
 			"password": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
+				Type:             schema.TypeString,
+				Optional:         true,
+				Computed:         true,
+				Sensitive:        true,
+				DiffSuppressFunc: suppressSensitiveFieldDiffs,
 			},
 			"username": {
 				Type:     schema.TypeString,
@@ -28177,8 +28312,10 @@ func ResourceVIMgrVcenterRuntimeSchema() *schema.Resource {
 				Computed: true,
 			},
 			"password": {
-				Type:     schema.TypeString,
-				Required: true,
+				Type:             schema.TypeString,
+				Required:         true,
+				Sensitive:        true,
+				DiffSuppressFunc: suppressSensitiveFieldDiffs,
 			},
 			"privilege": {
 				Type:     schema.TypeString,
@@ -32014,9 +32151,11 @@ func ResourcevCenterConfigurationSchema() *schema.Resource {
 				Computed: true,
 			},
 			"password": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
+				Type:             schema.TypeString,
+				Optional:         true,
+				Computed:         true,
+				Sensitive:        true,
+				DiffSuppressFunc: suppressSensitiveFieldDiffs,
 			},
 			"privilege": {
 				Type:     schema.TypeString,
@@ -32065,8 +32204,10 @@ func ResourcevCloudAirConfigurationSchema() *schema.Resource {
 				Required: true,
 			},
 			"vca_password": {
-				Type:     schema.TypeString,
-				Required: true,
+				Type:             schema.TypeString,
+				Required:         true,
+				Sensitive:        true,
+				DiffSuppressFunc: suppressSensitiveFieldDiffs,
 			},
 			"vca_username": {
 				Type:     schema.TypeString,

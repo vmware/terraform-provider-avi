@@ -89,10 +89,10 @@ func resourceAviAlertSyslogConfigUpdate(d *schema.ResourceData, meta interface{}
 
 func resourceAviAlertSyslogConfigDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "alertsyslogconfig"
+	client := meta.(*clients.AviClient)
 	if ApiDeleteSystemDefaultCheck(d) {
 		return nil
 	}
-	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {
 		path := "api/" + objType + "/" + uuid

@@ -124,10 +124,10 @@ func resourceAviIpAddrGroupUpdate(d *schema.ResourceData, meta interface{}) erro
 
 func resourceAviIpAddrGroupDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "ipaddrgroup"
+	client := meta.(*clients.AviClient)
 	if ApiDeleteSystemDefaultCheck(d) {
 		return nil
 	}
-	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {
 		path := "api/" + objType + "/" + uuid

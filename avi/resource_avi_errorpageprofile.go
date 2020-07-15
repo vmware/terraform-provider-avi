@@ -85,10 +85,10 @@ func resourceAviErrorPageProfileUpdate(d *schema.ResourceData, meta interface{})
 
 func resourceAviErrorPageProfileDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "errorpageprofile"
+	client := meta.(*clients.AviClient)
 	if ApiDeleteSystemDefaultCheck(d) {
 		return nil
 	}
-	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {
 		path := "api/" + objType + "/" + uuid
