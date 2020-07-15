@@ -141,10 +141,10 @@ func resourceAviNsxtSegmentRuntimeUpdate(d *schema.ResourceData, meta interface{
 
 func resourceAviNsxtSegmentRuntimeDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "nsxtsegmentruntime"
+	client := meta.(*clients.AviClient)
 	if ApiDeleteSystemDefaultCheck(d) {
 		return nil
 	}
-	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {
 		path := "api/" + objType + "/" + uuid

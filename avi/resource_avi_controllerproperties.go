@@ -190,9 +190,11 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Default:  0,
 		},
 		"portal_token": {
-			Type:     schema.TypeString,
-			Optional: true,
-			Computed: true,
+			Type:             schema.TypeString,
+			Optional:         true,
+			Computed:         true,
+			Sensitive:        true,
+			DiffSuppressFunc: suppressSensitiveFieldDiffs,
 		},
 		"process_locked_useraccounts_timeout_period": {
 			Type:     schema.TypeInt,
@@ -303,6 +305,11 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Type:     schema.TypeInt,
 			Optional: true,
 			Default:  600,
+		},
+		"upgrade_se_per_vs_scale_ops_txn_time": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  3,
 		},
 		"uuid": {
 			Type:     schema.TypeString,
@@ -425,10 +432,10 @@ func resourceAviControllerPropertiesUpdate(d *schema.ResourceData, meta interfac
 
 func resourceAviControllerPropertiesDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "controllerproperties"
+	client := meta.(*clients.AviClient)
 	if ApiDeleteSystemDefaultCheck(d) {
 		return nil
 	}
-	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {
 		path := "api/" + objType + "/" + uuid

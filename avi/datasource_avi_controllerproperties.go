@@ -244,6 +244,10 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Type:     schema.TypeInt,
 				Computed: true,
 			},
+			"upgrade_se_per_vs_scale_ops_txn_time": {
+				Type:     schema.TypeInt,
+				Computed: true,
+			},
 			"uuid": {
 				Type:     schema.TypeString,
 				Optional: true,

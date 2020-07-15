@@ -87,10 +87,10 @@ func resourceAviSystemLimitsUpdate(d *schema.ResourceData, meta interface{}) err
 
 func resourceAviSystemLimitsDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "systemlimits"
+	client := meta.(*clients.AviClient)
 	if ApiDeleteSystemDefaultCheck(d) {
 		return nil
 	}
-	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {
 		path := "api/" + objType + "/" + uuid

@@ -146,10 +146,10 @@ func resourceAviUpgradeStatusSummaryUpdate(d *schema.ResourceData, meta interfac
 
 func resourceAviUpgradeStatusSummaryDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "upgradestatussummary"
+	client := meta.(*clients.AviClient)
 	if ApiDeleteSystemDefaultCheck(d) {
 		return nil
 	}
-	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {
 		path := "api/" + objType + "/" + uuid

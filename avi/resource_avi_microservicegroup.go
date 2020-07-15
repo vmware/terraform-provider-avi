@@ -94,10 +94,10 @@ func resourceAviMicroServiceGroupUpdate(d *schema.ResourceData, meta interface{}
 
 func resourceAviMicroServiceGroupDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "microservicegroup"
+	client := meta.(*clients.AviClient)
 	if ApiDeleteSystemDefaultCheck(d) {
 		return nil
 	}
-	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {
 		path := "api/" + objType + "/" + uuid
