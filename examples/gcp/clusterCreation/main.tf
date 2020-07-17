@@ -50,6 +50,7 @@ resource "avi_cluster" "gcp_cluster" {
 
     name = "${var.controller_name}-2"
   }
+  depends_on = [avi_useraccount.avi_user]
 }
 
 // In case you would like to update your password

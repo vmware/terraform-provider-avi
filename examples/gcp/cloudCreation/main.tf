@@ -41,8 +41,11 @@ resource "avi_cloud" "gcp_cloud_cfg" {
   vtype = "CLOUD_GCP"
 
   gcp_configuration {
-    match_se_group_subnet = false
-
+    vip_allocation_strategy {
+        routes{
+            match_se_group_subnet = false
+        }
+    }
     network_config {
       config = "INBAND_MANAGEMENT"
 
