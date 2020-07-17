@@ -105,10 +105,10 @@ func resourceAviNetworkSecurityPolicyUpdate(d *schema.ResourceData, meta interfa
 
 func resourceAviNetworkSecurityPolicyDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "networksecuritypolicy"
+	client := meta.(*clients.AviClient)
 	if ApiDeleteSystemDefaultCheck(d) {
 		return nil
 	}
-	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {
 		path := "api/" + objType + "/" + uuid

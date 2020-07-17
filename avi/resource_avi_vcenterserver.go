@@ -101,10 +101,10 @@ func resourceAviVCenterServerUpdate(d *schema.ResourceData, meta interface{}) er
 
 func resourceAviVCenterServerDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "vcenterserver"
+	client := meta.(*clients.AviClient)
 	if ApiDeleteSystemDefaultCheck(d) {
 		return nil
 	}
-	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {
 		path := "api/" + objType + "/" + uuid

@@ -148,10 +148,10 @@ func resourceAviIpamDnsProviderProfileUpdate(d *schema.ResourceData, meta interf
 
 func resourceAviIpamDnsProviderProfileDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "ipamdnsproviderprofile"
+	client := meta.(*clients.AviClient)
 	if ApiDeleteSystemDefaultCheck(d) {
 		return nil
 	}
-	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {
 		path := "api/" + objType + "/" + uuid

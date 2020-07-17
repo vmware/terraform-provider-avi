@@ -95,10 +95,10 @@ func resourceAviDnsPolicyUpdate(d *schema.ResourceData, meta interface{}) error 
 
 func resourceAviDnsPolicyDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "dnspolicy"
+	client := meta.(*clients.AviClient)
 	if ApiDeleteSystemDefaultCheck(d) {
 		return nil
 	}
-	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {
 		path := "api/" + objType + "/" + uuid

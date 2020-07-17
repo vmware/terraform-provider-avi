@@ -101,10 +101,10 @@ func resourceAviL4PolicySetUpdate(d *schema.ResourceData, meta interface{}) erro
 
 func resourceAviL4PolicySetDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "l4policyset"
+	client := meta.(*clients.AviClient)
 	if ApiDeleteSystemDefaultCheck(d) {
 		return nil
 	}
-	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {
 		path := "api/" + objType + "/" + uuid
