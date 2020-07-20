@@ -64,7 +64,7 @@ resource "avi_cloud" "gcp_cloud_cfg" {
     # gcs_bucket_name       = "${var.gcs_bucket_name}" // optional, read description for more info.
   }
 
-  license_tier = "ENTERPRISE_18"
+  license_tier = "ENTERPRISE"
   license_type = "LIC_CORES"
   tenant_ref   = data.avi_tenant.default_tenant.id
 }
