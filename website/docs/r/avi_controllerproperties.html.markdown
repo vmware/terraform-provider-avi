@@ -1,3 +1,9 @@
+############################################################################
+# ------------------------------------------------------------------------
+# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
+# ------------------------------------------------------------------------
+###
+
 ---
 layout: "avi"
 page_title: "Avi: avi_controllerproperties"
@@ -81,6 +87,7 @@ The following arguments are supported:
 * `upgrade_dns_ttl` - (Optional) Time to account for dns ttl during upgrade.
 * `upgrade_fat_se_lease_time` - (Optional) Amount of time controller waits for a large-sized se (>=128gb memory) to reconnect after it is rebooted during upgrade.
 * `upgrade_lease_time` - (Optional) Amount of time controller waits for a regular-sized se (<128gb memory) to reconnect after it is rebooted during upgrade.
+* `upgrade_se_per_vs_scale_ops_txn_time` - (Optional) This parameter defines the upper-bound value of the vs scale-in or vs scale-out operation executed in the sescalein and sescale context.
 * `vnic_op_fail_time` - (Optional) Placeholder for description of property vnic_op_fail_time of obj type controllerproperties field type integer  type int.
 * `vs_apic_scaleout_timeout` - (Optional) Time to wait for the scaled out se to become ready before marking the scaleout done, applies to apic configuration only.
 * `vs_awaiting_se_timeout` - (Optional) Placeholder for description of property vs_awaiting_se_timeout of obj type controllerproperties field type integer  type int.

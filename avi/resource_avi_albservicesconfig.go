@@ -26,15 +26,11 @@ func ResourceALBServicesConfigSchema() map[string]*schema.Schema {
 			Computed: true,
 			Elem:     ResourcePortalFeatureOptInSchema(),
 		},
-		"ip_reputation_file_object_expiry_duration": {
-			Type:     schema.TypeInt,
+		"ip_reputation_config": {
+			Type:     schema.TypeSet,
 			Optional: true,
-			Default:  3,
-		},
-		"ip_reputation_sync_interval": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Default:  60,
+			Computed: true,
+			Elem:     ResourceIpReputationConfigSchema(),
 		},
 		"polling_interval": {
 			Type:     schema.TypeInt,
@@ -58,10 +54,10 @@ func ResourceALBServicesConfigSchema() map[string]*schema.Schema {
 			Computed: true,
 			Elem:     ResourceProxyConfigurationSchema(),
 		},
-		"use_system_proxy": {
+		"use_split_proxy": {
 			Type:     schema.TypeBool,
 			Optional: true,
-			Default:  true,
+			Default:  false,
 		},
 		"uuid": {
 			Type:     schema.TypeString,

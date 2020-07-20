@@ -14573,6 +14573,23 @@ func ResourceIpCommunitySchema() *schema.Resource {
 	}
 }
 
+func ResourceIpReputationConfigSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"ip_reputation_file_object_expiry_duration": {
+				Type:     schema.TypeInt,
+				Optional: true,
+				Default:  3,
+			},
+			"ip_reputation_sync_interval": {
+				Type:     schema.TypeInt,
+				Optional: true,
+				Default:  60,
+			},
+		},
+	}
+}
+
 func ResourceIpamDnsAwsProfileSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{

@@ -21,13 +21,10 @@ func dataSourceAviALBServicesConfig() *schema.Resource {
 				Computed: true,
 				Elem:     ResourcePortalFeatureOptInSchema(),
 			},
-			"ip_reputation_file_object_expiry_duration": {
-				Type:     schema.TypeInt,
+			"ip_reputation_config": {
+				Type:     schema.TypeSet,
 				Computed: true,
-			},
-			"ip_reputation_sync_interval": {
-				Type:     schema.TypeInt,
-				Computed: true,
+				Elem:     ResourceIpReputationConfigSchema(),
 			},
 			"polling_interval": {
 				Type:     schema.TypeInt,
@@ -47,7 +44,7 @@ func dataSourceAviALBServicesConfig() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceProxyConfigurationSchema(),
 			},
-			"use_system_proxy": {
+			"use_split_proxy": {
 				Type:     schema.TypeBool,
 				Computed: true,
 			},
