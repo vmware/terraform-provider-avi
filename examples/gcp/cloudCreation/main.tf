@@ -16,13 +16,13 @@ provider "avi" {
   avi_username   = var.avi_username
   avi_password   = var.avi_current_password
   avi_controller = data.google_compute_instance.avi_controller.*.network_interface.0.network_ip[0]
-  avi_tenant     = "admin"
+  avi_tenant     = var.tenant
   avi_version    = var.avi_version
 }
 
 // Avi tenant
 data "avi_tenant" "default_tenant" {
-  name = "admin"
+  name = var.tenant
 }
 
 // CloudConnector user

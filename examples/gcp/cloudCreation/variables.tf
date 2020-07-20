@@ -97,3 +97,8 @@ variable "gcs_project_id" {
   default     = "not-given"
 }
 
+variable "tenant" {
+  type        = string
+  description = "Name of avi tenant"
+  default = "admin"
+}
