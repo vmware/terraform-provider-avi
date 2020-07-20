@@ -550,11 +550,6 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceRateLimiterPropertiesSchema(),
 			},
-			"se_rl_prop": {
-				Type:     schema.TypeSet,
-				Computed: true,
-				Elem:     ResourceRateLimiterPropertiesSchema(),
-			},
 			"se_rum_sampling_nav_interval": {
 				Type:     schema.TypeInt,
 				Computed: true,
