@@ -49,3 +49,8 @@ variable "cluster_name" {
   default     = "avi-cluster"
 }
 
+variable "tenant" {
+  type        = string
+  description = "Name of avi tenant"
+  default = "admin"
+}
