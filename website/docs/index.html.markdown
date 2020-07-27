@@ -78,3 +78,13 @@ $ export AVI_TENANT = foo
 $ terraform init
 $ terraform plan
 ```
+
+You can export `AVI_SUPPRESS_SENSISITIVE_FIELDS_DIFF` environment variable as `AVI_SUPPRESS_SENSISITIVE_FIELDS_DIFF=true`
+if you want terraform to suppress the difference for sensitive fields during the plan update. However, if you want to
+intentionally update the sensitive fields in the plan update then you need to un-export the environment variable or set
+it to false, i.e. export `AVI_SUPPRESS_SENSISITIVE_FIELDS_DIFF=false` or unset `AVI_SUPPRESS_SENSISITIVE_FIELDS_DIFF`.
+
+Usage:
+```sh
+$ export AVI_SUPPRESS_SENSISITIVE_FIELDS_DIFF = true
+```
