@@ -94,8 +94,8 @@ data "avi_tenant" "default_tenant"{
     name= "admin"
 }
 resource "avi_prioritylabels" "testPriorityLabels" {
-	tenant_ref = data.avi_tenant.default_tenant.id
 	name = "test-pl-test-abc"
+	tenant_ref = data.avi_tenant.default_tenant.id
 	description = "test priority labels"
 }
 `
@@ -105,8 +105,8 @@ data "avi_tenant" "default_tenant"{
     name= "admin"
 }
 resource "avi_prioritylabels" "testPriorityLabels" {
-	tenant_ref = data.avi_tenant.default_tenant.id
 	name = "test-pl-updated"
+	tenant_ref = data.avi_tenant.default_tenant.id
 	description = "test priority labels"
 }
 `

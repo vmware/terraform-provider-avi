@@ -1,3 +1,9 @@
+############################################################################
+# ------------------------------------------------------------------------
+# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
+# ------------------------------------------------------------------------
+###
+
 ---
 layout: "avi"
 page_title: "AVI: avi_gslb"
@@ -38,6 +44,7 @@ In addition to all arguments above, the following attributes are exported:
 * `leader_cluster_uuid` - Mark this site as leader of gslb configuration.
 * `maintenance_mode` - This field disables the configuration operations on the leader for all federated objects.
 * `name` - Name for the gslb object.
+* `replication_policy` - Policy for replicating configuration to the active follower sites.
 * `send_interval` - Frequency with which group members communicate.
 * `send_interval_prior_to_maintenance_mode` - The user can specify a send-interval while entering maintenance mode.
 * `sites` - Select avi site member belonging to this gslb.

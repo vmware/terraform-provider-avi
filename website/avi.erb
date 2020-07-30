@@ -1,4 +1,10 @@
 
+############################################################################
+# ------------------------------------------------------------------------
+# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
+# ------------------------------------------------------------------------
+###
+
 <% wrap_layout :inner do %>
   <% content_for :sidebar do %>
     <div class="docs-sidebar hidden-print affix-top" role="complementary">
@@ -14,86 +20,242 @@
         <li<%= sidebar_current("docs-avi-datasource") %>>
           <a href="#">Avi Data Sources</a>
           <ul class="nav nav-visible">
-                      <li<%= sidebar_current("docs-avi-useraccountprofile") %>>
-              <a href="/docs/providers/avi/d/avi_useraccountprofile.html">UserAccountProfile</a>
+                      <li<%= sidebar_current("docs-avi-rmcloudopsproto") %>>
+              <a href="/docs/providers/avi/d/avi_rmcloudopsproto.html">RmCloudOpsProto</a>
             </li>
-                      <li<%= sidebar_current("docs-avi-role") %>>
-              <a href="/docs/providers/avi/d/avi_role.html">Role</a>
+                      <li<%= sidebar_current("docs-avi-snmptrapprofile") %>>
+              <a href="/docs/providers/avi/d/avi_snmptrapprofile.html">SnmpTrapProfile</a>
             </li>
-                      <li<%= sidebar_current("docs-avi-objectaccesspolicy") %>>
-              <a href="/docs/providers/avi/d/avi_objectaccesspolicy.html">ObjectAccessPolicy</a>
+                      <li<%= sidebar_current("docs-avi-gslb") %>>
+              <a href="/docs/providers/avi/d/avi_gslb.html">Gslb</a>
             </li>
-                      <li<%= sidebar_current("docs-avi-natpolicy") %>>
-              <a href="/docs/providers/avi/d/avi_natpolicy.html">NatPolicy</a>
+                      <li<%= sidebar_current("docs-avi-gslbservice") %>>
+              <a href="/docs/providers/avi/d/avi_gslbservice.html">GslbService</a>
             </li>
-                      <li<%= sidebar_current("docs-avi-image") %>>
-              <a href="/docs/providers/avi/d/avi_image.html">Image</a>
+                      <li<%= sidebar_current("docs-avi-gslbgeodbprofile") %>>
+              <a href="/docs/providers/avi/d/avi_gslbgeodbprofile.html">GslbGeoDbProfile</a>
             </li>
-                      <li<%= sidebar_current("docs-avi-ipaddrgroup") %>>
-              <a href="/docs/providers/avi/d/avi_ipaddrgroup.html">IpAddrGroup</a>
+                      <li<%= sidebar_current("docs-avi-healthmonitor") %>>
+              <a href="/docs/providers/avi/d/avi_healthmonitor.html">HealthMonitor</a>
             </li>
-                      <li<%= sidebar_current("docs-avi-microservicegroup") %>>
-              <a href="/docs/providers/avi/d/avi_microservicegroup.html">MicroServiceGroup</a>
+                      <li<%= sidebar_current("docs-avi-federationcheckpoint") %>>
+              <a href="/docs/providers/avi/d/avi_federationcheckpoint.html">FederationCheckpoint</a>
             </li>
-                      <li<%= sidebar_current("docs-avi-stringgroup") %>>
-              <a href="/docs/providers/avi/d/avi_stringgroup.html">StringGroup</a>
-            </li>
-                      <li<%= sidebar_current("docs-avi-trafficcloneprofile") %>>
-              <a href="/docs/providers/avi/d/avi_trafficcloneprofile.html">TrafficCloneProfile</a>
-            </li>
-                      <li<%= sidebar_current("docs-avi-webhook") %>>
-              <a href="/docs/providers/avi/d/avi_webhook.html">Webhook</a>
-            </li>
-                      <li<%= sidebar_current("docs-avi-authprofile") %>>
-              <a href="/docs/providers/avi/d/avi_authprofile.html">AuthProfile</a>
-            </li>
-                      <li<%= sidebar_current("docs-avi-sslkeyandcertificate") %>>
-              <a href="/docs/providers/avi/d/avi_sslkeyandcertificate.html">SSLKeyAndCertificate</a>
-            </li>
-                      <li<%= sidebar_current("docs-avi-sslprofile") %>>
-              <a href="/docs/providers/avi/d/avi_sslprofile.html">SSLProfile</a>
-            </li>
-                      <li<%= sidebar_current("docs-avi-pkiprofile") %>>
-              <a href="/docs/providers/avi/d/avi_pkiprofile.html">PKIProfile</a>
-            </li>
-                      <li<%= sidebar_current("docs-avi-certificatemanagementprofile") %>>
-              <a href="/docs/providers/avi/d/avi_certificatemanagementprofile.html">CertificateManagementProfile</a>
-            </li>
-                      <li<%= sidebar_current("docs-avi-ssopolicy") %>>
-              <a href="/docs/providers/avi/d/avi_ssopolicy.html">SSOPolicy</a>
-            </li>
-                      <li<%= sidebar_current("docs-avi-l4policyset") %>>
-              <a href="/docs/providers/avi/d/avi_l4policyset.html">L4PolicySet</a>
-            </li>
-                      <li<%= sidebar_current("docs-avi-scheduler") %>>
-              <a href="/docs/providers/avi/d/avi_scheduler.html">Scheduler</a>
-            </li>
-                      <li<%= sidebar_current("docs-avi-backupconfiguration") %>>
-              <a href="/docs/providers/avi/d/avi_backupconfiguration.html">BackupConfiguration</a>
-            </li>
-                      <li<%= sidebar_current("docs-avi-tenant") %>>
-              <a href="/docs/providers/avi/d/avi_tenant.html">Tenant</a>
-            </li>
-                      <li<%= sidebar_current("docs-avi-serviceenginegroup") %>>
-              <a href="/docs/providers/avi/d/avi_serviceenginegroup.html">ServiceEngineGroup</a>
+                      <li<%= sidebar_current("docs-avi-siteversion") %>>
+              <a href="/docs/providers/avi/d/avi_siteversion.html">SiteVersion</a>
             </li>
                       <li<%= sidebar_current("docs-avi-networkservice") %>>
               <a href="/docs/providers/avi/d/avi_networkservice.html">NetworkService</a>
             </li>
-                      <li<%= sidebar_current("docs-avi-dnspolicy") %>>
-              <a href="/docs/providers/avi/d/avi_dnspolicy.html">DnsPolicy</a>
+                      <li<%= sidebar_current("docs-avi-securitypolicy") %>>
+              <a href="/docs/providers/avi/d/avi_securitypolicy.html">SecurityPolicy</a>
             </li>
-                      <li<%= sidebar_current("docs-avi-hardwaresecuritymodulegroup") %>>
-              <a href="/docs/providers/avi/d/avi_hardwaresecuritymodulegroup.html">HardwareSecurityModuleGroup</a>
+                      <li<%= sidebar_current("docs-avi-vsvip") %>>
+              <a href="/docs/providers/avi/d/avi_vsvip.html">VsVip</a>
             </li>
-                      <li<%= sidebar_current("docs-avi-upgradestatussummary") %>>
-              <a href="/docs/providers/avi/d/avi_upgradestatussummary.html">UpgradeStatusSummary</a>
+                      <li<%= sidebar_current("docs-avi-virtualservice") %>>
+              <a href="/docs/providers/avi/d/avi_virtualservice.html">VirtualService</a>
+            </li>
+                      <li<%= sidebar_current("docs-avi-serviceenginegroup") %>>
+              <a href="/docs/providers/avi/d/avi_serviceenginegroup.html">ServiceEngineGroup</a>
+            </li>
+                      <li<%= sidebar_current("docs-avi-errorpagebody") %>>
+              <a href="/docs/providers/avi/d/avi_errorpagebody.html">ErrorPageBody</a>
+            </li>
+                      <li<%= sidebar_current("docs-avi-errorpageprofile") %>>
+              <a href="/docs/providers/avi/d/avi_errorpageprofile.html">ErrorPageProfile</a>
+            </li>
+                      <li<%= sidebar_current("docs-avi-fileobject") %>>
+              <a href="/docs/providers/avi/d/avi_fileobject.html">FileObject</a>
+            </li>
+                      <li<%= sidebar_current("docs-avi-httppolicyset") %>>
+              <a href="/docs/providers/avi/d/avi_httppolicyset.html">HTTPPolicySet</a>
+            </li>
+                      <li<%= sidebar_current("docs-avi-systemlimits") %>>
+              <a href="/docs/providers/avi/d/avi_systemlimits.html">SystemLimits</a>
             </li>
                       <li<%= sidebar_current("docs-avi-upgradestatusinfo") %>>
               <a href="/docs/providers/avi/d/avi_upgradestatusinfo.html">UpgradeStatusInfo</a>
             </li>
+                      <li<%= sidebar_current("docs-avi-upgradestatussummary") %>>
+              <a href="/docs/providers/avi/d/avi_upgradestatussummary.html">UpgradeStatusSummary</a>
+            </li>
+                      <li<%= sidebar_current("docs-avi-licenseledgerdetails") %>>
+              <a href="/docs/providers/avi/d/avi_licenseledgerdetails.html">LicenseLedgerDetails</a>
+            </li>
+                      <li<%= sidebar_current("docs-avi-ssopolicy") %>>
+              <a href="/docs/providers/avi/d/avi_ssopolicy.html">SSOPolicy</a>
+            </li>
+                      <li<%= sidebar_current("docs-avi-authprofile") %>>
+              <a href="/docs/providers/avi/d/avi_authprofile.html">AuthProfile</a>
+            </li>
+                      <li<%= sidebar_current("docs-avi-controllerproperties") %>>
+              <a href="/docs/providers/avi/d/avi_controllerproperties.html">ControllerProperties</a>
+            </li>
+                      <li<%= sidebar_current("docs-avi-l4policyset") %>>
+              <a href="/docs/providers/avi/d/avi_l4policyset.html">L4PolicySet</a>
+            </li>
+                      <li<%= sidebar_current("docs-avi-systemconfiguration") %>>
+              <a href="/docs/providers/avi/d/avi_systemconfiguration.html">SystemConfiguration</a>
+            </li>
+                      <li<%= sidebar_current("docs-avi-controllersite") %>>
+              <a href="/docs/providers/avi/d/avi_controllersite.html">ControllerSite</a>
+            </li>
+                      <li<%= sidebar_current("docs-avi-alertsyslogconfig") %>>
+              <a href="/docs/providers/avi/d/avi_alertsyslogconfig.html">AlertSyslogConfig</a>
+            </li>
+                      <li<%= sidebar_current("docs-avi-alertemailconfig") %>>
+              <a href="/docs/providers/avi/d/avi_alertemailconfig.html">AlertEmailConfig</a>
+            </li>
+                      <li<%= sidebar_current("docs-avi-alertscriptconfig") %>>
+              <a href="/docs/providers/avi/d/avi_alertscriptconfig.html">AlertScriptConfig</a>
+            </li>
+                      <li<%= sidebar_current("docs-avi-actiongroupconfig") %>>
+              <a href="/docs/providers/avi/d/avi_actiongroupconfig.html">ActionGroupConfig</a>
+            </li>
+                      <li<%= sidebar_current("docs-avi-alertconfig") %>>
+              <a href="/docs/providers/avi/d/avi_alertconfig.html">AlertConfig</a>
+            </li>
                       <li<%= sidebar_current("docs-avi-vrfcontext") %>>
               <a href="/docs/providers/avi/d/avi_vrfcontext.html">VrfContext</a>
+            </li>
+                      <li<%= sidebar_current("docs-avi-applicationprofile") %>>
+              <a href="/docs/providers/avi/d/avi_applicationprofile.html">ApplicationProfile</a>
+            </li>
+                      <li<%= sidebar_current("docs-avi-ipaddrgroup") %>>
+              <a href="/docs/providers/avi/d/avi_ipaddrgroup.html">IpAddrGroup</a>
+            </li>
+                      <li<%= sidebar_current("docs-avi-stringgroup") %>>
+              <a href="/docs/providers/avi/d/avi_stringgroup.html">StringGroup</a>
+            </li>
+                      <li<%= sidebar_current("docs-avi-microservicegroup") %>>
+              <a href="/docs/providers/avi/d/avi_microservicegroup.html">MicroServiceGroup</a>
+            </li>
+                      <li<%= sidebar_current("docs-avi-sslprofile") %>>
+              <a href="/docs/providers/avi/d/avi_sslprofile.html">SSLProfile</a>
+            </li>
+                      <li<%= sidebar_current("docs-avi-certificatemanagementprofile") %>>
+              <a href="/docs/providers/avi/d/avi_certificatemanagementprofile.html">CertificateManagementProfile</a>
+            </li>
+                      <li<%= sidebar_current("docs-avi-sslkeyandcertificate") %>>
+              <a href="/docs/providers/avi/d/avi_sslkeyandcertificate.html">SSLKeyAndCertificate</a>
+            </li>
+                      <li<%= sidebar_current("docs-avi-pkiprofile") %>>
+              <a href="/docs/providers/avi/d/avi_pkiprofile.html">PKIProfile</a>
+            </li>
+                      <li<%= sidebar_current("docs-avi-tenant") %>>
+              <a href="/docs/providers/avi/d/avi_tenant.html">Tenant</a>
+            </li>
+                      <li<%= sidebar_current("docs-avi-vsdatascriptset") %>>
+              <a href="/docs/providers/avi/d/avi_vsdatascriptset.html">VSDataScriptSet</a>
+            </li>
+                      <li<%= sidebar_current("docs-avi-cluster") %>>
+              <a href="/docs/providers/avi/d/avi_cluster.html">Cluster</a>
+            </li>
+                      <li<%= sidebar_current("docs-avi-clusterclouddetails") %>>
+              <a href="/docs/providers/avi/d/avi_clusterclouddetails.html">ClusterCloudDetails</a>
+            </li>
+                      <li<%= sidebar_current("docs-avi-role") %>>
+              <a href="/docs/providers/avi/d/avi_role.html">Role</a>
+            </li>
+                      <li<%= sidebar_current("docs-avi-useraccountprofile") %>>
+              <a href="/docs/providers/avi/d/avi_useraccountprofile.html">UserAccountProfile</a>
+            </li>
+                      <li<%= sidebar_current("docs-avi-objectaccesspolicy") %>>
+              <a href="/docs/providers/avi/d/avi_objectaccesspolicy.html">ObjectAccessPolicy</a>
+            </li>
+                      <li<%= sidebar_current("docs-avi-analyticsprofile") %>>
+              <a href="/docs/providers/avi/d/avi_analyticsprofile.html">AnalyticsProfile</a>
+            </li>
+                      <li<%= sidebar_current("docs-avi-wafprofile") %>>
+              <a href="/docs/providers/avi/d/avi_wafprofile.html">WafProfile</a>
+            </li>
+                      <li<%= sidebar_current("docs-avi-wafcrs") %>>
+              <a href="/docs/providers/avi/d/avi_wafcrs.html">WafCRS</a>
+            </li>
+                      <li<%= sidebar_current("docs-avi-wafpolicypsmgroup") %>>
+              <a href="/docs/providers/avi/d/avi_wafpolicypsmgroup.html">WafPolicyPSMGroup</a>
+            </li>
+                      <li<%= sidebar_current("docs-avi-wafapplicationsignatureprovider") %>>
+              <a href="/docs/providers/avi/d/avi_wafapplicationsignatureprovider.html">WafApplicationSignatureProvider</a>
+            </li>
+                      <li<%= sidebar_current("docs-avi-wafpolicy") %>>
+              <a href="/docs/providers/avi/d/avi_wafpolicy.html">WafPolicy</a>
+            </li>
+                      <li<%= sidebar_current("docs-avi-pool") %>>
+              <a href="/docs/providers/avi/d/avi_pool.html">Pool</a>
+            </li>
+                      <li<%= sidebar_current("docs-avi-prioritylabels") %>>
+              <a href="/docs/providers/avi/d/avi_prioritylabels.html">PriorityLabels</a>
+            </li>
+                      <li<%= sidebar_current("docs-avi-poolgroupdeploymentpolicy") %>>
+              <a href="/docs/providers/avi/d/avi_poolgroupdeploymentpolicy.html">PoolGroupDeploymentPolicy</a>
+            </li>
+                      <li<%= sidebar_current("docs-avi-poolgroup") %>>
+              <a href="/docs/providers/avi/d/avi_poolgroup.html">PoolGroup</a>
+            </li>
+                      <li<%= sidebar_current("docs-avi-networksecuritypolicy") %>>
+              <a href="/docs/providers/avi/d/avi_networksecuritypolicy.html">NetworkSecurityPolicy</a>
+            </li>
+                      <li<%= sidebar_current("docs-avi-serviceengine") %>>
+              <a href="/docs/providers/avi/d/avi_serviceengine.html">ServiceEngine</a>
+            </li>
+                      <li<%= sidebar_current("docs-avi-icapprofile") %>>
+              <a href="/docs/providers/avi/d/avi_icapprofile.html">IcapProfile</a>
+            </li>
+                      <li<%= sidebar_current("docs-avi-hardwaresecuritymodulegroup") %>>
+              <a href="/docs/providers/avi/d/avi_hardwaresecuritymodulegroup.html">HardwareSecurityModuleGroup</a>
+            </li>
+                      <li<%= sidebar_current("docs-avi-autoscalelaunchconfig") %>>
+              <a href="/docs/providers/avi/d/avi_autoscalelaunchconfig.html">AutoScaleLaunchConfig</a>
+            </li>
+                      <li<%= sidebar_current("docs-avi-serverautoscalepolicy") %>>
+              <a href="/docs/providers/avi/d/avi_serverautoscalepolicy.html">ServerAutoScalePolicy</a>
+            </li>
+                      <li<%= sidebar_current("docs-avi-image") %>>
+              <a href="/docs/providers/avi/d/avi_image.html">Image</a>
+            </li>
+                      <li<%= sidebar_current("docs-avi-cloud") %>>
+              <a href="/docs/providers/avi/d/avi_cloud.html">Cloud</a>
+            </li>
+                      <li<%= sidebar_current("docs-avi-cloudconnectoruser") %>>
+              <a href="/docs/providers/avi/d/avi_cloudconnectoruser.html">CloudConnectorUser</a>
+            </li>
+                      <li<%= sidebar_current("docs-avi-availabilityzone") %>>
+              <a href="/docs/providers/avi/d/avi_availabilityzone.html">AvailabilityZone</a>
+            </li>
+                      <li<%= sidebar_current("docs-avi-vcenterserver") %>>
+              <a href="/docs/providers/avi/d/avi_vcenterserver.html">VCenterServer</a>
+            </li>
+                      <li<%= sidebar_current("docs-avi-networkprofile") %>>
+              <a href="/docs/providers/avi/d/avi_networkprofile.html">NetworkProfile</a>
+            </li>
+                      <li<%= sidebar_current("docs-avi-dnspolicy") %>>
+              <a href="/docs/providers/avi/d/avi_dnspolicy.html">DnsPolicy</a>
+            </li>
+                      <li<%= sidebar_current("docs-avi-ipamdnsproviderprofile") %>>
+              <a href="/docs/providers/avi/d/avi_ipamdnsproviderprofile.html">IpamDnsProviderProfile</a>
+            </li>
+                      <li<%= sidebar_current("docs-avi-customipamdnsprofile") %>>
+              <a href="/docs/providers/avi/d/avi_customipamdnsprofile.html">CustomIpamDnsProfile</a>
+            </li>
+                      <li<%= sidebar_current("docs-avi-backupconfiguration") %>>
+              <a href="/docs/providers/avi/d/avi_backupconfiguration.html">BackupConfiguration</a>
+            </li>
+                      <li<%= sidebar_current("docs-avi-scheduler") %>>
+              <a href="/docs/providers/avi/d/avi_scheduler.html">Scheduler</a>
+            </li>
+                      <li<%= sidebar_current("docs-avi-ipreputationdb") %>>
+              <a href="/docs/providers/avi/d/avi_ipreputationdb.html">IPReputationDB</a>
+            </li>
+                      <li<%= sidebar_current("docs-avi-applicationpersistenceprofile") %>>
+              <a href="/docs/providers/avi/d/avi_applicationpersistenceprofile.html">ApplicationPersistenceProfile</a>
+            </li>
+                      <li<%= sidebar_current("docs-avi-natpolicy") %>>
+              <a href="/docs/providers/avi/d/avi_natpolicy.html">NatPolicy</a>
+            </li>
+                      <li<%= sidebar_current("docs-avi-trafficcloneprofile") %>>
+              <a href="/docs/providers/avi/d/avi_trafficcloneprofile.html">TrafficCloneProfile</a>
             </li>
                       <li<%= sidebar_current("docs-avi-testsedatastorelevel1") %>>
               <a href="/docs/providers/avi/d/avi_testsedatastorelevel1.html">TestSeDatastoreLevel1</a>
@@ -104,158 +266,41 @@
                       <li<%= sidebar_current("docs-avi-testsedatastorelevel3") %>>
               <a href="/docs/providers/avi/d/avi_testsedatastorelevel3.html">TestSeDatastoreLevel3</a>
             </li>
-                      <li<%= sidebar_current("docs-avi-securitypolicy") %>>
-              <a href="/docs/providers/avi/d/avi_securitypolicy.html">SecurityPolicy</a>
+                      <li<%= sidebar_current("docs-avi-albservicesfileupload") %>>
+              <a href="/docs/providers/avi/d/avi_albservicesfileupload.html">ALBServicesFileUpload</a>
             </li>
-                      <li<%= sidebar_current("docs-avi-protocolparser") %>>
-              <a href="/docs/providers/avi/d/avi_protocolparser.html">ProtocolParser</a>
-            </li>
-                      <li<%= sidebar_current("docs-avi-cloudproperties") %>>
-              <a href="/docs/providers/avi/d/avi_cloudproperties.html">CloudProperties</a>
-            </li>
-                      <li<%= sidebar_current("docs-avi-applicationpersistenceprofile") %>>
-              <a href="/docs/providers/avi/d/avi_applicationpersistenceprofile.html">ApplicationPersistenceProfile</a>
-            </li>
-                      <li<%= sidebar_current("docs-avi-backup") %>>
-              <a href="/docs/providers/avi/d/avi_backup.html">Backup</a>
-            </li>
-                      <li<%= sidebar_current("docs-avi-networksecuritypolicy") %>>
-              <a href="/docs/providers/avi/d/avi_networksecuritypolicy.html">NetworkSecurityPolicy</a>
-            </li>
-                      <li<%= sidebar_current("docs-avi-seproperties") %>>
-              <a href="/docs/providers/avi/d/avi_seproperties.html">SeProperties</a>
-            </li>
-                      <li<%= sidebar_current("docs-avi-pingaccessagent") %>>
-              <a href="/docs/providers/avi/d/avi_pingaccessagent.html">PingAccessAgent</a>
-            </li>
-                      <li<%= sidebar_current("docs-avi-gslbgeodbprofile") %>>
-              <a href="/docs/providers/avi/d/avi_gslbgeodbprofile.html">GslbGeoDbProfile</a>
-            </li>
-                      <li<%= sidebar_current("docs-avi-gslbservice") %>>
-              <a href="/docs/providers/avi/d/avi_gslbservice.html">GslbService</a>
-            </li>
-                      <li<%= sidebar_current("docs-avi-gslb") %>>
-              <a href="/docs/providers/avi/d/avi_gslb.html">Gslb</a>
-            </li>
-                      <li<%= sidebar_current("docs-avi-cluster") %>>
-              <a href="/docs/providers/avi/d/avi_cluster.html">Cluster</a>
-            </li>
-                      <li<%= sidebar_current("docs-avi-clusterclouddetails") %>>
-              <a href="/docs/providers/avi/d/avi_clusterclouddetails.html">ClusterCloudDetails</a>
-            </li>
-                      <li<%= sidebar_current("docs-avi-wafpolicy") %>>
-              <a href="/docs/providers/avi/d/avi_wafpolicy.html">WafPolicy</a>
-            </li>
-                      <li<%= sidebar_current("docs-avi-wafcrs") %>>
-              <a href="/docs/providers/avi/d/avi_wafcrs.html">WafCRS</a>
-            </li>
-                      <li<%= sidebar_current("docs-avi-wafprofile") %>>
-              <a href="/docs/providers/avi/d/avi_wafprofile.html">WafProfile</a>
-            </li>
-                      <li<%= sidebar_current("docs-avi-wafpolicypsmgroup") %>>
-              <a href="/docs/providers/avi/d/avi_wafpolicypsmgroup.html">WafPolicyPSMGroup</a>
-            </li>
-                      <li<%= sidebar_current("docs-avi-snmptrapprofile") %>>
-              <a href="/docs/providers/avi/d/avi_snmptrapprofile.html">SnmpTrapProfile</a>
-            </li>
-                      <li<%= sidebar_current("docs-avi-systemconfiguration") %>>
-              <a href="/docs/providers/avi/d/avi_systemconfiguration.html">SystemConfiguration</a>
-            </li>
-                      <li<%= sidebar_current("docs-avi-controllersite") %>>
-              <a href="/docs/providers/avi/d/avi_controllersite.html">ControllerSite</a>
-            </li>
-                      <li<%= sidebar_current("docs-avi-networkprofile") %>>
-              <a href="/docs/providers/avi/d/avi_networkprofile.html">NetworkProfile</a>
-            </li>
-                      <li<%= sidebar_current("docs-avi-errorpagebody") %>>
-              <a href="/docs/providers/avi/d/avi_errorpagebody.html">ErrorPageBody</a>
-            </li>
-                      <li<%= sidebar_current("docs-avi-errorpageprofile") %>>
-              <a href="/docs/providers/avi/d/avi_errorpageprofile.html">ErrorPageProfile</a>
-            </li>
-                      <li<%= sidebar_current("docs-avi-customerportalinfo") %>>
-              <a href="/docs/providers/avi/d/avi_customerportalinfo.html">CustomerPortalInfo</a>
-            </li>
-                      <li<%= sidebar_current("docs-avi-controllerproperties") %>>
-              <a href="/docs/providers/avi/d/avi_controllerproperties.html">ControllerProperties</a>
-            </li>
-                      <li<%= sidebar_current("docs-avi-healthmonitor") %>>
-              <a href="/docs/providers/avi/d/avi_healthmonitor.html">HealthMonitor</a>
-            </li>
-                      <li<%= sidebar_current("docs-avi-virtualservice") %>>
-              <a href="/docs/providers/avi/d/avi_virtualservice.html">VirtualService</a>
-            </li>
-                      <li<%= sidebar_current("docs-avi-vsvip") %>>
-              <a href="/docs/providers/avi/d/avi_vsvip.html">VsVip</a>
-            </li>
-                      <li<%= sidebar_current("docs-avi-analyticsprofile") %>>
-              <a href="/docs/providers/avi/d/avi_analyticsprofile.html">AnalyticsProfile</a>
-            </li>
-                      <li<%= sidebar_current("docs-avi-cloud") %>>
-              <a href="/docs/providers/avi/d/avi_cloud.html">Cloud</a>
-            </li>
-                      <li<%= sidebar_current("docs-avi-cloudconnectoruser") %>>
-              <a href="/docs/providers/avi/d/avi_cloudconnectoruser.html">CloudConnectorUser</a>
-            </li>
-                      <li<%= sidebar_current("docs-avi-portalfileupload") %>>
-              <a href="/docs/providers/avi/d/avi_portalfileupload.html">PortalFileUpload</a>
-            </li>
-                      <li<%= sidebar_current("docs-avi-alertsyslogconfig") %>>
-              <a href="/docs/providers/avi/d/avi_alertsyslogconfig.html">AlertSyslogConfig</a>
-            </li>
-                      <li<%= sidebar_current("docs-avi-alertscriptconfig") %>>
-              <a href="/docs/providers/avi/d/avi_alertscriptconfig.html">AlertScriptConfig</a>
-            </li>
-                      <li<%= sidebar_current("docs-avi-alertconfig") %>>
-              <a href="/docs/providers/avi/d/avi_alertconfig.html">AlertConfig</a>
-            </li>
-                      <li<%= sidebar_current("docs-avi-actiongroupconfig") %>>
-              <a href="/docs/providers/avi/d/avi_actiongroupconfig.html">ActionGroupConfig</a>
-            </li>
-                      <li<%= sidebar_current("docs-avi-alertemailconfig") %>>
-              <a href="/docs/providers/avi/d/avi_alertemailconfig.html">AlertEmailConfig</a>
-            </li>
-                      <li<%= sidebar_current("docs-avi-vsdatascriptset") %>>
-              <a href="/docs/providers/avi/d/avi_vsdatascriptset.html">VSDataScriptSet</a>
-            </li>
-                      <li<%= sidebar_current("docs-avi-controllerportalregistration") %>>
-              <a href="/docs/providers/avi/d/avi_controllerportalregistration.html">ControllerPortalRegistration</a>
-            </li>
-                      <li<%= sidebar_current("docs-avi-customipamdnsprofile") %>>
-              <a href="/docs/providers/avi/d/avi_customipamdnsprofile.html">CustomIpamDnsProfile</a>
-            </li>
-                      <li<%= sidebar_current("docs-avi-ipamdnsproviderprofile") %>>
-              <a href="/docs/providers/avi/d/avi_ipamdnsproviderprofile.html">IpamDnsProviderProfile</a>
-            </li>
-                      <li<%= sidebar_current("docs-avi-poolgroup") %>>
-              <a href="/docs/providers/avi/d/avi_poolgroup.html">PoolGroup</a>
-            </li>
-                      <li<%= sidebar_current("docs-avi-prioritylabels") %>>
-              <a href="/docs/providers/avi/d/avi_prioritylabels.html">PriorityLabels</a>
-            </li>
-                      <li<%= sidebar_current("docs-avi-poolgroupdeploymentpolicy") %>>
-              <a href="/docs/providers/avi/d/avi_poolgroupdeploymentpolicy.html">PoolGroupDeploymentPolicy</a>
-            </li>
-                      <li<%= sidebar_current("docs-avi-pool") %>>
-              <a href="/docs/providers/avi/d/avi_pool.html">Pool</a>
+                      <li<%= sidebar_current("docs-avi-albservicesconfig") %>>
+              <a href="/docs/providers/avi/d/avi_albservicesconfig.html">ALBServicesConfig</a>
             </li>
                       <li<%= sidebar_current("docs-avi-network") %>>
               <a href="/docs/providers/avi/d/avi_network.html">Network</a>
             </li>
-                      <li<%= sidebar_current("docs-avi-serverautoscalepolicy") %>>
-              <a href="/docs/providers/avi/d/avi_serverautoscalepolicy.html">ServerAutoScalePolicy</a>
+                      <li<%= sidebar_current("docs-avi-seproperties") %>>
+              <a href="/docs/providers/avi/d/avi_seproperties.html">SeProperties</a>
             </li>
-                      <li<%= sidebar_current("docs-avi-autoscalelaunchconfig") %>>
-              <a href="/docs/providers/avi/d/avi_autoscalelaunchconfig.html">AutoScaleLaunchConfig</a>
+                      <li<%= sidebar_current("docs-avi-nsxtsegmentruntime") %>>
+              <a href="/docs/providers/avi/d/avi_nsxtsegmentruntime.html">NsxtSegmentRuntime</a>
             </li>
-                      <li<%= sidebar_current("docs-avi-applicationprofile") %>>
-              <a href="/docs/providers/avi/d/avi_applicationprofile.html">ApplicationProfile</a>
+                      <li<%= sidebar_current("docs-avi-cloudproperties") %>>
+              <a href="/docs/providers/avi/d/avi_cloudproperties.html">CloudProperties</a>
             </li>
-                      <li<%= sidebar_current("docs-avi-httppolicyset") %>>
-              <a href="/docs/providers/avi/d/avi_httppolicyset.html">HTTPPolicySet</a>
+                      <li<%= sidebar_current("docs-avi-controllerportalregistration") %>>
+              <a href="/docs/providers/avi/d/avi_controllerportalregistration.html">ControllerPortalRegistration</a>
             </li>
-                      <li<%= sidebar_current("docs-avi-serviceengine") %>>
-              <a href="/docs/providers/avi/d/avi_serviceengine.html">ServiceEngine</a>
+                      <li<%= sidebar_current("docs-avi-protocolparser") %>>
+              <a href="/docs/providers/avi/d/avi_protocolparser.html">ProtocolParser</a>
+            </li>
+                      <li<%= sidebar_current("docs-avi-webhook") %>>
+              <a href="/docs/providers/avi/d/avi_webhook.html">Webhook</a>
+            </li>
+                      <li<%= sidebar_current("docs-avi-backup") %>>
+              <a href="/docs/providers/avi/d/avi_backup.html">Backup</a>
+            </li>
+                      <li<%= sidebar_current("docs-avi-securitymanagerdata") %>>
+              <a href="/docs/providers/avi/d/avi_securitymanagerdata.html">SecurityManagerData</a>
+            </li>
+                      <li<%= sidebar_current("docs-avi-pingaccessagent") %>>
+              <a href="/docs/providers/avi/d/avi_pingaccessagent.html">PingAccessAgent</a>
             </li>
                       <li<%= sidebar_current("docs-avi-fileservice") %>>
               <a href="/docs/providers/avi/d/avi_fileservice.html">FileService</a>
@@ -269,86 +314,242 @@
         <li<%= sidebar_current("docs-avi-resource") %>>
           <a href="#">Resources</a>
           <ul class="nav nav-visible">
-                      <li<%= sidebar_current("docs-avi-useraccountprofile") %>>
-              <a href="/docs/providers/avi/r/avi_useraccountprofile.html">UserAccountProfile</a>
+                      <li<%= sidebar_current("docs-avi-rmcloudopsproto") %>>
+              <a href="/docs/providers/avi/r/avi_rmcloudopsproto.html">RmCloudOpsProto</a>
             </li>
-		              <li<%= sidebar_current("docs-avi-role") %>>
-              <a href="/docs/providers/avi/r/avi_role.html">Role</a>
+		              <li<%= sidebar_current("docs-avi-snmptrapprofile") %>>
+              <a href="/docs/providers/avi/r/avi_snmptrapprofile.html">SnmpTrapProfile</a>
             </li>
-		              <li<%= sidebar_current("docs-avi-objectaccesspolicy") %>>
-              <a href="/docs/providers/avi/r/avi_objectaccesspolicy.html">ObjectAccessPolicy</a>
+		              <li<%= sidebar_current("docs-avi-gslb") %>>
+              <a href="/docs/providers/avi/r/avi_gslb.html">Gslb</a>
             </li>
-		              <li<%= sidebar_current("docs-avi-natpolicy") %>>
-              <a href="/docs/providers/avi/r/avi_natpolicy.html">NatPolicy</a>
+		              <li<%= sidebar_current("docs-avi-gslbservice") %>>
+              <a href="/docs/providers/avi/r/avi_gslbservice.html">GslbService</a>
             </li>
-		              <li<%= sidebar_current("docs-avi-image") %>>
-              <a href="/docs/providers/avi/r/avi_image.html">Image</a>
+		              <li<%= sidebar_current("docs-avi-gslbgeodbprofile") %>>
+              <a href="/docs/providers/avi/r/avi_gslbgeodbprofile.html">GslbGeoDbProfile</a>
             </li>
-		              <li<%= sidebar_current("docs-avi-ipaddrgroup") %>>
-              <a href="/docs/providers/avi/r/avi_ipaddrgroup.html">IpAddrGroup</a>
+		              <li<%= sidebar_current("docs-avi-healthmonitor") %>>
+              <a href="/docs/providers/avi/r/avi_healthmonitor.html">HealthMonitor</a>
             </li>
-		              <li<%= sidebar_current("docs-avi-microservicegroup") %>>
-              <a href="/docs/providers/avi/r/avi_microservicegroup.html">MicroServiceGroup</a>
+		              <li<%= sidebar_current("docs-avi-federationcheckpoint") %>>
+              <a href="/docs/providers/avi/r/avi_federationcheckpoint.html">FederationCheckpoint</a>
             </li>
-		              <li<%= sidebar_current("docs-avi-stringgroup") %>>
-              <a href="/docs/providers/avi/r/avi_stringgroup.html">StringGroup</a>
-            </li>
-		              <li<%= sidebar_current("docs-avi-trafficcloneprofile") %>>
-              <a href="/docs/providers/avi/r/avi_trafficcloneprofile.html">TrafficCloneProfile</a>
-            </li>
-		              <li<%= sidebar_current("docs-avi-webhook") %>>
-              <a href="/docs/providers/avi/r/avi_webhook.html">Webhook</a>
-            </li>
-		              <li<%= sidebar_current("docs-avi-authprofile") %>>
-              <a href="/docs/providers/avi/r/avi_authprofile.html">AuthProfile</a>
-            </li>
-		              <li<%= sidebar_current("docs-avi-sslkeyandcertificate") %>>
-              <a href="/docs/providers/avi/r/avi_sslkeyandcertificate.html">SSLKeyAndCertificate</a>
-            </li>
-		              <li<%= sidebar_current("docs-avi-sslprofile") %>>
-              <a href="/docs/providers/avi/r/avi_sslprofile.html">SSLProfile</a>
-            </li>
-		              <li<%= sidebar_current("docs-avi-pkiprofile") %>>
-              <a href="/docs/providers/avi/r/avi_pkiprofile.html">PKIProfile</a>
-            </li>
-		              <li<%= sidebar_current("docs-avi-certificatemanagementprofile") %>>
-              <a href="/docs/providers/avi/r/avi_certificatemanagementprofile.html">CertificateManagementProfile</a>
-            </li>
-		              <li<%= sidebar_current("docs-avi-ssopolicy") %>>
-              <a href="/docs/providers/avi/r/avi_ssopolicy.html">SSOPolicy</a>
-            </li>
-		              <li<%= sidebar_current("docs-avi-l4policyset") %>>
-              <a href="/docs/providers/avi/r/avi_l4policyset.html">L4PolicySet</a>
-            </li>
-		              <li<%= sidebar_current("docs-avi-scheduler") %>>
-              <a href="/docs/providers/avi/r/avi_scheduler.html">Scheduler</a>
-            </li>
-		              <li<%= sidebar_current("docs-avi-backupconfiguration") %>>
-              <a href="/docs/providers/avi/r/avi_backupconfiguration.html">BackupConfiguration</a>
-            </li>
-		              <li<%= sidebar_current("docs-avi-tenant") %>>
-              <a href="/docs/providers/avi/r/avi_tenant.html">Tenant</a>
-            </li>
-		              <li<%= sidebar_current("docs-avi-serviceenginegroup") %>>
-              <a href="/docs/providers/avi/r/avi_serviceenginegroup.html">ServiceEngineGroup</a>
+		              <li<%= sidebar_current("docs-avi-siteversion") %>>
+              <a href="/docs/providers/avi/r/avi_siteversion.html">SiteVersion</a>
             </li>
 		              <li<%= sidebar_current("docs-avi-networkservice") %>>
               <a href="/docs/providers/avi/r/avi_networkservice.html">NetworkService</a>
             </li>
-		              <li<%= sidebar_current("docs-avi-dnspolicy") %>>
-              <a href="/docs/providers/avi/r/avi_dnspolicy.html">DnsPolicy</a>
+		              <li<%= sidebar_current("docs-avi-securitypolicy") %>>
+              <a href="/docs/providers/avi/r/avi_securitypolicy.html">SecurityPolicy</a>
             </li>
-		              <li<%= sidebar_current("docs-avi-hardwaresecuritymodulegroup") %>>
-              <a href="/docs/providers/avi/r/avi_hardwaresecuritymodulegroup.html">HardwareSecurityModuleGroup</a>
+		              <li<%= sidebar_current("docs-avi-vsvip") %>>
+              <a href="/docs/providers/avi/r/avi_vsvip.html">VsVip</a>
             </li>
-		              <li<%= sidebar_current("docs-avi-upgradestatussummary") %>>
-              <a href="/docs/providers/avi/r/avi_upgradestatussummary.html">UpgradeStatusSummary</a>
+		              <li<%= sidebar_current("docs-avi-virtualservice") %>>
+              <a href="/docs/providers/avi/r/avi_virtualservice.html">VirtualService</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-serviceenginegroup") %>>
+              <a href="/docs/providers/avi/r/avi_serviceenginegroup.html">ServiceEngineGroup</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-errorpagebody") %>>
+              <a href="/docs/providers/avi/r/avi_errorpagebody.html">ErrorPageBody</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-errorpageprofile") %>>
+              <a href="/docs/providers/avi/r/avi_errorpageprofile.html">ErrorPageProfile</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-fileobject") %>>
+              <a href="/docs/providers/avi/r/avi_fileobject.html">FileObject</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-httppolicyset") %>>
+              <a href="/docs/providers/avi/r/avi_httppolicyset.html">HTTPPolicySet</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-systemlimits") %>>
+              <a href="/docs/providers/avi/r/avi_systemlimits.html">SystemLimits</a>
             </li>
 		              <li<%= sidebar_current("docs-avi-upgradestatusinfo") %>>
               <a href="/docs/providers/avi/r/avi_upgradestatusinfo.html">UpgradeStatusInfo</a>
             </li>
+		              <li<%= sidebar_current("docs-avi-upgradestatussummary") %>>
+              <a href="/docs/providers/avi/r/avi_upgradestatussummary.html">UpgradeStatusSummary</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-licenseledgerdetails") %>>
+              <a href="/docs/providers/avi/r/avi_licenseledgerdetails.html">LicenseLedgerDetails</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-ssopolicy") %>>
+              <a href="/docs/providers/avi/r/avi_ssopolicy.html">SSOPolicy</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-authprofile") %>>
+              <a href="/docs/providers/avi/r/avi_authprofile.html">AuthProfile</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-controllerproperties") %>>
+              <a href="/docs/providers/avi/r/avi_controllerproperties.html">ControllerProperties</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-l4policyset") %>>
+              <a href="/docs/providers/avi/r/avi_l4policyset.html">L4PolicySet</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-systemconfiguration") %>>
+              <a href="/docs/providers/avi/r/avi_systemconfiguration.html">SystemConfiguration</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-controllersite") %>>
+              <a href="/docs/providers/avi/r/avi_controllersite.html">ControllerSite</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-alertsyslogconfig") %>>
+              <a href="/docs/providers/avi/r/avi_alertsyslogconfig.html">AlertSyslogConfig</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-alertemailconfig") %>>
+              <a href="/docs/providers/avi/r/avi_alertemailconfig.html">AlertEmailConfig</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-alertscriptconfig") %>>
+              <a href="/docs/providers/avi/r/avi_alertscriptconfig.html">AlertScriptConfig</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-actiongroupconfig") %>>
+              <a href="/docs/providers/avi/r/avi_actiongroupconfig.html">ActionGroupConfig</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-alertconfig") %>>
+              <a href="/docs/providers/avi/r/avi_alertconfig.html">AlertConfig</a>
+            </li>
 		              <li<%= sidebar_current("docs-avi-vrfcontext") %>>
               <a href="/docs/providers/avi/r/avi_vrfcontext.html">VrfContext</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-applicationprofile") %>>
+              <a href="/docs/providers/avi/r/avi_applicationprofile.html">ApplicationProfile</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-ipaddrgroup") %>>
+              <a href="/docs/providers/avi/r/avi_ipaddrgroup.html">IpAddrGroup</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-stringgroup") %>>
+              <a href="/docs/providers/avi/r/avi_stringgroup.html">StringGroup</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-microservicegroup") %>>
+              <a href="/docs/providers/avi/r/avi_microservicegroup.html">MicroServiceGroup</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-sslprofile") %>>
+              <a href="/docs/providers/avi/r/avi_sslprofile.html">SSLProfile</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-certificatemanagementprofile") %>>
+              <a href="/docs/providers/avi/r/avi_certificatemanagementprofile.html">CertificateManagementProfile</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-sslkeyandcertificate") %>>
+              <a href="/docs/providers/avi/r/avi_sslkeyandcertificate.html">SSLKeyAndCertificate</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-pkiprofile") %>>
+              <a href="/docs/providers/avi/r/avi_pkiprofile.html">PKIProfile</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-tenant") %>>
+              <a href="/docs/providers/avi/r/avi_tenant.html">Tenant</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-vsdatascriptset") %>>
+              <a href="/docs/providers/avi/r/avi_vsdatascriptset.html">VSDataScriptSet</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-cluster") %>>
+              <a href="/docs/providers/avi/r/avi_cluster.html">Cluster</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-clusterclouddetails") %>>
+              <a href="/docs/providers/avi/r/avi_clusterclouddetails.html">ClusterCloudDetails</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-role") %>>
+              <a href="/docs/providers/avi/r/avi_role.html">Role</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-useraccountprofile") %>>
+              <a href="/docs/providers/avi/r/avi_useraccountprofile.html">UserAccountProfile</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-objectaccesspolicy") %>>
+              <a href="/docs/providers/avi/r/avi_objectaccesspolicy.html">ObjectAccessPolicy</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-analyticsprofile") %>>
+              <a href="/docs/providers/avi/r/avi_analyticsprofile.html">AnalyticsProfile</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-wafprofile") %>>
+              <a href="/docs/providers/avi/r/avi_wafprofile.html">WafProfile</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-wafcrs") %>>
+              <a href="/docs/providers/avi/r/avi_wafcrs.html">WafCRS</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-wafpolicypsmgroup") %>>
+              <a href="/docs/providers/avi/r/avi_wafpolicypsmgroup.html">WafPolicyPSMGroup</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-wafapplicationsignatureprovider") %>>
+              <a href="/docs/providers/avi/r/avi_wafapplicationsignatureprovider.html">WafApplicationSignatureProvider</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-wafpolicy") %>>
+              <a href="/docs/providers/avi/r/avi_wafpolicy.html">WafPolicy</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-pool") %>>
+              <a href="/docs/providers/avi/r/avi_pool.html">Pool</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-prioritylabels") %>>
+              <a href="/docs/providers/avi/r/avi_prioritylabels.html">PriorityLabels</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-poolgroupdeploymentpolicy") %>>
+              <a href="/docs/providers/avi/r/avi_poolgroupdeploymentpolicy.html">PoolGroupDeploymentPolicy</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-poolgroup") %>>
+              <a href="/docs/providers/avi/r/avi_poolgroup.html">PoolGroup</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-networksecuritypolicy") %>>
+              <a href="/docs/providers/avi/r/avi_networksecuritypolicy.html">NetworkSecurityPolicy</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-serviceengine") %>>
+              <a href="/docs/providers/avi/r/avi_serviceengine.html">ServiceEngine</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-icapprofile") %>>
+              <a href="/docs/providers/avi/r/avi_icapprofile.html">IcapProfile</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-hardwaresecuritymodulegroup") %>>
+              <a href="/docs/providers/avi/r/avi_hardwaresecuritymodulegroup.html">HardwareSecurityModuleGroup</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-autoscalelaunchconfig") %>>
+              <a href="/docs/providers/avi/r/avi_autoscalelaunchconfig.html">AutoScaleLaunchConfig</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-serverautoscalepolicy") %>>
+              <a href="/docs/providers/avi/r/avi_serverautoscalepolicy.html">ServerAutoScalePolicy</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-image") %>>
+              <a href="/docs/providers/avi/r/avi_image.html">Image</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-cloud") %>>
+              <a href="/docs/providers/avi/r/avi_cloud.html">Cloud</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-cloudconnectoruser") %>>
+              <a href="/docs/providers/avi/r/avi_cloudconnectoruser.html">CloudConnectorUser</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-availabilityzone") %>>
+              <a href="/docs/providers/avi/r/avi_availabilityzone.html">AvailabilityZone</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-vcenterserver") %>>
+              <a href="/docs/providers/avi/r/avi_vcenterserver.html">VCenterServer</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-networkprofile") %>>
+              <a href="/docs/providers/avi/r/avi_networkprofile.html">NetworkProfile</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-dnspolicy") %>>
+              <a href="/docs/providers/avi/r/avi_dnspolicy.html">DnsPolicy</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-ipamdnsproviderprofile") %>>
+              <a href="/docs/providers/avi/r/avi_ipamdnsproviderprofile.html">IpamDnsProviderProfile</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-customipamdnsprofile") %>>
+              <a href="/docs/providers/avi/r/avi_customipamdnsprofile.html">CustomIpamDnsProfile</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-backupconfiguration") %>>
+              <a href="/docs/providers/avi/r/avi_backupconfiguration.html">BackupConfiguration</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-scheduler") %>>
+              <a href="/docs/providers/avi/r/avi_scheduler.html">Scheduler</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-ipreputationdb") %>>
+              <a href="/docs/providers/avi/r/avi_ipreputationdb.html">IPReputationDB</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-applicationpersistenceprofile") %>>
+              <a href="/docs/providers/avi/r/avi_applicationpersistenceprofile.html">ApplicationPersistenceProfile</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-natpolicy") %>>
+              <a href="/docs/providers/avi/r/avi_natpolicy.html">NatPolicy</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-trafficcloneprofile") %>>
+              <a href="/docs/providers/avi/r/avi_trafficcloneprofile.html">TrafficCloneProfile</a>
             </li>
 		              <li<%= sidebar_current("docs-avi-testsedatastorelevel1") %>>
               <a href="/docs/providers/avi/r/avi_testsedatastorelevel1.html">TestSeDatastoreLevel1</a>
@@ -359,160 +560,52 @@
 		              <li<%= sidebar_current("docs-avi-testsedatastorelevel3") %>>
               <a href="/docs/providers/avi/r/avi_testsedatastorelevel3.html">TestSeDatastoreLevel3</a>
             </li>
-		              <li<%= sidebar_current("docs-avi-securitypolicy") %>>
-              <a href="/docs/providers/avi/r/avi_securitypolicy.html">SecurityPolicy</a>
+		              <li<%= sidebar_current("docs-avi-albservicesfileupload") %>>
+              <a href="/docs/providers/avi/r/avi_albservicesfileupload.html">ALBServicesFileUpload</a>
             </li>
-		              <li<%= sidebar_current("docs-avi-protocolparser") %>>
-              <a href="/docs/providers/avi/r/avi_protocolparser.html">ProtocolParser</a>
-            </li>
-		              <li<%= sidebar_current("docs-avi-cloudproperties") %>>
-              <a href="/docs/providers/avi/r/avi_cloudproperties.html">CloudProperties</a>
-            </li>
-		              <li<%= sidebar_current("docs-avi-applicationpersistenceprofile") %>>
-              <a href="/docs/providers/avi/r/avi_applicationpersistenceprofile.html">ApplicationPersistenceProfile</a>
-            </li>
-		              <li<%= sidebar_current("docs-avi-backup") %>>
-              <a href="/docs/providers/avi/r/avi_backup.html">Backup</a>
-            </li>
-		              <li<%= sidebar_current("docs-avi-networksecuritypolicy") %>>
-              <a href="/docs/providers/avi/r/avi_networksecuritypolicy.html">NetworkSecurityPolicy</a>
-            </li>
-		              <li<%= sidebar_current("docs-avi-seproperties") %>>
-              <a href="/docs/providers/avi/r/avi_seproperties.html">SeProperties</a>
-            </li>
-		              <li<%= sidebar_current("docs-avi-pingaccessagent") %>>
-              <a href="/docs/providers/avi/r/avi_pingaccessagent.html">PingAccessAgent</a>
-            </li>
-		              <li<%= sidebar_current("docs-avi-gslbgeodbprofile") %>>
-              <a href="/docs/providers/avi/r/avi_gslbgeodbprofile.html">GslbGeoDbProfile</a>
-            </li>
-		              <li<%= sidebar_current("docs-avi-gslbservice") %>>
-              <a href="/docs/providers/avi/r/avi_gslbservice.html">GslbService</a>
-            </li>
-		              <li<%= sidebar_current("docs-avi-gslb") %>>
-              <a href="/docs/providers/avi/r/avi_gslb.html">Gslb</a>
-            </li>
-		              <li<%= sidebar_current("docs-avi-cluster") %>>
-              <a href="/docs/providers/avi/r/avi_cluster.html">Cluster</a>
-            </li>
-		              <li<%= sidebar_current("docs-avi-clusterclouddetails") %>>
-              <a href="/docs/providers/avi/r/avi_clusterclouddetails.html">ClusterCloudDetails</a>
-            </li>
-		              <li<%= sidebar_current("docs-avi-wafpolicy") %>>
-              <a href="/docs/providers/avi/r/avi_wafpolicy.html">WafPolicy</a>
-            </li>
-		              <li<%= sidebar_current("docs-avi-wafcrs") %>>
-              <a href="/docs/providers/avi/r/avi_wafcrs.html">WafCRS</a>
-            </li>
-		              <li<%= sidebar_current("docs-avi-wafprofile") %>>
-              <a href="/docs/providers/avi/r/avi_wafprofile.html">WafProfile</a>
-            </li>
-		              <li<%= sidebar_current("docs-avi-wafpolicypsmgroup") %>>
-              <a href="/docs/providers/avi/r/avi_wafpolicypsmgroup.html">WafPolicyPSMGroup</a>
-            </li>
-		              <li<%= sidebar_current("docs-avi-snmptrapprofile") %>>
-              <a href="/docs/providers/avi/r/avi_snmptrapprofile.html">SnmpTrapProfile</a>
-            </li>
-		              <li<%= sidebar_current("docs-avi-systemconfiguration") %>>
-              <a href="/docs/providers/avi/r/avi_systemconfiguration.html">SystemConfiguration</a>
-            </li>
-		              <li<%= sidebar_current("docs-avi-controllersite") %>>
-              <a href="/docs/providers/avi/r/avi_controllersite.html">ControllerSite</a>
-            </li>
-		              <li<%= sidebar_current("docs-avi-networkprofile") %>>
-              <a href="/docs/providers/avi/r/avi_networkprofile.html">NetworkProfile</a>
-            </li>
-		              <li<%= sidebar_current("docs-avi-errorpagebody") %>>
-              <a href="/docs/providers/avi/r/avi_errorpagebody.html">ErrorPageBody</a>
-            </li>
-		              <li<%= sidebar_current("docs-avi-errorpageprofile") %>>
-              <a href="/docs/providers/avi/r/avi_errorpageprofile.html">ErrorPageProfile</a>
-            </li>
-		              <li<%= sidebar_current("docs-avi-customerportalinfo") %>>
-              <a href="/docs/providers/avi/r/avi_customerportalinfo.html">CustomerPortalInfo</a>
-            </li>
-		              <li<%= sidebar_current("docs-avi-controllerproperties") %>>
-              <a href="/docs/providers/avi/r/avi_controllerproperties.html">ControllerProperties</a>
-            </li>
-		              <li<%= sidebar_current("docs-avi-healthmonitor") %>>
-              <a href="/docs/providers/avi/r/avi_healthmonitor.html">HealthMonitor</a>
-            </li>
-		              <li<%= sidebar_current("docs-avi-virtualservice") %>>
-              <a href="/docs/providers/avi/r/avi_virtualservice.html">VirtualService</a>
-            </li>
-		              <li<%= sidebar_current("docs-avi-vsvip") %>>
-              <a href="/docs/providers/avi/r/avi_vsvip.html">VsVip</a>
-            </li>
-		              <li<%= sidebar_current("docs-avi-analyticsprofile") %>>
-              <a href="/docs/providers/avi/r/avi_analyticsprofile.html">AnalyticsProfile</a>
-            </li>
-		              <li<%= sidebar_current("docs-avi-cloud") %>>
-              <a href="/docs/providers/avi/r/avi_cloud.html">Cloud</a>
-            </li>
-		              <li<%= sidebar_current("docs-avi-cloudconnectoruser") %>>
-              <a href="/docs/providers/avi/r/avi_cloudconnectoruser.html">CloudConnectorUser</a>
-            </li>
-		              <li<%= sidebar_current("docs-avi-portalfileupload") %>>
-              <a href="/docs/providers/avi/r/avi_portalfileupload.html">PortalFileUpload</a>
-            </li>
-		              <li<%= sidebar_current("docs-avi-alertsyslogconfig") %>>
-              <a href="/docs/providers/avi/r/avi_alertsyslogconfig.html">AlertSyslogConfig</a>
-            </li>
-		              <li<%= sidebar_current("docs-avi-alertscriptconfig") %>>
-              <a href="/docs/providers/avi/r/avi_alertscriptconfig.html">AlertScriptConfig</a>
-            </li>
-		              <li<%= sidebar_current("docs-avi-alertconfig") %>>
-              <a href="/docs/providers/avi/r/avi_alertconfig.html">AlertConfig</a>
-            </li>
-		              <li<%= sidebar_current("docs-avi-actiongroupconfig") %>>
-              <a href="/docs/providers/avi/r/avi_actiongroupconfig.html">ActionGroupConfig</a>
-            </li>
-		              <li<%= sidebar_current("docs-avi-alertemailconfig") %>>
-              <a href="/docs/providers/avi/r/avi_alertemailconfig.html">AlertEmailConfig</a>
-            </li>
-		              <li<%= sidebar_current("docs-avi-vsdatascriptset") %>>
-              <a href="/docs/providers/avi/r/avi_vsdatascriptset.html">VSDataScriptSet</a>
-            </li>
-		              <li<%= sidebar_current("docs-avi-controllerportalregistration") %>>
-              <a href="/docs/providers/avi/r/avi_controllerportalregistration.html">ControllerPortalRegistration</a>
-            </li>
-		              <li<%= sidebar_current("docs-avi-customipamdnsprofile") %>>
-              <a href="/docs/providers/avi/r/avi_customipamdnsprofile.html">CustomIpamDnsProfile</a>
-            </li>
-		              <li<%= sidebar_current("docs-avi-ipamdnsproviderprofile") %>>
-              <a href="/docs/providers/avi/r/avi_ipamdnsproviderprofile.html">IpamDnsProviderProfile</a>
-            </li>
-		              <li<%= sidebar_current("docs-avi-poolgroup") %>>
-              <a href="/docs/providers/avi/r/avi_poolgroup.html">PoolGroup</a>
-            </li>
-		              <li<%= sidebar_current("docs-avi-prioritylabels") %>>
-              <a href="/docs/providers/avi/r/avi_prioritylabels.html">PriorityLabels</a>
-            </li>
-		              <li<%= sidebar_current("docs-avi-poolgroupdeploymentpolicy") %>>
-              <a href="/docs/providers/avi/r/avi_poolgroupdeploymentpolicy.html">PoolGroupDeploymentPolicy</a>
-            </li>
-		              <li<%= sidebar_current("docs-avi-pool") %>>
-              <a href="/docs/providers/avi/r/avi_pool.html">Pool</a>
+		              <li<%= sidebar_current("docs-avi-albservicesconfig") %>>
+              <a href="/docs/providers/avi/r/avi_albservicesconfig.html">ALBServicesConfig</a>
             </li>
 		              <li<%= sidebar_current("docs-avi-network") %>>
               <a href="/docs/providers/avi/r/avi_network.html">Network</a>
             </li>
-		              <li<%= sidebar_current("docs-avi-serverautoscalepolicy") %>>
-              <a href="/docs/providers/avi/r/avi_serverautoscalepolicy.html">ServerAutoScalePolicy</a>
+		              <li<%= sidebar_current("docs-avi-seproperties") %>>
+              <a href="/docs/providers/avi/r/avi_seproperties.html">SeProperties</a>
             </li>
-		              <li<%= sidebar_current("docs-avi-autoscalelaunchconfig") %>>
-              <a href="/docs/providers/avi/r/avi_autoscalelaunchconfig.html">AutoScaleLaunchConfig</a>
+		              <li<%= sidebar_current("docs-avi-nsxtsegmentruntime") %>>
+              <a href="/docs/providers/avi/r/avi_nsxtsegmentruntime.html">NsxtSegmentRuntime</a>
             </li>
-		              <li<%= sidebar_current("docs-avi-applicationprofile") %>>
-              <a href="/docs/providers/avi/r/avi_applicationprofile.html">ApplicationProfile</a>
+		              <li<%= sidebar_current("docs-avi-cloudproperties") %>>
+              <a href="/docs/providers/avi/r/avi_cloudproperties.html">CloudProperties</a>
             </li>
-		              <li<%= sidebar_current("docs-avi-httppolicyset") %>>
-              <a href="/docs/providers/avi/r/avi_httppolicyset.html">HTTPPolicySet</a>
+		              <li<%= sidebar_current("docs-avi-controllerportalregistration") %>>
+              <a href="/docs/providers/avi/r/avi_controllerportalregistration.html">ControllerPortalRegistration</a>
             </li>
-		              <li<%= sidebar_current("docs-avi-serviceengine") %>>
-              <a href="/docs/providers/avi/r/avi_serviceengine.html">ServiceEngine</a>
-            </li> 
-                  <li<%= sidebar_current("docs-avi-useraccount") %>>  
+		              <li<%= sidebar_current("docs-avi-protocolparser") %>>
+              <a href="/docs/providers/avi/r/avi_protocolparser.html">ProtocolParser</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-webhook") %>>
+              <a href="/docs/providers/avi/r/avi_webhook.html">Webhook</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-backup") %>>
+              <a href="/docs/providers/avi/r/avi_backup.html">Backup</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-securitymanagerdata") %>>
+              <a href="/docs/providers/avi/r/avi_securitymanagerdata.html">SecurityManagerData</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-pingaccessagent") %>>
+              <a href="/docs/providers/avi/r/avi_pingaccessagent.html">PingAccessAgent</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-useraccount") %>>
+              <a href="/docs/providers/avi/r/avi_useraccount.html">UserAccount</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-useraccount") %>>
+              <a href="/docs/providers/avi/r/avi_useraccount.html">UserAccount</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-useraccount") %>>
+              <a href="/docs/providers/avi/r/avi_useraccount.html">UserAccount</a>
+            </li>
+		              <li<%= sidebar_current("docs-avi-useraccount") %>>
               <a href="/docs/providers/avi/r/avi_useraccount.html">UserAccount</a>
             </li>
 		              <li<%= sidebar_current("docs-avi-useraccount") %>>

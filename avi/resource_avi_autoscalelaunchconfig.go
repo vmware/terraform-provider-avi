@@ -106,10 +106,10 @@ func resourceAviAutoScaleLaunchConfigUpdate(d *schema.ResourceData, meta interfa
 
 func resourceAviAutoScaleLaunchConfigDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "autoscalelaunchconfig"
+	client := meta.(*clients.AviClient)
 	if ApiDeleteSystemDefaultCheck(d) {
 		return nil
 	}
-	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {
 		path := "api/" + objType + "/" + uuid

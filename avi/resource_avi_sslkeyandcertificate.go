@@ -44,6 +44,11 @@ func ResourceSSLKeyAndCertificateSchema() map[string]*schema.Schema {
 			Optional: true,
 			Elem:     ResourceCustomParamsSchema(),
 		},
+		"enable_ocsp_stapling": {
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  false,
+		},
 		"enckey_base64": {
 			Type:     schema.TypeString,
 			Optional: true,
@@ -65,9 +70,11 @@ func ResourceSSLKeyAndCertificateSchema() map[string]*schema.Schema {
 			Computed: true,
 		},
 		"key": {
-			Type:     schema.TypeString,
-			Optional: true,
-			Computed: true,
+			Type:             schema.TypeString,
+			Optional:         true,
+			Computed:         true,
+			Sensitive:        true,
+			DiffSuppressFunc: suppressSensitiveFieldDiffs,
 		},
 		"key_base64": {
 			Type:     schema.TypeBool,
@@ -81,13 +88,32 @@ func ResourceSSLKeyAndCertificateSchema() map[string]*schema.Schema {
 			Elem:     ResourceSSLKeyParamsSchema(),
 		},
 		"key_passphrase": {
-			Type:     schema.TypeString,
-			Optional: true,
-			Computed: true,
+			Type:             schema.TypeString,
+			Optional:         true,
+			Computed:         true,
+			Sensitive:        true,
+			DiffSuppressFunc: suppressSensitiveFieldDiffs,
 		},
 		"name": {
 			Type:     schema.TypeString,
 			Required: true,
+		},
+		"ocsp_config": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceOCSPConfigSchema(),
+		},
+		"ocsp_error_status": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Default:  "OCSP_ERR_CERTSTATUS_DISABLED",
+		},
+		"ocsp_response_info": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceOCSPResponseInfoSchema(),
 		},
 		"status": {
 			Type:     schema.TypeString,
@@ -160,10 +186,10 @@ func resourceAviSSLKeyAndCertificateUpdate(d *schema.ResourceData, meta interfac
 
 func resourceAviSSLKeyAndCertificateDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "sslkeyandcertificate"
+	client := meta.(*clients.AviClient)
 	if ApiDeleteSystemDefaultCheck(d) {
 		return nil
 	}
-	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {
 		path := "api/" + objType + "/" + uuid

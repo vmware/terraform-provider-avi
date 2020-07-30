@@ -1,3 +1,9 @@
+############################################################################
+# ------------------------------------------------------------------------
+# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
+# ------------------------------------------------------------------------
+###
+
 ---
 layout: "avi"
 page_title: "Avi: avi_controllerproperties"
@@ -43,15 +49,21 @@ The following arguments are supported:
 * `default_minimum_api_timeout` - (Optional) Minimum api timeout value.if this value is not 60, it will be the default timeout for all apis that do not have a specific timeout.if an api has a specific timeout but is less than this value, this value will become the new timeout.
 * `dns_refresh_period` - (Optional) Period for refresh pool and gslb dns job.
 * `dummy` - (Optional) Placeholder for description of property dummy of obj type controllerproperties field type integer  type int.
+* `edit_system_limits` - (Optional) Allow editing of system limits.
 * `enable_api_sharding` - (Optional) This setting enables the controller leader to shard api requests to the followers (if any).
 * `enable_memory_balancer` - (Optional) Enable/disable memory balancer.
 * `fatal_error_lease_time` - (Optional) Placeholder for description of property fatal_error_lease_time of obj type controllerproperties field type integer  type int.
+* `federated_datastore_cleanup_duration` - (Optional) Federated datastore will not cleanup diffs unless they are at least this duration in the past.
+* `file_object_cleanup_period` - (Optional) Period for file object cleanup job.
 * `max_dead_se_in_grp` - (Optional) Placeholder for description of property max_dead_se_in_grp of obj type controllerproperties field type integer  type int.
 * `max_pcap_per_tenant` - (Optional) Maximum number of pcap files stored per tenant.
+* `max_se_spawn_interval_delay` - (Optional) Maximum delay possible to add to se_spawn_retry_interval after successive se spawn failure.
 * `max_seq_attach_ip_failures` - (Optional) Maximum number of consecutive attach ip failures that halts vs placement.
 * `max_seq_vnic_failures` - (Optional) Placeholder for description of property max_seq_vnic_failures of obj type controllerproperties field type integer  type int.
 * `permission_scoped_shared_admin_networks` - (Optional) Network and vrfcontext objects from the admin tenant will not be shared to non-admin tenants unless admin permissions are granted.
 * `persistence_key_rotate_period` - (Optional) Period for rotate app persistence keys job.
+* `portal_request_burst_limit` - (Optional) Burst limit on number of incoming requests0 to disable.
+* `portal_request_rate_limit` - (Optional) Maximum average number of requests allowed per second0 to disable.
 * `portal_token` - (Optional) Token used for uploading tech-support to portal.
 * `process_locked_useraccounts_timeout_period` - (Optional) Period for process locked user accounts job.
 * `process_pki_profile_timeout_period` - (Optional) Period for process pki profile job.
@@ -61,6 +73,7 @@ The following arguments are supported:
 * `se_failover_attempt_interval` - (Optional) Interval between attempting failovers to an se.
 * `se_from_marketplace` - (Optional) This setting decides whether se is to be deployed from the cloud marketplace or to be created by the controller.
 * `se_offline_del` - (Optional) Placeholder for description of property se_offline_del of obj type controllerproperties field type integer  type int.
+* `se_spawn_retry_interval` - (Optional) Default retry period before attempting another service engine spawn in se group.
 * `se_vnic_cooldown` - (Optional) Placeholder for description of property se_vnic_cooldown of obj type controllerproperties field type integer  type int.
 * `secure_channel_cleanup_timeout` - (Optional) Period for secure channel cleanup job.
 * `secure_channel_controller_token_timeout` - (Optional) Placeholder for description of property secure_channel_controller_token_timeout of obj type controllerproperties field type integer  type int.
@@ -72,7 +85,9 @@ The following arguments are supported:
 * `ssl_certificate_expiry_warning_days` - (Optional) Number of days for ssl certificate expiry warning.
 * `unresponsive_se_reboot` - (Optional) Placeholder for description of property unresponsive_se_reboot of obj type controllerproperties field type integer  type int.
 * `upgrade_dns_ttl` - (Optional) Time to account for dns ttl during upgrade.
-* `upgrade_lease_time` - (Optional) Placeholder for description of property upgrade_lease_time of obj type controllerproperties field type integer  type int.
+* `upgrade_fat_se_lease_time` - (Optional) Amount of time controller waits for a large-sized se (>=128gb memory) to reconnect after it is rebooted during upgrade.
+* `upgrade_lease_time` - (Optional) Amount of time controller waits for a regular-sized se (<128gb memory) to reconnect after it is rebooted during upgrade.
+* `upgrade_se_per_vs_scale_ops_txn_time` - (Optional) This parameter defines the upper-bound value of the vs scale-in or vs scale-out operation executed in the sescalein and sescale context.
 * `vnic_op_fail_time` - (Optional) Placeholder for description of property vnic_op_fail_time of obj type controllerproperties field type integer  type int.
 * `vs_apic_scaleout_timeout` - (Optional) Time to wait for the scaled out se to become ready before marking the scaleout done, applies to apic configuration only.
 * `vs_awaiting_se_timeout` - (Optional) Placeholder for description of property vs_awaiting_se_timeout of obj type controllerproperties field type integer  type int.

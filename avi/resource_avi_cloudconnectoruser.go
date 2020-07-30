@@ -36,6 +36,12 @@ func ResourceCloudConnectorUserSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Required: true,
 		},
+		"nsxt_credentials": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceNsxtCredentialsSchema(),
+		},
 		"oci_credentials": {
 			Type:     schema.TypeSet,
 			Optional: true,
@@ -43,14 +49,18 @@ func ResourceCloudConnectorUserSchema() map[string]*schema.Schema {
 			Elem:     ResourceOCICredentialsSchema(),
 		},
 		"password": {
-			Type:     schema.TypeString,
-			Optional: true,
-			Computed: true,
+			Type:             schema.TypeString,
+			Optional:         true,
+			Computed:         true,
+			Sensitive:        true,
+			DiffSuppressFunc: suppressSensitiveFieldDiffs,
 		},
 		"private_key": {
-			Type:     schema.TypeString,
-			Optional: true,
-			Computed: true,
+			Type:             schema.TypeString,
+			Optional:         true,
+			Computed:         true,
+			Sensitive:        true,
+			DiffSuppressFunc: suppressSensitiveFieldDiffs,
 		},
 		"public_key": {
 			Type:     schema.TypeString,
@@ -72,6 +82,12 @@ func ResourceCloudConnectorUserSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
+		},
+		"vcenter_credentials": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceVCenterCredentialsSchema(),
 		},
 	}
 }
@@ -124,10 +140,10 @@ func resourceAviCloudConnectorUserUpdate(d *schema.ResourceData, meta interface{
 
 func resourceAviCloudConnectorUserDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "cloudconnectoruser"
+	client := meta.(*clients.AviClient)
 	if ApiDeleteSystemDefaultCheck(d) {
 		return nil
 	}
-	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {
 		path := "api/" + objType + "/" + uuid

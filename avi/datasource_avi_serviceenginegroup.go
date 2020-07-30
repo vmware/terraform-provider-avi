@@ -35,6 +35,10 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeInt,
 				Computed: true,
 			},
+			"app_cache_threshold": {
+				Type:     schema.TypeInt,
+				Computed: true,
+			},
 			"app_learning_memory_percent": {
 				Type:     schema.TypeInt,
 				Computed: true,
@@ -72,6 +76,11 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 			"auto_redistribute_active_standby_load": {
 				Type:     schema.TypeBool,
 				Computed: true,
+			},
+			"availability_zone_refs": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
 			"bgp_state_update_interval": {
 				Type:     schema.TypeInt,
@@ -273,10 +282,20 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"instance_flavor_info": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceCloudFlavorSchema(),
+			},
 			"iptables": {
 				Type:     schema.TypeList,
 				Computed: true,
 				Elem:     ResourceIptableRuleSetSchema(),
+			},
+			"labels": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceKeyValueSchema(),
 			},
 			"least_load_core_selection": {
 				Type:     schema.TypeBool,
@@ -303,6 +322,10 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Computed: true,
 			},
 			"max_memory_per_mempool": {
+				Type:     schema.TypeInt,
+				Computed: true,
+			},
+			"max_num_se_dps": {
 				Type:     schema.TypeInt,
 				Computed: true,
 			},
@@ -426,6 +449,10 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeBool,
 				Computed: true,
 			},
+			"resync_time_interval": {
+				Type:     schema.TypeInt,
+				Computed: true,
+			},
 			"se_bandwidth_type": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -438,6 +465,10 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeSet,
 				Computed: true,
 				Elem:     ResourceDosThresholdProfileSchema(),
+			},
+			"se_dp_max_hb_version": {
+				Type:     schema.TypeInt,
+				Computed: true,
 			},
 			"se_dp_vnic_queue_stall_event_sleep": {
 				Type:     schema.TypeInt,
@@ -471,8 +502,8 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeInt,
 				Computed: true,
 			},
-			"se_ipc_udp_port": {
-				Type:     schema.TypeInt,
+			"se_hyperthreaded_mode": {
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"se_kni_burst_factor": {
@@ -516,10 +547,6 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Computed: true,
 			},
 			"se_probe_port": {
-				Type:     schema.TypeInt,
-				Computed: true,
-			},
-			"se_remote_punt_udp_port": {
 				Type:     schema.TypeInt,
 				Computed: true,
 			},
@@ -581,6 +608,14 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeInt,
 				Computed: true,
 			},
+			"se_vnic_tx_sw_queue_flush_frequency": {
+				Type:     schema.TypeInt,
+				Computed: true,
+			},
+			"se_vnic_tx_sw_queue_size": {
+				Type:     schema.TypeInt,
+				Computed: true,
+			},
 			"se_vs_hb_max_pkts_in_batch": {
 				Type:     schema.TypeInt,
 				Computed: true,
@@ -620,8 +655,16 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"transient_shared_memory_max": {
+				Type:     schema.TypeInt,
+				Computed: true,
+			},
 			"udf_log_throttle": {
 				Type:     schema.TypeInt,
+				Computed: true,
+			},
+			"use_hyperthreaded_cores": {
+				Type:     schema.TypeBool,
 				Computed: true,
 			},
 			"use_standard_alb": {
@@ -659,6 +702,11 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeSet,
 				Computed: true,
 				Elem:     ResourceVcenterHostsSchema(),
+			},
+			"vcenters": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourcePlacementScopeConfigSchema(),
 			},
 			"vcpus_per_se": {
 				Type:     schema.TypeInt,

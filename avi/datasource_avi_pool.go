@@ -97,6 +97,10 @@ func dataSourceAviPool() *schema.Resource {
 				Type:     schema.TypeBool,
 				Computed: true,
 			},
+			"enable_http2": {
+				Type:     schema.TypeBool,
+				Computed: true,
+			},
 			"enabled": {
 				Type:     schema.TypeBool,
 				Computed: true,
@@ -125,6 +129,10 @@ func dataSourceAviPool() *schema.Resource {
 				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
 			"host_check_enabled": {
+				Type:     schema.TypeBool,
+				Computed: true,
+			},
+			"ignore_server_port": {
 				Type:     schema.TypeBool,
 				Computed: true,
 			},
@@ -213,6 +221,10 @@ func dataSourceAviPool() *schema.Resource {
 				Type:     schema.TypeBool,
 				Computed: true,
 			},
+			"routing_pool": {
+				Type:     schema.TypeBool,
+				Computed: true,
+			},
 			"server_name": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -250,6 +262,10 @@ func dataSourceAviPool() *schema.Resource {
 			"tenant_ref": {
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
+			},
+			"tier1_lr": {
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"use_service_port": {

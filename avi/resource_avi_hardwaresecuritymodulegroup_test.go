@@ -94,20 +94,20 @@ data "avi_tenant" "default_tenant"{
     name= "admin"
 }
 resource "avi_hardwaresecuritymodulegroup" "testHardwareSecurityModuleGroup" {
-	tenant_ref = data.avi_tenant.default_tenant.id
 	name = "test-hsmg-test-abc"
+	tenant_ref = data.avi_tenant.default_tenant.id
 	hsm {
 		type = "HSM_TYPE_THALES_NETHSM"
 		nethsm {
-			remote_port = "9005"
-			priority = "100"
-			keyhash = "198644ebcba88ba1421ae0c34cdd541edf01deb8"
-			module_id = "0"
-			esn = "580A-F79E-BCD9"
 			remote_ip {
-				type = "V4"
 				addr = "10.10.15.1"
+				type = "V4"
 			}
+			remote_port = "9005"
+			esn = "580A-F79E-BCD9"
+			priority = "100"
+			module_id = "0"
+			keyhash = "198644ebcba88ba1421ae0c34cdd541edf01deb8"
 		}
 	}
 }
@@ -118,20 +118,20 @@ data "avi_tenant" "default_tenant"{
     name= "admin"
 }
 resource "avi_hardwaresecuritymodulegroup" "testHardwareSecurityModuleGroup" {
-	tenant_ref = data.avi_tenant.default_tenant.id
 	name = "test-hsmg-updated"
+	tenant_ref = data.avi_tenant.default_tenant.id
 	hsm {
 		type = "HSM_TYPE_THALES_NETHSM"
 		nethsm {
-			remote_port = "9005"
-			priority = "100"
-			keyhash = "198644ebcba88ba1421ae0c34cdd541edf01deb8"
-			module_id = "0"
-			esn = "580A-F79E-BCD9"
 			remote_ip {
-				type = "V4"
 				addr = "10.10.15.1"
+				type = "V4"
 			}
+			remote_port = "9005"
+			esn = "580A-F79E-BCD9"
+			priority = "100"
+			module_id = "0"
+			keyhash = "198644ebcba88ba1421ae0c34cdd541edf01deb8"
 		}
 	}
 }

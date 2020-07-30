@@ -11,10 +11,19 @@ func dataSourceAviImage() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviImageRead,
 		Schema: map[string]*schema.Schema{
+			"cloud_info_values": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceImageCloudDataSchema(),
+			},
 			"controller_info": {
 				Type:     schema.TypeSet,
 				Computed: true,
 				Elem:     ResourcePackageDetailsSchema(),
+			},
+			"controller_patch_name": {
+				Type:     schema.TypeString,
+				Computed: true,
 			},
 			"controller_patch_uuid": {
 				Type:     schema.TypeString,
@@ -34,6 +43,10 @@ func dataSourceAviImage() *schema.Resource {
 				Type:     schema.TypeSet,
 				Computed: true,
 				Elem:     ResourcePackageDetailsSchema(),
+			},
+			"se_patch_name": {
+				Type:     schema.TypeString,
+				Computed: true,
 			},
 			"se_patch_uuid": {
 				Type:     schema.TypeString,

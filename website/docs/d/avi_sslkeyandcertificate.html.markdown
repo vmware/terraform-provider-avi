@@ -1,3 +1,9 @@
+############################################################################
+# ------------------------------------------------------------------------
+# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
+# ------------------------------------------------------------------------
+###
+
 ---
 layout: "avi"
 page_title: "AVI: avi_sslkeyandcertificate"
@@ -34,6 +40,7 @@ In addition to all arguments above, the following attributes are exported:
 * `certificate_management_profile_ref` - It is a reference to an object of type certificatemanagementprofile.
 * `created_by` - Creator name.
 * `dynamic_params` - Dynamic parameters needed for certificate management profile.
+* `enable_ocsp_stapling` - Enables ocsp stapling.
 * `enckey_base64` - Encrypted private key corresponding to the private key (e.g.
 * `enckey_name` - Name of the encrypted private key (e.g.
 * `format` - Format of the key/certificate file.
@@ -43,6 +50,9 @@ In addition to all arguments above, the following attributes are exported:
 * `key_params` - Dict settings for sslkeyandcertificate.
 * `key_passphrase` - Passphrase used to encrypt the private key.
 * `name` - Name of the object.
+* `ocsp_config` - Configuration related to ocsp.
+* `ocsp_error_status` - Error reported during ocsp status query.
+* `ocsp_response_info` - Information related to ocsp response.
 * `status` - Enum options - ssl_certificate_finished, ssl_certificate_pending.
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `type` - Enum options - ssl_certificate_type_virtualservice, ssl_certificate_type_system, ssl_certificate_type_ca.

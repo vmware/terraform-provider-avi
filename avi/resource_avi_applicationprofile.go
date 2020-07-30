@@ -61,6 +61,11 @@ func ResourceApplicationProfileSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  false,
 		},
+		"preserve_dest_ip_port": {
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  false,
+		},
 		"sip_service_profile": {
 			Type:     schema.TypeSet,
 			Optional: true,
@@ -138,10 +143,10 @@ func resourceAviApplicationProfileUpdate(d *schema.ResourceData, meta interface{
 
 func resourceAviApplicationProfileDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "applicationprofile"
+	client := meta.(*clients.AviClient)
 	if ApiDeleteSystemDefaultCheck(d) {
 		return nil
 	}
-	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {
 		path := "api/" + objType + "/" + uuid

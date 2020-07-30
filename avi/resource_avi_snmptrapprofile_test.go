@@ -94,8 +94,8 @@ data "avi_tenant" "default_tenant"{
     name= "admin"
 }
 resource "avi_snmptrapprofile" "testSnmpTrapProfile" {
-	tenant_ref = data.avi_tenant.default_tenant.id
 	name = "test-snmp-test-abc"
+	tenant_ref = data.avi_tenant.default_tenant.id
 }
 `
 
@@ -104,7 +104,7 @@ data "avi_tenant" "default_tenant"{
     name= "admin"
 }
 resource "avi_snmptrapprofile" "testSnmpTrapProfile" {
-	tenant_ref = data.avi_tenant.default_tenant.id
 	name = "test-snmp-updated"
+	tenant_ref = data.avi_tenant.default_tenant.id
 }
 `

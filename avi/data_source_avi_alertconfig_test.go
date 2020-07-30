@@ -16,9 +16,9 @@ func TestAVIDataSourceAlertConfigBasic(t *testing.T) {
 					resource.TestCheckResourceAttr(
 						"avi_alertconfig.testAlertConfig", "name", "test-System-CC-Alert-abc"),
 					resource.TestCheckResourceAttr(
-						"avi_alertconfig.testAlertConfig", "expiry_time", "86400"),
-					resource.TestCheckResourceAttr(
 						"avi_alertconfig.testAlertConfig", "enabled", "true"),
+					resource.TestCheckResourceAttr(
+						"avi_alertconfig.testAlertConfig", "expiry_time", "86400"),
 					resource.TestCheckResourceAttr(
 						"avi_alertconfig.testAlertConfig", "rolling_window", "300"),
 					resource.TestCheckResourceAttr(
@@ -40,11 +40,11 @@ data "avi_actiongroupconfig" "system_actiongroupconfig" {
     name= "System-Alert-Level-Medium"
 }
 resource "avi_alertconfig" "testAlertConfig" {
-	category = "REALTIME"
-	expiry_time = "86400"
 	name = "test-System-CC-Alert-abc"
 	enabled = true
 	tenant_ref = data.avi_tenant.default_tenant.id
+	category = "REALTIME"
+	expiry_time = "86400"
 	summary = "System-CC-Alert System Alert Triggered"
 	rolling_window = "300"
 	source = "EVENT_LOGS"

@@ -1,3 +1,9 @@
+############################################################################
+# ------------------------------------------------------------------------
+# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
+# ------------------------------------------------------------------------
+###
+
 ---
 layout: "avi"
 page_title: "AVI: avi_cloud"
@@ -52,9 +58,9 @@ In addition to all arguments above, the following attributes are exported:
 * `mtu` - Mtu setting for the cloud.
 * `name` - Name of the object.
 * `nsx_configuration` - Configuration parameters for nsx manager.
+* `nsxt_configuration` - Nsx-t cloud platform configuration.
 * `obj_name_prefix` - Default prefix for all automatically created objects in this cloud.
 * `openstack_configuration` - Dict settings for cloud.
-* `oshiftk8s_configuration` - Dict settings for cloud.
 * `prefer_static_routes` - Prefer static routes over interface routes during virtualservice placement.
 * `proxy_configuration` - Dict settings for cloud.
 * `rancher_configuration` - Dict settings for cloud.

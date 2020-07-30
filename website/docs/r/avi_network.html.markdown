@@ -1,3 +1,9 @@
+############################################################################
+# ------------------------------------------------------------------------
+# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
+# ------------------------------------------------------------------------
+###
+
 ---
 layout: "avi"
 page_title: "Avi: avi_network"
@@ -24,6 +30,7 @@ resource "avi_network" "foo" {
 The following arguments are supported:
 
 * `name` - (Required) Name of the object.
+* `attrs` - (Optional) Key/value network attributes.
 * `cloud_ref` - (Optional) It is a reference to an object of type cloud.
 * `configured_subnets` - (Optional) List of list.
 * `dhcp_enabled` - (Optional) Select the ip address management scheme for this network.

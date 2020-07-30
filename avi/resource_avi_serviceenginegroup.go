@@ -10,6 +10,7 @@ import (
 	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+	"time"
 )
 
 func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
@@ -42,7 +43,12 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 		"app_cache_percent": {
 			Type:     schema.TypeInt,
 			Optional: true,
-			Default:  0,
+			Default:  10,
+		},
+		"app_cache_threshold": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  5,
 		},
 		"app_learning_memory_percent": {
 			Type:     schema.TypeInt,
@@ -88,6 +94,11 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  false,
+		},
+		"availability_zone_refs": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     &schema.Schema{Type: schema.TypeString},
 		},
 		"bgp_state_update_interval": {
 			Type:     schema.TypeInt,
@@ -202,7 +213,7 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 		"disk_per_se": {
 			Type:     schema.TypeInt,
 			Optional: true,
-			Default:  10,
+			Default:  15,
 		},
 		"distribute_load_active_standby": {
 			Type:     schema.TypeBool,
@@ -334,10 +345,21 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"instance_flavor_info": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceCloudFlavorSchema(),
+		},
 		"iptables": {
 			Type:     schema.TypeList,
 			Optional: true,
 			Elem:     ResourceIptableRuleSetSchema(),
+		},
+		"labels": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceKeyValueSchema(),
 		},
 		"least_load_core_selection": {
 			Type:     schema.TypeBool,
@@ -373,6 +395,11 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Type:     schema.TypeInt,
 			Optional: true,
 			Default:  64,
+		},
+		"max_num_se_dps": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Computed: true,
 		},
 		"max_public_ips_per_lb": {
 			Type:     schema.TypeInt,
@@ -520,6 +547,11 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  true,
 		},
+		"resync_time_interval": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  65536,
+		},
 		"se_bandwidth_type": {
 			Type:     schema.TypeString,
 			Optional: true,
@@ -535,6 +567,11 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 			Elem:     ResourceDosThresholdProfileSchema(),
+		},
+		"se_dp_max_hb_version": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  2,
 		},
 		"se_dp_vnic_queue_stall_event_sleep": {
 			Type:     schema.TypeInt,
@@ -576,10 +613,10 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  40,
 		},
-		"se_ipc_udp_port": {
-			Type:     schema.TypeInt,
+		"se_hyperthreaded_mode": {
+			Type:     schema.TypeString,
 			Optional: true,
-			Default:  1500,
+			Default:  "SE_CPU_HT_AUTO",
 		},
 		"se_kni_burst_factor": {
 			Type:     schema.TypeInt,
@@ -635,11 +672,6 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Type:     schema.TypeInt,
 			Optional: true,
 			Default:  7,
-		},
-		"se_remote_punt_udp_port": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Default:  1501,
 		},
 		"se_rl_prop": {
 			Type:     schema.TypeSet,
@@ -713,6 +745,16 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  0,
 		},
+		"se_vnic_tx_sw_queue_flush_frequency": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  0,
+		},
+		"se_vnic_tx_sw_queue_size": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  256,
+		},
 		"se_vs_hb_max_pkts_in_batch": {
 			Type:     schema.TypeInt,
 			Optional: true,
@@ -758,10 +800,20 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"transient_shared_memory_max": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  30,
+		},
 		"udf_log_throttle": {
 			Type:     schema.TypeInt,
 			Optional: true,
 			Default:  100,
+		},
+		"use_hyperthreaded_cores": {
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  true,
 		},
 		"use_standard_alb": {
 			Type:     schema.TypeBool,
@@ -804,6 +856,11 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 			Elem:     ResourceVcenterHostsSchema(),
+		},
+		"vcenters": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourcePlacementScopeConfigSchema(),
 		},
 		"vcpus_per_se": {
 			Type:     schema.TypeInt,
@@ -923,10 +980,27 @@ func resourceAviServiceEngineGroupUpdate(d *schema.ResourceData, meta interface{
 
 func resourceAviServiceEngineGroupDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "serviceenginegroup"
+	client := meta.(*clients.AviClient)
+	seDeprovisionExtraDelay := 2
+	if cloudRef, ok := d.GetOk("cloud_ref"); ok && strings.Contains(cloudRef.(string), "api/cloud/") {
+		cloudUUID := strings.SplitN(cloudRef.(string), "api/cloud/", 2)[1]
+		cloudPath := "api/cloud/" + cloudUUID
+		var robj interface{}
+		if err := client.AviSession.Get(cloudPath, &robj); err == nil {
+			if vcenterConfig, isVcenterConfig := robj.(map[string]interface{})["vcenter_configuration"]; isVcenterConfig {
+				if privilege := vcenterConfig.(map[string]interface{})["privilege"].(string); privilege == "WRITE_ACCESS" {
+					seGroupName := d.Get("name").(string)
+					cloudName := robj.(map[string]interface{})["name"].(string)
+					seDeprovisionDelay := d.Get("se_deprovision_delay").(int) + seDeprovisionExtraDelay
+					log.Printf("Waiting for %v minutes to delete SE from SE Group %v of cloud %v", seDeprovisionDelay, seGroupName, cloudName)
+					time.Sleep(time.Duration(seDeprovisionDelay) * time.Minute)
+				}
+			}
+		}
+	}
 	if ApiDeleteSystemDefaultCheck(d) {
 		return nil
 	}
-	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {
 		path := "api/" + objType + "/" + uuid
