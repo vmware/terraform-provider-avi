@@ -114,6 +114,11 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"edit_system_limits": {
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  false,
+		},
 		"enable_api_sharding": {
 			Type:     schema.TypeBool,
 			Optional: true,
@@ -129,6 +134,16 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  120,
 		},
+		"federated_datastore_cleanup_duration": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  120,
+		},
+		"file_object_cleanup_period": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  1440,
+		},
 		"max_dead_se_in_grp": {
 			Type:     schema.TypeInt,
 			Optional: true,
@@ -138,6 +153,11 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Type:     schema.TypeInt,
 			Optional: true,
 			Default:  4,
+		},
+		"max_se_spawn_interval_delay": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  1800,
 		},
 		"max_seq_attach_ip_failures": {
 			Type:     schema.TypeInt,
@@ -159,10 +179,22 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  0,
 		},
-		"portal_token": {
-			Type:     schema.TypeString,
+		"portal_request_burst_limit": {
+			Type:     schema.TypeInt,
 			Optional: true,
-			Computed: true,
+			Default:  0,
+		},
+		"portal_request_rate_limit": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  0,
+		},
+		"portal_token": {
+			Type:             schema.TypeString,
+			Optional:         true,
+			Computed:         true,
+			Sensitive:        true,
+			DiffSuppressFunc: suppressSensitiveFieldDiffs,
 		},
 		"process_locked_useraccounts_timeout_period": {
 			Type:     schema.TypeInt,
@@ -203,6 +235,11 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Type:     schema.TypeInt,
 			Optional: true,
 			Default:  172000,
+		},
+		"se_spawn_retry_interval": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  300,
 		},
 		"se_vnic_cooldown": {
 			Type:     schema.TypeInt,
@@ -259,10 +296,20 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  5,
 		},
+		"upgrade_fat_se_lease_time": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  1200,
+		},
 		"upgrade_lease_time": {
 			Type:     schema.TypeInt,
 			Optional: true,
-			Default:  360,
+			Default:  600,
+		},
+		"upgrade_se_per_vs_scale_ops_txn_time": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  3,
 		},
 		"uuid": {
 			Type:     schema.TypeString,
@@ -385,10 +432,10 @@ func resourceAviControllerPropertiesUpdate(d *schema.ResourceData, meta interfac
 
 func resourceAviControllerPropertiesDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "controllerproperties"
+	client := meta.(*clients.AviClient)
 	if ApiDeleteSystemDefaultCheck(d) {
 		return nil
 	}
-	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {
 		path := "api/" + objType + "/" + uuid

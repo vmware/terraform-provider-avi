@@ -39,6 +39,11 @@ func ResourcePoolGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"enable_http2": {
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  false,
+		},
 		"fail_action": {
 			Type:     schema.TypeSet,
 			Optional: true,
@@ -135,10 +140,10 @@ func resourceAviPoolGroupUpdate(d *schema.ResourceData, meta interface{}) error 
 
 func resourceAviPoolGroupDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "poolgroup"
+	client := meta.(*clients.AviClient)
 	if ApiDeleteSystemDefaultCheck(d) {
 		return nil
 	}
-	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {
 		path := "api/" + objType + "/" + uuid

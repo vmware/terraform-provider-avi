@@ -92,10 +92,10 @@ func resourceAviControllerPortalRegistrationUpdate(d *schema.ResourceData, meta 
 
 func resourceAviControllerPortalRegistrationDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "controllerportalregistration"
+	client := meta.(*clients.AviClient)
 	if ApiDeleteSystemDefaultCheck(d) {
 		return nil
 	}
-	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {
 		path := "api/" + objType + "/" + uuid

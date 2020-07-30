@@ -27,9 +27,9 @@ data "avi_tenant" "default_tenant"{
     name= "admin"
 }
 resource "avi_customipamdnsprofile" "testCustomIpamDnsProfile" {
+	name = "test-ipam-abc"
 	script_uri = "/"
 	tenant_ref = data.avi_tenant.default_tenant.id
-	name = "test-ipam-abc"
 }
 
 data "avi_customipamdnsprofile" "testCustomIpamDnsProfile" {

@@ -14,6 +14,11 @@ import (
 
 func ResourceNetworkSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
+		"attrs": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceKeyValueSchema(),
+		},
 		"cloud_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
@@ -124,10 +129,10 @@ func resourceAviNetworkUpdate(d *schema.ResourceData, meta interface{}) error {
 
 func resourceAviNetworkDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "network"
+	client := meta.(*clients.AviClient)
 	if ApiDeleteSystemDefaultCheck(d) {
 		return nil
 	}
-	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {
 		path := "api/" + objType + "/" + uuid

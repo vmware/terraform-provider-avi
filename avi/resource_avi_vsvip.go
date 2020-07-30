@@ -38,6 +38,11 @@ func ResourceVsVipSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"tier1_lr": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
 		"use_standard_alb": {
 			Type:     schema.TypeBool,
 			Optional: true,
@@ -155,10 +160,10 @@ func resourceAviVsVipUpdate(d *schema.ResourceData, meta interface{}) error {
 
 func resourceAviVsVipDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "vsvip"
+	client := meta.(*clients.AviClient)
 	if ApiDeleteSystemDefaultCheck(d) {
 		return nil
 	}
-	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {
 		path := "api/" + objType + "/" + uuid

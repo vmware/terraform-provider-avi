@@ -27,9 +27,8 @@ data "avi_tenant" "default_tenant"{
     name= "admin"
 }
 resource "avi_stringgroup" "testStringGroup" {
-	type = "SG_TYPE_STRING"
-	tenant_ref = data.avi_tenant.default_tenant.id
 	name = "test-System-Compressible-Content-Types-abc"
+	tenant_ref = data.avi_tenant.default_tenant.id
 	kv {
 	key = "text/html"
 }
@@ -57,6 +56,7 @@ kv {
 kv {
 	key = "application/pdf"
 }
+	type = "SG_TYPE_STRING"
 }
 
 data "avi_stringgroup" "testStringGroup" {

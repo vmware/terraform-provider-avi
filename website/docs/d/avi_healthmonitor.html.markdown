@@ -1,3 +1,9 @@
+############################################################################
+# ------------------------------------------------------------------------
+# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
+# ------------------------------------------------------------------------
+###
+
 ---
 layout: "avi"
 page_title: "AVI: avi_healthmonitor"
@@ -29,6 +35,7 @@ data "avi_healthmonitor" "foo_healthmonitor" {
 In addition to all arguments above, the following attributes are exported:
 
 * `allow_duplicate_monitors` - By default, multiple instances of the same healthmonitor to the same server are suppressed intelligently.
+* `authentication` - Authentication information for username/password.
 * `description` - User defined description for the object.
 * `disable_quickstart` - During addition of a server or healthmonitors or during bootup, avi performs sequential health checks rather than waiting for send-interval to kick in, to mark the server up as soon as possible.
 * `dns_monitor` - Dict settings for healthmonitor.

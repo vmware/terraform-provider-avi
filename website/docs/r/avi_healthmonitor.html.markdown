@@ -1,3 +1,9 @@
+############################################################################
+# ------------------------------------------------------------------------
+# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
+# ------------------------------------------------------------------------
+###
+
 ---
 layout: "avi"
 page_title: "Avi: avi_healthmonitor"
@@ -26,6 +32,7 @@ The following arguments are supported:
 * `name` - (Required) A user friendly name for this health monitor.
 * `type` - (Required) Type of the health monitor.
 * `allow_duplicate_monitors` - (Optional) By default, multiple instances of the same healthmonitor to the same server are suppressed intelligently.
+* `authentication` - (Optional) Authentication information for username/password.
 * `description` - (Optional) User defined description for the object.
 * `disable_quickstart` - (Optional) During addition of a server or healthmonitors or during bootup, avi performs sequential health checks rather than waiting for send-interval to kick in, to mark the server up as soon as possible.
 * `dns_monitor` - (Optional) Dict settings for healthmonitor.

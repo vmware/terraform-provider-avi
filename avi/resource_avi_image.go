@@ -14,11 +14,21 @@ import (
 
 func ResourceImageSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
+		"cloud_info_values": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceImageCloudDataSchema(),
+		},
 		"controller_info": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Computed: true,
 			Elem:     ResourcePackageDetailsSchema(),
+		},
+		"controller_patch_name": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
 		},
 		"controller_patch_uuid": {
 			Type:     schema.TypeString,
@@ -41,6 +51,11 @@ func ResourceImageSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 			Elem:     ResourcePackageDetailsSchema(),
+		},
+		"se_patch_name": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
 		},
 		"se_patch_uuid": {
 			Type:     schema.TypeString,
@@ -123,10 +138,10 @@ func resourceAviImageUpdate(d *schema.ResourceData, meta interface{}) error {
 
 func resourceAviImageDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "image"
+	client := meta.(*clients.AviClient)
 	if ApiDeleteSystemDefaultCheck(d) {
 		return nil
 	}
-	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {
 		path := "api/" + objType + "/" + uuid

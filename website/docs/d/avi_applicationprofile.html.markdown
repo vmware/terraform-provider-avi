@@ -1,3 +1,9 @@
+############################################################################
+# ------------------------------------------------------------------------
+# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
+# ------------------------------------------------------------------------
+###
+
 ---
 layout: "avi"
 page_title: "AVI: avi_applicationprofile"
@@ -37,6 +43,7 @@ In addition to all arguments above, the following attributes are exported:
 * `name` - The name of the application profile.
 * `preserve_client_ip` - Specifies if client ip needs to be preserved for backend connection.
 * `preserve_client_port` - Specifies if we need to preserve client port while preserving client ip for backend connections.
+* `preserve_dest_ip_port` - Specifies if destination ip and port needs to be preserved for backend connection.
 * `sip_service_profile` - Specifies various sip service related controls for virtual service.
 * `tcp_app_profile` - Specifies the tcp application proxy profile parameters.
 * `tenant_ref` - It is a reference to an object of type tenant.

@@ -14,6 +14,12 @@ import (
 
 func ResourceVrfContextSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
+		"bfd_profile": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceBfdProfileSchema(),
+		},
 		"bgp_profile": {
 			Type:     schema.TypeSet,
 			Optional: true,
@@ -51,6 +57,11 @@ func ResourceVrfContextSchema() map[string]*schema.Schema {
 			Type:     schema.TypeList,
 			Optional: true,
 			Elem:     ResourceKeyValueSchema(),
+		},
+		"lldp_enable": {
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  true,
 		},
 		"name": {
 			Type:     schema.TypeString,
@@ -127,10 +138,10 @@ func resourceAviVrfContextUpdate(d *schema.ResourceData, meta interface{}) error
 
 func resourceAviVrfContextDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "vrfcontext"
+	client := meta.(*clients.AviClient)
 	if ApiDeleteSystemDefaultCheck(d) {
 		return nil
 	}
-	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {
 		path := "api/" + objType + "/" + uuid

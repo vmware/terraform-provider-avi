@@ -19,6 +19,18 @@ func ResourceWafPolicySchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  true,
 		},
+		"application_signatures": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceWafApplicationSignaturesSchema(),
+		},
+		"confidence_override": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceAppLearningConfidenceOverrideSchema(),
+		},
 		"created_by": {
 			Type:     schema.TypeString,
 			Optional: true,
@@ -39,10 +51,31 @@ func ResourceWafPolicySchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  false,
 		},
+		"enable_auto_rule_updates": {
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  true,
+		},
+		"enable_regex_learning": {
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  false,
+		},
 		"failure_mode": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Default:  "WAF_FAILURE_MODE_OPEN",
+		},
+		"learning_params": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceAppLearningParamsSchema(),
+		},
+		"min_confidence": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Default:  "CONFIDENCE_VERY_HIGH",
 		},
 		"mode": {
 			Type:     schema.TypeString,
@@ -151,10 +184,10 @@ func resourceAviWafPolicyUpdate(d *schema.ResourceData, meta interface{}) error 
 
 func resourceAviWafPolicyDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "wafpolicy"
+	client := meta.(*clients.AviClient)
 	if ApiDeleteSystemDefaultCheck(d) {
 		return nil
 	}
-	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {
 		path := "api/" + objType + "/" + uuid

@@ -11,6 +11,11 @@ func dataSourceAviVrfContext() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviVrfContextRead,
 		Schema: map[string]*schema.Schema{
+			"bfd_profile": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceBfdProfileSchema(),
+			},
 			"bgp_profile": {
 				Type:     schema.TypeSet,
 				Computed: true,
@@ -44,6 +49,10 @@ func dataSourceAviVrfContext() *schema.Resource {
 				Type:     schema.TypeList,
 				Computed: true,
 				Elem:     ResourceKeyValueSchema(),
+			},
+			"lldp_enable": {
+				Type:     schema.TypeBool,
+				Computed: true,
 			},
 			"name": {
 				Type:     schema.TypeString,

@@ -1,3 +1,9 @@
+############################################################################
+# ------------------------------------------------------------------------
+# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
+# ------------------------------------------------------------------------
+###
+
 ---
 layout: "avi"
 page_title: "AVI: avi_virtualservice"
@@ -31,6 +37,7 @@ data "avi_virtualservice" "foo_virtualservice" {
 In addition to all arguments above, the following attributes are exported:
 
 * `active_standby_se_tag` - This configuration only applies if the virtualservice is in legacy active standby ha mode and load distribution among active standby is enabled.
+* `advertise_down_vs` - Keep advertising virtual service via bgp even if it is marked down by health monitor.
 * `allow_invalid_client_cert` - Process request even if invalid client certificate is presented.
 * `analytics_policy` - Determines analytics settings for the application.
 * `analytics_profile_ref` - Specifies settings related to analytics.
@@ -41,7 +48,7 @@ In addition to all arguments above, the following attributes are exported:
 * `close_client_conn_on_config_update` - Close client connection on vs config update.
 * `cloud_config_cksum` - Checksum of cloud configuration for vs.
 * `cloud_ref` - It is a reference to an object of type cloud.
-* `cloud_type` - Enum options - cloud_none, cloud_vcenter, cloud_openstack, cloud_aws, cloud_vca, cloud_apic, cloud_mesos, cloud_linuxserver, cloud_docker_ucp, cloud_rancher, cloud_oshift_k8s, cloud_azure, cloud_gcp.
+* `cloud_type` - Enum options - cloud_none, cloud_vcenter, cloud_openstack, cloud_aws, cloud_vca, cloud_apic, cloud_mesos, cloud_linuxserver, cloud_docker_ucp, cloud_rancher, cloud_oshift_k8s, cloud_azure, cloud_gcp, cloud_nsxt.
 * `connections_rate_limit` - Rate limit the incoming connections to this virtual service.
 * `content_rewrite` - Profile used to match and rewrite strings in request and/or response body.
 * `created_by` - Creator name.
@@ -60,6 +67,7 @@ In addition to all arguments above, the following attributes are exported:
 * `fqdn` - Dns resolvable, fully qualified domain name of the virtualservice.
 * `host_name_xlate` - Translate the host name sent to the servers to this value.
 * `http_policies` - Http policies applied on the data traffic of the virtual service.
+* `icap_request_profile_refs` - The config settings for the icap server when checking the http request.
 * `ign_pool_net_reach` - Ignore pool servers network reachability constraints for virtual service placement.
 * `l4_policies` - L4 policies applied to the data traffic of the virtual service.
 * `limit_doser` - Limit potential dos attackers who exceed max_cps_per_client significantly to a fraction of max_cps_per_client for a while.

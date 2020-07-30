@@ -7,9 +7,9 @@ package models
 // swagger:model CloudAutoscalingConfigFailureDetails
 type CloudAutoscalingConfigFailureDetails struct {
 
-	// Cloud UUID. Field introduced in 18.2.9.
+	// Cloud UUID. Field introduced in 20.1.1.
 	CcID *string `json:"cc_id,omitempty"`
 
-	// Failure reason if Autoscaling configuration fails. Field introduced in 18.2.9.
+	// Failure reason if Autoscaling configuration fails. Field introduced in 20.1.1.
 	ErrorString *string `json:"error_string,omitempty"`
 }

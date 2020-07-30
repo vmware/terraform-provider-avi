@@ -1,3 +1,9 @@
+############################################################################
+# ------------------------------------------------------------------------
+# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
+# ------------------------------------------------------------------------
+###
+
 ---
 layout: "avi"
 page_title: "Avi: avi_seproperties"
@@ -14,8 +20,7 @@ The SeProperties resource allows the creation and management of Avi SeProperties
 
 ```hcl
 resource "avi_seproperties" "foo" {
-    name = "terraform-example-foo"
-    tenant_ref = "/api/tenant/?name=admin"
+    uuid = "default-uuid"
 }
 ```
 

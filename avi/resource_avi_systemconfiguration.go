@@ -23,7 +23,7 @@ func ResourceSystemConfigurationSchema() map[string]*schema.Schema {
 		"default_license_tier": {
 			Type:     schema.TypeString,
 			Optional: true,
-			Default:  "ENTERPRISE_18",
+			Default:  "ENTERPRISE",
 		},
 		"dns_configuration": {
 			Type:     schema.TypeSet,
@@ -46,6 +46,11 @@ func ResourceSystemConfigurationSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 			Elem:     ResourceEmailConfigurationSchema(),
+		},
+		"fips_mode": {
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  false,
 		},
 		"global_tenant_config": {
 			Type:     schema.TypeSet,
@@ -166,10 +171,10 @@ func resourceAviSystemConfigurationUpdate(d *schema.ResourceData, meta interface
 
 func resourceAviSystemConfigurationDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "systemconfiguration"
+	client := meta.(*clients.AviClient)
 	if ApiDeleteSystemDefaultCheck(d) {
 		return nil
 	}
-	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {
 		path := "api/" + objType + "/" + uuid

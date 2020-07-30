@@ -1,3 +1,9 @@
+############################################################################
+# ------------------------------------------------------------------------
+# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
+# ------------------------------------------------------------------------
+###
+
 ---
 layout: "avi"
 page_title: "AVI: avi_systemconfiguration"
@@ -34,6 +40,7 @@ In addition to all arguments above, the following attributes are exported:
 * `dns_virtualservice_refs` - Dns virtualservices hosting fqdn records for applications across avi vantage.
 * `docker_mode` - Boolean flag to set docker_mode.
 * `email_configuration` - Dict settings for systemconfiguration.
+* `fips_mode` - Enable fips mode.
 * `global_tenant_config` - Dict settings for systemconfiguration.
 * `linux_configuration` - Dict settings for systemconfiguration.
 * `mgmt_ip_access_control` - Configure ip access control for controller to restrict open access.
