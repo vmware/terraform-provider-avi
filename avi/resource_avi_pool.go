@@ -300,6 +300,10 @@ func ResourcePoolSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"tier1_lr": {
+			Type:     schema.TypeString,
+			Optional: true,
+		},
 		"use_service_port": {
 			Type:     schema.TypeBool,
 			Optional: true,

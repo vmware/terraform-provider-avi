@@ -19,6 +19,11 @@ func ResourceNsxtSegmentRuntimeSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"dhcp6_ranges": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     &schema.Schema{Type: schema.TypeString},
+		},
 		"dhcp_enabled": {
 			Type:     schema.TypeBool,
 			Optional: true,
@@ -54,6 +59,11 @@ func ResourceNsxtSegmentRuntimeSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"segment_gw6": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
 		"segment_id": {
 			Type:     schema.TypeString,
 			Optional: true,
@@ -65,10 +75,14 @@ func ResourceNsxtSegmentRuntimeSchema() map[string]*schema.Schema {
 			Computed: true,
 		},
 		"subnet": {
-			Type:     schema.TypeSet,
+			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
-			Elem:     ResourceIpAddrPrefixSchema(),
+		},
+		"subnet6": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
 		},
 		"tenant_ref": {
 			Type:     schema.TypeString,

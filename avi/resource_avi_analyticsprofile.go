@@ -351,6 +351,11 @@ func ResourceAnalyticsProfileSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  "1.0",
 		},
+		"hs_security_ocsp_revoked_score": {
+			Type:     schema.TypeFloat,
+			Optional: true,
+			Default:  "0.0",
+		},
 		"hs_security_selfsignedcert_penalty": {
 			Type:     schema.TypeFloat,
 			Optional: true,

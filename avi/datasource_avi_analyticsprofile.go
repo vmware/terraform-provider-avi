@@ -283,6 +283,10 @@ func dataSourceAviAnalyticsProfile() *schema.Resource {
 				Type:     schema.TypeFloat,
 				Computed: true,
 			},
+			"hs_security_ocsp_revoked_score": {
+				Type:     schema.TypeFloat,
+				Computed: true,
+			},
 			"hs_security_selfsignedcert_penalty": {
 				Type:     schema.TypeFloat,
 				Computed: true,

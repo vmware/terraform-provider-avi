@@ -356,6 +356,11 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Elem:     ResourceIptableRuleSetSchema(),
 		},
+		"labels": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceKeyValueSchema(),
+		},
 		"least_load_core_selection": {
 			Type:     schema.TypeBool,
 			Optional: true,

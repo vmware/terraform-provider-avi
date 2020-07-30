@@ -292,6 +292,11 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceIptableRuleSetSchema(),
 			},
+			"labels": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceKeyValueSchema(),
+			},
 			"least_load_core_selection": {
 				Type:     schema.TypeBool,
 				Computed: true,

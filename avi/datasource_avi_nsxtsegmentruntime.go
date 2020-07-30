@@ -16,6 +16,11 @@ func dataSourceAviNsxtSegmentRuntime() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"dhcp6_ranges": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
 			"dhcp_enabled": {
 				Type:     schema.TypeBool,
 				Computed: true,
@@ -46,6 +51,10 @@ func dataSourceAviNsxtSegmentRuntime() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"segment_gw6": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"segment_id": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -55,9 +64,12 @@ func dataSourceAviNsxtSegmentRuntime() *schema.Resource {
 				Computed: true,
 			},
 			"subnet": {
-				Type:     schema.TypeSet,
+				Type:     schema.TypeString,
 				Computed: true,
-				Elem:     ResourceIpAddrPrefixSchema(),
+			},
+			"subnet6": {
+				Type:     schema.TypeString,
+				Computed: true,
 			},
 			"tenant_ref": {
 				Type:     schema.TypeString,

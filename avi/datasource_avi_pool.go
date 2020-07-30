@@ -264,6 +264,10 @@ func dataSourceAviPool() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"tier1_lr": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"use_service_port": {
 				Type:     schema.TypeBool,
 				Computed: true,

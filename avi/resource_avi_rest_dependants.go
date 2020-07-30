@@ -9369,6 +9369,12 @@ func ResourceEventDetailsSchema() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceNetworkSubnetInfoSchema(),
 			},
+			"nsxt_img_details": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceNsxtImageDetailsSchema(),
+			},
 			"nsxt_info": {
 				Type:     schema.TypeSet,
 				Optional: true,
@@ -17826,6 +17832,33 @@ func ResourceNsxtHostsSchema() *schema.Resource {
 	}
 }
 
+func ResourceNsxtImageDetailsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"cc_id": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"error_string": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"image_version": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"vc_url": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
 func ResourceNsxtSetupSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -18054,6 +18087,11 @@ func ResourceOCSPConfigSchema() *schema.Resource {
 				Optional: true,
 				Default:  3600,
 			},
+			"max_tries": {
+				Type:     schema.TypeInt,
+				Optional: true,
+				Default:  10,
+			},
 			"ocsp_req_interval": {
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -18062,7 +18100,7 @@ func ResourceOCSPConfigSchema() *schema.Resource {
 			"ocsp_resp_timeout": {
 				Type:     schema.TypeInt,
 				Optional: true,
-				Computed: true,
+				Default:  30,
 			},
 			"responder_url_lists": {
 				Type:     schema.TypeList,
@@ -25986,6 +26024,11 @@ func ResourceStaticRouteSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"labels": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceKeyValueSchema(),
+			},
 			"next_hop": {
 				Type:     schema.TypeSet,
 				Required: true,
@@ -26066,6 +26109,11 @@ func ResourceSubJobSchema() *schema.Resource {
 			},
 			"metadata": {
 				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"num_retries": {
+				Type:     schema.TypeInt,
 				Optional: true,
 				Computed: true,
 			},
