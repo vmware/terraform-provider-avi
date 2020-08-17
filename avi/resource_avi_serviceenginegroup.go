@@ -43,12 +43,7 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 		"app_cache_percent": {
 			Type:     schema.TypeInt,
 			Optional: true,
-			Default:  10,
-		},
-		"app_cache_threshold": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Default:  5,
+			Default:  0,
 		},
 		"app_learning_memory_percent": {
 			Type:     schema.TypeInt,
@@ -94,11 +89,6 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  false,
-		},
-		"availability_zone_refs": {
-			Type:     schema.TypeList,
-			Optional: true,
-			Elem:     &schema.Schema{Type: schema.TypeString},
 		},
 		"bgp_state_update_interval": {
 			Type:     schema.TypeInt,
@@ -213,7 +203,7 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 		"disk_per_se": {
 			Type:     schema.TypeInt,
 			Optional: true,
-			Default:  15,
+			Default:  10,
 		},
 		"distribute_load_active_standby": {
 			Type:     schema.TypeBool,
@@ -345,12 +335,6 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
-		"instance_flavor_info": {
-			Type:     schema.TypeSet,
-			Optional: true,
-			Computed: true,
-			Elem:     ResourceCloudFlavorSchema(),
-		},
 		"iptables": {
 			Type:     schema.TypeList,
 			Optional: true,
@@ -400,11 +384,6 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Type:     schema.TypeInt,
 			Optional: true,
 			Default:  64,
-		},
-		"max_num_se_dps": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Computed: true,
 		},
 		"max_public_ips_per_lb": {
 			Type:     schema.TypeInt,
@@ -552,11 +531,6 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  true,
 		},
-		"resync_time_interval": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Default:  65536,
-		},
 		"se_bandwidth_type": {
 			Type:     schema.TypeString,
 			Optional: true,
@@ -577,11 +551,6 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 			Elem:     ResourceDosThresholdProfileSchema(),
-		},
-		"se_dp_max_hb_version": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Default:  2,
 		},
 		"se_dp_vnic_queue_stall_event_sleep": {
 			Type:     schema.TypeInt,
@@ -623,10 +592,10 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  40,
 		},
-		"se_hyperthreaded_mode": {
-			Type:     schema.TypeString,
+		"se_ipc_udp_port": {
+			Type:     schema.TypeInt,
 			Optional: true,
-			Default:  "SE_CPU_HT_AUTO",
+			Default:  1500,
 		},
 		"se_kni_burst_factor": {
 			Type:     schema.TypeInt,
@@ -687,6 +656,11 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Type:     schema.TypeInt,
 			Optional: true,
 			Default:  7,
+		},
+		"se_remote_punt_udp_port": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  1501,
 		},
 		"se_rl_prop": {
 			Type:     schema.TypeSet,
@@ -765,16 +739,6 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  0,
 		},
-		"se_vnic_tx_sw_queue_flush_frequency": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Default:  0,
-		},
-		"se_vnic_tx_sw_queue_size": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Default:  256,
-		},
 		"se_vs_hb_max_pkts_in_batch": {
 			Type:     schema.TypeInt,
 			Optional: true,
@@ -820,20 +784,10 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
-		"transient_shared_memory_max": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Default:  30,
-		},
 		"udf_log_throttle": {
 			Type:     schema.TypeInt,
 			Optional: true,
 			Default:  100,
-		},
-		"use_hyperthreaded_cores": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  true,
 		},
 		"use_standard_alb": {
 			Type:     schema.TypeBool,
@@ -876,11 +830,6 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 			Elem:     ResourceVcenterHostsSchema(),
-		},
-		"vcenters": {
-			Type:     schema.TypeList,
-			Optional: true,
-			Elem:     ResourcePlacementScopeConfigSchema(),
 		},
 		"vcpus_per_se": {
 			Type:     schema.TypeInt,

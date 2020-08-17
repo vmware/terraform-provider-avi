@@ -15,11 +15,6 @@ func dataSourceAviHealthMonitor() *schema.Resource {
 				Type:     schema.TypeBool,
 				Computed: true,
 			},
-			"authentication": {
-				Type:     schema.TypeSet,
-				Computed: true,
-				Elem:     ResourceHealthMonitorAuthInfoSchema(),
-			},
 			"description": {
 				Type:     schema.TypeString,
 				Computed: true,

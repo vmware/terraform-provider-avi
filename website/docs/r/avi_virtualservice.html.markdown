@@ -31,7 +31,6 @@ The following arguments are supported:
 
 * `name` - (Required) Name for the virtual service.
 * `active_standby_se_tag` - (Optional) This configuration only applies if the virtualservice is in legacy active standby ha mode and load distribution among active standby is enabled.
-* `advertise_down_vs` - (Optional) Keep advertising virtual service via bgp even if it is marked down by health monitor.
 * `allow_invalid_client_cert` - (Optional) Process request even if invalid client certificate is presented.
 * `analytics_policy` - (Optional) Determines analytics settings for the application.
 * `analytics_profile_ref` - (Optional) Specifies settings related to analytics.
@@ -42,7 +41,7 @@ The following arguments are supported:
 * `close_client_conn_on_config_update` - (Optional) Close client connection on vs config update.
 * `cloud_config_cksum` - (Optional) Checksum of cloud configuration for vs.
 * `cloud_ref` - (Optional) It is a reference to an object of type cloud.
-* `cloud_type` - (Optional) Enum options - cloud_none, cloud_vcenter, cloud_openstack, cloud_aws, cloud_vca, cloud_apic, cloud_mesos, cloud_linuxserver, cloud_docker_ucp, cloud_rancher, cloud_oshift_k8s, cloud_azure, cloud_gcp, cloud_nsxt.
+* `cloud_type` - (Optional) Enum options - cloud_none, cloud_vcenter, cloud_openstack, cloud_aws, cloud_vca, cloud_apic, cloud_mesos, cloud_linuxserver, cloud_docker_ucp, cloud_rancher, cloud_oshift_k8s, cloud_azure, cloud_gcp.
 * `connections_rate_limit` - (Optional) Rate limit the incoming connections to this virtual service.
 * `content_rewrite` - (Optional) Profile used to match and rewrite strings in request and/or response body.
 * `created_by` - (Optional) Creator name.
@@ -61,7 +60,6 @@ The following arguments are supported:
 * `fqdn` - (Optional) Dns resolvable, fully qualified domain name of the virtualservice.
 * `host_name_xlate` - (Optional) Translate the host name sent to the servers to this value.
 * `http_policies` - (Optional) Http policies applied on the data traffic of the virtual service.
-* `icap_request_profile_refs` - (Optional) The config settings for the icap server when checking the http request.
 * `ign_pool_net_reach` - (Optional) Ignore pool servers network reachability constraints for virtual service placement.
 * `l4_policies` - (Optional) L4 policies applied to the data traffic of the virtual service.
 * `labels` - (Optional) Key value pairs for granular object access control.

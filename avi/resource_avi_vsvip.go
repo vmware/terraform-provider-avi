@@ -43,11 +43,6 @@ func ResourceVsVipSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
-		"tier1_lr": {
-			Type:     schema.TypeString,
-			Optional: true,
-			Computed: true,
-		},
 		"use_standard_alb": {
 			Type:     schema.TypeBool,
 			Optional: true,

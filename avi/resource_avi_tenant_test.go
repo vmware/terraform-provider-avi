@@ -95,14 +95,14 @@ func testAccCheckAVITenantDestroy(s *terraform.State) error {
 
 const testAccAVITenantConfig = `
 resource "avi_tenant" "testTenant" {
-	name = "test-admin-abc"
 	local = true
+	name = "test-admin-abc"
 }
 `
 
 const testAccAVITenantupdatedConfig = `
 resource "avi_tenant" "testTenant" {
-	name = "test-admin-updated"
 	local = true
+	name = "test-admin-updated"
 }
 `

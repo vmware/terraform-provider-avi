@@ -14,11 +14,6 @@ import (
 
 func ResourceNetworkSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"attrs": {
-			Type:     schema.TypeList,
-			Optional: true,
-			Elem:     ResourceKeyValueSchema(),
-		},
 		"cloud_ref": {
 			Type:     schema.TypeString,
 			Optional: true,

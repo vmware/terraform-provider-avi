@@ -111,8 +111,8 @@ func testAccCheckAVIUserAccountProfileDestroy(s *terraform.State) error {
 
 const testAccAVIUserAccountProfileConfig = `
 resource "avi_useraccountprofile" "testUserAccountProfile" {
-	name = "test-Default-User-Account-Profile-abc"
 	max_concurrent_sessions = "0"
+	name = "test-Default-User-Account-Profile-abc"
 	account_lock_timeout = "30"
 	max_login_failure_count = "20"
 	max_password_history_count = "0"
@@ -122,8 +122,8 @@ resource "avi_useraccountprofile" "testUserAccountProfile" {
 
 const testAccAVIUserAccountProfileupdatedConfig = `
 resource "avi_useraccountprofile" "testUserAccountProfile" {
-	name = "test-Default-User-Account-Profile-updated"
 	max_concurrent_sessions = "0"
+	name = "test-Default-User-Account-Profile-updated"
 	account_lock_timeout = "30"
 	max_login_failure_count = "20"
 	max_password_history_count = "0"

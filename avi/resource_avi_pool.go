@@ -110,11 +110,6 @@ func ResourcePoolSchema() map[string]*schema.Schema {
 			Type:     schema.TypeBool,
 			Optional: true,
 		},
-		"enable_http2": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
-		},
 		"enabled": {
 			Type:     schema.TypeBool,
 			Optional: true,
@@ -151,11 +146,6 @@ func ResourcePoolSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  false,
 		},
-		"ignore_server_port": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
-		},
 		"inline_health_monitor": {
 			Type:     schema.TypeBool,
 			Optional: true,
@@ -165,11 +155,6 @@ func ResourcePoolSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
-		},
-		"labels": {
-			Type:     schema.TypeList,
-			Optional: true,
-			Elem:     ResourceKeyValueSchema(),
 		},
 		"lb_algorithm": {
 			Type:     schema.TypeString,
@@ -261,11 +246,6 @@ func ResourcePoolSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  false,
 		},
-		"routing_pool": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
-		},
 		"server_name": {
 			Type:     schema.TypeString,
 			Optional: true,
@@ -308,10 +288,6 @@ func ResourcePoolSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
-		},
-		"tier1_lr": {
-			Type:     schema.TypeString,
-			Optional: true,
 		},
 		"use_service_port": {
 			Type:     schema.TypeBool,

@@ -39,10 +39,6 @@ func dataSourceAviSystemConfiguration() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceEmailConfigurationSchema(),
 			},
-			"fips_mode": {
-				Type:     schema.TypeBool,
-				Computed: true,
-			},
 			"global_tenant_config": {
 				Type:     schema.TypeSet,
 				Computed: true,

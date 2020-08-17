@@ -141,11 +141,6 @@ func ResourceAnalyticsProfileSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  false,
 		},
-		"enable_adaptive_config": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  true,
-		},
 		"enable_advanced_analytics": {
 			Type:     schema.TypeBool,
 			Optional: true,
@@ -181,11 +176,6 @@ func ResourceAnalyticsProfileSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  false,
 		},
-		"exclude_issuer_revoked_ocsp_responses_as_error": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  true,
-		},
 		"exclude_no_dns_record_as_error": {
 			Type:     schema.TypeBool,
 			Optional: true,
@@ -200,11 +190,6 @@ func ResourceAnalyticsProfileSchema() map[string]*schema.Schema {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  false,
-		},
-		"exclude_revoked_ocsp_responses_as_error": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  true,
 		},
 		"exclude_server_dns_error_as_error": {
 			Type:     schema.TypeBool,
@@ -221,11 +206,6 @@ func ResourceAnalyticsProfileSchema() map[string]*schema.Schema {
 			Optional: true,
 			Elem:     &schema.Schema{Type: schema.TypeInt},
 		},
-		"exclude_stale_ocsp_responses_as_error": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  true,
-		},
 		"exclude_syn_retransmit_as_error": {
 			Type:     schema.TypeBool,
 			Optional: true,
@@ -235,11 +215,6 @@ func ResourceAnalyticsProfileSchema() map[string]*schema.Schema {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  false,
-		},
-		"exclude_unavailable_ocsp_responses_as_error": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  true,
 		},
 		"exclude_unsupported_dns_query_as_error": {
 			Type:     schema.TypeBool,
@@ -350,11 +325,6 @@ func ResourceAnalyticsProfileSchema() map[string]*schema.Schema {
 			Type:     schema.TypeFloat,
 			Optional: true,
 			Default:  "1.0",
-		},
-		"hs_security_ocsp_revoked_score": {
-			Type:     schema.TypeFloat,
-			Optional: true,
-			Default:  "0.0",
 		},
 		"hs_security_selfsignedcert_penalty": {
 			Type:     schema.TypeFloat,

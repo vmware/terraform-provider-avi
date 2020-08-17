@@ -94,8 +94,8 @@ data "avi_tenant" "default_tenant"{
     name= "admin"
 }
 resource "avi_trafficcloneprofile" "testTrafficCloneProfile" {
-	name = "test-tp-test-abc"
 	tenant_ref = data.avi_tenant.default_tenant.id
+	name = "test-tp-test-abc"
 }
 `
 
@@ -104,7 +104,7 @@ data "avi_tenant" "default_tenant"{
     name= "admin"
 }
 resource "avi_trafficcloneprofile" "testTrafficCloneProfile" {
-	name = "test-tp-updated"
 	tenant_ref = data.avi_tenant.default_tenant.id
+	name = "test-tp-updated"
 }
 `

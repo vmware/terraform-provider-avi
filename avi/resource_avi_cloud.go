@@ -145,12 +145,6 @@ func ResourceCloudSchema() map[string]*schema.Schema {
 			Computed: true,
 			Elem:     ResourceNsxConfigurationSchema(),
 		},
-		"nsxt_configuration": {
-			Type:     schema.TypeSet,
-			Optional: true,
-			Computed: true,
-			Elem:     ResourceNsxtConfigurationSchema(),
-		},
 		"obj_name_prefix": {
 			Type:     schema.TypeString,
 			Optional: true,
@@ -161,6 +155,12 @@ func ResourceCloudSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 			Elem:     ResourceOpenStackConfigurationSchema(),
+		},
+		"oshiftk8s_configuration": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceOShiftK8SConfigurationSchema(),
 		},
 		"prefer_static_routes": {
 			Type:     schema.TypeBool,

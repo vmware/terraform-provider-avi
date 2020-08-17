@@ -16,9 +16,9 @@ func TestAVIDataSourceApplicationProfileBasic(t *testing.T) {
 					resource.TestCheckResourceAttr(
 						"avi_applicationprofile.testApplicationProfile", "name", "test-System-Secure-HTTP-abc"),
 					resource.TestCheckResourceAttr(
-						"avi_applicationprofile.testApplicationProfile", "preserve_client_ip", "false"),
-					resource.TestCheckResourceAttr(
 						"avi_applicationprofile.testApplicationProfile", "preserve_client_port", "false"),
+					resource.TestCheckResourceAttr(
+						"avi_applicationprofile.testApplicationProfile", "preserve_client_ip", "false"),
 				),
 			},
 		},
@@ -40,7 +40,6 @@ resource "avi_applicationprofile" "testApplicationProfile" {
 	name = "test-System-Secure-HTTP-abc"
 	type = "APPLICATION_PROFILE_TYPE_HTTP"
 	tenant_ref = data.avi_tenant.default_tenant.id
-	preserve_client_ip = false
 	http_profile {
 		max_rps_uri = "0"
 		keepalive_header = false
@@ -51,8 +50,8 @@ resource "avi_applicationprofile" "testApplicationProfile" {
 		enable_request_body_buffering = false
 		hsts_enabled = true
 		compression_profile {
-			type = "AUTO_COMPRESSION"
 			compressible_content_ref = data.avi_stringgroup.system_compressiblestringgroup.id
+			type = "AUTO_COMPRESSION"
 			compression = false
 			remove_accept_encoding_header = true
 		}
@@ -62,7 +61,6 @@ resource "avi_applicationprofile" "testApplicationProfile" {
 		ssl_client_certificate_mode = "SSL_CLIENT_CERTIFICATE_NONE"
 		http_to_https = true
 		respond_with_100_continue = true
-		max_bad_rps_cip_uri = "0"
 		client_body_timeout = "30000"
 		httponly_enabled = true
 		hsts_max_age = "365"
@@ -85,19 +83,21 @@ resource "avi_applicationprofile" "testApplicationProfile" {
 			mime_types_group_refs = [data.avi_stringgroup.system_cacheablestringgroup.id]
 		}
 		max_rps_unknown_uri = "0"
-		post_accept_timeout = "30000"
+		allow_dots_in_header_name = false
 		client_header_timeout = "10000"
+		post_accept_timeout = "30000"
 		secure_cookie_enabled = true
 		max_response_headers_size = "48"
 		xff_alternate_name = "X-Forwarded-For"
 		max_rps_cip = "0"
 		enable_fire_and_forget = false
 		max_rps_unknown_cip = "0"
-		allow_dots_in_header_name = false
+		max_bad_rps_cip_uri = "0"
 		max_bad_rps_uri = "0"
 		use_app_keepalive_timeout = false
 	}
 	preserve_client_port = false
+	preserve_client_ip = false
 }
 
 data "avi_applicationprofile" "testApplicationProfile" {

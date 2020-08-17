@@ -44,11 +44,6 @@ func ResourceSSLKeyAndCertificateSchema() map[string]*schema.Schema {
 			Optional: true,
 			Elem:     ResourceCustomParamsSchema(),
 		},
-		"enable_ocsp_stapling": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
-		},
 		"enckey_base64": {
 			Type:     schema.TypeString,
 			Optional: true,
@@ -70,11 +65,9 @@ func ResourceSSLKeyAndCertificateSchema() map[string]*schema.Schema {
 			Computed: true,
 		},
 		"key": {
-			Type:             schema.TypeString,
-			Optional:         true,
-			Computed:         true,
-			Sensitive:        true,
-			DiffSuppressFunc: suppressSensitiveFieldDiffs,
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
 		},
 		"key_base64": {
 			Type:     schema.TypeBool,
@@ -88,37 +81,13 @@ func ResourceSSLKeyAndCertificateSchema() map[string]*schema.Schema {
 			Elem:     ResourceSSLKeyParamsSchema(),
 		},
 		"key_passphrase": {
-			Type:             schema.TypeString,
-			Optional:         true,
-			Computed:         true,
-			Sensitive:        true,
-			DiffSuppressFunc: suppressSensitiveFieldDiffs,
-		},
-		"labels": {
-			Type:     schema.TypeList,
+			Type:     schema.TypeString,
 			Optional: true,
-			Elem:     ResourceKeyValueSchema(),
+			Computed: true,
 		},
 		"name": {
 			Type:     schema.TypeString,
 			Required: true,
-		},
-		"ocsp_config": {
-			Type:     schema.TypeSet,
-			Optional: true,
-			Computed: true,
-			Elem:     ResourceOCSPConfigSchema(),
-		},
-		"ocsp_error_status": {
-			Type:     schema.TypeString,
-			Optional: true,
-			Computed: true,
-		},
-		"ocsp_response_info": {
-			Type:     schema.TypeSet,
-			Optional: true,
-			Computed: true,
-			Elem:     ResourceOCSPResponseInfoSchema(),
 		},
 		"status": {
 			Type:     schema.TypeString,

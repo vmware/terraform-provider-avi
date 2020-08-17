@@ -51,10 +51,6 @@ func dataSourceAviApplicationProfile() *schema.Resource {
 				Type:     schema.TypeBool,
 				Computed: true,
 			},
-			"preserve_dest_ip_port": {
-				Type:     schema.TypeBool,
-				Computed: true,
-			},
 			"sip_service_profile": {
 				Type:     schema.TypeSet,
 				Computed: true,

@@ -15,11 +15,9 @@ import (
 func ResourceBackupConfigurationSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"aws_access_key": {
-			Type:             schema.TypeString,
-			Optional:         true,
-			Computed:         true,
-			Sensitive:        true,
-			DiffSuppressFunc: suppressSensitiveFieldDiffs,
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
 		},
 		"aws_bucket_id": {
 			Type:     schema.TypeString,
@@ -27,11 +25,9 @@ func ResourceBackupConfigurationSchema() map[string]*schema.Schema {
 			Computed: true,
 		},
 		"aws_secret_access": {
-			Type:             schema.TypeString,
-			Optional:         true,
-			Computed:         true,
-			Sensitive:        true,
-			DiffSuppressFunc: suppressSensitiveFieldDiffs,
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
 		},
 		"backup_file_prefix": {
 			Type:     schema.TypeString,
@@ -39,11 +35,9 @@ func ResourceBackupConfigurationSchema() map[string]*schema.Schema {
 			Computed: true,
 		},
 		"backup_passphrase": {
-			Type:             schema.TypeString,
-			Optional:         true,
-			Computed:         true,
-			Sensitive:        true,
-			DiffSuppressFunc: suppressSensitiveFieldDiffs,
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
 		},
 		"maximum_backups_stored": {
 			Type:     schema.TypeInt,

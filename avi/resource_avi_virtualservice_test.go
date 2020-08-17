@@ -177,7 +177,15 @@ resource "avi_virtualservice" "testvs" {
 	application_profile_ref= data.avi_applicationprofile.system_https_profile.id
 	network_profile_ref = data.avi_networkprofile.system_tcp_profile.id
 	vsvip_ref = avi_vsvip.test_vsvip.id
-	services {
+	vip {
+	  vip_id= "0"
+	  ip_address {
+		type= "V4"
+		addr= "10.90.64.88"
+	  }
+      enabled= true
+	}	
+    services {
 	  port= 80
 	  enable_ssl= true
 	  port_range_end= 80
@@ -251,6 +259,14 @@ resource "avi_virtualservice" "testvs" {
 	application_profile_ref= data.avi_applicationprofile.system_https_profile.id
 	network_profile_ref = data.avi_networkprofile.system_tcp_profile.id
 	vsvip_ref = avi_vsvip.test_vsvip.id
+	vip {
+	  vip_id= "0"
+	  ip_address {
+		type= "V4"
+		addr= "10.90.64.88"
+	  }
+      enabled= true
+	}
 	services {
 	  port= 80
 	  enable_ssl= true

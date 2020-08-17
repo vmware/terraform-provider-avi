@@ -11,11 +11,6 @@ func dataSourceAviNetwork() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviNetworkRead,
 		Schema: map[string]*schema.Schema{
-			"attrs": {
-				Type:     schema.TypeList,
-				Computed: true,
-				Elem:     ResourceKeyValueSchema(),
-			},
 			"cloud_ref": {
 				Type:     schema.TypeString,
 				Optional: true,

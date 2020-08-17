@@ -27,8 +27,6 @@ data "avi_tenant" "default_tenant"{
     name= "admin"
 }
 resource "avi_wafprofile" "testWafProfile" {
-	name = "test-System-WAF-Profile-abc"
-	tenant_ref = data.avi_tenant.default_tenant.id
 	files {
 	data = <<EOF
 # Search engine crawlers and other bots
@@ -4018,16 +4016,18 @@ EOF
 		allowed_request_content_types = ["application/x-www-form-urlencoded","multipart/form-data","text/xml","application/xml","application/x-amf","application/json"]
 		allowed_methods = ["HTTP_METHOD_GET","HTTP_METHOD_HEAD","HTTP_METHOD_POST","HTTP_METHOD_OPTIONS"]
 		response_hdr_default_action = "phase:3,deny,status:403,log,auditlog"
-		allowed_http_versions = ["ONE_ZERO","ONE_ONE"]
+		cookie_format_version = "0"
 		request_body_default_action = "phase:2,deny,status:403,log,auditlog"
 		response_body_default_action = "phase:4,deny,status:403,log,auditlog"
 		request_hdr_default_action = "phase:1,deny,status:403,log,auditlog"
 		static_extensions = [".gif",".jpg",".jpeg",".png",".js",".css",".ico",".svg",".webp"]
 		restricted_extensions = [".asa",".asax",".ascx",".axd",".backup",".bak",".bat",".cdx",".cer",".cfg",".cmd",".com",".config",".conf",".cs",".csproj",".csr",".dat",".db",".dbf",".dll",".dos",".htr",".htw",".ida",".idc",".idq",".inc",".ini",".key",".licx",".lnk",".log",".mdb",".old",".pass",".pdb",".pol",".printer",".pwd",".resources",".resx",".sql",".sys",".vb",".vbs",".vbproj",".vsdisco",".webinfo",".xsd",".xsx"]
-		cookie_format_version = "0"
+		allowed_http_versions = ["ONE_ZERO","ONE_ONE"]
 		restricted_headers = ["Proxy-Connection","Lock-Token","Content-Range","Translate","via","if"]
 		argument_separator = "&"
 	}
+	tenant_ref = data.avi_tenant.default_tenant.id
+	name = "test-System-WAF-Profile-abc"
 }
 
 data "avi_wafprofile" "testWafProfile" {

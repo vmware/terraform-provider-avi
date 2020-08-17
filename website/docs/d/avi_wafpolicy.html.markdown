@@ -35,18 +35,11 @@ data "avi_wafpolicy" "foo_wafpolicy" {
 In addition to all arguments above, the following attributes are exported:
 
 * `allow_mode_delegation` - Allow rules to overwrite the policy mode.
-* `application_signatures` - Application specific signatures.
-* `confidence_override` - Configure thresholds for confidence labels.
 * `created_by` - Creator name.
 * `crs_groups` - Waf rules are categorized in to groups based on their characterization.
 * `description` - Field introduced in 17.2.1.
 * `enable_app_learning` - Enable application learning for this waf policy.
-* `enable_auto_rule_updates` - Enable application learning based rule updates on the waf profile.
-* `enable_regex_learning` - Enable dynamic regex generation for positive security model rules.
 * `failure_mode` - Waf policy failure mode.
-* `labels` - Key value pairs for granular object access control.
-* `learning_params` - Parameters for tuning application learning.
-* `min_confidence` - Minimum confidence label required for auto rule updates.
 * `mode` - Waf policy mode.
 * `name` - Field introduced in 17.2.1.
 * `paranoia_level` - Waf ruleset paranoia  mode.

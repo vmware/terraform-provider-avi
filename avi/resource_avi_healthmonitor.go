@@ -19,12 +19,6 @@ func ResourceHealthMonitorSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
-		"authentication": {
-			Type:     schema.TypeSet,
-			Optional: true,
-			Computed: true,
-			Elem:     ResourceHealthMonitorAuthInfoSchema(),
-		},
 		"description": {
 			Type:     schema.TypeString,
 			Optional: true,

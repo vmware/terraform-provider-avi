@@ -15,10 +15,6 @@ func dataSourceAviVirtualService() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"advertise_down_vs": {
-				Type:     schema.TypeBool,
-				Computed: true,
-			},
 			"allow_invalid_client_cert": {
 				Type:     schema.TypeBool,
 				Computed: true,
@@ -142,11 +138,6 @@ func dataSourceAviVirtualService() *schema.Resource {
 				Type:     schema.TypeList,
 				Computed: true,
 				Elem:     ResourceHTTPPoliciesSchema(),
-			},
-			"icap_request_profile_refs": {
-				Type:     schema.TypeList,
-				Computed: true,
-				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
 			"ign_pool_net_reach": {
 				Type:     schema.TypeBool,

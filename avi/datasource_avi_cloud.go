@@ -117,11 +117,6 @@ func dataSourceAviCloud() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceNsxConfigurationSchema(),
 			},
-			"nsxt_configuration": {
-				Type:     schema.TypeSet,
-				Computed: true,
-				Elem:     ResourceNsxtConfigurationSchema(),
-			},
 			"obj_name_prefix": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -130,6 +125,11 @@ func dataSourceAviCloud() *schema.Resource {
 				Type:     schema.TypeSet,
 				Computed: true,
 				Elem:     ResourceOpenStackConfigurationSchema(),
+			},
+			"oshiftk8s_configuration": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceOShiftK8SConfigurationSchema(),
 			},
 			"prefer_static_routes": {
 				Type:     schema.TypeBool,

@@ -14,11 +14,6 @@ import (
 
 func ResourceImageSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"cloud_info_values": {
-			Type:     schema.TypeList,
-			Optional: true,
-			Elem:     ResourceImageCloudDataSchema(),
-		},
 		"controller_info": {
 			Type:     schema.TypeSet,
 			Optional: true,

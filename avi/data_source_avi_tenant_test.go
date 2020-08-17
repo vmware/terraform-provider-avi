@@ -26,8 +26,8 @@ func TestAVIDataSourceTenantBasic(t *testing.T) {
 
 const testAccAVIDSTenantConfig = `
 resource "avi_tenant" "testTenant" {
-	name = "test-admin-abc"
 	local = true
+	name = "test-admin-abc"
 }
 
 data "avi_tenant" "testTenant" {

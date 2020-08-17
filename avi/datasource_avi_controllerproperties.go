@@ -91,10 +91,6 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Type:     schema.TypeInt,
 				Computed: true,
 			},
-			"edit_system_limits": {
-				Type:     schema.TypeBool,
-				Computed: true,
-			},
 			"enable_api_sharding": {
 				Type:     schema.TypeBool,
 				Computed: true,
@@ -107,23 +103,11 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Type:     schema.TypeInt,
 				Computed: true,
 			},
-			"federated_datastore_cleanup_duration": {
-				Type:     schema.TypeInt,
-				Computed: true,
-			},
-			"file_object_cleanup_period": {
-				Type:     schema.TypeInt,
-				Computed: true,
-			},
 			"max_dead_se_in_grp": {
 				Type:     schema.TypeInt,
 				Computed: true,
 			},
 			"max_pcap_per_tenant": {
-				Type:     schema.TypeInt,
-				Computed: true,
-			},
-			"max_se_spawn_interval_delay": {
 				Type:     schema.TypeInt,
 				Computed: true,
 			},
@@ -140,14 +124,6 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Computed: true,
 			},
 			"persistence_key_rotate_period": {
-				Type:     schema.TypeInt,
-				Computed: true,
-			},
-			"portal_request_burst_limit": {
-				Type:     schema.TypeInt,
-				Computed: true,
-			},
-			"portal_request_rate_limit": {
 				Type:     schema.TypeInt,
 				Computed: true,
 			},
@@ -184,10 +160,6 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Computed: true,
 			},
 			"se_offline_del": {
-				Type:     schema.TypeInt,
-				Computed: true,
-			},
-			"se_spawn_retry_interval": {
 				Type:     schema.TypeInt,
 				Computed: true,
 			},

@@ -27,8 +27,8 @@ data "avi_tenant" "default_tenant"{
     name= "admin"
 }
 resource "avi_networksecuritypolicy" "testNetworkSecurityPolicy" {
-	name = "ns-abc-abc"
 	tenant_ref = data.avi_tenant.default_tenant.id
+	name = "ns-abc-abc"
 	description = "test network policy"
 }
 

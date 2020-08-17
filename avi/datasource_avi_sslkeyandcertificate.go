@@ -38,10 +38,6 @@ func dataSourceAviSSLKeyAndCertificate() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceCustomParamsSchema(),
 			},
-			"enable_ocsp_stapling": {
-				Type:     schema.TypeBool,
-				Computed: true,
-			},
 			"enckey_base64": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -84,20 +80,6 @@ func dataSourceAviSSLKeyAndCertificate() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
-			},
-			"ocsp_config": {
-				Type:     schema.TypeSet,
-				Computed: true,
-				Elem:     ResourceOCSPConfigSchema(),
-			},
-			"ocsp_error_status": {
-				Type:     schema.TypeString,
-				Computed: true,
-			},
-			"ocsp_response_info": {
-				Type:     schema.TypeSet,
-				Computed: true,
-				Elem:     ResourceOCSPResponseInfoSchema(),
 			},
 			"status": {
 				Type:     schema.TypeString,

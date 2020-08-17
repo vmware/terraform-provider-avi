@@ -40,10 +40,6 @@ func dataSourceAviVsVip() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
-			"tier1_lr": {
-				Type:     schema.TypeString,
-				Computed: true,
-			},
 			"use_standard_alb": {
 				Type:     schema.TypeBool,
 				Computed: true,
