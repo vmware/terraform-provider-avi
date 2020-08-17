@@ -98,6 +98,7 @@ The following arguments are supported:
 * `instance_flavor` - (Optional) Instance/flavor name for se instance.
 * `instance_flavor_info` - (Optional) Additional information associated with instance_flavor.
 * `iptables` - (Optional) Iptable rules.
+* `labels` - (Optional) Labels associated with this se group.
 * `least_load_core_selection` - (Optional) Select core with least load for new flow.
 * `license_tier` - (Optional) Specifies the license tier which would be used.
 * `license_type` - (Optional) If no license type is specified then default license enforcement for the cloud type is chosen.

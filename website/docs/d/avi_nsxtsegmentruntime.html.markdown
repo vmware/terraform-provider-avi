@@ -37,6 +37,7 @@ data "avi_nsxtsegmentruntime" "foo_nsxtsegmentruntime" {
 In addition to all arguments above, the following attributes are exported:
 
 * `cloud_ref` - Nsxt segment belongs to cloud.
+* `dhcp6_ranges` - V6 dhcp ranges configured in nsxt.
 * `dhcp_enabled` - Ip address management scheme for this segment associated network.
 * `dhcp_ranges` - Dhcp ranges configured in nsxt.
 * `name` - Segment object name.
@@ -44,9 +45,11 @@ In addition to all arguments above, the following attributes are exported:
 * `nw_ref` - Corresponding network object in avi.
 * `opaque_network_id` - Opaque network id.
 * `segment_gw` - Segment gateway.
+* `segment_gw6` - V6 segment gateway.
 * `segment_id` - Segment id.
 * `segname` - Segment name.
 * `subnet` - Segment cidr.
+* `subnet6` - V6 segment cidr.
 * `tenant_ref` - Nsxt segment belongs to tenant.
 * `tier1_id` - Tier1 router id.
 * `uuid` - Uuid.

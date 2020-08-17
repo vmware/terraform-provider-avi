@@ -242,6 +242,10 @@ func ResourcePoolSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  false,
 		},
+		"resolve_pool_by_dns": {
+			Type:     schema.TypeBool,
+			Optional: true,
+		},
 		"rewrite_host_header_to_server_name": {
 			Type:     schema.TypeBool,
 			Optional: true,

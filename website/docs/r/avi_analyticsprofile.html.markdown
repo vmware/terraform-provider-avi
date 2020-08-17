@@ -97,6 +97,7 @@ The following arguments are supported:
 * `hs_security_encalgo_score_rc4` - (Optional) Score assigned when rc4 algorithm is used for encryption.
 * `hs_security_hsts_penalty` - (Optional) Penalty for not enabling hsts.
 * `hs_security_nonpfs_penalty` - (Optional) Penalty for allowing non-pfs handshakes.
+* `hs_security_ocsp_revoked_score` - (Optional) Score assigned when ocsp certificate status is set to revoked or issuer revoked.
 * `hs_security_selfsignedcert_penalty` - (Optional) Deprecated.
 * `hs_security_ssl30_score` - (Optional) Score assigned when supporting ssl3.0 encryption protocol.
 * `hs_security_tls10_score` - (Optional) Score assigned when supporting tls1.0 encryption protocol.

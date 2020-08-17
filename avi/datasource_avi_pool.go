@@ -213,6 +213,10 @@ func dataSourceAviPool() *schema.Resource {
 				Type:     schema.TypeBool,
 				Computed: true,
 			},
+			"resolve_pool_by_dns": {
+				Type:     schema.TypeBool,
+				Computed: true,
+			},
 			"rewrite_host_header_to_server_name": {
 				Type:     schema.TypeBool,
 				Computed: true,

@@ -70,7 +70,7 @@ The following arguments are supported:
 * `min_pools_up` - (Optional) Minimum number of up pools to mark vs up.
 * `network_profile_ref` - (Optional) Determines network settings such as protocol, tcp or udp, and related options for the protocol.
 * `network_security_policy_ref` - (Optional) Network security policies for the virtual service.
-* `nsx_securitygroup` - (Optional) A list of nsx service groups representing the clients which can access the virtual ip of the virtual service.
+* `nsx_securitygroup` - (Optional) A list of nsx groups representing the clients which can access the virtual ip of the virtual service.
 * `performance_limits` - (Optional) Optional settings that determine performance limits like max connections or bandwdith etc.
 * `pool_group_ref` - (Optional) The pool group is an object that contains pools.
 * `pool_ref` - (Optional) The pool is an object that contains destination servers and related attributes such as load-balancing and persistence.

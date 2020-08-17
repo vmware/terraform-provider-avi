@@ -104,6 +104,7 @@ In addition to all arguments above, the following attributes are exported:
 * `instance_flavor` - Instance/flavor name for se instance.
 * `instance_flavor_info` - Additional information associated with instance_flavor.
 * `iptables` - Iptable rules.
+* `labels` - Labels associated with this se group.
 * `least_load_core_selection` - Select core with least load for new flow.
 * `license_tier` - Specifies the license tier which would be used.
 * `license_type` - If no license type is specified then default license enforcement for the cloud type is chosen.
