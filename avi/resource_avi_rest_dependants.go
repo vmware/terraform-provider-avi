@@ -17815,6 +17815,23 @@ func ResourceNsxtCredentialsSchema() *schema.Resource {
 	}
 }
 
+func ResourceNsxtDatastoresSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"ds_ids": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
+			"include": {
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  false,
+			},
+		},
+	}
+}
+
 func ResourceNsxtHostsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -19421,6 +19438,12 @@ func ResourcePlacementNetworkSchema() *schema.Resource {
 func ResourcePlacementScopeConfigSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"nsxt_datastores": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceNsxtDatastoresSchema(),
+			},
 			"nsxt_hosts": {
 				Type:     schema.TypeSet,
 				Optional: true,
@@ -24436,7 +24459,7 @@ func ResourceSeUpgradeParamsSchema() *schema.Resource {
 			"resume_from_suspend": {
 				Type:     schema.TypeBool,
 				Optional: true,
-				Default:  false,
+				Computed: true,
 			},
 			"rollback": {
 				Type:     schema.TypeBool,
@@ -24451,7 +24474,7 @@ func ResourceSeUpgradeParamsSchema() *schema.Resource {
 			"skip_suspended": {
 				Type:     schema.TypeBool,
 				Optional: true,
-				Default:  false,
+				Computed: true,
 			},
 			"suspend_on_failure": {
 				Type:     schema.TypeBool,
@@ -27247,6 +27270,33 @@ func ResourceUserActivitySchema() *schema.Resource {
 				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
 			"uuid": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceUserRoleSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"all_tenants": {
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  false,
+			},
+			"object_access_policy_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"role_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"tenant_ref": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,

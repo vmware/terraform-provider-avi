@@ -117,6 +117,11 @@ func testAccPreCheck(t *testing.T) {
 		config.Version = "18.2.8"
 	}
 
+	errs := os.Setenv("AVI_SUPPRESS_SENSITIVE_FIELDS_DIFF", "true")
+	if errs != nil {
+		t.Fatalf("Unable to set env variable AVI_SUPPRESS_SENSITIVE_FIELDS_DIFF. Error: %s", errs)
+	}
+
 	_, err := clients.NewAviClient(
 		config.Controller, config.Username,
 		session.SetPassword(config.Password),
