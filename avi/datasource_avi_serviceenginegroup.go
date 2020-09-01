@@ -641,6 +641,10 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"transient_shared_memory_max": {
+				Type:     schema.TypeInt,
+				Computed: true,
+			},
 			"udf_log_throttle": {
 				Type:     schema.TypeInt,
 				Computed: true,

@@ -7,7 +7,7 @@ package models
 // swagger:model VsError
 type VsError struct {
 
-	// The time at which the error occurred. Field introduced in 18.2.10, 20.1.1.
+	// The time at which the error occurred. Field introduced in 18.2.10.
 	EventTimestamp *TimeStamp `json:"event_timestamp,omitempty"`
 
 	// reason of VsError.
@@ -19,7 +19,7 @@ type VsError struct {
 	//  It is a reference to an object of type ServiceEngineGroup.
 	SeGroupRef *string `json:"se_group_ref,omitempty"`
 
-	// The SE on which the VS errored during scale-in/scale-out operations. It is a reference to an object of type ServiceEngine. Field introduced in 18.2.10, 20.1.1.
+	// The SE on which the VS errored during scale-in/scale-out operations. It is a reference to an object of type ServiceEngine. Field introduced in 18.2.10.
 	SeRef *string `json:"se_ref,omitempty"`
 
 	//  It is a reference to an object of type Tenant.

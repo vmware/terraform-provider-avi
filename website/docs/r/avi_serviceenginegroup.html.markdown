@@ -182,6 +182,7 @@ The following arguments are supported:
 * `significant_log_throttle` - (Optional) This setting limits the number of significant logs generated per second per core on this se.
 * `ssl_preprocess_sni_hostname` - (Optional) (beta) preprocess ssl client hello for sni hostname extension.if set to true, this will apply sni child's ssl protocol(s), if they are different from sni parent's allowed ssl protocol(s).
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant.
+* `transient_shared_memory_max` - (Optional) The threshold for the transient shared config memory in the se.
 * `udf_log_throttle` - (Optional) This setting limits the number of udf logs generated per second per core on this se.
 * `use_standard_alb` - (Optional) Use standard sku azure load balancer.
 * `vcenter_clusters` - (Optional) Dict settings for serviceenginegroup.

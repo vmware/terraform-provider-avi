@@ -11,7 +11,7 @@ type CumulativeLicense struct {
 	BurstCores *int32 `json:"burst_cores,omitempty"`
 
 	// Total number of Service Engine cores for core based licenses. Field introduced in 17.2.5.
-	Cores *int32 `json:"cores,omitempty"`
+	Cores *float64 `json:"cores,omitempty"`
 
 	// Total number of Service Engines for host based licenses. Field introduced in 17.2.5.
 	MaxSes *int32 `json:"max_ses,omitempty"`
@@ -19,12 +19,9 @@ type CumulativeLicense struct {
 	// Service Engine bandwidth limits for bandwidth based licenses. Field introduced in 17.2.5.
 	SeBandwidthLimits []*SEBandwidthLimit `json:"se_bandwidth_limits,omitempty"`
 
-	// Total number of Service Engine cores.. Field introduced in 20.1.1.
-	ServiceCores *float64 `json:"service_cores,omitempty"`
-
 	// Total number of Service Engine sockets for socket based licenses. Field introduced in 17.2.5.
 	Sockets *int32 `json:"sockets,omitempty"`
 
-	// Specifies the licensed tier. Enum options - ENTERPRISE_16, ENTERPRISE, ENTERPRISE_18, BASIC. Field introduced in 17.2.5.
+	// Specifies the licensed tier. Enum options - ENTERPRISE_16, ENTERPRISE_18. Field introduced in 17.2.5.
 	TierType *string `json:"tier_type,omitempty"`
 }

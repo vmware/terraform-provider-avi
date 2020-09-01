@@ -784,6 +784,11 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"transient_shared_memory_max": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  30,
+		},
 		"udf_log_throttle": {
 			Type:     schema.TypeInt,
 			Optional: true,
