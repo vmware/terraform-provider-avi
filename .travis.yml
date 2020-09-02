@@ -16,7 +16,7 @@ install:
 # packages that live there.
 # See: https://github.com/golang/go/issues/12933
 - bash scripts/gogetcookie.sh
-- go get github.com/hashicorp/terraform
+- go get github.com/hashicorp/terraform@v0.12.24
 - go get github.com/kardianos/govendor
 - go get github.com/avinetworks/sdk/go/clients
 - go get github.com/avinetworks/sdk/go/session
