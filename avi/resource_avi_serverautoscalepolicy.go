@@ -34,6 +34,11 @@ func ResourceServerAutoScalePolicySchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  20,
 		},
+		"labels": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceKeyValueSchema(),
+		},
 		"max_scalein_adjustment_step": {
 			Type:     schema.TypeInt,
 			Optional: true,

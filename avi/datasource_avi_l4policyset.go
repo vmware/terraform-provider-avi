@@ -28,6 +28,11 @@ func dataSourceAviL4PolicySet() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceL4ConnectionPolicySchema(),
 			},
+			"labels": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceKeyValueSchema(),
+			},
 			"name": {
 				Type:     schema.TypeString,
 				Optional: true,

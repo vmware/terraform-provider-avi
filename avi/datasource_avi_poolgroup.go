@@ -45,6 +45,11 @@ func dataSourceAviPoolGroup() *schema.Resource {
 				Type:     schema.TypeBool,
 				Computed: true,
 			},
+			"labels": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceKeyValueSchema(),
+			},
 			"members": {
 				Type:     schema.TypeList,
 				Computed: true,

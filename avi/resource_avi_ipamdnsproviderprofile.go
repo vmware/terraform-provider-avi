@@ -55,6 +55,11 @@ func ResourceIpamDnsProviderProfileSchema() map[string]*schema.Schema {
 			Computed: true,
 			Elem:     ResourceIpamDnsInternalProfileSchema(),
 		},
+		"labels": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceKeyValueSchema(),
+		},
 		"name": {
 			Type:     schema.TypeString,
 			Required: true,

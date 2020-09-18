@@ -24,6 +24,11 @@ func ResourceNatPolicySchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"labels": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceKeyValueSchema(),
+		},
 		"name": {
 			Type:     schema.TypeString,
 			Optional: true,

@@ -19,6 +19,11 @@ func ResourceHardwareSecurityModuleGroupSchema() map[string]*schema.Schema {
 			Required: true,
 			Elem:     ResourceHardwareSecurityModuleSchema(),
 		},
+		"labels": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceKeyValueSchema(),
+		},
 		"name": {
 			Type:     schema.TypeString,
 			Required: true,

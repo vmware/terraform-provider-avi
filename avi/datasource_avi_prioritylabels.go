@@ -25,6 +25,11 @@ func dataSourceAviPriorityLabels() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceEquivalentLabelsSchema(),
 			},
+			"labels": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceKeyValueSchema(),
+			},
 			"name": {
 				Type:     schema.TypeString,
 				Optional: true,
