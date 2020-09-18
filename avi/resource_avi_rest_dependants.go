@@ -1917,11 +1917,6 @@ func ResourceAuthMappingRuleSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
-			"object_access_policy_refs": {
-				Type:     schema.TypeList,
-				Optional: true,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-			},
 			"policy_attribute_name": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -10332,10 +10327,11 @@ func ResourceGCPConfigurationSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
-			"encryption_key_id": {
-				Type:     schema.TypeString,
+			"encryption_keys": {
+				Type:     schema.TypeSet,
 				Optional: true,
 				Computed: true,
+				Elem:     ResourceGCPEncryptionKeysSchema(),
 			},
 			"firewall_target_tags": {
 				Type:     schema.TypeList,
@@ -10392,6 +10388,33 @@ func ResourceGCPCredentialsSchema() *schema.Resource {
 				Computed:         true,
 				Sensitive:        true,
 				DiffSuppressFunc: suppressSensitiveFieldDiffs,
+			},
+		},
+	}
+}
+
+func ResourceGCPEncryptionKeysSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"gcs_bucket_kms_key_id": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"gcs_objects_kms_key_id": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"se_disk_kms_key_id": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"se_image_kms_key_id": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 		},
 	}
@@ -18417,50 +18440,6 @@ func ResourceOShiftK8SConfigurationSchema() *schema.Resource {
 	}
 }
 
-func ResourceObjectAccessMatchTargetSchema() *schema.Resource {
-	return &schema.Resource{
-		Schema: map[string]*schema.Schema{
-			"label_key": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
-			"label_values": {
-				Type:     schema.TypeList,
-				Optional: true,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-			},
-		},
-	}
-}
-
-func ResourceObjectAccessPolicyRuleSchema() *schema.Resource {
-	return &schema.Resource{
-		Schema: map[string]*schema.Schema{
-			"matches": {
-				Type:     schema.TypeList,
-				Optional: true,
-				Elem:     ResourceObjectAccessMatchTargetSchema(),
-			},
-			"name": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
-			"obj_types": {
-				Type:     schema.TypeList,
-				Optional: true,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-			},
-			"privilege": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
-		},
-	}
-}
-
 func ResourceOpenStackApiVersionCheckFailureSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -20822,6 +20801,11 @@ func ResourceRmSpawnSeEventDetailsSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"flavor_name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"host_name": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -20933,6 +20917,51 @@ func ResourceRmUnbindVsSeEventDetailsSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceRoleFilterSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"enabled": {
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  true,
+			},
+			"match_label": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceRoleFilterMatchLabelSchema(),
+			},
+			"match_operation": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "ROLE_FILTER_EQUALS",
+			},
+			"name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceRoleFilterMatchLabelSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"key": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"values": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
 		},
 	}
@@ -25687,7 +25716,7 @@ func ResourceSingleLicenseSchema() *schema.Resource {
 				Computed: true,
 			},
 			"cores": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeFloat,
 				Optional: true,
 				Computed: true,
 			},
@@ -26242,10 +26271,25 @@ func ResourceSupportedMigrationsSchema() *schema.Resource {
 				Optional: true,
 				Default:  10,
 			},
+			"controller_min_cores": {
+				Type:     schema.TypeInt,
+				Optional: true,
+				Default:  8,
+			},
 			"controller_min_free_disk_size": {
 				Type:     schema.TypeInt,
 				Optional: true,
 				Default:  10,
+			},
+			"controller_min_memory": {
+				Type:     schema.TypeInt,
+				Optional: true,
+				Default:  24,
+			},
+			"controller_min_total_disk": {
+				Type:     schema.TypeInt,
+				Optional: true,
+				Default:  128,
 			},
 			"max_active_versions": {
 				Type:     schema.TypeInt,
@@ -26267,10 +26311,25 @@ func ResourceSupportedMigrationsSchema() *schema.Resource {
 				Optional: true,
 				Default:  5,
 			},
+			"se_min_cores": {
+				Type:     schema.TypeInt,
+				Optional: true,
+				Default:  2,
+			},
 			"se_min_free_disk_size": {
 				Type:     schema.TypeInt,
 				Optional: true,
 				Default:  5,
+			},
+			"se_min_memory": {
+				Type:     schema.TypeInt,
+				Optional: true,
+				Default:  2,
+			},
+			"se_min_total_disk": {
+				Type:     schema.TypeInt,
+				Optional: true,
+				Default:  10,
 			},
 			"versions": {
 				Type:     schema.TypeList,
@@ -26700,6 +26759,23 @@ func ResourceTenantConfigurationSchema() *schema.Resource {
 	}
 }
 
+func ResourceTenantLabelSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"key": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"value": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
 func ResourceTencentCredentialsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -27081,6 +27157,11 @@ func ResourceUpgradeOpsStateSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"rebooted": {
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"state": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -27285,11 +27366,6 @@ func ResourceUserRoleSchema() *schema.Resource {
 				Type:     schema.TypeBool,
 				Optional: true,
 				Default:  false,
-			},
-			"object_access_policy_ref": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
 			},
 			"role_ref": {
 				Type:     schema.TypeString,

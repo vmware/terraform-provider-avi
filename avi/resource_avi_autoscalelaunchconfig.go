@@ -24,6 +24,11 @@ func ResourceAutoScaleLaunchConfigSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"labels": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceKeyValueSchema(),
+		},
 		"mesos": {
 			Type:     schema.TypeSet,
 			Optional: true,

@@ -27,6 +27,11 @@ func dataSourceAviWafPolicyPSMGroup() *schema.Resource {
 				Type:     schema.TypeBool,
 				Computed: true,
 			},
+			"labels": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceKeyValueSchema(),
+			},
 			"locations": {
 				Type:     schema.TypeList,
 				Computed: true,

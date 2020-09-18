@@ -24,6 +24,11 @@ func ResourceStringGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Elem:     ResourceKeyValueSchema(),
 		},
+		"labels": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceKeyValueSchema(),
+		},
 		"longest_match": {
 			Type:     schema.TypeBool,
 			Optional: true,

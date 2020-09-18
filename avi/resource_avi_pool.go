@@ -166,6 +166,11 @@ func ResourcePoolSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"labels": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceKeyValueSchema(),
+		},
 		"lb_algorithm": {
 			Type:     schema.TypeString,
 			Optional: true,

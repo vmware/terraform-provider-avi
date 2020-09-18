@@ -27,6 +27,11 @@ func dataSourceAviServerAutoScalePolicy() *schema.Resource {
 				Type:     schema.TypeInt,
 				Computed: true,
 			},
+			"labels": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceKeyValueSchema(),
+			},
 			"max_scalein_adjustment_step": {
 				Type:     schema.TypeInt,
 				Computed: true,

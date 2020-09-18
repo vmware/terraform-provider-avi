@@ -48,6 +48,11 @@ func ResourceApplicationPersistenceProfileSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  false,
 		},
+		"labels": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceKeyValueSchema(),
+		},
 		"name": {
 			Type:     schema.TypeString,
 			Required: true,

@@ -63,6 +63,11 @@ func dataSourceAviGslbService() *schema.Resource {
 				Type:     schema.TypeBool,
 				Computed: true,
 			},
+			"labels": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceKeyValueSchema(),
+			},
 			"min_members": {
 				Type:     schema.TypeInt,
 				Computed: true,

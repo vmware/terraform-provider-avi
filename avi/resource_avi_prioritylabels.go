@@ -29,6 +29,11 @@ func ResourcePriorityLabelsSchema() map[string]*schema.Schema {
 			Optional: true,
 			Elem:     ResourceEquivalentLabelsSchema(),
 		},
+		"labels": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceKeyValueSchema(),
+		},
 		"name": {
 			Type:     schema.TypeString,
 			Required: true,

@@ -29,6 +29,11 @@ func dataSourceAviVSDataScriptSet() *schema.Resource {
 				Computed: true,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
+			"labels": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceKeyValueSchema(),
+			},
 			"name": {
 				Type:     schema.TypeString,
 				Optional: true,

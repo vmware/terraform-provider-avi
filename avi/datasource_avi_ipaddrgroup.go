@@ -34,6 +34,11 @@ func dataSourceAviIpAddrGroup() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceIpAddrPortSchema(),
 			},
+			"labels": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceKeyValueSchema(),
+			},
 			"marathon_app_name": {
 				Type:     schema.TypeString,
 				Computed: true,

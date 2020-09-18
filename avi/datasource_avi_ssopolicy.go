@@ -21,6 +21,11 @@ func dataSourceAviSSOPolicy() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceAuthorizationPolicySchema(),
 			},
+			"labels": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceKeyValueSchema(),
+			},
 			"name": {
 				Type:     schema.TypeString,
 				Optional: true,

@@ -39,6 +39,11 @@ func ResourceTenantSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Required: true,
 		},
+		"suggested_object_labels": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceTenantLabelSchema(),
+		},
 		"uuid": {
 			Type:     schema.TypeString,
 			Optional: true,
