@@ -16,6 +16,11 @@ func dataSourceAviErrorPageProfile() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceErrorPageSchema(),
 			},
+			"labels": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceKeyValueSchema(),
+			},
 			"name": {
 				Type:     schema.TypeString,
 				Optional: true,

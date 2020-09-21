@@ -19,6 +19,11 @@ func ResourceErrorPageProfileSchema() map[string]*schema.Schema {
 			Optional: true,
 			Elem:     ResourceErrorPageSchema(),
 		},
+		"labels": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceKeyValueSchema(),
+		},
 		"name": {
 			Type:     schema.TypeString,
 			Optional: true,

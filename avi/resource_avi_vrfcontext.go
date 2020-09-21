@@ -14,6 +14,11 @@ import (
 
 func ResourceVrfContextSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
+		"attrs": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceKeyValueSchema(),
+		},
 		"bfd_profile": {
 			Type:     schema.TypeSet,
 			Optional: true,

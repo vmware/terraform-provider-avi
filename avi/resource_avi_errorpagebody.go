@@ -24,6 +24,11 @@ func ResourceErrorPageBodySchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  "ERROR_PAGE_FORMAT_HTML",
 		},
+		"labels": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceKeyValueSchema(),
+		},
 		"name": {
 			Type:     schema.TypeString,
 			Optional: true,

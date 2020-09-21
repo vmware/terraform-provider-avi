@@ -11,6 +11,11 @@ func dataSourceAviRole() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviRoleRead,
 		Schema: map[string]*schema.Schema{
+			"filters": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceRoleFilterSchema(),
+			},
 			"name": {
 				Type:     schema.TypeString,
 				Optional: true,

@@ -25,6 +25,11 @@ func dataSourceAviWafProfile() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceWafDataFileSchema(),
 			},
+			"labels": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceKeyValueSchema(),
+			},
 			"name": {
 				Type:     schema.TypeString,
 				Optional: true,
