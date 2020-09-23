@@ -35,7 +35,7 @@ data "vsphere_content_library" "library" {
 
 #Creates NSX-T User on Avi controller
 resource "avi_cloudconnectoruser" "nsx-t-user" {
-  name           = "nsx-mgr-tf-user"
+  name           = var.nsxt_avi_user
   tenant_ref     = var.avi_tenant
   nsxt_credentials {
     password     = var.nsxt_password
@@ -44,7 +44,7 @@ resource "avi_cloudconnectoruser" "nsx-t-user" {
 }
 #Creates vCenter User on Avi controller
 resource "avi_cloudconnectoruser" "vcenter-user" {
-  name           = "vcenter-tf-user"
+  name           = var.vcenter_avi_user
   tenant_ref     = var.avi_tenant
   vcenter_credentials {
     password     = var.vsphere_password

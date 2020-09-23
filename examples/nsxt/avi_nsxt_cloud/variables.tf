@@ -32,6 +32,11 @@ variable "nsxt_url" {
   default = "10.206.113.90"
 }
 
+variable "nsxt_avi_user" {
+  type    = string
+  default = "nsxt_tf_user"
+}
+
 variable "nsxt_username" {
   type    = string
   default = "admin"
@@ -45,6 +50,11 @@ variable "nsxt_password" {
 variable "vsphere_server" {
   type    = string
   default = "10.206.113.91"
+}
+
+variable "vcenter_avi_user" {
+  type    = string
+  default = "vcenter_tf_user"
 }
 
 variable "vsphere_user" {
