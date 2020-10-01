@@ -30,6 +30,7 @@ resource "avi_nsxtsegmentruntime" "foo" {
 The following arguments are supported:
 
 * `cloud_ref` - (Optional) Nsxt segment belongs to cloud.
+* `dhcp6_ranges` - (Optional) V6 dhcp ranges configured in nsxt.
 * `dhcp_enabled` - (Optional) Ip address management scheme for this segment associated network.
 * `dhcp_ranges` - (Optional) Dhcp ranges configured in nsxt.
 * `name` - (Optional) Segment object name.
@@ -37,9 +38,11 @@ The following arguments are supported:
 * `nw_ref` - (Optional) Corresponding network object in avi.
 * `opaque_network_id` - (Optional) Opaque network id.
 * `segment_gw` - (Optional) Segment gateway.
+* `segment_gw6` - (Optional) V6 segment gateway.
 * `segment_id` - (Optional) Segment id.
 * `segname` - (Optional) Segment name.
 * `subnet` - (Optional) Segment cidr.
+* `subnet6` - (Optional) V6 segment cidr.
 * `tenant_ref` - (Optional) Nsxt segment belongs to tenant.
 * `tier1_id` - (Optional) Tier1 router id.
 * `vrf_context_ref` - (Optional) Corresponding vrf context object in avi.

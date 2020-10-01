@@ -166,6 +166,11 @@ func ResourcePoolSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"labels": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceKeyValueSchema(),
+		},
 		"lb_algorithm": {
 			Type:     schema.TypeString,
 			Optional: true,
@@ -241,6 +246,10 @@ func ResourcePoolSchema() map[string]*schema.Schema {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  false,
+		},
+		"resolve_pool_by_dns": {
+			Type:     schema.TypeBool,
+			Optional: true,
 		},
 		"rewrite_host_header_to_server_name": {
 			Type:     schema.TypeBool,

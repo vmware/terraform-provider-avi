@@ -386,6 +386,11 @@ func ResourceAnalyticsProfileSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  "1.0",
 		},
+		"labels": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceKeyValueSchema(),
+		},
 		"name": {
 			Type:     schema.TypeString,
 			Required: true,

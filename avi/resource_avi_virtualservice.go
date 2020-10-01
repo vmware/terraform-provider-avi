@@ -188,6 +188,11 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 			Optional: true,
 			Elem:     ResourceL4PoliciesSchema(),
 		},
+		"labels": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceKeyValueSchema(),
+		},
 		"limit_doser": {
 			Type:     schema.TypeBool,
 			Optional: true,

@@ -144,6 +144,11 @@ func dataSourceAviPool() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"labels": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceKeyValueSchema(),
+			},
 			"lb_algorithm": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -210,6 +215,10 @@ func dataSourceAviPool() *schema.Resource {
 				Computed: true,
 			},
 			"request_queue_enabled": {
+				Type:     schema.TypeBool,
+				Computed: true,
+			},
+			"resolve_pool_by_dns": {
 				Type:     schema.TypeBool,
 				Computed: true,
 			},

@@ -29,6 +29,11 @@ func ResourcePoolGroupDeploymentPolicySchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  300,
 		},
+		"labels": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceKeyValueSchema(),
+		},
 		"name": {
 			Type:     schema.TypeString,
 			Required: true,
