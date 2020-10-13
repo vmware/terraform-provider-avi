@@ -35,6 +35,7 @@ data "avi_hardwaresecuritymodulegroup" "foo_hardwaresecuritymodulegroup" {
 In addition to all arguments above, the following attributes are exported:
 
 * `hsm` - Hardware security module configuration.
+* `labels` - Key value pairs for granular object access control.
 * `name` - Name of the hsm group configuration object.
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `uuid` - Uuid of the hsm group configuration object.

@@ -36,6 +36,7 @@ In addition to all arguments above, the following attributes are exported:
 
 * `created_by` - Creator name.
 * `description` - Field introduced in 17.1.1.
+* `labels` - Key value pairs for granular object access control.
 * `name` - Name of the dns policy.
 * `rule` - Dns rules.
 * `tenant_ref` - It is a reference to an object of type tenant.

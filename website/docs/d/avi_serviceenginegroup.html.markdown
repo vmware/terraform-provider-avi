@@ -109,6 +109,7 @@ In addition to all arguments above, the following attributes are exported:
 * `license_tier` - Specifies the license tier which would be used.
 * `license_type` - If no license type is specified then default license enforcement for the cloud type is chosen.
 * `log_disksz` - Maximum disk capacity (in mb) to be allocated to an se.
+* `log_malloc_failure` - Se will log memory allocation related failure to the se_trace file, wherever available.
 * `max_concurrent_external_hm` - Maximum number of external health monitors that can run concurrently in a service engine.
 * `max_cpu_usage` - When cpu usage on an se exceeds this threshold, virtual services hosted on this se may be rebalanced to other ses to reduce load.
 * `max_memory_per_mempool` - Max bytes that can be allocated in a single mempool.
@@ -144,6 +145,7 @@ In addition to all arguments above, the following attributes are exported:
 * `reboot_on_panic` - Reboot the vm or host on kernel panic.
 * `resync_time_interval` - Time interval to re-sync se's time with wall clock time.
 * `se_bandwidth_type` - Select the se bandwidth for the bandwidth license.
+* `se_delayed_flow_delete` - Delay the cleanup of flowtable entry.
 * `se_deprovision_delay` - Duration to preserve unused service engine virtual machines before deleting them.
 * `se_dos_profile` - Dict settings for serviceenginegroup.
 * `se_dp_max_hb_version` - The highest supported se-se heartbeat protocol version.
@@ -158,6 +160,7 @@ In addition to all arguments above, the following attributes are exported:
 * `se_hyperthreaded_mode` - Controls the distribution of se data path processes on cpus which support hyper-threading.
 * `se_kni_burst_factor` - Knob to control burst size used in polling kni interfaces for traffic sent from kni towards dpdk application also controls burst size used by kni module to read pkts punted from dpdk application towards kni helps minimize drops in non-vip traffic in either pathfactor of (0-2) multiplies/divides burst size by 2^n.
 * `se_lro` - Enable or disable large receive optimization for vnics.
+* `se_mp_ring_retry_count` - The retry count for the multi-producer enqueue before yielding the cpu.
 * `se_mtu` - Mtu for the vnics of ses in the se group.
 * `se_name_prefix` - Prefix to use for virtual machine name of service engines.
 * `se_pcap_lookahead` - Enables lookahead mode of packet receive in pcap mode.
@@ -179,6 +182,7 @@ In addition to all arguments above, the following attributes are exported:
 * `se_tunnel_mode` - Determines if dsr from secondary se is active or not  0  automatically determine based on hypervisor type.
 * `se_tunnel_udp_port` - Udp port for tunneled packets from secondary to primary se in docker bridge mode.requires se reboot.
 * `se_tx_batch_size` - Number of packets to batch for transmit to the nic.
+* `se_txq_threshold` - Once the tx queue of the dispatcher reaches this threshold, hardware queues are not polled for further packets.
 * `se_udp_encap_ipc` - Determines if se-se ipc messages are encapsulated in a udp header  0  automatically determine based on hypervisor type.
 * `se_use_dpdk` - Determines if dpdk library should be used or not   0  automatically determine based on hypervisor type 1  use dpdk if pcap is not enabled 2  don't use dpdk.
 * `se_vnic_tx_sw_queue_flush_frequency` - Configure the frequency in milliseconds of software transmit spillover queue flush when enabled.

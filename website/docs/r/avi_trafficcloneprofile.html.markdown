@@ -32,6 +32,7 @@ The following arguments are supported:
 * `name` - (Required) Name for the traffic clone profile.
 * `clone_servers` - (Optional) Field introduced in 17.1.1.
 * `cloud_ref` - (Optional) It is a reference to an object of type cloud.
+* `labels` - (Optional) Key value pairs for granular object access control.
 * `preserve_client_ip` - (Optional) Specifies if client ip needs to be preserved to clone destination.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant.
 

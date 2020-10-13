@@ -38,6 +38,7 @@ In addition to all arguments above, the following attributes are exported:
 
 * `clone_servers` - Field introduced in 17.1.1.
 * `cloud_ref` - It is a reference to an object of type cloud.
+* `labels` - Key value pairs for granular object access control.
 * `name` - Name for the traffic clone profile.
 * `preserve_client_ip` - Specifies if client ip needs to be preserved to clone destination.
 * `tenant_ref` - It is a reference to an object of type tenant.

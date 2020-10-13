@@ -33,6 +33,7 @@ The following arguments are supported:
 * `profile` - (Required) Dict settings for networkprofile.
 * `connection_mirror` - (Optional) When enabled, avi mirrors all tcp fastpath connections to standby.
 * `description` - (Optional) User defined description for the object.
+* `labels` - (Optional) Key value pairs for granular object access control.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant.
 
 

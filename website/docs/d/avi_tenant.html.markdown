@@ -39,5 +39,6 @@ In addition to all arguments above, the following attributes are exported:
 * `description` - User defined description for the object.
 * `local` - Boolean flag to set local.
 * `name` - Name of the object.
+* `suggested_object_labels` - Suggestive pool of key value pairs for recommending assignment of labels to objects in the user interface.
 * `uuid` - Unique object identifier of the object.
 

@@ -35,6 +35,7 @@ data "avi_pingaccessagent" "foo_pingaccessagent" {
 In addition to all arguments above, the following attributes are exported:
 
 * `description` - Field introduced in 18.2.3.
+* `labels` - Key value pairs for granular object access control.
 * `name` - Name of the pingaccess agent.
 * `pingaccess_pool_ref` - Pool containing a primary pingaccess server, as well as any failover servers included in the agent.properties file.
 * `primary_server` - The ip and port of the primary pingaccess server.

@@ -36,6 +36,7 @@ The following arguments are supported:
 * `crls` - (Optional) Certificate revocation lists.
 * `ignore_peer_chain` - (Optional) When enabled, avi will not trust intermediate and root certs presented by a client.
 * `is_federated` - (Optional) This field describes the object's replication scope.
+* `labels` - (Optional) Key value pairs for granular object access control.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant.
 * `validate_only_leaf_crl` - (Optional) When enabled, avi will only validate the revocation status of the leaf certificate using crl.
 

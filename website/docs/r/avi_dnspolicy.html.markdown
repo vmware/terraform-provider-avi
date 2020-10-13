@@ -31,6 +31,7 @@ The following arguments are supported:
 
 * `created_by` - (Optional) Creator name.
 * `description` - (Optional) Field introduced in 17.1.1.
+* `labels` - (Optional) Key value pairs for granular object access control.
 * `name` - (Optional) Name of the dns policy.
 * `rule` - (Optional) Dns rules.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant.

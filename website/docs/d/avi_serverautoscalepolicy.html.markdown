@@ -38,6 +38,7 @@ In addition to all arguments above, the following attributes are exported:
 * `intelligent_autoscale` - Use avi intelligent autoscale algorithm where autoscale is performed by comparing load on the pool against estimated capacity of all the servers.
 * `intelligent_scalein_margin` - Maximum extra capacity as percentage of load used by the intelligent scheme.
 * `intelligent_scaleout_margin` - Minimum extra capacity as percentage of load used by the intelligent scheme.
+* `labels` - Key value pairs for granular object access control.
 * `max_scalein_adjustment_step` - Maximum number of servers to scalein simultaneously.
 * `max_scaleout_adjustment_step` - Maximum number of servers to scaleout simultaneously.
 * `max_size` - Maximum number of servers after scaleout.

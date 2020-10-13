@@ -46,6 +46,7 @@ In addition to all arguments above, the following attributes are exported:
 * `health_monitor_scope` - Health monitor probe can be executed for all the members or it can be executed only for third-party members.
 * `hm_off` - This field is an internal field and is used in se.
 * `is_federated` - This field indicates that this object is replicated across gslb federation.
+* `labels` - Key value pairs for granular object access control.
 * `min_members` - The minimum number of members to distribute traffic to.
 * `name` - Name for the gslb service.
 * `num_dns_ip` - Number of ip addresses of this gslb service to be returned by the dns service.

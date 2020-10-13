@@ -37,6 +37,7 @@ In addition to all arguments above, the following attributes are exported:
 * `base_file_refs` - Ip reputation db base file.
 * `description` - Description.
 * `incremental_file_refs` - Ip reputation db incremental update files.
+* `labels` - Key value pairs for granular object access control.
 * `name` - Ip reputation db name.
 * `service_status` - If this object is managed by the ip reputation service, this field contain the status of this syncronization.
 * `tenant_ref` - Tenant that this object belongs to.

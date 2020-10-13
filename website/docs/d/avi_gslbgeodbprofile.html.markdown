@@ -37,6 +37,7 @@ In addition to all arguments above, the following attributes are exported:
 * `description` - Field introduced in 17.1.1.
 * `entries` - List of geodb entries.
 * `is_federated` - This field indicates that this object is replicated across gslb federation.
+* `labels` - Key value pairs for granular object access control.
 * `name` - A user-friendly name for the geodb profile.
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `uuid` - Uuid of the geodb profile.

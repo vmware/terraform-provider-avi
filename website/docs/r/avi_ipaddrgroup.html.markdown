@@ -35,6 +35,7 @@ The following arguments are supported:
 * `country_codes` - (Optional) Populate the ip address ranges from the geo database for this country.
 * `description` - (Optional) User defined description for the object.
 * `ip_ports` - (Optional) Configure (ip address, port) tuple(s).
+* `labels` - (Optional) Key value pairs for granular object access control.
 * `marathon_app_name` - (Optional) Populate ip addresses from tasks of this marathon app.
 * `marathon_service_port` - (Optional) Task port associated with marathon service port.
 * `prefixes` - (Optional) Configure ip address prefix(es).

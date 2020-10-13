@@ -104,6 +104,7 @@ The following arguments are supported:
 * `hs_security_tls11_score` - (Optional) Score assigned when supporting tls1.1 encryption protocol.
 * `hs_security_tls12_score` - (Optional) Score assigned when supporting tls1.2 encryption protocol.
 * `hs_security_weak_signature_algo_penalty` - (Optional) Penalty for allowing weak signature algorithm(s).
+* `labels` - (Optional) Key value pairs for granular object access control.
 * `ondemand_metrics_idle_timeout` - (Optional) This flag sets the time duration of no live data traffic after which virtual service metrics processing is suspended.
 * `ranges` - (Optional) List of http status code ranges to be excluded from being classified as an error.
 * `resp_code_block` - (Optional) Block of http response codes to be excluded from being classified as an error.

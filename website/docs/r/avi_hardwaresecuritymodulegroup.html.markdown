@@ -31,6 +31,7 @@ The following arguments are supported:
 
 * `hsm` - (Required) Hardware security module configuration.
 * `name` - (Required) Name of the hsm group configuration object.
+* `labels` - (Optional) Key value pairs for granular object access control.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant.
 
 

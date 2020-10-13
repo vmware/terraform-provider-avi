@@ -39,6 +39,7 @@ In addition to all arguments above, the following attributes are exported:
 * `cloud_ref` - It is a reference to an object of type cloud.
 * `dns_info` - Service discovery specific data including fully qualified domain name, type and time-to-live of the dns record.
 * `east_west_placement` - Force placement on all service engines in the service engine group (container clouds only).
+* `labels` - Key value pairs for granular object access control.
 * `name` - Name for the vsvip object.
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `tier1_lr` - This sets the placement scope of virtualservice to given tier1 logical router in nsx-t.

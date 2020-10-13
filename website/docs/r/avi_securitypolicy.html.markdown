@@ -33,6 +33,7 @@ The following arguments are supported:
 * `description` - (Optional) Security policy is used to specify various configuration information used to perform distributed denial of service (ddos) attacks detection and mitigation.
 * `dns_attacks` - (Optional) Attacks utilizing the dns protocol operations.
 * `dns_policy_index` - (Optional) Index of the dns policy to use for the mitigation rules applied to the dns attacks.
+* `labels` - (Optional) Key value pairs for granular object access control.
 * `network_security_policy_index` - (Optional) Index of the network security policy to use for the mitigation rules applied to the attacks.
 * `oper_mode` - (Optional) Mode of dealing with the attacks - perform detection only, or detect and mitigate the attacks.
 * `tcp_attacks` - (Optional) Attacks utilizing the tcp protocol operations.

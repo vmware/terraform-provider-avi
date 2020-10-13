@@ -33,6 +33,7 @@ The following arguments are supported:
 * `description` - (Optional) Field introduced in 17.1.1.
 * `entries` - (Optional) List of geodb entries.
 * `is_federated` - (Optional) This field indicates that this object is replicated across gslb federation.
+* `labels` - (Optional) Key value pairs for granular object access control.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant.
 
 

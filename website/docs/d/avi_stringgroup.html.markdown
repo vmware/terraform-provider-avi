@@ -36,6 +36,7 @@ In addition to all arguments above, the following attributes are exported:
 
 * `description` - User defined description for the object.
 * `kv` - Configure key value in the string group.
+* `labels` - Key value pairs for granular object access control.
 * `longest_match` - Enable the longest match, default is the shortest match.
 * `name` - Name of the string group.
 * `tenant_ref` - It is a reference to an object of type tenant.

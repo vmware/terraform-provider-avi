@@ -37,6 +37,7 @@ In addition to all arguments above, the following attributes are exported:
 * `asset_contact` - Information about the default contact for this controller cluster.
 * `feature_opt_in_status` - Information about the portal features opted in for controller.
 * `ip_reputation_config` - Default values to be used for ip reputation sync.
+* `mode` - Mode helps log collection and upload.
 * `polling_interval` - Time interval in minutes.
 * `portal_url` - The fqdn or ip address of the customer portal.
 * `proactive_support_defaults` - Default values to be used during proactive case creation and techsupport attachment.

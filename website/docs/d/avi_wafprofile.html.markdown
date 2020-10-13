@@ -37,6 +37,7 @@ In addition to all arguments above, the following attributes are exported:
 * `config` - Config params for waf.
 * `description` - Field introduced in 17.2.1.
 * `files` - List of data files used for waf rules.
+* `labels` - Key value pairs for granular object access control.
 * `name` - Field introduced in 17.2.1.
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `uuid` - Field introduced in 17.2.1.

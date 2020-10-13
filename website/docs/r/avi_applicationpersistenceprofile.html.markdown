@@ -37,6 +37,7 @@ The following arguments are supported:
 * `http_cookie_persistence_profile` - (Optional) Specifies the http cookie persistence profile parameters.
 * `ip_persistence_profile` - (Optional) Specifies the client ip persistence profile parameters.
 * `is_federated` - (Optional) This field describes the object's replication scope.
+* `labels` - (Optional) Key value pairs for granular object access control.
 * `server_hm_down_recovery` - (Optional) Specifies behavior when a persistent server has been marked down by a health monitor.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant.
 

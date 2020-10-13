@@ -32,6 +32,7 @@ The following arguments are supported:
 * `name` - (Required) Name of the object.
 * `description` - (Optional) User defined description for the object.
 * `image_id` - (Optional) Unique id of the amazon machine image (ami)  or openstack vm id.
+* `labels` - (Optional) Key value pairs for granular object access control.
 * `mesos` - (Optional) Dict settings for autoscalelaunchconfig.
 * `openstack` - (Optional) Dict settings for autoscalelaunchconfig.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant.

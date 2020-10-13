@@ -36,6 +36,7 @@ data "avi_vrfcontext" "foo_vrfcontext" {
 
 In addition to all arguments above, the following attributes are exported:
 
+* `attrs` - Key/value vrfcontext attributes.
 * `bfd_profile` - Bfd configuration profile.
 * `bgp_profile` - Bgp local and peer info.
 * `cloud_ref` - It is a reference to an object of type cloud.

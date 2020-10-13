@@ -40,6 +40,7 @@ In addition to all arguments above, the following attributes are exported:
 * `crls` - Certificate revocation lists.
 * `ignore_peer_chain` - When enabled, avi will not trust intermediate and root certs presented by a client.
 * `is_federated` - This field describes the object's replication scope.
+* `labels` - Key value pairs for granular object access control.
 * `name` - Name of the pki profile.
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `uuid` - Unique object identifier of the object.

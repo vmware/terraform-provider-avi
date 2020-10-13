@@ -38,6 +38,7 @@ In addition to all arguments above, the following attributes are exported:
 * `description` - Field introduced in 17.2.7.
 * `is_internal_policy` - Field introduced in 17.2.7.
 * `l4_connection_policy` - Policy to apply when a new transport connection is setup.
+* `labels` - Key value pairs for granular object access control.
 * `name` - Name of the l4 policy set.
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `uuid` - Id of the l4 policy set.

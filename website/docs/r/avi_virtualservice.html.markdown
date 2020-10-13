@@ -64,6 +64,7 @@ The following arguments are supported:
 * `icap_request_profile_refs` - (Optional) The config settings for the icap server when checking the http request.
 * `ign_pool_net_reach` - (Optional) Ignore pool servers network reachability constraints for virtual service placement.
 * `l4_policies` - (Optional) L4 policies applied to the data traffic of the virtual service.
+* `labels` - (Optional) Key value pairs for granular object access control.
 * `limit_doser` - (Optional) Limit potential dos attackers who exceed max_cps_per_client significantly to a fraction of max_cps_per_client for a while.
 * `max_cps_per_client` - (Optional) Maximum connections per second per client ip.
 * `microservice_ref` - (Optional) Microservice representing the virtual service.

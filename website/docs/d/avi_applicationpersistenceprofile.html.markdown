@@ -40,6 +40,7 @@ In addition to all arguments above, the following attributes are exported:
 * `http_cookie_persistence_profile` - Specifies the http cookie persistence profile parameters.
 * `ip_persistence_profile` - Specifies the client ip persistence profile parameters.
 * `is_federated` - This field describes the object's replication scope.
+* `labels` - Key value pairs for granular object access control.
 * `name` - A user-friendly name for the persistence profile.
 * `persistence_type` - Method used to persist clients to the same server for a duration of time or a session.
 * `server_hm_down_recovery` - Specifies behavior when a persistent server has been marked down by a health monitor.

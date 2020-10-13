@@ -30,6 +30,7 @@ resource "avi_vrfcontext" "foo" {
 The following arguments are supported:
 
 * `name` - (Required) Name of the object.
+* `attrs` - (Optional) Key/value vrfcontext attributes.
 * `bfd_profile` - (Optional) Bfd configuration profile.
 * `bgp_profile` - (Optional) Bgp local and peer info.
 * `cloud_ref` - (Optional) It is a reference to an object of type cloud.

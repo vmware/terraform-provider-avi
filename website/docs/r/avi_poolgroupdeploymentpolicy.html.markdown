@@ -33,6 +33,7 @@ The following arguments are supported:
 * `auto_disable_old_prod_pools` - (Optional) It will automatically disable old production pools once there is a new production candidate.
 * `description` - (Optional) User defined description for the object.
 * `evaluation_duration` - (Optional) Duration of evaluation period for automatic deployment.
+* `labels` - (Optional) Key value pairs for granular object access control.
 * `rules` - (Optional) List of list.
 * `scheme` - (Optional) Deployment scheme.
 * `target_test_traffic_ratio` - (Optional) Target traffic ratio before pool is made production.

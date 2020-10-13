@@ -32,6 +32,7 @@ The following arguments are supported:
 * `asset_contact` - (Optional) Information about the default contact for this controller cluster.
 * `feature_opt_in_status` - (Optional) Information about the portal features opted in for controller.
 * `ip_reputation_config` - (Optional) Default values to be used for ip reputation sync.
+* `mode` - (Optional) Mode helps log collection and upload.
 * `polling_interval` - (Optional) Time interval in minutes.
 * `portal_url` - (Optional) The fqdn or ip address of the customer portal.
 * `proactive_support_defaults` - (Optional) Default values to be used during proactive case creation and techsupport attachment.
