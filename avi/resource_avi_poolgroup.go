@@ -55,6 +55,11 @@ func ResourcePoolGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  false,
 		},
+		"labels": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceKeyValueSchema(),
+		},
 		"members": {
 			Type:     schema.TypeList,
 			Optional: true,

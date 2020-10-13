@@ -36,6 +36,7 @@ In addition to all arguments above, the following attributes are exported:
 
 * `authentication_policy` - Authentication policy settings.
 * `authorization_policy` - Authorization policy settings.
+* `labels` - Key value pairs for granular object access control.
 * `name` - Name of the sso policy.
 * `tenant_ref` - Uuid of the tenant.
 * `type` - Sso policy type.

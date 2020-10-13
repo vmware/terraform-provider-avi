@@ -42,6 +42,7 @@ In addition to all arguments above, the following attributes are exported:
 * `dhparam` - Dh parameters used in ssl.
 * `enable_early_data` - Enable early data processing for tls1.3 connections.
 * `enable_ssl_session_reuse` - Enable ssl session re-use.
+* `labels` - Key value pairs for granular object access control.
 * `name` - Name of the object.
 * `prefer_client_cipher_ordering` - Prefer the ssl cipher ordering presented by the client during the ssl handshake over the one specified in the ssl profile.
 * `send_close_notify` - Send 'close notify' alert message for a clean shutdown of the ssl connection.

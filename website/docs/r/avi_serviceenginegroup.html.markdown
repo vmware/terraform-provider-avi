@@ -98,10 +98,12 @@ The following arguments are supported:
 * `instance_flavor` - (Optional) Instance/flavor name for se instance.
 * `instance_flavor_info` - (Optional) Additional information associated with instance_flavor.
 * `iptables` - (Optional) Iptable rules.
+* `labels` - (Optional) Labels associated with this se group.
 * `least_load_core_selection` - (Optional) Select core with least load for new flow.
 * `license_tier` - (Optional) Specifies the license tier which would be used.
 * `license_type` - (Optional) If no license type is specified then default license enforcement for the cloud type is chosen.
 * `log_disksz` - (Optional) Maximum disk capacity (in mb) to be allocated to an se.
+* `log_malloc_failure` - (Optional) Se will log memory allocation related failure to the se_trace file, wherever available.
 * `max_concurrent_external_hm` - (Optional) Maximum number of external health monitors that can run concurrently in a service engine.
 * `max_cpu_usage` - (Optional) When cpu usage on an se exceeds this threshold, virtual services hosted on this se may be rebalanced to other ses to reduce load.
 * `max_memory_per_mempool` - (Optional) Max bytes that can be allocated in a single mempool.
@@ -136,6 +138,7 @@ The following arguments are supported:
 * `reboot_on_panic` - (Optional) Reboot the vm or host on kernel panic.
 * `resync_time_interval` - (Optional) Time interval to re-sync se's time with wall clock time.
 * `se_bandwidth_type` - (Optional) Select the se bandwidth for the bandwidth license.
+* `se_delayed_flow_delete` - (Optional) Delay the cleanup of flowtable entry.
 * `se_deprovision_delay` - (Optional) Duration to preserve unused service engine virtual machines before deleting them.
 * `se_dos_profile` - (Optional) Dict settings for serviceenginegroup.
 * `se_dp_max_hb_version` - (Optional) The highest supported se-se heartbeat protocol version.
@@ -150,6 +153,7 @@ The following arguments are supported:
 * `se_hyperthreaded_mode` - (Optional) Controls the distribution of se data path processes on cpus which support hyper-threading.
 * `se_kni_burst_factor` - (Optional) Knob to control burst size used in polling kni interfaces for traffic sent from kni towards dpdk application also controls burst size used by kni module to read pkts punted from dpdk application towards kni helps minimize drops in non-vip traffic in either pathfactor of (0-2) multiplies/divides burst size by 2^n.
 * `se_lro` - (Optional) Enable or disable large receive optimization for vnics.
+* `se_mp_ring_retry_count` - (Optional) The retry count for the multi-producer enqueue before yielding the cpu.
 * `se_mtu` - (Optional) Mtu for the vnics of ses in the se group.
 * `se_name_prefix` - (Optional) Prefix to use for virtual machine name of service engines.
 * `se_pcap_lookahead` - (Optional) Enables lookahead mode of packet receive in pcap mode.
@@ -171,6 +175,7 @@ The following arguments are supported:
 * `se_tunnel_mode` - (Optional) Determines if dsr from secondary se is active or not  0  automatically determine based on hypervisor type.
 * `se_tunnel_udp_port` - (Optional) Udp port for tunneled packets from secondary to primary se in docker bridge mode.requires se reboot.
 * `se_tx_batch_size` - (Optional) Number of packets to batch for transmit to the nic.
+* `se_txq_threshold` - (Optional) Once the tx queue of the dispatcher reaches this threshold, hardware queues are not polled for further packets.
 * `se_udp_encap_ipc` - (Optional) Determines if se-se ipc messages are encapsulated in a udp header  0  automatically determine based on hypervisor type.
 * `se_use_dpdk` - (Optional) Determines if dpdk library should be used or not   0  automatically determine based on hypervisor type 1  use dpdk if pcap is not enabled 2  don't use dpdk.
 * `se_vnic_tx_sw_queue_flush_frequency` - (Optional) Configure the frequency in milliseconds of software transmit spillover queue flush when enabled.

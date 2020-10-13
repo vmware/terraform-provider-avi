@@ -157,6 +157,11 @@ func dataSourceAviVirtualService() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceL4PoliciesSchema(),
 			},
+			"labels": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceKeyValueSchema(),
+			},
 			"limit_doser": {
 				Type:     schema.TypeBool,
 				Computed: true,

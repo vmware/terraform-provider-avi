@@ -33,6 +33,11 @@ func dataSourceAviTenant() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"suggested_object_labels": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceTenantLabelSchema(),
+			},
 			"uuid": {
 				Type:     schema.TypeString,
 				Optional: true,

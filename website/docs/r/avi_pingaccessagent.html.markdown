@@ -30,6 +30,7 @@ resource "avi_pingaccessagent" "foo" {
 The following arguments are supported:
 
 * `description` - (Optional) Field introduced in 18.2.3.
+* `labels` - (Optional) Key value pairs for granular object access control.
 * `name` - (Optional) Name of the pingaccess agent.
 * `pingaccess_pool_ref` - (Optional) Pool containing a primary pingaccess server, as well as any failover servers included in the agent.properties file.
 * `primary_server` - (Optional) The ip and port of the primary pingaccess server.

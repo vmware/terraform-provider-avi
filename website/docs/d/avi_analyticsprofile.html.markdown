@@ -101,12 +101,14 @@ In addition to all arguments above, the following attributes are exported:
 * `hs_security_encalgo_score_rc4` - Score assigned when rc4 algorithm is used for encryption.
 * `hs_security_hsts_penalty` - Penalty for not enabling hsts.
 * `hs_security_nonpfs_penalty` - Penalty for allowing non-pfs handshakes.
+* `hs_security_ocsp_revoked_score` - Score assigned when ocsp certificate status is set to revoked or issuer revoked.
 * `hs_security_selfsignedcert_penalty` - Deprecated.
 * `hs_security_ssl30_score` - Score assigned when supporting ssl3.0 encryption protocol.
 * `hs_security_tls10_score` - Score assigned when supporting tls1.0 encryption protocol.
 * `hs_security_tls11_score` - Score assigned when supporting tls1.1 encryption protocol.
 * `hs_security_tls12_score` - Score assigned when supporting tls1.2 encryption protocol.
 * `hs_security_weak_signature_algo_penalty` - Penalty for allowing weak signature algorithm(s).
+* `labels` - Key value pairs for granular object access control.
 * `name` - The name of the analytics profile.
 * `ondemand_metrics_idle_timeout` - This flag sets the time duration of no live data traffic after which virtual service metrics processing is suspended.
 * `ranges` - List of http status code ranges to be excluded from being classified as an error.

@@ -26,6 +26,10 @@ func dataSourceAviALBServicesConfig() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceIpReputationConfigSchema(),
 			},
+			"mode": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"polling_interval": {
 				Type:     schema.TypeInt,
 				Computed: true,

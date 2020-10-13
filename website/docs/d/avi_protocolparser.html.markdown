@@ -35,6 +35,7 @@ data "avi_protocolparser" "foo_protocolparser" {
 In addition to all arguments above, the following attributes are exported:
 
 * `description` - Description of the protocol parser.
+* `labels` - Key value pairs for granular object access control.
 * `name` - Name of the protocol parser.
 * `parser_code` - Command script provided inline.
 * `tenant_ref` - Tenant uuid of the protocol parser.

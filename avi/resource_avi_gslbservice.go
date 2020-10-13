@@ -75,6 +75,11 @@ func ResourceGslbServiceSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  true,
 		},
+		"labels": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceKeyValueSchema(),
+		},
 		"min_members": {
 			Type:     schema.TypeInt,
 			Optional: true,

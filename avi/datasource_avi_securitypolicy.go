@@ -24,6 +24,11 @@ func dataSourceAviSecurityPolicy() *schema.Resource {
 				Type:     schema.TypeInt,
 				Computed: true,
 			},
+			"labels": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceKeyValueSchema(),
+			},
 			"name": {
 				Type:     schema.TypeString,
 				Optional: true,

@@ -19,6 +19,11 @@ func dataSourceAviAutoScaleLaunchConfig() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"labels": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceKeyValueSchema(),
+			},
 			"mesos": {
 				Type:     schema.TypeSet,
 				Computed: true,

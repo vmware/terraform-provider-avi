@@ -70,6 +70,7 @@ In addition to all arguments above, the following attributes are exported:
 * `icap_request_profile_refs` - The config settings for the icap server when checking the http request.
 * `ign_pool_net_reach` - Ignore pool servers network reachability constraints for virtual service placement.
 * `l4_policies` - L4 policies applied to the data traffic of the virtual service.
+* `labels` - Key value pairs for granular object access control.
 * `limit_doser` - Limit potential dos attackers who exceed max_cps_per_client significantly to a fraction of max_cps_per_client for a while.
 * `max_cps_per_client` - Maximum connections per second per client ip.
 * `microservice_ref` - Microservice representing the virtual service.
@@ -77,7 +78,7 @@ In addition to all arguments above, the following attributes are exported:
 * `name` - Name for the virtual service.
 * `network_profile_ref` - Determines network settings such as protocol, tcp or udp, and related options for the protocol.
 * `network_security_policy_ref` - Network security policies for the virtual service.
-* `nsx_securitygroup` - A list of nsx service groups representing the clients which can access the virtual ip of the virtual service.
+* `nsx_securitygroup` - A list of nsx groups representing the clients which can access the virtual ip of the virtual service.
 * `performance_limits` - Optional settings that determine performance limits like max connections or bandwdith etc.
 * `pool_group_ref` - The pool group is an object that contains pools.
 * `pool_ref` - The pool is an object that contains destination servers and related attributes such as load-balancing and persistence.

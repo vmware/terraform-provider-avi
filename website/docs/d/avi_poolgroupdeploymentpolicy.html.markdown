@@ -37,6 +37,7 @@ In addition to all arguments above, the following attributes are exported:
 * `auto_disable_old_prod_pools` - It will automatically disable old production pools once there is a new production candidate.
 * `description` - User defined description for the object.
 * `evaluation_duration` - Duration of evaluation period for automatic deployment.
+* `labels` - Key value pairs for granular object access control.
 * `name` - The name of the pool group deployment policy.
 * `rules` - List of list.
 * `scheme` - Deployment scheme.

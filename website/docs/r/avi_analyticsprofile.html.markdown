@@ -97,12 +97,14 @@ The following arguments are supported:
 * `hs_security_encalgo_score_rc4` - (Optional) Score assigned when rc4 algorithm is used for encryption.
 * `hs_security_hsts_penalty` - (Optional) Penalty for not enabling hsts.
 * `hs_security_nonpfs_penalty` - (Optional) Penalty for allowing non-pfs handshakes.
+* `hs_security_ocsp_revoked_score` - (Optional) Score assigned when ocsp certificate status is set to revoked or issuer revoked.
 * `hs_security_selfsignedcert_penalty` - (Optional) Deprecated.
 * `hs_security_ssl30_score` - (Optional) Score assigned when supporting ssl3.0 encryption protocol.
 * `hs_security_tls10_score` - (Optional) Score assigned when supporting tls1.0 encryption protocol.
 * `hs_security_tls11_score` - (Optional) Score assigned when supporting tls1.1 encryption protocol.
 * `hs_security_tls12_score` - (Optional) Score assigned when supporting tls1.2 encryption protocol.
 * `hs_security_weak_signature_algo_penalty` - (Optional) Penalty for allowing weak signature algorithm(s).
+* `labels` - (Optional) Key value pairs for granular object access control.
 * `ondemand_metrics_idle_timeout` - (Optional) This flag sets the time duration of no live data traffic after which virtual service metrics processing is suspended.
 * `ranges` - (Optional) List of http status code ranges to be excluded from being classified as an error.
 * `resp_code_block` - (Optional) Block of http response codes to be excluded from being classified as an error.

@@ -30,6 +30,7 @@ resource "avi_networkservice" "foo" {
 The following arguments are supported:
 
 * `cloud_ref` - (Optional) It is a reference to an object of type cloud.
+* `labels` - (Optional) Key value pairs for granular object access control.
 * `name` - (Optional) Name of the networkservice.
 * `routing_service` - (Optional) Routing information of the networkservice.
 * `se_group_ref` - (Optional) Service engine group to which the service is applied.

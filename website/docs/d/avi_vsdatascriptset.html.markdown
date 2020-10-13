@@ -38,6 +38,7 @@ In addition to all arguments above, the following attributes are exported:
 * `datascript` - Datascripts to execute.
 * `description` - User defined description for the object.
 * `ipgroup_refs` - Uuid of ip groups that could be referred by vsdatascriptset objects.
+* `labels` - Key value pairs for granular object access control.
 * `name` - Name for the virtual service datascript collection.
 * `pool_group_refs` - Uuid of pool groups that could be referred by vsdatascriptset objects.
 * `pool_refs` - Uuid of pools that could be referred by vsdatascriptset objects.

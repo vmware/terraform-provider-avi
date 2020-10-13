@@ -30,6 +30,11 @@ func ResourceWafProfileSchema() map[string]*schema.Schema {
 			Optional: true,
 			Elem:     ResourceWafDataFileSchema(),
 		},
+		"labels": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceKeyValueSchema(),
+		},
 		"name": {
 			Type:     schema.TypeString,
 			Required: true,

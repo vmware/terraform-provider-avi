@@ -33,6 +33,7 @@ The following arguments are supported:
 * `enable` - (Optional) Enable or disable this waf rule group.
 * `hit_action` - (Optional) If a rule in this group matches the match_value pattern, this action will be executed.
 * `is_learning_group` - (Optional) This field indicates that this group is used for learning.
+* `labels` - (Optional) Key value pairs for granular object access control.
 * `locations` - (Optional) Positive security model locations.
 * `miss_action` - (Optional) If a rule in this group does not match the match_value pattern, this action will be executed.
 * `name` - (Optional) User defined name of the group.

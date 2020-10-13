@@ -49,6 +49,7 @@ In addition to all arguments above, the following attributes are exported:
 * `key_base64` - States if the private key is base64 encoded.
 * `key_params` - Dict settings for sslkeyandcertificate.
 * `key_passphrase` - Passphrase used to encrypt the private key.
+* `labels` - Key value pairs for granular object access control.
 * `name` - Name of the object.
 * `ocsp_config` - Configuration related to ocsp.
 * `ocsp_error_status` - Error reported during ocsp status query.

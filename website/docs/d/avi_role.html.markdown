@@ -34,6 +34,7 @@ data "avi_role" "foo_role" {
 
 In addition to all arguments above, the following attributes are exported:
 
+* `filters` - Filters for granular object access control based on object labels.
 * `name` - Name of the object.
 * `privileges` - List of list.
 * `tenant_ref` - It is a reference to an object of type tenant.

@@ -36,6 +36,7 @@ In addition to all arguments above, the following attributes are exported:
 
 * `description` - User defined description for the object.
 * `image_id` - Unique id of the amazon machine image (ami)  or openstack vm id.
+* `labels` - Key value pairs for granular object access control.
 * `mesos` - Dict settings for autoscalelaunchconfig.
 * `name` - Name of the object.
 * `openstack` - Dict settings for autoscalelaunchconfig.

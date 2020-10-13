@@ -14,6 +14,11 @@ import (
 
 func ResourceRoleSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
+		"filters": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceRoleFilterSchema(),
+		},
 		"name": {
 			Type:     schema.TypeString,
 			Required: true,

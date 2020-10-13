@@ -24,6 +24,11 @@ func dataSourceAviGslbGeoDbProfile() *schema.Resource {
 				Type:     schema.TypeBool,
 				Computed: true,
 			},
+			"labels": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceKeyValueSchema(),
+			},
 			"name": {
 				Type:     schema.TypeString,
 				Optional: true,

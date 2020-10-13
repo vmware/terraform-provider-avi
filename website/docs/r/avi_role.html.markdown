@@ -30,6 +30,7 @@ resource "avi_role" "foo" {
 The following arguments are supported:
 
 * `name` - (Required) Name of the object.
+* `filters` - (Optional) Filters for granular object access control based on object labels.
 * `privileges` - (Optional) List of list.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant.
 

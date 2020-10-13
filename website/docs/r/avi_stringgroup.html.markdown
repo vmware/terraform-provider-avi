@@ -33,6 +33,7 @@ The following arguments are supported:
 * `type` - (Required) Type of stringgroup.
 * `description` - (Optional) User defined description for the object.
 * `kv` - (Optional) Configure key value in the string group.
+* `labels` - (Optional) Key value pairs for granular object access control.
 * `longest_match` - (Optional) Enable the longest match, default is the shortest match.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant.
 

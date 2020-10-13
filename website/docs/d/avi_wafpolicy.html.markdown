@@ -44,6 +44,7 @@ In addition to all arguments above, the following attributes are exported:
 * `enable_auto_rule_updates` - Enable application learning based rule updates on the waf profile.
 * `enable_regex_learning` - Enable dynamic regex generation for positive security model rules.
 * `failure_mode` - Waf policy failure mode.
+* `labels` - Key value pairs for granular object access control.
 * `learning_params` - Parameters for tuning application learning.
 * `min_confidence` - Minimum confidence label required for auto rule updates.
 * `mode` - Waf policy mode.
