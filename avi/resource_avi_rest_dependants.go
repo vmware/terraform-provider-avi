@@ -6008,6 +6008,11 @@ func ResourceControllerLicenseSchema() *schema.Resource {
 				Optional: true,
 				Elem:     ResourceBurstResourceSchema(),
 			},
+			"initialized": {
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"license_id": {
 				Type:     schema.TypeString,
 				Optional: true,
