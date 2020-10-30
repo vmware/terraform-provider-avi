@@ -510,6 +510,11 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  "PCAP_TX_AUTO",
 		},
+		"pcap_tx_ring_rd_balancing_factor": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  10,
+		},
 		"per_app": {
 			Type:     schema.TypeBool,
 			Optional: true,

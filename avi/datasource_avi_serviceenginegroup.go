@@ -418,6 +418,10 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"pcap_tx_ring_rd_balancing_factor": {
+				Type:     schema.TypeInt,
+				Computed: true,
+			},
 			"per_app": {
 				Type:     schema.TypeBool,
 				Computed: true,

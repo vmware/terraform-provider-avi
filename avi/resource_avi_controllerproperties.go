@@ -49,6 +49,16 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  false,
 		},
+		"async_patch_merge_period": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  0,
+		},
+		"async_patch_request_cleanup_duration": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  60,
+		},
 		"attach_ip_retry_interval": {
 			Type:     schema.TypeInt,
 			Optional: true,

@@ -31,14 +31,17 @@ func ResourceAviPoolServerSchema() map[string]*schema.Schema {
 		"autoscaling_group_name": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"availability_zone": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"description": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"discovered_networks": {
 			Type:     schema.TypeList,
@@ -53,23 +56,28 @@ func ResourceAviPoolServerSchema() map[string]*schema.Schema {
 		"external_orchestration_id": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"external_uuid": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"hostname": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"location": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceGeoLocationSchema(),
 		},
 		"mac_address": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"nw_ref": {
 			Type:     schema.TypeString,
@@ -79,10 +87,12 @@ func ResourceAviPoolServerSchema() map[string]*schema.Schema {
 		"port": {
 			Type:     schema.TypeInt,
 			Optional: true,
+			Computed: true,
 		},
 		"prst_hdr_val": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"ratio": {
 			Type:     schema.TypeInt,
@@ -102,6 +112,7 @@ func ResourceAviPoolServerSchema() map[string]*schema.Schema {
 		"server_node": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"static": {
 			Type:     schema.TypeBool,
