@@ -39,14 +39,6 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Type:     schema.TypeBool,
 				Computed: true,
 			},
-			"async_patch_merge_period": {
-				Type:     schema.TypeInt,
-				Computed: true,
-			},
-			"async_patch_request_cleanup_duration": {
-				Type:     schema.TypeInt,
-				Computed: true,
-			},
 			"attach_ip_retry_interval": {
 				Type:     schema.TypeInt,
 				Computed: true,

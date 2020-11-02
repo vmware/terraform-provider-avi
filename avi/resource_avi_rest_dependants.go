@@ -3168,11 +3168,6 @@ func ResourceSingleLicenseSchema() *schema.Resource {
 				Optional: true,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
-			"expired": {
-				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  false,
-			},
 			"last_update": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -5537,28 +5532,6 @@ func ResourceAuthProfileHTTPClientParamsSchema() *schema.Resource {
 	}
 }
 
-func ResourceSeGroupResumeOptionsSchema() *schema.Resource {
-	return &schema.Resource{
-		Schema: map[string]*schema.Schema{
-			"action_on_error": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Default:  "SUSPEND_UPGRADE_OPS_ON_ERROR",
-			},
-			"disruptive": {
-				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  false,
-			},
-			"skip_suspended": {
-				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  false,
-			},
-		},
-	}
-}
-
 func ResourceGslbServiceDownResponseSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -7634,11 +7607,6 @@ func ResourceSeHmEventServerDetailsSchema() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				Elem:     ResourceAppInfoSchema(),
-			},
-			"description": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
 			},
 			"failure_code": {
 				Type:     schema.TypeString,
@@ -12278,6 +12246,63 @@ func ResourceCaptureIPCSchema() *schema.Resource {
 	}
 }
 
+func ResourceServerConfigSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"def_port": {
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
+			"hostname": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"ip_addr": {
+				Type:     schema.TypeSet,
+				Required: true,
+				Elem:     ResourceIpAddrSchema(),
+			},
+			"is_enabled": {
+				Type:     schema.TypeBool,
+				Required: true,
+			},
+			"last_state": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "OPER_UNAVAIL",
+			},
+			"location": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceGeoLocationSchema(),
+			},
+			"oper_status": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceOperationalStatusSchema(),
+			},
+			"port": {
+				Type:     schema.TypeInt,
+				Required: true,
+			},
+			"propogate_state": {
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
+			"timer_exists": {
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  false,
+			},
+		},
+	}
+}
+
 func ResourceAlertMgrDebugFilterSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -15358,6 +15383,28 @@ func ResourceDnsServiceApplicationProfileSchema() *schema.Resource {
 				Type:     schema.TypeInt,
 				Optional: true,
 				Default:  30,
+			},
+		},
+	}
+}
+
+func ResourceSeGroupResumeOptionsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"action_on_error": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "SUSPEND_UPGRADE_OPS_ON_ERROR",
+			},
+			"disruptive": {
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  false,
+			},
+			"skip_suspended": {
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  false,
 			},
 		},
 	}
@@ -27342,63 +27389,6 @@ func ResourceSeVersionSchema() *schema.Resource {
 			"version": {
 				Type:     schema.TypeString,
 				Required: true,
-			},
-		},
-	}
-}
-
-func ResourceServerConfigSchema() *schema.Resource {
-	return &schema.Resource{
-		Schema: map[string]*schema.Schema{
-			"def_port": {
-				Type:     schema.TypeBool,
-				Optional: true,
-				Computed: true,
-			},
-			"hostname": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
-			"ip_addr": {
-				Type:     schema.TypeSet,
-				Required: true,
-				Elem:     ResourceIpAddrSchema(),
-			},
-			"is_enabled": {
-				Type:     schema.TypeBool,
-				Required: true,
-			},
-			"last_state": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Default:  "OPER_UNAVAIL",
-			},
-			"location": {
-				Type:     schema.TypeSet,
-				Optional: true,
-				Computed: true,
-				Elem:     ResourceGeoLocationSchema(),
-			},
-			"oper_status": {
-				Type:     schema.TypeSet,
-				Optional: true,
-				Computed: true,
-				Elem:     ResourceOperationalStatusSchema(),
-			},
-			"port": {
-				Type:     schema.TypeInt,
-				Required: true,
-			},
-			"propogate_state": {
-				Type:     schema.TypeBool,
-				Optional: true,
-				Computed: true,
-			},
-			"timer_exists": {
-				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  false,
 			},
 		},
 	}
