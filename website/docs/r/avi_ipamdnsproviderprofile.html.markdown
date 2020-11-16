@@ -38,6 +38,7 @@ The following arguments are supported:
 * `gcp_profile` - (Optional) Provider details if type is google cloud.
 * `infoblox_profile` - (Optional) Provider details if type is infoblox.
 * `internal_profile` - (Optional) Provider details if type is avi.
+* `labels` - (Optional) Key value pairs for granular object access control.
 * `oci_profile` - (Optional) Provider details for oracle cloud.
 * `openstack_profile` - (Optional) Provider details if type is openstack.
 * `proxy_configuration` - (Optional) Field introduced in 17.1.1.

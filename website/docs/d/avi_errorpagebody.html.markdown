@@ -36,6 +36,7 @@ In addition to all arguments above, the following attributes are exported:
 
 * `error_page_body` - Error page body sent to client when match.
 * `format` - Format of an error page body html or json.
+* `labels` - Key value pairs for granular object access control.
 * `name` - Field introduced in 17.2.4.
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `uuid` - Field introduced in 17.2.4.

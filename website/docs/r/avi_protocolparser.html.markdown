@@ -30,6 +30,7 @@ resource "avi_protocolparser" "foo" {
 The following arguments are supported:
 
 * `description` - (Optional) Description of the protocol parser.
+* `labels` - (Optional) Key value pairs for granular object access control.
 * `name` - (Optional) Name of the protocol parser.
 * `parser_code` - (Optional) Command script provided inline.
 * `tenant_ref` - (Optional) Tenant uuid of the protocol parser.

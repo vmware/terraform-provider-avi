@@ -38,6 +38,7 @@ The following arguments are supported:
 * `dhparam` - (Optional) Dh parameters used in ssl.
 * `enable_early_data` - (Optional) Enable early data processing for tls1.3 connections.
 * `enable_ssl_session_reuse` - (Optional) Enable ssl session re-use.
+* `labels` - (Optional) Key value pairs for granular object access control.
 * `prefer_client_cipher_ordering` - (Optional) Prefer the ssl cipher ordering presented by the client during the ssl handshake over the one specified in the ssl profile.
 * `send_close_notify` - (Optional) Send 'close notify' alert message for a clean shutdown of the ssl connection.
 * `ssl_rating` - (Optional) Dict settings for sslprofile.

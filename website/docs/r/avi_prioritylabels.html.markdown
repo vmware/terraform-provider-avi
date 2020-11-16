@@ -33,6 +33,7 @@ The following arguments are supported:
 * `cloud_ref` - (Optional) It is a reference to an object of type cloud.
 * `description` - (Optional) A description of the priority labels.
 * `equivalent_labels` - (Optional) Equivalent priority labels in descending order.
+* `labels` - (Optional) Key value pairs for granular object access control.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant.
 
 

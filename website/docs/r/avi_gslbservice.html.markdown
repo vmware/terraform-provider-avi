@@ -42,6 +42,7 @@ The following arguments are supported:
 * `health_monitor_scope` - (Optional) Health monitor probe can be executed for all the members or it can be executed only for third-party members.
 * `hm_off` - (Optional) This field is an internal field and is used in se.
 * `is_federated` - (Optional) This field indicates that this object is replicated across gslb federation.
+* `labels` - (Optional) Key value pairs for granular object access control.
 * `min_members` - (Optional) The minimum number of members to distribute traffic to.
 * `num_dns_ip` - (Optional) Number of ip addresses of this gslb service to be returned by the dns service.
 * `pool_algorithm` - (Optional) The load balancing algorithm will pick a gslb pool within the gslb service list of available pools.

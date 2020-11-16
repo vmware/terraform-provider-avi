@@ -38,6 +38,7 @@ In addition to all arguments above, the following attributes are exported:
 * `enable` - Enable or disable this waf rule group.
 * `hit_action` - If a rule in this group matches the match_value pattern, this action will be executed.
 * `is_learning_group` - This field indicates that this group is used for learning.
+* `labels` - Key value pairs for granular object access control.
 * `locations` - Positive security model locations.
 * `miss_action` - If a rule in this group does not match the match_value pattern, this action will be executed.
 * `name` - User defined name of the group.

@@ -41,6 +41,7 @@ In addition to all arguments above, the following attributes are exported:
 * `http_response_policy` - Http response policy for the virtual service.
 * `http_security_policy` - Http security policy for the virtual service.
 * `is_internal_policy` - Boolean flag to set is_internal_policy.
+* `labels` - Key value pairs for granular object access control.
 * `name` - Name of the http policy set.
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `uuid` - Uuid of the http policy set.

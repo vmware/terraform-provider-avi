@@ -37,6 +37,7 @@ The following arguments are supported:
 * `http_response_policy` - (Optional) Http response policy for the virtual service.
 * `http_security_policy` - (Optional) Http security policy for the virtual service.
 * `is_internal_policy` - (Optional) Boolean flag to set is_internal_policy.
+* `labels` - (Optional) Key value pairs for granular object access control.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant.
 
 

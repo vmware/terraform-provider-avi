@@ -36,6 +36,7 @@ In addition to all arguments above, the following attributes are exported:
 
 * `connection_mirror` - When enabled, avi mirrors all tcp fastpath connections to standby.
 * `description` - User defined description for the object.
+* `labels` - Key value pairs for granular object access control.
 * `name` - The name of the network profile.
 * `profile` - Dict settings for networkprofile.
 * `tenant_ref` - It is a reference to an object of type tenant.

@@ -32,6 +32,7 @@ The following arguments are supported:
 * `base_file_refs` - (Optional) Ip reputation db base file.
 * `description` - (Optional) Description.
 * `incremental_file_refs` - (Optional) Ip reputation db incremental update files.
+* `labels` - (Optional) Key value pairs for granular object access control.
 * `name` - (Optional) Ip reputation db name.
 * `service_status` - (Optional) If this object is managed by the ip reputation service, this field contain the status of this syncronization.
 * `tenant_ref` - (Optional) Tenant that this object belongs to.

@@ -45,6 +45,7 @@ The following arguments are supported:
 * `key_base64` - (Optional) States if the private key is base64 encoded.
 * `key_params` - (Optional) Dict settings for sslkeyandcertificate.
 * `key_passphrase` - (Optional) Passphrase used to encrypt the private key.
+* `labels` - (Optional) Key value pairs for granular object access control.
 * `ocsp_config` - (Optional) Configuration related to ocsp.
 * `ocsp_error_status` - (Optional) Error reported during ocsp status query.
 * `ocsp_response_info` - (Optional) Information related to ocsp response.

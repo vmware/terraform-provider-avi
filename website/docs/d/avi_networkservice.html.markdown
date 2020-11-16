@@ -37,6 +37,7 @@ data "avi_networkservice" "foo_networkservice" {
 In addition to all arguments above, the following attributes are exported:
 
 * `cloud_ref` - It is a reference to an object of type cloud.
+* `labels` - Key value pairs for granular object access control.
 * `name` - Name of the networkservice.
 * `routing_service` - Routing information of the networkservice.
 * `se_group_ref` - Service engine group to which the service is applied.

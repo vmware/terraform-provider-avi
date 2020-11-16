@@ -31,6 +31,7 @@ The following arguments are supported:
 
 * `error_page_body` - (Optional) Error page body sent to client when match.
 * `format` - (Optional) Format of an error page body html or json.
+* `labels` - (Optional) Key value pairs for granular object access control.
 * `name` - (Optional) Field introduced in 17.2.4.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant.
 

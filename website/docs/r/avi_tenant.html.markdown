@@ -34,6 +34,7 @@ The following arguments are supported:
 * `created_by` - (Optional) Creator of this tenant.
 * `description` - (Optional) User defined description for the object.
 * `local` - (Optional) Boolean flag to set local.
+* `suggested_object_labels` - (Optional) Suggestive pool of key value pairs for recommending assignment of labels to objects in the user interface.
 
 
 ### Timeouts

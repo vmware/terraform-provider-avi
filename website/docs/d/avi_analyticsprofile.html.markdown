@@ -108,6 +108,7 @@ In addition to all arguments above, the following attributes are exported:
 * `hs_security_tls11_score` - Score assigned when supporting tls1.1 encryption protocol.
 * `hs_security_tls12_score` - Score assigned when supporting tls1.2 encryption protocol.
 * `hs_security_weak_signature_algo_penalty` - Penalty for allowing weak signature algorithm(s).
+* `labels` - Key value pairs for granular object access control.
 * `name` - The name of the analytics profile.
 * `ondemand_metrics_idle_timeout` - This flag sets the time duration of no live data traffic after which virtual service metrics processing is suspended.
 * `ranges` - List of http status code ranges to be excluded from being classified as an error.

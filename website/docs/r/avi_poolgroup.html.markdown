@@ -38,6 +38,7 @@ The following arguments are supported:
 * `enable_http2` - (Optional) Enable http/2 for traffic from virtualservice to all the backend servers in all the pools configured under this poolgroup.
 * `fail_action` - (Optional) Enable an action - close connection, http redirect, or local http response - when a pool group failure happens.
 * `implicit_priority_labels` - (Optional) Whether an implicit set of priority labels is generated.
+* `labels` - (Optional) Key value pairs for granular object access control.
 * `members` - (Optional) List of pool group members object of type poolgroupmember.
 * `min_servers` - (Optional) The minimum number of servers to distribute traffic to.
 * `priority_labels_ref` - (Optional) Uuid of the priority labels.

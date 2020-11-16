@@ -39,6 +39,7 @@ In addition to all arguments above, the following attributes are exported:
 * `country_codes` - Populate the ip address ranges from the geo database for this country.
 * `description` - User defined description for the object.
 * `ip_ports` - Configure (ip address, port) tuple(s).
+* `labels` - Key value pairs for granular object access control.
 * `marathon_app_name` - Populate ip addresses from tasks of this marathon app.
 * `marathon_service_port` - Task port associated with marathon service port.
 * `name` - Name of the ip address group.

@@ -41,6 +41,7 @@ In addition to all arguments above, the following attributes are exported:
 * `gcp_profile` - Provider details if type is google cloud.
 * `infoblox_profile` - Provider details if type is infoblox.
 * `internal_profile` - Provider details if type is avi.
+* `labels` - Key value pairs for granular object access control.
 * `name` - Name for the ipam/dns provider profile.
 * `oci_profile` - Provider details for oracle cloud.
 * `openstack_profile` - Provider details if type is openstack.

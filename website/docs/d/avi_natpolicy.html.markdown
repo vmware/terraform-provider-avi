@@ -36,6 +36,7 @@ In addition to all arguments above, the following attributes are exported:
 
 * `created_by` - Creator name.
 * `description` - Field introduced in 18.2.3.
+* `labels` - Key value pairs for granular object access control.
 * `name` - Name of the nat policy.
 * `rules` - Nat policy rules.
 * `tenant_ref` - It is a reference to an object of type tenant.

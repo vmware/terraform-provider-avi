@@ -70,6 +70,7 @@ In addition to all arguments above, the following attributes are exported:
 * `icap_request_profile_refs` - The config settings for the icap server when checking the http request.
 * `ign_pool_net_reach` - Ignore pool servers network reachability constraints for virtual service placement.
 * `l4_policies` - L4 policies applied to the data traffic of the virtual service.
+* `labels` - Key value pairs for granular object access control.
 * `limit_doser` - Limit potential dos attackers who exceed max_cps_per_client significantly to a fraction of max_cps_per_client for a while.
 * `max_cps_per_client` - Maximum connections per second per client ip.
 * `microservice_ref` - Microservice representing the virtual service.

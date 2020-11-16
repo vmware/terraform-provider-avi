@@ -34,6 +34,7 @@ The following arguments are supported:
 * `datascript` - (Optional) Datascripts to execute.
 * `description` - (Optional) User defined description for the object.
 * `ipgroup_refs` - (Optional) Uuid of ip groups that could be referred by vsdatascriptset objects.
+* `labels` - (Optional) Key value pairs for granular object access control.
 * `pool_group_refs` - (Optional) Uuid of pool groups that could be referred by vsdatascriptset objects.
 * `pool_refs` - (Optional) Uuid of pools that could be referred by vsdatascriptset objects.
 * `protocol_parser_refs` - (Optional) List of protocol parsers that could be referred by vsdatascriptset objects.
