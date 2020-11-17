@@ -89,7 +89,7 @@ resource "avi_virtualservice" "test_vs" {
     port_range_end = 80
   }
   cloud_type                   = "CLOUD_VCENTER"
-  ssl_key_and_certificate_refs = [data.avi_sslkeyandcertificate.system_default_cert.id]
+  ssl_key_and_certificate_refs = [avi_sslkeyandcertificate.terraform_vs_cert.id]
   ssl_profile_ref              = data.avi_sslprofile.system_standard_sslprofile.id
 }
 
@@ -173,3 +173,12 @@ resource "avi_server" "test_server" {
   hostname = var.avi_test_server_p12
 }
 
+resource "avi_sslkeyandcertificate" "terraform_vs_cert" {
+  name = "terraform_vs_cert"
+  key = file("${path.module}/app_cert.key")
+  certificate {
+    self_signed = true
+    certificate = file("${path.module}/app_cert.crt")
+  }
+  type= "SSL_CERTIFICATE_TYPE_VIRTUALSERVICE"
+}
