@@ -30,10 +30,6 @@ variable "server1_port" {
   type    = number
   default = 8000
 }
-variable "application_profile1" {
-  type    = string
-  default = "System-L4-Application"
-}
 variable "poolgroup_name" {
   type    = string
   default = "poolgroup1"
@@ -50,8 +46,3 @@ variable "vs_port" {
   type    = number
   default = "8990"
 }
-variable "network_profile" {
-  type    = string
-  default = "System-TCP-Proxy"
-}
-

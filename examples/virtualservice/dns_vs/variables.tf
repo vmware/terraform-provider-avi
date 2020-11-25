@@ -38,10 +38,6 @@ variable "ssl_profile1" {
   type    = string
   default = "System-Standard"
 }
-variable "application_profile1" {
-  type    = string
-  default = "System-DNS"
-}
 variable "poolgroup_name" {
   type    = string
   default = "poolgroup1"
@@ -58,8 +54,3 @@ variable "vs_port" {
   type    = number
   default = "8990"
 }
-variable "network_profile" {
-  type    = string
-  default = "System-UDP-Per-Pkt"
-}
-
