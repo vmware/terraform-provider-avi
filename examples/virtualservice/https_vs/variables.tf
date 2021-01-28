@@ -30,18 +30,6 @@ variable "server1_port" {
   type    = number
   default = 8000
 }
-variable "ssl_key_cert1" {
-  type    = string
-  default = "System-Default-Cert"
-}
-variable "ssl_profile1" {
-  type    = string
-  default = "System-Standard"
-}
-variable "application_profile1" {
-  type    = string
-  default = "System-Secure-HTTP"
-}
 variable "poolgroup_name" {
   type    = string
   default = "poolgroup1"
@@ -58,8 +46,3 @@ variable "vs_port" {
   type    = number
   default = "8990"
 }
-variable "network_profile" {
-  type    = string
-  default = "System-TCP-Proxy"
-}
-
