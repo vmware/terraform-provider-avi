@@ -1,4 +1,4 @@
-module github.com/terraform-providers/terraform-provider-avi
+module github.com/vmware/terraform-provider-avi
 
 go 1.12
 

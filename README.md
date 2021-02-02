@@ -1,6 +1,6 @@
 Terraform Provider
 ==================
-- [![Build Status](https://travis-ci.org/terraform-providers/terraform-provider-avi.svg?branch=master)](https://travis-ci.org/terraform-providers/terraform-provider-avi)
+- [![Build Status](https://travis-ci.org/vmware/terraform-provider-avi.svg?branch=master)](https://travis-ci.org/vmware/terraform-provider-avi)
 - [![Gitter chat](https://badges.gitter.im/hashicorp-terraform/Lobby.png)](https://gitter.im/hashicorp-terraform/Lobby)
 - Website: https://www.terraform.io
 - Mailing list: [Google Groups](http://groups.google.com/group/terraform-tool)
@@ -66,17 +66,17 @@ application_profile_ref= "${data.avi_applicationprofile.system_https_profile.id}
 Building The Provider
 ---------------------
 
-Clone repository to: `$GOPATH/src/github.com/terraform-providers/terraform-provider-avi`
+Clone repository to: `$GOPATH/src/github.com/vmware/terraform-provider-avi`
 
 ```sh
-$ mkdir -p $GOPATH/src/github.com/terraform-providers; cd $GOPATH/src/github.com/terraform-providers
-$ git clone https://github.com/terraform-providers/terraform-provider-avi.git
+$ mkdir -p $GOPATH/src/github.com/vmware; cd $GOPATH/src/github.com/vmware
+$ git clone https://github.com/vmware/terraform-provider-avi.git
 ```
 
 Enter the provider directory and build the provider
 
 ```sh
-$ cd $GOPATH/src/github.com/terraform-providers/terraform-provider-
+$ cd $GOPATH/src/github.com/vmware/terraform-provider-avi
 
 
 $ make

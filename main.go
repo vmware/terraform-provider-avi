@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/hashicorp/terraform/plugin"
-	"github.com/terraform-providers/terraform-provider-avi/avi"
+	"github.com/vmware/terraform-provider-avi/avi"
 )
 
 func main() {
