@@ -34,26 +34,26 @@ data "avi_healthmonitor" "foo_healthmonitor" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `allow_duplicate_monitors` - By default, multiple instances of the same healthmonitor to the same server are suppressed intelligently.
-* `authentication` - Authentication information for username/password.
+* `allow_duplicate_monitors` - By default, multiple instances of the same healthmonitor to the same server are suppressed intelligently. In rare cases, the monitor may have specific constructs that go beyond the server keys (ip, port, etc.) during which such suppression is not desired. Use this knob to allow duplicates. Field introduced in 18.2.8. Allowed in basic(allowed values- true) edition, essentials(allowed values- true) edition, enterprise edition.
+* `authentication` - Authentication information for username/password. Field introduced in 20.1.1. Allowed in basic edition, essentials edition, enterprise edition.
 * `description` - User defined description for the object.
-* `disable_quickstart` - During addition of a server or healthmonitors or during bootup, avi performs sequential health checks rather than waiting for send-interval to kick in, to mark the server up as soon as possible.
+* `disable_quickstart` - During addition of a server or healthmonitors or during bootup, avi performs sequential health checks rather than waiting for send-interval to kick in, to mark the server up as soon as possible. This knob may be used to turn this feature off. Field introduced in 18.2.7. Allowed in basic(allowed values- false) edition, essentials(allowed values- false) edition, enterprise edition.
 * `dns_monitor` - Dict settings for healthmonitor.
 * `external_monitor` - Dict settings for healthmonitor.
-* `failed_checks` - Number of continuous failed health checks before the server is marked down.
+* `failed_checks` - Number of continuous failed health checks before the server is marked down. Allowed values are 1-50.
 * `http_monitor` - Dict settings for healthmonitor.
 * `https_monitor` - Dict settings for healthmonitor.
-* `is_federated` - This field describes the object's replication scope.
-* `monitor_port` - Use this port instead of the port defined for the server in the pool.
+* `is_federated` - This field describes the object's replication scope. If the field is set to false, then the object is visible within the controller-cluster and its associated service-engines. If the field is set to true, then the object is replicated across the federation. Field introduced in 17.1.3. Allowed in basic(allowed values- false) edition, essentials(allowed values- false) edition, enterprise edition.
+* `monitor_port` - Use this port instead of the port defined for the server in the pool. If the monitor succeeds to this port, the load balanced traffic will still be sent to the port of the server defined within the pool. Allowed values are 1-65535. Special values are 0 - 'use server port'.
 * `name` - A user friendly name for this health monitor.
-* `radius_monitor` - Health monitor for radius.
-* `receive_timeout` - A valid response from the server is expected within the receive timeout window.
-* `send_interval` - Frequency, in seconds, that monitors are sent to a server.
-* `sip_monitor` - Health monitor for sip.
-* `successful_checks` - Number of continuous successful health checks before server is marked up.
+* `radius_monitor` - Health monitor for radius. Field introduced in 18.2.3. Allowed in basic edition, essentials edition, enterprise edition.
+* `receive_timeout` - A valid response from the server is expected within the receive timeout window. This timeout must be less than the send interval. If server status is regularly flapping up and down, consider increasing this value. Allowed values are 1-2400. Unit is sec.
+* `send_interval` - Frequency, in seconds, that monitors are sent to a server. Allowed values are 1-3600. Unit is sec.
+* `sip_monitor` - Health monitor for sip. Field introduced in 17.2.8, 18.1.3, 18.2.1. Allowed in basic edition, essentials edition, enterprise edition.
+* `successful_checks` - Number of continuous successful health checks before server is marked up. Allowed values are 1-50.
 * `tcp_monitor` - Dict settings for healthmonitor.
 * `tenant_ref` - It is a reference to an object of type tenant.
-* `type` - Type of the health monitor.
+* `type` - Type of the health monitor. Enum options - HEALTH_MONITOR_PING, HEALTH_MONITOR_TCP, HEALTH_MONITOR_HTTP, HEALTH_MONITOR_HTTPS, HEALTH_MONITOR_EXTERNAL, HEALTH_MONITOR_UDP, HEALTH_MONITOR_DNS, HEALTH_MONITOR_GSLB, HEALTH_MONITOR_SIP, HEALTH_MONITOR_RADIUS. Allowed in basic(allowed values- health_monitor_ping,health_monitor_tcp,health_monitor_udp,health_monitor_http,health_monitor_https) edition, essentials(allowed values- health_monitor_ping,health_monitor_tcp,health_monitor_udp) edition, enterprise edition.
 * `udp_monitor` - Dict settings for healthmonitor.
 * `uuid` - Uuid of the health monitor.
 

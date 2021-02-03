@@ -35,7 +35,7 @@ data "avi_testsedatastorelevel1" "foo_testsedatastorelevel1" {
 In addition to all arguments above, the following attributes are exported:
 
 * `name` - Name of the object.
-* `tenant_ref` - It is a reference to an object of type tenant.
-* `test_se_datastore_level_2_ref` - It is a reference to an object of type testsedatastorelevel2.
+* `tenant_ref` - It is a reference to an object of type tenant. Field introduced in 18.2.6.
+* `test_se_datastore_level_2_ref` - It is a reference to an object of type testsedatastorelevel2. Field introduced in 18.2.6.
 * `uuid` - Unique object identifier of the object.
 

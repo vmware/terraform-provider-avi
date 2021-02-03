@@ -30,16 +30,16 @@ resource "avi_vrfcontext" "foo" {
 The following arguments are supported:
 
 * `name` - (Required) Name of the object.
-* `attrs` - (Optional) Key/value vrfcontext attributes.
-* `bfd_profile` - (Optional) Bfd configuration profile.
+* `attrs` - (Optional) Key/value vrfcontext attributes. Field introduced in 20.1.2. Allowed in basic edition, essentials edition, enterprise edition.
+* `bfd_profile` - (Optional) Bfd configuration profile. Field introduced in 20.1.1. Allowed in basic edition, essentials edition, enterprise edition.
 * `bgp_profile` - (Optional) Bgp local and peer info.
 * `cloud_ref` - (Optional) It is a reference to an object of type cloud.
-* `debugvrfcontext` - (Optional) Configure debug flags for vrf.
+* `debugvrfcontext` - (Optional) Configure debug flags for vrf. Field introduced in 17.1.1.
 * `description` - (Optional) User defined description for the object.
-* `gateway_mon` - (Optional) Configure ping based heartbeat check for gateway in service engines of vrf.
-* `internal_gateway_monitor` - (Optional) Configure ping based heartbeat check for all default gateways in service engines of vrf.
-* `labels` - (Optional) Key/value labels which can be used for object access policy permission scoping.
-* `lldp_enable` - (Optional) Enable lldp.
+* `gateway_mon` - (Optional) Configure ping based heartbeat check for gateway in service engines of vrf. Maximum of 32 items allowed.
+* `internal_gateway_monitor` - (Optional) Configure ping based heartbeat check for all default gateways in service engines of vrf. Field introduced in 17.1.1.
+* `labels` - (Optional) Key/value labels which can be used for object access policy permission scoping. Field introduced in 18.2.7, 20.1.1.
+* `lldp_enable` - (Optional) Enable lldp. Field introduced in 18.2.10, 20.1.1. Allowed in basic(allowed values- true) edition, essentials(allowed values- true) edition, enterprise edition.
 * `static_routes` - (Optional) List of list.
 * `system_default` - (Optional) Boolean flag to set system_default.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant.

@@ -29,23 +29,23 @@ resource "avi_nsxtsegmentruntime" "foo" {
 
 The following arguments are supported:
 
-* `cloud_ref` - (Optional) Nsxt segment belongs to cloud.
-* `dhcp6_ranges` - (Optional) V6 dhcp ranges configured in nsxt.
-* `dhcp_enabled` - (Optional) Ip address management scheme for this segment associated network.
-* `dhcp_ranges` - (Optional) Dhcp ranges configured in nsxt.
-* `name` - (Optional) Segment object name.
-* `nw_name` - (Optional) Network name.
-* `nw_ref` - (Optional) Corresponding network object in avi.
-* `opaque_network_id` - (Optional) Opaque network id.
-* `segment_gw` - (Optional) Segment gateway.
-* `segment_gw6` - (Optional) V6 segment gateway.
-* `segment_id` - (Optional) Segment id.
-* `segname` - (Optional) Segment name.
-* `subnet` - (Optional) Segment cidr.
-* `subnet6` - (Optional) V6 segment cidr.
-* `tenant_ref` - (Optional) Nsxt segment belongs to tenant.
-* `tier1_id` - (Optional) Tier1 router id.
-* `vrf_context_ref` - (Optional) Corresponding vrf context object in avi.
+* `cloud_ref` - (Optional) Nsxt segment belongs to cloud. It is a reference to an object of type cloud. Field introduced in 20.1.1.
+* `dhcp6_ranges` - (Optional) V6 dhcp ranges configured in nsxt. Field introduced in 20.1.1.
+* `dhcp_enabled` - (Optional) Ip address management scheme for this segment associated network. Field introduced in 20.1.1.
+* `dhcp_ranges` - (Optional) Dhcp ranges configured in nsxt. Field introduced in 20.1.1.
+* `name` - (Optional) Segment object name. Field introduced in 20.1.1.
+* `nw_name` - (Optional) Network name. Field introduced in 20.1.1.
+* `nw_ref` - (Optional) Corresponding network object in avi. It is a reference to an object of type network. Field introduced in 20.1.1.
+* `opaque_network_id` - (Optional) Opaque network id. Field introduced in 20.1.1.
+* `segment_gw` - (Optional) Segment gateway. Field introduced in 20.1.1.
+* `segment_gw6` - (Optional) V6 segment gateway. Field introduced in 20.1.1.
+* `segment_id` - (Optional) Segment id. Field introduced in 20.1.1.
+* `segname` - (Optional) Segment name. Field introduced in 20.1.1.
+* `subnet` - (Optional) Segment cidr. Field introduced in 20.1.1.
+* `subnet6` - (Optional) V6 segment cidr. Field introduced in 20.1.1.
+* `tenant_ref` - (Optional) Nsxt segment belongs to tenant. It is a reference to an object of type tenant. Field introduced in 20.1.1.
+* `tier1_id` - (Optional) Tier1 router id. Field introduced in 20.1.1.
+* `vrf_context_ref` - (Optional) Corresponding vrf context object in avi. It is a reference to an object of type vrfcontext. Field introduced in 20.1.1.
 
 
 ### Timeouts
@@ -60,5 +60,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-* `uuid` -  Uuid.
+* `uuid` -  Uuid. Field introduced in 20.1.1.
 

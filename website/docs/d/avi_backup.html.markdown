@@ -34,11 +34,11 @@ data "avi_backup" "foo_backup" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `backup_config_ref` - Backupconfiguration information.
+* `backup_config_ref` - Backupconfiguration information. It is a reference to an object of type backupconfiguration.
 * `file_name` - The file name of backup.
 * `local_file_url` - Url to download the backup file.
 * `remote_file_url` - Url to download the backup file.
-* `scheduler_ref` - Scheduler information.
+* `scheduler_ref` - Scheduler information. It is a reference to an object of type scheduler.
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `timestamp` - Unix timestamp of when the backup file is created.
 * `uuid` - Unique object identifier of the object.

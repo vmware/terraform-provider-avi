@@ -29,12 +29,12 @@ resource "avi_trafficcloneprofile" "foo" {
 
 The following arguments are supported:
 
-* `name` - (Required) Name for the traffic clone profile.
-* `clone_servers` - (Optional) Field introduced in 17.1.1.
-* `cloud_ref` - (Optional) It is a reference to an object of type cloud.
-* `labels` - (Optional) Key value pairs for granular object access control.
-* `preserve_client_ip` - (Optional) Specifies if client ip needs to be preserved to clone destination.
-* `tenant_ref` - (Optional) It is a reference to an object of type tenant.
+* `name` - (Required) Name for the traffic clone profile. Field introduced in 17.1.1.
+* `clone_servers` - (Optional) Field introduced in 17.1.1. Maximum of 10 items allowed.
+* `cloud_ref` - (Optional) It is a reference to an object of type cloud. Field introduced in 17.1.1.
+* `labels` - (Optional) Key value pairs for granular object access control. Also allows for classification and tagging of similar objects. Field introduced in 20.1.2. Maximum of 4 items allowed.
+* `preserve_client_ip` - (Optional) Specifies if client ip needs to be preserved to clone destination. Field introduced in 17.1.1.
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant. Field introduced in 17.1.1.
 
 
 ### Timeouts
@@ -49,5 +49,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-* `uuid` -  Uuid of the traffic clone profile.
+* `uuid` -  Uuid of the traffic clone profile. Field introduced in 17.1.1.
 

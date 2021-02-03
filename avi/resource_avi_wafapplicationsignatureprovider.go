@@ -1,15 +1,16 @@
 /*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
+* Copyright (c) 2017. Avi Networks.
+* Author: Gaurav Rastogi (grastogi@avinetworks.com)
+*
  */
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourceWafApplicationSignatureProviderSchema() map[string]*schema.Schema {
@@ -18,6 +19,12 @@ func ResourceWafApplicationSignatureProviderSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
+		},
+		"service_status": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceWebApplicationSignatureServiceStatusSchema(),
 		},
 		"tenant_ref": {
 			Type:     schema.TypeString,
@@ -52,7 +59,7 @@ func ResourceWafApplicationSignatureProviderImporter(d *schema.ResourceData, m i
 
 func ResourceAviWafApplicationSignatureProviderRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceWafApplicationSignatureProviderSchema()
-	err := ApiRead(d, meta, "wafapplicationsignatureprovider", s)
+	err := APIRead(d, meta, "wafapplicationsignatureprovider", s)
 	if err != nil {
 		log.Printf("[ERROR] in reading object %v\n", err)
 	}
@@ -61,7 +68,7 @@ func ResourceAviWafApplicationSignatureProviderRead(d *schema.ResourceData, meta
 
 func resourceAviWafApplicationSignatureProviderCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceWafApplicationSignatureProviderSchema()
-	err := ApiCreateOrUpdate(d, meta, "wafapplicationsignatureprovider", s)
+	err := APICreateOrUpdate(d, meta, "wafapplicationsignatureprovider", s)
 	if err == nil {
 		err = ResourceAviWafApplicationSignatureProviderRead(d, meta)
 	}
@@ -71,7 +78,7 @@ func resourceAviWafApplicationSignatureProviderCreate(d *schema.ResourceData, me
 func resourceAviWafApplicationSignatureProviderUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceWafApplicationSignatureProviderSchema()
 	var err error
-	err = ApiCreateOrUpdate(d, meta, "wafapplicationsignatureprovider", s)
+	err = APICreateOrUpdate(d, meta, "wafapplicationsignatureprovider", s)
 	if err == nil {
 		err = ResourceAviWafApplicationSignatureProviderRead(d, meta)
 	}
@@ -81,7 +88,7 @@ func resourceAviWafApplicationSignatureProviderUpdate(d *schema.ResourceData, me
 func resourceAviWafApplicationSignatureProviderDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "wafapplicationsignatureprovider"
 	client := meta.(*clients.AviClient)
-	if ApiDeleteSystemDefaultCheck(d) {
+	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
 	uuid := d.Get("uuid").(string)

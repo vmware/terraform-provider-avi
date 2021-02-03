@@ -1,11 +1,11 @@
 /*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
+* Copyright (c) 2017. Avi Networks.
+* Author: Gaurav Rastogi (grastogi@avinetworks.com)
+*
  */
 package avi
 
-import "github.com/hashicorp/terraform/helper/schema"
+import "github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 
 func dataSourceAviWafPolicy() *schema.Resource {
 	return &schema.Resource{
@@ -14,6 +14,11 @@ func dataSourceAviWafPolicy() *schema.Resource {
 			"allow_mode_delegation": {
 				Type:     schema.TypeBool,
 				Computed: true,
+			},
+			"allowlist": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceWafPolicyAllowlistSchema(),
 			},
 			"application_signatures": {
 				Type:     schema.TypeSet,
@@ -113,11 +118,6 @@ func dataSourceAviWafPolicy() *schema.Resource {
 			"waf_profile_ref": {
 				Type:     schema.TypeString,
 				Computed: true,
-			},
-			"whitelist": {
-				Type:     schema.TypeSet,
-				Computed: true,
-				Elem:     ResourceWafPolicyWhitelistSchema(),
 			},
 		},
 	}
