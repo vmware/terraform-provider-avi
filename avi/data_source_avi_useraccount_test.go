@@ -1,9 +1,10 @@
 package avi
 
 import (
-	"github.com/hashicorp/terraform/helper/resource"
 	"os"
 	"testing"
+
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
 )
 
 func TestAVIDataSourceUserAccount(t *testing.T) {
@@ -25,16 +26,16 @@ func TestAVIDataSourceUserAccount(t *testing.T) {
 
 func testAccAVIDSUserAccountConfig() string {
 	var password = os.Getenv("AVI_PASSWORD")
-	var new_password = password + "123"
+	var newPassword = password + "123"
 	var useraccount = `
 resource "avi_useraccount" "avi_user" {
   username     = "admin"
   old_password = "` + password + `"
-  password     = "` + new_password + `"
+  password     = "` + newPassword + `"
 }
 resource "avi_useraccount" "avi_user1" {
   username     = "admin"
-  old_password = "` + new_password + `"
+  old_password = "` + newPassword + `"
   password     = "` + password + `"
   depends_on = [avi_useraccount.avi_user]
 }

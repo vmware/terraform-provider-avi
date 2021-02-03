@@ -30,17 +30,17 @@ resource "avi_cloudconnectoruser" "foo" {
 The following arguments are supported:
 
 * `name` - (Required) Name of the object.
-* `azure_serviceprincipal` - (Optional) Field introduced in 17.2.1.
-* `azure_userpass` - (Optional) Field introduced in 17.2.1.
-* `gcp_credentials` - (Optional) Credentials for google cloud platform.
-* `nsxt_credentials` - (Optional) Credentials to talk to nsx-t manager.
-* `oci_credentials` - (Optional) Credentials for oracle cloud infrastructure.
+* `azure_serviceprincipal` - (Optional) Field introduced in 17.2.1. Allowed in basic edition, essentials edition, enterprise edition.
+* `azure_userpass` - (Optional) Field introduced in 17.2.1. Allowed in basic edition, essentials edition, enterprise edition.
+* `gcp_credentials` - (Optional) Credentials for google cloud platform. Field introduced in 18.2.1. Allowed in basic edition, essentials edition, enterprise edition.
+* `nsxt_credentials` - (Optional) Credentials to talk to nsx-t manager. Field introduced in 20.1.1. Allowed in essentials edition, enterprise edition.
+* `oci_credentials` - (Optional) Credentials for oracle cloud infrastructure. Field introduced in 18.2.1,18.1.3. Allowed in basic edition, essentials edition, enterprise edition.
 * `password` - (Optional) Placeholder for description of property password of obj type cloudconnectoruser field type string  type str.
 * `private_key` - (Optional) Placeholder for description of property private_key of obj type cloudconnectoruser field type string  type str.
 * `public_key` - (Optional) Placeholder for description of property public_key of obj type cloudconnectoruser field type string  type str.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant.
-* `tencent_credentials` - (Optional) Credentials for tencent cloud.
-* `vcenter_credentials` - (Optional) Credentials to talk to vcenter.
+* `tencent_credentials` - (Optional) Credentials for tencent cloud. Field introduced in 18.2.3. Allowed in basic edition, essentials edition, enterprise edition.
+* `vcenter_credentials` - (Optional) Credentials to talk to vcenter. Field introduced in 20.1.1.
 
 
 ### Timeouts

@@ -1,15 +1,16 @@
 /*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
+* Copyright (c) 2017. Avi Networks.
+* Author: Gaurav Rastogi (grastogi@avinetworks.com)
+*
  */
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourceVSDataScriptSetSchema() map[string]*schema.Schema {
@@ -25,6 +26,11 @@ func ResourceVSDataScriptSetSchema() map[string]*schema.Schema {
 			Elem:     ResourceVSDataScriptSchema(),
 		},
 		"description": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
+		"ip_reputation_db_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
@@ -101,7 +107,7 @@ func ResourceVSDataScriptSetImporter(d *schema.ResourceData, m interface{}) ([]*
 
 func ResourceAviVSDataScriptSetRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceVSDataScriptSetSchema()
-	err := ApiRead(d, meta, "vsdatascriptset", s)
+	err := APIRead(d, meta, "vsdatascriptset", s)
 	if err != nil {
 		log.Printf("[ERROR] in reading object %v\n", err)
 	}
@@ -110,7 +116,7 @@ func ResourceAviVSDataScriptSetRead(d *schema.ResourceData, meta interface{}) er
 
 func resourceAviVSDataScriptSetCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceVSDataScriptSetSchema()
-	err := ApiCreateOrUpdate(d, meta, "vsdatascriptset", s)
+	err := APICreateOrUpdate(d, meta, "vsdatascriptset", s)
 	if err == nil {
 		err = ResourceAviVSDataScriptSetRead(d, meta)
 	}
@@ -120,7 +126,7 @@ func resourceAviVSDataScriptSetCreate(d *schema.ResourceData, meta interface{}) 
 func resourceAviVSDataScriptSetUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceVSDataScriptSetSchema()
 	var err error
-	err = ApiCreateOrUpdate(d, meta, "vsdatascriptset", s)
+	err = APICreateOrUpdate(d, meta, "vsdatascriptset", s)
 	if err == nil {
 		err = ResourceAviVSDataScriptSetRead(d, meta)
 	}
@@ -130,7 +136,7 @@ func resourceAviVSDataScriptSetUpdate(d *schema.ResourceData, meta interface{}) 
 func resourceAviVSDataScriptSetDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "vsdatascriptset"
 	client := meta.(*clients.AviClient)
-	if ApiDeleteSystemDefaultCheck(d) {
+	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
 	uuid := d.Get("uuid").(string)

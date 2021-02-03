@@ -34,11 +34,11 @@ data "avi_natpolicy" "foo_natpolicy" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `created_by` - Creator name.
+* `created_by` - Creator name. Field introduced in 18.2.3.
 * `description` - Field introduced in 18.2.3.
-* `labels` - Key value pairs for granular object access control.
-* `name` - Name of the nat policy.
-* `rules` - Nat policy rules.
-* `tenant_ref` - It is a reference to an object of type tenant.
-* `uuid` - Uuid of the nat policy.
+* `labels` - Key value pairs for granular object access control. Also allows for classification and tagging of similar objects. Field introduced in 20.1.2. Maximum of 4 items allowed.
+* `name` - Name of the nat policy. Field introduced in 18.2.3.
+* `rules` - Nat policy rules. Field introduced in 18.2.3.
+* `tenant_ref` - It is a reference to an object of type tenant. Field introduced in 18.2.3.
+* `uuid` - Uuid of the nat policy. Field introduced in 18.2.3.
 

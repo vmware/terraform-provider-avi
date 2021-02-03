@@ -1,15 +1,16 @@
 /*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
+* Copyright (c) 2017. Avi Networks.
+* Author: Gaurav Rastogi (grastogi@avinetworks.com)
+*
  */
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourceApplicationPersistenceProfileSchema() map[string]*schema.Schema {
@@ -99,7 +100,7 @@ func ResourceApplicationPersistenceProfileImporter(d *schema.ResourceData, m int
 
 func ResourceAviApplicationPersistenceProfileRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceApplicationPersistenceProfileSchema()
-	err := ApiRead(d, meta, "applicationpersistenceprofile", s)
+	err := APIRead(d, meta, "applicationpersistenceprofile", s)
 	if err != nil {
 		log.Printf("[ERROR] in reading object %v\n", err)
 	}
@@ -108,7 +109,7 @@ func ResourceAviApplicationPersistenceProfileRead(d *schema.ResourceData, meta i
 
 func resourceAviApplicationPersistenceProfileCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceApplicationPersistenceProfileSchema()
-	err := ApiCreateOrUpdate(d, meta, "applicationpersistenceprofile", s)
+	err := APICreateOrUpdate(d, meta, "applicationpersistenceprofile", s)
 	if err == nil {
 		err = ResourceAviApplicationPersistenceProfileRead(d, meta)
 	}
@@ -118,7 +119,7 @@ func resourceAviApplicationPersistenceProfileCreate(d *schema.ResourceData, meta
 func resourceAviApplicationPersistenceProfileUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceApplicationPersistenceProfileSchema()
 	var err error
-	err = ApiCreateOrUpdate(d, meta, "applicationpersistenceprofile", s)
+	err = APICreateOrUpdate(d, meta, "applicationpersistenceprofile", s)
 	if err == nil {
 		err = ResourceAviApplicationPersistenceProfileRead(d, meta)
 	}
@@ -128,7 +129,7 @@ func resourceAviApplicationPersistenceProfileUpdate(d *schema.ResourceData, meta
 func resourceAviApplicationPersistenceProfileDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "applicationpersistenceprofile"
 	client := meta.(*clients.AviClient)
-	if ApiDeleteSystemDefaultCheck(d) {
+	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
 	uuid := d.Get("uuid").(string)

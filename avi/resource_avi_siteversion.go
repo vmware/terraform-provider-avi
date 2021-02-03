@@ -1,15 +1,16 @@
 /*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
+* Copyright (c) 2017. Avi Networks.
+* Author: Gaurav Rastogi (grastogi@avinetworks.com)
+*
  */
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourceSiteVersionSchema() map[string]*schema.Schema {
@@ -21,8 +22,7 @@ func ResourceSiteVersionSchema() map[string]*schema.Schema {
 		},
 		"name": {
 			Type:     schema.TypeString,
-			Optional: true,
-			Computed: true,
+			Required: true,
 		},
 		"prev_target_version": {
 			Type:     schema.TypeInt,
@@ -97,7 +97,7 @@ func ResourceSiteVersionImporter(d *schema.ResourceData, m interface{}) ([]*sche
 
 func ResourceAviSiteVersionRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceSiteVersionSchema()
-	err := ApiRead(d, meta, "siteversion", s)
+	err := APIRead(d, meta, "siteversion", s)
 	if err != nil {
 		log.Printf("[ERROR] in reading object %v\n", err)
 	}
@@ -106,7 +106,7 @@ func ResourceAviSiteVersionRead(d *schema.ResourceData, meta interface{}) error 
 
 func resourceAviSiteVersionCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceSiteVersionSchema()
-	err := ApiCreateOrUpdate(d, meta, "siteversion", s)
+	err := APICreateOrUpdate(d, meta, "siteversion", s)
 	if err == nil {
 		err = ResourceAviSiteVersionRead(d, meta)
 	}
@@ -116,7 +116,7 @@ func resourceAviSiteVersionCreate(d *schema.ResourceData, meta interface{}) erro
 func resourceAviSiteVersionUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceSiteVersionSchema()
 	var err error
-	err = ApiCreateOrUpdate(d, meta, "siteversion", s)
+	err = APICreateOrUpdate(d, meta, "siteversion", s)
 	if err == nil {
 		err = ResourceAviSiteVersionRead(d, meta)
 	}
@@ -126,7 +126,7 @@ func resourceAviSiteVersionUpdate(d *schema.ResourceData, meta interface{}) erro
 func resourceAviSiteVersionDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "siteversion"
 	client := meta.(*clients.AviClient)
-	if ApiDeleteSystemDefaultCheck(d) {
+	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
 	uuid := d.Get("uuid").(string)

@@ -1,15 +1,16 @@
 /*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
+* Copyright (c) 2017. Avi Networks.
+* Author: Gaurav Rastogi (grastogi@avinetworks.com)
+*
  */
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourceImageSchema() map[string]*schema.Schema {
@@ -43,8 +44,7 @@ func ResourceImageSchema() map[string]*schema.Schema {
 		},
 		"name": {
 			Type:     schema.TypeString,
-			Optional: true,
-			Computed: true,
+			Required: true,
 		},
 		"se_info": {
 			Type:     schema.TypeSet,
@@ -110,7 +110,7 @@ func ResourceImageImporter(d *schema.ResourceData, m interface{}) ([]*schema.Res
 
 func ResourceAviImageRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceImageSchema()
-	err := ApiRead(d, meta, "image", s)
+	err := APIRead(d, meta, "image", s)
 	if err != nil {
 		log.Printf("[ERROR] in reading object %v\n", err)
 	}
@@ -119,7 +119,7 @@ func ResourceAviImageRead(d *schema.ResourceData, meta interface{}) error {
 
 func resourceAviImageCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceImageSchema()
-	err := ApiCreateOrUpdate(d, meta, "image", s)
+	err := APICreateOrUpdate(d, meta, "image", s)
 	if err == nil {
 		err = ResourceAviImageRead(d, meta)
 	}
@@ -129,7 +129,7 @@ func resourceAviImageCreate(d *schema.ResourceData, meta interface{}) error {
 func resourceAviImageUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceImageSchema()
 	var err error
-	err = ApiCreateOrUpdate(d, meta, "image", s)
+	err = APICreateOrUpdate(d, meta, "image", s)
 	if err == nil {
 		err = ResourceAviImageRead(d, meta)
 	}
@@ -139,7 +139,7 @@ func resourceAviImageUpdate(d *schema.ResourceData, meta interface{}) error {
 func resourceAviImageDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "image"
 	client := meta.(*clients.AviClient)
-	if ApiDeleteSystemDefaultCheck(d) {
+	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
 	uuid := d.Get("uuid").(string)

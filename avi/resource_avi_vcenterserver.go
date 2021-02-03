@@ -1,15 +1,16 @@
 /*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
+* Copyright (c) 2017. Avi Networks.
+* Author: Gaurav Rastogi (grastogi@avinetworks.com)
+*
  */
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourceVCenterServerSchema() map[string]*schema.Schema {
@@ -21,14 +22,12 @@ func ResourceVCenterServerSchema() map[string]*schema.Schema {
 		},
 		"content_lib": {
 			Type:     schema.TypeSet,
-			Optional: true,
-			Computed: true,
+			Required: true,
 			Elem:     ResourceContentLibConfigSchema(),
 		},
 		"name": {
 			Type:     schema.TypeString,
-			Optional: true,
-			Computed: true,
+			Required: true,
 		},
 		"tenant_ref": {
 			Type:     schema.TypeString,
@@ -42,13 +41,11 @@ func ResourceVCenterServerSchema() map[string]*schema.Schema {
 		},
 		"vcenter_credentials_ref": {
 			Type:     schema.TypeString,
-			Optional: true,
-			Computed: true,
+			Required: true,
 		},
 		"vcenter_url": {
 			Type:     schema.TypeString,
-			Optional: true,
-			Computed: true,
+			Required: true,
 		},
 	}
 }
@@ -73,7 +70,7 @@ func ResourceVCenterServerImporter(d *schema.ResourceData, m interface{}) ([]*sc
 
 func ResourceAviVCenterServerRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceVCenterServerSchema()
-	err := ApiRead(d, meta, "vcenterserver", s)
+	err := APIRead(d, meta, "vcenterserver", s)
 	if err != nil {
 		log.Printf("[ERROR] in reading object %v\n", err)
 	}
@@ -82,7 +79,7 @@ func ResourceAviVCenterServerRead(d *schema.ResourceData, meta interface{}) erro
 
 func resourceAviVCenterServerCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceVCenterServerSchema()
-	err := ApiCreateOrUpdate(d, meta, "vcenterserver", s)
+	err := APICreateOrUpdate(d, meta, "vcenterserver", s)
 	if err == nil {
 		err = ResourceAviVCenterServerRead(d, meta)
 	}
@@ -92,7 +89,7 @@ func resourceAviVCenterServerCreate(d *schema.ResourceData, meta interface{}) er
 func resourceAviVCenterServerUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceVCenterServerSchema()
 	var err error
-	err = ApiCreateOrUpdate(d, meta, "vcenterserver", s)
+	err = APICreateOrUpdate(d, meta, "vcenterserver", s)
 	if err == nil {
 		err = ResourceAviVCenterServerRead(d, meta)
 	}
@@ -102,7 +99,7 @@ func resourceAviVCenterServerUpdate(d *schema.ResourceData, meta interface{}) er
 func resourceAviVCenterServerDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "vcenterserver"
 	client := meta.(*clients.AviClient)
-	if ApiDeleteSystemDefaultCheck(d) {
+	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
 	uuid := d.Get("uuid").(string)

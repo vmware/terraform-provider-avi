@@ -1,15 +1,16 @@
 /*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
+* Copyright (c) 2017. Avi Networks.
+* Author: Gaurav Rastogi (grastogi@avinetworks.com)
+*
  */
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourceGslbGeoDbProfileSchema() map[string]*schema.Schema {
@@ -21,7 +22,7 @@ func ResourceGslbGeoDbProfileSchema() map[string]*schema.Schema {
 		},
 		"entries": {
 			Type:     schema.TypeList,
-			Optional: true,
+			Required: true,
 			Elem:     ResourceGslbGeoDbEntrySchema(),
 		},
 		"is_federated": {
@@ -71,7 +72,7 @@ func ResourceGslbGeoDbProfileImporter(d *schema.ResourceData, m interface{}) ([]
 
 func ResourceAviGslbGeoDbProfileRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceGslbGeoDbProfileSchema()
-	err := ApiRead(d, meta, "gslbgeodbprofile", s)
+	err := APIRead(d, meta, "gslbgeodbprofile", s)
 	if err != nil {
 		log.Printf("[ERROR] in reading object %v\n", err)
 	}
@@ -80,7 +81,7 @@ func ResourceAviGslbGeoDbProfileRead(d *schema.ResourceData, meta interface{}) e
 
 func resourceAviGslbGeoDbProfileCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceGslbGeoDbProfileSchema()
-	err := ApiCreateOrUpdate(d, meta, "gslbgeodbprofile", s)
+	err := APICreateOrUpdate(d, meta, "gslbgeodbprofile", s)
 	if err == nil {
 		err = ResourceAviGslbGeoDbProfileRead(d, meta)
 	}
@@ -90,7 +91,7 @@ func resourceAviGslbGeoDbProfileCreate(d *schema.ResourceData, meta interface{})
 func resourceAviGslbGeoDbProfileUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceGslbGeoDbProfileSchema()
 	var err error
-	err = ApiCreateOrUpdate(d, meta, "gslbgeodbprofile", s)
+	err = APICreateOrUpdate(d, meta, "gslbgeodbprofile", s)
 	if err == nil {
 		err = ResourceAviGslbGeoDbProfileRead(d, meta)
 	}
@@ -100,7 +101,7 @@ func resourceAviGslbGeoDbProfileUpdate(d *schema.ResourceData, meta interface{})
 func resourceAviGslbGeoDbProfileDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "gslbgeodbprofile"
 	client := meta.(*clients.AviClient)
-	if ApiDeleteSystemDefaultCheck(d) {
+	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
 	uuid := d.Get("uuid").(string)

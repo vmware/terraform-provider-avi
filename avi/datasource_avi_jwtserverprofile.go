@@ -1,27 +1,27 @@
 /*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
+* Copyright (c) 2017. Avi Networks.
+* Author: Gaurav Rastogi (grastogi@avinetworks.com)
+*
  */
 package avi
 
-import "github.com/hashicorp/terraform/helper/schema"
+import "github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 
-func dataSourceAviServiceEnginePolicy() *schema.Resource {
+func dataSourceAviJWTServerProfile() *schema.Resource {
 	return &schema.Resource{
-		Read: ResourceAviServiceEnginePolicyRead,
+		Read: ResourceAviJWTServerProfileRead,
 		Schema: map[string]*schema.Schema{
+			"issuer": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"jwks_keys": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"name": {
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
-			},
-			"nat_policy_ref": {
-				Type:     schema.TypeString,
-				Computed: true,
-			},
-			"se_group_ref": {
-				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"tenant_ref": {
@@ -32,10 +32,6 @@ func dataSourceAviServiceEnginePolicy() *schema.Resource {
 			"uuid": {
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
-			},
-			"vrf_ref": {
-				Type:     schema.TypeString,
 				Computed: true,
 			},
 		},

@@ -29,15 +29,17 @@ resource "avi_albservicesconfig" "foo" {
 
 The following arguments are supported:
 
-* `asset_contact` - (Optional) Information about the default contact for this controller cluster.
-* `feature_opt_in_status` - (Optional) Information about the portal features opted in for controller.
-* `ip_reputation_config` - (Optional) Default values to be used for ip reputation sync.
-* `mode` - (Optional) Mode helps log collection and upload.
-* `polling_interval` - (Optional) Time interval in minutes.
-* `portal_url` - (Optional) The fqdn or ip address of the customer portal.
-* `proactive_support_defaults` - (Optional) Default values to be used during proactive case creation and techsupport attachment.
-* `split_proxy_configuration` - (Optional) Split proxy configuration to connect external pulse services.
-* `use_split_proxy` - (Optional) By default, use system proxy configuration.if true, use split proxy configuration.
+* `app_signature_config` - (Required) Default values to be used for application signature sync. Field introduced in 20.1.4.
+* `feature_opt_in_status` - (Required) Information about the portal features opted in for controller. Field introduced in 20.1.1.
+* `ip_reputation_config` - (Required) Default values to be used for ip reputation sync. Field introduced in 20.1.1.
+* `portal_url` - (Required) The fqdn or ip address of the customer portal. Field introduced in 18.2.6.
+* `proactive_support_defaults` - (Required) Default values to be used during proactive case creation and techsupport attachment. Field introduced in 20.1.1.
+* `asset_contact` - (Optional) Information about the default contact for this controller cluster. Field introduced in 20.1.1.
+* `mode` - (Optional) Mode helps log collection and upload. Enum options - SALESFORCE, SYSTEST, MYVMWARE. Field introduced in 20.1.2. Allowed in basic(allowed values- salesforce,myvmware,systest) edition, essentials(allowed values- salesforce,myvmware,systest) edition, enterprise edition.
+* `polling_interval` - (Optional) Time interval in minutes. Allowed values are 5-60. Field introduced in 18.2.6.
+* `split_proxy_configuration` - (Optional) Split proxy configuration to connect external pulse services. Field introduced in 20.1.1.
+* `use_split_proxy` - (Optional) By default, use system proxy configuration.if true, use split proxy configuration. Field introduced in 20.1.1.
+* `use_tls` - (Optional) Secure the controller to pulse communication over tls. Field introduced in 20.1.3.
 
 
 ### Timeouts

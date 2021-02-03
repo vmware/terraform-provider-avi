@@ -1,25 +1,26 @@
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"os"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourceFileServiceSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"uri": &schema.Schema{
+		"uri": {
 			Type:     schema.TypeString,
 			Required: true,
 		},
-		"local_file": &schema.Schema{
+		"local_file": {
 			Type:     schema.TypeString,
 			Required: true,
 		},
 		//upload flag to state current local file will be uploaded to remote server.
-		"upload": &schema.Schema{
+		"upload": {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  true,
@@ -71,15 +72,14 @@ func ResourceAviFileServiceRead(d *schema.ResourceData, meta interface{}) error 
 			}
 		}
 	case false:
-		local_file := d.Get("local_file").(string)
-		log.Printf("[DEBUG] ResourceAviFileServiceRead reading local file %v\n", local_file)
-		if _, err := os.Stat(local_file); os.IsNotExist(err) {
+		localFile := d.Get("local_file").(string)
+		log.Printf("[DEBUG] ResourceAviFileServiceRead reading local file %v\n", localFile)
+		if _, err := os.Stat(localFile); os.IsNotExist(err) {
 			log.Printf("File does not exist")
 			return err
-		} else {
-			log.Printf("File exists")
-			return nil
 		}
+		log.Printf("File exists")
+		return nil
 	default:
 		return nil
 	}
@@ -110,7 +110,7 @@ func ResourceAviFileServiceUpdate(d *schema.ResourceData, meta interface{}) erro
 
 func ResourceAviFileServiceDelete(d *schema.ResourceData, meta interface{}) error {
 	client := meta.(*clients.AviClient)
-	local_file := d.Get("local_file").(string)
+	localFile := d.Get("local_file").(string)
 	switch upload := d.Get("upload").(bool); upload {
 	case true:
 		switch uri := d.Get("uri").(string); uri {
@@ -132,12 +132,12 @@ func ResourceAviFileServiceDelete(d *schema.ResourceData, meta interface{}) erro
 		}
 	case false:
 		// delete file
-		var err = os.Remove(local_file)
+		var err = os.Remove(localFile)
 		if err != nil {
-			log.Printf("[ERROR] ResourceAviFileServiceDelete Error for deleting file %v\n", local_file)
+			log.Printf("[ERROR] ResourceAviFileServiceDelete Error for deleting file %v\n", localFile)
 			return err
 		}
-		log.Printf("[INFO] ResourceAviFileServiceDelete file %v deleted\n", local_file)
+		log.Printf("[INFO] ResourceAviFileServiceDelete file %v deleted\n", localFile)
 	default:
 		return nil
 	}

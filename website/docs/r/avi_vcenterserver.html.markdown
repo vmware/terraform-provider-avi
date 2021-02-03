@@ -29,12 +29,12 @@ resource "avi_vcenterserver" "foo" {
 
 The following arguments are supported:
 
-* `cloud_ref` - (Optional) Vcenter belongs to cloud.
-* `content_lib` - (Optional) Vcenter template to create service engine.
-* `name` - (Optional) Availabilty zone where vcenter list belongs to.
-* `tenant_ref` - (Optional) Vcenter belongs to tenant.
-* `vcenter_credentials_ref` - (Optional) Credentials to access vcenter.
-* `vcenter_url` - (Optional) Vcenter hostname or ip address.
+* `content_lib` - (Required) Vcenter template to create service engine. Field introduced in 20.1.1.
+* `name` - (Required) Availabilty zone where vcenter list belongs to. Field introduced in 20.1.1.
+* `vcenter_credentials_ref` - (Required) Credentials to access vcenter. It is a reference to an object of type cloudconnectoruser. Field introduced in 20.1.1.
+* `vcenter_url` - (Required) Vcenter hostname or ip address. Field introduced in 20.1.1.
+* `cloud_ref` - (Optional) Vcenter belongs to cloud. It is a reference to an object of type cloud. Field introduced in 20.1.1.
+* `tenant_ref` - (Optional) Vcenter belongs to tenant. It is a reference to an object of type tenant. Field introduced in 20.1.1.
 
 
 ### Timeouts
@@ -49,5 +49,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-* `uuid` -  Vcenter config uuid.
+* `uuid` -  Vcenter config uuid. Field introduced in 20.1.1.
 

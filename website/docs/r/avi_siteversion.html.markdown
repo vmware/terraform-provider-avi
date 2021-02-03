@@ -29,17 +29,17 @@ resource "avi_siteversion" "foo" {
 
 The following arguments are supported:
 
-* `datetime` - (Optional) This field represents the creation time of the federateddiff.
-* `name` - (Optional) Name of the site.
-* `prev_target_version` - (Optional) Previous targer version for a site.
-* `replication_state` - (Optional) Replication state for a site.
-* `site_id` - (Optional) Cluster uuid of the site.
-* `target_timeline` - (Optional) Target timeline of the site.
-* `target_version` - (Optional) Target version of the site.
-* `tenant_ref` - (Optional) Tenant that this object belongs to.
-* `timeline` - (Optional) Timeline of the site.
-* `version` - (Optional) Version of the site.
-* `version_type` - (Optional) Type of message for which version is maintained.
+* `name` - (Required) Name of the site. Field introduced in 20.1.1.
+* `datetime` - (Optional) This field represents the creation time of the federateddiff. Field introduced in 20.1.1.
+* `prev_target_version` - (Optional) Previous targer version for a site. Field introduced in 20.1.1.
+* `replication_state` - (Optional) Replication state for a site. Enum options - REPLICATION_STATE_FASTFORWARD, REPLICATION_STATE_FORCESYNC, REPLICATION_STATE_STREAMING, REPLICATION_STATE_SUSPENDED, REPLICATION_STATE_INIT, REPLICATION_STATE_WAIT, REPLICATION_STATE_NOT_APPLICABLE. Field introduced in 20.1.1.
+* `site_id` - (Optional) Cluster uuid of the site. Field introduced in 20.1.1.
+* `target_timeline` - (Optional) Target timeline of the site. Field introduced in 20.1.1.
+* `target_version` - (Optional) Target version of the site. Field introduced in 20.1.1.
+* `tenant_ref` - (Optional) Tenant that this object belongs to. It is a reference to an object of type tenant. Field introduced in 20.1.1.
+* `timeline` - (Optional) Timeline of the site. Field introduced in 20.1.1.
+* `version` - (Optional) Version of the site. Field introduced in 20.1.1.
+* `version_type` - (Optional) Type of message for which version is maintained. Enum options - CONFIG_VERSION, HEALTH_STATUS_VERSION. Field introduced in 20.1.1.
 
 
 ### Timeouts
@@ -54,5 +54,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-* `uuid` -  Uuid of the siteversion object.
+* `uuid` -  Uuid of the siteversion object. Field introduced in 20.1.1.
 

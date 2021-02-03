@@ -30,17 +30,17 @@ resource "avi_applicationprofile" "foo" {
 The following arguments are supported:
 
 * `name` - (Required) The name of the application profile.
-* `type` - (Required) Specifies which application layer proxy is enabled for the virtual service.
-* `cloud_config_cksum` - (Optional) Checksum of application profiles.
-* `created_by` - (Optional) Name of the application profile creator.
+* `type` - (Required) Specifies which application layer proxy is enabled for the virtual service. Enum options - APPLICATION_PROFILE_TYPE_L4, APPLICATION_PROFILE_TYPE_HTTP, APPLICATION_PROFILE_TYPE_SYSLOG, APPLICATION_PROFILE_TYPE_DNS, APPLICATION_PROFILE_TYPE_SSL, APPLICATION_PROFILE_TYPE_SIP. Allowed in basic(allowed values- application_profile_type_l4,application_profile_type_http) edition, essentials(allowed values- application_profile_type_l4) edition, enterprise edition.
+* `cloud_config_cksum` - (Optional) Checksum of application profiles. Internally set by cloud connector. Field introduced in 17.2.14, 18.1.5, 18.2.1.
+* `created_by` - (Optional) Name of the application profile creator. Field introduced in 17.2.14, 18.1.5, 18.2.1.
 * `description` - (Optional) User defined description for the object.
 * `dns_service_profile` - (Optional) Specifies various dns service related controls for virtual service.
 * `dos_rl_profile` - (Optional) Specifies various security related controls for virtual service.
 * `http_profile` - (Optional) Specifies the http application proxy profile parameters.
-* `preserve_client_ip` - (Optional) Specifies if client ip needs to be preserved for backend connection.
-* `preserve_client_port` - (Optional) Specifies if we need to preserve client port while preserving client ip for backend connections.
-* `preserve_dest_ip_port` - (Optional) Specifies if destination ip and port needs to be preserved for backend connection.
-* `sip_service_profile` - (Optional) Specifies various sip service related controls for virtual service.
+* `preserve_client_ip` - (Optional) Specifies if client ip needs to be preserved for backend connection. Not compatible with connection multiplexing.
+* `preserve_client_port` - (Optional) Specifies if we need to preserve client port while preserving client ip for backend connections. Field introduced in 17.2.7.
+* `preserve_dest_ip_port` - (Optional) Specifies if destination ip and port needs to be preserved for backend connection. Field introduced in 20.1.1. Allowed in basic(allowed values- false) edition, essentials(allowed values- false) edition, enterprise edition.
+* `sip_service_profile` - (Optional) Specifies various sip service related controls for virtual service. Field introduced in 17.2.8, 18.1.3, 18.2.1. Allowed in basic edition, essentials edition, enterprise edition.
 * `tcp_app_profile` - (Optional) Specifies the tcp application proxy profile parameters.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant.
 

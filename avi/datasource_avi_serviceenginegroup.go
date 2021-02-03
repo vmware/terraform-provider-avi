@@ -1,11 +1,11 @@
 /*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
+* Copyright (c) 2017. Avi Networks.
+* Author: Gaurav Rastogi (grastogi@avinetworks.com)
+*
  */
 package avi
 
-import "github.com/hashicorp/terraform/helper/schema"
+import "github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 
 func dataSourceAviServiceEngineGroup() *schema.Resource {
 	return &schema.Resource{
@@ -162,6 +162,10 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeBool,
 				Computed: true,
 			},
+			"disable_flow_probes": {
+				Type:     schema.TypeBool,
+				Computed: true,
+			},
 			"disable_gro": {
 				Type:     schema.TypeBool,
 				Computed: true,
@@ -188,6 +192,22 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 			},
 			"distribute_vnics": {
 				Type:     schema.TypeBool,
+				Computed: true,
+			},
+			"dp_aggressive_hb_frequency": {
+				Type:     schema.TypeInt,
+				Computed: true,
+			},
+			"dp_aggressive_hb_timeout_count": {
+				Type:     schema.TypeInt,
+				Computed: true,
+			},
+			"dp_hb_frequency": {
+				Type:     schema.TypeInt,
+				Computed: true,
+			},
+			"dp_hb_timeout_count": {
+				Type:     schema.TypeInt,
 				Computed: true,
 			},
 			"enable_gratarp_permanent": {
@@ -230,12 +250,21 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeInt,
 				Computed: true,
 			},
+			"gcp_config": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceGCPSeGroupConfigSchema(),
+			},
 			"gratarp_permanent_periodicity": {
 				Type:     schema.TypeInt,
 				Computed: true,
 			},
 			"ha_mode": {
 				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"handle_per_pkt_attack": {
+				Type:     schema.TypeBool,
 				Computed: true,
 			},
 			"hardwaresecuritymodulegroup_ref": {
@@ -415,6 +444,15 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeInt,
 				Computed: true,
 			},
+			"objsync_config": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceObjSyncConfigSchema(),
+			},
+			"objsync_port": {
+				Type:     schema.TypeInt,
+				Computed: true,
+			},
 			"openstack_availability_zones": {
 				Type:     schema.TypeList,
 				Computed: true,
@@ -436,7 +474,15 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"pcap_tx_ring_rd_balancing_factor": {
+				Type:     schema.TypeInt,
+				Computed: true,
+			},
 			"per_app": {
+				Type:     schema.TypeBool,
+				Computed: true,
+			},
+			"per_vs_admission_control": {
 				Type:     schema.TypeBool,
 				Computed: true,
 			},
@@ -474,6 +520,10 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceDosThresholdProfileSchema(),
 			},
+			"se_dp_hm_drops": {
+				Type:     schema.TypeInt,
+				Computed: true,
+			},
 			"se_dp_max_hb_version": {
 				Type:     schema.TypeInt,
 				Computed: true,
@@ -510,11 +560,24 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeInt,
 				Computed: true,
 			},
+			"se_group_analytics_policy": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceSeGroupAnalyticsPolicySchema(),
+			},
 			"se_hyperthreaded_mode": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"se_ip_encap_ipc": {
+				Type:     schema.TypeInt,
+				Computed: true,
+			},
 			"se_kni_burst_factor": {
+				Type:     schema.TypeInt,
+				Computed: true,
+			},
+			"se_l3_encap_ipc": {
 				Type:     schema.TypeInt,
 				Computed: true,
 			},
@@ -680,6 +743,10 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Computed: true,
 			},
 			"use_hyperthreaded_cores": {
+				Type:     schema.TypeBool,
+				Computed: true,
+			},
+			"use_objsync": {
 				Type:     schema.TypeBool,
 				Computed: true,
 			},

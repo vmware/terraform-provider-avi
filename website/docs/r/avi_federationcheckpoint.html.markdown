@@ -29,11 +29,11 @@ resource "avi_federationcheckpoint" "foo" {
 
 The following arguments are supported:
 
-* `date` - (Optional) Date when the checkpoint was created.
-* `description` - (Optional) Description for this checkpoint.
-* `is_federated` - (Optional) This field describes the object's replication scope.
-* `name` - (Optional) Name of the checkpoint.
-* `tenant_ref` - (Optional) Tenant that this object belongs to.
+* `name` - (Required) Name of the checkpoint. Field introduced in 20.1.1.
+* `date` - (Optional) Date when the checkpoint was created. Field introduced in 20.1.1.
+* `description` - (Optional) Description for this checkpoint. Field introduced in 20.1.1.
+* `is_federated` - (Optional) This field describes the object's replication scope. If the field is set to false, then the object is visible within the controller-cluster and its associated service-engines. If the field is set to true, then the object is replicated across the federation. Field introduced in 20.1.1.
+* `tenant_ref` - (Optional) Tenant that this object belongs to. It is a reference to an object of type tenant. Field introduced in 20.1.1.
 
 
 ### Timeouts
@@ -48,5 +48,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-* `uuid` -  Uuid of the checkpoint.
+* `uuid` -  Uuid of the checkpoint. Field introduced in 20.1.1.
 

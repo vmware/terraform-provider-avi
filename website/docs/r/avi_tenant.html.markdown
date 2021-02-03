@@ -34,7 +34,7 @@ The following arguments are supported:
 * `created_by` - (Optional) Creator of this tenant.
 * `description` - (Optional) User defined description for the object.
 * `local` - (Optional) Boolean flag to set local.
-* `suggested_object_labels` - (Optional) Suggestive pool of key value pairs for recommending assignment of labels to objects in the user interface.
+* `suggested_object_labels` - (Optional) Suggestive pool of key value pairs for recommending assignment of labels to objects in the user interface. Every entry is unique in both key and value. Field introduced in 20.1.2. Maximum of 256 items allowed.
 
 
 ### Timeouts

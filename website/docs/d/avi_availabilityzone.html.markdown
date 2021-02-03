@@ -36,9 +36,9 @@ data "avi_availabilityzone" "foo_availabilityzone" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `cloud_ref` - Availability zone belongs to cloud.
-* `name` - Availabilty zone where vcenter list belongs to.
-* `tenant_ref` - Availabilityzone belongs to tenant.
-* `uuid` - Availability zone config uuid.
-* `vcenter_refs` - Group of vcenter list belong to availabilty zone.
+* `cloud_ref` - Availability zone belongs to cloud. It is a reference to an object of type cloud. Field introduced in 20.1.1.
+* `name` - Availabilty zone where vcenter list belongs to. Field introduced in 20.1.1.
+* `tenant_ref` - Availabilityzone belongs to tenant. It is a reference to an object of type tenant. Field introduced in 20.1.1.
+* `uuid` - Availability zone config uuid. Field introduced in 20.1.1.
+* `vcenter_refs` - Group of vcenter list belong to availabilty zone. It is a reference to an object of type vcenterserver. Field introduced in 20.1.1. Minimum of 1 items required.
 

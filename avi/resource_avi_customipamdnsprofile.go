@@ -1,23 +1,24 @@
 /*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
+* Copyright (c) 2017. Avi Networks.
+* Author: Gaurav Rastogi (grastogi@avinetworks.com)
+*
  */
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
+//nolint
 func ResourceCustomIpamDnsProfileSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"name": {
 			Type:     schema.TypeString,
-			Optional: true,
-			Computed: true,
+			Required: true,
 		},
 		"script_params": {
 			Type:     schema.TypeList,
@@ -26,8 +27,7 @@ func ResourceCustomIpamDnsProfileSchema() map[string]*schema.Schema {
 		},
 		"script_uri": {
 			Type:     schema.TypeString,
-			Optional: true,
-			Computed: true,
+			Required: true,
 		},
 		"tenant_ref": {
 			Type:     schema.TypeString,
@@ -42,6 +42,7 @@ func ResourceCustomIpamDnsProfileSchema() map[string]*schema.Schema {
 	}
 }
 
+//nolint
 func resourceAviCustomIpamDnsProfile() *schema.Resource {
 	return &schema.Resource{
 		Create: resourceAviCustomIpamDnsProfileCreate,
@@ -55,43 +56,48 @@ func resourceAviCustomIpamDnsProfile() *schema.Resource {
 	}
 }
 
+//nolint
 func ResourceCustomIpamDnsProfileImporter(d *schema.ResourceData, m interface{}) ([]*schema.ResourceData, error) {
 	s := ResourceCustomIpamDnsProfileSchema()
 	return ResourceImporter(d, m, "customipamdnsprofile", s)
 }
 
+//nolint
 func ResourceAviCustomIpamDnsProfileRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceCustomIpamDnsProfileSchema()
-	err := ApiRead(d, meta, "customipamdnsprofile", s)
+	err := APIRead(d, meta, "customipamdnsprofile", s)
 	if err != nil {
 		log.Printf("[ERROR] in reading object %v\n", err)
 	}
 	return err
 }
 
+//nolint
 func resourceAviCustomIpamDnsProfileCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceCustomIpamDnsProfileSchema()
-	err := ApiCreateOrUpdate(d, meta, "customipamdnsprofile", s)
+	err := APICreateOrUpdate(d, meta, "customipamdnsprofile", s)
 	if err == nil {
 		err = ResourceAviCustomIpamDnsProfileRead(d, meta)
 	}
 	return err
 }
 
+//nolint
 func resourceAviCustomIpamDnsProfileUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceCustomIpamDnsProfileSchema()
 	var err error
-	err = ApiCreateOrUpdate(d, meta, "customipamdnsprofile", s)
+	err = APICreateOrUpdate(d, meta, "customipamdnsprofile", s)
 	if err == nil {
 		err = ResourceAviCustomIpamDnsProfileRead(d, meta)
 	}
 	return err
 }
 
+//nolint
 func resourceAviCustomIpamDnsProfileDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "customipamdnsprofile"
 	client := meta.(*clients.AviClient)
-	if ApiDeleteSystemDefaultCheck(d) {
+	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
 	uuid := d.Get("uuid").(string)
