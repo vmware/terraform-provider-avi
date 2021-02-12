@@ -30637,7 +30637,7 @@ func ResourceVlanInterfaceSchema() *schema.Resource {
 			"dhcp_enabled": {
 				Type:     schema.TypeBool,
 				Optional: true,
-				Default:  true,
+				Computed: true,
 			},
 			"enabled": {
 				Type:     schema.TypeBool,
@@ -30651,7 +30651,7 @@ func ResourceVlanInterfaceSchema() *schema.Resource {
 			"ip6_autocfg_enabled": {
 				Type:     schema.TypeBool,
 				Optional: true,
-				Default:  true,
+				Computed: true,
 			},
 			"is_mgmt": {
 				Type:     schema.TypeBool,

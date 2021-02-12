@@ -34,7 +34,7 @@ data "avi_albservicesconfig" "foo_albservicesconfig" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `app_signature_config` - Default values to be used for application signature sync. Field introduced in 20.1.4.
+* `app_signature_config` - Default values to be used for application signature sync. Field introduced in 20.1.4. Allowed in basic edition, essentials edition, enterprise edition.
 * `asset_contact` - Information about the default contact for this controller cluster. Field introduced in 20.1.1.
 * `feature_opt_in_status` - Information about the portal features opted in for controller. Field introduced in 20.1.1.
 * `ip_reputation_config` - Default values to be used for ip reputation sync. Field introduced in 20.1.1.
