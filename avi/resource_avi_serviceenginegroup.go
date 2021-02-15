@@ -642,6 +642,16 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  0,
 		},
+		"se_dp_isolation": {
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  false,
+		},
+		"se_dp_isolation_num_non_dp_cpus": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  0,
+		},
 		"se_dp_max_hb_version": {
 			Type:     schema.TypeInt,
 			Optional: true,

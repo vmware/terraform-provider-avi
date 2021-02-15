@@ -524,6 +524,14 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeInt,
 				Computed: true,
 			},
+			"se_dp_isolation": {
+				Type:     schema.TypeBool,
+				Computed: true,
+			},
+			"se_dp_isolation_num_non_dp_cpus": {
+				Type:     schema.TypeInt,
+				Computed: true,
+			},
 			"se_dp_max_hb_version": {
 				Type:     schema.TypeInt,
 				Computed: true,

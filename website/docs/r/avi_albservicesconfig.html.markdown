@@ -29,7 +29,7 @@ resource "avi_albservicesconfig" "foo" {
 
 The following arguments are supported:
 
-* `app_signature_config` - (Required) Default values to be used for application signature sync. Field introduced in 20.1.4.
+* `app_signature_config` - (Required) Default values to be used for application signature sync. Field introduced in 20.1.4. Allowed in basic edition, essentials edition, enterprise edition.
 * `feature_opt_in_status` - (Required) Information about the portal features opted in for controller. Field introduced in 20.1.1.
 * `ip_reputation_config` - (Required) Default values to be used for ip reputation sync. Field introduced in 20.1.1.
 * `portal_url` - (Required) The fqdn or ip address of the customer portal. Field introduced in 18.2.6.
