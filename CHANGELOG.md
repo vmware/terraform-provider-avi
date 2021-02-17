@@ -1,4 +1,18 @@
-## 0.3.0 (Unreleased)
+## v20.1.4 (Feb 17, 2021)
+Features:
+- Supported terraform registry
+- Supported terraform version 0.13+
+- Supported terraform plugin terraform-plugin-sdk/v2
+
+Bugs:
+- 72a8bc0 AV-104640 Updated go sdk dependency and added auto generated changes for 20.1.4 (#88)
+- 7174b46 AV-105173 Updated README.md for TF registry changes
+- 279007e AV-104187 Upgraded terraform plugin to terraform-plugin-sdk/v2, fixed golangci-lint issues and removed vendor directory
+- eca0999 AV-104186 Removed vendor directory
+- 718132e Changes for repo move from terraform-providers to vmware org (#85)
+- 773e714 Merge pull request #84 from avinetworks/AV-100894
+- e90be31 AV-100894 Replaced datasources for default objects with new resources from virtualservice examples
+
 ## 0.2.3 (June 16, 2020)
 Features:
 - Updated Avi Go SDK to latest.
