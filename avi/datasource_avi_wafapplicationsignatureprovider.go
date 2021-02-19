@@ -1,11 +1,11 @@
 /*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
+* Copyright (c) 2017. Avi Networks.
+* Author: Gaurav Rastogi (grastogi@avinetworks.com)
+*
  */
 package avi
 
-import "github.com/hashicorp/terraform/helper/schema"
+import "github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 
 func dataSourceAviWafApplicationSignatureProvider() *schema.Resource {
 	return &schema.Resource{
@@ -15,6 +15,11 @@ func dataSourceAviWafApplicationSignatureProvider() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+			"service_status": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceWebApplicationSignatureServiceStatusSchema(),
 			},
 			"tenant_ref": {
 				Type:     schema.TypeString,

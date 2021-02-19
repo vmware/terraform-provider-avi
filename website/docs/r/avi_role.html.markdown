@@ -30,7 +30,7 @@ resource "avi_role" "foo" {
 The following arguments are supported:
 
 * `name` - (Required) Name of the object.
-* `filters` - (Optional) Filters for granular object access control based on object labels.
+* `filters` - (Optional) Filters for granular object access control based on object labels. Multiple filters are merged using the and operator. If empty, all objects according to the privileges will be accessible to the user. Field introduced in 20.1.3. Maximum of 4 items allowed.
 * `privileges` - (Optional) List of list.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant.
 

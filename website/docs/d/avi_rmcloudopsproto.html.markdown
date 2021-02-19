@@ -34,9 +34,9 @@ data "avi_rmcloudopsproto" "foo_rmcloudopsproto" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `last_queried_se_creation_limit` - The most recent value of concurrent se creation limit from cloudconnectorstatus.
-* `name` - Cloud name.
-* `pending_se_creation_count` - Number of se creations in progress.
-* `pending_vnic_op_count` - Number of vnic operations in progress (both add and delete).
-* `uuid` - Cloud uuid.
+* `last_queried_se_creation_limit` - The most recent value of concurrent se creation limit from cloudconnectorstatus. Field introduced in 20.1.1.
+* `name` - Cloud name. Field introduced in 20.1.1.
+* `pending_se_creation_count` - Number of se creations in progress. Field introduced in 20.1.1.
+* `pending_vnic_op_count` - Number of vnic operations in progress (both add and delete). Field introduced in 20.1.1.
+* `uuid` - Cloud uuid. Field introduced in 20.1.1.
 

@@ -1,15 +1,16 @@
 /*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
+* Copyright (c) 2017. Avi Networks.
+* Author: Gaurav Rastogi (grastogi@avinetworks.com)
+*
  */
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourceALBServicesFileUploadSchema() map[string]*schema.Schema {
@@ -21,13 +22,11 @@ func ResourceALBServicesFileUploadSchema() map[string]*schema.Schema {
 		},
 		"file_path": {
 			Type:     schema.TypeString,
-			Optional: true,
-			Computed: true,
+			Required: true,
 		},
 		"name": {
 			Type:     schema.TypeString,
-			Optional: true,
-			Computed: true,
+			Required: true,
 		},
 		"s3_directory": {
 			Type:     schema.TypeString,
@@ -67,7 +66,7 @@ func ResourceALBServicesFileUploadImporter(d *schema.ResourceData, m interface{}
 
 func ResourceAviALBServicesFileUploadRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceALBServicesFileUploadSchema()
-	err := ApiRead(d, meta, "albservicesfileupload", s)
+	err := APIRead(d, meta, "albservicesfileupload", s)
 	if err != nil {
 		log.Printf("[ERROR] in reading object %v\n", err)
 	}
@@ -76,7 +75,7 @@ func ResourceAviALBServicesFileUploadRead(d *schema.ResourceData, meta interface
 
 func resourceAviALBServicesFileUploadCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceALBServicesFileUploadSchema()
-	err := ApiCreateOrUpdate(d, meta, "albservicesfileupload", s)
+	err := APICreateOrUpdate(d, meta, "albservicesfileupload", s)
 	if err == nil {
 		err = ResourceAviALBServicesFileUploadRead(d, meta)
 	}
@@ -86,7 +85,7 @@ func resourceAviALBServicesFileUploadCreate(d *schema.ResourceData, meta interfa
 func resourceAviALBServicesFileUploadUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceALBServicesFileUploadSchema()
 	var err error
-	err = ApiCreateOrUpdate(d, meta, "albservicesfileupload", s)
+	err = APICreateOrUpdate(d, meta, "albservicesfileupload", s)
 	if err == nil {
 		err = ResourceAviALBServicesFileUploadRead(d, meta)
 	}
@@ -96,7 +95,7 @@ func resourceAviALBServicesFileUploadUpdate(d *schema.ResourceData, meta interfa
 func resourceAviALBServicesFileUploadDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "albservicesfileupload"
 	client := meta.(*clients.AviClient)
-	if ApiDeleteSystemDefaultCheck(d) {
+	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
 	uuid := d.Get("uuid").(string)

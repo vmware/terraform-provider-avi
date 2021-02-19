@@ -1,11 +1,11 @@
 /*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
+* Copyright (c) 2017. Avi Networks.
+* Author: Gaurav Rastogi (grastogi@avinetworks.com)
+*
  */
 package avi
 
-import "github.com/hashicorp/terraform/helper/schema"
+import "github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 
 func dataSourceAviCertificateManagementProfile() *schema.Resource {
 	return &schema.Resource{
@@ -16,14 +16,14 @@ func dataSourceAviCertificateManagementProfile() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"run_script_ref": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"script_params": {
 				Type:     schema.TypeList,
 				Computed: true,
 				Elem:     ResourceCustomParamsSchema(),
-			},
-			"script_path": {
-				Type:     schema.TypeString,
-				Computed: true,
 			},
 			"tenant_ref": {
 				Type:     schema.TypeString,

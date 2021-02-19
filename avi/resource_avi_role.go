@@ -1,15 +1,16 @@
 /*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
+* Copyright (c) 2017. Avi Networks.
+* Author: Gaurav Rastogi (grastogi@avinetworks.com)
+*
  */
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourceRoleSchema() map[string]*schema.Schema {
@@ -61,7 +62,7 @@ func ResourceRoleImporter(d *schema.ResourceData, m interface{}) ([]*schema.Reso
 
 func ResourceAviRoleRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceRoleSchema()
-	err := ApiRead(d, meta, "role", s)
+	err := APIRead(d, meta, "role", s)
 	if err != nil {
 		log.Printf("[ERROR] in reading object %v\n", err)
 	}
@@ -70,7 +71,7 @@ func ResourceAviRoleRead(d *schema.ResourceData, meta interface{}) error {
 
 func resourceAviRoleCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceRoleSchema()
-	err := ApiCreateOrUpdate(d, meta, "role", s)
+	err := APICreateOrUpdate(d, meta, "role", s)
 	if err == nil {
 		err = ResourceAviRoleRead(d, meta)
 	}
@@ -80,7 +81,7 @@ func resourceAviRoleCreate(d *schema.ResourceData, meta interface{}) error {
 func resourceAviRoleUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceRoleSchema()
 	var err error
-	err = ApiCreateOrUpdate(d, meta, "role", s)
+	err = APICreateOrUpdate(d, meta, "role", s)
 	if err == nil {
 		err = ResourceAviRoleRead(d, meta)
 	}
@@ -90,7 +91,7 @@ func resourceAviRoleUpdate(d *schema.ResourceData, meta interface{}) error {
 func resourceAviRoleDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "role"
 	client := meta.(*clients.AviClient)
-	if ApiDeleteSystemDefaultCheck(d) {
+	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
 	uuid := d.Get("uuid").(string)

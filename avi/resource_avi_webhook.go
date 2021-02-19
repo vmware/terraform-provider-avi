@@ -1,15 +1,16 @@
 /*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
+* Copyright (c) 2017. Avi Networks.
+* Author: Gaurav Rastogi (grastogi@avinetworks.com)
+*
  */
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourceWebhookSchema() map[string]*schema.Schema {
@@ -66,7 +67,7 @@ func ResourceWebhookImporter(d *schema.ResourceData, m interface{}) ([]*schema.R
 
 func ResourceAviWebhookRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceWebhookSchema()
-	err := ApiRead(d, meta, "webhook", s)
+	err := APIRead(d, meta, "webhook", s)
 	if err != nil {
 		log.Printf("[ERROR] in reading object %v\n", err)
 	}
@@ -75,7 +76,7 @@ func ResourceAviWebhookRead(d *schema.ResourceData, meta interface{}) error {
 
 func resourceAviWebhookCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceWebhookSchema()
-	err := ApiCreateOrUpdate(d, meta, "webhook", s)
+	err := APICreateOrUpdate(d, meta, "webhook", s)
 	if err == nil {
 		err = ResourceAviWebhookRead(d, meta)
 	}
@@ -85,7 +86,7 @@ func resourceAviWebhookCreate(d *schema.ResourceData, meta interface{}) error {
 func resourceAviWebhookUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceWebhookSchema()
 	var err error
-	err = ApiCreateOrUpdate(d, meta, "webhook", s)
+	err = APICreateOrUpdate(d, meta, "webhook", s)
 	if err == nil {
 		err = ResourceAviWebhookRead(d, meta)
 	}
@@ -95,7 +96,7 @@ func resourceAviWebhookUpdate(d *schema.ResourceData, meta interface{}) error {
 func resourceAviWebhookDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "webhook"
 	client := meta.(*clients.AviClient)
-	if ApiDeleteSystemDefaultCheck(d) {
+	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
 	uuid := d.Get("uuid").(string)
