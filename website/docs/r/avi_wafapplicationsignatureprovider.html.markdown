@@ -29,8 +29,9 @@ resource "avi_wafapplicationsignatureprovider" "foo" {
 
 The following arguments are supported:
 
-* `name` - (Optional) Name of application specific ruleset provider.
-* `tenant_ref` - (Optional) It is a reference to an object of type tenant.
+* `name` - (Optional) Name of application specific ruleset provider. Field introduced in 20.1.1.
+* `service_status` - (Optional) If this object is managed by the application signatures update  service, this field contain the status of this syncronization. Field introduced in 20.1.3.
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant. Field introduced in 20.1.1.
 
 
 ### Timeouts

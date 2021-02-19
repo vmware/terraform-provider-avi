@@ -30,7 +30,7 @@ resource "avi_testsedatastorelevel3" "foo" {
 The following arguments are supported:
 
 * `name` - (Required) Name of the object.
-* `tenant_ref` - (Optional) It is a reference to an object of type tenant.
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant. Field introduced in 18.2.6.
 
 
 ### Timeouts

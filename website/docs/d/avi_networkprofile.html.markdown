@@ -34,9 +34,9 @@ data "avi_networkprofile" "foo_networkprofile" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `connection_mirror` - When enabled, avi mirrors all tcp fastpath connections to standby.
+* `connection_mirror` - When enabled, avi mirrors all tcp fastpath connections to standby. Applicable only in legacy ha mode. Field introduced in 18.1.3,18.2.1.
 * `description` - User defined description for the object.
-* `labels` - Key value pairs for granular object access control.
+* `labels` - Key value pairs for granular object access control. Also allows for classification and tagging of similar objects. Field introduced in 20.1.2. Maximum of 4 items allowed.
 * `name` - The name of the network profile.
 * `profile` - Dict settings for networkprofile.
 * `tenant_ref` - It is a reference to an object of type tenant.

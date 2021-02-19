@@ -30,7 +30,7 @@ resource "avi_certificatemanagementprofile" "foo" {
 The following arguments are supported:
 
 * `name` - (Required) Name of the pki profile.
-* `script_path` - (Required) Placeholder for description of property script_path of obj type certificatemanagementprofile field type string  type str.
+* `run_script_ref` - (Required) Alert script config object for certificate management profile. It is a reference to an object of type alertscriptconfig. Field introduced in 20.1.3.
 * `script_params` - (Optional) List of list.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant.
 

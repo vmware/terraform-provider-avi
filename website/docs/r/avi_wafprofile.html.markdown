@@ -29,12 +29,12 @@ resource "avi_wafprofile" "foo" {
 
 The following arguments are supported:
 
+* `config` - (Required) Config params for waf. Field introduced in 17.2.1.
 * `name` - (Required) Field introduced in 17.2.1.
-* `config` - (Optional) Config params for waf.
 * `description` - (Optional) Field introduced in 17.2.1.
-* `files` - (Optional) List of data files used for waf rules.
-* `labels` - (Optional) Key value pairs for granular object access control.
-* `tenant_ref` - (Optional) It is a reference to an object of type tenant.
+* `files` - (Optional) List of data files used for waf rules. Field introduced in 17.2.1. Maximum of 64 items allowed.
+* `labels` - (Optional) Key value pairs for granular object access control. Also allows for classification and tagging of similar objects. Field introduced in 20.1.2. Maximum of 4 items allowed.
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant. Field introduced in 17.2.1.
 
 
 ### Timeouts

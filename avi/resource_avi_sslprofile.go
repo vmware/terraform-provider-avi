@@ -1,15 +1,16 @@
 /*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
+* Copyright (c) 2017. Avi Networks.
+* Author: Gaurav Rastogi (grastogi@avinetworks.com)
+*
  */
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourceSSLProfileSchema() map[string]*schema.Schema {
@@ -21,7 +22,7 @@ func ResourceSSLProfileSchema() map[string]*schema.Schema {
 		},
 		"accepted_versions": {
 			Type:     schema.TypeList,
-			Optional: true,
+			Required: true,
 			Elem:     ResourceSSLVersionSchema(),
 		},
 		"cipher_enums": {
@@ -127,7 +128,7 @@ func ResourceSSLProfileImporter(d *schema.ResourceData, m interface{}) ([]*schem
 
 func ResourceAviSSLProfileRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceSSLProfileSchema()
-	err := ApiRead(d, meta, "sslprofile", s)
+	err := APIRead(d, meta, "sslprofile", s)
 	if err != nil {
 		log.Printf("[ERROR] in reading object %v\n", err)
 	}
@@ -136,7 +137,7 @@ func ResourceAviSSLProfileRead(d *schema.ResourceData, meta interface{}) error {
 
 func resourceAviSSLProfileCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceSSLProfileSchema()
-	err := ApiCreateOrUpdate(d, meta, "sslprofile", s)
+	err := APICreateOrUpdate(d, meta, "sslprofile", s)
 	if err == nil {
 		err = ResourceAviSSLProfileRead(d, meta)
 	}
@@ -146,7 +147,7 @@ func resourceAviSSLProfileCreate(d *schema.ResourceData, meta interface{}) error
 func resourceAviSSLProfileUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceSSLProfileSchema()
 	var err error
-	err = ApiCreateOrUpdate(d, meta, "sslprofile", s)
+	err = APICreateOrUpdate(d, meta, "sslprofile", s)
 	if err == nil {
 		err = ResourceAviSSLProfileRead(d, meta)
 	}
@@ -156,7 +157,7 @@ func resourceAviSSLProfileUpdate(d *schema.ResourceData, meta interface{}) error
 func resourceAviSSLProfileDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "sslprofile"
 	client := meta.(*clients.AviClient)
-	if ApiDeleteSystemDefaultCheck(d) {
+	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
 	uuid := d.Get("uuid").(string)

@@ -1,44 +1,45 @@
 /*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
+* Copyright (c) 2017. Avi Networks.
+* Author: Gaurav Rastogi (grastogi@avinetworks.com)
+*
  */
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourceUserAccountSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"username": &schema.Schema{
+		"username": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
-		"old_password": &schema.Schema{
+		"old_password": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
-		"password": &schema.Schema{
+		"password": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
-		"local": &schema.Schema{
+		"local": {
 			Type:     schema.TypeBool,
 			Optional: true,
 		},
-		"name": &schema.Schema{
+		"name": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
-		"full_name": &schema.Schema{
+		"full_name": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
-		"email": &schema.Schema{
+		"email": {
 			Type:     schema.TypeString,
 			Optional: true,
 		},
@@ -75,7 +76,7 @@ func resourceAviUserAccountUpdate(d *schema.ResourceData, meta interface{}) erro
 	obj := d
 	username := d.Get("username")
 	name := d.Get("name")
-	full_name := d.Get("full_name")
+	fullName := d.Get("full_name")
 	email := d.Get("email")
 	local := d.Get("local")
 
@@ -89,10 +90,12 @@ func resourceAviUserAccountUpdate(d *schema.ResourceData, meta interface{}) erro
 			d.SetId(username.(string))
 			d.Set("username", username)
 			d.Set("name", name)
-			d.Set("full_name", full_name)
+			d.Set("full_name", fullName)
 			d.Set("email", email)
 			d.Set("local", local)
-			client.AviSession.ResetPassword(d.Get("password").(string))
+			if err = client.AviSession.ResetPassword(d.Get("password").(string)); err != nil {
+				log.Printf("[ERROR] while resetting password %v\n", err)
+			}
 		}
 	}
 	return err
