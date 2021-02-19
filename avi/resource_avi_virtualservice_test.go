@@ -2,12 +2,13 @@ package avi
 
 import (
 	"fmt"
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/avinetworks/sdk/go/models"
-	"github.com/hashicorp/terraform/helper/resource"
-	"github.com/hashicorp/terraform/terraform"
 	"strings"
 	"testing"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/avinetworks/sdk/go/models"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/terraform"
 )
 
 func TestAVIVirtualServiceBasic(t *testing.T) {
@@ -39,7 +40,7 @@ func TestAVIVirtualServiceBasic(t *testing.T) {
 				ResourceName:      "avi_virtualservice.testvs",
 				ImportState:       true,
 				ImportStateVerify: false,
-				Config:            testAccAVIVsVipConfig,
+				Config:            testAccVsConfig,
 			},
 		},
 	})
@@ -264,4 +265,10 @@ resource "avi_virtualservice" "testvs" {
 	ssl_profile_ref= data.avi_sslprofile.system_standard_sslprofile.id
 	vrf_context_ref= data.avi_vrfcontext.global_vrf.id
   }
+`
+
+const testAccVsConfig = `
+resource "avi_virtualservice" "testvs" {
+  name = "vs-test"
+}
 `

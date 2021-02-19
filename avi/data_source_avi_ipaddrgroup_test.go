@@ -1,8 +1,9 @@
 package avi
 
 import (
-	"github.com/hashicorp/terraform/helper/resource"
 	"testing"
+
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
 )
 
 func TestAVIDataSourceIpAddrGroupBasic(t *testing.T) {
@@ -22,6 +23,7 @@ func TestAVIDataSourceIpAddrGroupBasic(t *testing.T) {
 
 }
 
+//nolint
 const testAccAVIDSIpAddrGroupConfig = `
 data "avi_tenant" "default_tenant"{
     name= "admin"

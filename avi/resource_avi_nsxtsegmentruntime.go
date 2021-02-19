@@ -1,15 +1,16 @@
 /*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
+* Copyright (c) 2017. Avi Networks.
+* Author: Gaurav Rastogi (grastogi@avinetworks.com)
+*
  */
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourceNsxtSegmentRuntimeSchema() map[string]*schema.Schema {
@@ -127,7 +128,7 @@ func ResourceNsxtSegmentRuntimeImporter(d *schema.ResourceData, m interface{}) (
 
 func ResourceAviNsxtSegmentRuntimeRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceNsxtSegmentRuntimeSchema()
-	err := ApiRead(d, meta, "nsxtsegmentruntime", s)
+	err := APIRead(d, meta, "nsxtsegmentruntime", s)
 	if err != nil {
 		log.Printf("[ERROR] in reading object %v\n", err)
 	}
@@ -136,7 +137,7 @@ func ResourceAviNsxtSegmentRuntimeRead(d *schema.ResourceData, meta interface{})
 
 func resourceAviNsxtSegmentRuntimeCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceNsxtSegmentRuntimeSchema()
-	err := ApiCreateOrUpdate(d, meta, "nsxtsegmentruntime", s)
+	err := APICreateOrUpdate(d, meta, "nsxtsegmentruntime", s)
 	if err == nil {
 		err = ResourceAviNsxtSegmentRuntimeRead(d, meta)
 	}
@@ -146,7 +147,7 @@ func resourceAviNsxtSegmentRuntimeCreate(d *schema.ResourceData, meta interface{
 func resourceAviNsxtSegmentRuntimeUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceNsxtSegmentRuntimeSchema()
 	var err error
-	err = ApiCreateOrUpdate(d, meta, "nsxtsegmentruntime", s)
+	err = APICreateOrUpdate(d, meta, "nsxtsegmentruntime", s)
 	if err == nil {
 		err = ResourceAviNsxtSegmentRuntimeRead(d, meta)
 	}
@@ -156,7 +157,7 @@ func resourceAviNsxtSegmentRuntimeUpdate(d *schema.ResourceData, meta interface{
 func resourceAviNsxtSegmentRuntimeDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "nsxtsegmentruntime"
 	client := meta.(*clients.AviClient)
-	if ApiDeleteSystemDefaultCheck(d) {
+	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
 	uuid := d.Get("uuid").(string)

@@ -1,15 +1,16 @@
 /*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
+* Copyright (c) 2017. Avi Networks.
+* Author: Gaurav Rastogi (grastogi@avinetworks.com)
+*
  */
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourceSchedulerSchema() map[string]*schema.Schema {
@@ -96,7 +97,7 @@ func ResourceSchedulerImporter(d *schema.ResourceData, m interface{}) ([]*schema
 
 func ResourceAviSchedulerRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceSchedulerSchema()
-	err := ApiRead(d, meta, "scheduler", s)
+	err := APIRead(d, meta, "scheduler", s)
 	if err != nil {
 		log.Printf("[ERROR] in reading object %v\n", err)
 	}
@@ -105,7 +106,7 @@ func ResourceAviSchedulerRead(d *schema.ResourceData, meta interface{}) error {
 
 func resourceAviSchedulerCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceSchedulerSchema()
-	err := ApiCreateOrUpdate(d, meta, "scheduler", s)
+	err := APICreateOrUpdate(d, meta, "scheduler", s)
 	if err == nil {
 		err = ResourceAviSchedulerRead(d, meta)
 	}
@@ -115,7 +116,7 @@ func resourceAviSchedulerCreate(d *schema.ResourceData, meta interface{}) error 
 func resourceAviSchedulerUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceSchedulerSchema()
 	var err error
-	err = ApiCreateOrUpdate(d, meta, "scheduler", s)
+	err = APICreateOrUpdate(d, meta, "scheduler", s)
 	if err == nil {
 		err = ResourceAviSchedulerRead(d, meta)
 	}
@@ -125,7 +126,7 @@ func resourceAviSchedulerUpdate(d *schema.ResourceData, meta interface{}) error 
 func resourceAviSchedulerDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "scheduler"
 	client := meta.(*clients.AviClient)
-	if ApiDeleteSystemDefaultCheck(d) {
+	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
 	uuid := d.Get("uuid").(string)

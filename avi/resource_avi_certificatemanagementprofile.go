@@ -1,15 +1,16 @@
 /*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
+* Copyright (c) 2017. Avi Networks.
+* Author: Gaurav Rastogi (grastogi@avinetworks.com)
+*
  */
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourceCertificateManagementProfileSchema() map[string]*schema.Schema {
@@ -18,14 +19,14 @@ func ResourceCertificateManagementProfileSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Required: true,
 		},
+		"run_script_ref": {
+			Type:     schema.TypeString,
+			Required: true,
+		},
 		"script_params": {
 			Type:     schema.TypeList,
 			Optional: true,
 			Elem:     ResourceCustomParamsSchema(),
-		},
-		"script_path": {
-			Type:     schema.TypeString,
-			Required: true,
 		},
 		"tenant_ref": {
 			Type:     schema.TypeString,
@@ -60,7 +61,7 @@ func ResourceCertificateManagementProfileImporter(d *schema.ResourceData, m inte
 
 func ResourceAviCertificateManagementProfileRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceCertificateManagementProfileSchema()
-	err := ApiRead(d, meta, "certificatemanagementprofile", s)
+	err := APIRead(d, meta, "certificatemanagementprofile", s)
 	if err != nil {
 		log.Printf("[ERROR] in reading object %v\n", err)
 	}
@@ -69,7 +70,7 @@ func ResourceAviCertificateManagementProfileRead(d *schema.ResourceData, meta in
 
 func resourceAviCertificateManagementProfileCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceCertificateManagementProfileSchema()
-	err := ApiCreateOrUpdate(d, meta, "certificatemanagementprofile", s)
+	err := APICreateOrUpdate(d, meta, "certificatemanagementprofile", s)
 	if err == nil {
 		err = ResourceAviCertificateManagementProfileRead(d, meta)
 	}
@@ -79,7 +80,7 @@ func resourceAviCertificateManagementProfileCreate(d *schema.ResourceData, meta 
 func resourceAviCertificateManagementProfileUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceCertificateManagementProfileSchema()
 	var err error
-	err = ApiCreateOrUpdate(d, meta, "certificatemanagementprofile", s)
+	err = APICreateOrUpdate(d, meta, "certificatemanagementprofile", s)
 	if err == nil {
 		err = ResourceAviCertificateManagementProfileRead(d, meta)
 	}
@@ -89,7 +90,7 @@ func resourceAviCertificateManagementProfileUpdate(d *schema.ResourceData, meta 
 func resourceAviCertificateManagementProfileDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "certificatemanagementprofile"
 	client := meta.(*clients.AviClient)
-	if ApiDeleteSystemDefaultCheck(d) {
+	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
 	uuid := d.Get("uuid").(string)

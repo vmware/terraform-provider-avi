@@ -34,11 +34,11 @@ The following arguments are supported:
 * `created_by` - (Optional) Creator name.
 * `crl_check` - (Optional) When enabled, avi will verify via crl checks that certificates in the trust chain have not been revoked.
 * `crls` - (Optional) Certificate revocation lists.
-* `ignore_peer_chain` - (Optional) When enabled, avi will not trust intermediate and root certs presented by a client.
-* `is_federated` - (Optional) This field describes the object's replication scope.
-* `labels` - (Optional) Key value pairs for granular object access control.
+* `ignore_peer_chain` - (Optional) When enabled, avi will not trust intermediate and root certs presented by a client. Instead, only the chain certs configured in the certificate authority section will be used to verify trust of the client's cert. Allowed in basic(allowed values- true) edition, essentials(allowed values- true) edition, enterprise edition. Special default for basic edition is true, essentials edition is true, enterprise is false.
+* `is_federated` - (Optional) This field describes the object's replication scope. If the field is set to false, then the object is visible within the controller-cluster and its associated service-engines. If the field is set to true, then the object is replicated across the federation. Field introduced in 17.1.3.
+* `labels` - (Optional) Key value pairs for granular object access control. Also allows for classification and tagging of similar objects. Field introduced in 20.1.2. Maximum of 4 items allowed.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant.
-* `validate_only_leaf_crl` - (Optional) When enabled, avi will only validate the revocation status of the leaf certificate using crl.
+* `validate_only_leaf_crl` - (Optional) When enabled, avi will only validate the revocation status of the leaf certificate using crl. To enable validation for the entire chain, disable this option and provide all the relevant crls. Allowed in basic(allowed values- true) edition, essentials(allowed values- true) edition, enterprise edition.
 
 
 ### Timeouts

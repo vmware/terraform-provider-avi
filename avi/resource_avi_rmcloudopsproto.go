@@ -1,15 +1,16 @@
 /*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
+* Copyright (c) 2017. Avi Networks.
+* Author: Gaurav Rastogi (grastogi@avinetworks.com)
+*
  */
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourceRmCloudOpsProtoSchema() map[string]*schema.Schema {
@@ -62,7 +63,7 @@ func ResourceRmCloudOpsProtoImporter(d *schema.ResourceData, m interface{}) ([]*
 
 func ResourceAviRmCloudOpsProtoRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceRmCloudOpsProtoSchema()
-	err := ApiRead(d, meta, "rmcloudopsproto", s)
+	err := APIRead(d, meta, "rmcloudopsproto", s)
 	if err != nil {
 		log.Printf("[ERROR] in reading object %v\n", err)
 	}
@@ -71,7 +72,7 @@ func ResourceAviRmCloudOpsProtoRead(d *schema.ResourceData, meta interface{}) er
 
 func resourceAviRmCloudOpsProtoCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceRmCloudOpsProtoSchema()
-	err := ApiCreateOrUpdate(d, meta, "rmcloudopsproto", s)
+	err := APICreateOrUpdate(d, meta, "rmcloudopsproto", s)
 	if err == nil {
 		err = ResourceAviRmCloudOpsProtoRead(d, meta)
 	}
@@ -81,7 +82,7 @@ func resourceAviRmCloudOpsProtoCreate(d *schema.ResourceData, meta interface{}) 
 func resourceAviRmCloudOpsProtoUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceRmCloudOpsProtoSchema()
 	var err error
-	err = ApiCreateOrUpdate(d, meta, "rmcloudopsproto", s)
+	err = APICreateOrUpdate(d, meta, "rmcloudopsproto", s)
 	if err == nil {
 		err = ResourceAviRmCloudOpsProtoRead(d, meta)
 	}
@@ -91,7 +92,7 @@ func resourceAviRmCloudOpsProtoUpdate(d *schema.ResourceData, meta interface{}) 
 func resourceAviRmCloudOpsProtoDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "rmcloudopsproto"
 	client := meta.(*clients.AviClient)
-	if ApiDeleteSystemDefaultCheck(d) {
+	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
 	uuid := d.Get("uuid").(string)

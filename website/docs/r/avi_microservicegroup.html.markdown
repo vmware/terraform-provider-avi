@@ -32,7 +32,7 @@ The following arguments are supported:
 * `name` - (Required) Name of the microservice group.
 * `created_by` - (Optional) Creator name.
 * `description` - (Optional) User defined description for the object.
-* `service_refs` - (Optional) Configure microservice(es).
+* `service_refs` - (Optional) Configure microservice(es). It is a reference to an object of type microservice.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant.
 
 

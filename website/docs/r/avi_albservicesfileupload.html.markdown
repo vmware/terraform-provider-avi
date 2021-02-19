@@ -29,11 +29,11 @@ resource "avi_albservicesfileupload" "foo" {
 
 The following arguments are supported:
 
-* `case_id` - (Optional) Salesforce alphanumeric caseid to attach uploaded file to.
-* `file_path` - (Optional) Stores output file path, for upload to aws s3.
-* `name` - (Optional) Field introduced in 18.2.6.
-* `s3_directory` - (Optional) Custom aws s3 directory path to upload file.
-* `tenant_ref` - (Optional) It is a reference to an object of type tenant.
+* `file_path` - (Required) Stores output file path, for upload to aws s3. Field introduced in 18.2.6.
+* `name` - (Required) Field introduced in 18.2.6.
+* `case_id` - (Optional) Salesforce alphanumeric caseid to attach uploaded file to. Field introduced in 18.2.6.
+* `s3_directory` - (Optional) Custom aws s3 directory path to upload file. Field introduced in 18.2.6.
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant. Field introduced in 18.2.6.
 
 
 ### Timeouts

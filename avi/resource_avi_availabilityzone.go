@@ -1,15 +1,16 @@
 /*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
+* Copyright (c) 2017. Avi Networks.
+* Author: Gaurav Rastogi (grastogi@avinetworks.com)
+*
  */
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourceAvailabilityZoneSchema() map[string]*schema.Schema {
@@ -21,8 +22,7 @@ func ResourceAvailabilityZoneSchema() map[string]*schema.Schema {
 		},
 		"name": {
 			Type:     schema.TypeString,
-			Optional: true,
-			Computed: true,
+			Required: true,
 		},
 		"tenant_ref": {
 			Type:     schema.TypeString,
@@ -36,7 +36,7 @@ func ResourceAvailabilityZoneSchema() map[string]*schema.Schema {
 		},
 		"vcenter_refs": {
 			Type:     schema.TypeList,
-			Optional: true,
+			Required: true,
 			Elem:     &schema.Schema{Type: schema.TypeString},
 		},
 	}
@@ -62,7 +62,7 @@ func ResourceAvailabilityZoneImporter(d *schema.ResourceData, m interface{}) ([]
 
 func ResourceAviAvailabilityZoneRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceAvailabilityZoneSchema()
-	err := ApiRead(d, meta, "availabilityzone", s)
+	err := APIRead(d, meta, "availabilityzone", s)
 	if err != nil {
 		log.Printf("[ERROR] in reading object %v\n", err)
 	}
@@ -71,7 +71,7 @@ func ResourceAviAvailabilityZoneRead(d *schema.ResourceData, meta interface{}) e
 
 func resourceAviAvailabilityZoneCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceAvailabilityZoneSchema()
-	err := ApiCreateOrUpdate(d, meta, "availabilityzone", s)
+	err := APICreateOrUpdate(d, meta, "availabilityzone", s)
 	if err == nil {
 		err = ResourceAviAvailabilityZoneRead(d, meta)
 	}
@@ -81,7 +81,7 @@ func resourceAviAvailabilityZoneCreate(d *schema.ResourceData, meta interface{})
 func resourceAviAvailabilityZoneUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceAvailabilityZoneSchema()
 	var err error
-	err = ApiCreateOrUpdate(d, meta, "availabilityzone", s)
+	err = APICreateOrUpdate(d, meta, "availabilityzone", s)
 	if err == nil {
 		err = ResourceAviAvailabilityZoneRead(d, meta)
 	}
@@ -91,7 +91,7 @@ func resourceAviAvailabilityZoneUpdate(d *schema.ResourceData, meta interface{})
 func resourceAviAvailabilityZoneDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "availabilityzone"
 	client := meta.(*clients.AviClient)
-	if ApiDeleteSystemDefaultCheck(d) {
+	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
 	uuid := d.Get("uuid").(string)

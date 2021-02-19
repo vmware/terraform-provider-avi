@@ -2,11 +2,12 @@ package avi
 
 import (
 	"fmt"
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/resource"
-	"github.com/hashicorp/terraform/terraform"
 	"strings"
 	"testing"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/terraform"
 )
 
 func TestAVIAnalyticsProfileBasic(t *testing.T) {
@@ -26,7 +27,7 @@ func TestAVIAnalyticsProfileBasic(t *testing.T) {
 					resource.TestCheckResourceAttr(
 						"avi_analyticsprofile.testAnalyticsProfile", "apdex_response_threshold", "500"),
 					resource.TestCheckResourceAttr(
-						"avi_analyticsprofile.testAnalyticsProfile", "disable_se_analytics", "false"),
+						"avi_analyticsprofile.testAnalyticsProfile", "enable_se_analytics", "true"),
 					resource.TestCheckResourceAttr(
 						"avi_analyticsprofile.testAnalyticsProfile", "apdex_server_rtt_tolerated_factor", "4"),
 					resource.TestCheckResourceAttr(
@@ -66,7 +67,7 @@ func TestAVIAnalyticsProfileBasic(t *testing.T) {
 					resource.TestCheckResourceAttr(
 						"avi_analyticsprofile.testAnalyticsProfile", "apdex_server_response_tolerated_factor", "4"),
 					resource.TestCheckResourceAttr(
-						"avi_analyticsprofile.testAnalyticsProfile", "disable_server_analytics", "false"),
+						"avi_analyticsprofile.testAnalyticsProfile", "enable_server_analytics", "true"),
 					resource.TestCheckResourceAttr(
 						"avi_analyticsprofile.testAnalyticsProfile", "conn_server_lossy_timeo_rexmt_threshold", "20"),
 					resource.TestCheckResourceAttr(
@@ -152,7 +153,7 @@ func TestAVIAnalyticsProfileBasic(t *testing.T) {
 					resource.TestCheckResourceAttr(
 						"avi_analyticsprofile.testAnalyticsProfile", "apdex_response_threshold", "500"),
 					resource.TestCheckResourceAttr(
-						"avi_analyticsprofile.testAnalyticsProfile", "disable_se_analytics", "false"),
+						"avi_analyticsprofile.testAnalyticsProfile", "enable_se_analytics", "true"),
 					resource.TestCheckResourceAttr(
 						"avi_analyticsprofile.testAnalyticsProfile", "apdex_server_rtt_tolerated_factor", "4"),
 					resource.TestCheckResourceAttr(
@@ -192,7 +193,7 @@ func TestAVIAnalyticsProfileBasic(t *testing.T) {
 					resource.TestCheckResourceAttr(
 						"avi_analyticsprofile.testAnalyticsProfile", "apdex_server_response_tolerated_factor", "4"),
 					resource.TestCheckResourceAttr(
-						"avi_analyticsprofile.testAnalyticsProfile", "disable_server_analytics", "false"),
+						"avi_analyticsprofile.testAnalyticsProfile", "enable_server_analytics", "true"),
 					resource.TestCheckResourceAttr(
 						"avi_analyticsprofile.testAnalyticsProfile", "conn_server_lossy_timeo_rexmt_threshold", "20"),
 					resource.TestCheckResourceAttr(
@@ -334,7 +335,7 @@ resource "avi_analyticsprofile" "testAnalyticsProfile" {
 	tenant_ref = data.avi_tenant.default_tenant.id
 	hs_event_throttle_window = "1209600"
 	apdex_response_threshold = "500"
-	disable_se_analytics = false
+	enable_se_analytics = true
 	apdex_server_rtt_tolerated_factor = "4"
 	hs_security_nonpfs_penalty = "1"
 	hs_security_tls12_score = "5"
@@ -355,7 +356,7 @@ resource "avi_analyticsprofile" "testAnalyticsProfile" {
 	hs_security_tls11_score = "5"
 	exclude_gs_down_as_error = false
 	apdex_server_response_tolerated_factor = "4"
-	disable_server_analytics = false
+	enable_server_analytics = true
 	conn_server_lossy_timeo_rexmt_threshold = "20"
 	exclude_client_close_before_request_as_error = true
 	hs_security_weak_signature_algo_penalty = "1"
@@ -410,7 +411,7 @@ resource "avi_analyticsprofile" "testAnalyticsProfile" {
 	tenant_ref = data.avi_tenant.default_tenant.id
 	hs_event_throttle_window = "1209600"
 	apdex_response_threshold = "500"
-	disable_se_analytics = false
+	enable_se_analytics = true
 	apdex_server_rtt_tolerated_factor = "4"
 	hs_security_nonpfs_penalty = "1"
 	hs_security_tls12_score = "5"
@@ -431,7 +432,7 @@ resource "avi_analyticsprofile" "testAnalyticsProfile" {
 	hs_security_tls11_score = "5"
 	exclude_gs_down_as_error = false
 	apdex_server_response_tolerated_factor = "4"
-	disable_server_analytics = false
+	enable_server_analytics = true
 	conn_server_lossy_timeo_rexmt_threshold = "20"
 	exclude_client_close_before_request_as_error = true
 	hs_security_weak_signature_algo_penalty = "1"
