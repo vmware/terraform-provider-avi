@@ -1,15 +1,16 @@
 /*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
+* Copyright (c) 2017. Avi Networks.
+* Author: Gaurav Rastogi (grastogi@avinetworks.com)
+*
  */
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourceSecurityManagerDataSchema() map[string]*schema.Schema {
@@ -56,7 +57,7 @@ func ResourceSecurityManagerDataImporter(d *schema.ResourceData, m interface{}) 
 
 func ResourceAviSecurityManagerDataRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceSecurityManagerDataSchema()
-	err := ApiRead(d, meta, "securitymanagerdata", s)
+	err := APIRead(d, meta, "securitymanagerdata", s)
 	if err != nil {
 		log.Printf("[ERROR] in reading object %v\n", err)
 	}
@@ -65,7 +66,7 @@ func ResourceAviSecurityManagerDataRead(d *schema.ResourceData, meta interface{}
 
 func resourceAviSecurityManagerDataCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceSecurityManagerDataSchema()
-	err := ApiCreateOrUpdate(d, meta, "securitymanagerdata", s)
+	err := APICreateOrUpdate(d, meta, "securitymanagerdata", s)
 	if err == nil {
 		err = ResourceAviSecurityManagerDataRead(d, meta)
 	}
@@ -75,7 +76,7 @@ func resourceAviSecurityManagerDataCreate(d *schema.ResourceData, meta interface
 func resourceAviSecurityManagerDataUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceSecurityManagerDataSchema()
 	var err error
-	err = ApiCreateOrUpdate(d, meta, "securitymanagerdata", s)
+	err = APICreateOrUpdate(d, meta, "securitymanagerdata", s)
 	if err == nil {
 		err = ResourceAviSecurityManagerDataRead(d, meta)
 	}
@@ -85,7 +86,7 @@ func resourceAviSecurityManagerDataUpdate(d *schema.ResourceData, meta interface
 func resourceAviSecurityManagerDataDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "securitymanagerdata"
 	client := meta.(*clients.AviClient)
-	if ApiDeleteSystemDefaultCheck(d) {
+	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
 	uuid := d.Get("uuid").(string)

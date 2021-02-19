@@ -34,15 +34,15 @@ data "avi_actiongroupconfig" "foo_actiongroupconfig" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `action_script_config_ref` - Reference of the action script configuration to be used.
-* `autoscale_trigger_notification` - Trigger notification to autoscale manager.
+* `action_script_config_ref` - Reference of the action script configuration to be used. It is a reference to an object of type alertscriptconfig.
+* `autoscale_trigger_notification` - Trigger notification to autoscale manager. Allowed in basic(allowed values- false) edition, essentials(allowed values- false) edition, enterprise edition.
 * `description` - User defined description for the object.
-* `email_config_ref` - Select the email notification configuration to use when sending alerts via email.
-* `external_only` - Generate alert only to external destinations.
-* `level` - When an alert is generated, mark its priority via the alert level.
+* `email_config_ref` - Select the email notification configuration to use when sending alerts via email. It is a reference to an object of type alertemailconfig.
+* `external_only` - Generate alert only to external destinations. Allowed in basic(allowed values- false) edition, essentials(allowed values- false) edition, enterprise edition.
+* `level` - When an alert is generated, mark its priority via the alert level. Enum options - ALERT_LOW, ALERT_MEDIUM, ALERT_HIGH.
 * `name` - Name of the object.
-* `snmp_trap_profile_ref` - Select the snmp trap notification to use when sending alerts via snmp trap.
-* `syslog_config_ref` - Select the syslog notification configuration to use when sending alerts via syslog.
+* `snmp_trap_profile_ref` - Select the snmp trap notification to use when sending alerts via snmp trap. It is a reference to an object of type snmptrapprofile.
+* `syslog_config_ref` - Select the syslog notification configuration to use when sending alerts via syslog. It is a reference to an object of type alertsyslogconfig.
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `uuid` - Unique object identifier of the object.
 

@@ -34,7 +34,7 @@ data "avi_role" "foo_role" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `filters` - Filters for granular object access control based on object labels.
+* `filters` - Filters for granular object access control based on object labels. Multiple filters are merged using the and operator. If empty, all objects according to the privileges will be accessible to the user. Field introduced in 20.1.3. Maximum of 4 items allowed.
 * `name` - Name of the object.
 * `privileges` - List of list.
 * `tenant_ref` - It is a reference to an object of type tenant.

@@ -1,11 +1,11 @@
 /*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
+* Copyright (c) 2017. Avi Networks.
+* Author: Gaurav Rastogi (grastogi@avinetworks.com)
+*
  */
 package avi
 
-import "github.com/hashicorp/terraform/helper/schema"
+import "github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 
 func dataSourceAviAnalyticsProfile() *schema.Resource {
 	return &schema.Resource{
@@ -97,27 +97,27 @@ func dataSourceAviAnalyticsProfile() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"disable_ondemand_metrics": {
-				Type:     schema.TypeBool,
-				Computed: true,
-			},
-			"disable_se_analytics": {
-				Type:     schema.TypeBool,
-				Computed: true,
-			},
-			"disable_server_analytics": {
-				Type:     schema.TypeBool,
-				Computed: true,
-			},
-			"disable_vs_analytics": {
-				Type:     schema.TypeBool,
-				Computed: true,
-			},
 			"enable_adaptive_config": {
 				Type:     schema.TypeBool,
 				Computed: true,
 			},
 			"enable_advanced_analytics": {
+				Type:     schema.TypeBool,
+				Computed: true,
+			},
+			"enable_ondemand_metrics": {
+				Type:     schema.TypeBool,
+				Computed: true,
+			},
+			"enable_se_analytics": {
+				Type:     schema.TypeBool,
+				Computed: true,
+			},
+			"enable_server_analytics": {
+				Type:     schema.TypeBool,
+				Computed: true,
+			},
+			"enable_vs_analytics": {
 				Type:     schema.TypeBool,
 				Computed: true,
 			},

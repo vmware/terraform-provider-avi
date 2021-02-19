@@ -1,8 +1,9 @@
 package avi
 
 import (
-	"github.com/hashicorp/terraform/helper/resource"
 	"testing"
+
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
 )
 
 func TestAVIDataSourceErrorPageProfileBasic(t *testing.T) {
@@ -28,6 +29,14 @@ data "avi_tenant" "default_tenant"{
 }
 resource "avi_errorpageprofile" "testErrorPageProfile" {
 	name = "test-epp-abc"
+	error_pages {
+	index = "1"
+	enable = false
+	match {
+		match_criteria = "IS_IN"
+		status_codes = ["400","404"]
+	}
+}
 	tenant_ref = data.avi_tenant.default_tenant.id
 }
 

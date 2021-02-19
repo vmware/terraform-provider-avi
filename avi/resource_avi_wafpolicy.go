@@ -1,15 +1,16 @@
 /*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
+* Copyright (c) 2017. Avi Networks.
+* Author: Gaurav Rastogi (grastogi@avinetworks.com)
+*
  */
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourceWafPolicySchema() map[string]*schema.Schema {
@@ -18,6 +19,12 @@ func ResourceWafPolicySchema() map[string]*schema.Schema {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  true,
+		},
+		"allowlist": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceWafPolicyAllowlistSchema(),
 		},
 		"application_signatures": {
 			Type:     schema.TypeSet,
@@ -65,6 +72,11 @@ func ResourceWafPolicySchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 			Default:  "WAF_FAILURE_MODE_OPEN",
+		},
+		"geo_db_ref": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
 		},
 		"labels": {
 			Type:     schema.TypeList,
@@ -129,14 +141,7 @@ func ResourceWafPolicySchema() map[string]*schema.Schema {
 		},
 		"waf_profile_ref": {
 			Type:     schema.TypeString,
-			Optional: true,
-			Computed: true,
-		},
-		"whitelist": {
-			Type:     schema.TypeSet,
-			Optional: true,
-			Computed: true,
-			Elem:     ResourceWafPolicyWhitelistSchema(),
+			Required: true,
 		},
 	}
 }
@@ -161,7 +166,7 @@ func ResourceWafPolicyImporter(d *schema.ResourceData, m interface{}) ([]*schema
 
 func ResourceAviWafPolicyRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceWafPolicySchema()
-	err := ApiRead(d, meta, "wafpolicy", s)
+	err := APIRead(d, meta, "wafpolicy", s)
 	if err != nil {
 		log.Printf("[ERROR] in reading object %v\n", err)
 	}
@@ -170,7 +175,7 @@ func ResourceAviWafPolicyRead(d *schema.ResourceData, meta interface{}) error {
 
 func resourceAviWafPolicyCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceWafPolicySchema()
-	err := ApiCreateOrUpdate(d, meta, "wafpolicy", s)
+	err := APICreateOrUpdate(d, meta, "wafpolicy", s)
 	if err == nil {
 		err = ResourceAviWafPolicyRead(d, meta)
 	}
@@ -180,7 +185,7 @@ func resourceAviWafPolicyCreate(d *schema.ResourceData, meta interface{}) error 
 func resourceAviWafPolicyUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceWafPolicySchema()
 	var err error
-	err = ApiCreateOrUpdate(d, meta, "wafpolicy", s)
+	err = APICreateOrUpdate(d, meta, "wafpolicy", s)
 	if err == nil {
 		err = ResourceAviWafPolicyRead(d, meta)
 	}
@@ -190,7 +195,7 @@ func resourceAviWafPolicyUpdate(d *schema.ResourceData, meta interface{}) error 
 func resourceAviWafPolicyDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "wafpolicy"
 	client := meta.(*clients.AviClient)
-	if ApiDeleteSystemDefaultCheck(d) {
+	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
 	uuid := d.Get("uuid").(string)

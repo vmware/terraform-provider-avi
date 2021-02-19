@@ -2,9 +2,10 @@ package avi
 
 import (
 	"encoding/json"
-	"github.com/avinetworks/sdk/go/models"
 	"reflect"
 	"testing"
+
+	"github.com/avinetworks/sdk/go/models"
 )
 
 var apipooldata = `{
@@ -28,7 +29,7 @@ var apipooldata = `{
 
 // Testcase to test conversion of avidata to schema and schema to avidata
 // apidata of pool object shoud be equal after conversion of schema to avidata
-func TestApiDataToSchemaViceVersa(t *testing.T) {
+func TestAPIDataToSchemaViceVersa(t *testing.T) {
 	s := ResourcePoolSchema()
 	var apidata interface{}
 	err := json.Unmarshal([]byte(apipooldata), &apidata)
@@ -37,8 +38,8 @@ func TestApiDataToSchemaViceVersa(t *testing.T) {
 		t.Fail()
 	}
 	// Converting apidata into schema
-	if schemadata, err := ApiDataToSchema(apidata, nil, nil); err != nil {
-		t.Errorf("ERROR: ApiDataToSchema conversion failed with error %v", err)
+	if schemadata, err := APIDataToSchema(apidata, nil, nil); err != nil {
+		t.Errorf("ERROR: APIDataToSchema conversion failed with error %v", err)
 	} else {
 		// Converting schema into avidata
 		data, _ := SchemaToAviData(schemadata, s)
@@ -51,7 +52,7 @@ func TestApiDataToSchemaViceVersa(t *testing.T) {
 
 // Testcase to test conversion of avidata to schema and schema to avidata on updated avidata
 // apidata of pool object shoud not be equal after conversion of schema to avidata
-func TestApiDataToSchemaWithUpdatedApiData(t *testing.T) {
+func TestAPIDataToSchemaWithUpdatedApiData(t *testing.T) {
 	s := ResourcePoolSchema()
 	var apidata models.Pool
 	err := json.Unmarshal([]byte(apipooldata), &apidata)
@@ -60,8 +61,8 @@ func TestApiDataToSchemaWithUpdatedApiData(t *testing.T) {
 		t.Fail()
 	}
 	// converting apidata into schema
-	if schemadata, err := ApiDataToSchema(apidata, nil, nil); err != nil {
-		t.Errorf("ERROR: ApiDataToSchema conversion failed with error %v", err)
+	if schemadata, err := APIDataToSchema(apidata, nil, nil); err != nil {
+		t.Errorf("ERROR: APIDataToSchema conversion failed with error %v", err)
 	} else {
 		// Updating the actual configuration of pool object
 		enabled := false

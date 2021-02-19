@@ -35,9 +35,9 @@ data "avi_cluster" "foo_cluster" {
 In addition to all arguments above, the following attributes are exported:
 
 * `name` - Name of the object.
-* `nodes` - List of list.
+* `nodes` - Minimum of 1 items required. Maximum of 7 items allowed.
 * `rejoin_nodes_automatically` - Re-join cluster nodes automatically in the event one of the node is reset to factory.
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `uuid` - Unique object identifier of the object.
-* `virtual_ip` - A virtual ip address.
+* `virtual_ip` - A virtual ip address. This ip address will be dynamically reconfigured so that it always is the ip of the cluster leader.
 

@@ -34,9 +34,9 @@ data "avi_customipamdnsprofile" "foo_customipamdnsprofile" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `name` - Name of the custom ipam dns profile.
-* `script_params` - Parameters that are always passed to the ipam/dns script.
-* `script_uri` - Script uri of form controller //ipamdnsscripts/<file-name>.
-* `tenant_ref` - It is a reference to an object of type tenant.
+* `name` - Name of the custom ipam dns profile. Field introduced in 17.1.1.
+* `script_params` - Parameters that are always passed to the ipam/dns script. Field introduced in 17.1.1.
+* `script_uri` - Script uri of form controller //ipamdnsscripts/<file-name>. Field introduced in 17.1.1.
+* `tenant_ref` - It is a reference to an object of type tenant. Field introduced in 17.1.1.
 * `uuid` - Field introduced in 17.1.1.
 

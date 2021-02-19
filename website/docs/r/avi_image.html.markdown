@@ -29,19 +29,19 @@ resource "avi_image" "foo" {
 
 The following arguments are supported:
 
-* `cloud_info_values` - (Optional) This field describes the cloud info specific to the base image.
-* `controller_info` - (Optional) Controller package details.
-* `controller_patch_name` - (Optional) Mandatory controller patch name that is applied along with this base image.
-* `controller_patch_uuid` - (Optional) It references the controller-patch associated with the uber image.
-* `migrations` - (Optional) This field describes the api migration related information.
-* `name` - (Optional) Name of the image.
-* `se_info` - (Optional) Se package details.
-* `se_patch_name` - (Optional) Mandatory serviceengine patch name that is applied along with this base image.
-* `se_patch_uuid` - (Optional) It references the service engine patch associated with the uber image.
-* `status` - (Optional) Status to check if the image is present.
-* `tenant_ref` - (Optional) Tenant that this object belongs to.
-* `type` - (Optional) Type of the image patch/system.
-* `uber_bundle` - (Optional) Status to check if the image is an uber bundle.
+* `name` - (Required) Name of the image. Field introduced in 18.2.6.
+* `cloud_info_values` - (Optional) This field describes the cloud info specific to the base image. Field introduced in 20.1.1.
+* `controller_info` - (Optional) Controller package details. Field introduced in 18.2.6.
+* `controller_patch_name` - (Optional) Mandatory controller patch name that is applied along with this base image. Field introduced in 18.2.10, 20.1.1.
+* `controller_patch_uuid` - (Optional) It references the controller-patch associated with the uber image. Field introduced in 18.2.8, 20.1.1.
+* `migrations` - (Optional) This field describes the api migration related information. Field introduced in 18.2.6.
+* `se_info` - (Optional) Se package details. Field introduced in 18.2.6.
+* `se_patch_name` - (Optional) Mandatory serviceengine patch name that is applied along with this base image. Field introduced in 18.2.10, 20.1.1.
+* `se_patch_uuid` - (Optional) It references the service engine patch associated with the uber image. Field introduced in 18.2.8, 20.1.1.
+* `status` - (Optional) Status to check if the image is present. Enum options - SYSERR_SUCCESS, SYSERR_FAILURE, SYSERR_OUT_OF_MEMORY, SYSERR_NO_ENT, SYSERR_INVAL, SYSERR_ACCESS, SYSERR_FAULT, SYSERR_IO, SYSERR_TIMEOUT, SYSERR_NOT_SUPPORTED, SYSERR_NOT_READY, SYSERR_UPGRADE_IN_PROGRESS, SYSERR_WARM_START_IN_PROGRESS, SYSERR_TRY_AGAIN, SYSERR_NOT_UPGRADING, SYSERR_PENDING, SYSERR_EVENT_GEN_FAILURE, SYSERR_CONFIG_PARAM_MISSING, SYSERR_RANGE, SYSERR_BAD_REQUEST... Field introduced in 18.2.6.
+* `tenant_ref` - (Optional) Tenant that this object belongs to. It is a reference to an object of type tenant. Field introduced in 18.2.6.
+* `type` - (Optional) Type of the image patch/system. Enum options - IMAGE_TYPE_PATCH, IMAGE_TYPE_SYSTEM, IMAGE_TYPE_MUST_CHECK. Field introduced in 18.2.6.
+* `uber_bundle` - (Optional) Status to check if the image is an uber bundle. Field introduced in 18.2.8, 20.1.1.
 
 
 ### Timeouts
@@ -56,5 +56,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-* `uuid` -  Uuid of the image.
+* `uuid` -  Uuid of the image. Field introduced in 18.2.6.
 

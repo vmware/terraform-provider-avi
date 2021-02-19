@@ -29,12 +29,12 @@ resource "avi_gslbgeodbprofile" "foo" {
 
 The following arguments are supported:
 
-* `name` - (Required) A user-friendly name for the geodb profile.
+* `entries` - (Required) List of geodb entries. An entry can either be a geodb file or an ip address group with geo properties. Field introduced in 17.1.1. Minimum of 1 items required.
+* `name` - (Required) A user-friendly name for the geodb profile. Field introduced in 17.1.1.
 * `description` - (Optional) Field introduced in 17.1.1.
-* `entries` - (Optional) List of geodb entries.
-* `is_federated` - (Optional) This field indicates that this object is replicated across gslb federation.
-* `labels` - (Optional) Key value pairs for granular object access control.
-* `tenant_ref` - (Optional) It is a reference to an object of type tenant.
+* `is_federated` - (Optional) This field indicates that this object is replicated across gslb federation. Field introduced in 17.1.3.
+* `labels` - (Optional) Key value pairs for granular object access control. Also allows for classification and tagging of similar objects. Field introduced in 20.1.2. Maximum of 4 items allowed.
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant. Field introduced in 17.1.1.
 
 
 ### Timeouts
@@ -49,5 +49,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-* `uuid` -  Uuid of the geodb profile.
+* `uuid` -  Uuid of the geodb profile. Field introduced in 17.1.1.
 

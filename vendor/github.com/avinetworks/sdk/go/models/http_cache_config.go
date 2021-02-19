@@ -19,7 +19,7 @@ type HTTPCacheConfig struct {
 	// Default expiration time of cache objects received from the server without a Cache-Control expiration header.  This value may be overwritten by the Heuristic Expire setting.
 	DefaultExpire *int32 `json:"default_expire,omitempty"`
 
-	// Enable/disable HTTP object caching.When enabling caching for the first time, SE Group app_cache_percent must beset to allocate shared memory required for caching (A service engine restart is needed after setting/resetting the SE group value).
+	// Enable/disable HTTP object caching.When enabling caching for the first time, SE Group app_cache_percent must be set to allocate shared memory required for caching (A service engine restart is needed after setting/resetting the SE group value).
 	Enabled *bool `json:"enabled,omitempty"`
 
 	// If a response object from the server does not include the Cache-Control header, but does include a Last-Modified header, the system will use this time to calculate the Cache-Control expiration.  If unable to solicit an Last-Modified header, then the system will fall back to the Cache Expire Time value.
@@ -34,16 +34,22 @@ type HTTPCacheConfig struct {
 	// Maximum size of an object to store in the cache.
 	MaxObjectSize *int32 `json:"max_object_size,omitempty"`
 
-	// Blacklist *string group of non-cacheable mime types. It is a reference to an object of type StringGroup.
+	// Blacklist *string group of non-cacheable mime types. It is a reference to an object of type StringGroup. Field deprecated in 20.1.3.
 	MimeTypesBlackGroupRefs []string `json:"mime_types_black_group_refs,omitempty"`
 
-	// Blacklist of non-cacheable mime types.
+	// Blacklist of non-cacheable mime types. Field deprecated in 20.1.3.
 	MimeTypesBlackList []string `json:"mime_types_black_list,omitempty"`
 
-	// Whitelist *string group of cacheable mime types. If both Cacheable Mime Types *string list and *string group are empty, this defaults to */*. It is a reference to an object of type StringGroup.
+	// Blocklist *string group of non-cacheable mime types. It is a reference to an object of type StringGroup. Field introduced in 20.1.3.
+	MimeTypesBlockGroupRefs []string `json:"mime_types_block_group_refs,omitempty"`
+
+	// Blocklist of non-cacheable mime types. Field introduced in 20.1.3.
+	MimeTypesBlockLists []string `json:"mime_types_block_lists,omitempty"`
+
+	// Allowlist *string group of cacheable mime types. If both Cacheable Mime Types *string list and *string group are empty, this defaults to */*. It is a reference to an object of type StringGroup.
 	MimeTypesGroupRefs []string `json:"mime_types_group_refs,omitempty"`
 
-	// Whitelist of cacheable mime types. If both Cacheable Mime Types *string list and *string group are empty, this defaults to */*.
+	// Allowlist of cacheable mime types. If both Cacheable Mime Types *string list and *string group are empty, this defaults to */*.
 	MimeTypesList []string `json:"mime_types_list,omitempty"`
 
 	// Minimum size of an object to store in the cache.
