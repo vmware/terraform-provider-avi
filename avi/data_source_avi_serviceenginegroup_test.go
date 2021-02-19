@@ -1,8 +1,9 @@
 package avi
 
 import (
-	"github.com/hashicorp/terraform/helper/resource"
 	"testing"
+
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
 )
 
 func TestAVIDataSourceServiceEngineGroupBasic(t *testing.T) {
@@ -135,6 +136,14 @@ func TestAVIDataSourceServiceEngineGroupBasic(t *testing.T) {
 						"avi_serviceenginegroup.testServiceEngineGroup", "se_thread_multiplier", "1"),
 					resource.TestCheckResourceAttr(
 						"avi_serviceenginegroup.testServiceEngineGroup", "vs_host_redundancy", "true"),
+					resource.TestCheckResourceAttr(
+						"avi_serviceenginegroup.testServiceEngineGroup", "vnic_dhcp_ip_check_interval", "6"),
+					resource.TestCheckResourceAttr(
+						"avi_serviceenginegroup.testServiceEngineGroup", "vnic_dhcp_ip_max_retries", "10"),
+					resource.TestCheckResourceAttr(
+						"avi_serviceenginegroup.testServiceEngineGroup", "vnic_ip_delete_interval", "5"),
+					resource.TestCheckResourceAttr(
+						"avi_serviceenginegroup.testServiceEngineGroup", "vnic_probe_interval", "5"),
 				),
 			},
 		},
@@ -224,6 +233,10 @@ resource "avi_serviceenginegroup" "testServiceEngineGroup" {
 	se_thread_multiplier = "1"
 	vs_host_redundancy = true
 	license_type = "LIC_CORES"
+	vnic_dhcp_ip_check_interval = "6"
+	vnic_dhcp_ip_max_retries = "10"
+	vnic_ip_delete_interval = "5"
+	vnic_probe_interval = "5"
 }
 
 data "avi_serviceenginegroup" "testServiceEngineGroup" {

@@ -1,28 +1,27 @@
 /*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
+* Copyright (c) 2017. Avi Networks.
+* Author: Gaurav Rastogi (grastogi@avinetworks.com)
+*
  */
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourceControllerSiteSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"address": {
 			Type:     schema.TypeString,
-			Optional: true,
-			Computed: true,
+			Required: true,
 		},
 		"name": {
 			Type:     schema.TypeString,
-			Optional: true,
-			Computed: true,
+			Required: true,
 		},
 		"port": {
 			Type:     schema.TypeInt,
@@ -62,7 +61,7 @@ func ResourceControllerSiteImporter(d *schema.ResourceData, m interface{}) ([]*s
 
 func ResourceAviControllerSiteRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceControllerSiteSchema()
-	err := ApiRead(d, meta, "controllersite", s)
+	err := APIRead(d, meta, "controllersite", s)
 	if err != nil {
 		log.Printf("[ERROR] in reading object %v\n", err)
 	}
@@ -71,7 +70,7 @@ func ResourceAviControllerSiteRead(d *schema.ResourceData, meta interface{}) err
 
 func resourceAviControllerSiteCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceControllerSiteSchema()
-	err := ApiCreateOrUpdate(d, meta, "controllersite", s)
+	err := APICreateOrUpdate(d, meta, "controllersite", s)
 	if err == nil {
 		err = ResourceAviControllerSiteRead(d, meta)
 	}
@@ -81,7 +80,7 @@ func resourceAviControllerSiteCreate(d *schema.ResourceData, meta interface{}) e
 func resourceAviControllerSiteUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceControllerSiteSchema()
 	var err error
-	err = ApiCreateOrUpdate(d, meta, "controllersite", s)
+	err = APICreateOrUpdate(d, meta, "controllersite", s)
 	if err == nil {
 		err = ResourceAviControllerSiteRead(d, meta)
 	}
@@ -91,7 +90,7 @@ func resourceAviControllerSiteUpdate(d *schema.ResourceData, meta interface{}) e
 func resourceAviControllerSiteDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "controllersite"
 	client := meta.(*clients.AviClient)
-	if ApiDeleteSystemDefaultCheck(d) {
+	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
 	uuid := d.Get("uuid").(string)

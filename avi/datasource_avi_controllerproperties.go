@@ -1,11 +1,11 @@
 /*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
+* Copyright (c) 2017. Avi Networks.
+* Author: Gaurav Rastogi (grastogi@avinetworks.com)
+*
  */
 package avi
 
-import "github.com/hashicorp/terraform/helper/schema"
+import "github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 
 func dataSourceAviControllerProperties() *schema.Resource {
 	return &schema.Resource{
@@ -39,6 +39,14 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Type:     schema.TypeBool,
 				Computed: true,
 			},
+			"async_patch_merge_period": {
+				Type:     schema.TypeInt,
+				Computed: true,
+			},
+			"async_patch_request_cleanup_duration": {
+				Type:     schema.TypeInt,
+				Computed: true,
+			},
 			"attach_ip_retry_interval": {
 				Type:     schema.TypeInt,
 				Computed: true,
@@ -68,6 +76,10 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Computed: true,
 			},
 			"consistency_check_timeout_period": {
+				Type:     schema.TypeInt,
+				Computed: true,
+			},
+			"controller_resource_info_collection_period": {
 				Type:     schema.TypeInt,
 				Computed: true,
 			},
@@ -135,6 +147,10 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Type:     schema.TypeInt,
 				Computed: true,
 			},
+			"max_threads_cc_vip_bg_worker": {
+				Type:     schema.TypeInt,
+				Computed: true,
+			},
 			"permission_scoped_shared_admin_networks": {
 				Type:     schema.TypeBool,
 				Computed: true,
@@ -167,6 +183,10 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Type:     schema.TypeInt,
 				Computed: true,
 			},
+			"resmgr_log_caching_period": {
+				Type:     schema.TypeInt,
+				Computed: true,
+			},
 			"safenet_hsm_version": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -192,6 +212,10 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Computed: true,
 			},
 			"se_vnic_cooldown": {
+				Type:     schema.TypeInt,
+				Computed: true,
+			},
+			"se_vnic_gc_wait_time": {
 				Type:     schema.TypeInt,
 				Computed: true,
 			},

@@ -1,19 +1,25 @@
 /*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
+* Copyright (c) 2017. Avi Networks.
+* Author: Gaurav Rastogi (grastogi@avinetworks.com)
+*
  */
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourceALBServicesConfigSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
+		"app_signature_config": {
+			Type:     schema.TypeSet,
+			Required: true,
+			Elem:     ResourceAppSignatureConfigSchema(),
+		},
 		"asset_contact": {
 			Type:     schema.TypeSet,
 			Optional: true,
@@ -22,20 +28,18 @@ func ResourceALBServicesConfigSchema() map[string]*schema.Schema {
 		},
 		"feature_opt_in_status": {
 			Type:     schema.TypeSet,
-			Optional: true,
-			Computed: true,
+			Required: true,
 			Elem:     ResourcePortalFeatureOptInSchema(),
 		},
 		"ip_reputation_config": {
 			Type:     schema.TypeSet,
-			Optional: true,
-			Computed: true,
+			Required: true,
 			Elem:     ResourceIpReputationConfigSchema(),
 		},
 		"mode": {
 			Type:     schema.TypeString,
 			Optional: true,
-			Default:  "SALESFORCE",
+			Default:  "MYVMWARE",
 		},
 		"polling_interval": {
 			Type:     schema.TypeInt,
@@ -44,13 +48,11 @@ func ResourceALBServicesConfigSchema() map[string]*schema.Schema {
 		},
 		"portal_url": {
 			Type:     schema.TypeString,
-			Optional: true,
-			Computed: true,
+			Required: true,
 		},
 		"proactive_support_defaults": {
 			Type:     schema.TypeSet,
-			Optional: true,
-			Computed: true,
+			Required: true,
 			Elem:     ResourceProactiveSupportDefaultsSchema(),
 		},
 		"split_proxy_configuration": {
@@ -63,6 +65,11 @@ func ResourceALBServicesConfigSchema() map[string]*schema.Schema {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  false,
+		},
+		"use_tls": {
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  true,
 		},
 		"uuid": {
 			Type:     schema.TypeString,
@@ -92,7 +99,7 @@ func ResourceALBServicesConfigImporter(d *schema.ResourceData, m interface{}) ([
 
 func ResourceAviALBServicesConfigRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceALBServicesConfigSchema()
-	err := ApiRead(d, meta, "albservicesconfig", s)
+	err := APIRead(d, meta, "albservicesconfig", s)
 	if err != nil {
 		log.Printf("[ERROR] in reading object %v\n", err)
 	}
@@ -101,7 +108,7 @@ func ResourceAviALBServicesConfigRead(d *schema.ResourceData, meta interface{}) 
 
 func resourceAviALBServicesConfigCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceALBServicesConfigSchema()
-	err := ApiCreateOrUpdate(d, meta, "albservicesconfig", s)
+	err := APICreateOrUpdate(d, meta, "albservicesconfig", s)
 	if err == nil {
 		err = ResourceAviALBServicesConfigRead(d, meta)
 	}
@@ -111,7 +118,7 @@ func resourceAviALBServicesConfigCreate(d *schema.ResourceData, meta interface{}
 func resourceAviALBServicesConfigUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceALBServicesConfigSchema()
 	var err error
-	err = ApiCreateOrUpdate(d, meta, "albservicesconfig", s)
+	err = APICreateOrUpdate(d, meta, "albservicesconfig", s)
 	if err == nil {
 		err = ResourceAviALBServicesConfigRead(d, meta)
 	}
@@ -121,7 +128,7 @@ func resourceAviALBServicesConfigUpdate(d *schema.ResourceData, meta interface{}
 func resourceAviALBServicesConfigDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "albservicesconfig"
 	client := meta.(*clients.AviClient)
-	if ApiDeleteSystemDefaultCheck(d) {
+	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
 	uuid := d.Get("uuid").(string)

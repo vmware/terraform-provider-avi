@@ -29,12 +29,12 @@ resource "avi_dnspolicy" "foo" {
 
 The following arguments are supported:
 
-* `created_by` - (Optional) Creator name.
+* `name` - (Required) Name of the dns policy. Field introduced in 17.1.1.
+* `created_by` - (Optional) Creator name. Field introduced in 17.1.1.
 * `description` - (Optional) Field introduced in 17.1.1.
-* `labels` - (Optional) Key value pairs for granular object access control.
-* `name` - (Optional) Name of the dns policy.
-* `rule` - (Optional) Dns rules.
-* `tenant_ref` - (Optional) It is a reference to an object of type tenant.
+* `labels` - (Optional) Key value pairs for granular object access control. Also allows for classification and tagging of similar objects. Field introduced in 20.1.2. Maximum of 4 items allowed.
+* `rule` - (Optional) Dns rules. Field introduced in 17.1.1.
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant. Field introduced in 17.1.1.
 
 
 ### Timeouts
@@ -49,5 +49,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-* `uuid` -  Uuid of the dns policy.
+* `uuid` -  Uuid of the dns policy. Field introduced in 17.1.1.
 

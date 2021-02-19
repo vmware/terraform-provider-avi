@@ -29,10 +29,10 @@ resource "avi_availabilityzone" "foo" {
 
 The following arguments are supported:
 
-* `cloud_ref` - (Optional) Availability zone belongs to cloud.
-* `name` - (Optional) Availabilty zone where vcenter list belongs to.
-* `tenant_ref` - (Optional) Availabilityzone belongs to tenant.
-* `vcenter_refs` - (Optional) Group of vcenter list belong to availabilty zone.
+* `name` - (Required) Availabilty zone where vcenter list belongs to. Field introduced in 20.1.1.
+* `vcenter_refs` - (Required) Group of vcenter list belong to availabilty zone. It is a reference to an object of type vcenterserver. Field introduced in 20.1.1. Minimum of 1 items required.
+* `cloud_ref` - (Optional) Availability zone belongs to cloud. It is a reference to an object of type cloud. Field introduced in 20.1.1.
+* `tenant_ref` - (Optional) Availabilityzone belongs to tenant. It is a reference to an object of type tenant. Field introduced in 20.1.1.
 
 
 ### Timeouts
@@ -47,5 +47,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-* `uuid` -  Availability zone config uuid.
+* `uuid` -  Availability zone config uuid. Field introduced in 20.1.1.
 

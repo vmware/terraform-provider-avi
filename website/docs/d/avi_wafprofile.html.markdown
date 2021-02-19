@@ -34,11 +34,11 @@ data "avi_wafprofile" "foo_wafprofile" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `config` - Config params for waf.
+* `config` - Config params for waf. Field introduced in 17.2.1.
 * `description` - Field introduced in 17.2.1.
-* `files` - List of data files used for waf rules.
-* `labels` - Key value pairs for granular object access control.
+* `files` - List of data files used for waf rules. Field introduced in 17.2.1. Maximum of 64 items allowed.
+* `labels` - Key value pairs for granular object access control. Also allows for classification and tagging of similar objects. Field introduced in 20.1.2. Maximum of 4 items allowed.
 * `name` - Field introduced in 17.2.1.
-* `tenant_ref` - It is a reference to an object of type tenant.
+* `tenant_ref` - It is a reference to an object of type tenant. Field introduced in 17.2.1.
 * `uuid` - Field introduced in 17.2.1.
 

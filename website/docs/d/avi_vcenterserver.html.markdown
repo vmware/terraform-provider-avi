@@ -36,11 +36,11 @@ data "avi_vcenterserver" "foo_vcenterserver" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `cloud_ref` - Vcenter belongs to cloud.
-* `content_lib` - Vcenter template to create service engine.
-* `name` - Availabilty zone where vcenter list belongs to.
-* `tenant_ref` - Vcenter belongs to tenant.
-* `uuid` - Vcenter config uuid.
-* `vcenter_credentials_ref` - Credentials to access vcenter.
-* `vcenter_url` - Vcenter hostname or ip address.
+* `cloud_ref` - Vcenter belongs to cloud. It is a reference to an object of type cloud. Field introduced in 20.1.1.
+* `content_lib` - Vcenter template to create service engine. Field introduced in 20.1.1.
+* `name` - Availabilty zone where vcenter list belongs to. Field introduced in 20.1.1.
+* `tenant_ref` - Vcenter belongs to tenant. It is a reference to an object of type tenant. Field introduced in 20.1.1.
+* `uuid` - Vcenter config uuid. Field introduced in 20.1.1.
+* `vcenter_credentials_ref` - Credentials to access vcenter. It is a reference to an object of type cloudconnectoruser. Field introduced in 20.1.1.
+* `vcenter_url` - Vcenter hostname or ip address. Field introduced in 20.1.1.
 

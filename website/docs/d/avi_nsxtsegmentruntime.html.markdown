@@ -36,22 +36,22 @@ data "avi_nsxtsegmentruntime" "foo_nsxtsegmentruntime" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `cloud_ref` - Nsxt segment belongs to cloud.
-* `dhcp6_ranges` - V6 dhcp ranges configured in nsxt.
-* `dhcp_enabled` - Ip address management scheme for this segment associated network.
-* `dhcp_ranges` - Dhcp ranges configured in nsxt.
-* `name` - Segment object name.
-* `nw_name` - Network name.
-* `nw_ref` - Corresponding network object in avi.
-* `opaque_network_id` - Opaque network id.
-* `segment_gw` - Segment gateway.
-* `segment_gw6` - V6 segment gateway.
-* `segment_id` - Segment id.
-* `segname` - Segment name.
-* `subnet` - Segment cidr.
-* `subnet6` - V6 segment cidr.
-* `tenant_ref` - Nsxt segment belongs to tenant.
-* `tier1_id` - Tier1 router id.
-* `uuid` - Uuid.
-* `vrf_context_ref` - Corresponding vrf context object in avi.
+* `cloud_ref` - Nsxt segment belongs to cloud. It is a reference to an object of type cloud. Field introduced in 20.1.1.
+* `dhcp6_ranges` - V6 dhcp ranges configured in nsxt. Field introduced in 20.1.1.
+* `dhcp_enabled` - Ip address management scheme for this segment associated network. Field introduced in 20.1.1.
+* `dhcp_ranges` - Dhcp ranges configured in nsxt. Field introduced in 20.1.1.
+* `name` - Segment object name. Field introduced in 20.1.1.
+* `nw_name` - Network name. Field introduced in 20.1.1.
+* `nw_ref` - Corresponding network object in avi. It is a reference to an object of type network. Field introduced in 20.1.1.
+* `opaque_network_id` - Opaque network id. Field introduced in 20.1.1.
+* `segment_gw` - Segment gateway. Field introduced in 20.1.1.
+* `segment_gw6` - V6 segment gateway. Field introduced in 20.1.1.
+* `segment_id` - Segment id. Field introduced in 20.1.1.
+* `segname` - Segment name. Field introduced in 20.1.1.
+* `subnet` - Segment cidr. Field introduced in 20.1.1.
+* `subnet6` - V6 segment cidr. Field introduced in 20.1.1.
+* `tenant_ref` - Nsxt segment belongs to tenant. It is a reference to an object of type tenant. Field introduced in 20.1.1.
+* `tier1_id` - Tier1 router id. Field introduced in 20.1.1.
+* `uuid` - Uuid. Field introduced in 20.1.1.
+* `vrf_context_ref` - Corresponding vrf context object in avi. It is a reference to an object of type vrfcontext. Field introduced in 20.1.1.
 

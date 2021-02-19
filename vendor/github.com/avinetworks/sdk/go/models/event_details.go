@@ -25,6 +25,9 @@ type EventDetails struct {
 	// Placeholder for description of property anomaly_details of obj type EventDetails field type str  type object
 	AnomalyDetails *AnomalyEventDetails `json:"anomaly_details,omitempty"`
 
+	// Placeholder for description of property api_version_deprecated of obj type EventDetails field type str  type object
+	APIVersionDeprecated *APIVersionDeprecated `json:"api_version_deprecated,omitempty"`
+
 	// Placeholder for description of property apic_agent_bd_vrf_details of obj type EventDetails field type str  type object
 	ApicAgentBdVrfDetails *ApicAgentBridgeDomainVrfChange `json:"apic_agent_bd_vrf_details,omitempty"`
 
@@ -33,6 +36,9 @@ type EventDetails struct {
 
 	// Placeholder for description of property apic_agent_vs_network_error of obj type EventDetails field type str  type object
 	ApicAgentVsNetworkError *ApicAgentVsNetworkError `json:"apic_agent_vs_network_error,omitempty"`
+
+	// Placeholder for description of property app_signature_event_data of obj type EventDetails field type str  type object
+	AppSignatureEventData *AppSignatureEventData `json:"app_signature_event_data,omitempty"`
 
 	// Placeholder for description of property avg_uptime_change_details of obj type EventDetails field type str  type object
 	AvgUptimeChangeDetails *AvgUptimeChangeDetails `json:"avg_uptime_change_details,omitempty"`
@@ -105,6 +111,9 @@ type EventDetails struct {
 
 	// Placeholder for description of property cloud_autoscaling_config_failure_details of obj type EventDetails field type str  type object
 	CloudAutoscalingConfigFailureDetails *CloudAutoscalingConfigFailureDetails `json:"cloud_autoscaling_config_failure_details,omitempty"`
+
+	// Cloud Routes event. Field introduced in 20.1.3.
+	CloudRouteNotifDetails *CloudRouteNotifDetails `json:"cloud_route_notif_details,omitempty"`
 
 	// Placeholder for description of property cluster_config_failed_details of obj type EventDetails field type str  type object
 	ClusterConfigFailedDetails *ClusterConfigFailedEvent `json:"cluster_config_failed_details,omitempty"`
@@ -181,6 +190,9 @@ type EventDetails struct {
 	// Placeholder for description of property container_cloud_sevice of obj type EventDetails field type str  type object
 	ContainerCloudSevice *ContainerCloudService `json:"container_cloud_sevice,omitempty"`
 
+	//  Field introduced in 20.1.4.
+	ControllerDiscontinuousTimeChangeEventDetails *ControllerDiscontinuousTimeChangeEventDetails `json:"controller_discontinuous_time_change_event_details,omitempty"`
+
 	// Placeholder for description of property controller_license_reconcile_details of obj type EventDetails field type str  type object
 	ControllerLicenseReconcileDetails *ControllerLicenseReconcileDetails `json:"controller_license_reconcile_details,omitempty"`
 
@@ -198,6 +210,9 @@ type EventDetails struct {
 
 	// Placeholder for description of property cs_infra_details of obj type EventDetails field type str  type object
 	CsInfraDetails *CloudStackSetup `json:"cs_infra_details,omitempty"`
+
+	// Database error event. Field introduced in 21.1.1.
+	DatabaseEventInfo *DatabaseEventInfo `json:"database_event_info,omitempty"`
 
 	// Placeholder for description of property delete_se_details of obj type EventDetails field type str  type object
 	DeleteSeDetails *RmDeleteSeEventDetails `json:"delete_se_details,omitempty"`
@@ -223,6 +238,9 @@ type EventDetails struct {
 	// Placeholder for description of property gcp_info of obj type EventDetails field type str  type object
 	GcpInfo *GCPSetup `json:"gcp_info,omitempty"`
 
+	// Placeholder for description of property generic_audit_compliance_event_info of obj type EventDetails field type str  type object
+	GenericAuditComplianceEventInfo *AuditComplianceEventInfo `json:"generic_audit_compliance_event_info,omitempty"`
+
 	// Placeholder for description of property glb_info of obj type EventDetails field type str  type object
 	GlbInfo *GslbStatus `json:"glb_info,omitempty"`
 
@@ -247,8 +265,14 @@ type EventDetails struct {
 	// Placeholder for description of property license_expiry_details of obj type EventDetails field type str  type object
 	LicenseExpiryDetails *LicenseExpiryDetails `json:"license_expiry_details,omitempty"`
 
+	// Placeholder for description of property license_tier_switch_details of obj type EventDetails field type str  type object
+	LicenseTierSwitchDetails *LicenseTierSwitchDetiails `json:"license_tier_switch_details,omitempty"`
+
 	// Placeholder for description of property license_transaction_details of obj type EventDetails field type str  type object
 	LicenseTransactionDetails *LicenseTransactionDetails `json:"license_transaction_details,omitempty"`
+
+	// Placeholder for description of property log_agent_event_details of obj type EventDetails field type str  type object
+	LogAgentEventDetails *LogAgentEventDetail `json:"log_agent_event_details,omitempty"`
 
 	// Placeholder for description of property marathon_service_port_conflict_details of obj type EventDetails field type str  type object
 	MarathonServicePortConflictDetails *MarathonServicePortConflict `json:"marathon_service_port_conflict_details,omitempty"`
@@ -361,6 +385,9 @@ type EventDetails struct {
 	// Placeholder for description of property se_details of obj type EventDetails field type str  type object
 	SeDetails *SeMgrEventDetails `json:"se_details,omitempty"`
 
+	//  Field introduced in 20.1.4.
+	SeDiscontinuousTimeChangeEventDetails *SeDiscontinuousTimeChangeEventDetails `json:"se_discontinuous_time_change_event_details,omitempty"`
+
 	// Placeholder for description of property se_dupip_event_details of obj type EventDetails field type str  type object
 	SeDupipEventDetails *SeDupipEventDetails `json:"se_dupip_event_details,omitempty"`
 
@@ -421,9 +448,6 @@ type EventDetails struct {
 	// Placeholder for description of property se_thresh_event_details of obj type EventDetails field type str  type object
 	SeThreshEventDetails *SeThreshEventDetails `json:"se_thresh_event_details,omitempty"`
 
-	// Placeholder for description of property se_version_check_details of obj type EventDetails field type str  type object
-	SeVersionCheckDetails *SeVersionCheckFailedEvent `json:"se_version_check_details,omitempty"`
-
 	// Placeholder for description of property se_vnic_down_event_details of obj type EventDetails field type str  type object
 	SeVnicDownEventDetails *SeVnicDownEventDetails `json:"se_vnic_down_event_details,omitempty"`
 
@@ -436,8 +460,14 @@ type EventDetails struct {
 	// Placeholder for description of property se_vs_fault_event_details of obj type EventDetails field type str  type object
 	SeVsFaultEventDetails *SeVsFaultEventDetails `json:"se_vs_fault_event_details,omitempty"`
 
+	//  Field introduced in 18.2.11,20.1.3.
+	SeVsPktBufHighEventDetails *SeVsPktBufHighEventDetails `json:"se_vs_pkt_buf_high_event_details,omitempty"`
+
 	// Placeholder for description of property sec_mgr_data_event of obj type EventDetails field type str  type object
 	SecMgrDataEvent *SecMgrDataEvent `json:"sec_mgr_data_event,omitempty"`
+
+	// Placeholder for description of property secure_key_exchange_info of obj type EventDetails field type str  type object
+	SecureKeyExchangeInfo *SecureKeyExchangeDetails `json:"secure_key_exchange_info,omitempty"`
 
 	// Placeholder for description of property semigrate_event_details of obj type EventDetails field type str  type object
 	SemigrateEventDetails *SeMigrateEventDetails `json:"semigrate_event_details,omitempty"`
@@ -501,9 +531,6 @@ type EventDetails struct {
 
 	// Azure cloud sync services event details. Field introduced in 18.2.3.
 	SyncServicesInfo *CloudSyncServices `json:"sync_services_info,omitempty"`
-
-	// Placeholder for description of property system_upgrade_details of obj type EventDetails field type str  type object
-	SystemUpgradeDetails *SystemUpgradeDetails `json:"system_upgrade_details,omitempty"`
 
 	// Placeholder for description of property tencent_info of obj type EventDetails field type str  type object
 	TencentInfo *TencentSetup `json:"tencent_info,omitempty"`

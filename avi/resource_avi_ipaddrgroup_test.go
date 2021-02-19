@@ -2,11 +2,12 @@ package avi
 
 import (
 	"fmt"
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/resource"
-	"github.com/hashicorp/terraform/terraform"
 	"strings"
 	"testing"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/terraform"
 )
 
 func TestAVIIpAddrGroupBasic(t *testing.T) {
@@ -42,6 +43,7 @@ func TestAVIIpAddrGroupBasic(t *testing.T) {
 
 }
 
+//nolint
 func testAccCheckAVIIpAddrGroupExists(resourcename string) resource.TestCheckFunc {
 	return func(s *terraform.State) error {
 		conn := testAccProvider.Meta().(*clients.AviClient).AviSession
@@ -65,6 +67,7 @@ func testAccCheckAVIIpAddrGroupExists(resourcename string) resource.TestCheckFun
 
 }
 
+//nolint
 func testAccCheckAVIIpAddrGroupDestroy(s *terraform.State) error {
 	conn := testAccProvider.Meta().(*clients.AviClient).AviSession
 	var obj interface{}
@@ -89,6 +92,7 @@ func testAccCheckAVIIpAddrGroupDestroy(s *terraform.State) error {
 	return nil
 }
 
+//nolint
 const testAccAVIIpAddrGroupConfig = `
 data "avi_tenant" "default_tenant"{
     name= "admin"
@@ -120,6 +124,7 @@ prefixes {
 }
 `
 
+//nolint
 const testAccAVIIpAddrGroupupdatedConfig = `
 data "avi_tenant" "default_tenant"{
     name= "admin"

@@ -29,9 +29,9 @@ resource "avi_systemlimits" "foo" {
 
 The following arguments are supported:
 
-* `controller_limits` - (Optional) System limits for the entire controller cluster.
-* `controller_sizes` - (Optional) Possible controller sizes.
-* `serviceengine_limits` - (Optional) System limits that apply to a serviceengine.
+* `controller_limits` - (Optional) System limits for the entire controller cluster. Field introduced in 20.1.1.
+* `controller_sizes` - (Optional) Possible controller sizes. Field introduced in 20.1.1.
+* `serviceengine_limits` - (Optional) System limits that apply to a serviceengine. Field introduced in 20.1.1.
 
 
 ### Timeouts
@@ -46,5 +46,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-* `uuid` -  Uuid for the system limits object.
+* `uuid` -  Uuid for the system limits object. Field introduced in 20.1.1.
 
