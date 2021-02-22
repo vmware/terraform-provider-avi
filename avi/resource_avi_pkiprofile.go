@@ -1,15 +1,16 @@
 /*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
+* Copyright (c) 2017. Avi Networks.
+* Author: Gaurav Rastogi (grastogi@avinetworks.com)
+*
  */
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourcePKIProfileSchema() map[string]*schema.Schema {
@@ -91,7 +92,7 @@ func ResourcePKIProfileImporter(d *schema.ResourceData, m interface{}) ([]*schem
 
 func ResourceAviPKIProfileRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourcePKIProfileSchema()
-	err := ApiRead(d, meta, "pkiprofile", s)
+	err := APIRead(d, meta, "pkiprofile", s)
 	if err != nil {
 		log.Printf("[ERROR] in reading object %v\n", err)
 	}
@@ -100,7 +101,7 @@ func ResourceAviPKIProfileRead(d *schema.ResourceData, meta interface{}) error {
 
 func resourceAviPKIProfileCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourcePKIProfileSchema()
-	err := ApiCreateOrUpdate(d, meta, "pkiprofile", s)
+	err := APICreateOrUpdate(d, meta, "pkiprofile", s)
 	if err == nil {
 		err = ResourceAviPKIProfileRead(d, meta)
 	}
@@ -110,7 +111,7 @@ func resourceAviPKIProfileCreate(d *schema.ResourceData, meta interface{}) error
 func resourceAviPKIProfileUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourcePKIProfileSchema()
 	var err error
-	err = ApiCreateOrUpdate(d, meta, "pkiprofile", s)
+	err = APICreateOrUpdate(d, meta, "pkiprofile", s)
 	if err == nil {
 		err = ResourceAviPKIProfileRead(d, meta)
 	}
@@ -120,7 +121,7 @@ func resourceAviPKIProfileUpdate(d *schema.ResourceData, meta interface{}) error
 func resourceAviPKIProfileDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "pkiprofile"
 	client := meta.(*clients.AviClient)
-	if ApiDeleteSystemDefaultCheck(d) {
+	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
 	uuid := d.Get("uuid").(string)

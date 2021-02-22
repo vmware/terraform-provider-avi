@@ -1,15 +1,16 @@
 /*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
+* Copyright (c) 2017. Avi Networks.
+* Author: Gaurav Rastogi (grastogi@avinetworks.com)
+*
  */
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourceAlertEmailConfigSchema() map[string]*schema.Schema {
@@ -65,7 +66,7 @@ func ResourceAlertEmailConfigImporter(d *schema.ResourceData, m interface{}) ([]
 
 func ResourceAviAlertEmailConfigRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceAlertEmailConfigSchema()
-	err := ApiRead(d, meta, "alertemailconfig", s)
+	err := APIRead(d, meta, "alertemailconfig", s)
 	if err != nil {
 		log.Printf("[ERROR] in reading object %v\n", err)
 	}
@@ -74,7 +75,7 @@ func ResourceAviAlertEmailConfigRead(d *schema.ResourceData, meta interface{}) e
 
 func resourceAviAlertEmailConfigCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceAlertEmailConfigSchema()
-	err := ApiCreateOrUpdate(d, meta, "alertemailconfig", s)
+	err := APICreateOrUpdate(d, meta, "alertemailconfig", s)
 	if err == nil {
 		err = ResourceAviAlertEmailConfigRead(d, meta)
 	}
@@ -84,7 +85,7 @@ func resourceAviAlertEmailConfigCreate(d *schema.ResourceData, meta interface{})
 func resourceAviAlertEmailConfigUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceAlertEmailConfigSchema()
 	var err error
-	err = ApiCreateOrUpdate(d, meta, "alertemailconfig", s)
+	err = APICreateOrUpdate(d, meta, "alertemailconfig", s)
 	if err == nil {
 		err = ResourceAviAlertEmailConfigRead(d, meta)
 	}
@@ -94,7 +95,7 @@ func resourceAviAlertEmailConfigUpdate(d *schema.ResourceData, meta interface{})
 func resourceAviAlertEmailConfigDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "alertemailconfig"
 	client := meta.(*clients.AviClient)
-	if ApiDeleteSystemDefaultCheck(d) {
+	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
 	uuid := d.Get("uuid").(string)

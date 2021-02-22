@@ -1,16 +1,20 @@
 /*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
+* Copyright (c) 2017. Avi Networks.
+* Author: Gaurav Rastogi (grastogi@avinetworks.com)
+*
  */
 package avi
 
-import "github.com/hashicorp/terraform/helper/schema"
+import "github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 
 func dataSourceAviServerAutoScalePolicy() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviServerAutoScalePolicyRead,
 		Schema: map[string]*schema.Schema{
+			"delay_for_server_garbage_collection": {
+				Type:     schema.TypeInt,
+				Computed: true,
+			},
 			"description": {
 				Type:     schema.TypeString,
 				Computed: true,

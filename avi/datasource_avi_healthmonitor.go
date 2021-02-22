@@ -1,11 +1,11 @@
 /*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
+* Copyright (c) 2017. Avi Networks.
+* Author: Gaurav Rastogi (grastogi@avinetworks.com)
+*
  */
 package avi
 
-import "github.com/hashicorp/terraform/helper/schema"
+import "github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 
 func dataSourceAviHealthMonitor() *schema.Resource {
 	return &schema.Resource{
@@ -52,6 +52,16 @@ func dataSourceAviHealthMonitor() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceHealthMonitorHttpSchema(),
 			},
+			"imap_monitor": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceHealthMonitorImapSchema(),
+			},
+			"imaps_monitor": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceHealthMonitorImapSchema(),
+			},
 			"is_federated": {
 				Type:     schema.TypeBool,
 				Computed: true,
@@ -64,6 +74,16 @@ func dataSourceAviHealthMonitor() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+			"pop3_monitor": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceHealthMonitorPop3Schema(),
+			},
+			"pop3s_monitor": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceHealthMonitorPop3Schema(),
 			},
 			"radius_monitor": {
 				Type:     schema.TypeSet,
@@ -82,6 +102,16 @@ func dataSourceAviHealthMonitor() *schema.Resource {
 				Type:     schema.TypeSet,
 				Computed: true,
 				Elem:     ResourceHealthMonitorSIPSchema(),
+			},
+			"smtp_monitor": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceHealthMonitorSmtpSchema(),
+			},
+			"smtps_monitor": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceHealthMonitorSmtpSchema(),
 			},
 			"successful_checks": {
 				Type:     schema.TypeInt,

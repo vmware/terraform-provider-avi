@@ -30,7 +30,7 @@ resource "avi_alertscriptconfig" "foo" {
 The following arguments are supported:
 
 * `name` - (Required) A user-friendly name of the script.
-* `action_script` - (Optional) User defined alert action script.
+* `action_script` - (Optional) User defined alert action script. Please refer to kb.avinetworks.com for more information.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant.
 
 

@@ -29,9 +29,9 @@ resource "avi_securitymanagerdata" "foo" {
 
 The following arguments are supported:
 
-* `name` - (Required) Virtualservice name.
-* `app_learning_info` - (Optional) Information about various applications.
-* `tenant_ref` - (Optional) It is a reference to an object of type tenant.
+* `name` - (Required) Virtualservice name. Field introduced in 20.1.1.
+* `app_learning_info` - (Optional) Information about various applications. Field introduced in 20.1.1.
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant. Field introduced in 20.1.1.
 
 
 ### Timeouts
@@ -46,5 +46,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-* `uuid` -  Virtualservice uuid.
+* `uuid` -  Virtualservice uuid. Field introduced in 20.1.1.
 

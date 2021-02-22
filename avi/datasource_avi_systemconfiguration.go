@@ -1,11 +1,11 @@
 /*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
+* Copyright (c) 2017. Avi Networks.
+* Author: Gaurav Rastogi (grastogi@avinetworks.com)
+*
  */
 package avi
 
-import "github.com/hashicorp/terraform/helper/schema"
+import "github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 
 func dataSourceAviSystemConfiguration() *schema.Resource {
 	return &schema.Resource{
@@ -15,6 +15,10 @@ func dataSourceAviSystemConfiguration() *schema.Resource {
 				Type:     schema.TypeSet,
 				Computed: true,
 				Elem:     ResourceAdminAuthConfigurationSchema(),
+			},
+			"common_criteria_mode": {
+				Type:     schema.TypeBool,
+				Computed: true,
 			},
 			"default_license_tier": {
 				Type:     schema.TypeString,
@@ -38,6 +42,10 @@ func dataSourceAviSystemConfiguration() *schema.Resource {
 				Type:     schema.TypeSet,
 				Computed: true,
 				Elem:     ResourceEmailConfigurationSchema(),
+			},
+			"enable_cors": {
+				Type:     schema.TypeBool,
+				Computed: true,
 			},
 			"fips_mode": {
 				Type:     schema.TypeBool,

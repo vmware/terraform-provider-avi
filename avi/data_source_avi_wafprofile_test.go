@@ -1,8 +1,9 @@
 package avi
 
 import (
-	"github.com/hashicorp/terraform/helper/resource"
 	"testing"
+
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
 )
 
 func TestAVIDataSourceWafProfileBasic(t *testing.T) {
@@ -3943,7 +3944,7 @@ sqlmap
 sqlninja
 # password cracker
 # http://foofus.net/goons/jmk/medusa/medusa.html
-teh forest lobster
+the forest lobster
 # 
 this is an exploit
 # vuln scanner?

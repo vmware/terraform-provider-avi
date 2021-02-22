@@ -1,8 +1,9 @@
 package avi
 
 import (
-	"github.com/hashicorp/terraform/helper/resource"
 	"testing"
+
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
 )
 
 func TestAVIDataSourceSePropertiesBasic(t *testing.T) {
@@ -22,6 +23,7 @@ func TestAVIDataSourceSePropertiesBasic(t *testing.T) {
 
 }
 
+//nolint
 const testAccAVIDSSePropertiesConfig = `
 resource "avi_seproperties" "testSeProperties" {
 	se_agent_properties {

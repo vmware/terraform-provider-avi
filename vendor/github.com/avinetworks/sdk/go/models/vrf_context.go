@@ -11,10 +11,10 @@ type VrfContext struct {
 	// Read Only: true
 	LastModified *string `json:"_last_modified,omitempty"`
 
-	// Key/value vrfcontext attributes. Field introduced in 20.1.2.
+	// Key/value vrfcontext attributes. Field introduced in 20.1.2. Allowed in Basic edition, Essentials edition, Enterprise edition.
 	Attrs []*KeyValue `json:"attrs,omitempty"`
 
-	// BFD configuration profile. Field introduced in 20.1.1.
+	// BFD configuration profile. Field introduced in 20.1.1. Allowed in Basic edition, Essentials edition, Enterprise edition.
 	BfdProfile *BfdProfile `json:"bfd_profile,omitempty"`
 
 	// Bgp Local and Peer Info.
@@ -38,7 +38,7 @@ type VrfContext struct {
 	// Key/value labels which can be used for Object Access Policy permission scoping. Field introduced in 18.2.7, 20.1.1.
 	Labels []*KeyValue `json:"labels,omitempty"`
 
-	// Enable LLDP. Field introduced in 18.2.10, 20.1.1.
+	// Enable LLDP. Field introduced in 18.2.10, 20.1.1. Allowed in Basic(Allowed values- true) edition, Essentials(Allowed values- true) edition, Enterprise edition.
 	LldpEnable *bool `json:"lldp_enable,omitempty"`
 
 	// Name of the object.
