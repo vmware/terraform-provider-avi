@@ -1,15 +1,16 @@
 /*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
+* Copyright (c) 2017. Avi Networks.
+* Author: Gaurav Rastogi (grastogi@avinetworks.com)
+*
  */
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourceAnalyticsProfileSchema() map[string]*schema.Schema {
@@ -121,32 +122,32 @@ func ResourceAnalyticsProfileSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
-		"disable_ondemand_metrics": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
-		},
-		"disable_se_analytics": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
-		},
-		"disable_server_analytics": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
-		},
-		"disable_vs_analytics": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
-		},
 		"enable_adaptive_config": {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  true,
 		},
 		"enable_advanced_analytics": {
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  true,
+		},
+		"enable_ondemand_metrics": {
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  true,
+		},
+		"enable_se_analytics": {
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  true,
+		},
+		"enable_server_analytics": {
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  true,
+		},
+		"enable_vs_analytics": {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  true,
@@ -454,7 +455,7 @@ func ResourceAnalyticsProfileImporter(d *schema.ResourceData, m interface{}) ([]
 
 func ResourceAviAnalyticsProfileRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceAnalyticsProfileSchema()
-	err := ApiRead(d, meta, "analyticsprofile", s)
+	err := APIRead(d, meta, "analyticsprofile", s)
 	if err != nil {
 		log.Printf("[ERROR] in reading object %v\n", err)
 	}
@@ -463,7 +464,7 @@ func ResourceAviAnalyticsProfileRead(d *schema.ResourceData, meta interface{}) e
 
 func resourceAviAnalyticsProfileCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceAnalyticsProfileSchema()
-	err := ApiCreateOrUpdate(d, meta, "analyticsprofile", s)
+	err := APICreateOrUpdate(d, meta, "analyticsprofile", s)
 	if err == nil {
 		err = ResourceAviAnalyticsProfileRead(d, meta)
 	}
@@ -473,7 +474,7 @@ func resourceAviAnalyticsProfileCreate(d *schema.ResourceData, meta interface{})
 func resourceAviAnalyticsProfileUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceAnalyticsProfileSchema()
 	var err error
-	err = ApiCreateOrUpdate(d, meta, "analyticsprofile", s)
+	err = APICreateOrUpdate(d, meta, "analyticsprofile", s)
 	if err == nil {
 		err = ResourceAviAnalyticsProfileRead(d, meta)
 	}
@@ -483,7 +484,7 @@ func resourceAviAnalyticsProfileUpdate(d *schema.ResourceData, meta interface{})
 func resourceAviAnalyticsProfileDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "analyticsprofile"
 	client := meta.(*clients.AviClient)
-	if ApiDeleteSystemDefaultCheck(d) {
+	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
 	uuid := d.Get("uuid").(string)

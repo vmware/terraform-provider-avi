@@ -1,10 +1,11 @@
 package avi
 
 import (
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"os"
 	"strconv"
+
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func suppressSensitiveFieldDiffs(k, old, new string, d *schema.ResourceData) bool {
@@ -14,7 +15,7 @@ func suppressSensitiveFieldDiffs(k, old, new string, d *schema.ResourceData) boo
 	}
 	if suppressSensitiveEnvStr, ok := os.LookupEnv("AVI_SUPPRESS_SENSITIVE_FIELDS_DIFF"); ok {
 		if suppressDiff, err := strconv.ParseBool(suppressSensitiveEnvStr); err != nil {
-			log.Printf("[ERROR] Invalid value for enviornment variable AVI_SUPPRESS_SENSITIVE_FIELDS_DIFF. Accepted values 1, t, T, true, TRUE, True, 0, f, F, false, FALSE, False. %v", err.Error())
+			log.Printf("[ERROR] Invalid value for environment variable AVI_SUPPRESS_SENSITIVE_FIELDS_DIFF. Accepted values 1, t, T, true, TRUE, True, 0, f, F, false, FALSE, False. %v", err.Error())
 			suppressSensitiveDiff = false
 		} else {
 			suppressSensitiveDiff = suppressDiff

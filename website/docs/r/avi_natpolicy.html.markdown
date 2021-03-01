@@ -29,12 +29,12 @@ resource "avi_natpolicy" "foo" {
 
 The following arguments are supported:
 
-* `created_by` - (Optional) Creator name.
+* `created_by` - (Optional) Creator name. Field introduced in 18.2.3.
 * `description` - (Optional) Field introduced in 18.2.3.
-* `labels` - (Optional) Key value pairs for granular object access control.
-* `name` - (Optional) Name of the nat policy.
-* `rules` - (Optional) Nat policy rules.
-* `tenant_ref` - (Optional) It is a reference to an object of type tenant.
+* `labels` - (Optional) Key value pairs for granular object access control. Also allows for classification and tagging of similar objects. Field introduced in 20.1.2. Maximum of 4 items allowed.
+* `name` - (Optional) Name of the nat policy. Field introduced in 18.2.3.
+* `rules` - (Optional) Nat policy rules. Field introduced in 18.2.3.
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant. Field introduced in 18.2.3.
 
 
 ### Timeouts
@@ -49,5 +49,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-* `uuid` -  Uuid of the nat policy.
+* `uuid` -  Uuid of the nat policy. Field introduced in 18.2.3.
 

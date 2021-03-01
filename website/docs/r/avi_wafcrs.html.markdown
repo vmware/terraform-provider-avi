@@ -29,13 +29,13 @@ resource "avi_wafcrs" "foo" {
 
 The following arguments are supported:
 
-* `description` - (Optional) A short description of this ruleset.
-* `groups` - (Optional) Waf rules are sorted in groups based on their characterization.
-* `integrity` - (Optional) Integrity protection value.
-* `name` - (Optional) The name of this ruleset object.
-* `release_date` - (Optional) The release date of this version in rfc 3339 / iso 8601 format.
-* `tenant_ref` - (Optional) Tenant that this object belongs to.
-* `version` - (Optional) The version of this ruleset object.
+* `description` - (Required) A short description of this ruleset. Field introduced in 18.1.1.
+* `integrity` - (Required) Integrity protection value. Field introduced in 18.2.1.
+* `name` - (Required) The name of this ruleset object. Field introduced in 18.2.1.
+* `release_date` - (Required) The release date of this version in rfc 3339 / iso 8601 format. Field introduced in 18.1.1.
+* `version` - (Required) The version of this ruleset object. Field introduced in 18.1.1.
+* `groups` - (Optional) Waf rules are sorted in groups based on their characterization. Field introduced in 18.1.1. Maximum of 64 items allowed.
+* `tenant_ref` - (Optional) Tenant that this object belongs to. It is a reference to an object of type tenant. Field introduced in 18.2.1.
 
 
 ### Timeouts

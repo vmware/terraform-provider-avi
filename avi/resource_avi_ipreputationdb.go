@@ -1,15 +1,16 @@
 /*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
+* Copyright (c) 2017. Avi Networks.
+* Author: Gaurav Rastogi (grastogi@avinetworks.com)
+*
  */
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourceIPReputationDBSchema() map[string]*schema.Schema {
@@ -36,8 +37,7 @@ func ResourceIPReputationDBSchema() map[string]*schema.Schema {
 		},
 		"name": {
 			Type:     schema.TypeString,
-			Optional: true,
-			Computed: true,
+			Required: true,
 		},
 		"service_status": {
 			Type:     schema.TypeSet,
@@ -57,8 +57,7 @@ func ResourceIPReputationDBSchema() map[string]*schema.Schema {
 		},
 		"vendor": {
 			Type:     schema.TypeString,
-			Optional: true,
-			Computed: true,
+			Required: true,
 		},
 		"version": {
 			Type:     schema.TypeString,
@@ -88,7 +87,7 @@ func ResourceIPReputationDBImporter(d *schema.ResourceData, m interface{}) ([]*s
 
 func ResourceAviIPReputationDBRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceIPReputationDBSchema()
-	err := ApiRead(d, meta, "ipreputationdb", s)
+	err := APIRead(d, meta, "ipreputationdb", s)
 	if err != nil {
 		log.Printf("[ERROR] in reading object %v\n", err)
 	}
@@ -97,7 +96,7 @@ func ResourceAviIPReputationDBRead(d *schema.ResourceData, meta interface{}) err
 
 func resourceAviIPReputationDBCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceIPReputationDBSchema()
-	err := ApiCreateOrUpdate(d, meta, "ipreputationdb", s)
+	err := APICreateOrUpdate(d, meta, "ipreputationdb", s)
 	if err == nil {
 		err = ResourceAviIPReputationDBRead(d, meta)
 	}
@@ -107,7 +106,7 @@ func resourceAviIPReputationDBCreate(d *schema.ResourceData, meta interface{}) e
 func resourceAviIPReputationDBUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceIPReputationDBSchema()
 	var err error
-	err = ApiCreateOrUpdate(d, meta, "ipreputationdb", s)
+	err = APICreateOrUpdate(d, meta, "ipreputationdb", s)
 	if err == nil {
 		err = ResourceAviIPReputationDBRead(d, meta)
 	}
@@ -117,7 +116,7 @@ func resourceAviIPReputationDBUpdate(d *schema.ResourceData, meta interface{}) e
 func resourceAviIPReputationDBDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "ipreputationdb"
 	client := meta.(*clients.AviClient)
-	if ApiDeleteSystemDefaultCheck(d) {
+	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
 	uuid := d.Get("uuid").(string)

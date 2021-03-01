@@ -30,14 +30,16 @@ resource "avi_httppolicyset" "foo" {
 The following arguments are supported:
 
 * `name` - (Required) Name of the http policy set.
-* `cloud_config_cksum` - (Optional) Checksum of cloud configuration for pool.
+* `cloud_config_cksum` - (Optional) Checksum of cloud configuration for pool. Internally set by cloud connector.
 * `created_by` - (Optional) Creator name.
 * `description` - (Optional) User defined description for the object.
+* `geo_db_ref` - (Optional) Geo database. It is a reference to an object of type geodb. Field introduced in 21.1.1.
 * `http_request_policy` - (Optional) Http request policy for the virtual service.
 * `http_response_policy` - (Optional) Http response policy for the virtual service.
 * `http_security_policy` - (Optional) Http security policy for the virtual service.
+* `ip_reputation_db_ref` - (Optional) Ip reputation database. It is a reference to an object of type ipreputationdb. Field introduced in 20.1.3.
 * `is_internal_policy` - (Optional) Boolean flag to set is_internal_policy.
-* `labels` - (Optional) Key value pairs for granular object access control.
+* `labels` - (Optional) Key value pairs for granular object access control. Also allows for classification and tagging of similar objects. Field introduced in 20.1.2. Maximum of 4 items allowed.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant.
 
 
