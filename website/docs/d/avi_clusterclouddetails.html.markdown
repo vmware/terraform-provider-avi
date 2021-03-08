@@ -34,8 +34,8 @@ data "avi_clusterclouddetails" "foo_clusterclouddetails" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `azure_info` - Azure info to configure cluster_vip on the controller.
+* `azure_info` - Azure info to configure cluster_vip on the controller. Field introduced in 17.2.5.
 * `name` - Field introduced in 17.2.5.
-* `tenant_ref` - It is a reference to an object of type tenant.
+* `tenant_ref` - It is a reference to an object of type tenant. Field introduced in 17.2.5.
 * `uuid` - Field introduced in 17.2.5.
 

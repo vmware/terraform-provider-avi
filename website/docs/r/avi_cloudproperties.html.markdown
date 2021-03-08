@@ -30,7 +30,7 @@ resource "avi_cloudproperties" "foo" {
 The following arguments are supported:
 
 * `cc_props` - (Optional) Cloudconnector properties.
-* `cc_vtypes` - (Optional) Cloud types supported by cloudconnector.
+* `cc_vtypes` - (Optional) Cloud types supported by cloudconnector. Enum options - CLOUD_NONE, CLOUD_VCENTER, CLOUD_OPENSTACK, CLOUD_AWS, CLOUD_VCA, CLOUD_APIC, CLOUD_MESOS, CLOUD_LINUXSERVER, CLOUD_DOCKER_UCP, CLOUD_RANCHER, CLOUD_OSHIFT_K8S, CLOUD_AZURE, CLOUD_GCP, CLOUD_NSXT.
 * `hyp_props` - (Optional) Hypervisor properties.
 * `info` - (Optional) Properties specific to a cloud type.
 

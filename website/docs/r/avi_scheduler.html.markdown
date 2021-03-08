@@ -30,14 +30,14 @@ resource "avi_scheduler" "foo" {
 The following arguments are supported:
 
 * `name` - (Required) Name of scheduler.
-* `backup_config_ref` - (Optional) Backup configuration to be executed by this scheduler.
+* `backup_config_ref` - (Optional) Backup configuration to be executed by this scheduler. It is a reference to an object of type backupconfiguration.
 * `enabled` - (Optional) Boolean flag to set enabled.
 * `end_date_time` - (Optional) Scheduler end date and time.
-* `frequency` - (Optional) Frequency at which custom scheduler will run.
-* `frequency_unit` - (Optional) Unit at which custom scheduler will run.
-* `run_mode` - (Optional) Scheduler run mode.
-* `run_script_ref` - (Optional) Control script to be executed by this scheduler.
-* `scheduler_action` - (Optional) Define scheduler action.
+* `frequency` - (Optional) Frequency at which custom scheduler will run. Allowed values are 0-60.
+* `frequency_unit` - (Optional) Unit at which custom scheduler will run. Enum options - SCHEDULER_FREQUENCY_UNIT_MIN, SCHEDULER_FREQUENCY_UNIT_HOUR, SCHEDULER_FREQUENCY_UNIT_DAY, SCHEDULER_FREQUENCY_UNIT_WEEK, SCHEDULER_FREQUENCY_UNIT_MONTH.
+* `run_mode` - (Optional) Scheduler run mode. Enum options - RUN_MODE_PERIODIC, RUN_MODE_AT, RUN_MODE_NOW.
+* `run_script_ref` - (Optional) Control script to be executed by this scheduler. It is a reference to an object of type alertscriptconfig.
+* `scheduler_action` - (Optional) Define scheduler action. Enum options - SCHEDULER_ACTION_RUN_A_SCRIPT, SCHEDULER_ACTION_BACKUP.
 * `start_date_time` - (Optional) Scheduler start date and time.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant.
 

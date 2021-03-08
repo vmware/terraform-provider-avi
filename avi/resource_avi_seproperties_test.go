@@ -2,12 +2,13 @@ package avi
 
 import (
 	"fmt"
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/avinetworks/sdk/go/models"
-	"github.com/hashicorp/terraform/helper/resource"
-	"github.com/hashicorp/terraform/terraform"
 	"strings"
 	"testing"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/avinetworks/sdk/go/models"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/terraform"
 )
 
 func TestAVISePropertiesBasic(t *testing.T) {
@@ -100,6 +101,7 @@ func testAccCheckAVISePropertiesValuesUpdated(seProp *models.SeProperties, key s
 	}
 }
 
+//nolint
 const testAccAVISePropertiesConfig = `
 resource "avi_seproperties" "testSeProperties" {
 	se_agent_properties {
@@ -261,6 +263,7 @@ app_headers {
 }
 `
 
+//nolint
 const testAccAVISePropertiesupdatedConfig = `
 resource "avi_seproperties" "testSeProperties" {
 	se_agent_properties {

@@ -35,8 +35,8 @@ data "avi_certificatemanagementprofile" "foo_certificatemanagementprofile" {
 In addition to all arguments above, the following attributes are exported:
 
 * `name` - Name of the pki profile.
+* `run_script_ref` - Alert script config object for certificate management profile. It is a reference to an object of type alertscriptconfig. Field introduced in 20.1.3.
 * `script_params` - List of list.
-* `script_path` - Placeholder for description of property script_path of obj type certificatemanagementprofile field type string  type str.
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `uuid` - Unique object identifier of the object.
 

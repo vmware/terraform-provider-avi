@@ -1,15 +1,16 @@
 /*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
+* Copyright (c) 2017. Avi Networks.
+* Author: Gaurav Rastogi (grastogi@avinetworks.com)
+*
  */
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourceApplicationProfileSchema() map[string]*schema.Schema {
@@ -115,7 +116,7 @@ func ResourceApplicationProfileImporter(d *schema.ResourceData, m interface{}) (
 
 func ResourceAviApplicationProfileRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceApplicationProfileSchema()
-	err := ApiRead(d, meta, "applicationprofile", s)
+	err := APIRead(d, meta, "applicationprofile", s)
 	if err != nil {
 		log.Printf("[ERROR] in reading object %v\n", err)
 	}
@@ -124,7 +125,7 @@ func ResourceAviApplicationProfileRead(d *schema.ResourceData, meta interface{})
 
 func resourceAviApplicationProfileCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceApplicationProfileSchema()
-	err := ApiCreateOrUpdate(d, meta, "applicationprofile", s)
+	err := APICreateOrUpdate(d, meta, "applicationprofile", s)
 	if err == nil {
 		err = ResourceAviApplicationProfileRead(d, meta)
 	}
@@ -134,7 +135,7 @@ func resourceAviApplicationProfileCreate(d *schema.ResourceData, meta interface{
 func resourceAviApplicationProfileUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceApplicationProfileSchema()
 	var err error
-	err = ApiCreateOrUpdate(d, meta, "applicationprofile", s)
+	err = APICreateOrUpdate(d, meta, "applicationprofile", s)
 	if err == nil {
 		err = ResourceAviApplicationProfileRead(d, meta)
 	}
@@ -144,7 +145,7 @@ func resourceAviApplicationProfileUpdate(d *schema.ResourceData, meta interface{
 func resourceAviApplicationProfileDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "applicationprofile"
 	client := meta.(*clients.AviClient)
-	if ApiDeleteSystemDefaultCheck(d) {
+	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
 	uuid := d.Get("uuid").(string)

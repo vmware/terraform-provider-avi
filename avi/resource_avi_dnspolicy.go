@@ -1,17 +1,19 @@
 /*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
+* Copyright (c) 2017. Avi Networks.
+* Author: Gaurav Rastogi (grastogi@avinetworks.com)
+*
  */
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
+//nolint
 func ResourceDnsPolicySchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"created_by": {
@@ -31,8 +33,7 @@ func ResourceDnsPolicySchema() map[string]*schema.Schema {
 		},
 		"name": {
 			Type:     schema.TypeString,
-			Optional: true,
-			Computed: true,
+			Required: true,
 		},
 		"rule": {
 			Type:     schema.TypeList,
@@ -52,6 +53,7 @@ func ResourceDnsPolicySchema() map[string]*schema.Schema {
 	}
 }
 
+//nolint
 func resourceAviDnsPolicy() *schema.Resource {
 	return &schema.Resource{
 		Create: resourceAviDnsPolicyCreate,
@@ -65,43 +67,48 @@ func resourceAviDnsPolicy() *schema.Resource {
 	}
 }
 
+//nolint
 func ResourceDnsPolicyImporter(d *schema.ResourceData, m interface{}) ([]*schema.ResourceData, error) {
 	s := ResourceDnsPolicySchema()
 	return ResourceImporter(d, m, "dnspolicy", s)
 }
 
+//nolint
 func ResourceAviDnsPolicyRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceDnsPolicySchema()
-	err := ApiRead(d, meta, "dnspolicy", s)
+	err := APIRead(d, meta, "dnspolicy", s)
 	if err != nil {
 		log.Printf("[ERROR] in reading object %v\n", err)
 	}
 	return err
 }
 
+//nolint
 func resourceAviDnsPolicyCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceDnsPolicySchema()
-	err := ApiCreateOrUpdate(d, meta, "dnspolicy", s)
+	err := APICreateOrUpdate(d, meta, "dnspolicy", s)
 	if err == nil {
 		err = ResourceAviDnsPolicyRead(d, meta)
 	}
 	return err
 }
 
+//nolint
 func resourceAviDnsPolicyUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceDnsPolicySchema()
 	var err error
-	err = ApiCreateOrUpdate(d, meta, "dnspolicy", s)
+	err = APICreateOrUpdate(d, meta, "dnspolicy", s)
 	if err == nil {
 		err = ResourceAviDnsPolicyRead(d, meta)
 	}
 	return err
 }
 
+//nolint
 func resourceAviDnsPolicyDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "dnspolicy"
 	client := meta.(*clients.AviClient)
-	if ApiDeleteSystemDefaultCheck(d) {
+	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
 	uuid := d.Get("uuid").(string)

@@ -29,11 +29,11 @@ resource "avi_errorpagebody" "foo" {
 
 The following arguments are supported:
 
-* `error_page_body` - (Optional) Error page body sent to client when match.
-* `format` - (Optional) Format of an error page body html or json.
-* `labels` - (Optional) Key value pairs for granular object access control.
-* `name` - (Optional) Field introduced in 17.2.4.
-* `tenant_ref` - (Optional) It is a reference to an object of type tenant.
+* `error_page_body` - (Required) Error page body sent to client when match. Field introduced in 17.2.4.
+* `name` - (Required) Field introduced in 17.2.4.
+* `format` - (Optional) Format of an error page body html or json. Enum options - ERROR_PAGE_FORMAT_HTML, ERROR_PAGE_FORMAT_JSON. Field introduced in 18.2.3.
+* `labels` - (Optional) Key value pairs for granular object access control. Also allows for classification and tagging of similar objects. Field introduced in 20.1.2. Maximum of 4 items allowed.
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant. Field introduced in 17.2.4.
 
 
 ### Timeouts
