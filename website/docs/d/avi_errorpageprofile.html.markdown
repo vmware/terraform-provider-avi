@@ -34,9 +34,9 @@ data "avi_errorpageprofile" "foo_errorpageprofile" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `error_pages` - Defined error pages for http status codes.
-* `labels` - Key value pairs for granular object access control.
+* `error_pages` - Defined error pages for http status codes. Field introduced in 17.2.4.
+* `labels` - Key value pairs for granular object access control. Also allows for classification and tagging of similar objects. Field introduced in 20.1.3. Maximum of 4 items allowed.
 * `name` - Field introduced in 17.2.4.
-* `tenant_ref` - It is a reference to an object of type tenant.
+* `tenant_ref` - It is a reference to an object of type tenant. Field introduced in 17.2.4.
 * `uuid` - Field introduced in 17.2.4.
 

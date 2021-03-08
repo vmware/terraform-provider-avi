@@ -1,11 +1,11 @@
 /*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
+* Copyright (c) 2017. Avi Networks.
+* Author: Gaurav Rastogi (grastogi@avinetworks.com)
+*
  */
 package avi
 
-import "github.com/hashicorp/terraform/helper/schema"
+import "github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 
 func dataSourceAviAuthProfile() *schema.Resource {
 	return &schema.Resource{
@@ -19,6 +19,10 @@ func dataSourceAviAuthProfile() *schema.Resource {
 				Type:     schema.TypeSet,
 				Computed: true,
 				Elem:     ResourceAuthProfileHTTPClientParamsSchema(),
+			},
+			"jwt_profile_ref": {
+				Type:     schema.TypeString,
+				Computed: true,
 			},
 			"ldap": {
 				Type:     schema.TypeSet,

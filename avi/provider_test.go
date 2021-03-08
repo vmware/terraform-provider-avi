@@ -7,29 +7,30 @@ package avi
 
 import (
 	"fmt"
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/avinetworks/sdk/go/session"
-	"github.com/hashicorp/terraform/helper/schema"
-	"github.com/hashicorp/terraform/terraform"
 	"os"
 	"strconv"
 	"testing"
 	"time"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/avinetworks/sdk/go/session"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/terraform"
 )
 
-var testAccProviders map[string]terraform.ResourceProvider
+var testAccProviders map[string]*schema.Provider
 var testAccProvider *schema.Provider
 
 func init() {
-	testAccProvider = Provider().(*schema.Provider)
-	testAccProviders = map[string]terraform.ResourceProvider{
+	testAccProvider = Provider()
+	testAccProviders = map[string]*schema.Provider{
 		"avi": testAccProvider,
 	}
 }
 
 func TestProvider(t *testing.T) {
 
-	if err := Provider().(*schema.Provider).InternalValidate(); err != nil {
+	if err := Provider().InternalValidate(); err != nil {
 		t.Fatalf("err: %s", err)
 	}
 
@@ -38,55 +39,55 @@ func TestProvider(t *testing.T) {
 	var configs = map[string]interface{}{"avi_username": "",
 		"avi_controller": "", "avi_password": "", "avi_tenant": "", "avi_api_timeout": 0}
 
-	_, errs := Provider().(*schema.Provider).Validate(
+	diags := Provider().Validate(
 		&terraform.ResourceConfig{Config: configs})
-	if errs != nil {
-		t.Fatalf("err: %s", errs)
+	if diags.HasError() {
+		t.Fatalf("err: %s", diags[0].Detail)
 	}
 
 	// Validating pool resource in avi provider and datasource for pool
-	var poolconfigs_data = map[string]interface{}{"name": ""}
+	var poolconfigsData = map[string]interface{}{"name": ""}
 
-	_, errs = Provider().(*schema.Provider).ValidateDataSource("avi_pool",
-		&terraform.ResourceConfig{Config: poolconfigs_data})
-	if errs != nil {
-		t.Fatalf("err: %s", errs)
+	diags = Provider().ValidateDataSource("avi_pool",
+		&terraform.ResourceConfig{Config: poolconfigsData})
+	if diags.HasError() {
+		t.Fatalf("err: %s", diags[0].Detail)
 	}
 
-	var poolconfigs_res = map[string]interface{}{"name": "", "uuid": "",
+	var poolconfigsRes = map[string]interface{}{"name": "", "uuid": "",
 		"health_monitor_refs": make([]string, 0), "servers": make([]string, 0),
 		"fail_action": make([]string, 0)}
 
-	_, errs = Provider().(*schema.Provider).ValidateResource("avi_pool",
-		&terraform.ResourceConfig{Config: poolconfigs_res})
-	if errs != nil {
-		t.Fatalf("err: %s", errs)
+	diags = Provider().ValidateResource("avi_pool",
+		&terraform.ResourceConfig{Config: poolconfigsRes})
+	if diags.HasError() {
+		t.Fatalf("err: %s", diags[0].Detail)
 	}
 
 	// Validating pool resource in avi provider and datasource for pool
 
-	var hmconfigs_data = map[string]interface{}{"name": ""}
+	var hmconfigsData = map[string]interface{}{"name": ""}
 
-	_, errs = Provider().(*schema.Provider).ValidateDataSource(
-		"avi_healthmonitor", &terraform.ResourceConfig{Config: hmconfigs_data})
-	if errs != nil {
-		t.Fatalf("err: %s", errs)
+	diags = Provider().ValidateDataSource(
+		"avi_healthmonitor", &terraform.ResourceConfig{Config: hmconfigsData})
+	if diags.HasError() {
+		t.Fatalf("err: %s", diags[0].Detail)
 	}
 
-	var hmconfigs_res = map[string]interface{}{"name": "", "uuid": "",
+	var hmconfigsRes = map[string]interface{}{"name": "", "uuid": "",
 		"type": ""}
 
-	_, errs = Provider().(*schema.Provider).ValidateResource(
-		"avi_healthmonitor", &terraform.ResourceConfig{Config: hmconfigs_res})
-	if errs != nil {
-		t.Fatalf("err: %s", errs)
+	diags = Provider().ValidateResource(
+		"avi_healthmonitor", &terraform.ResourceConfig{Config: hmconfigsRes})
+	if diags.HasError() {
+		t.Fatalf("err: %s", diags[0].Detail)
 	}
 }
 
 func testAccPreCheck(t *testing.T) {
 	var timeout time.Duration
 	if tm, err := strconv.Atoi(os.Getenv("AVI_API_TIMEOUT")); err == nil {
-		timeout = time.Duration(time.Duration(int(tm)) * time.Second)
+		timeout = time.Duration(tm) * time.Second
 	}
 
 	config := Credentials{

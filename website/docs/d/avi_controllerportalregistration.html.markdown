@@ -37,6 +37,6 @@ In addition to all arguments above, the following attributes are exported:
 * `asset` - Field introduced in 18.2.6.
 * `name` - Field introduced in 18.2.6.
 * `portal_auth` - Field introduced in 18.2.6.
-* `tenant_ref` - It is a reference to an object of type tenant.
+* `tenant_ref` - It is a reference to an object of type tenant. Field introduced in 18.2.6.
 * `uuid` - Field introduced in 18.2.6.
 

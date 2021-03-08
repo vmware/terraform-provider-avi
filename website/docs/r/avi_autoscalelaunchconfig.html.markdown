@@ -32,11 +32,11 @@ The following arguments are supported:
 * `name` - (Required) Name of the object.
 * `description` - (Optional) User defined description for the object.
 * `image_id` - (Optional) Unique id of the amazon machine image (ami)  or openstack vm id.
-* `labels` - (Optional) Key value pairs for granular object access control.
+* `labels` - (Optional) Key value pairs for granular object access control. Also allows for classification and tagging of similar objects. Field introduced in 20.1.2. Maximum of 4 items allowed.
 * `mesos` - (Optional) Dict settings for autoscalelaunchconfig.
 * `openstack` - (Optional) Dict settings for autoscalelaunchconfig.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant.
-* `use_external_asg` - (Optional) If set to true, serverautoscalepolicy will use the autoscaling group (external_autoscaling_groups) from pool to perform scale up and scale down.
+* `use_external_asg` - (Optional) If set to true, serverautoscalepolicy will use the autoscaling group (external_autoscaling_groups) from pool to perform scale up and scale down. Pool should have single autoscaling group configured. Field introduced in 17.2.3.
 
 
 ### Timeouts

@@ -34,11 +34,11 @@ data "avi_ssopolicy" "foo_ssopolicy" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `authentication_policy` - Authentication policy settings.
-* `authorization_policy` - Authorization policy settings.
-* `labels` - Key value pairs for granular object access control.
-* `name` - Name of the sso policy.
-* `tenant_ref` - Uuid of the tenant.
-* `type` - Sso policy type.
-* `uuid` - Uuid of the sso policy.
+* `authentication_policy` - Authentication policy settings. Field introduced in 18.2.1.
+* `authorization_policy` - Authorization policy settings. Field introduced in 18.2.5.
+* `labels` - Key value pairs for granular object access control. Also allows for classification and tagging of similar objects. Field introduced in 20.1.2. Maximum of 4 items allowed.
+* `name` - Name of the sso policy. Field introduced in 18.2.3.
+* `tenant_ref` - Uuid of the tenant. It is a reference to an object of type tenant. Field introduced in 18.2.3.
+* `type` - Sso policy type. Enum options - SSO_TYPE_SAML, SSO_TYPE_PINGACCESS, SSO_TYPE_JWT, SSO_TYPE_LDAP. Field introduced in 18.2.5.
+* `uuid` - Uuid of the sso policy. Field introduced in 18.2.3.
 

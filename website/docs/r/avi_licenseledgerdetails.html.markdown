@@ -29,9 +29,9 @@ resource "avi_licenseledgerdetails" "foo" {
 
 The following arguments are supported:
 
-* `escrow_infos` - (Optional) Maintain information about reservation against cookie.
-* `se_infos` - (Optional) Maintain information about consumed licenses against se_uuid.
-* `tier_usages` - (Optional) License usage per tier.
+* `escrow_infos` - (Optional) Maintain information about reservation against cookie. Field introduced in 20.1.1.
+* `se_infos` - (Optional) Maintain information about consumed licenses against se_uuid. Field introduced in 20.1.1.
+* `tier_usages` - (Optional) License usage per tier. Field introduced in 20.1.1.
 
 
 ### Timeouts
@@ -46,5 +46,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-* `uuid` -  Uuid for reference.
+* `uuid` -  Uuid for reference. Field introduced in 20.1.1.
 

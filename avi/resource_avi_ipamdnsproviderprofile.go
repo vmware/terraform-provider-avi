@@ -1,17 +1,19 @@
 /*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
+* Copyright (c) 2017. Avi Networks.
+* Author: Gaurav Rastogi (grastogi@avinetworks.com)
+*
  */
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
+//nolint
 func ResourceIpamDnsProviderProfileSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"allocate_ip_in_vrf": {
@@ -105,6 +107,7 @@ func ResourceIpamDnsProviderProfileSchema() map[string]*schema.Schema {
 	}
 }
 
+//nolint
 func resourceAviIpamDnsProviderProfile() *schema.Resource {
 	return &schema.Resource{
 		Create: resourceAviIpamDnsProviderProfileCreate,
@@ -118,43 +121,48 @@ func resourceAviIpamDnsProviderProfile() *schema.Resource {
 	}
 }
 
+//nolint
 func ResourceIpamDnsProviderProfileImporter(d *schema.ResourceData, m interface{}) ([]*schema.ResourceData, error) {
 	s := ResourceIpamDnsProviderProfileSchema()
 	return ResourceImporter(d, m, "ipamdnsproviderprofile", s)
 }
 
+//nolint
 func ResourceAviIpamDnsProviderProfileRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceIpamDnsProviderProfileSchema()
-	err := ApiRead(d, meta, "ipamdnsproviderprofile", s)
+	err := APIRead(d, meta, "ipamdnsproviderprofile", s)
 	if err != nil {
 		log.Printf("[ERROR] in reading object %v\n", err)
 	}
 	return err
 }
 
+//nolint
 func resourceAviIpamDnsProviderProfileCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceIpamDnsProviderProfileSchema()
-	err := ApiCreateOrUpdate(d, meta, "ipamdnsproviderprofile", s)
+	err := APICreateOrUpdate(d, meta, "ipamdnsproviderprofile", s)
 	if err == nil {
 		err = ResourceAviIpamDnsProviderProfileRead(d, meta)
 	}
 	return err
 }
 
+//nolint
 func resourceAviIpamDnsProviderProfileUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceIpamDnsProviderProfileSchema()
 	var err error
-	err = ApiCreateOrUpdate(d, meta, "ipamdnsproviderprofile", s)
+	err = APICreateOrUpdate(d, meta, "ipamdnsproviderprofile", s)
 	if err == nil {
 		err = ResourceAviIpamDnsProviderProfileRead(d, meta)
 	}
 	return err
 }
 
+//nolint
 func resourceAviIpamDnsProviderProfileDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "ipamdnsproviderprofile"
 	client := meta.(*clients.AviClient)
-	if ApiDeleteSystemDefaultCheck(d) {
+	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
 	uuid := d.Get("uuid").(string)

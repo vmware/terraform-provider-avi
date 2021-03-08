@@ -1,15 +1,16 @@
 /*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
+* Copyright (c) 2017. Avi Networks.
+* Author: Gaurav Rastogi (grastogi@avinetworks.com)
+*
  */
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
@@ -48,6 +49,16 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  false,
+		},
+		"async_patch_merge_period": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  0,
+		},
+		"async_patch_request_cleanup_duration": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  60,
 		},
 		"attach_ip_retry_interval": {
 			Type:     schema.TypeInt,
@@ -89,6 +100,11 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  60,
 		},
+		"controller_resource_info_collection_period": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  30,
+		},
 		"crashed_se_reboot": {
 			Type:     schema.TypeInt,
 			Optional: true,
@@ -103,6 +119,11 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Type:     schema.TypeInt,
 			Optional: true,
 			Default:  60,
+		},
+		"del_offline_se_after_reboot_delay": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  300,
 		},
 		"dns_refresh_period": {
 			Type:     schema.TypeInt,
@@ -169,6 +190,11 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  3,
 		},
+		"max_threads_cc_vip_bg_worker": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  20,
+		},
 		"permission_scoped_shared_admin_networks": {
 			Type:     schema.TypeBool,
 			Optional: true,
@@ -211,6 +237,11 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  180,
 		},
+		"resmgr_log_caching_period": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  21600,
+		},
 		"safenet_hsm_version": {
 			Type:     schema.TypeString,
 			Optional: true,
@@ -245,6 +276,11 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Type:     schema.TypeInt,
 			Optional: true,
 			Default:  120,
+		},
+		"se_vnic_gc_wait_time": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  300,
 		},
 		"secure_channel_cleanup_timeout": {
 			Type:     schema.TypeInt,
@@ -310,6 +346,12 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Type:     schema.TypeInt,
 			Optional: true,
 			Default:  3,
+		},
+		"user_agent_cache_config": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceUserAgentCacheConfigSchema(),
 		},
 		"uuid": {
 			Type:     schema.TypeString,
@@ -404,7 +446,7 @@ func ResourceControllerPropertiesImporter(d *schema.ResourceData, m interface{})
 
 func ResourceAviControllerPropertiesRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceControllerPropertiesSchema()
-	err := ApiRead(d, meta, "controllerproperties", s)
+	err := APIRead(d, meta, "controllerproperties", s)
 	if err != nil {
 		log.Printf("[ERROR] in reading object %v\n", err)
 	}
@@ -413,7 +455,7 @@ func ResourceAviControllerPropertiesRead(d *schema.ResourceData, meta interface{
 
 func resourceAviControllerPropertiesCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceControllerPropertiesSchema()
-	err := ApiCreateOrUpdate(d, meta, "controllerproperties", s)
+	err := APICreateOrUpdate(d, meta, "controllerproperties", s)
 	if err == nil {
 		err = ResourceAviControllerPropertiesRead(d, meta)
 	}
@@ -423,7 +465,7 @@ func resourceAviControllerPropertiesCreate(d *schema.ResourceData, meta interfac
 func resourceAviControllerPropertiesUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceControllerPropertiesSchema()
 	var err error
-	err = ApiCreateOrUpdate(d, meta, "controllerproperties", s)
+	err = APICreateOrUpdate(d, meta, "controllerproperties", s)
 	if err == nil {
 		err = ResourceAviControllerPropertiesRead(d, meta)
 	}
@@ -433,7 +475,7 @@ func resourceAviControllerPropertiesUpdate(d *schema.ResourceData, meta interfac
 func resourceAviControllerPropertiesDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "controllerproperties"
 	client := meta.(*clients.AviClient)
-	if ApiDeleteSystemDefaultCheck(d) {
+	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
 	uuid := d.Get("uuid").(string)

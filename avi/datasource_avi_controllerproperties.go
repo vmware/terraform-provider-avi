@@ -1,11 +1,11 @@
 /*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
+* Copyright (c) 2017. Avi Networks.
+* Author: Gaurav Rastogi (grastogi@avinetworks.com)
+*
  */
 package avi
 
-import "github.com/hashicorp/terraform/helper/schema"
+import "github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 
 func dataSourceAviControllerProperties() *schema.Resource {
 	return &schema.Resource{
@@ -37,6 +37,14 @@ func dataSourceAviControllerProperties() *schema.Resource {
 			},
 			"appviewx_compat_mode": {
 				Type:     schema.TypeBool,
+				Computed: true,
+			},
+			"async_patch_merge_period": {
+				Type:     schema.TypeInt,
+				Computed: true,
+			},
+			"async_patch_request_cleanup_duration": {
+				Type:     schema.TypeInt,
 				Computed: true,
 			},
 			"attach_ip_retry_interval": {
@@ -71,6 +79,10 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Type:     schema.TypeInt,
 				Computed: true,
 			},
+			"controller_resource_info_collection_period": {
+				Type:     schema.TypeInt,
+				Computed: true,
+			},
 			"crashed_se_reboot": {
 				Type:     schema.TypeInt,
 				Computed: true,
@@ -80,6 +92,10 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Computed: true,
 			},
 			"default_minimum_api_timeout": {
+				Type:     schema.TypeInt,
+				Computed: true,
+			},
+			"del_offline_se_after_reboot_delay": {
 				Type:     schema.TypeInt,
 				Computed: true,
 			},
@@ -135,6 +151,10 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Type:     schema.TypeInt,
 				Computed: true,
 			},
+			"max_threads_cc_vip_bg_worker": {
+				Type:     schema.TypeInt,
+				Computed: true,
+			},
 			"permission_scoped_shared_admin_networks": {
 				Type:     schema.TypeBool,
 				Computed: true,
@@ -167,6 +187,10 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Type:     schema.TypeInt,
 				Computed: true,
 			},
+			"resmgr_log_caching_period": {
+				Type:     schema.TypeInt,
+				Computed: true,
+			},
 			"safenet_hsm_version": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -192,6 +216,10 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Computed: true,
 			},
 			"se_vnic_cooldown": {
+				Type:     schema.TypeInt,
+				Computed: true,
+			},
+			"se_vnic_gc_wait_time": {
 				Type:     schema.TypeInt,
 				Computed: true,
 			},
@@ -247,6 +275,11 @@ func dataSourceAviControllerProperties() *schema.Resource {
 			"upgrade_se_per_vs_scale_ops_txn_time": {
 				Type:     schema.TypeInt,
 				Computed: true,
+			},
+			"user_agent_cache_config": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceUserAgentCacheConfigSchema(),
 			},
 			"uuid": {
 				Type:     schema.TypeString,
