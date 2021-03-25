@@ -1,15 +1,16 @@
 /*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
+* Copyright (c) 2017. Avi Networks.
+* Author: Gaurav Rastogi (grastogi@avinetworks.com)
+*
  */
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourceLicenseLedgerDetailsSchema() map[string]*schema.Schema {
@@ -57,7 +58,7 @@ func ResourceLicenseLedgerDetailsImporter(d *schema.ResourceData, m interface{})
 
 func ResourceAviLicenseLedgerDetailsRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceLicenseLedgerDetailsSchema()
-	err := ApiRead(d, meta, "licenseledgerdetails", s)
+	err := APIRead(d, meta, "licenseledgerdetails", s)
 	if err != nil {
 		log.Printf("[ERROR] in reading object %v\n", err)
 	}
@@ -66,7 +67,7 @@ func ResourceAviLicenseLedgerDetailsRead(d *schema.ResourceData, meta interface{
 
 func resourceAviLicenseLedgerDetailsCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceLicenseLedgerDetailsSchema()
-	err := ApiCreateOrUpdate(d, meta, "licenseledgerdetails", s)
+	err := APICreateOrUpdate(d, meta, "licenseledgerdetails", s)
 	if err == nil {
 		err = ResourceAviLicenseLedgerDetailsRead(d, meta)
 	}
@@ -76,7 +77,7 @@ func resourceAviLicenseLedgerDetailsCreate(d *schema.ResourceData, meta interfac
 func resourceAviLicenseLedgerDetailsUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceLicenseLedgerDetailsSchema()
 	var err error
-	err = ApiCreateOrUpdate(d, meta, "licenseledgerdetails", s)
+	err = APICreateOrUpdate(d, meta, "licenseledgerdetails", s)
 	if err == nil {
 		err = ResourceAviLicenseLedgerDetailsRead(d, meta)
 	}
@@ -86,7 +87,7 @@ func resourceAviLicenseLedgerDetailsUpdate(d *schema.ResourceData, meta interfac
 func resourceAviLicenseLedgerDetailsDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "licenseledgerdetails"
 	client := meta.(*clients.AviClient)
-	if ApiDeleteSystemDefaultCheck(d) {
+	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
 	uuid := d.Get("uuid").(string)

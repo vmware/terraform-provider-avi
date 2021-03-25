@@ -36,11 +36,11 @@ data "avi_trafficcloneprofile" "foo_trafficcloneprofile" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `clone_servers` - Field introduced in 17.1.1.
-* `cloud_ref` - It is a reference to an object of type cloud.
-* `labels` - Key value pairs for granular object access control.
-* `name` - Name for the traffic clone profile.
-* `preserve_client_ip` - Specifies if client ip needs to be preserved to clone destination.
-* `tenant_ref` - It is a reference to an object of type tenant.
-* `uuid` - Uuid of the traffic clone profile.
+* `clone_servers` - Field introduced in 17.1.1. Maximum of 10 items allowed.
+* `cloud_ref` - It is a reference to an object of type cloud. Field introduced in 17.1.1.
+* `labels` - Key value pairs for granular object access control. Also allows for classification and tagging of similar objects. Field introduced in 20.1.2. Maximum of 4 items allowed.
+* `name` - Name for the traffic clone profile. Field introduced in 17.1.1.
+* `preserve_client_ip` - Specifies if client ip needs to be preserved to clone destination. Field introduced in 17.1.1.
+* `tenant_ref` - It is a reference to an object of type tenant. Field introduced in 17.1.1.
+* `uuid` - Uuid of the traffic clone profile. Field introduced in 17.1.1.
 

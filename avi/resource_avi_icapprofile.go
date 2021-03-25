@@ -1,19 +1,25 @@
 /*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
+* Copyright (c) 2017. Avi Networks.
+* Author: Gaurav Rastogi (grastogi@avinetworks.com)
+*
  */
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourceIcapProfileSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
+		"allow_204": {
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  true,
+		},
 		"buffer_size": {
 			Type:     schema.TypeInt,
 			Optional: true,
@@ -46,13 +52,11 @@ func ResourceIcapProfileSchema() map[string]*schema.Schema {
 		},
 		"name": {
 			Type:     schema.TypeString,
-			Optional: true,
-			Computed: true,
+			Required: true,
 		},
 		"pool_group_ref": {
 			Type:     schema.TypeString,
-			Optional: true,
-			Computed: true,
+			Required: true,
 		},
 		"preview_size": {
 			Type:     schema.TypeInt,
@@ -62,17 +66,16 @@ func ResourceIcapProfileSchema() map[string]*schema.Schema {
 		"response_timeout": {
 			Type:     schema.TypeInt,
 			Optional: true,
-			Default:  1000,
+			Default:  60000,
 		},
 		"service_uri": {
 			Type:     schema.TypeString,
-			Optional: true,
-			Computed: true,
+			Required: true,
 		},
 		"slow_response_warning_threshold": {
 			Type:     schema.TypeInt,
 			Optional: true,
-			Default:  500,
+			Default:  10000,
 		},
 		"tenant_ref": {
 			Type:     schema.TypeString,
@@ -112,7 +115,7 @@ func ResourceIcapProfileImporter(d *schema.ResourceData, m interface{}) ([]*sche
 
 func ResourceAviIcapProfileRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceIcapProfileSchema()
-	err := ApiRead(d, meta, "icapprofile", s)
+	err := APIRead(d, meta, "icapprofile", s)
 	if err != nil {
 		log.Printf("[ERROR] in reading object %v\n", err)
 	}
@@ -121,7 +124,7 @@ func ResourceAviIcapProfileRead(d *schema.ResourceData, meta interface{}) error 
 
 func resourceAviIcapProfileCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceIcapProfileSchema()
-	err := ApiCreateOrUpdate(d, meta, "icapprofile", s)
+	err := APICreateOrUpdate(d, meta, "icapprofile", s)
 	if err == nil {
 		err = ResourceAviIcapProfileRead(d, meta)
 	}
@@ -131,7 +134,7 @@ func resourceAviIcapProfileCreate(d *schema.ResourceData, meta interface{}) erro
 func resourceAviIcapProfileUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceIcapProfileSchema()
 	var err error
-	err = ApiCreateOrUpdate(d, meta, "icapprofile", s)
+	err = APICreateOrUpdate(d, meta, "icapprofile", s)
 	if err == nil {
 		err = ResourceAviIcapProfileRead(d, meta)
 	}
@@ -141,7 +144,7 @@ func resourceAviIcapProfileUpdate(d *schema.ResourceData, meta interface{}) erro
 func resourceAviIcapProfileDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "icapprofile"
 	client := meta.(*clients.AviClient)
-	if ApiDeleteSystemDefaultCheck(d) {
+	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
 	uuid := d.Get("uuid").(string)

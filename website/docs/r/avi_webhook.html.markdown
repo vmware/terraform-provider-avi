@@ -29,11 +29,11 @@ resource "avi_webhook" "foo" {
 
 The following arguments are supported:
 
-* `name` - (Required) The name of the webhook profile.
-* `callback_url` - (Optional) Callback url for the webhook.
+* `name` - (Required) The name of the webhook profile. Field introduced in 17.1.1.
+* `callback_url` - (Optional) Callback url for the webhook. Field introduced in 17.1.1.
 * `description` - (Optional) Field introduced in 17.1.1.
-* `tenant_ref` - (Optional) It is a reference to an object of type tenant.
-* `verification_token` - (Optional) Verification token sent back with the callback asquery parameters.
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant. Field introduced in 17.1.1.
+* `verification_token` - (Optional) Verification token sent back with the callback asquery parameters. Field introduced in 17.1.1.
 
 
 ### Timeouts
@@ -48,5 +48,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-* `uuid` -  Uuid of the webhook profile.
+* `uuid` -  Uuid of the webhook profile. Field introduced in 17.1.1.
 

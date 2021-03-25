@@ -29,10 +29,10 @@ resource "avi_customipamdnsprofile" "foo" {
 
 The following arguments are supported:
 
-* `name` - (Optional) Name of the custom ipam dns profile.
-* `script_params` - (Optional) Parameters that are always passed to the ipam/dns script.
-* `script_uri` - (Optional) Script uri of form controller //ipamdnsscripts/<file-name>.
-* `tenant_ref` - (Optional) It is a reference to an object of type tenant.
+* `name` - (Required) Name of the custom ipam dns profile. Field introduced in 17.1.1.
+* `script_uri` - (Required) Script uri of form controller //ipamdnsscripts/<file-name>. Field introduced in 17.1.1.
+* `script_params` - (Optional) Parameters that are always passed to the ipam/dns script. Field introduced in 17.1.1.
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant. Field introduced in 17.1.1.
 
 
 ### Timeouts

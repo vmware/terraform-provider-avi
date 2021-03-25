@@ -39,6 +39,6 @@ In addition to all arguments above, the following attributes are exported:
 * `description` - User defined description for the object.
 * `local` - Boolean flag to set local.
 * `name` - Name of the object.
-* `suggested_object_labels` - Suggestive pool of key value pairs for recommending assignment of labels to objects in the user interface.
+* `suggested_object_labels` - Suggestive pool of key value pairs for recommending assignment of labels to objects in the user interface. Every entry is unique in both key and value. Field introduced in 20.1.2. Maximum of 256 items allowed.
 * `uuid` - Unique object identifier of the object.
 

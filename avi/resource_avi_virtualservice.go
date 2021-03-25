@@ -1,15 +1,16 @@
 /*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
+* Copyright (c) 2017. Avi Networks.
+* Author: Gaurav Rastogi (grastogi@avinetworks.com)
+*
  */
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourceVirtualServiceSchema() map[string]*schema.Schema {
@@ -50,16 +51,15 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"bot_policy_ref": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
 		"bulk_sync_kvcache": {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  false,
-		},
-		"client_auth": {
-			Type:     schema.TypeSet,
-			Optional: true,
-			Computed: true,
-			Elem:     ResourceHTTPClientAuthenticationParamsSchema(),
 		},
 		"close_client_conn_on_config_update": {
 			Type:     schema.TypeBool,
@@ -183,6 +183,12 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  false,
 		},
+		"jwt_config": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceJWTValidationVsConfigSchema(),
+		},
 		"l4_policies": {
 			Type:     schema.TypeList,
 			Optional: true,
@@ -192,6 +198,12 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 			Type:     schema.TypeList,
 			Optional: true,
 			Elem:     ResourceKeyValueSchema(),
+		},
+		"ldap_vs_config": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceLDAPVSConfigSchema(),
 		},
 		"limit_doser": {
 			Type:     schema.TypeBool,
@@ -391,10 +403,20 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 			Optional: true,
 			Elem:     &schema.Schema{Type: schema.TypeString},
 		},
+		"vh_matches": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceVHMatchSchema(),
+		},
 		"vh_parent_vs_uuid": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
+		},
+		"vh_type": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Default:  "VS_TYPE_VH_SNI",
 		},
 		"vip": {
 			Type:     schema.TypeList,
@@ -454,7 +476,7 @@ func ResourceVirtualServiceImporter(d *schema.ResourceData, m interface{}) ([]*s
 
 func ResourceAviVirtualServiceRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceVirtualServiceSchema()
-	err := ApiRead(d, meta, "virtualservice", s)
+	err := APIRead(d, meta, "virtualservice", s)
 	if err != nil {
 		log.Printf("[ERROR] in reading object %v\n", err)
 	}
@@ -463,7 +485,7 @@ func ResourceAviVirtualServiceRead(d *schema.ResourceData, meta interface{}) err
 
 func resourceAviVirtualServiceCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceVirtualServiceSchema()
-	err := ApiCreateOrUpdate(d, meta, "virtualservice", s)
+	err := APICreateOrUpdate(d, meta, "virtualservice", s)
 	if err == nil {
 		err = ResourceAviVirtualServiceRead(d, meta)
 	}
@@ -473,7 +495,7 @@ func resourceAviVirtualServiceCreate(d *schema.ResourceData, meta interface{}) e
 func resourceAviVirtualServiceUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceVirtualServiceSchema()
 	var err error
-	err = ApiCreateOrUpdate(d, meta, "virtualservice", s)
+	err = APICreateOrUpdate(d, meta, "virtualservice", s)
 	if err == nil {
 		err = ResourceAviVirtualServiceRead(d, meta)
 	}
@@ -483,7 +505,7 @@ func resourceAviVirtualServiceUpdate(d *schema.ResourceData, meta interface{}) e
 func resourceAviVirtualServiceDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "virtualservice"
 	client := meta.(*clients.AviClient)
-	if ApiDeleteSystemDefaultCheck(d) {
+	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
 	uuid := d.Get("uuid").(string)

@@ -1,11 +1,11 @@
 /*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
+* Copyright (c) 2017. Avi Networks.
+* Author: Gaurav Rastogi (grastogi@avinetworks.com)
+*
  */
 package avi
 
-import "github.com/hashicorp/terraform/helper/schema"
+import "github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 
 func dataSourceAviVirtualService() *schema.Resource {
 	return &schema.Resource{
@@ -40,14 +40,13 @@ func dataSourceAviVirtualService() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"bot_policy_ref": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"bulk_sync_kvcache": {
 				Type:     schema.TypeBool,
 				Computed: true,
-			},
-			"client_auth": {
-				Type:     schema.TypeSet,
-				Computed: true,
-				Elem:     ResourceHTTPClientAuthenticationParamsSchema(),
 			},
 			"close_client_conn_on_config_update": {
 				Type:     schema.TypeBool,
@@ -152,6 +151,11 @@ func dataSourceAviVirtualService() *schema.Resource {
 				Type:     schema.TypeBool,
 				Computed: true,
 			},
+			"jwt_config": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceJWTValidationVsConfigSchema(),
+			},
 			"l4_policies": {
 				Type:     schema.TypeList,
 				Computed: true,
@@ -161,6 +165,11 @@ func dataSourceAviVirtualService() *schema.Resource {
 				Type:     schema.TypeList,
 				Computed: true,
 				Elem:     ResourceKeyValueSchema(),
+			},
+			"ldap_vs_config": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceLDAPVSConfigSchema(),
 			},
 			"limit_doser": {
 				Type:     schema.TypeBool,
@@ -334,7 +343,16 @@ func dataSourceAviVirtualService() *schema.Resource {
 				Computed: true,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
+			"vh_matches": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceVHMatchSchema(),
+			},
 			"vh_parent_vs_uuid": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"vh_type": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},

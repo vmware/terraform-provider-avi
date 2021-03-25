@@ -34,8 +34,8 @@ data "avi_systemlimits" "foo_systemlimits" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `controller_limits` - System limits for the entire controller cluster.
-* `controller_sizes` - Possible controller sizes.
-* `serviceengine_limits` - System limits that apply to a serviceengine.
-* `uuid` - Uuid for the system limits object.
+* `controller_limits` - System limits for the entire controller cluster. Field introduced in 20.1.1.
+* `controller_sizes` - Possible controller sizes. Field introduced in 20.1.1.
+* `serviceengine_limits` - System limits that apply to a serviceengine. Field introduced in 20.1.1.
+* `uuid` - Uuid for the system limits object. Field introduced in 20.1.1.
 

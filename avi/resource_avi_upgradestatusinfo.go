@@ -1,15 +1,16 @@
 /*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
+* Copyright (c) 2017. Avi Networks.
+* Author: Gaurav Rastogi (grastogi@avinetworks.com)
+*
  */
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourceUpgradeStatusInfoSchema() map[string]*schema.Schema {
@@ -53,6 +54,11 @@ func ResourceUpgradeStatusInfoSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
+		},
+		"history": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceOpsHistorySchema(),
 		},
 		"image_path": {
 			Type:     schema.TypeString,
@@ -251,7 +257,7 @@ func ResourceUpgradeStatusInfoImporter(d *schema.ResourceData, m interface{}) ([
 
 func ResourceAviUpgradeStatusInfoRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceUpgradeStatusInfoSchema()
-	err := ApiRead(d, meta, "upgradestatusinfo", s)
+	err := APIRead(d, meta, "upgradestatusinfo", s)
 	if err != nil {
 		log.Printf("[ERROR] in reading object %v\n", err)
 	}
@@ -260,7 +266,7 @@ func ResourceAviUpgradeStatusInfoRead(d *schema.ResourceData, meta interface{}) 
 
 func resourceAviUpgradeStatusInfoCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceUpgradeStatusInfoSchema()
-	err := ApiCreateOrUpdate(d, meta, "upgradestatusinfo", s)
+	err := APICreateOrUpdate(d, meta, "upgradestatusinfo", s)
 	if err == nil {
 		err = ResourceAviUpgradeStatusInfoRead(d, meta)
 	}
@@ -270,7 +276,7 @@ func resourceAviUpgradeStatusInfoCreate(d *schema.ResourceData, meta interface{}
 func resourceAviUpgradeStatusInfoUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceUpgradeStatusInfoSchema()
 	var err error
-	err = ApiCreateOrUpdate(d, meta, "upgradestatusinfo", s)
+	err = APICreateOrUpdate(d, meta, "upgradestatusinfo", s)
 	if err == nil {
 		err = ResourceAviUpgradeStatusInfoRead(d, meta)
 	}
@@ -280,7 +286,7 @@ func resourceAviUpgradeStatusInfoUpdate(d *schema.ResourceData, meta interface{}
 func resourceAviUpgradeStatusInfoDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "upgradestatusinfo"
 	client := meta.(*clients.AviClient)
-	if ApiDeleteSystemDefaultCheck(d) {
+	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
 	uuid := d.Get("uuid").(string)

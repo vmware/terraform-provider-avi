@@ -34,7 +34,7 @@ data "avi_alertscriptconfig" "foo_alertscriptconfig" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `action_script` - User defined alert action script.
+* `action_script` - User defined alert action script. Please refer to kb.avinetworks.com for more information.
 * `name` - A user-friendly name of the script.
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `uuid` - Unique object identifier of the object.

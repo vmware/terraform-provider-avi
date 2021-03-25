@@ -1,15 +1,16 @@
 /*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
+* Copyright (c) 2017. Avi Networks.
+* Author: Gaurav Rastogi (grastogi@avinetworks.com)
+*
  */
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourceFederationCheckpointSchema() map[string]*schema.Schema {
@@ -31,8 +32,7 @@ func ResourceFederationCheckpointSchema() map[string]*schema.Schema {
 		},
 		"name": {
 			Type:     schema.TypeString,
-			Optional: true,
-			Computed: true,
+			Required: true,
 		},
 		"tenant_ref": {
 			Type:     schema.TypeString,
@@ -67,7 +67,7 @@ func ResourceFederationCheckpointImporter(d *schema.ResourceData, m interface{})
 
 func ResourceAviFederationCheckpointRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceFederationCheckpointSchema()
-	err := ApiRead(d, meta, "federationcheckpoint", s)
+	err := APIRead(d, meta, "federationcheckpoint", s)
 	if err != nil {
 		log.Printf("[ERROR] in reading object %v\n", err)
 	}
@@ -76,7 +76,7 @@ func ResourceAviFederationCheckpointRead(d *schema.ResourceData, meta interface{
 
 func resourceAviFederationCheckpointCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceFederationCheckpointSchema()
-	err := ApiCreateOrUpdate(d, meta, "federationcheckpoint", s)
+	err := APICreateOrUpdate(d, meta, "federationcheckpoint", s)
 	if err == nil {
 		err = ResourceAviFederationCheckpointRead(d, meta)
 	}
@@ -86,7 +86,7 @@ func resourceAviFederationCheckpointCreate(d *schema.ResourceData, meta interfac
 func resourceAviFederationCheckpointUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceFederationCheckpointSchema()
 	var err error
-	err = ApiCreateOrUpdate(d, meta, "federationcheckpoint", s)
+	err = APICreateOrUpdate(d, meta, "federationcheckpoint", s)
 	if err == nil {
 		err = ResourceAviFederationCheckpointRead(d, meta)
 	}
@@ -96,7 +96,7 @@ func resourceAviFederationCheckpointUpdate(d *schema.ResourceData, meta interfac
 func resourceAviFederationCheckpointDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "federationcheckpoint"
 	client := meta.(*clients.AviClient)
-	if ApiDeleteSystemDefaultCheck(d) {
+	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
 	uuid := d.Get("uuid").(string)

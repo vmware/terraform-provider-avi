@@ -2,11 +2,12 @@ package avi
 
 import (
 	"fmt"
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/resource"
-	"github.com/hashicorp/terraform/terraform"
 	"strings"
 	"testing"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/terraform"
 )
 
 func TestAVIIpamDnsProviderProfileBasic(t *testing.T) {
@@ -46,6 +47,7 @@ func TestAVIIpamDnsProviderProfileBasic(t *testing.T) {
 
 }
 
+//nolint
 func testAccCheckAVIIpamDnsProviderProfileExists(resourcename string) resource.TestCheckFunc {
 	return func(s *terraform.State) error {
 		conn := testAccProvider.Meta().(*clients.AviClient).AviSession
@@ -69,6 +71,7 @@ func testAccCheckAVIIpamDnsProviderProfileExists(resourcename string) resource.T
 
 }
 
+//nolint
 func testAccCheckAVIIpamDnsProviderProfileDestroy(s *terraform.State) error {
 	conn := testAccProvider.Meta().(*clients.AviClient).AviSession
 	var obj interface{}
@@ -93,6 +96,7 @@ func testAccCheckAVIIpamDnsProviderProfileDestroy(s *terraform.State) error {
 	return nil
 }
 
+//nolint
 const testAccAVIIpamDnsProviderProfileConfig = `
 data "avi_tenant" "default_tenant"{
     name= "admin"
@@ -108,6 +112,7 @@ resource "avi_ipamdnsproviderprofile" "testIpamDnsProviderProfile" {
 }
 `
 
+//nolint
 const testAccAVIIpamDnsProviderProfileupdatedConfig = `
 data "avi_tenant" "default_tenant"{
     name= "admin"
