@@ -42,7 +42,7 @@ variable "services" {
 
 #Below block is for lb_pool related variables.
 
-variable "pool_name" {
+variable "name" {
   type    = string
 }
 variable "default_server_port" {
@@ -58,7 +58,7 @@ variable "connection_ramp_duration" {
   default = null
 }
 variable "max_concurrent_connections_per_server" {
-  type    = string
+  type    = number
   default = null
 }
 variable "lb_algorithm" {
@@ -137,10 +137,6 @@ variable "east_west" {
   type    = bool
   default = null
 }
-variable "created_by" {
-  type    = string
-  default = null
-}
 variable "cloud_config_cksum" {
   type    = string
   default = null
@@ -214,7 +210,7 @@ variable "tenant" {
   default = "admin"
 }
 variable "cloud" {
-  type    = number
+  type    = string
   default = null
 }
 variable "min_servers_up" {

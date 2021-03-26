@@ -67,7 +67,7 @@ data "avi_healthmonitor" "HealthMonitor" {
 }
 
 resource "avi_pool" "lb_pool" {
-  name         = var.pool_name
+  name         = var.name
   dynamic "servers" {
     for_each = var.services
     content {
@@ -108,7 +108,6 @@ resource "avi_pool" "lb_pool" {
   fewest_tasks_feedback_delay = var.fewest_tasks_feedback_delay
   enabled = var.enabled
   east_west = var.east_west
-  created_by = var.created_by
   cloud_config_cksum = var.cloud_config_cksum
   request_queue_enabled = var.request_queue_enabled
   request_queue_depth = var.request_queue_depth
