@@ -9,12 +9,9 @@ This module supports the following:
 
 
 ## What is consul-terraform-sync?
-
 The **consul-terraform-sync** runs as a daemon that enables a **publisher-subscriber** paradigm between **Consul** and **Controller** to support **Network Infrastructure Automation (NIA)**. 
 
-<p align="left">
-<img width="800" src=""> </a>
-</p>
+<p align="left"><img width="800" src="images/Hashicorp_NIA.jpg"> </a></p>
 
 * consul-terraform-sync **subscribes to updates from the Consul catalog** and executes one or more automation **"tasks"** with appropriate value of *service variables* based on those updates. **consul-terraform-sync** leverages [Terraform](https://www.terraform.io/) as the underlying automation tool and utilizes the Terraform provider ecosystem to drive relevant change to the network infrastructure. 
 
