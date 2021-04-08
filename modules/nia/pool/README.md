@@ -93,7 +93,30 @@ task {
 $ consul-terraform-sync -config-file=tasks.hcl
 ```
 **consul-terraform-sync** will create pool for each task and subscribed services from consul catalog will become the servers of pool.
+To configure server level attribute for avi pool server you need to configure it as a part of meta in consul service configuration.
 
+Example:
+```
+{
+  "services": [
+    {
+      "id": "web3",
+      "name": "web",
+      "tags": [
+        "primary"
+      ],
+     "meta": {
+        "hostname": "custom-hostname-for-server",
+        "description": "Server Description",
+        "ratio": "1",
+        "enabled": "false"
+     },
+      "address": "x.x.x.x",
+      "port": 6098
+    }
+  ]
+}
+```
 **consul-terraform-sync is now subscribed to the Consul catalog. Any updates to the services identified in the task will result in updating the servers config of pool on avi controller**
 
 **~> Note:** If you are interested in how **consul-terraform-sync** works, please refer to this [section](#how-does-consul-terraform-sync-work).
@@ -444,3 +467,4 @@ If a task and is defined, one or more services are associated with the task, pro
     6. **consul-terraform-sync** manages the entire Terraform workflow for all the individual workspaces corresponding to the defined     "tasks" based on the updates from the services declared in those tasks.
     
   **In summary, consul-terraform-sync triggers a Terraform workflow based on updates it detects from Consul catalog.**
+
