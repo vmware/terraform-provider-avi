@@ -8,7 +8,7 @@ Terraform Provider
 
 Integrating Terraform with Avi Vantage
 --------------------------------------
-Please refer this article: [Link](https://avinetworks.com/docs/20.1/integrating-terraform-with-avi-vantage)
+Please refer [this](https://avinetworks.com/docs/20.1/integrating-terraform-with-avi-vantage) article.
 
 Developing the Provider or Use Locally Built Provider
 ----------------------------------------------------
