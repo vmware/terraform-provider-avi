@@ -16,10 +16,10 @@ func dataSourceAviHardwareSecurityModuleGroup() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceHardwareSecurityModuleSchema(),
 			},
-			"labels": {
+			"markers": {
 				Type:     schema.TypeList,
 				Computed: true,
-				Elem:     ResourceKeyValueSchema(),
+				Elem:     ResourceRoleFilterMatchLabelSchema(),
 			},
 			"name": {
 				Type:     schema.TypeString,

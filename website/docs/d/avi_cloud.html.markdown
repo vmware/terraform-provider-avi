@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "AVI: avi_cloud"
@@ -44,6 +42,7 @@ In addition to all arguments above, the following attributes are exported:
 * `dhcp_enabled` - Select the ip address management scheme.
 * `dns_provider_ref` - Dns profile for the cloud. It is a reference to an object of type ipamdnsproviderprofile.
 * `dns_resolution_on_se` - By default, pool member fqdns are resolved on the controller. When this is set, pool member fqdns are instead resolved on service engines in this cloud. This is useful in scenarios where pool member fqdns can only be resolved from service engines and not from the controller. Field introduced in 18.2.6. Allowed in basic(allowed values- false) edition, essentials(allowed values- false) edition, enterprise edition.
+* `dns_resolvers` - Dns resolver for the cloud. Field introduced in 20.1.5. Maximum of 1 items allowed.
 * `docker_configuration` - Dict settings for cloud.
 * `east_west_dns_provider_ref` - Dns profile for east-west services. It is a reference to an object of type ipamdnsproviderprofile.
 * `east_west_ipam_provider_ref` - Ipam profile for east-west services. Warning - please use virtual subnets in this ipam profile that do not conflict with the underlay networks or any overlay networks in the cluster. For example in aws and gcp, 169.254.0.0/16 is used for storing instance metadata. Hence, it should not be used in this profile. It is a reference to an object of type ipamdnsproviderprofile.
@@ -70,5 +69,6 @@ In addition to all arguments above, the following attributes are exported:
 * `uuid` - Unique object identifier of the object.
 * `vca_configuration` - Dict settings for cloud.
 * `vcenter_configuration` - Dict settings for cloud.
+* `vmc_deployment` - This deployment is vmware on aws cloud. Field introduced in 20.1.5.
 * `vtype` - Cloud type. Enum options - CLOUD_NONE, CLOUD_VCENTER, CLOUD_OPENSTACK, CLOUD_AWS, CLOUD_VCA, CLOUD_APIC, CLOUD_MESOS, CLOUD_LINUXSERVER, CLOUD_DOCKER_UCP, CLOUD_RANCHER, CLOUD_OSHIFT_K8S, CLOUD_AZURE, CLOUD_GCP, CLOUD_NSXT. Allowed in basic(allowed values- cloud_none,cloud_nsxt) edition, essentials(allowed values- cloud_none,cloud_vcenter) edition, enterprise edition.
 

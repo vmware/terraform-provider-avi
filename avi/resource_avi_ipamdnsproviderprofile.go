@@ -57,10 +57,10 @@ func ResourceIpamDnsProviderProfileSchema() map[string]*schema.Schema {
 			Computed: true,
 			Elem:     ResourceIpamDnsInternalProfileSchema(),
 		},
-		"labels": {
+		"markers": {
 			Type:     schema.TypeList,
 			Optional: true,
-			Elem:     ResourceKeyValueSchema(),
+			Elem:     ResourceRoleFilterMatchLabelSchema(),
 		},
 		"name": {
 			Type:     schema.TypeString,

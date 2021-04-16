@@ -59,15 +59,15 @@ func dataSourceAviWafPolicy() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"labels": {
-				Type:     schema.TypeList,
-				Computed: true,
-				Elem:     ResourceKeyValueSchema(),
-			},
 			"learning_params": {
 				Type:     schema.TypeSet,
 				Computed: true,
 				Elem:     ResourceAppLearningParamsSchema(),
+			},
+			"markers": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceRoleFilterMatchLabelSchema(),
 			},
 			"min_confidence": {
 				Type:     schema.TypeString,

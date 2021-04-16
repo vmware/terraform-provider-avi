@@ -33,6 +33,10 @@ func dataSourceAviGslb() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceDNSConfigSchema(),
 			},
+			"enable_config_by_members": {
+				Type:     schema.TypeBool,
+				Computed: true,
+			},
 			"error_resync_interval": {
 				Type:     schema.TypeInt,
 				Computed: true,

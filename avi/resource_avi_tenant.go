@@ -31,6 +31,16 @@ func ResourceTenantSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"enforce_label_group": {
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  false,
+		},
+		"label_group_refs": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     &schema.Schema{Type: schema.TypeString},
+		},
 		"local": {
 			Type:     schema.TypeBool,
 			Optional: true,
@@ -39,11 +49,6 @@ func ResourceTenantSchema() map[string]*schema.Schema {
 		"name": {
 			Type:     schema.TypeString,
 			Required: true,
-		},
-		"suggested_object_labels": {
-			Type:     schema.TypeList,
-			Optional: true,
-			Elem:     ResourceTenantLabelSchema(),
 		},
 		"uuid": {
 			Type:     schema.TypeString,

@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "Avi: avi_vrfcontext"
@@ -38,8 +36,8 @@ The following arguments are supported:
 * `description` - (Optional) User defined description for the object.
 * `gateway_mon` - (Optional) Configure ping based heartbeat check for gateway in service engines of vrf. Maximum of 32 items allowed.
 * `internal_gateway_monitor` - (Optional) Configure ping based heartbeat check for all default gateways in service engines of vrf. Field introduced in 17.1.1.
-* `labels` - (Optional) Key/value labels which can be used for object access policy permission scoping. Field introduced in 18.2.7, 20.1.1.
 * `lldp_enable` - (Optional) Enable lldp. Field introduced in 18.2.10, 20.1.1. Allowed in basic(allowed values- true) edition, essentials(allowed values- true) edition, enterprise edition.
+* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5.
 * `static_routes` - (Optional) List of list.
 * `system_default` - (Optional) Boolean flag to set system_default.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant.

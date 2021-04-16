@@ -100,6 +100,11 @@ func ResourceNsxtSegmentRuntimeSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"vlan_ids": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     &schema.Schema{Type: schema.TypeString},
+		},
 		"vrf_context_ref": {
 			Type:     schema.TypeString,
 			Optional: true,

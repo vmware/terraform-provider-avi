@@ -6,6 +6,10 @@ Terraform Provider
 
 <img src="https://cdn.rawgit.com/hashicorp/terraform-website/master/content/source/assets/images/logo-text.svg" width="600px">
 
+Integrating Terraform with Avi Vantage
+--------------------------------------
+Please refer [this](https://avinetworks.com/docs/20.1/integrating-terraform-with-avi-vantage) article.
+
 Developing the Provider or Use Locally Built Provider
 ----------------------------------------------------
 If you wish to work on the provider or want to use the locally built provider,

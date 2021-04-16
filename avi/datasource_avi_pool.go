@@ -144,11 +144,6 @@ func dataSourceAviPool() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"labels": {
-				Type:     schema.TypeList,
-				Computed: true,
-				Elem:     ResourceKeyValueSchema(),
-			},
 			"lb_algorithm": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -168,6 +163,11 @@ func dataSourceAviPool() *schema.Resource {
 			"lookup_server_by_name": {
 				Type:     schema.TypeBool,
 				Computed: true,
+			},
+			"markers": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceRoleFilterMatchLabelSchema(),
 			},
 			"max_concurrent_connections_per_server": {
 				Type:     schema.TypeInt,

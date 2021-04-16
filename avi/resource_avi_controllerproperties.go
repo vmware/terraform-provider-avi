@@ -120,6 +120,11 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  60,
 		},
+		"del_offline_se_after_reboot_delay": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  300,
+		},
 		"dns_refresh_period": {
 			Type:     schema.TypeInt,
 			Optional: true,
@@ -231,6 +236,11 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Type:     schema.TypeInt,
 			Optional: true,
 			Default:  180,
+		},
+		"resmgr_log_caching_period": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  21600,
 		},
 		"safenet_hsm_version": {
 			Type:     schema.TypeString,

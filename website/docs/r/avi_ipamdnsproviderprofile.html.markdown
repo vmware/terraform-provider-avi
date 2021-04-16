@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "Avi: avi_ipamdnsproviderprofile"
@@ -38,7 +36,7 @@ The following arguments are supported:
 * `gcp_profile` - (Optional) Provider details if type is google cloud.
 * `infoblox_profile` - (Optional) Provider details if type is infoblox.
 * `internal_profile` - (Optional) Provider details if type is avi.
-* `labels` - (Optional) Key value pairs for granular object access control. Also allows for classification and tagging of similar objects. Field introduced in 20.1.2. Maximum of 4 items allowed.
+* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5.
 * `oci_profile` - (Optional) Provider details for oracle cloud. Field introduced in 18.2.1,18.1.3.
 * `openstack_profile` - (Optional) Provider details if type is openstack.
 * `proxy_configuration` - (Optional) Field introduced in 17.1.1.

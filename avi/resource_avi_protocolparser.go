@@ -20,10 +20,10 @@ func ResourceProtocolParserSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
-		"labels": {
+		"markers": {
 			Type:     schema.TypeList,
 			Optional: true,
-			Elem:     ResourceKeyValueSchema(),
+			Elem:     ResourceRoleFilterMatchLabelSchema(),
 		},
 		"name": {
 			Type:     schema.TypeString,

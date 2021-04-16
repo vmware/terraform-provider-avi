@@ -38,6 +38,11 @@ func dataSourceAviApplicationProfile() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceHTTPApplicationProfileSchema(),
 			},
+			"markers": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceRoleFilterMatchLabelSchema(),
+			},
 			"name": {
 				Type:     schema.TypeString,
 				Optional: true,

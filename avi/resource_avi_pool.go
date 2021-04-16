@@ -174,11 +174,6 @@ func ResourcePoolSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
-		"labels": {
-			Type:     schema.TypeList,
-			Optional: true,
-			Elem:     ResourceKeyValueSchema(),
-		},
 		"lb_algorithm": {
 			Type:     schema.TypeString,
 			Optional: true,
@@ -203,6 +198,11 @@ func ResourcePoolSchema() map[string]*schema.Schema {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  false,
+		},
+		"markers": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceRoleFilterMatchLabelSchema(),
 		},
 		"max_concurrent_connections_per_server": {
 			Type:     schema.TypeInt,

@@ -52,9 +52,24 @@ func dataSourceAviHealthMonitor() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceHealthMonitorHttpSchema(),
 			},
+			"imap_monitor": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceHealthMonitorImapSchema(),
+			},
+			"imaps_monitor": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceHealthMonitorImapSchema(),
+			},
 			"is_federated": {
 				Type:     schema.TypeBool,
 				Computed: true,
+			},
+			"markers": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceRoleFilterMatchLabelSchema(),
 			},
 			"monitor_port": {
 				Type:     schema.TypeInt,
@@ -64,6 +79,16 @@ func dataSourceAviHealthMonitor() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+			"pop3_monitor": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceHealthMonitorPop3Schema(),
+			},
+			"pop3s_monitor": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceHealthMonitorPop3Schema(),
 			},
 			"radius_monitor": {
 				Type:     schema.TypeSet,
@@ -82,6 +107,16 @@ func dataSourceAviHealthMonitor() *schema.Resource {
 				Type:     schema.TypeSet,
 				Computed: true,
 				Elem:     ResourceHealthMonitorSIPSchema(),
+			},
+			"smtp_monitor": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceHealthMonitorSmtpSchema(),
+			},
+			"smtps_monitor": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceHealthMonitorSmtpSchema(),
 			},
 			"successful_checks": {
 				Type:     schema.TypeInt,

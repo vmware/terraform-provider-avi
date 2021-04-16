@@ -80,7 +80,7 @@ func ResourceDynamicDnsRecordSchema() map[string]*schema.Schema {
 		"num_records_in_response": {
 			Type:     schema.TypeInt,
 			Optional: true,
-			Default:  0,
+			Computed: true,
 		},
 		"service_locators": {
 			Type:     schema.TypeList,

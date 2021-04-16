@@ -74,6 +74,11 @@ func ResourceCloudSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  false,
 		},
+		"dns_resolvers": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceDnsResolverSchema(),
+		},
 		"docker_configuration": {
 			Type:     schema.TypeSet,
 			Optional: true,
@@ -212,6 +217,11 @@ func ResourceCloudSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 			Elem:     ResourcevCenterConfigurationSchema(),
+		},
+		"vmc_deployment": {
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  false,
 		},
 		"vtype": {
 			Type:     schema.TypeString,

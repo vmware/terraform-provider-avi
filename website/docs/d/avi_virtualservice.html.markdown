@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "AVI: avi_virtualservice"
@@ -43,6 +41,7 @@ In addition to all arguments above, the following attributes are exported:
 * `analytics_profile_ref` - Specifies settings related to analytics. It is a reference to an object of type analyticsprofile.
 * `apic_contract_graph` - The name of the contract/graph associated with the virtual service. Should be in the <contract name> <graph name> format. This is applicable only for service integration mode with cisco apic controller. Field introduced in 17.2.12,18.1.2. Allowed in basic edition, essentials edition, enterprise edition.
 * `application_profile_ref` - Enable application layer specific features for the virtual service. It is a reference to an object of type applicationprofile. Special default for essentials edition is system-l4-application.
+* `bgp_peer_labels` - Select bgp peers, using peer label, for vsvip advertisement. Field introduced in 20.1.5. Maximum of 128 items allowed.
 * `bulk_sync_kvcache` - (this is a beta feature). Sync key-value cache to the new ses when vs is scaled out. For ex  ssl sessions are stored using vs's key-value cache. When the vs is scaled out, the ssl session information is synced to the new se, allowing existing ssl sessions to be reused on the new se. Field introduced in 17.2.7, 18.1.1. Allowed in basic(allowed values- false) edition, essentials(allowed values- false) edition, enterprise edition.
 * `client_auth` - Http authentication configuration for protected resources.
 * `close_client_conn_on_config_update` - Close client connection on vs config update. Field introduced in 17.2.4. Allowed in basic(allowed values- false) edition, essentials(allowed values- false) edition, enterprise edition.
@@ -71,8 +70,8 @@ In addition to all arguments above, the following attributes are exported:
 * `ign_pool_net_reach` - Ignore pool servers network reachability constraints for virtual service placement.
 * `jwt_config` - Application-specific config for jwt validation. Field introduced in 20.1.3.
 * `l4_policies` - L4 policies applied to the data traffic of the virtual service. Field introduced in 17.2.7.
-* `labels` - Key value pairs for granular object access control. Also allows for classification and tagging of similar objects. Field introduced in 20.1.2. Maximum of 4 items allowed.
 * `limit_doser` - Limit potential dos attackers who exceed max_cps_per_client significantly to a fraction of max_cps_per_client for a while.
+* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5.
 * `max_cps_per_client` - Maximum connections per second per client ip. Allowed values are 10-1000. Special values are 0- 'unlimited'.
 * `microservice_ref` - Microservice representing the virtual service. It is a reference to an object of type microservice.
 * `min_pools_up` - Minimum number of up pools to mark vs up. Field introduced in 18.2.1, 17.2.12.

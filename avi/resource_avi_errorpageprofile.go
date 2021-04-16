@@ -20,10 +20,10 @@ func ResourceErrorPageProfileSchema() map[string]*schema.Schema {
 			Optional: true,
 			Elem:     ResourceErrorPageSchema(),
 		},
-		"labels": {
+		"markers": {
 			Type:     schema.TypeList,
 			Optional: true,
-			Elem:     ResourceKeyValueSchema(),
+			Elem:     ResourceRoleFilterMatchLabelSchema(),
 		},
 		"name": {
 			Type:     schema.TypeString,

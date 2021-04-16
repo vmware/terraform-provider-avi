@@ -51,6 +51,11 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"bgp_peer_labels": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     &schema.Schema{Type: schema.TypeString},
+		},
 		"bulk_sync_kvcache": {
 			Type:     schema.TypeBool,
 			Optional: true,
@@ -195,15 +200,15 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 			Optional: true,
 			Elem:     ResourceL4PoliciesSchema(),
 		},
-		"labels": {
-			Type:     schema.TypeList,
-			Optional: true,
-			Elem:     ResourceKeyValueSchema(),
-		},
 		"limit_doser": {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  false,
+		},
+		"markers": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceRoleFilterMatchLabelSchema(),
 		},
 		"max_cps_per_client": {
 			Type:     schema.TypeInt,

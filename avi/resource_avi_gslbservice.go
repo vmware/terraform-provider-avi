@@ -76,10 +76,10 @@ func ResourceGslbServiceSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  true,
 		},
-		"labels": {
+		"markers": {
 			Type:     schema.TypeList,
 			Optional: true,
-			Elem:     ResourceKeyValueSchema(),
+			Elem:     ResourceRoleFilterMatchLabelSchema(),
 		},
 		"min_members": {
 			Type:     schema.TypeInt,

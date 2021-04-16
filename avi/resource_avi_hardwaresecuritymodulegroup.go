@@ -20,10 +20,10 @@ func ResourceHardwareSecurityModuleGroupSchema() map[string]*schema.Schema {
 			Required: true,
 			Elem:     ResourceHardwareSecurityModuleSchema(),
 		},
-		"labels": {
+		"markers": {
 			Type:     schema.TypeList,
 			Optional: true,
-			Elem:     ResourceKeyValueSchema(),
+			Elem:     ResourceRoleFilterMatchLabelSchema(),
 		},
 		"name": {
 			Type:     schema.TypeString,

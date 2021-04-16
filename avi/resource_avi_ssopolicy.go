@@ -26,10 +26,10 @@ func ResourceSSOPolicySchema() map[string]*schema.Schema {
 			Computed: true,
 			Elem:     ResourceAuthorizationPolicySchema(),
 		},
-		"labels": {
+		"markers": {
 			Type:     schema.TypeList,
 			Optional: true,
-			Elem:     ResourceKeyValueSchema(),
+			Elem:     ResourceRoleFilterMatchLabelSchema(),
 		},
 		"name": {
 			Type:     schema.TypeString,

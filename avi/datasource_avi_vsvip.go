@@ -11,6 +11,11 @@ func dataSourceAviVsVip() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviVsVipRead,
 		Schema: map[string]*schema.Schema{
+			"bgp_peer_labels": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
 			"cloud_ref": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -30,10 +35,10 @@ func dataSourceAviVsVip() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceSelectorSchema(),
 			},
-			"labels": {
+			"markers": {
 				Type:     schema.TypeList,
 				Computed: true,
-				Elem:     ResourceKeyValueSchema(),
+				Elem:     ResourceRoleFilterMatchLabelSchema(),
 			},
 			"name": {
 				Type:     schema.TypeString,

@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "Avi: avi_wafprofile"
@@ -33,7 +31,7 @@ The following arguments are supported:
 * `name` - (Required) Field introduced in 17.2.1.
 * `description` - (Optional) Field introduced in 17.2.1.
 * `files` - (Optional) List of data files used for waf rules. Field introduced in 17.2.1. Maximum of 64 items allowed.
-* `labels` - (Optional) Key value pairs for granular object access control. Also allows for classification and tagging of similar objects. Field introduced in 20.1.2. Maximum of 4 items allowed.
+* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant. Field introduced in 17.2.1.
 
 

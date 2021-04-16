@@ -19,10 +19,10 @@ func dataSourceAviAutoScaleLaunchConfig() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"labels": {
+			"markers": {
 				Type:     schema.TypeList,
 				Computed: true,
-				Elem:     ResourceKeyValueSchema(),
+				Elem:     ResourceRoleFilterMatchLabelSchema(),
 			},
 			"mesos": {
 				Type:     schema.TypeSet,

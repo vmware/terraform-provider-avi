@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "AVI: avi_upgradestatusinfo"
@@ -42,6 +40,7 @@ In addition to all arguments above, the following attributes are exported:
 * `enable_rollback` - Check if the rollback is possible on this node. Field introduced in 18.2.6.
 * `end_time` - End time of upgrade operation. Field introduced in 18.2.6.
 * `enqueue_time` - Enqueue time of upgrade operation. Field introduced in 18.2.6.
+* `fips_mode` - Fips-mode for the entire system. Field introduced in 20.1.5.
 * `history` - Record of past operations on this node. Field introduced in 20.1.4.
 * `image_path` - Image path of current base image. Field introduced in 18.2.10, 20.1.1.
 * `image_ref` - Image uuid for identifying the current base image. It is a reference to an object of type image. Field introduced in 18.2.6.

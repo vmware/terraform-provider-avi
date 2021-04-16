@@ -85,6 +85,11 @@ func dataSourceAviNsxtSegmentRuntime() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"vlan_ids": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
 			"vrf_context_ref": {
 				Type:     schema.TypeString,
 				Computed: true,

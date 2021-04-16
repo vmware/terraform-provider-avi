@@ -43,6 +43,10 @@ func dataSourceAviUpgradeStatusInfo() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"fips_mode": {
+				Type:     schema.TypeBool,
+				Computed: true,
+			},
 			"history": {
 				Type:     schema.TypeList,
 				Computed: true,

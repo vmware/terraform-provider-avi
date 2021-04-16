@@ -95,6 +95,10 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Type:     schema.TypeInt,
 				Computed: true,
 			},
+			"del_offline_se_after_reboot_delay": {
+				Type:     schema.TypeInt,
+				Computed: true,
+			},
 			"dns_refresh_period": {
 				Type:     schema.TypeInt,
 				Computed: true,
@@ -180,6 +184,10 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Computed: true,
 			},
 			"query_host_fail": {
+				Type:     schema.TypeInt,
+				Computed: true,
+			},
+			"resmgr_log_caching_period": {
 				Type:     schema.TypeInt,
 				Computed: true,
 			},

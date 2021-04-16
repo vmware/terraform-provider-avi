@@ -28,10 +28,10 @@ func dataSourceAviL4PolicySet() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceL4ConnectionPolicySchema(),
 			},
-			"labels": {
+			"markers": {
 				Type:     schema.TypeList,
 				Computed: true,
-				Elem:     ResourceKeyValueSchema(),
+				Elem:     ResourceRoleFilterMatchLabelSchema(),
 			},
 			"name": {
 				Type:     schema.TypeString,
