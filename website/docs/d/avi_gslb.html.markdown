@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "AVI: avi_gslb"
@@ -39,6 +37,7 @@ In addition to all arguments above, the following attributes are exported:
 * `client_ip_addr_group` - Group to specify if the client ip addresses are public or private. Field introduced in 17.1.2.
 * `description` - User defined description for the object.
 * `dns_configs` - Sub domain configuration for the gslb. Gslb service's fqdn must be a match one of these subdomains.
+* `enable_config_by_members` - Allows enable/disable of gslbservice pool groups and pool members from the gslb follower members. Field introduced in 20.1.5.
 * `error_resync_interval` - Frequency with which errored messages are resynced to follower sites. Value of 0 disables resync behavior. Allowed values are 60-3600. Special values are 0 - 'disable'. Field introduced in 18.2.3. Unit is sec.
 * `is_federated` - This field indicates that this object is replicated across gslb federation. Field introduced in 17.1.3.
 * `leader_cluster_uuid` - Mark this site as leader of gslb configuration. This site is the one among the avi sites.

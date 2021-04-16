@@ -16,10 +16,10 @@ func dataSourceAviErrorPageProfile() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceErrorPageSchema(),
 			},
-			"labels": {
+			"markers": {
 				Type:     schema.TypeList,
 				Computed: true,
-				Elem:     ResourceKeyValueSchema(),
+				Elem:     ResourceRoleFilterMatchLabelSchema(),
 			},
 			"name": {
 				Type:     schema.TypeString,

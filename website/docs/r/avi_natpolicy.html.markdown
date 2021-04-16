@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "Avi: avi_natpolicy"
@@ -31,7 +29,7 @@ The following arguments are supported:
 
 * `created_by` - (Optional) Creator name. Field introduced in 18.2.3.
 * `description` - (Optional) Field introduced in 18.2.3.
-* `labels` - (Optional) Key value pairs for granular object access control. Also allows for classification and tagging of similar objects. Field introduced in 20.1.2. Maximum of 4 items allowed.
+* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5.
 * `name` - (Optional) Name of the nat policy. Field introduced in 18.2.3.
 * `rules` - (Optional) Nat policy rules. Field introduced in 18.2.3.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant. Field introduced in 18.2.3.

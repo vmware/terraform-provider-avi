@@ -41,11 +41,6 @@ func ResourceIpAddrGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Elem:     ResourceIpAddrPortSchema(),
 		},
-		"labels": {
-			Type:     schema.TypeList,
-			Optional: true,
-			Elem:     ResourceKeyValueSchema(),
-		},
 		"marathon_app_name": {
 			Type:     schema.TypeString,
 			Optional: true,
@@ -55,6 +50,11 @@ func ResourceIpAddrGroupSchema() map[string]*schema.Schema {
 			Type:     schema.TypeInt,
 			Optional: true,
 			Computed: true,
+		},
+		"markers": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceRoleFilterMatchLabelSchema(),
 		},
 		"name": {
 			Type:     schema.TypeString,

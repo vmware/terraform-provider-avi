@@ -55,6 +55,11 @@ func ResourceUpgradeStatusInfoSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"fips_mode": {
+			Type:     schema.TypeBool,
+			Optional: true,
+			Computed: true,
+		},
 		"history": {
 			Type:     schema.TypeList,
 			Optional: true,

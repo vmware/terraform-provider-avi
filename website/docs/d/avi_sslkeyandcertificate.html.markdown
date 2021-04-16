@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "AVI: avi_sslkeyandcertificate"
@@ -49,7 +47,7 @@ In addition to all arguments above, the following attributes are exported:
 * `key_base64` - States if the private key is base64 encoded.
 * `key_params` - Dict settings for sslkeyandcertificate.
 * `key_passphrase` - Passphrase used to encrypt the private key.
-* `labels` - Key value pairs for granular object access control. Also allows for classification and tagging of similar objects. Field introduced in 20.1.2. Maximum of 4 items allowed.
+* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5.
 * `name` - Name of the object.
 * `ocsp_config` - Configuration related to ocsp. Field introduced in 20.1.1. Allowed in basic edition, essentials edition, enterprise edition.
 * `status` - Enum options - ssl_certificate_finished, ssl_certificate_pending.

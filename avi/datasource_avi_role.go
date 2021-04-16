@@ -11,6 +11,10 @@ func dataSourceAviRole() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviRoleRead,
 		Schema: map[string]*schema.Schema{
+			"allow_unlabelled_access": {
+				Type:     schema.TypeBool,
+				Computed: true,
+			},
 			"filters": {
 				Type:     schema.TypeList,
 				Computed: true,

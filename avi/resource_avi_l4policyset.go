@@ -36,10 +36,10 @@ func ResourceL4PolicySetSchema() map[string]*schema.Schema {
 			Computed: true,
 			Elem:     ResourceL4ConnectionPolicySchema(),
 		},
-		"labels": {
+		"markers": {
 			Type:     schema.TypeList,
 			Optional: true,
-			Elem:     ResourceKeyValueSchema(),
+			Elem:     ResourceRoleFilterMatchLabelSchema(),
 		},
 		"name": {
 			Type:     schema.TypeString,

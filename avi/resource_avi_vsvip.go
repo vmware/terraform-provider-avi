@@ -15,6 +15,11 @@ import (
 
 func ResourceVsVipSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
+		"bgp_peer_labels": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     &schema.Schema{Type: schema.TypeString},
+		},
 		"cloud_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
@@ -36,10 +41,10 @@ func ResourceVsVipSchema() map[string]*schema.Schema {
 			Computed: true,
 			Elem:     ResourceSelectorSchema(),
 		},
-		"labels": {
+		"markers": {
 			Type:     schema.TypeList,
 			Optional: true,
-			Elem:     ResourceKeyValueSchema(),
+			Elem:     ResourceRoleFilterMatchLabelSchema(),
 		},
 		"name": {
 			Type:     schema.TypeString,

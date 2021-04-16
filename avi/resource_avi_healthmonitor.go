@@ -65,10 +65,27 @@ func ResourceHealthMonitorSchema() map[string]*schema.Schema {
 			Computed: true,
 			Elem:     ResourceHealthMonitorHttpSchema(),
 		},
+		"imap_monitor": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceHealthMonitorImapSchema(),
+		},
+		"imaps_monitor": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceHealthMonitorImapSchema(),
+		},
 		"is_federated": {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  false,
+		},
+		"markers": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceRoleFilterMatchLabelSchema(),
 		},
 		"monitor_port": {
 			Type:     schema.TypeInt,
@@ -78,6 +95,18 @@ func ResourceHealthMonitorSchema() map[string]*schema.Schema {
 		"name": {
 			Type:     schema.TypeString,
 			Required: true,
+		},
+		"pop3_monitor": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceHealthMonitorPop3Schema(),
+		},
+		"pop3s_monitor": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceHealthMonitorPop3Schema(),
 		},
 		"radius_monitor": {
 			Type:     schema.TypeSet,
@@ -100,6 +129,18 @@ func ResourceHealthMonitorSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 			Elem:     ResourceHealthMonitorSIPSchema(),
+		},
+		"smtp_monitor": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceHealthMonitorSmtpSchema(),
+		},
+		"smtps_monitor": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceHealthMonitorSmtpSchema(),
 		},
 		"successful_checks": {
 			Type:     schema.TypeInt,

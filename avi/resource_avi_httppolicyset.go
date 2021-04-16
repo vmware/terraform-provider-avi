@@ -58,10 +58,10 @@ func ResourceHTTPPolicySetSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  false,
 		},
-		"labels": {
+		"markers": {
 			Type:     schema.TypeList,
 			Optional: true,
-			Elem:     ResourceKeyValueSchema(),
+			Elem:     ResourceRoleFilterMatchLabelSchema(),
 		},
 		"name": {
 			Type:     schema.TypeString,

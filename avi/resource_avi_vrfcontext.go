@@ -59,15 +59,15 @@ func ResourceVrfContextSchema() map[string]*schema.Schema {
 			Computed: true,
 			Elem:     ResourceInternalGatewayMonitorSchema(),
 		},
-		"labels": {
-			Type:     schema.TypeList,
-			Optional: true,
-			Elem:     ResourceKeyValueSchema(),
-		},
 		"lldp_enable": {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  true,
+		},
+		"markers": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceRoleFilterMatchLabelSchema(),
 		},
 		"name": {
 			Type:     schema.TypeString,

@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "Avi: avi_poolgroupdeploymentpolicy"
@@ -33,7 +31,7 @@ The following arguments are supported:
 * `auto_disable_old_prod_pools` - (Optional) It will automatically disable old production pools once there is a new production candidate.
 * `description` - (Optional) User defined description for the object.
 * `evaluation_duration` - (Optional) Duration of evaluation period for automatic deployment. Allowed values are 60-86400. Unit is sec.
-* `labels` - (Optional) Key value pairs for granular object access control. Also allows for classification and tagging of similar objects. Field introduced in 20.1.2. Maximum of 4 items allowed.
+* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5.
 * `rules` - (Optional) List of list.
 * `scheme` - (Optional) Deployment scheme. Enum options - BLUE_GREEN, CANARY.
 * `target_test_traffic_ratio` - (Optional) Target traffic ratio before pool is made production. Allowed values are 1-100. Unit is ratio.

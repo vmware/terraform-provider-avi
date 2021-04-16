@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "Avi: avi_cloud"
@@ -41,6 +39,7 @@ The following arguments are supported:
 * `dhcp_enabled` - (Optional) Select the ip address management scheme.
 * `dns_provider_ref` - (Optional) Dns profile for the cloud. It is a reference to an object of type ipamdnsproviderprofile.
 * `dns_resolution_on_se` - (Optional) By default, pool member fqdns are resolved on the controller. When this is set, pool member fqdns are instead resolved on service engines in this cloud. This is useful in scenarios where pool member fqdns can only be resolved from service engines and not from the controller. Field introduced in 18.2.6. Allowed in basic(allowed values- false) edition, essentials(allowed values- false) edition, enterprise edition.
+* `dns_resolvers` - (Optional) Dns resolver for the cloud. Field introduced in 20.1.5. Maximum of 1 items allowed.
 * `docker_configuration` - (Optional) Dict settings for cloud.
 * `east_west_dns_provider_ref` - (Optional) Dns profile for east-west services. It is a reference to an object of type ipamdnsproviderprofile.
 * `east_west_ipam_provider_ref` - (Optional) Ipam profile for east-west services. Warning - please use virtual subnets in this ipam profile that do not conflict with the underlay networks or any overlay networks in the cluster. For example in aws and gcp, 169.254.0.0/16 is used for storing instance metadata. Hence, it should not be used in this profile. It is a reference to an object of type ipamdnsproviderprofile.
@@ -65,6 +64,7 @@ The following arguments are supported:
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant.
 * `vca_configuration` - (Optional) Dict settings for cloud.
 * `vcenter_configuration` - (Optional) Dict settings for cloud.
+* `vmc_deployment` - (Optional) This deployment is vmware on aws cloud. Field introduced in 20.1.5.
 
 
 ### Timeouts

@@ -30,10 +30,10 @@ func ResourcePriorityLabelsSchema() map[string]*schema.Schema {
 			Optional: true,
 			Elem:     ResourceEquivalentLabelsSchema(),
 		},
-		"labels": {
+		"markers": {
 			Type:     schema.TypeList,
 			Optional: true,
-			Elem:     ResourceKeyValueSchema(),
+			Elem:     ResourceRoleFilterMatchLabelSchema(),
 		},
 		"name": {
 			Type:     schema.TypeString,

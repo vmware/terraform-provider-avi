@@ -24,10 +24,10 @@ func dataSourceAviSecurityPolicy() *schema.Resource {
 				Type:     schema.TypeInt,
 				Computed: true,
 			},
-			"labels": {
+			"markers": {
 				Type:     schema.TypeList,
 				Computed: true,
-				Elem:     ResourceKeyValueSchema(),
+				Elem:     ResourceRoleFilterMatchLabelSchema(),
 			},
 			"name": {
 				Type:     schema.TypeString,

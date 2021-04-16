@@ -41,6 +41,11 @@ func ResourceGslbSchema() map[string]*schema.Schema {
 			Optional: true,
 			Elem:     ResourceDNSConfigSchema(),
 		},
+		"enable_config_by_members": {
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  false,
+		},
 		"error_resync_interval": {
 			Type:     schema.TypeInt,
 			Optional: true,

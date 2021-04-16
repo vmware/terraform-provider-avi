@@ -31,10 +31,10 @@ func dataSourceAviServerAutoScalePolicy() *schema.Resource {
 				Type:     schema.TypeInt,
 				Computed: true,
 			},
-			"labels": {
+			"markers": {
 				Type:     schema.TypeList,
 				Computed: true,
-				Elem:     ResourceKeyValueSchema(),
+				Elem:     ResourceRoleFilterMatchLabelSchema(),
 			},
 			"max_scalein_adjustment_step": {
 				Type:     schema.TypeInt,

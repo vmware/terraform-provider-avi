@@ -46,10 +46,10 @@ func dataSourceAviIpamDnsProviderProfile() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceIpamDnsInternalProfileSchema(),
 			},
-			"labels": {
+			"markers": {
 				Type:     schema.TypeList,
 				Computed: true,
-				Elem:     ResourceKeyValueSchema(),
+				Elem:     ResourceRoleFilterMatchLabelSchema(),
 			},
 			"name": {
 				Type:     schema.TypeString,

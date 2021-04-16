@@ -31,10 +31,10 @@ func ResourceSecurityPolicySchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  0,
 		},
-		"labels": {
+		"markers": {
 			Type:     schema.TypeList,
 			Optional: true,
-			Elem:     ResourceKeyValueSchema(),
+			Elem:     ResourceRoleFilterMatchLabelSchema(),
 		},
 		"name": {
 			Type:     schema.TypeString,

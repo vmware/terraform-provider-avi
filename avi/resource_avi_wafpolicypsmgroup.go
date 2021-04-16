@@ -35,15 +35,15 @@ func ResourceWafPolicyPSMGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  false,
 		},
-		"labels": {
-			Type:     schema.TypeList,
-			Optional: true,
-			Elem:     ResourceKeyValueSchema(),
-		},
 		"locations": {
 			Type:     schema.TypeList,
 			Optional: true,
 			Elem:     ResourceWafPSMLocationSchema(),
+		},
+		"markers": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceRoleFilterMatchLabelSchema(),
 		},
 		"miss_action": {
 			Type:     schema.TypeString,

@@ -95,10 +95,10 @@ func ResourceSSLKeyAndCertificateSchema() map[string]*schema.Schema {
 			Sensitive:        true,
 			DiffSuppressFunc: suppressSensitiveFieldDiffs,
 		},
-		"labels": {
+		"markers": {
 			Type:     schema.TypeList,
 			Optional: true,
-			Elem:     ResourceKeyValueSchema(),
+			Elem:     ResourceRoleFilterMatchLabelSchema(),
 		},
 		"name": {
 			Type:     schema.TypeString,
