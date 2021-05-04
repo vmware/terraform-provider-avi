@@ -1,16 +1,17 @@
 /*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
+* Copyright (c) 2017. Avi Networks.
+* Author: Gaurav Rastogi (grastogi@avinetworks.com)
+*
  */
 package avi
 
 import (
 	"errors"
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourcePoolSchema() map[string]*schema.Schema {
@@ -23,6 +24,7 @@ func ResourcePoolSchema() map[string]*schema.Schema {
 		"analytics_policy": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourcePoolAnalyticsPolicySchema(),
 		},
 		"analytics_profile_ref": {
@@ -33,6 +35,7 @@ func ResourcePoolSchema() map[string]*schema.Schema {
 		"apic_epg_name": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"application_persistence_profile_ref": {
 			Type:     schema.TypeString,
@@ -67,6 +70,7 @@ func ResourcePoolSchema() map[string]*schema.Schema {
 		"cloud_config_cksum": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"cloud_ref": {
 			Type:     schema.TypeString,
@@ -76,6 +80,7 @@ func ResourcePoolSchema() map[string]*schema.Schema {
 		"conn_pool_properties": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceConnPoolPropertiesSchema(),
 		},
 		"connection_ramp_duration": {
@@ -86,6 +91,7 @@ func ResourcePoolSchema() map[string]*schema.Schema {
 		"created_by": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"default_server_port": {
 			Type:     schema.TypeInt,
@@ -100,6 +106,7 @@ func ResourcePoolSchema() map[string]*schema.Schema {
 		"description": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"domain_name": {
 			Type:     schema.TypeList,
@@ -109,6 +116,7 @@ func ResourcePoolSchema() map[string]*schema.Schema {
 		"east_west": {
 			Type:     schema.TypeBool,
 			Optional: true,
+			Computed: true,
 		},
 		"enabled": {
 			Type:     schema.TypeBool,
@@ -123,6 +131,7 @@ func ResourcePoolSchema() map[string]*schema.Schema {
 		"fail_action": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceFailActionSchema(),
 		},
 		"fewest_tasks_feedback_delay": {
@@ -138,7 +147,6 @@ func ResourcePoolSchema() map[string]*schema.Schema {
 		"health_monitor_refs": {
 			Type:     schema.TypeList,
 			Optional: true,
-			Computed: true,
 			Elem:     &schema.Schema{Type: schema.TypeString},
 		},
 		"host_check_enabled": {
@@ -164,6 +172,7 @@ func ResourcePoolSchema() map[string]*schema.Schema {
 		"lb_algorithm_consistent_hash_hdr": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"lb_algorithm_core_nonaffinity": {
 			Type:     schema.TypeInt,
@@ -188,15 +197,18 @@ func ResourcePoolSchema() map[string]*schema.Schema {
 		"max_conn_rate_per_server": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceRateProfileSchema(),
 		},
 		"min_health_monitors_up": {
 			Type:     schema.TypeInt,
 			Optional: true,
+			Computed: true,
 		},
 		"min_servers_up": {
 			Type:     schema.TypeInt,
 			Optional: true,
+			Computed: true,
 		},
 		"name": {
 			Type:     schema.TypeString,
@@ -235,6 +247,7 @@ func ResourcePoolSchema() map[string]*schema.Schema {
 		"resolve_pool_by_dns": {
 			Type:     schema.TypeBool,
 			Optional: true,
+			Computed: true,
 		},
 		"rewrite_host_header_to_server_name": {
 			Type:     schema.TypeBool,
@@ -249,10 +262,12 @@ func ResourcePoolSchema() map[string]*schema.Schema {
 		"server_name": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"server_reselect": {
 			Type:     schema.TypeSet,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceHTTPServerReselectSchema(),
 		},
 		"server_timeout": {
@@ -268,6 +283,7 @@ func ResourcePoolSchema() map[string]*schema.Schema {
 		"service_metadata": {
 			Type:     schema.TypeString,
 			Optional: true,
+			Computed: true,
 		},
 		"sni_enabled": {
 			Type:     schema.TypeBool,
@@ -327,7 +343,7 @@ func ResourcePoolImporter(d *schema.ResourceData, m interface{}) ([]*schema.Reso
 
 func ResourceAviPoolRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourcePoolSchema()
-	err := ApiRead(d, meta, "pool", s)
+	err := APIRead(d, meta, "pool", s)
 	if err != nil {
 		log.Printf("[ERROR] ResourceAviPoolRead in reading object %v\n", err)
 	} else {
@@ -343,15 +359,15 @@ func ResourceAviPoolRead(d *schema.ResourceData, meta interface{}) error {
 func resourceAviPoolCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourcePoolSchema()
 	ignoreServers := false
-	if ignore_servers, ok := d.GetOk("ignore_servers"); ok {
-		if servers, ok := d.GetOk("servers"); ok && ignore_servers.(bool) && servers != nil {
+	if ignServers, ok := d.GetOk("ignore_servers"); ok {
+		if servers, ok := d.GetOk("servers"); ok && ignServers.(bool) && servers != nil {
 			log.Printf("[ERROR] cannot set ignore_servers and servers together.")
-			err := errors.New("Error Invalid Plan. cannot set ignore_servers and servers together.")
+			err := errors.New("Error Invalid Plan. cannot set ignore_servers and servers together")
 			return err
 		}
 		ignoreServers = true
 	}
-	err := ApiCreateOrUpdate(d, meta, "pool", s)
+	err := APICreateOrUpdate(d, meta, "pool", s)
 	if err == nil {
 		err = ResourceAviPoolRead(d, meta)
 	}
@@ -369,20 +385,20 @@ func resourceAviPoolUpdate(d *schema.ResourceData, meta interface{}) error {
 	var err error
 	s := ResourcePoolSchema()
 
-	if ignore_servers, ok := d.GetOk("ignore_servers"); ok && ignore_servers.(bool) {
-		if servers, ok := d.GetOk("servers"); ok && ignore_servers.(bool) && servers != nil {
+	if ignoreServers, ok := d.GetOk("ignore_servers"); ok && ignoreServers.(bool) {
+		if servers, ok := d.GetOk("servers"); ok && ignoreServers.(bool) && servers != nil {
 			log.Printf("[ERROR] cannot set ignore_servers and servers together.")
-			err = errors.New("Error Invalid Plan. cannot set ignore_servers and servers together.")
+			err = errors.New("Error Invalid Plan. cannot set ignore_servers and servers together")
 			return err
 		}
-		err = ApiCreateOrUpdate(d, meta, "pool", s, true)
+		err = APICreateOrUpdate(d, meta, "pool", s, true)
 		if err == nil {
 			err = ResourceAviPoolRead(d, meta)
 		}
 		d.Set("servers", nil)
 		d.Set("ignore_servers", true)
 	} else {
-		err = ApiCreateOrUpdate(d, meta, "pool", s)
+		err = APICreateOrUpdate(d, meta, "pool", s)
 		if err == nil {
 			err = ResourceAviPoolRead(d, meta)
 		}
@@ -392,15 +408,15 @@ func resourceAviPoolUpdate(d *schema.ResourceData, meta interface{}) error {
 }
 
 func resourceAviPoolDelete(d *schema.ResourceData, meta interface{}) error {
-	if ignore_servers, ok := d.GetOk("ignore_servers"); ok {
-		if servers, ok := d.GetOk("servers"); ok && ignore_servers.(bool) && servers != nil {
+	if ignoreServers, ok := d.GetOk("ignore_servers"); ok {
+		if servers, ok := d.GetOk("servers"); ok && ignoreServers.(bool) && servers != nil {
 			log.Printf("[ERROR] cannot set ignore_servers and servers together.")
-			err := errors.New("Error Invalid Plan. cannot set ignore_servers and servers together.")
+			err := errors.New("Error Invalid Plan. cannot set ignore_servers and servers together")
 			return err
 		}
 	}
 	objType := "pool"
-	if ApiDeleteSystemDefaultCheck(d) {
+	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
 	client := meta.(*clients.AviClient)

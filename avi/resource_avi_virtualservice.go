@@ -1,15 +1,16 @@
 /*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
+* Copyright (c) 2017. Avi Networks.
+* Author: Gaurav Rastogi (grastogi@avinetworks.com)
+*
  */
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourceVirtualServiceSchema() map[string]*schema.Schema {
@@ -177,11 +178,6 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 			Type:     schema.TypeList,
 			Optional: true,
 			Elem:     ResourceL4PoliciesSchema(),
-		},
-		"labels": {
-			Type:     schema.TypeList,
-			Optional: true,
-			Elem:     ResourceKeyValueSchema(),
 		},
 		"limit_doser": {
 			Type:     schema.TypeBool,
@@ -444,7 +440,7 @@ func ResourceVirtualServiceImporter(d *schema.ResourceData, m interface{}) ([]*s
 
 func ResourceAviVirtualServiceRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceVirtualServiceSchema()
-	err := ApiRead(d, meta, "virtualservice", s)
+	err := APIRead(d, meta, "virtualservice", s)
 	if err != nil {
 		log.Printf("[ERROR] in reading object %v\n", err)
 	}
@@ -453,7 +449,7 @@ func ResourceAviVirtualServiceRead(d *schema.ResourceData, meta interface{}) err
 
 func resourceAviVirtualServiceCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceVirtualServiceSchema()
-	err := ApiCreateOrUpdate(d, meta, "virtualservice", s)
+	err := APICreateOrUpdate(d, meta, "virtualservice", s)
 	if err == nil {
 		err = ResourceAviVirtualServiceRead(d, meta)
 	}
@@ -474,11 +470,11 @@ func resourceAviVirtualServiceUpdate(d *schema.ResourceData, meta interface{}) e
 		//Before GO lang sets zero value to fields which are absent in api response
 		//setting those fields to schema default and then overwritting d (local state)
 		if localData, err := SchemaToAviData(d, s); err == nil {
-			apiResponse, err = SetDefaultsInAPIRes(existingvirtualservice, localData, s)
+			apiResponse, _ = SetDefaultsInAPIRes(existingvirtualservice, localData, s)
 		} else {
 			log.Printf("[ERROR] resourceAviVirtualServiceUpdate in SchemaToAviData: %v\n", err)
 		}
-		if virtualserviceobj, err := ApiDataToSchema(apiResponse, nil, nil); err == nil {
+		if virtualserviceobj, err := APIDataToSchema(apiResponse, nil, nil); err == nil {
 			objs := virtualserviceobj.(*schema.Set).List()
 			for obj := 0; obj < len(objs); obj++ {
 				vsvipref, isVsVip := objs[obj].(map[string]interface{})["vsvip_ref"]
@@ -497,12 +493,12 @@ func resourceAviVirtualServiceUpdate(d *schema.ResourceData, meta interface{}) e
 				}
 			}
 		} else {
-			log.Printf("[ERROR] resourceAviVirtualServiceUpdate in ApiDataToSchema: %v\n", err)
+			log.Printf("[ERROR] resourceAviVirtualServiceUpdate in APIDataToSchema: %v\n", err)
 		}
 	} else {
 		log.Printf("[ERROR] resourceAviVirtualServiceUpdate in GET: %v\n", err)
 	}
-	err = ApiCreateOrUpdate(d, meta, "virtualservice", s)
+	err = APICreateOrUpdate(d, meta, "virtualservice", s)
 	if err == nil {
 		err = ResourceAviVirtualServiceRead(d, meta)
 	}
@@ -512,7 +508,7 @@ func resourceAviVirtualServiceUpdate(d *schema.ResourceData, meta interface{}) e
 func resourceAviVirtualServiceDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "virtualservice"
 	client := meta.(*clients.AviClient)
-	if ApiDeleteSystemDefaultCheck(d) {
+	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
 	uuid := d.Get("uuid").(string)

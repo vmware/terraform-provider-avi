@@ -1,15 +1,16 @@
 /*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
+* Copyright (c) 2017. Avi Networks.
+* Author: Gaurav Rastogi (grastogi@avinetworks.com)
+*
  */
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourceAuthProfileSchema() map[string]*schema.Schema {
@@ -89,7 +90,7 @@ func ResourceAuthProfileImporter(d *schema.ResourceData, m interface{}) ([]*sche
 
 func ResourceAviAuthProfileRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceAuthProfileSchema()
-	err := ApiRead(d, meta, "authprofile", s)
+	err := APIRead(d, meta, "authprofile", s)
 	if err != nil {
 		log.Printf("[ERROR] in reading object %v\n", err)
 	}
@@ -98,7 +99,7 @@ func ResourceAviAuthProfileRead(d *schema.ResourceData, meta interface{}) error 
 
 func resourceAviAuthProfileCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceAuthProfileSchema()
-	err := ApiCreateOrUpdate(d, meta, "authprofile", s)
+	err := APICreateOrUpdate(d, meta, "authprofile", s)
 	if err == nil {
 		err = ResourceAviAuthProfileRead(d, meta)
 	}
@@ -108,7 +109,7 @@ func resourceAviAuthProfileCreate(d *schema.ResourceData, meta interface{}) erro
 func resourceAviAuthProfileUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceAuthProfileSchema()
 	var err error
-	err = ApiCreateOrUpdate(d, meta, "authprofile", s)
+	err = APICreateOrUpdate(d, meta, "authprofile", s)
 	if err == nil {
 		err = ResourceAviAuthProfileRead(d, meta)
 	}
@@ -118,7 +119,7 @@ func resourceAviAuthProfileUpdate(d *schema.ResourceData, meta interface{}) erro
 func resourceAviAuthProfileDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "authprofile"
 	client := meta.(*clients.AviClient)
-	if ApiDeleteSystemDefaultCheck(d) {
+	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
 	uuid := d.Get("uuid").(string)

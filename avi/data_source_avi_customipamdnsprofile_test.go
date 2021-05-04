@@ -1,8 +1,9 @@
 package avi
 
 import (
-	"github.com/hashicorp/terraform/helper/resource"
 	"testing"
+
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
 )
 
 func TestAVIDataSourceCustomIpamDnsProfileBasic(t *testing.T) {
@@ -22,6 +23,7 @@ func TestAVIDataSourceCustomIpamDnsProfileBasic(t *testing.T) {
 
 }
 
+//nolint
 const testAccAVIDSCustomIpamDnsProfileConfig = `
 data "avi_tenant" "default_tenant"{
     name= "admin"

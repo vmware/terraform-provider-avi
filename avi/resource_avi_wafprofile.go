@@ -1,23 +1,23 @@
 /*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
+* Copyright (c) 2017. Avi Networks.
+* Author: Gaurav Rastogi (grastogi@avinetworks.com)
+*
  */
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourceWafProfileSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"config": {
 			Type:     schema.TypeSet,
-			Optional: true,
-			Computed: true,
+			Required: true,
 			Elem:     ResourceWafConfigSchema(),
 		},
 		"description": {
@@ -29,11 +29,6 @@ func ResourceWafProfileSchema() map[string]*schema.Schema {
 			Type:     schema.TypeList,
 			Optional: true,
 			Elem:     ResourceWafDataFileSchema(),
-		},
-		"labels": {
-			Type:     schema.TypeList,
-			Optional: true,
-			Elem:     ResourceKeyValueSchema(),
 		},
 		"name": {
 			Type:     schema.TypeString,
@@ -72,7 +67,7 @@ func ResourceWafProfileImporter(d *schema.ResourceData, m interface{}) ([]*schem
 
 func ResourceAviWafProfileRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceWafProfileSchema()
-	err := ApiRead(d, meta, "wafprofile", s)
+	err := APIRead(d, meta, "wafprofile", s)
 	if err != nil {
 		log.Printf("[ERROR] in reading object %v\n", err)
 	}
@@ -81,7 +76,7 @@ func ResourceAviWafProfileRead(d *schema.ResourceData, meta interface{}) error {
 
 func resourceAviWafProfileCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceWafProfileSchema()
-	err := ApiCreateOrUpdate(d, meta, "wafprofile", s)
+	err := APICreateOrUpdate(d, meta, "wafprofile", s)
 	if err == nil {
 		err = ResourceAviWafProfileRead(d, meta)
 	}
@@ -91,7 +86,7 @@ func resourceAviWafProfileCreate(d *schema.ResourceData, meta interface{}) error
 func resourceAviWafProfileUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceWafProfileSchema()
 	var err error
-	err = ApiCreateOrUpdate(d, meta, "wafprofile", s)
+	err = APICreateOrUpdate(d, meta, "wafprofile", s)
 	if err == nil {
 		err = ResourceAviWafProfileRead(d, meta)
 	}
@@ -101,7 +96,7 @@ func resourceAviWafProfileUpdate(d *schema.ResourceData, meta interface{}) error
 func resourceAviWafProfileDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "wafprofile"
 	client := meta.(*clients.AviClient)
-	if ApiDeleteSystemDefaultCheck(d) {
+	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
 	uuid := d.Get("uuid").(string)

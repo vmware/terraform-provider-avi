@@ -2,11 +2,12 @@ package avi
 
 import (
 	"fmt"
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/resource"
-	"github.com/hashicorp/terraform/terraform"
 	"strings"
 	"testing"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/terraform"
 )
 
 func TestAVIWafProfileBasic(t *testing.T) {
@@ -4008,7 +4009,7 @@ sqlmap
 sqlninja
 # password cracker
 # http://foofus.net/goons/jmk/medusa/medusa.html
-teh forest lobster
+the forest lobster
 # 
 this is an exploit
 # vuln scanner?
@@ -8017,7 +8018,7 @@ sqlmap
 sqlninja
 # password cracker
 # http://foofus.net/goons/jmk/medusa/medusa.html
-teh forest lobster
+the forest lobster
 # 
 this is an exploit
 # vuln scanner?

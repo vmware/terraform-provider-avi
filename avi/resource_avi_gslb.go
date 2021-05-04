@@ -1,15 +1,16 @@
 /*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
+* Copyright (c) 2017. Avi Networks.
+* Author: Gaurav Rastogi (grastogi@avinetworks.com)
+*
  */
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourceGslbSchema() map[string]*schema.Schema {
@@ -52,8 +53,7 @@ func ResourceGslbSchema() map[string]*schema.Schema {
 		},
 		"leader_cluster_uuid": {
 			Type:     schema.TypeString,
-			Optional: true,
-			Computed: true,
+			Required: true,
 		},
 		"maintenance_mode": {
 			Type:     schema.TypeBool,
@@ -76,13 +76,18 @@ func ResourceGslbSchema() map[string]*schema.Schema {
 		},
 		"sites": {
 			Type:     schema.TypeList,
-			Optional: true,
+			Required: true,
 			Elem:     ResourceGslbSiteSchema(),
 		},
 		"tenant_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
+		},
+		"tenant_scoped": {
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  true,
 		},
 		"third_party_sites": {
 			Type:     schema.TypeList,
@@ -122,7 +127,7 @@ func ResourceGslbImporter(d *schema.ResourceData, m interface{}) ([]*schema.Reso
 
 func ResourceAviGslbRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceGslbSchema()
-	err := ApiRead(d, meta, "gslb", s)
+	err := APIRead(d, meta, "gslb", s)
 	if err != nil {
 		log.Printf("[ERROR] in reading object %v\n", err)
 	}
@@ -131,7 +136,7 @@ func ResourceAviGslbRead(d *schema.ResourceData, meta interface{}) error {
 
 func resourceAviGslbCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceGslbSchema()
-	err := ApiCreateOrUpdate(d, meta, "gslb", s)
+	err := APICreateOrUpdate(d, meta, "gslb", s)
 	if err == nil {
 		err = ResourceAviGslbRead(d, meta)
 	}
@@ -141,7 +146,7 @@ func resourceAviGslbCreate(d *schema.ResourceData, meta interface{}) error {
 func resourceAviGslbUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceGslbSchema()
 	var err error
-	err = ApiCreateOrUpdate(d, meta, "gslb", s)
+	err = APICreateOrUpdate(d, meta, "gslb", s)
 	if err == nil {
 		err = ResourceAviGslbRead(d, meta)
 	}
@@ -151,7 +156,7 @@ func resourceAviGslbUpdate(d *schema.ResourceData, meta interface{}) error {
 func resourceAviGslbDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "gslb"
 	client := meta.(*clients.AviClient)
-	if ApiDeleteSystemDefaultCheck(d) {
+	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
 	uuid := d.Get("uuid").(string)

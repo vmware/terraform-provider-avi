@@ -1,11 +1,11 @@
 /*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
+* Copyright (c) 2017. Avi Networks.
+* Author: Gaurav Rastogi (grastogi@avinetworks.com)
+*
  */
 package avi
 
-import "github.com/hashicorp/terraform/helper/schema"
+import "github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 
 func dataSourceAviControllerProperties() *schema.Resource {
 	return &schema.Resource{
@@ -37,6 +37,14 @@ func dataSourceAviControllerProperties() *schema.Resource {
 			},
 			"appviewx_compat_mode": {
 				Type:     schema.TypeBool,
+				Computed: true,
+			},
+			"async_patch_merge_period": {
+				Type:     schema.TypeInt,
+				Computed: true,
+			},
+			"async_patch_request_cleanup_duration": {
+				Type:     schema.TypeInt,
 				Computed: true,
 			},
 			"attach_ip_retry_interval": {

@@ -1,12 +1,13 @@
 /*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
+* Copyright (c) 2017. Avi Networks.
+* Author: Gaurav Rastogi (grastogi@avinetworks.com)
+*
  */
 package avi
 
-import "github.com/hashicorp/terraform/helper/schema"
+import "github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 
+//nolint
 func dataSourceAviIpAddrGroup() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviIpAddrGroupRead,
@@ -33,11 +34,6 @@ func dataSourceAviIpAddrGroup() *schema.Resource {
 				Type:     schema.TypeList,
 				Computed: true,
 				Elem:     ResourceIpAddrPortSchema(),
-			},
-			"labels": {
-				Type:     schema.TypeList,
-				Computed: true,
-				Elem:     ResourceKeyValueSchema(),
 			},
 			"marathon_app_name": {
 				Type:     schema.TypeString,

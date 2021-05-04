@@ -1,15 +1,16 @@
 /*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
+* Copyright (c) 2017. Avi Networks.
+* Author: Gaurav Rastogi (grastogi@avinetworks.com)
+*
  */
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourceServerAutoScalePolicySchema() map[string]*schema.Schema {
@@ -33,11 +34,6 @@ func ResourceServerAutoScalePolicySchema() map[string]*schema.Schema {
 			Type:     schema.TypeInt,
 			Optional: true,
 			Default:  20,
-		},
-		"labels": {
-			Type:     schema.TypeList,
-			Optional: true,
-			Elem:     ResourceKeyValueSchema(),
 		},
 		"max_scalein_adjustment_step": {
 			Type:     schema.TypeInt,
@@ -121,7 +117,7 @@ func ResourceServerAutoScalePolicyImporter(d *schema.ResourceData, m interface{}
 
 func ResourceAviServerAutoScalePolicyRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceServerAutoScalePolicySchema()
-	err := ApiRead(d, meta, "serverautoscalepolicy", s)
+	err := APIRead(d, meta, "serverautoscalepolicy", s)
 	if err != nil {
 		log.Printf("[ERROR] in reading object %v\n", err)
 	}
@@ -130,7 +126,7 @@ func ResourceAviServerAutoScalePolicyRead(d *schema.ResourceData, meta interface
 
 func resourceAviServerAutoScalePolicyCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceServerAutoScalePolicySchema()
-	err := ApiCreateOrUpdate(d, meta, "serverautoscalepolicy", s)
+	err := APICreateOrUpdate(d, meta, "serverautoscalepolicy", s)
 	if err == nil {
 		err = ResourceAviServerAutoScalePolicyRead(d, meta)
 	}
@@ -140,7 +136,7 @@ func resourceAviServerAutoScalePolicyCreate(d *schema.ResourceData, meta interfa
 func resourceAviServerAutoScalePolicyUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceServerAutoScalePolicySchema()
 	var err error
-	err = ApiCreateOrUpdate(d, meta, "serverautoscalepolicy", s)
+	err = APICreateOrUpdate(d, meta, "serverautoscalepolicy", s)
 	if err == nil {
 		err = ResourceAviServerAutoScalePolicyRead(d, meta)
 	}
@@ -150,7 +146,7 @@ func resourceAviServerAutoScalePolicyUpdate(d *schema.ResourceData, meta interfa
 func resourceAviServerAutoScalePolicyDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "serverautoscalepolicy"
 	client := meta.(*clients.AviClient)
-	if ApiDeleteSystemDefaultCheck(d) {
+	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
 	uuid := d.Get("uuid").(string)

@@ -1,59 +1,59 @@
 /*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
+* Copyright (c) 2017. Avi Networks.
+* Author: Gaurav Rastogi (grastogi@avinetworks.com)
+*
  */
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/avinetworks/sdk/go/session"
-	"github.com/hashicorp/terraform/helper/schema"
-	"github.com/hashicorp/terraform/terraform"
 	"log"
 	"time"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/avinetworks/sdk/go/session"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
-func Provider() terraform.ResourceProvider {
+func Provider() *schema.Provider {
 	return &schema.Provider{
 		Schema: map[string]*schema.Schema{
-			"avi_username": &schema.Schema{
+			"avi_username": {
 				Type:        schema.TypeString,
 				Optional:    true,
 				DefaultFunc: schema.EnvDefaultFunc("AVI_USERNAME", nil),
 				Description: "Username for Avi Controller.",
 			},
-			"avi_controller": &schema.Schema{
+			"avi_controller": {
 				Type:        schema.TypeString,
 				Optional:    true,
 				DefaultFunc: schema.EnvDefaultFunc("AVI_CONTROLLER", nil),
 				Description: "Avi Controller hostname or IP address.",
 			},
-			"avi_password": &schema.Schema{
+			"avi_password": {
 				Type:        schema.TypeString,
 				Optional:    true,
 				DefaultFunc: schema.EnvDefaultFunc("AVI_PASSWORD", nil),
 				Description: "Password for Avi Controller.",
 			},
-			"avi_tenant": &schema.Schema{
+			"avi_tenant": {
 				Type:        schema.TypeString,
 				Optional:    true,
 				DefaultFunc: schema.EnvDefaultFunc("AVI_TENANT", nil),
 				Description: "Avi tenant for Avi Controller.",
 			},
-			"avi_version": &schema.Schema{
+			"avi_version": {
 				Type:        schema.TypeString,
 				Optional:    true,
 				DefaultFunc: schema.EnvDefaultFunc("AVI_VERSION", nil),
 				Description: "Avi version for Avi Controller.",
 			},
-			"avi_authtoken": &schema.Schema{
+			"avi_authtoken": {
 				Type:        schema.TypeString,
 				Optional:    true,
 				DefaultFunc: schema.EnvDefaultFunc("AVI_AUTHTOKEN", nil),
 				Description: "Avi token for Avi Controller.",
 			},
-			"avi_api_timeout": &schema.Schema{
+			"avi_api_timeout": {
 				Type:        schema.TypeInt,
 				Optional:    true,
 				DefaultFunc: schema.EnvDefaultFunc("AVI_API_TIMEOUT", nil),
@@ -63,6 +63,7 @@ func Provider() terraform.ResourceProvider {
 		DataSourcesMap: map[string]*schema.Resource{
 			"avi_useraccountprofile":            dataSourceAviUserAccountProfile(),
 			"avi_role":                          dataSourceAviRole(),
+			"avi_user":                          dataSourceAviUser(),
 			"avi_objectaccesspolicy":            dataSourceAviObjectAccessPolicy(),
 			"avi_natpolicy":                     dataSourceAviNatPolicy(),
 			"avi_image":                         dataSourceAviImage(),
@@ -148,6 +149,7 @@ func Provider() terraform.ResourceProvider {
 		ResourcesMap: map[string]*schema.Resource{
 			"avi_useraccountprofile":            resourceAviUserAccountProfile(),
 			"avi_role":                          resourceAviRole(),
+			"avi_user":                          resourceAviUser(),
 			"avi_objectaccesspolicy":            resourceAviObjectAccessPolicy(),
 			"avi_natpolicy":                     resourceAviNatPolicy(),
 			"avi_image":                         resourceAviImage(),
@@ -243,7 +245,7 @@ func providerConfigure(d *schema.ResourceData) (interface{}, error) {
 		Tenant:     "admin",
 		Version:    "18.2.8",
 		AuthToken:  d.Get("avi_authtoken").(string),
-		Timeout:    time.Duration(time.Duration(d.Get("avi_api_timeout").(int)) * time.Second),
+		Timeout:    time.Duration(d.Get("avi_api_timeout").(int)) * time.Second,
 	}
 	if username, ok := d.GetOk("avi_username"); ok {
 		config.Username = username.(string)
@@ -257,7 +259,7 @@ func providerConfigure(d *schema.ResourceData) (interface{}, error) {
 	}
 
 	if timeout, ok := d.GetOk("avi_api_timeout"); ok {
-		config.Timeout = time.Duration(time.Duration(timeout.(int)) * time.Second)
+		config.Timeout = time.Duration(timeout.(int)) * time.Second
 	}
 
 	aviClient, err := clients.NewAviClient(

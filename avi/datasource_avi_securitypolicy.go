@@ -1,11 +1,11 @@
 /*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
+* Copyright (c) 2017. Avi Networks.
+* Author: Gaurav Rastogi (grastogi@avinetworks.com)
+*
  */
 package avi
 
-import "github.com/hashicorp/terraform/helper/schema"
+import "github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 
 func dataSourceAviSecurityPolicy() *schema.Resource {
 	return &schema.Resource{
@@ -23,11 +23,6 @@ func dataSourceAviSecurityPolicy() *schema.Resource {
 			"dns_policy_index": {
 				Type:     schema.TypeInt,
 				Computed: true,
-			},
-			"labels": {
-				Type:     schema.TypeList,
-				Computed: true,
-				Elem:     ResourceKeyValueSchema(),
 			},
 			"name": {
 				Type:     schema.TypeString,

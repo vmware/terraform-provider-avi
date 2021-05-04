@@ -1,15 +1,16 @@
 /*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
+* Copyright (c) 2017. Avi Networks.
+* Author: Gaurav Rastogi (grastogi@avinetworks.com)
+*
  */
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourceTrafficCloneProfileSchema() map[string]*schema.Schema {
@@ -23,11 +24,6 @@ func ResourceTrafficCloneProfileSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
-		},
-		"labels": {
-			Type:     schema.TypeList,
-			Optional: true,
-			Elem:     ResourceKeyValueSchema(),
 		},
 		"name": {
 			Type:     schema.TypeString,
@@ -71,7 +67,7 @@ func ResourceTrafficCloneProfileImporter(d *schema.ResourceData, m interface{}) 
 
 func ResourceAviTrafficCloneProfileRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceTrafficCloneProfileSchema()
-	err := ApiRead(d, meta, "trafficcloneprofile", s)
+	err := APIRead(d, meta, "trafficcloneprofile", s)
 	if err != nil {
 		log.Printf("[ERROR] in reading object %v\n", err)
 	}
@@ -80,7 +76,7 @@ func ResourceAviTrafficCloneProfileRead(d *schema.ResourceData, meta interface{}
 
 func resourceAviTrafficCloneProfileCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceTrafficCloneProfileSchema()
-	err := ApiCreateOrUpdate(d, meta, "trafficcloneprofile", s)
+	err := APICreateOrUpdate(d, meta, "trafficcloneprofile", s)
 	if err == nil {
 		err = ResourceAviTrafficCloneProfileRead(d, meta)
 	}
@@ -90,7 +86,7 @@ func resourceAviTrafficCloneProfileCreate(d *schema.ResourceData, meta interface
 func resourceAviTrafficCloneProfileUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceTrafficCloneProfileSchema()
 	var err error
-	err = ApiCreateOrUpdate(d, meta, "trafficcloneprofile", s)
+	err = APICreateOrUpdate(d, meta, "trafficcloneprofile", s)
 	if err == nil {
 		err = ResourceAviTrafficCloneProfileRead(d, meta)
 	}
@@ -100,7 +96,7 @@ func resourceAviTrafficCloneProfileUpdate(d *schema.ResourceData, meta interface
 func resourceAviTrafficCloneProfileDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "trafficcloneprofile"
 	client := meta.(*clients.AviClient)
-	if ApiDeleteSystemDefaultCheck(d) {
+	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
 	uuid := d.Get("uuid").(string)

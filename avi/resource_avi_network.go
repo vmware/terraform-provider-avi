@@ -1,15 +1,16 @@
 /*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
+* Copyright (c) 2017. Avi Networks.
+* Author: Gaurav Rastogi (grastogi@avinetworks.com)
+*
  */
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourceNetworkSchema() map[string]*schema.Schema {
@@ -96,7 +97,7 @@ func ResourceNetworkImporter(d *schema.ResourceData, m interface{}) ([]*schema.R
 
 func ResourceAviNetworkRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceNetworkSchema()
-	err := ApiRead(d, meta, "network", s)
+	err := APIRead(d, meta, "network", s)
 	if err != nil {
 		log.Printf("[ERROR] in reading object %v\n", err)
 	}
@@ -105,7 +106,7 @@ func ResourceAviNetworkRead(d *schema.ResourceData, meta interface{}) error {
 
 func resourceAviNetworkCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceNetworkSchema()
-	err := ApiCreateOrUpdate(d, meta, "network", s)
+	err := APICreateOrUpdate(d, meta, "network", s)
 	if err == nil {
 		err = ResourceAviNetworkRead(d, meta)
 	}
@@ -115,7 +116,7 @@ func resourceAviNetworkCreate(d *schema.ResourceData, meta interface{}) error {
 func resourceAviNetworkUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceNetworkSchema()
 	var err error
-	err = ApiCreateOrUpdate(d, meta, "network", s)
+	err = APICreateOrUpdate(d, meta, "network", s)
 	if err == nil {
 		err = ResourceAviNetworkRead(d, meta)
 	}
@@ -125,7 +126,7 @@ func resourceAviNetworkUpdate(d *schema.ResourceData, meta interface{}) error {
 func resourceAviNetworkDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "network"
 	client := meta.(*clients.AviClient)
-	if ApiDeleteSystemDefaultCheck(d) {
+	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
 	uuid := d.Get("uuid").(string)

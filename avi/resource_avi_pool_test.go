@@ -2,11 +2,12 @@ package avi
 
 import (
 	"fmt"
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/resource"
-	"github.com/hashicorp/terraform/terraform"
 	"strings"
 	"testing"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/terraform"
 )
 
 func TestAVIPoolBasic(t *testing.T) {
@@ -123,6 +124,25 @@ resource "avi_pool" "testPool" {
 		type = "FAIL_ACTION_CLOSE_CONN"
 	}
 }
+resource "avi_pool" "testPoolHmRef" {
+        name = "test-pool-hm-ref"
+	ignore_servers = false
+	cloud_ref = data.avi_cloud.default_cloud.id
+	tenant_ref = data.avi_tenant.default_tenant.id
+	servers {
+	ip {
+		type = "V4"
+		addr = "10.90.64.66"
+	}
+	hostname = "10.90.64.66"
+	ratio = "1"
+	port = "8080"
+	enabled = true
+}
+	fail_action {
+		type = "FAIL_ACTION_CLOSE_CONN"
+	}
+}
 `
 
 const testAccAVIPoolupdatedConfig = `
@@ -151,6 +171,25 @@ resource "avi_pool" "testPool" {
 	enabled = true
 }
 	health_monitor_refs = [data.avi_healthmonitor.default_monitor.id]
+	fail_action {
+		type = "FAIL_ACTION_CLOSE_CONN"
+	}
+}
+resource "avi_pool" "testPoolHmRef" {
+        name = "test-pool-hm-ref-updated"
+	ignore_servers = false
+	cloud_ref = data.avi_cloud.default_cloud.id
+	tenant_ref = data.avi_tenant.default_tenant.id
+	servers {
+	ip {
+		type = "V4"
+		addr = "10.90.64.66"
+	}
+	hostname = "10.90.64.66"
+	ratio = "1"
+	port = "8080"
+	enabled = true
+}
 	fail_action {
 		type = "FAIL_ACTION_CLOSE_CONN"
 	}

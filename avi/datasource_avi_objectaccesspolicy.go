@@ -7,22 +7,10 @@ package avi
 
 import "github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 
-func dataSourceAviNetworkSecurityPolicy() *schema.Resource {
+func dataSourceAviObjectAccessPolicy() *schema.Resource {
 	return &schema.Resource{
-		Read: ResourceAviNetworkSecurityPolicyRead,
+		Read: ResourceAviObjectAccessPolicyRead,
 		Schema: map[string]*schema.Schema{
-			"cloud_config_cksum": {
-				Type:     schema.TypeString,
-				Computed: true,
-			},
-			"created_by": {
-				Type:     schema.TypeString,
-				Computed: true,
-			},
-			"description": {
-				Type:     schema.TypeString,
-				Computed: true,
-			},
 			"name": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -31,7 +19,7 @@ func dataSourceAviNetworkSecurityPolicy() *schema.Resource {
 			"rules": {
 				Type:     schema.TypeList,
 				Computed: true,
-				Elem:     ResourceNetworkSecurityRuleSchema(),
+				Elem:     ResourceObjectAccessPolicyRuleSchema(),
 			},
 			"tenant_ref": {
 				Type:     schema.TypeString,

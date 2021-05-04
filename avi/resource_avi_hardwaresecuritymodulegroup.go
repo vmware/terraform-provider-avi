@@ -1,15 +1,16 @@
 /*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
+* Copyright (c) 2017. Avi Networks.
+* Author: Gaurav Rastogi (grastogi@avinetworks.com)
+*
  */
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourceHardwareSecurityModuleGroupSchema() map[string]*schema.Schema {
@@ -18,11 +19,6 @@ func ResourceHardwareSecurityModuleGroupSchema() map[string]*schema.Schema {
 			Type:     schema.TypeSet,
 			Required: true,
 			Elem:     ResourceHardwareSecurityModuleSchema(),
-		},
-		"labels": {
-			Type:     schema.TypeList,
-			Optional: true,
-			Elem:     ResourceKeyValueSchema(),
 		},
 		"name": {
 			Type:     schema.TypeString,
@@ -61,7 +57,7 @@ func ResourceHardwareSecurityModuleGroupImporter(d *schema.ResourceData, m inter
 
 func ResourceAviHardwareSecurityModuleGroupRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceHardwareSecurityModuleGroupSchema()
-	err := ApiRead(d, meta, "hardwaresecuritymodulegroup", s)
+	err := APIRead(d, meta, "hardwaresecuritymodulegroup", s)
 	if err != nil {
 		log.Printf("[ERROR] in reading object %v\n", err)
 	}
@@ -70,7 +66,7 @@ func ResourceAviHardwareSecurityModuleGroupRead(d *schema.ResourceData, meta int
 
 func resourceAviHardwareSecurityModuleGroupCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceHardwareSecurityModuleGroupSchema()
-	err := ApiCreateOrUpdate(d, meta, "hardwaresecuritymodulegroup", s)
+	err := APICreateOrUpdate(d, meta, "hardwaresecuritymodulegroup", s)
 	if err == nil {
 		err = ResourceAviHardwareSecurityModuleGroupRead(d, meta)
 	}
@@ -80,7 +76,7 @@ func resourceAviHardwareSecurityModuleGroupCreate(d *schema.ResourceData, meta i
 func resourceAviHardwareSecurityModuleGroupUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceHardwareSecurityModuleGroupSchema()
 	var err error
-	err = ApiCreateOrUpdate(d, meta, "hardwaresecuritymodulegroup", s)
+	err = APICreateOrUpdate(d, meta, "hardwaresecuritymodulegroup", s)
 	if err == nil {
 		err = ResourceAviHardwareSecurityModuleGroupRead(d, meta)
 	}
@@ -90,7 +86,7 @@ func resourceAviHardwareSecurityModuleGroupUpdate(d *schema.ResourceData, meta i
 func resourceAviHardwareSecurityModuleGroupDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "hardwaresecuritymodulegroup"
 	client := meta.(*clients.AviClient)
-	if ApiDeleteSystemDefaultCheck(d) {
+	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
 	uuid := d.Get("uuid").(string)

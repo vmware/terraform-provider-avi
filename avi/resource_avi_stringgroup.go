@@ -1,15 +1,16 @@
 /*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
+* Copyright (c) 2017. Avi Networks.
+* Author: Gaurav Rastogi (grastogi@avinetworks.com)
+*
  */
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourceStringGroupSchema() map[string]*schema.Schema {
@@ -20,11 +21,6 @@ func ResourceStringGroupSchema() map[string]*schema.Schema {
 			Computed: true,
 		},
 		"kv": {
-			Type:     schema.TypeList,
-			Optional: true,
-			Elem:     ResourceKeyValueSchema(),
-		},
-		"labels": {
 			Type:     schema.TypeList,
 			Optional: true,
 			Elem:     ResourceKeyValueSchema(),
@@ -75,7 +71,7 @@ func ResourceStringGroupImporter(d *schema.ResourceData, m interface{}) ([]*sche
 
 func ResourceAviStringGroupRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceStringGroupSchema()
-	err := ApiRead(d, meta, "stringgroup", s)
+	err := APIRead(d, meta, "stringgroup", s)
 	if err != nil {
 		log.Printf("[ERROR] in reading object %v\n", err)
 	}
@@ -84,7 +80,7 @@ func ResourceAviStringGroupRead(d *schema.ResourceData, meta interface{}) error 
 
 func resourceAviStringGroupCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceStringGroupSchema()
-	err := ApiCreateOrUpdate(d, meta, "stringgroup", s)
+	err := APICreateOrUpdate(d, meta, "stringgroup", s)
 	if err == nil {
 		err = ResourceAviStringGroupRead(d, meta)
 	}
@@ -94,7 +90,7 @@ func resourceAviStringGroupCreate(d *schema.ResourceData, meta interface{}) erro
 func resourceAviStringGroupUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceStringGroupSchema()
 	var err error
-	err = ApiCreateOrUpdate(d, meta, "stringgroup", s)
+	err = APICreateOrUpdate(d, meta, "stringgroup", s)
 	if err == nil {
 		err = ResourceAviStringGroupRead(d, meta)
 	}
@@ -104,7 +100,7 @@ func resourceAviStringGroupUpdate(d *schema.ResourceData, meta interface{}) erro
 func resourceAviStringGroupDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "stringgroup"
 	client := meta.(*clients.AviClient)
-	if ApiDeleteSystemDefaultCheck(d) {
+	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
 	uuid := d.Get("uuid").(string)

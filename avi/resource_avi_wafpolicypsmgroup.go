@@ -1,15 +1,16 @@
 /*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
+* Copyright (c) 2017. Avi Networks.
+* Author: Gaurav Rastogi (grastogi@avinetworks.com)
+*
  */
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourceWafPolicyPSMGroupSchema() map[string]*schema.Schema {
@@ -34,11 +35,6 @@ func ResourceWafPolicyPSMGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  false,
 		},
-		"labels": {
-			Type:     schema.TypeList,
-			Optional: true,
-			Elem:     ResourceKeyValueSchema(),
-		},
 		"locations": {
 			Type:     schema.TypeList,
 			Optional: true,
@@ -51,8 +47,7 @@ func ResourceWafPolicyPSMGroupSchema() map[string]*schema.Schema {
 		},
 		"name": {
 			Type:     schema.TypeString,
-			Optional: true,
-			Computed: true,
+			Required: true,
 		},
 		"tenant_ref": {
 			Type:     schema.TypeString,
@@ -87,7 +82,7 @@ func ResourceWafPolicyPSMGroupImporter(d *schema.ResourceData, m interface{}) ([
 
 func ResourceAviWafPolicyPSMGroupRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceWafPolicyPSMGroupSchema()
-	err := ApiRead(d, meta, "wafpolicypsmgroup", s)
+	err := APIRead(d, meta, "wafpolicypsmgroup", s)
 	if err != nil {
 		log.Printf("[ERROR] in reading object %v\n", err)
 	}
@@ -96,7 +91,7 @@ func ResourceAviWafPolicyPSMGroupRead(d *schema.ResourceData, meta interface{}) 
 
 func resourceAviWafPolicyPSMGroupCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceWafPolicyPSMGroupSchema()
-	err := ApiCreateOrUpdate(d, meta, "wafpolicypsmgroup", s)
+	err := APICreateOrUpdate(d, meta, "wafpolicypsmgroup", s)
 	if err == nil {
 		err = ResourceAviWafPolicyPSMGroupRead(d, meta)
 	}
@@ -106,7 +101,7 @@ func resourceAviWafPolicyPSMGroupCreate(d *schema.ResourceData, meta interface{}
 func resourceAviWafPolicyPSMGroupUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceWafPolicyPSMGroupSchema()
 	var err error
-	err = ApiCreateOrUpdate(d, meta, "wafpolicypsmgroup", s)
+	err = APICreateOrUpdate(d, meta, "wafpolicypsmgroup", s)
 	if err == nil {
 		err = ResourceAviWafPolicyPSMGroupRead(d, meta)
 	}
@@ -116,7 +111,7 @@ func resourceAviWafPolicyPSMGroupUpdate(d *schema.ResourceData, meta interface{}
 func resourceAviWafPolicyPSMGroupDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "wafpolicypsmgroup"
 	client := meta.(*clients.AviClient)
-	if ApiDeleteSystemDefaultCheck(d) {
+	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
 	uuid := d.Get("uuid").(string)

@@ -1,23 +1,26 @@
 /*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
+* Copyright (c) 2017. Avi Networks.
+* Author: Gaurav Rastogi (grastogi@avinetworks.com)
+*
  */
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourceBackupConfigurationSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"aws_access_key": {
-			Type:     schema.TypeString,
-			Optional: true,
-			Computed: true,
+			Type:             schema.TypeString,
+			Optional:         true,
+			Computed:         true,
+			Sensitive:        true,
+			DiffSuppressFunc: suppressSensitiveFieldDiffs,
 		},
 		"aws_bucket_id": {
 			Type:     schema.TypeString,
@@ -25,9 +28,11 @@ func ResourceBackupConfigurationSchema() map[string]*schema.Schema {
 			Computed: true,
 		},
 		"aws_secret_access": {
-			Type:     schema.TypeString,
-			Optional: true,
-			Computed: true,
+			Type:             schema.TypeString,
+			Optional:         true,
+			Computed:         true,
+			Sensitive:        true,
+			DiffSuppressFunc: suppressSensitiveFieldDiffs,
 		},
 		"backup_file_prefix": {
 			Type:     schema.TypeString,
@@ -35,9 +40,11 @@ func ResourceBackupConfigurationSchema() map[string]*schema.Schema {
 			Computed: true,
 		},
 		"backup_passphrase": {
-			Type:     schema.TypeString,
-			Optional: true,
-			Computed: true,
+			Type:             schema.TypeString,
+			Optional:         true,
+			Computed:         true,
+			Sensitive:        true,
+			DiffSuppressFunc: suppressSensitiveFieldDiffs,
 		},
 		"maximum_backups_stored": {
 			Type:     schema.TypeInt,
@@ -111,7 +118,7 @@ func ResourceBackupConfigurationImporter(d *schema.ResourceData, m interface{}) 
 
 func ResourceAviBackupConfigurationRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceBackupConfigurationSchema()
-	err := ApiRead(d, meta, "backupconfiguration", s)
+	err := APIRead(d, meta, "backupconfiguration", s)
 	if err != nil {
 		log.Printf("[ERROR] in reading object %v\n", err)
 	}
@@ -120,7 +127,7 @@ func ResourceAviBackupConfigurationRead(d *schema.ResourceData, meta interface{}
 
 func resourceAviBackupConfigurationCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceBackupConfigurationSchema()
-	err := ApiCreateOrUpdate(d, meta, "backupconfiguration", s)
+	err := APICreateOrUpdate(d, meta, "backupconfiguration", s)
 	if err == nil {
 		err = ResourceAviBackupConfigurationRead(d, meta)
 	}
@@ -130,7 +137,7 @@ func resourceAviBackupConfigurationCreate(d *schema.ResourceData, meta interface
 func resourceAviBackupConfigurationUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceBackupConfigurationSchema()
 	var err error
-	err = ApiCreateOrUpdate(d, meta, "backupconfiguration", s)
+	err = APICreateOrUpdate(d, meta, "backupconfiguration", s)
 	if err == nil {
 		err = ResourceAviBackupConfigurationRead(d, meta)
 	}
@@ -140,7 +147,7 @@ func resourceAviBackupConfigurationUpdate(d *schema.ResourceData, meta interface
 func resourceAviBackupConfigurationDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "backupconfiguration"
 	client := meta.(*clients.AviClient)
-	if ApiDeleteSystemDefaultCheck(d) {
+	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
 	uuid := d.Get("uuid").(string)

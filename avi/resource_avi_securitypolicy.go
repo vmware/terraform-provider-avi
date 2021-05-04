@@ -1,15 +1,16 @@
 /*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
+* Copyright (c) 2017. Avi Networks.
+* Author: Gaurav Rastogi (grastogi@avinetworks.com)
+*
  */
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourceSecurityPolicySchema() map[string]*schema.Schema {
@@ -29,11 +30,6 @@ func ResourceSecurityPolicySchema() map[string]*schema.Schema {
 			Type:     schema.TypeInt,
 			Optional: true,
 			Default:  0,
-		},
-		"labels": {
-			Type:     schema.TypeList,
-			Optional: true,
-			Elem:     ResourceKeyValueSchema(),
 		},
 		"name": {
 			Type:     schema.TypeString,
@@ -94,7 +90,7 @@ func ResourceSecurityPolicyImporter(d *schema.ResourceData, m interface{}) ([]*s
 
 func ResourceAviSecurityPolicyRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceSecurityPolicySchema()
-	err := ApiRead(d, meta, "securitypolicy", s)
+	err := APIRead(d, meta, "securitypolicy", s)
 	if err != nil {
 		log.Printf("[ERROR] in reading object %v\n", err)
 	}
@@ -103,7 +99,7 @@ func ResourceAviSecurityPolicyRead(d *schema.ResourceData, meta interface{}) err
 
 func resourceAviSecurityPolicyCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceSecurityPolicySchema()
-	err := ApiCreateOrUpdate(d, meta, "securitypolicy", s)
+	err := APICreateOrUpdate(d, meta, "securitypolicy", s)
 	if err == nil {
 		err = ResourceAviSecurityPolicyRead(d, meta)
 	}
@@ -113,7 +109,7 @@ func resourceAviSecurityPolicyCreate(d *schema.ResourceData, meta interface{}) e
 func resourceAviSecurityPolicyUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceSecurityPolicySchema()
 	var err error
-	err = ApiCreateOrUpdate(d, meta, "securitypolicy", s)
+	err = APICreateOrUpdate(d, meta, "securitypolicy", s)
 	if err == nil {
 		err = ResourceAviSecurityPolicyRead(d, meta)
 	}
@@ -123,7 +119,7 @@ func resourceAviSecurityPolicyUpdate(d *schema.ResourceData, meta interface{}) e
 func resourceAviSecurityPolicyDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "securitypolicy"
 	client := meta.(*clients.AviClient)
-	if ApiDeleteSystemDefaultCheck(d) {
+	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
 	uuid := d.Get("uuid").(string)

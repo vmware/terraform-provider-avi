@@ -1,15 +1,16 @@
 /*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
+* Copyright (c) 2017. Avi Networks.
+* Author: Gaurav Rastogi (grastogi@avinetworks.com)
+*
  */
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourceSSLKeyAndCertificateSchema() map[string]*schema.Schema {
@@ -65,9 +66,11 @@ func ResourceSSLKeyAndCertificateSchema() map[string]*schema.Schema {
 			Computed: true,
 		},
 		"key": {
-			Type:     schema.TypeString,
-			Optional: true,
-			Computed: true,
+			Type:             schema.TypeString,
+			Optional:         true,
+			Computed:         true,
+			Sensitive:        true,
+			DiffSuppressFunc: suppressSensitiveFieldDiffs,
 		},
 		"key_base64": {
 			Type:     schema.TypeBool,
@@ -81,9 +84,11 @@ func ResourceSSLKeyAndCertificateSchema() map[string]*schema.Schema {
 			Elem:     ResourceSSLKeyParamsSchema(),
 		},
 		"key_passphrase": {
-			Type:     schema.TypeString,
-			Optional: true,
-			Computed: true,
+			Type:             schema.TypeString,
+			Optional:         true,
+			Computed:         true,
+			Sensitive:        true,
+			DiffSuppressFunc: suppressSensitiveFieldDiffs,
 		},
 		"name": {
 			Type:     schema.TypeString,
@@ -132,7 +137,7 @@ func ResourceSSLKeyAndCertificateImporter(d *schema.ResourceData, m interface{})
 
 func ResourceAviSSLKeyAndCertificateRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceSSLKeyAndCertificateSchema()
-	err := ApiRead(d, meta, "sslkeyandcertificate", s)
+	err := APIRead(d, meta, "sslkeyandcertificate", s)
 	if err != nil {
 		log.Printf("[ERROR] in reading object %v\n", err)
 	}
@@ -141,7 +146,7 @@ func ResourceAviSSLKeyAndCertificateRead(d *schema.ResourceData, meta interface{
 
 func resourceAviSSLKeyAndCertificateCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceSSLKeyAndCertificateSchema()
-	err := ApiCreateOrUpdate(d, meta, "sslkeyandcertificate", s)
+	err := APICreateOrUpdate(d, meta, "sslkeyandcertificate", s)
 	if err == nil {
 		err = ResourceAviSSLKeyAndCertificateRead(d, meta)
 	}
@@ -151,7 +156,7 @@ func resourceAviSSLKeyAndCertificateCreate(d *schema.ResourceData, meta interfac
 func resourceAviSSLKeyAndCertificateUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceSSLKeyAndCertificateSchema()
 	var err error
-	err = ApiCreateOrUpdate(d, meta, "sslkeyandcertificate", s)
+	err = APICreateOrUpdate(d, meta, "sslkeyandcertificate", s)
 	if err == nil {
 		err = ResourceAviSSLKeyAndCertificateRead(d, meta)
 	}
@@ -161,7 +166,7 @@ func resourceAviSSLKeyAndCertificateUpdate(d *schema.ResourceData, meta interfac
 func resourceAviSSLKeyAndCertificateDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "sslkeyandcertificate"
 	client := meta.(*clients.AviClient)
-	if ApiDeleteSystemDefaultCheck(d) {
+	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
 	uuid := d.Get("uuid").(string)

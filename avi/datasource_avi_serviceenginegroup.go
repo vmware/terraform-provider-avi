@@ -1,11 +1,11 @@
 /*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
+* Copyright (c) 2017. Avi Networks.
+* Author: Gaurav Rastogi (grastogi@avinetworks.com)
+*
  */
 package avi
 
-import "github.com/hashicorp/terraform/helper/schema"
+import "github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 
 func dataSourceAviServiceEngineGroup() *schema.Resource {
 	return &schema.Resource{
@@ -299,10 +299,6 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeInt,
 				Computed: true,
 			},
-			"log_malloc_failure": {
-				Type:     schema.TypeBool,
-				Computed: true,
-			},
 			"max_concurrent_external_hm": {
 				Type:     schema.TypeInt,
 				Computed: true,
@@ -418,7 +414,15 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"pcap_tx_ring_rd_balancing_factor": {
+				Type:     schema.TypeInt,
+				Computed: true,
+			},
 			"per_app": {
+				Type:     schema.TypeBool,
+				Computed: true,
+			},
+			"per_vs_admission_control": {
 				Type:     schema.TypeBool,
 				Computed: true,
 			},
@@ -437,6 +441,10 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 			},
 			"se_bandwidth_type": {
 				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"se_delayed_flow_delete": {
+				Type:     schema.TypeBool,
 				Computed: true,
 			},
 			"se_deprovision_delay": {
@@ -490,6 +498,10 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 			},
 			"se_lro": {
 				Type:     schema.TypeBool,
+				Computed: true,
+			},
+			"se_mp_ring_retry_count": {
+				Type:     schema.TypeInt,
 				Computed: true,
 			},
 			"se_mtu": {
@@ -579,6 +591,10 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Computed: true,
 			},
 			"se_tx_batch_size": {
+				Type:     schema.TypeInt,
+				Computed: true,
+			},
+			"se_txq_threshold": {
 				Type:     schema.TypeInt,
 				Computed: true,
 			},

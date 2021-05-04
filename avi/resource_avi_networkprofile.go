@@ -1,15 +1,16 @@
 /*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
+* Copyright (c) 2017. Avi Networks.
+* Author: Gaurav Rastogi (grastogi@avinetworks.com)
+*
  */
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourceNetworkProfileSchema() map[string]*schema.Schema {
@@ -23,11 +24,6 @@ func ResourceNetworkProfileSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
-		},
-		"labels": {
-			Type:     schema.TypeList,
-			Optional: true,
-			Elem:     ResourceKeyValueSchema(),
 		},
 		"name": {
 			Type:     schema.TypeString,
@@ -71,7 +67,7 @@ func ResourceNetworkProfileImporter(d *schema.ResourceData, m interface{}) ([]*s
 
 func ResourceAviNetworkProfileRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceNetworkProfileSchema()
-	err := ApiRead(d, meta, "networkprofile", s)
+	err := APIRead(d, meta, "networkprofile", s)
 	if err != nil {
 		log.Printf("[ERROR] in reading object %v\n", err)
 	}
@@ -80,7 +76,7 @@ func ResourceAviNetworkProfileRead(d *schema.ResourceData, meta interface{}) err
 
 func resourceAviNetworkProfileCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceNetworkProfileSchema()
-	err := ApiCreateOrUpdate(d, meta, "networkprofile", s)
+	err := APICreateOrUpdate(d, meta, "networkprofile", s)
 	if err == nil {
 		err = ResourceAviNetworkProfileRead(d, meta)
 	}
@@ -90,7 +86,7 @@ func resourceAviNetworkProfileCreate(d *schema.ResourceData, meta interface{}) e
 func resourceAviNetworkProfileUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceNetworkProfileSchema()
 	var err error
-	err = ApiCreateOrUpdate(d, meta, "networkprofile", s)
+	err = APICreateOrUpdate(d, meta, "networkprofile", s)
 	if err == nil {
 		err = ResourceAviNetworkProfileRead(d, meta)
 	}
@@ -100,7 +96,7 @@ func resourceAviNetworkProfileUpdate(d *schema.ResourceData, meta interface{}) e
 func resourceAviNetworkProfileDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "networkprofile"
 	client := meta.(*clients.AviClient)
-	if ApiDeleteSystemDefaultCheck(d) {
+	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
 	uuid := d.Get("uuid").(string)
