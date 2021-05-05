@@ -1,8 +1,8 @@
-module github.com/terraform-providers/terraform-provider-avi
+module github.com/vmware/terraform-provider-avi
 
-go 1.12
+go 1.13
 
 require (
-	github.com/avinetworks/sdk v0.0.0-20200901045234-b3dc17f45353
-	github.com/hashicorp/terraform v0.12.24
+	github.com/avinetworks/sdk v0.0.0-20210304070733-4d65b1b436e5
+	github.com/hashicorp/terraform-plugin-sdk/v2 v2.0.2
 )
