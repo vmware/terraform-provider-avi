@@ -3624,6 +3624,43 @@ func ResourceVIMgrClusterRuntimeSchema() *schema.Resource {
 	}
 }
 
+func ResourceConfigSeGrpFlvUpdateSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"new_flv": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"old_flv": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"se_group_name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"se_group_uuid": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"tenant_name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"tenant_uuid": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
 func ResourceNetworkRuntimeSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -3866,38 +3903,17 @@ func ResourceDebugVrfContextSchema() *schema.Resource {
 	}
 }
 
-func ResourceConfigSeGrpFlvUpdateSchema() *schema.Resource {
+func ResourceGslbSiteDnsVsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
-			"new_flv": {
+			"dns_vs_uuid": {
 				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
+				Required: true,
 			},
-			"old_flv": {
-				Type:     schema.TypeString,
+			"domain_names": {
+				Type:     schema.TypeList,
 				Optional: true,
-				Computed: true,
-			},
-			"se_group_name": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
-			"se_group_uuid": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
-			"tenant_name": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
-			"tenant_uuid": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
 		},
 	}
@@ -6386,22 +6402,6 @@ func ResourceMetricsDataSeriesSchema() *schema.Resource {
 				Type:     schema.TypeSet,
 				Required: true,
 				Elem:     ResourceMetricsDataHeaderSchema(),
-			},
-		},
-	}
-}
-
-func ResourceNatPolicyActionSchema() *schema.Resource {
-	return &schema.Resource{
-		Schema: map[string]*schema.Schema{
-			"nat_info": {
-				Type:     schema.TypeList,
-				Optional: true,
-				Elem:     ResourceNatAddrInfoSchema(),
-			},
-			"type": {
-				Type:     schema.TypeString,
-				Required: true,
 			},
 		},
 	}
@@ -9384,6 +9384,25 @@ func ResourceMemoryBalancerInfoSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceEventDetailsFilterSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"comparator": {
+				Type:     schema.TypeString,
+				Required: true,
+			},
+			"event_details_key": {
+				Type:     schema.TypeString,
+				Required: true,
+			},
+			"event_details_value": {
+				Type:     schema.TypeString,
+				Required: true,
 			},
 		},
 	}
@@ -17659,25 +17678,6 @@ func ResourceGslbClientIpAddrGroupSchema() *schema.Resource {
 	}
 }
 
-func ResourceEventDetailsFilterSchema() *schema.Resource {
-	return &schema.Resource{
-		Schema: map[string]*schema.Schema{
-			"comparator": {
-				Type:     schema.TypeString,
-				Required: true,
-			},
-			"event_details_key": {
-				Type:     schema.TypeString,
-				Required: true,
-			},
-			"event_details_value": {
-				Type:     schema.TypeString,
-				Required: true,
-			},
-		},
-	}
-}
-
 func ResourceAuthenticationRuleSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -20630,6 +20630,28 @@ func ResourceAuthAttributeMatchSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 				Elem:     ResourceStringMatchSchema(),
+			},
+		},
+	}
+}
+
+func ResourcePaaLogSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"cache_hit": {
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
+			"client_request_body_sent": {
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
+			"request_logs": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourcePaaRequestLogSchema(),
 			},
 		},
 	}
@@ -24583,17 +24605,17 @@ func ResourceHealthMonitorDNSSchema() *schema.Resource {
 	}
 }
 
-func ResourceGslbSiteDnsVsSchema() *schema.Resource {
+func ResourceNatPolicyActionSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
-			"dns_vs_uuid": {
-				Type:     schema.TypeString,
-				Required: true,
-			},
-			"domain_names": {
+			"nat_info": {
 				Type:     schema.TypeList,
 				Optional: true,
-				Elem:     &schema.Schema{Type: schema.TypeString},
+				Elem:     ResourceNatAddrInfoSchema(),
+			},
+			"type": {
+				Type:     schema.TypeString,
+				Required: true,
 			},
 		},
 	}
@@ -28323,28 +28345,6 @@ func ResourceConfigUserPasswordChangeRequestSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
-			},
-		},
-	}
-}
-
-func ResourcePaaLogSchema() *schema.Resource {
-	return &schema.Resource{
-		Schema: map[string]*schema.Schema{
-			"cache_hit": {
-				Type:     schema.TypeBool,
-				Optional: true,
-				Computed: true,
-			},
-			"client_request_body_sent": {
-				Type:     schema.TypeBool,
-				Optional: true,
-				Computed: true,
-			},
-			"request_logs": {
-				Type:     schema.TypeList,
-				Optional: true,
-				Elem:     ResourcePaaRequestLogSchema(),
 			},
 		},
 	}
