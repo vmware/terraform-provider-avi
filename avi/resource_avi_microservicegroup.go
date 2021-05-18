@@ -1,15 +1,14 @@
-/*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
- */
+// Copyright 2019 VMware, Inc.
+// SPDX-License-Identifier: Mozilla Public License 2.0
+
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourceMicroServiceGroupSchema() map[string]*schema.Schema {
@@ -66,7 +65,7 @@ func ResourceMicroServiceGroupImporter(d *schema.ResourceData, m interface{}) ([
 
 func ResourceAviMicroServiceGroupRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceMicroServiceGroupSchema()
-	err := ApiRead(d, meta, "microservicegroup", s)
+	err := APIRead(d, meta, "microservicegroup", s)
 	if err != nil {
 		log.Printf("[ERROR] in reading object %v\n", err)
 	}
@@ -75,7 +74,7 @@ func ResourceAviMicroServiceGroupRead(d *schema.ResourceData, meta interface{}) 
 
 func resourceAviMicroServiceGroupCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceMicroServiceGroupSchema()
-	err := ApiCreateOrUpdate(d, meta, "microservicegroup", s)
+	err := APICreateOrUpdate(d, meta, "microservicegroup", s)
 	if err == nil {
 		err = ResourceAviMicroServiceGroupRead(d, meta)
 	}
@@ -85,7 +84,7 @@ func resourceAviMicroServiceGroupCreate(d *schema.ResourceData, meta interface{}
 func resourceAviMicroServiceGroupUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceMicroServiceGroupSchema()
 	var err error
-	err = ApiCreateOrUpdate(d, meta, "microservicegroup", s)
+	err = APICreateOrUpdate(d, meta, "microservicegroup", s)
 	if err == nil {
 		err = ResourceAviMicroServiceGroupRead(d, meta)
 	}
@@ -95,7 +94,7 @@ func resourceAviMicroServiceGroupUpdate(d *schema.ResourceData, meta interface{}
 func resourceAviMicroServiceGroupDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "microservicegroup"
 	client := meta.(*clients.AviClient)
-	if ApiDeleteSystemDefaultCheck(d) {
+	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
 	uuid := d.Get("uuid").(string)

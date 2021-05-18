@@ -2,11 +2,12 @@ package avi
 
 import (
 	"fmt"
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/resource"
-	"github.com/hashicorp/terraform/terraform"
 	"strings"
 	"testing"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/terraform"
 )
 
 func TestAVIWebhookBasic(t *testing.T) {
@@ -94,8 +95,8 @@ data "avi_tenant" "default_tenant"{
     name= "admin"
 }
 resource "avi_webhook" "testWebhook" {
-	name = "test-wb-test-abc"
 	tenant_ref = data.avi_tenant.default_tenant.id
+	name = "test-wb-test-abc"
 }
 `
 
@@ -104,7 +105,7 @@ data "avi_tenant" "default_tenant"{
     name= "admin"
 }
 resource "avi_webhook" "testWebhook" {
-	name = "test-wb-updated"
 	tenant_ref = data.avi_tenant.default_tenant.id
+	name = "test-wb-updated"
 }
 `

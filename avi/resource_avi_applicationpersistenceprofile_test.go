@@ -2,11 +2,12 @@ package avi
 
 import (
 	"fmt"
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/resource"
-	"github.com/hashicorp/terraform/terraform"
 	"strings"
 	"testing"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/terraform"
 )
 
 func TestAVIApplicationPersistenceProfileBasic(t *testing.T) {
@@ -99,10 +100,10 @@ data "avi_tenant" "default_tenant"{
 }
 resource "avi_applicationpersistenceprofile" "testApplicationPersistenceProfile" {
 	name = "test-System-Persistence-Client-IP-abc"
-	is_federated = false
-	tenant_ref = data.avi_tenant.default_tenant.id
 	persistence_type = "PERSISTENCE_TYPE_CLIENT_IP_ADDRESS"
+	tenant_ref = data.avi_tenant.default_tenant.id
 	server_hm_down_recovery = "HM_DOWN_PICK_NEW_SERVER"
+	is_federated = false
 	ip_persistence_profile {
 		ip_persistent_timeout = "5"
 	}
@@ -115,10 +116,10 @@ data "avi_tenant" "default_tenant"{
 }
 resource "avi_applicationpersistenceprofile" "testApplicationPersistenceProfile" {
 	name = "test-System-Persistence-Client-IP-updated"
-	is_federated = false
-	tenant_ref = data.avi_tenant.default_tenant.id
 	persistence_type = "PERSISTENCE_TYPE_CLIENT_IP_ADDRESS"
+	tenant_ref = data.avi_tenant.default_tenant.id
 	server_hm_down_recovery = "HM_DOWN_PICK_NEW_SERVER"
+	is_federated = false
 	ip_persistence_profile {
 		ip_persistent_timeout = "5"
 	}

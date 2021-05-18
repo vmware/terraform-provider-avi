@@ -1,15 +1,14 @@
-/*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
- */
+// Copyright 2019 VMware, Inc.
+// SPDX-License-Identifier: Mozilla Public License 2.0
+
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourceSystemConfigurationSchema() map[string]*schema.Schema {
@@ -23,7 +22,7 @@ func ResourceSystemConfigurationSchema() map[string]*schema.Schema {
 		"default_license_tier": {
 			Type:     schema.TypeString,
 			Optional: true,
-			Default:  "ENTERPRISE",
+			Default:  "ENTERPRISE_18",
 		},
 		"dns_configuration": {
 			Type:     schema.TypeSet,
@@ -46,11 +45,6 @@ func ResourceSystemConfigurationSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 			Elem:     ResourceEmailConfigurationSchema(),
-		},
-		"fips_mode": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
 		},
 		"global_tenant_config": {
 			Type:     schema.TypeSet,
@@ -143,7 +137,7 @@ func ResourceSystemConfigurationImporter(d *schema.ResourceData, m interface{}) 
 
 func ResourceAviSystemConfigurationRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceSystemConfigurationSchema()
-	err := ApiRead(d, meta, "systemconfiguration", s)
+	err := APIRead(d, meta, "systemconfiguration", s)
 	if err != nil {
 		log.Printf("[ERROR] in reading object %v\n", err)
 	}
@@ -152,7 +146,7 @@ func ResourceAviSystemConfigurationRead(d *schema.ResourceData, meta interface{}
 
 func resourceAviSystemConfigurationCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceSystemConfigurationSchema()
-	err := ApiCreateOrUpdate(d, meta, "systemconfiguration", s)
+	err := APICreateOrUpdate(d, meta, "systemconfiguration", s)
 	if err == nil {
 		err = ResourceAviSystemConfigurationRead(d, meta)
 	}
@@ -162,7 +156,7 @@ func resourceAviSystemConfigurationCreate(d *schema.ResourceData, meta interface
 func resourceAviSystemConfigurationUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceSystemConfigurationSchema()
 	var err error
-	err = ApiCreateOrUpdate(d, meta, "systemconfiguration", s)
+	err = APICreateOrUpdate(d, meta, "systemconfiguration", s)
 	if err == nil {
 		err = ResourceAviSystemConfigurationRead(d, meta)
 	}
@@ -172,7 +166,7 @@ func resourceAviSystemConfigurationUpdate(d *schema.ResourceData, meta interface
 func resourceAviSystemConfigurationDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "systemconfiguration"
 	client := meta.(*clients.AviClient)
-	if ApiDeleteSystemDefaultCheck(d) {
+	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
 	uuid := d.Get("uuid").(string)

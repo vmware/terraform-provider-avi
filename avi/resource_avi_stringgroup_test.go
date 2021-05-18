@@ -2,11 +2,12 @@ package avi
 
 import (
 	"fmt"
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/resource"
-	"github.com/hashicorp/terraform/terraform"
 	"strings"
 	"testing"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/terraform"
 )
 
 func TestAVIStringGroupBasic(t *testing.T) {
@@ -94,8 +95,9 @@ data "avi_tenant" "default_tenant"{
     name= "admin"
 }
 resource "avi_stringgroup" "testStringGroup" {
-	name = "test-System-Compressible-Content-Types-abc"
+	type = "SG_TYPE_STRING"
 	tenant_ref = data.avi_tenant.default_tenant.id
+	name = "test-System-Compressible-Content-Types-abc"
 	kv {
 	key = "text/html"
 }
@@ -123,7 +125,6 @@ kv {
 kv {
 	key = "application/pdf"
 }
-	type = "SG_TYPE_STRING"
 }
 `
 
@@ -132,8 +133,9 @@ data "avi_tenant" "default_tenant"{
     name= "admin"
 }
 resource "avi_stringgroup" "testStringGroup" {
-	name = "test-System-Compressible-Content-Types-updated"
+	type = "SG_TYPE_STRING"
 	tenant_ref = data.avi_tenant.default_tenant.id
+	name = "test-System-Compressible-Content-Types-updated"
 	kv {
 	key = "text/html"
 }
@@ -161,6 +163,5 @@ kv {
 kv {
 	key = "application/pdf"
 }
-	type = "SG_TYPE_STRING"
 }
 `

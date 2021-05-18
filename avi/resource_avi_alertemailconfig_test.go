@@ -2,11 +2,12 @@ package avi
 
 import (
 	"fmt"
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/resource"
-	"github.com/hashicorp/terraform/terraform"
 	"strings"
 	"testing"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/terraform"
 )
 
 func TestAVIAlertEmailConfigBasic(t *testing.T) {
@@ -94,11 +95,11 @@ data "avi_tenant" "default_tenant"{
     name= "admin"
 }
 resource "avi_alertemailconfig" "testAlertEmailConfig" {
-	name = "test-aec-abc"
-	tenant_ref = data.avi_tenant.default_tenant.id
-	cc_emails = "admin@avicontroller.net"
-	description = "test alert email"
 	to_emails = "admin@avicontroller.net"
+	cc_emails = "admin@avicontroller.net"
+	tenant_ref = data.avi_tenant.default_tenant.id
+	name = "test-aec-abc"
+	description = "test alert email"
 }
 `
 
@@ -107,10 +108,10 @@ data "avi_tenant" "default_tenant"{
     name= "admin"
 }
 resource "avi_alertemailconfig" "testAlertEmailConfig" {
-	name = "test-aec-updated"
-	tenant_ref = data.avi_tenant.default_tenant.id
-	cc_emails = "admin@avicontroller.net"
-	description = "test alert email"
 	to_emails = "admin@avicontroller.net"
+	cc_emails = "admin@avicontroller.net"
+	tenant_ref = data.avi_tenant.default_tenant.id
+	name = "test-aec-updated"
+	description = "test alert email"
 }
 `

@@ -1,15 +1,14 @@
-/*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
- */
+// Copyright 2019 VMware, Inc.
+// SPDX-License-Identifier: Mozilla Public License 2.0
+
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourceUpgradeStatusSummarySchema() map[string]*schema.Schema {
@@ -118,7 +117,7 @@ func ResourceUpgradeStatusSummaryImporter(d *schema.ResourceData, m interface{})
 
 func ResourceAviUpgradeStatusSummaryRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceUpgradeStatusSummarySchema()
-	err := ApiRead(d, meta, "upgradestatussummary", s)
+	err := APIRead(d, meta, "upgradestatussummary", s)
 	if err != nil {
 		log.Printf("[ERROR] in reading object %v\n", err)
 	}
@@ -127,7 +126,7 @@ func ResourceAviUpgradeStatusSummaryRead(d *schema.ResourceData, meta interface{
 
 func resourceAviUpgradeStatusSummaryCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceUpgradeStatusSummarySchema()
-	err := ApiCreateOrUpdate(d, meta, "upgradestatussummary", s)
+	err := APICreateOrUpdate(d, meta, "upgradestatussummary", s)
 	if err == nil {
 		err = ResourceAviUpgradeStatusSummaryRead(d, meta)
 	}
@@ -137,7 +136,7 @@ func resourceAviUpgradeStatusSummaryCreate(d *schema.ResourceData, meta interfac
 func resourceAviUpgradeStatusSummaryUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceUpgradeStatusSummarySchema()
 	var err error
-	err = ApiCreateOrUpdate(d, meta, "upgradestatussummary", s)
+	err = APICreateOrUpdate(d, meta, "upgradestatussummary", s)
 	if err == nil {
 		err = ResourceAviUpgradeStatusSummaryRead(d, meta)
 	}
@@ -147,7 +146,7 @@ func resourceAviUpgradeStatusSummaryUpdate(d *schema.ResourceData, meta interfac
 func resourceAviUpgradeStatusSummaryDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "upgradestatussummary"
 	client := meta.(*clients.AviClient)
-	if ApiDeleteSystemDefaultCheck(d) {
+	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
 	uuid := d.Get("uuid").(string)

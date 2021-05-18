@@ -1,8 +1,12 @@
+// Copyright 2019 VMware, Inc.
+// SPDX-License-Identifier: Mozilla Public License 2.0
+
 package avi
 
 import (
-	"github.com/hashicorp/terraform/helper/resource"
 	"testing"
+
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
 )
 
 func TestAVIDataSourceUserAccountProfileBasic(t *testing.T) {
@@ -34,8 +38,8 @@ func TestAVIDataSourceUserAccountProfileBasic(t *testing.T) {
 
 const testAccAVIDSUserAccountProfileConfig = `
 resource "avi_useraccountprofile" "testUserAccountProfile" {
-	name = "test-Default-User-Account-Profile-abc"
 	max_concurrent_sessions = "0"
+	name = "test-Default-User-Account-Profile-abc"
 	account_lock_timeout = "30"
 	max_login_failure_count = "20"
 	max_password_history_count = "0"

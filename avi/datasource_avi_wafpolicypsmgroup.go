@@ -1,11 +1,9 @@
-/*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
- */
+// Copyright 2019 VMware, Inc.
+// SPDX-License-Identifier: Mozilla Public License 2.0
+
 package avi
 
-import "github.com/hashicorp/terraform/helper/schema"
+import "github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 
 func dataSourceAviWafPolicyPSMGroup() *schema.Resource {
 	return &schema.Resource{
@@ -26,11 +24,6 @@ func dataSourceAviWafPolicyPSMGroup() *schema.Resource {
 			"is_learning_group": {
 				Type:     schema.TypeBool,
 				Computed: true,
-			},
-			"labels": {
-				Type:     schema.TypeList,
-				Computed: true,
-				Elem:     ResourceKeyValueSchema(),
 			},
 			"locations": {
 				Type:     schema.TypeList,

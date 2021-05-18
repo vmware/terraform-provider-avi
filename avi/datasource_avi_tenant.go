@@ -1,11 +1,9 @@
-/*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
- */
+// Copyright 2019 VMware, Inc.
+// SPDX-License-Identifier: Mozilla Public License 2.0
+
 package avi
 
-import "github.com/hashicorp/terraform/helper/schema"
+import "github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 
 func dataSourceAviTenant() *schema.Resource {
 	return &schema.Resource{
@@ -32,11 +30,6 @@ func dataSourceAviTenant() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
-			},
-			"suggested_object_labels": {
-				Type:     schema.TypeList,
-				Computed: true,
-				Elem:     ResourceTenantLabelSchema(),
 			},
 			"uuid": {
 				Type:     schema.TypeString,

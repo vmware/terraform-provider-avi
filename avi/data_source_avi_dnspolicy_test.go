@@ -1,8 +1,12 @@
+// Copyright 2019 VMware, Inc.
+// SPDX-License-Identifier: Mozilla Public License 2.0
+
 package avi
 
 import (
-	"github.com/hashicorp/terraform/helper/resource"
 	"testing"
+
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
 )
 
 func TestAVIDataSourceDnsPolicyBasic(t *testing.T) {
@@ -22,14 +26,15 @@ func TestAVIDataSourceDnsPolicyBasic(t *testing.T) {
 
 }
 
+//nolint
 const testAccAVIDSDnsPolicyConfig = `
 data "avi_tenant" "default_tenant"{
     name= "admin"
 }
 resource "avi_dnspolicy" "testDnsPolicy" {
+	tenant_ref = data.avi_tenant.default_tenant.id
 	name = "test-dp-abc"
 	description = "test dns policy"
-	tenant_ref = data.avi_tenant.default_tenant.id
 }
 
 data "avi_dnspolicy" "testDnsPolicy" {

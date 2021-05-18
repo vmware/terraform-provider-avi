@@ -1,15 +1,14 @@
-/*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
- */
+// Copyright 2019 VMware, Inc.
+// SPDX-License-Identifier: Mozilla Public License 2.0
+
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourceCloudConnectorUserSchema() map[string]*schema.Schema {
@@ -35,12 +34,6 @@ func ResourceCloudConnectorUserSchema() map[string]*schema.Schema {
 		"name": {
 			Type:     schema.TypeString,
 			Required: true,
-		},
-		"nsxt_credentials": {
-			Type:     schema.TypeSet,
-			Optional: true,
-			Computed: true,
-			Elem:     ResourceNsxtCredentialsSchema(),
 		},
 		"oci_credentials": {
 			Type:     schema.TypeSet,
@@ -83,12 +76,6 @@ func ResourceCloudConnectorUserSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
-		"vcenter_credentials": {
-			Type:     schema.TypeSet,
-			Optional: true,
-			Computed: true,
-			Elem:     ResourceVCenterCredentialsSchema(),
-		},
 	}
 }
 
@@ -112,7 +99,7 @@ func ResourceCloudConnectorUserImporter(d *schema.ResourceData, m interface{}) (
 
 func ResourceAviCloudConnectorUserRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceCloudConnectorUserSchema()
-	err := ApiRead(d, meta, "cloudconnectoruser", s)
+	err := APIRead(d, meta, "cloudconnectoruser", s)
 	if err != nil {
 		log.Printf("[ERROR] in reading object %v\n", err)
 	}
@@ -121,7 +108,7 @@ func ResourceAviCloudConnectorUserRead(d *schema.ResourceData, meta interface{})
 
 func resourceAviCloudConnectorUserCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceCloudConnectorUserSchema()
-	err := ApiCreateOrUpdate(d, meta, "cloudconnectoruser", s)
+	err := APICreateOrUpdate(d, meta, "cloudconnectoruser", s)
 	if err == nil {
 		err = ResourceAviCloudConnectorUserRead(d, meta)
 	}
@@ -131,7 +118,7 @@ func resourceAviCloudConnectorUserCreate(d *schema.ResourceData, meta interface{
 func resourceAviCloudConnectorUserUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceCloudConnectorUserSchema()
 	var err error
-	err = ApiCreateOrUpdate(d, meta, "cloudconnectoruser", s)
+	err = APICreateOrUpdate(d, meta, "cloudconnectoruser", s)
 	if err == nil {
 		err = ResourceAviCloudConnectorUserRead(d, meta)
 	}
@@ -141,7 +128,7 @@ func resourceAviCloudConnectorUserUpdate(d *schema.ResourceData, meta interface{
 func resourceAviCloudConnectorUserDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "cloudconnectoruser"
 	client := meta.(*clients.AviClient)
-	if ApiDeleteSystemDefaultCheck(d) {
+	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
 	uuid := d.Get("uuid").(string)

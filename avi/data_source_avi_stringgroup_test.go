@@ -1,8 +1,12 @@
+// Copyright 2019 VMware, Inc.
+// SPDX-License-Identifier: Mozilla Public License 2.0
+
 package avi
 
 import (
-	"github.com/hashicorp/terraform/helper/resource"
 	"testing"
+
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
 )
 
 func TestAVIDataSourceStringGroupBasic(t *testing.T) {
@@ -27,8 +31,9 @@ data "avi_tenant" "default_tenant"{
     name= "admin"
 }
 resource "avi_stringgroup" "testStringGroup" {
-	name = "test-System-Compressible-Content-Types-abc"
+	type = "SG_TYPE_STRING"
 	tenant_ref = data.avi_tenant.default_tenant.id
+	name = "test-System-Compressible-Content-Types-abc"
 	kv {
 	key = "text/html"
 }
@@ -56,7 +61,6 @@ kv {
 kv {
 	key = "application/pdf"
 }
-	type = "SG_TYPE_STRING"
 }
 
 data "avi_stringgroup" "testStringGroup" {

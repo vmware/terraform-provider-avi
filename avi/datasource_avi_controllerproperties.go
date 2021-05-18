@@ -1,11 +1,9 @@
-/*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
- */
+// Copyright 2019 VMware, Inc.
+// SPDX-License-Identifier: Mozilla Public License 2.0
+
 package avi
 
-import "github.com/hashicorp/terraform/helper/schema"
+import "github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 
 func dataSourceAviControllerProperties() *schema.Resource {
 	return &schema.Resource{
@@ -37,6 +35,14 @@ func dataSourceAviControllerProperties() *schema.Resource {
 			},
 			"appviewx_compat_mode": {
 				Type:     schema.TypeBool,
+				Computed: true,
+			},
+			"async_patch_merge_period": {
+				Type:     schema.TypeInt,
+				Computed: true,
+			},
+			"async_patch_request_cleanup_duration": {
+				Type:     schema.TypeInt,
 				Computed: true,
 			},
 			"attach_ip_retry_interval": {
@@ -91,10 +97,6 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Type:     schema.TypeInt,
 				Computed: true,
 			},
-			"edit_system_limits": {
-				Type:     schema.TypeBool,
-				Computed: true,
-			},
 			"enable_api_sharding": {
 				Type:     schema.TypeBool,
 				Computed: true,
@@ -107,23 +109,11 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Type:     schema.TypeInt,
 				Computed: true,
 			},
-			"federated_datastore_cleanup_duration": {
-				Type:     schema.TypeInt,
-				Computed: true,
-			},
-			"file_object_cleanup_period": {
-				Type:     schema.TypeInt,
-				Computed: true,
-			},
 			"max_dead_se_in_grp": {
 				Type:     schema.TypeInt,
 				Computed: true,
 			},
 			"max_pcap_per_tenant": {
-				Type:     schema.TypeInt,
-				Computed: true,
-			},
-			"max_se_spawn_interval_delay": {
 				Type:     schema.TypeInt,
 				Computed: true,
 			},
@@ -140,14 +130,6 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Computed: true,
 			},
 			"persistence_key_rotate_period": {
-				Type:     schema.TypeInt,
-				Computed: true,
-			},
-			"portal_request_burst_limit": {
-				Type:     schema.TypeInt,
-				Computed: true,
-			},
-			"portal_request_rate_limit": {
 				Type:     schema.TypeInt,
 				Computed: true,
 			},
@@ -184,10 +166,6 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Computed: true,
 			},
 			"se_offline_del": {
-				Type:     schema.TypeInt,
-				Computed: true,
-			},
-			"se_spawn_retry_interval": {
 				Type:     schema.TypeInt,
 				Computed: true,
 			},

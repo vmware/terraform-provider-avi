@@ -1,8 +1,12 @@
+// Copyright 2019 VMware, Inc.
+// SPDX-License-Identifier: Mozilla Public License 2.0
+
 package avi
 
 import (
-	"github.com/hashicorp/terraform/helper/resource"
 	"testing"
+
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
 )
 
 func TestAVIDataSourcePoolGroupBasic(t *testing.T) {
@@ -16,9 +20,9 @@ func TestAVIDataSourcePoolGroupBasic(t *testing.T) {
 					resource.TestCheckResourceAttr(
 						"avi_poolgroup.testPoolGroup", "name", "pg-test-abc"),
 					resource.TestCheckResourceAttr(
-						"avi_poolgroup.testPoolGroup", "implicit_priority_labels", "false"),
-					resource.TestCheckResourceAttr(
 						"avi_poolgroup.testPoolGroup", "min_servers", "0"),
+					resource.TestCheckResourceAttr(
+						"avi_poolgroup.testPoolGroup", "implicit_priority_labels", "false"),
 				),
 			},
 		},
@@ -31,13 +35,13 @@ data "avi_tenant" "default_tenant"{
     name= "admin"
 }
 resource "avi_poolgroup" "testPoolGroup" {
-	name = "pg-test-abc"
-	implicit_priority_labels = false
-	min_servers = "0"
 	fail_action {
 		type = "FAIL_ACTION_CLOSE_CONN"
 	}
+	min_servers = "0"
 	tenant_ref = data.avi_tenant.default_tenant.id
+	name = "pg-test-abc"
+	implicit_priority_labels = false
 }
 
 data "avi_poolgroup" "testPoolGroup" {

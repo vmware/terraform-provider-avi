@@ -31,18 +31,11 @@ The following arguments are supported:
 
 * `name` - (Required) Field introduced in 17.2.1.
 * `allow_mode_delegation` - (Optional) Allow rules to overwrite the policy mode.
-* `application_signatures` - (Optional) Application specific signatures.
-* `confidence_override` - (Optional) Configure thresholds for confidence labels.
 * `created_by` - (Optional) Creator name.
 * `crs_groups` - (Optional) Waf rules are categorized in to groups based on their characterization.
 * `description` - (Optional) Field introduced in 17.2.1.
 * `enable_app_learning` - (Optional) Enable application learning for this waf policy.
-* `enable_auto_rule_updates` - (Optional) Enable application learning based rule updates on the waf profile.
-* `enable_regex_learning` - (Optional) Enable dynamic regex generation for positive security model rules.
 * `failure_mode` - (Optional) Waf policy failure mode.
-* `labels` - (Optional) Key value pairs for granular object access control.
-* `learning_params` - (Optional) Parameters for tuning application learning.
-* `min_confidence` - (Optional) Minimum confidence label required for auto rule updates.
 * `mode` - (Optional) Waf policy mode.
 * `paranoia_level` - (Optional) Waf ruleset paranoia  mode.
 * `positive_security_model` - (Optional) The positive security model.

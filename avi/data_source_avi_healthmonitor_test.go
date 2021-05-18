@@ -1,8 +1,12 @@
+// Copyright 2019 VMware, Inc.
+// SPDX-License-Identifier: Mozilla Public License 2.0
+
 package avi
 
 import (
-	"github.com/hashicorp/terraform/helper/resource"
 	"testing"
+
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
 )
 
 func TestAVIDataSourceHealthMonitorBasic(t *testing.T) {
@@ -16,9 +20,9 @@ func TestAVIDataSourceHealthMonitorBasic(t *testing.T) {
 					resource.TestCheckResourceAttr(
 						"avi_healthmonitor.testHealthMonitor", "name", "test-System-HTTP-abc"),
 					resource.TestCheckResourceAttr(
-						"avi_healthmonitor.testHealthMonitor", "is_federated", "false"),
-					resource.TestCheckResourceAttr(
 						"avi_healthmonitor.testHealthMonitor", "receive_timeout", "4"),
+					resource.TestCheckResourceAttr(
+						"avi_healthmonitor.testHealthMonitor", "is_federated", "false"),
 					resource.TestCheckResourceAttr(
 						"avi_healthmonitor.testHealthMonitor", "failed_checks", "3"),
 					resource.TestCheckResourceAttr(
@@ -37,20 +41,19 @@ data "avi_tenant" "default_tenant"{
     name= "admin"
 }
 resource "avi_healthmonitor" "testHealthMonitor" {
-	name = "test-System-HTTP-abc"
-	is_federated = false
-	tenant_ref = data.avi_tenant.default_tenant.id
 	receive_timeout = "4"
+	name = "test-System-HTTP-abc"
+	tenant_ref = data.avi_tenant.default_tenant.id
+	is_federated = false
 	failed_checks = "3"
 	send_interval = "10"
 	http_monitor {
 		exact_http_request = false
 		http_request = "HEAD / HTTP/1.0"
-		response_size = "2050"
 		http_response_code = ["HTTP_2XX","HTTP_3XX"]
 	}
-	successful_checks = "3"
 	type = "HEALTH_MONITOR_HTTP"
+	successful_checks = "3"
 }
 
 data "avi_healthmonitor" "testHealthMonitor" {

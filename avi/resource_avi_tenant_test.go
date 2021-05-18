@@ -2,11 +2,12 @@ package avi
 
 import (
 	"fmt"
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/resource"
-	"github.com/hashicorp/terraform/terraform"
 	"strings"
 	"testing"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/terraform"
 )
 
 func TestAVITenantBasic(t *testing.T) {
@@ -95,14 +96,14 @@ func testAccCheckAVITenantDestroy(s *terraform.State) error {
 
 const testAccAVITenantConfig = `
 resource "avi_tenant" "testTenant" {
-	name = "test-admin-abc"
 	local = true
+	name = "test-admin-abc"
 }
 `
 
 const testAccAVITenantupdatedConfig = `
 resource "avi_tenant" "testTenant" {
-	name = "test-admin-updated"
 	local = true
+	name = "test-admin-updated"
 }
 `

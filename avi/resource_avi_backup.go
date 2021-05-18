@@ -1,15 +1,14 @@
-/*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
- */
+// Copyright 2019 VMware, Inc.
+// SPDX-License-Identifier: Mozilla Public License 2.0
+
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourceBackupSchema() map[string]*schema.Schema {
@@ -76,7 +75,7 @@ func ResourceBackupImporter(d *schema.ResourceData, m interface{}) ([]*schema.Re
 
 func ResourceAviBackupRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceBackupSchema()
-	err := ApiRead(d, meta, "backup", s)
+	err := APIRead(d, meta, "backup", s)
 	if err != nil {
 		log.Printf("[ERROR] in reading object %v\n", err)
 	}
@@ -85,7 +84,7 @@ func ResourceAviBackupRead(d *schema.ResourceData, meta interface{}) error {
 
 func resourceAviBackupCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceBackupSchema()
-	err := ApiCreateOrUpdate(d, meta, "backup", s)
+	err := APICreateOrUpdate(d, meta, "backup", s)
 	if err == nil {
 		err = ResourceAviBackupRead(d, meta)
 	}
@@ -95,7 +94,7 @@ func resourceAviBackupCreate(d *schema.ResourceData, meta interface{}) error {
 func resourceAviBackupUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceBackupSchema()
 	var err error
-	err = ApiCreateOrUpdate(d, meta, "backup", s)
+	err = APICreateOrUpdate(d, meta, "backup", s)
 	if err == nil {
 		err = ResourceAviBackupRead(d, meta)
 	}
@@ -105,7 +104,7 @@ func resourceAviBackupUpdate(d *schema.ResourceData, meta interface{}) error {
 func resourceAviBackupDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "backup"
 	client := meta.(*clients.AviClient)
-	if ApiDeleteSystemDefaultCheck(d) {
+	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
 	uuid := d.Get("uuid").(string)

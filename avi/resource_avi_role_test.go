@@ -2,11 +2,12 @@ package avi
 
 import (
 	"fmt"
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/resource"
-	"github.com/hashicorp/terraform/terraform"
 	"strings"
 	"testing"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/terraform"
 )
 
 func TestAVIRoleBasic(t *testing.T) {
@@ -94,216 +95,216 @@ data "avi_tenant" "default_tenant"{
     name= "admin"
 }
 resource "avi_role" "testRole" {
-	name = "test-Application-Admin-abc"
-	tenant_ref = data.avi_tenant.default_tenant.id
 	privileges {
-	type = "NO_ACCESS"
 	resource = "PERMISSION_CONTROLLER"
+	type = "NO_ACCESS"
 }
 privileges {
-	type = "READ_ACCESS"
 	resource = "PERMISSION_CLOUD"
+	type = "READ_ACCESS"
 }
 privileges {
-	type = "NO_ACCESS"
 	resource = "PERMISSION_INTERNAL"
+	type = "NO_ACCESS"
 }
 privileges {
-	type = "WRITE_ACCESS"
 	resource = "PERMISSION_VIRTUALSERVICE"
+	type = "WRITE_ACCESS"
 }
 privileges {
-	type = "WRITE_ACCESS"
 	resource = "PERMISSION_POOL"
+	type = "WRITE_ACCESS"
 }
 privileges {
-	type = "WRITE_ACCESS"
 	resource = "PERMISSION_POOLGROUP"
+	type = "WRITE_ACCESS"
 }
 privileges {
-	type = "WRITE_ACCESS"
 	resource = "PERMISSION_POOLGROUPDEPLOYMENTPOLICY"
+	type = "WRITE_ACCESS"
 }
 privileges {
-	type = "WRITE_ACCESS"
 	resource = "PERMISSION_PRIORITYLABELS"
+	type = "WRITE_ACCESS"
 }
 privileges {
-	type = "WRITE_ACCESS"
 	resource = "PERMISSION_HEALTHMONITOR"
+	type = "WRITE_ACCESS"
 }
 privileges {
-	type = "WRITE_ACCESS"
 	resource = "PERMISSION_NETWORKPROFILE"
+	type = "WRITE_ACCESS"
 }
 privileges {
-	type = "WRITE_ACCESS"
 	resource = "PERMISSION_APPLICATIONPROFILE"
+	type = "WRITE_ACCESS"
 }
 privileges {
-	type = "WRITE_ACCESS"
 	resource = "PERMISSION_HTTPPOLICYSET"
+	type = "WRITE_ACCESS"
 }
 privileges {
-	type = "WRITE_ACCESS"
 	resource = "PERMISSION_IPADDRGROUP"
+	type = "WRITE_ACCESS"
 }
 privileges {
-	type = "WRITE_ACCESS"
 	resource = "PERMISSION_STRINGGROUP"
+	type = "WRITE_ACCESS"
 }
 privileges {
-	type = "WRITE_ACCESS"
 	resource = "PERMISSION_MICROSERVICEGROUP"
+	type = "WRITE_ACCESS"
 }
 privileges {
-	type = "READ_ACCESS"
 	resource = "PERMISSION_SSLPROFILE"
+	type = "READ_ACCESS"
 }
 privileges {
-	type = "READ_ACCESS"
 	resource = "PERMISSION_SSLKEYANDCERTIFICATE"
+	type = "READ_ACCESS"
 }
 privileges {
-	type = "WRITE_ACCESS"
 	resource = "PERMISSION_NETWORKSECURITYPOLICY"
+	type = "WRITE_ACCESS"
 }
 privileges {
-	type = "WRITE_ACCESS"
 	resource = "PERMISSION_APPLICATIONPERSISTENCEPROFILE"
+	type = "WRITE_ACCESS"
 }
 privileges {
-	type = "WRITE_ACCESS"
 	resource = "PERMISSION_ANALYTICSPROFILE"
+	type = "WRITE_ACCESS"
 }
 privileges {
-	type = "WRITE_ACCESS"
 	resource = "PERMISSION_IPAMDNSPROVIDERPROFILE"
+	type = "WRITE_ACCESS"
 }
 privileges {
-	type = "WRITE_ACCESS"
 	resource = "PERMISSION_VSDATASCRIPTSET"
+	type = "WRITE_ACCESS"
 }
 privileges {
-	type = "NO_ACCESS"
 	resource = "PERMISSION_TENANT"
+	type = "NO_ACCESS"
 }
 privileges {
-	type = "READ_ACCESS"
 	resource = "PERMISSION_PKIPROFILE"
+	type = "READ_ACCESS"
 }
 privileges {
-	type = "READ_ACCESS"
 	resource = "PERMISSION_CERTIFICATEMANAGEMENTPROFILE"
+	type = "READ_ACCESS"
 }
 privileges {
-	type = "READ_ACCESS"
 	resource = "PERMISSION_AUTHPROFILE"
+	type = "READ_ACCESS"
 }
 privileges {
-	type = "READ_ACCESS"
 	resource = "PERMISSION_SERVICEENGINE"
+	type = "READ_ACCESS"
 }
 privileges {
-	type = "READ_ACCESS"
 	resource = "PERMISSION_SERVICEENGINEGROUP"
+	type = "READ_ACCESS"
 }
 privileges {
-	type = "READ_ACCESS"
 	resource = "PERMISSION_NETWORK"
+	type = "READ_ACCESS"
 }
 privileges {
-	type = "NO_ACCESS"
 	resource = "PERMISSION_SYSTEMCONFIGURATION"
+	type = "NO_ACCESS"
 }
 privileges {
-	type = "WRITE_ACCESS"
 	resource = "PERMISSION_VRFCONTEXT"
+	type = "WRITE_ACCESS"
 }
 privileges {
-	type = "NO_ACCESS"
 	resource = "PERMISSION_USER"
+	type = "NO_ACCESS"
 }
 privileges {
-	type = "NO_ACCESS"
 	resource = "PERMISSION_ROLE"
+	type = "NO_ACCESS"
 }
 privileges {
-	type = "WRITE_ACCESS"
 	resource = "PERMISSION_ALERT"
+	type = "WRITE_ACCESS"
 }
 privileges {
-	type = "WRITE_ACCESS"
 	resource = "PERMISSION_ALERTCONFIG"
+	type = "WRITE_ACCESS"
 }
 privileges {
-	type = "READ_ACCESS"
 	resource = "PERMISSION_ALERTEMAILCONFIG"
+	type = "READ_ACCESS"
 }
 privileges {
-	type = "READ_ACCESS"
 	resource = "PERMISSION_ALERTSYSLOGCONFIG"
+	type = "READ_ACCESS"
 }
 privileges {
-	type = "WRITE_ACCESS"
 	resource = "PERMISSION_ACTIONGROUPCONFIG"
+	type = "WRITE_ACCESS"
 }
 privileges {
-	type = "READ_ACCESS"
 	resource = "PERMISSION_SNMPTRAPPROFILE"
+	type = "READ_ACCESS"
 }
 privileges {
-	type = "NO_ACCESS"
 	resource = "PERMISSION_UPGRADE"
+	type = "NO_ACCESS"
 }
 privileges {
-	type = "NO_ACCESS"
 	resource = "PERMISSION_REBOOT"
-}
-privileges {
-	type = "READ_ACCESS"
-	resource = "PERMISSION_TECHSUPPORT"
-}
-privileges {
-	type = "WRITE_ACCESS"
-	resource = "PERMISSION_TRAFFIC_CAPTURE"
-}
-privileges {
-	type = "READ_ACCESS"
-	resource = "PERMISSION_GSLB"
-}
-privileges {
-	type = "READ_ACCESS"
-	resource = "PERMISSION_GSLBGEODBPROFILE"
-}
-privileges {
-	type = "WRITE_ACCESS"
-	resource = "PERMISSION_GSLBSERVICE"
-}
-privileges {
-	type = "WRITE_ACCESS"
-	resource = "PERMISSION_TRAFFICCLONEPROFILE"
-}
-privileges {
 	type = "NO_ACCESS"
-	resource = "PERMISSION_SE_TOKEN"
 }
 privileges {
+	resource = "PERMISSION_TECHSUPPORT"
 	type = "READ_ACCESS"
-	resource = "PERMISSION_WAFPOLICY"
 }
 privileges {
-	type = "READ_ACCESS"
-	resource = "PERMISSION_WAFPROFILE"
-}
-privileges {
-	type = "READ_ACCESS"
-	resource = "PERMISSION_USER_CREDENTIAL"
-}
-privileges {
+	resource = "PERMISSION_TRAFFIC_CAPTURE"
 	type = "WRITE_ACCESS"
-	resource = "PERMISSION_AUTOSCALE"
 }
+privileges {
+	resource = "PERMISSION_GSLB"
+	type = "READ_ACCESS"
+}
+privileges {
+	resource = "PERMISSION_GSLBGEODBPROFILE"
+	type = "READ_ACCESS"
+}
+privileges {
+	resource = "PERMISSION_GSLBSERVICE"
+	type = "WRITE_ACCESS"
+}
+privileges {
+	resource = "PERMISSION_TRAFFICCLONEPROFILE"
+	type = "WRITE_ACCESS"
+}
+privileges {
+	resource = "PERMISSION_SE_TOKEN"
+	type = "NO_ACCESS"
+}
+privileges {
+	resource = "PERMISSION_WAFPOLICY"
+	type = "READ_ACCESS"
+}
+privileges {
+	resource = "PERMISSION_WAFPROFILE"
+	type = "READ_ACCESS"
+}
+privileges {
+	resource = "PERMISSION_USER_CREDENTIAL"
+	type = "READ_ACCESS"
+}
+privileges {
+	resource = "PERMISSION_AUTOSCALE"
+	type = "WRITE_ACCESS"
+}
+	tenant_ref = data.avi_tenant.default_tenant.id
+	name = "test-Application-Admin-abc"
 }
 `
 
@@ -312,215 +313,215 @@ data "avi_tenant" "default_tenant"{
     name= "admin"
 }
 resource "avi_role" "testRole" {
-	name = "test-Application-Admin-updated"
-	tenant_ref = data.avi_tenant.default_tenant.id
 	privileges {
-	type = "NO_ACCESS"
 	resource = "PERMISSION_CONTROLLER"
+	type = "NO_ACCESS"
 }
 privileges {
-	type = "READ_ACCESS"
 	resource = "PERMISSION_CLOUD"
+	type = "READ_ACCESS"
 }
 privileges {
-	type = "NO_ACCESS"
 	resource = "PERMISSION_INTERNAL"
+	type = "NO_ACCESS"
 }
 privileges {
-	type = "WRITE_ACCESS"
 	resource = "PERMISSION_VIRTUALSERVICE"
+	type = "WRITE_ACCESS"
 }
 privileges {
-	type = "WRITE_ACCESS"
 	resource = "PERMISSION_POOL"
+	type = "WRITE_ACCESS"
 }
 privileges {
-	type = "WRITE_ACCESS"
 	resource = "PERMISSION_POOLGROUP"
+	type = "WRITE_ACCESS"
 }
 privileges {
-	type = "WRITE_ACCESS"
 	resource = "PERMISSION_POOLGROUPDEPLOYMENTPOLICY"
+	type = "WRITE_ACCESS"
 }
 privileges {
-	type = "WRITE_ACCESS"
 	resource = "PERMISSION_PRIORITYLABELS"
+	type = "WRITE_ACCESS"
 }
 privileges {
-	type = "WRITE_ACCESS"
 	resource = "PERMISSION_HEALTHMONITOR"
+	type = "WRITE_ACCESS"
 }
 privileges {
-	type = "WRITE_ACCESS"
 	resource = "PERMISSION_NETWORKPROFILE"
+	type = "WRITE_ACCESS"
 }
 privileges {
-	type = "WRITE_ACCESS"
 	resource = "PERMISSION_APPLICATIONPROFILE"
+	type = "WRITE_ACCESS"
 }
 privileges {
-	type = "WRITE_ACCESS"
 	resource = "PERMISSION_HTTPPOLICYSET"
+	type = "WRITE_ACCESS"
 }
 privileges {
-	type = "WRITE_ACCESS"
 	resource = "PERMISSION_IPADDRGROUP"
+	type = "WRITE_ACCESS"
 }
 privileges {
-	type = "WRITE_ACCESS"
 	resource = "PERMISSION_STRINGGROUP"
+	type = "WRITE_ACCESS"
 }
 privileges {
-	type = "WRITE_ACCESS"
 	resource = "PERMISSION_MICROSERVICEGROUP"
+	type = "WRITE_ACCESS"
 }
 privileges {
-	type = "READ_ACCESS"
 	resource = "PERMISSION_SSLPROFILE"
+	type = "READ_ACCESS"
 }
 privileges {
-	type = "READ_ACCESS"
 	resource = "PERMISSION_SSLKEYANDCERTIFICATE"
+	type = "READ_ACCESS"
 }
 privileges {
-	type = "WRITE_ACCESS"
 	resource = "PERMISSION_NETWORKSECURITYPOLICY"
+	type = "WRITE_ACCESS"
 }
 privileges {
-	type = "WRITE_ACCESS"
 	resource = "PERMISSION_APPLICATIONPERSISTENCEPROFILE"
+	type = "WRITE_ACCESS"
 }
 privileges {
-	type = "WRITE_ACCESS"
 	resource = "PERMISSION_ANALYTICSPROFILE"
+	type = "WRITE_ACCESS"
 }
 privileges {
-	type = "WRITE_ACCESS"
 	resource = "PERMISSION_IPAMDNSPROVIDERPROFILE"
+	type = "WRITE_ACCESS"
 }
 privileges {
-	type = "WRITE_ACCESS"
 	resource = "PERMISSION_VSDATASCRIPTSET"
+	type = "WRITE_ACCESS"
 }
 privileges {
-	type = "NO_ACCESS"
 	resource = "PERMISSION_TENANT"
+	type = "NO_ACCESS"
 }
 privileges {
-	type = "READ_ACCESS"
 	resource = "PERMISSION_PKIPROFILE"
+	type = "READ_ACCESS"
 }
 privileges {
-	type = "READ_ACCESS"
 	resource = "PERMISSION_CERTIFICATEMANAGEMENTPROFILE"
+	type = "READ_ACCESS"
 }
 privileges {
-	type = "READ_ACCESS"
 	resource = "PERMISSION_AUTHPROFILE"
+	type = "READ_ACCESS"
 }
 privileges {
-	type = "READ_ACCESS"
 	resource = "PERMISSION_SERVICEENGINE"
+	type = "READ_ACCESS"
 }
 privileges {
-	type = "READ_ACCESS"
 	resource = "PERMISSION_SERVICEENGINEGROUP"
+	type = "READ_ACCESS"
 }
 privileges {
-	type = "READ_ACCESS"
 	resource = "PERMISSION_NETWORK"
+	type = "READ_ACCESS"
 }
 privileges {
-	type = "NO_ACCESS"
 	resource = "PERMISSION_SYSTEMCONFIGURATION"
+	type = "NO_ACCESS"
 }
 privileges {
-	type = "WRITE_ACCESS"
 	resource = "PERMISSION_VRFCONTEXT"
+	type = "WRITE_ACCESS"
 }
 privileges {
-	type = "NO_ACCESS"
 	resource = "PERMISSION_USER"
+	type = "NO_ACCESS"
 }
 privileges {
-	type = "NO_ACCESS"
 	resource = "PERMISSION_ROLE"
+	type = "NO_ACCESS"
 }
 privileges {
-	type = "WRITE_ACCESS"
 	resource = "PERMISSION_ALERT"
+	type = "WRITE_ACCESS"
 }
 privileges {
-	type = "WRITE_ACCESS"
 	resource = "PERMISSION_ALERTCONFIG"
+	type = "WRITE_ACCESS"
 }
 privileges {
-	type = "READ_ACCESS"
 	resource = "PERMISSION_ALERTEMAILCONFIG"
+	type = "READ_ACCESS"
 }
 privileges {
-	type = "READ_ACCESS"
 	resource = "PERMISSION_ALERTSYSLOGCONFIG"
+	type = "READ_ACCESS"
 }
 privileges {
-	type = "WRITE_ACCESS"
 	resource = "PERMISSION_ACTIONGROUPCONFIG"
+	type = "WRITE_ACCESS"
 }
 privileges {
-	type = "READ_ACCESS"
 	resource = "PERMISSION_SNMPTRAPPROFILE"
+	type = "READ_ACCESS"
 }
 privileges {
-	type = "NO_ACCESS"
 	resource = "PERMISSION_UPGRADE"
+	type = "NO_ACCESS"
 }
 privileges {
-	type = "NO_ACCESS"
 	resource = "PERMISSION_REBOOT"
-}
-privileges {
-	type = "READ_ACCESS"
-	resource = "PERMISSION_TECHSUPPORT"
-}
-privileges {
-	type = "WRITE_ACCESS"
-	resource = "PERMISSION_TRAFFIC_CAPTURE"
-}
-privileges {
-	type = "READ_ACCESS"
-	resource = "PERMISSION_GSLB"
-}
-privileges {
-	type = "READ_ACCESS"
-	resource = "PERMISSION_GSLBGEODBPROFILE"
-}
-privileges {
-	type = "WRITE_ACCESS"
-	resource = "PERMISSION_GSLBSERVICE"
-}
-privileges {
-	type = "WRITE_ACCESS"
-	resource = "PERMISSION_TRAFFICCLONEPROFILE"
-}
-privileges {
 	type = "NO_ACCESS"
-	resource = "PERMISSION_SE_TOKEN"
 }
 privileges {
+	resource = "PERMISSION_TECHSUPPORT"
 	type = "READ_ACCESS"
-	resource = "PERMISSION_WAFPOLICY"
 }
 privileges {
-	type = "READ_ACCESS"
-	resource = "PERMISSION_WAFPROFILE"
-}
-privileges {
-	type = "READ_ACCESS"
-	resource = "PERMISSION_USER_CREDENTIAL"
-}
-privileges {
+	resource = "PERMISSION_TRAFFIC_CAPTURE"
 	type = "WRITE_ACCESS"
-	resource = "PERMISSION_AUTOSCALE"
 }
+privileges {
+	resource = "PERMISSION_GSLB"
+	type = "READ_ACCESS"
+}
+privileges {
+	resource = "PERMISSION_GSLBGEODBPROFILE"
+	type = "READ_ACCESS"
+}
+privileges {
+	resource = "PERMISSION_GSLBSERVICE"
+	type = "WRITE_ACCESS"
+}
+privileges {
+	resource = "PERMISSION_TRAFFICCLONEPROFILE"
+	type = "WRITE_ACCESS"
+}
+privileges {
+	resource = "PERMISSION_SE_TOKEN"
+	type = "NO_ACCESS"
+}
+privileges {
+	resource = "PERMISSION_WAFPOLICY"
+	type = "READ_ACCESS"
+}
+privileges {
+	resource = "PERMISSION_WAFPROFILE"
+	type = "READ_ACCESS"
+}
+privileges {
+	resource = "PERMISSION_USER_CREDENTIAL"
+	type = "READ_ACCESS"
+}
+privileges {
+	resource = "PERMISSION_AUTOSCALE"
+	type = "WRITE_ACCESS"
+}
+	tenant_ref = data.avi_tenant.default_tenant.id
+	name = "test-Application-Admin-updated"
 }
 `

@@ -1,8 +1,12 @@
+// Copyright 2019 VMware, Inc.
+// SPDX-License-Identifier: Mozilla Public License 2.0
+
 package avi
 
 import (
-	"github.com/hashicorp/terraform/helper/resource"
 	"testing"
+
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
 )
 
 func TestAVIDataSourceVsVipBasic(t *testing.T) {
@@ -27,8 +31,6 @@ data "avi_tenant" "default_tenant"{
     name= "admin"
 }
 resource "avi_vsvip" "testVsVip" {
-	name = "test-vsvip-test-abc"
-	tenant_ref = data.avi_tenant.default_tenant.id
 	vip {
 	vip_id = "1"
 	avi_allocated_fip = false
@@ -41,6 +43,8 @@ resource "avi_vsvip" "testVsVip" {
 		addr = "1.2.3.1"
 	}
 }
+	tenant_ref = data.avi_tenant.default_tenant.id
+	name = "test-vsvip-test-abc"
 }
 
 data "avi_vsvip" "testVsVip" {

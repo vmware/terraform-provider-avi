@@ -1,16 +1,16 @@
-/*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
- */
+// Copyright 2019 VMware, Inc.
+// SPDX-License-Identifier: Mozilla Public License 2.0
+
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
 	"time"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
@@ -43,12 +43,7 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 		"app_cache_percent": {
 			Type:     schema.TypeInt,
 			Optional: true,
-			Default:  10,
-		},
-		"app_cache_threshold": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Default:  5,
+			Default:  0,
 		},
 		"app_learning_memory_percent": {
 			Type:     schema.TypeInt,
@@ -94,11 +89,6 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  false,
-		},
-		"availability_zone_refs": {
-			Type:     schema.TypeList,
-			Optional: true,
-			Elem:     &schema.Schema{Type: schema.TypeString},
 		},
 		"bgp_state_update_interval": {
 			Type:     schema.TypeInt,
@@ -213,7 +203,7 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 		"disk_per_se": {
 			Type:     schema.TypeInt,
 			Optional: true,
-			Default:  15,
+			Default:  10,
 		},
 		"distribute_load_active_standby": {
 			Type:     schema.TypeBool,
@@ -345,12 +335,6 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
-		"instance_flavor_info": {
-			Type:     schema.TypeSet,
-			Optional: true,
-			Computed: true,
-			Elem:     ResourceCloudFlavorSchema(),
-		},
 		"iptables": {
 			Type:     schema.TypeList,
 			Optional: true,
@@ -381,11 +365,6 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  10000,
 		},
-		"log_malloc_failure": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  true,
-		},
 		"max_concurrent_external_hm": {
 			Type:     schema.TypeInt,
 			Optional: true,
@@ -400,11 +379,6 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Type:     schema.TypeInt,
 			Optional: true,
 			Default:  64,
-		},
-		"max_num_se_dps": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Computed: true,
 		},
 		"max_public_ips_per_lb": {
 			Type:     schema.TypeInt,
@@ -531,7 +505,17 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  "PCAP_TX_AUTO",
 		},
+		"pcap_tx_ring_rd_balancing_factor": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  10,
+		},
 		"per_app": {
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  false,
+		},
+		"per_vs_admission_control": {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  false,
@@ -551,11 +535,6 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  true,
-		},
-		"resync_time_interval": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Default:  65536,
 		},
 		"se_bandwidth_type": {
 			Type:     schema.TypeString,
@@ -577,11 +556,6 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 			Elem:     ResourceDosThresholdProfileSchema(),
-		},
-		"se_dp_max_hb_version": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Default:  2,
 		},
 		"se_dp_vnic_queue_stall_event_sleep": {
 			Type:     schema.TypeInt,
@@ -623,10 +597,10 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  40,
 		},
-		"se_hyperthreaded_mode": {
-			Type:     schema.TypeString,
+		"se_ipc_udp_port": {
+			Type:     schema.TypeInt,
 			Optional: true,
-			Default:  "SE_CPU_HT_AUTO",
+			Default:  1500,
 		},
 		"se_kni_burst_factor": {
 			Type:     schema.TypeInt,
@@ -687,6 +661,11 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Type:     schema.TypeInt,
 			Optional: true,
 			Default:  7,
+		},
+		"se_remote_punt_udp_port": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  1501,
 		},
 		"se_rl_prop": {
 			Type:     schema.TypeSet,
@@ -765,16 +744,6 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  0,
 		},
-		"se_vnic_tx_sw_queue_flush_frequency": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Default:  0,
-		},
-		"se_vnic_tx_sw_queue_size": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Default:  256,
-		},
 		"se_vs_hb_max_pkts_in_batch": {
 			Type:     schema.TypeInt,
 			Optional: true,
@@ -830,11 +799,6 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  100,
 		},
-		"use_hyperthreaded_cores": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  true,
-		},
 		"use_standard_alb": {
 			Type:     schema.TypeBool,
 			Optional: true,
@@ -876,11 +840,6 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 			Elem:     ResourceVcenterHostsSchema(),
-		},
-		"vcenters": {
-			Type:     schema.TypeList,
-			Optional: true,
-			Elem:     ResourcePlacementScopeConfigSchema(),
 		},
 		"vcpus_per_se": {
 			Type:     schema.TypeInt,
@@ -972,7 +931,7 @@ func ResourceServiceEngineGroupImporter(d *schema.ResourceData, m interface{}) (
 
 func ResourceAviServiceEngineGroupRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceServiceEngineGroupSchema()
-	err := ApiRead(d, meta, "serviceenginegroup", s)
+	err := APIRead(d, meta, "serviceenginegroup", s)
 	if err != nil {
 		log.Printf("[ERROR] in reading object %v\n", err)
 	}
@@ -981,7 +940,7 @@ func ResourceAviServiceEngineGroupRead(d *schema.ResourceData, meta interface{})
 
 func resourceAviServiceEngineGroupCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceServiceEngineGroupSchema()
-	err := ApiCreateOrUpdate(d, meta, "serviceenginegroup", s)
+	err := APICreateOrUpdate(d, meta, "serviceenginegroup", s)
 	if err == nil {
 		err = ResourceAviServiceEngineGroupRead(d, meta)
 	}
@@ -991,7 +950,7 @@ func resourceAviServiceEngineGroupCreate(d *schema.ResourceData, meta interface{
 func resourceAviServiceEngineGroupUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceServiceEngineGroupSchema()
 	var err error
-	err = ApiCreateOrUpdate(d, meta, "serviceenginegroup", s)
+	err = APICreateOrUpdate(d, meta, "serviceenginegroup", s)
 	if err == nil {
 		err = ResourceAviServiceEngineGroupRead(d, meta)
 	}
@@ -1018,7 +977,7 @@ func resourceAviServiceEngineGroupDelete(d *schema.ResourceData, meta interface{
 			}
 		}
 	}
-	if ApiDeleteSystemDefaultCheck(d) {
+	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
 	uuid := d.Get("uuid").(string)

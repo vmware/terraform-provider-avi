@@ -1,15 +1,15 @@
-/*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
- */
+// Copyright 2019 VMware, Inc.
+// SPDX-License-Identifier: Mozilla Public License 2.0
+
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
+
 	"time"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourceClusterSchema() map[string]*schema.Schema {
@@ -20,7 +20,7 @@ func ResourceClusterSchema() map[string]*schema.Schema {
 		},
 		"nodes": {
 			Type:     schema.TypeList,
-			Optional: true,
+			Required: true,
 			Elem:     ResourceClusterNodeSchema(),
 		},
 		"rejoin_nodes_automatically": {
@@ -91,9 +91,9 @@ func ResourceClusterImporter(d *schema.ResourceData, m interface{}) ([]*schema.R
 
 func ResourceAviClusterRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceClusterSchema()
-	err := read_cluster_state(d, meta, s)
+	err := readClusterState(d, meta, s)
 	if err == nil {
-		err := ApiRead(d, meta, "cluster", s)
+		err := APIRead(d, meta, "cluster", s)
 		if err != nil {
 			log.Printf("[ERROR] in reading object %v\n", err)
 			return err
@@ -106,7 +106,7 @@ func ResourceAviClusterRead(d *schema.ResourceData, meta interface{}) error {
 
 func resourceAviClusterCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceClusterSchema()
-	err := ApiCreateOrUpdate(d, meta, "cluster", s)
+	err := APICreateOrUpdate(d, meta, "cluster", s)
 	// Added wait for cluster initialization process as cluster initialization starts after few seconds.
 	// This is necessary to store correct state of initialized cluster.
 	time.Sleep(90 * time.Second)
@@ -119,7 +119,7 @@ func resourceAviClusterCreate(d *schema.ResourceData, meta interface{}) error {
 func resourceAviClusterUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceClusterSchema()
 	var err error
-	err = ApiCreateOrUpdate(d, meta, "cluster", s)
+	err = APICreateOrUpdate(d, meta, "cluster", s)
 	// Added wait for cluster initialization process as cluster initialization starts after few seconds.
 	// This is necessary to store correct state of initialized cluster.
 	time.Sleep(90 * time.Second)
@@ -135,15 +135,15 @@ func resourceAviClusterDelete(d *schema.ResourceData, meta interface{}) error {
 }
 
 // Function to get the cluster state and update the exact cluster state into d
-func read_cluster_state(d *schema.ResourceData, meta interface{}, s map[string]*schema.Schema) error {
+func readClusterState(d *schema.ResourceData, meta interface{}, s map[string]*schema.Schema) error {
 	client := meta.(*clients.AviClient)
 	var err error
 	var robj interface{}
 	if err = client.AviSession.Get("api/cluster/runtime", &robj); err == nil {
-		if local_data, err := SchemaToAviData(d, s); err == nil {
-			if mod_api_res, err := SetDefaultsInAPIRes(robj, local_data, s); err == nil {
-				if _, err := ApiDataToSchema(mod_api_res, d, s); err != nil {
-					log.Printf("[ERROR] Converting ApiDataToSchema object %v\n", err)
+		if localData, err := SchemaToAviData(d, s); err == nil {
+			if modAPIRes, err := SetDefaultsInAPIRes(robj, localData, s); err == nil {
+				if _, err := APIDataToSchema(modAPIRes, d, s); err != nil {
+					log.Printf("[ERROR] Converting APIDataToSchema object %v\n", err)
 					return err
 				}
 			} else {

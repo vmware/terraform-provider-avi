@@ -1,26 +1,14 @@
-/*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
- */
+// Copyright 2019 VMware, Inc.
+// SPDX-License-Identifier: Mozilla Public License 2.0
+
 package avi
 
-import "github.com/hashicorp/terraform/helper/schema"
+import "github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 
 func dataSourceAviVrfContext() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviVrfContextRead,
 		Schema: map[string]*schema.Schema{
-			"attrs": {
-				Type:     schema.TypeList,
-				Computed: true,
-				Elem:     ResourceKeyValueSchema(),
-			},
-			"bfd_profile": {
-				Type:     schema.TypeSet,
-				Computed: true,
-				Elem:     ResourceBfdProfileSchema(),
-			},
 			"bgp_profile": {
 				Type:     schema.TypeSet,
 				Computed: true,

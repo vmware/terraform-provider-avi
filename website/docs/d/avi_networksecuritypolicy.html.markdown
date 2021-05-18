@@ -37,8 +37,6 @@ In addition to all arguments above, the following attributes are exported:
 * `cloud_config_cksum` - Checksum of cloud configuration for network sec policy.
 * `created_by` - Creator name.
 * `description` - User defined description for the object.
-* `ip_reputation_db_ref` - Ip reputation database.
-* `labels` - Key value pairs for granular object access control.
 * `name` - Name of the object.
 * `rules` - List of list.
 * `tenant_ref` - It is a reference to an object of type tenant.

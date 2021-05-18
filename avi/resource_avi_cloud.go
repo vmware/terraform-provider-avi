@@ -1,19 +1,19 @@
-/*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
- */
+// Copyright 2019 VMware, Inc.
+// SPDX-License-Identifier: Mozilla Public License 2.0
+
 package avi
 
 import (
 	"errors"
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"os"
 	"strconv"
 	"strings"
+
 	"time"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourceCloudSchema() map[string]*schema.Schema {
@@ -145,12 +145,6 @@ func ResourceCloudSchema() map[string]*schema.Schema {
 			Computed: true,
 			Elem:     ResourceNsxConfigurationSchema(),
 		},
-		"nsxt_configuration": {
-			Type:     schema.TypeSet,
-			Optional: true,
-			Computed: true,
-			Elem:     ResourceNsxtConfigurationSchema(),
-		},
 		"obj_name_prefix": {
 			Type:     schema.TypeString,
 			Optional: true,
@@ -161,6 +155,12 @@ func ResourceCloudSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 			Elem:     ResourceOpenStackConfigurationSchema(),
+		},
+		"oshiftk8s_configuration": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceOShiftK8SConfigurationSchema(),
 		},
 		"prefer_static_routes": {
 			Type:     schema.TypeBool,
@@ -238,7 +238,7 @@ func ResourceCloudImporter(d *schema.ResourceData, m interface{}) ([]*schema.Res
 
 func ResourceAviCloudRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceCloudSchema()
-	err := ApiRead(d, meta, "cloud", s)
+	err := APIRead(d, meta, "cloud", s)
 	if err != nil {
 		log.Printf("[ERROR] in reading object %v\n", err)
 	}
@@ -258,12 +258,12 @@ func isCloudReady(cloudState string) bool {
 	return false
 }
 
-//wait untill vcenter inventory gets completed to configure mgmt IP
-func waitForVcenterState(cloudUuid string, client *clients.AviClient, maxRetry int) error {
+//wait until vcenter inventory gets completed to configure mgmt IP
+func waitForVcenterState(cloudUUID string, client *clients.AviClient, maxRetry int) error {
 	var robj interface{}
 	var err error
 	var inventoryState string
-	path := "api/vimgrvcenterruntime?cloud_uuid=" + cloudUuid
+	path := "api/vimgrvcenterruntime?cloud_uuid=" + cloudUUID
 	i := 0
 	for ; i < maxRetry; i++ {
 		if err = client.AviSession.Get(path, &robj); err == nil {
@@ -288,12 +288,12 @@ func waitForVcenterState(cloudUuid string, client *clients.AviClient, maxRetry i
 	return err
 }
 
-// Wait untill cloud is ready for the placement
-func waitForCloudReady(cloudUuid string, client *clients.AviClient, maxRetry int) error {
+// Wait until cloud is ready for the placement
+func waitForCloudReady(cloudUUID string, client *clients.AviClient, maxRetry int) error {
 	var robj interface{}
 	var err error
 	var cloudState string
-	path := "api/cloud-inventory?uuid=" + cloudUuid
+	path := "api/cloud-inventory?uuid=" + cloudUUID
 	i := 0
 	for ; i < maxRetry; i++ {
 		if err = client.AviSession.Get(path, &robj); err == nil {
@@ -335,7 +335,7 @@ func setupVcenterMgmtNetwork(d *schema.ResourceData, meta interface{}) error {
 	vcenterConfig, _ := d.GetOk("vcenter_configuration")
 	mgmtNetwork := vcenterConfig.(*schema.Set).List()[0].(map[string]interface{})["management_network"].(string)
 	mgmtNetwork = "vimgrruntime?name=" + mgmtNetwork
-	if err := ApiCreateOrUpdate(d, meta, "cloud", s); err != nil {
+	if err := APICreateOrUpdate(d, meta, "cloud", s); err != nil {
 		log.Printf("[Error] Got error for cloud create/update. Error: %s", err.Error())
 		return err
 	}
@@ -347,7 +347,7 @@ func setupVcenterMgmtNetwork(d *schema.ResourceData, meta interface{}) error {
 	if err := d.Set("vcenter_configuration", vcenterConfig); err != nil {
 		return err
 	}
-	if err := ApiCreateOrUpdate(d, meta, "cloud", s); err != nil {
+	if err := APICreateOrUpdate(d, meta, "cloud", s); err != nil {
 		return err
 	}
 	if err := waitForCloudReady(uuid, client, maxRetry); err != nil {
@@ -363,7 +363,7 @@ func resourceAviCloudCreate(d *schema.ResourceData, meta interface{}) error {
 	_, isVcenterConfig := d.GetOk("vcenter_configuration")
 	if cloudType == "CLOUD_VCENTER" && isVcenterConfig {
 		err = setupVcenterMgmtNetwork(d, meta)
-	} else if err = ApiCreateOrUpdate(d, meta, "cloud", s); err == nil {
+	} else if err = APICreateOrUpdate(d, meta, "cloud", s); err == nil {
 		err = ResourceAviCloudRead(d, meta)
 	}
 	return err
@@ -376,7 +376,7 @@ func resourceAviCloudUpdate(d *schema.ResourceData, meta interface{}) error {
 	_, isVcenterConfig := d.GetOk("vcenter_configuration")
 	if cloudType == "CLOUD_VCENTER" && isVcenterConfig {
 		err = setupVcenterMgmtNetwork(d, meta)
-	} else if err = ApiCreateOrUpdate(d, meta, "cloud", s); err == nil {
+	} else if err = APICreateOrUpdate(d, meta, "cloud", s); err == nil {
 		err = ResourceAviCloudRead(d, meta)
 	}
 	return err
@@ -385,7 +385,7 @@ func resourceAviCloudUpdate(d *schema.ResourceData, meta interface{}) error {
 func resourceAviCloudDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "cloud"
 	client := meta.(*clients.AviClient)
-	if ApiDeleteSystemDefaultCheck(d) {
+	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
 	uuid := d.Get("uuid").(string)

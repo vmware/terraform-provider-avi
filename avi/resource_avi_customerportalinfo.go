@@ -1,15 +1,14 @@
-/*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
- */
+// Copyright 2019 VMware, Inc.
+// SPDX-License-Identifier: Mozilla Public License 2.0
+
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourceCustomerPortalInfoSchema() map[string]*schema.Schema {
@@ -21,8 +20,7 @@ func ResourceCustomerPortalInfoSchema() map[string]*schema.Schema {
 		},
 		"portal_url": {
 			Type:     schema.TypeString,
-			Optional: true,
-			Computed: true,
+			Required: true,
 		},
 		"uuid": {
 			Type:     schema.TypeString,
@@ -52,7 +50,7 @@ func ResourceCustomerPortalInfoImporter(d *schema.ResourceData, m interface{}) (
 
 func ResourceAviCustomerPortalInfoRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceCustomerPortalInfoSchema()
-	err := ApiRead(d, meta, "customerportalinfo", s)
+	err := APIRead(d, meta, "customerportalinfo", s)
 	if err != nil {
 		log.Printf("[ERROR] in reading object %v\n", err)
 	}
@@ -61,7 +59,7 @@ func ResourceAviCustomerPortalInfoRead(d *schema.ResourceData, meta interface{})
 
 func resourceAviCustomerPortalInfoCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceCustomerPortalInfoSchema()
-	err := ApiCreateOrUpdate(d, meta, "customerportalinfo", s)
+	err := APICreateOrUpdate(d, meta, "customerportalinfo", s)
 	if err == nil {
 		err = ResourceAviCustomerPortalInfoRead(d, meta)
 	}
@@ -71,7 +69,7 @@ func resourceAviCustomerPortalInfoCreate(d *schema.ResourceData, meta interface{
 func resourceAviCustomerPortalInfoUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceCustomerPortalInfoSchema()
 	var err error
-	err = ApiCreateOrUpdate(d, meta, "customerportalinfo", s)
+	err = APICreateOrUpdate(d, meta, "customerportalinfo", s)
 	if err == nil {
 		err = ResourceAviCustomerPortalInfoRead(d, meta)
 	}
@@ -80,10 +78,10 @@ func resourceAviCustomerPortalInfoUpdate(d *schema.ResourceData, meta interface{
 
 func resourceAviCustomerPortalInfoDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "customerportalinfo"
-	if ApiDeleteSystemDefaultCheck(d) {
+	client := meta.(*clients.AviClient)
+	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
-	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {
 		path := "api/" + objType + "/" + uuid

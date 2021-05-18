@@ -2,11 +2,12 @@ package avi
 
 import (
 	"fmt"
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/resource"
-	"github.com/hashicorp/terraform/terraform"
 	"strings"
 	"testing"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/terraform"
 )
 
 func TestAVIUserAccountProfileBasic(t *testing.T) {
@@ -111,8 +112,8 @@ func testAccCheckAVIUserAccountProfileDestroy(s *terraform.State) error {
 
 const testAccAVIUserAccountProfileConfig = `
 resource "avi_useraccountprofile" "testUserAccountProfile" {
-	name = "test-Default-User-Account-Profile-abc"
 	max_concurrent_sessions = "0"
+	name = "test-Default-User-Account-Profile-abc"
 	account_lock_timeout = "30"
 	max_login_failure_count = "20"
 	max_password_history_count = "0"
@@ -122,8 +123,8 @@ resource "avi_useraccountprofile" "testUserAccountProfile" {
 
 const testAccAVIUserAccountProfileupdatedConfig = `
 resource "avi_useraccountprofile" "testUserAccountProfile" {
-	name = "test-Default-User-Account-Profile-updated"
 	max_concurrent_sessions = "0"
+	name = "test-Default-User-Account-Profile-updated"
 	account_lock_timeout = "30"
 	max_login_failure_count = "20"
 	max_password_history_count = "0"

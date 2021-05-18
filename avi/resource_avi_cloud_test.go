@@ -2,11 +2,12 @@ package avi
 
 import (
 	"fmt"
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/resource"
-	"github.com/hashicorp/terraform/terraform"
 	"strings"
 	"testing"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/terraform"
 )
 
 func TestAVICloudBasic(t *testing.T) {
@@ -22,17 +23,17 @@ func TestAVICloudBasic(t *testing.T) {
 					resource.TestCheckResourceAttr(
 						"avi_cloud.testCloud", "name", "test-Default-Cloud-abc"),
 					resource.TestCheckResourceAttr(
-						"avi_cloud.testCloud", "dhcp_enabled", "false"),
-					resource.TestCheckResourceAttr(
 						"avi_cloud.testCloud", "enable_vip_static_routes", "false"),
-					resource.TestCheckResourceAttr(
-						"avi_cloud.testCloud", "state_based_dns_registration", "true"),
 					resource.TestCheckResourceAttr(
 						"avi_cloud.testCloud", "prefer_static_routes", "false"),
 					resource.TestCheckResourceAttr(
+						"avi_cloud.testCloud", "mtu", "1500"),
+					resource.TestCheckResourceAttr(
 						"avi_cloud.testCloud", "apic_mode", "false"),
 					resource.TestCheckResourceAttr(
-						"avi_cloud.testCloud", "mtu", "1500"),
+						"avi_cloud.testCloud", "dhcp_enabled", "false"),
+					resource.TestCheckResourceAttr(
+						"avi_cloud.testCloud", "state_based_dns_registration", "true"),
 				),
 			},
 			{
@@ -42,17 +43,17 @@ func TestAVICloudBasic(t *testing.T) {
 					resource.TestCheckResourceAttr(
 						"avi_cloud.testCloud", "name", "test-Default-Cloud-updated"),
 					resource.TestCheckResourceAttr(
-						"avi_cloud.testCloud", "dhcp_enabled", "false"),
-					resource.TestCheckResourceAttr(
 						"avi_cloud.testCloud", "enable_vip_static_routes", "false"),
-					resource.TestCheckResourceAttr(
-						"avi_cloud.testCloud", "state_based_dns_registration", "true"),
 					resource.TestCheckResourceAttr(
 						"avi_cloud.testCloud", "prefer_static_routes", "false"),
 					resource.TestCheckResourceAttr(
+						"avi_cloud.testCloud", "mtu", "1500"),
+					resource.TestCheckResourceAttr(
 						"avi_cloud.testCloud", "apic_mode", "false"),
 					resource.TestCheckResourceAttr(
-						"avi_cloud.testCloud", "mtu", "1500"),
+						"avi_cloud.testCloud", "dhcp_enabled", "false"),
+					resource.TestCheckResourceAttr(
+						"avi_cloud.testCloud", "state_based_dns_registration", "true"),
 				),
 			},
 			{
@@ -118,17 +119,17 @@ data "avi_tenant" "default_tenant"{
     name= "admin"
 }
 resource "avi_cloud" "testCloud" {
+	vtype = "CLOUD_NONE"
+	license_tier = "ENTERPRISE_18"
 	name = "test-Default-Cloud-abc"
 	tenant_ref = data.avi_tenant.default_tenant.id
-	dhcp_enabled = false
-	vtype = "CLOUD_NONE"
-	license_tier = "ENTERPRISE"
 	enable_vip_static_routes = false
-	state_based_dns_registration = true
 	prefer_static_routes = false
 	license_type = "LIC_CORES"
-	apic_mode = false
 	mtu = "1500"
+	apic_mode = false
+	dhcp_enabled = false
+	state_based_dns_registration = true
 }
 `
 
@@ -137,16 +138,16 @@ data "avi_tenant" "default_tenant"{
     name= "admin"
 }
 resource "avi_cloud" "testCloud" {
+	vtype = "CLOUD_NONE"
+	license_tier = "ENTERPRISE_18"
 	name = "test-Default-Cloud-updated"
 	tenant_ref = data.avi_tenant.default_tenant.id
-	dhcp_enabled = false
-	vtype = "CLOUD_NONE"
-	license_tier = "ENTERPRISE"
 	enable_vip_static_routes = false
-	state_based_dns_registration = true
 	prefer_static_routes = false
 	license_type = "LIC_CORES"
-	apic_mode = false
 	mtu = "1500"
+	apic_mode = false
+	dhcp_enabled = false
+	state_based_dns_registration = true
 }
 `

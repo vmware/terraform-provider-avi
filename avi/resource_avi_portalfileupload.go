@@ -1,15 +1,14 @@
-/*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
- */
+// Copyright 2019 VMware, Inc.
+// SPDX-License-Identifier: Mozilla Public License 2.0
+
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourcePortalFileUploadSchema() map[string]*schema.Schema {
@@ -26,13 +25,11 @@ func ResourcePortalFileUploadSchema() map[string]*schema.Schema {
 		},
 		"file_path": {
 			Type:     schema.TypeString,
-			Optional: true,
-			Computed: true,
+			Required: true,
 		},
 		"name": {
 			Type:     schema.TypeString,
-			Optional: true,
-			Computed: true,
+			Required: true,
 		},
 		"s3_directory": {
 			Type:     schema.TypeString,
@@ -77,7 +74,7 @@ func ResourcePortalFileUploadImporter(d *schema.ResourceData, m interface{}) ([]
 
 func ResourceAviPortalFileUploadRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourcePortalFileUploadSchema()
-	err := ApiRead(d, meta, "portalfileupload", s)
+	err := APIRead(d, meta, "portalfileupload", s)
 	if err != nil {
 		log.Printf("[ERROR] in reading object %v\n", err)
 	}
@@ -86,7 +83,7 @@ func ResourceAviPortalFileUploadRead(d *schema.ResourceData, meta interface{}) e
 
 func resourceAviPortalFileUploadCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourcePortalFileUploadSchema()
-	err := ApiCreateOrUpdate(d, meta, "portalfileupload", s)
+	err := APICreateOrUpdate(d, meta, "portalfileupload", s)
 	if err == nil {
 		err = ResourceAviPortalFileUploadRead(d, meta)
 	}
@@ -96,7 +93,7 @@ func resourceAviPortalFileUploadCreate(d *schema.ResourceData, meta interface{})
 func resourceAviPortalFileUploadUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourcePortalFileUploadSchema()
 	var err error
-	err = ApiCreateOrUpdate(d, meta, "portalfileupload", s)
+	err = APICreateOrUpdate(d, meta, "portalfileupload", s)
 	if err == nil {
 		err = ResourceAviPortalFileUploadRead(d, meta)
 	}
@@ -105,10 +102,10 @@ func resourceAviPortalFileUploadUpdate(d *schema.ResourceData, meta interface{})
 
 func resourceAviPortalFileUploadDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "portalfileupload"
-	if ApiDeleteSystemDefaultCheck(d) {
+	client := meta.(*clients.AviClient)
+	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
-	client := meta.(*clients.AviClient)
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {
 		path := "api/" + objType + "/" + uuid

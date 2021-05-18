@@ -1,11 +1,9 @@
-/*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
- */
+// Copyright 2019 VMware, Inc.
+// SPDX-License-Identifier: Mozilla Public License 2.0
+
 package avi
 
-import "github.com/hashicorp/terraform/helper/schema"
+import "github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 
 func dataSourceAviPool() *schema.Resource {
 	return &schema.Resource{
@@ -97,10 +95,6 @@ func dataSourceAviPool() *schema.Resource {
 				Type:     schema.TypeBool,
 				Computed: true,
 			},
-			"enable_http2": {
-				Type:     schema.TypeBool,
-				Computed: true,
-			},
 			"enabled": {
 				Type:     schema.TypeBool,
 				Computed: true,
@@ -132,10 +126,6 @@ func dataSourceAviPool() *schema.Resource {
 				Type:     schema.TypeBool,
 				Computed: true,
 			},
-			"ignore_server_port": {
-				Type:     schema.TypeBool,
-				Computed: true,
-			},
 			"inline_health_monitor": {
 				Type:     schema.TypeBool,
 				Computed: true,
@@ -143,11 +133,6 @@ func dataSourceAviPool() *schema.Resource {
 			"ipaddrgroup_ref": {
 				Type:     schema.TypeString,
 				Computed: true,
-			},
-			"labels": {
-				Type:     schema.TypeList,
-				Computed: true,
-				Elem:     ResourceKeyValueSchema(),
 			},
 			"lb_algorithm": {
 				Type:     schema.TypeString,
@@ -230,10 +215,6 @@ func dataSourceAviPool() *schema.Resource {
 				Type:     schema.TypeBool,
 				Computed: true,
 			},
-			"routing_pool": {
-				Type:     schema.TypeBool,
-				Computed: true,
-			},
 			"server_name": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -271,10 +252,6 @@ func dataSourceAviPool() *schema.Resource {
 			"tenant_ref": {
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
-			},
-			"tier1_lr": {
-				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"use_service_port": {

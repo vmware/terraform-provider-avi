@@ -1,15 +1,14 @@
-/*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
- */
+// Copyright 2019 VMware, Inc.
+// SPDX-License-Identifier: Mozilla Public License 2.0
+
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourcePriorityLabelsSchema() map[string]*schema.Schema {
@@ -28,11 +27,6 @@ func ResourcePriorityLabelsSchema() map[string]*schema.Schema {
 			Type:     schema.TypeList,
 			Optional: true,
 			Elem:     ResourceEquivalentLabelsSchema(),
-		},
-		"labels": {
-			Type:     schema.TypeList,
-			Optional: true,
-			Elem:     ResourceKeyValueSchema(),
 		},
 		"name": {
 			Type:     schema.TypeString,
@@ -71,7 +65,7 @@ func ResourcePriorityLabelsImporter(d *schema.ResourceData, m interface{}) ([]*s
 
 func ResourceAviPriorityLabelsRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourcePriorityLabelsSchema()
-	err := ApiRead(d, meta, "prioritylabels", s)
+	err := APIRead(d, meta, "prioritylabels", s)
 	if err != nil {
 		log.Printf("[ERROR] in reading object %v\n", err)
 	}
@@ -80,7 +74,7 @@ func ResourceAviPriorityLabelsRead(d *schema.ResourceData, meta interface{}) err
 
 func resourceAviPriorityLabelsCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourcePriorityLabelsSchema()
-	err := ApiCreateOrUpdate(d, meta, "prioritylabels", s)
+	err := APICreateOrUpdate(d, meta, "prioritylabels", s)
 	if err == nil {
 		err = ResourceAviPriorityLabelsRead(d, meta)
 	}
@@ -90,7 +84,7 @@ func resourceAviPriorityLabelsCreate(d *schema.ResourceData, meta interface{}) e
 func resourceAviPriorityLabelsUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourcePriorityLabelsSchema()
 	var err error
-	err = ApiCreateOrUpdate(d, meta, "prioritylabels", s)
+	err = APICreateOrUpdate(d, meta, "prioritylabels", s)
 	if err == nil {
 		err = ResourceAviPriorityLabelsRead(d, meta)
 	}
@@ -100,7 +94,7 @@ func resourceAviPriorityLabelsUpdate(d *schema.ResourceData, meta interface{}) e
 func resourceAviPriorityLabelsDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "prioritylabels"
 	client := meta.(*clients.AviClient)
-	if ApiDeleteSystemDefaultCheck(d) {
+	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
 	uuid := d.Get("uuid").(string)

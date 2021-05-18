@@ -1,11 +1,9 @@
-/*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
- */
+// Copyright 2019 VMware, Inc.
+// SPDX-License-Identifier: Mozilla Public License 2.0
+
 package avi
 
-import "github.com/hashicorp/terraform/helper/schema"
+import "github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 
 func dataSourceAviAnalyticsProfile() *schema.Resource {
 	return &schema.Resource{
@@ -113,10 +111,6 @@ func dataSourceAviAnalyticsProfile() *schema.Resource {
 				Type:     schema.TypeBool,
 				Computed: true,
 			},
-			"enable_adaptive_config": {
-				Type:     schema.TypeBool,
-				Computed: true,
-			},
 			"enable_advanced_analytics": {
 				Type:     schema.TypeBool,
 				Computed: true,
@@ -146,10 +140,6 @@ func dataSourceAviAnalyticsProfile() *schema.Resource {
 				Type:     schema.TypeBool,
 				Computed: true,
 			},
-			"exclude_issuer_revoked_ocsp_responses_as_error": {
-				Type:     schema.TypeBool,
-				Computed: true,
-			},
 			"exclude_no_dns_record_as_error": {
 				Type:     schema.TypeBool,
 				Computed: true,
@@ -159,10 +149,6 @@ func dataSourceAviAnalyticsProfile() *schema.Resource {
 				Computed: true,
 			},
 			"exclude_persistence_change_as_error": {
-				Type:     schema.TypeBool,
-				Computed: true,
-			},
-			"exclude_revoked_ocsp_responses_as_error": {
 				Type:     schema.TypeBool,
 				Computed: true,
 			},
@@ -179,19 +165,11 @@ func dataSourceAviAnalyticsProfile() *schema.Resource {
 				Computed: true,
 				Elem:     &schema.Schema{Type: schema.TypeInt},
 			},
-			"exclude_stale_ocsp_responses_as_error": {
-				Type:     schema.TypeBool,
-				Computed: true,
-			},
 			"exclude_syn_retransmit_as_error": {
 				Type:     schema.TypeBool,
 				Computed: true,
 			},
 			"exclude_tcp_reset_as_error": {
-				Type:     schema.TypeBool,
-				Computed: true,
-			},
-			"exclude_unavailable_ocsp_responses_as_error": {
 				Type:     schema.TypeBool,
 				Computed: true,
 			},
@@ -283,10 +261,6 @@ func dataSourceAviAnalyticsProfile() *schema.Resource {
 				Type:     schema.TypeFloat,
 				Computed: true,
 			},
-			"hs_security_ocsp_revoked_score": {
-				Type:     schema.TypeFloat,
-				Computed: true,
-			},
 			"hs_security_selfsignedcert_penalty": {
 				Type:     schema.TypeFloat,
 				Computed: true,
@@ -310,11 +284,6 @@ func dataSourceAviAnalyticsProfile() *schema.Resource {
 			"hs_security_weak_signature_algo_penalty": {
 				Type:     schema.TypeFloat,
 				Computed: true,
-			},
-			"labels": {
-				Type:     schema.TypeList,
-				Computed: true,
-				Elem:     ResourceKeyValueSchema(),
 			},
 			"name": {
 				Type:     schema.TypeString,

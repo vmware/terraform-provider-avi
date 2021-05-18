@@ -1,11 +1,9 @@
-/*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
- */
+// Copyright 2019 VMware, Inc.
+// SPDX-License-Identifier: Mozilla Public License 2.0
+
 package avi
 
-import "github.com/hashicorp/terraform/helper/schema"
+import "github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 
 func dataSourceAviVirtualService() *schema.Resource {
 	return &schema.Resource{
@@ -13,10 +11,6 @@ func dataSourceAviVirtualService() *schema.Resource {
 		Schema: map[string]*schema.Schema{
 			"active_standby_se_tag": {
 				Type:     schema.TypeString,
-				Computed: true,
-			},
-			"advertise_down_vs": {
-				Type:     schema.TypeBool,
 				Computed: true,
 			},
 			"allow_invalid_client_cert": {
@@ -143,11 +137,6 @@ func dataSourceAviVirtualService() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceHTTPPoliciesSchema(),
 			},
-			"icap_request_profile_refs": {
-				Type:     schema.TypeList,
-				Computed: true,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-			},
 			"ign_pool_net_reach": {
 				Type:     schema.TypeBool,
 				Computed: true,
@@ -156,11 +145,6 @@ func dataSourceAviVirtualService() *schema.Resource {
 				Type:     schema.TypeList,
 				Computed: true,
 				Elem:     ResourceL4PoliciesSchema(),
-			},
-			"labels": {
-				Type:     schema.TypeList,
-				Computed: true,
-				Elem:     ResourceKeyValueSchema(),
 			},
 			"limit_doser": {
 				Type:     schema.TypeBool,

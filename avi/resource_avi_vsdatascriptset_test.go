@@ -2,11 +2,12 @@ package avi
 
 import (
 	"fmt"
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/resource"
-	"github.com/hashicorp/terraform/terraform"
 	"strings"
 	"testing"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/terraform"
 )
 
 func TestAVIVSDataScriptSetBasic(t *testing.T) {
@@ -95,12 +96,12 @@ data "avi_tenant" "default_tenant"{
 }
 resource "avi_vsdatascriptset" "testVSDataScriptSet" {
 	name = "test-vsd-abc"
-	tenant_ref = data.avi_tenant.default_tenant.id
-	ipgroup_refs = []
-	pool_group_refs = []
 	pool_refs = []
-	string_group_refs = []
+	tenant_ref = data.avi_tenant.default_tenant.id
 	protocol_parser_refs = []
+	pool_group_refs = []
+	string_group_refs = []
+	ipgroup_refs = []
 }
 `
 
@@ -110,11 +111,11 @@ data "avi_tenant" "default_tenant"{
 }
 resource "avi_vsdatascriptset" "testVSDataScriptSet" {
 	name = "test-vsd-updated"
-	tenant_ref = data.avi_tenant.default_tenant.id
-	ipgroup_refs = []
-	pool_group_refs = []
 	pool_refs = []
-	string_group_refs = []
+	tenant_ref = data.avi_tenant.default_tenant.id
 	protocol_parser_refs = []
+	pool_group_refs = []
+	string_group_refs = []
+	ipgroup_refs = []
 }
 `

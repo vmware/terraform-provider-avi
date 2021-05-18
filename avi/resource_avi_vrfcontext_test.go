@@ -2,11 +2,12 @@ package avi
 
 import (
 	"fmt"
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/resource"
-	"github.com/hashicorp/terraform/terraform"
 	"strings"
 	"testing"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/terraform"
 )
 
 func TestAVIVrfContextBasic(t *testing.T) {
@@ -101,9 +102,9 @@ data "avi_cloud" "default_cloud" {
     name= "Default-Cloud"
 }
 resource "avi_vrfcontext" "testVrfContext" {
-	name = "test-global-abc"
-	tenant_ref = data.avi_tenant.default_tenant.id
 	cloud_ref = data.avi_cloud.default_cloud.id
+	tenant_ref = data.avi_tenant.default_tenant.id
+	name = "test-global-abc"
 }
 `
 
@@ -115,8 +116,8 @@ data "avi_cloud" "default_cloud" {
     name= "Default-Cloud"
 }
 resource "avi_vrfcontext" "testVrfContext" {
-	name = "test-global-updated"
-	tenant_ref = data.avi_tenant.default_tenant.id
 	cloud_ref = data.avi_cloud.default_cloud.id
+	tenant_ref = data.avi_tenant.default_tenant.id
+	name = "test-global-updated"
 }
 `

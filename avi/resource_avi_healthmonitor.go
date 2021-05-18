@@ -1,15 +1,14 @@
-/*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
- */
+// Copyright 2019 VMware, Inc.
+// SPDX-License-Identifier: Mozilla Public License 2.0
+
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourceHealthMonitorSchema() map[string]*schema.Schema {
@@ -18,12 +17,6 @@ func ResourceHealthMonitorSchema() map[string]*schema.Schema {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Computed: true,
-		},
-		"authentication": {
-			Type:     schema.TypeSet,
-			Optional: true,
-			Computed: true,
-			Elem:     ResourceHealthMonitorAuthInfoSchema(),
 		},
 		"description": {
 			Type:     schema.TypeString,
@@ -154,7 +147,7 @@ func ResourceHealthMonitorImporter(d *schema.ResourceData, m interface{}) ([]*sc
 
 func ResourceAviHealthMonitorRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceHealthMonitorSchema()
-	err := ApiRead(d, meta, "healthmonitor", s)
+	err := APIRead(d, meta, "healthmonitor", s)
 	if err != nil {
 		log.Printf("[ERROR] in reading object %v\n", err)
 	}
@@ -163,7 +156,7 @@ func ResourceAviHealthMonitorRead(d *schema.ResourceData, meta interface{}) erro
 
 func resourceAviHealthMonitorCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceHealthMonitorSchema()
-	err := ApiCreateOrUpdate(d, meta, "healthmonitor", s)
+	err := APICreateOrUpdate(d, meta, "healthmonitor", s)
 	if err == nil {
 		err = ResourceAviHealthMonitorRead(d, meta)
 	}
@@ -173,7 +166,7 @@ func resourceAviHealthMonitorCreate(d *schema.ResourceData, meta interface{}) er
 func resourceAviHealthMonitorUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceHealthMonitorSchema()
 	var err error
-	err = ApiCreateOrUpdate(d, meta, "healthmonitor", s)
+	err = APICreateOrUpdate(d, meta, "healthmonitor", s)
 	if err == nil {
 		err = ResourceAviHealthMonitorRead(d, meta)
 	}
@@ -183,7 +176,7 @@ func resourceAviHealthMonitorUpdate(d *schema.ResourceData, meta interface{}) er
 func resourceAviHealthMonitorDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "healthmonitor"
 	client := meta.(*clients.AviClient)
-	if ApiDeleteSystemDefaultCheck(d) {
+	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
 	uuid := d.Get("uuid").(string)

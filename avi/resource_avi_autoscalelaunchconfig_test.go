@@ -2,11 +2,12 @@ package avi
 
 import (
 	"fmt"
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/resource"
-	"github.com/hashicorp/terraform/terraform"
 	"strings"
 	"testing"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/terraform"
 )
 
 func TestAVIAutoScaleLaunchConfigBasic(t *testing.T) {
@@ -98,10 +99,10 @@ data "avi_tenant" "default_tenant"{
     name= "admin"
 }
 resource "avi_autoscalelaunchconfig" "testAutoScaleLaunchConfig" {
-	name = "test-default-autoscalelaunchconfig-abc"
-	tenant_ref = data.avi_tenant.default_tenant.id
 	image_id = "default"
 	use_external_asg = true
+	tenant_ref = data.avi_tenant.default_tenant.id
+	name = "test-default-autoscalelaunchconfig-abc"
 }
 `
 
@@ -110,9 +111,9 @@ data "avi_tenant" "default_tenant"{
     name= "admin"
 }
 resource "avi_autoscalelaunchconfig" "testAutoScaleLaunchConfig" {
-	name = "test-default-autoscalelaunchconfig-updated"
-	tenant_ref = data.avi_tenant.default_tenant.id
 	image_id = "default"
 	use_external_asg = true
+	tenant_ref = data.avi_tenant.default_tenant.id
+	name = "test-default-autoscalelaunchconfig-updated"
 }
 `

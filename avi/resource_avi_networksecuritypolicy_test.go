@@ -2,11 +2,12 @@ package avi
 
 import (
 	"fmt"
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/resource"
-	"github.com/hashicorp/terraform/terraform"
 	"strings"
 	"testing"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/terraform"
 )
 
 func TestAVINetworkSecurityPolicyBasic(t *testing.T) {
@@ -94,8 +95,8 @@ data "avi_tenant" "default_tenant"{
     name= "admin"
 }
 resource "avi_networksecuritypolicy" "testNetworkSecurityPolicy" {
-	name = "ns-abc-abc"
 	tenant_ref = data.avi_tenant.default_tenant.id
+	name = "ns-abc-abc"
 	description = "test network policy"
 }
 `
@@ -105,8 +106,8 @@ data "avi_tenant" "default_tenant"{
     name= "admin"
 }
 resource "avi_networksecuritypolicy" "testNetworkSecurityPolicy" {
-	name = "ns-updated"
 	tenant_ref = data.avi_tenant.default_tenant.id
+	name = "ns-updated"
 	description = "test network policy"
 }
 `

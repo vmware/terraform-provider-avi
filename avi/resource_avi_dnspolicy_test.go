@@ -2,11 +2,12 @@ package avi
 
 import (
 	"fmt"
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/resource"
-	"github.com/hashicorp/terraform/terraform"
 	"strings"
 	"testing"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/terraform"
 )
 
 func TestAVIDnsPolicyBasic(t *testing.T) {
@@ -42,6 +43,7 @@ func TestAVIDnsPolicyBasic(t *testing.T) {
 
 }
 
+//nolint
 func testAccCheckAVIDnsPolicyExists(resourcename string) resource.TestCheckFunc {
 	return func(s *terraform.State) error {
 		conn := testAccProvider.Meta().(*clients.AviClient).AviSession
@@ -65,6 +67,7 @@ func testAccCheckAVIDnsPolicyExists(resourcename string) resource.TestCheckFunc 
 
 }
 
+//nolint
 func testAccCheckAVIDnsPolicyDestroy(s *terraform.State) error {
 	conn := testAccProvider.Meta().(*clients.AviClient).AviSession
 	var obj interface{}
@@ -89,24 +92,26 @@ func testAccCheckAVIDnsPolicyDestroy(s *terraform.State) error {
 	return nil
 }
 
+//nolint
 const testAccAVIDnsPolicyConfig = `
 data "avi_tenant" "default_tenant"{
     name= "admin"
 }
 resource "avi_dnspolicy" "testDnsPolicy" {
+	tenant_ref = data.avi_tenant.default_tenant.id
 	name = "test-dp-abc"
 	description = "test dns policy"
-	tenant_ref = data.avi_tenant.default_tenant.id
 }
 `
 
+//nolint
 const testAccAVIDnsPolicyupdatedConfig = `
 data "avi_tenant" "default_tenant"{
     name= "admin"
 }
 resource "avi_dnspolicy" "testDnsPolicy" {
+	tenant_ref = data.avi_tenant.default_tenant.id
 	name = "test-dp-updated"
 	description = "test dns policy"
-	tenant_ref = data.avi_tenant.default_tenant.id
 }
 `

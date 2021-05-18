@@ -1,15 +1,14 @@
-/*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
- */
+// Copyright 2019 VMware, Inc.
+// SPDX-License-Identifier: Mozilla Public License 2.0
+
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourceNetworkServiceSchema() map[string]*schema.Schema {
@@ -19,15 +18,9 @@ func ResourceNetworkServiceSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
-		"labels": {
-			Type:     schema.TypeList,
-			Optional: true,
-			Elem:     ResourceKeyValueSchema(),
-		},
 		"name": {
 			Type:     schema.TypeString,
-			Optional: true,
-			Computed: true,
+			Required: true,
 		},
 		"routing_service": {
 			Type:     schema.TypeSet,
@@ -37,13 +30,11 @@ func ResourceNetworkServiceSchema() map[string]*schema.Schema {
 		},
 		"se_group_ref": {
 			Type:     schema.TypeString,
-			Optional: true,
-			Computed: true,
+			Required: true,
 		},
 		"service_type": {
 			Type:     schema.TypeString,
-			Optional: true,
-			Computed: true,
+			Required: true,
 		},
 		"tenant_ref": {
 			Type:     schema.TypeString,
@@ -57,8 +48,7 @@ func ResourceNetworkServiceSchema() map[string]*schema.Schema {
 		},
 		"vrf_ref": {
 			Type:     schema.TypeString,
-			Optional: true,
-			Computed: true,
+			Required: true,
 		},
 	}
 }
@@ -83,7 +73,7 @@ func ResourceNetworkServiceImporter(d *schema.ResourceData, m interface{}) ([]*s
 
 func ResourceAviNetworkServiceRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceNetworkServiceSchema()
-	err := ApiRead(d, meta, "networkservice", s)
+	err := APIRead(d, meta, "networkservice", s)
 	if err != nil {
 		log.Printf("[ERROR] in reading object %v\n", err)
 	}
@@ -92,7 +82,7 @@ func ResourceAviNetworkServiceRead(d *schema.ResourceData, meta interface{}) err
 
 func resourceAviNetworkServiceCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceNetworkServiceSchema()
-	err := ApiCreateOrUpdate(d, meta, "networkservice", s)
+	err := APICreateOrUpdate(d, meta, "networkservice", s)
 	if err == nil {
 		err = ResourceAviNetworkServiceRead(d, meta)
 	}
@@ -102,7 +92,7 @@ func resourceAviNetworkServiceCreate(d *schema.ResourceData, meta interface{}) e
 func resourceAviNetworkServiceUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceNetworkServiceSchema()
 	var err error
-	err = ApiCreateOrUpdate(d, meta, "networkservice", s)
+	err = APICreateOrUpdate(d, meta, "networkservice", s)
 	if err == nil {
 		err = ResourceAviNetworkServiceRead(d, meta)
 	}
@@ -112,7 +102,7 @@ func resourceAviNetworkServiceUpdate(d *schema.ResourceData, meta interface{}) e
 func resourceAviNetworkServiceDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "networkservice"
 	client := meta.(*clients.AviClient)
-	if ApiDeleteSystemDefaultCheck(d) {
+	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
 	uuid := d.Get("uuid").(string)

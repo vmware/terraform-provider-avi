@@ -1,8 +1,12 @@
+// Copyright 2019 VMware, Inc.
+// SPDX-License-Identifier: Mozilla Public License 2.0
+
 package avi
 
 import (
-	"github.com/hashicorp/terraform/helper/resource"
 	"testing"
+
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
 )
 
 func TestAVIDataSourceVrfContextBasic(t *testing.T) {
@@ -32,9 +36,9 @@ data "avi_cloud" "default_cloud" {
     name= "Default-Cloud"
 }
 resource "avi_vrfcontext" "testVrfContext" {
-	name = "test-global-abc"
-	tenant_ref = data.avi_tenant.default_tenant.id
 	cloud_ref = data.avi_cloud.default_cloud.id
+	tenant_ref = data.avi_tenant.default_tenant.id
+	name = "test-global-abc"
 }
 
 data "avi_vrfcontext" "testVrfContext" {

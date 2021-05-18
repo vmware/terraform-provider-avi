@@ -1,8 +1,12 @@
+// Copyright 2019 VMware, Inc.
+// SPDX-License-Identifier: Mozilla Public License 2.0
+
 package avi
 
 import (
-	"github.com/hashicorp/terraform/helper/resource"
 	"testing"
+
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
 )
 
 func TestAVIDataSourceNetworkSecurityPolicyBasic(t *testing.T) {
@@ -27,8 +31,8 @@ data "avi_tenant" "default_tenant"{
     name= "admin"
 }
 resource "avi_networksecuritypolicy" "testNetworkSecurityPolicy" {
-	name = "ns-abc-abc"
 	tenant_ref = data.avi_tenant.default_tenant.id
+	name = "ns-abc-abc"
 	description = "test network policy"
 }
 

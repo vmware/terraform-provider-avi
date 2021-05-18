@@ -1,8 +1,12 @@
+// Copyright 2019 VMware, Inc.
+// SPDX-License-Identifier: Mozilla Public License 2.0
+
 package avi
 
 import (
-	"github.com/hashicorp/terraform/helper/resource"
 	"testing"
+
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
 )
 
 func TestAVIDataSourceServerAutoScalePolicyBasic(t *testing.T) {
@@ -27,9 +31,9 @@ data "avi_tenant" "default_tenant"{
     name= "admin"
 }
 resource "avi_serverautoscalepolicy" "testServerAutoScalePolicy" {
-	name = "test-ssp-test-abc"
-	tenant_ref = data.avi_tenant.default_tenant.id
 	scalein_alertconfig_refs = []
+	tenant_ref = data.avi_tenant.default_tenant.id
+	name = "test-ssp-test-abc"
 	scaleout_alertconfig_refs = []
 }
 

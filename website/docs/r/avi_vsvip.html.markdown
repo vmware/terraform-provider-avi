@@ -35,7 +35,6 @@ The following arguments are supported:
 * `east_west_placement` - (Optional) Force placement on all service engines in the service engine group (container clouds only).
 * `labels` - (Optional) Key value pairs for granular object access control.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant.
-* `tier1_lr` - (Optional) This sets the placement scope of virtualservice to given tier1 logical router in nsx-t.
 * `use_standard_alb` - (Optional) This overrides the cloud level default and needs to match the se group value in which it will be used if the se group use_standard_alb value is set.
 * `vip` - (Optional) List of virtual service ips and other shareable entities.
 * `vrf_context_ref` - (Optional) Virtual routing context that the virtual service is bound to.

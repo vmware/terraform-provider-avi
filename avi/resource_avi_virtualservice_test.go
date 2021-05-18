@@ -2,12 +2,13 @@ package avi
 
 import (
 	"fmt"
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/avinetworks/sdk/go/models"
-	"github.com/hashicorp/terraform/helper/resource"
-	"github.com/hashicorp/terraform/terraform"
 	"strings"
 	"testing"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/avinetworks/sdk/go/models"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/terraform"
 )
 
 func TestAVIVirtualServiceBasic(t *testing.T) {
@@ -39,7 +40,7 @@ func TestAVIVirtualServiceBasic(t *testing.T) {
 				ResourceName:      "avi_virtualservice.testvs",
 				ImportState:       true,
 				ImportStateVerify: false,
-				Config:            testAccAVIVsVipConfig,
+				Config:            testAccVsConfig,
 			},
 		},
 	})
@@ -177,7 +178,15 @@ resource "avi_virtualservice" "testvs" {
 	application_profile_ref= data.avi_applicationprofile.system_https_profile.id
 	network_profile_ref = data.avi_networkprofile.system_tcp_profile.id
 	vsvip_ref = avi_vsvip.test_vsvip.id
-	services {
+	vip {
+	  vip_id= "0"
+	  ip_address {
+		type= "V4"
+		addr= "10.90.64.88"
+	  }
+      enabled= true
+	}	
+    services {
 	  port= 80
 	  enable_ssl= true
 	  port_range_end= 80
@@ -251,6 +260,14 @@ resource "avi_virtualservice" "testvs" {
 	application_profile_ref= data.avi_applicationprofile.system_https_profile.id
 	network_profile_ref = data.avi_networkprofile.system_tcp_profile.id
 	vsvip_ref = avi_vsvip.test_vsvip.id
+	vip {
+	  vip_id= "0"
+	  ip_address {
+		type= "V4"
+		addr= "10.90.64.88"
+	  }
+      enabled= true
+	}
 	services {
 	  port= 80
 	  enable_ssl= true
@@ -264,4 +281,10 @@ resource "avi_virtualservice" "testvs" {
 	ssl_profile_ref= data.avi_sslprofile.system_standard_sslprofile.id
 	vrf_context_ref= data.avi_vrfcontext.global_vrf.id
   }
+`
+
+const testAccVsConfig = `
+resource "avi_virtualservice" "testvs" {
+  name = "vs-test"
+}
 `

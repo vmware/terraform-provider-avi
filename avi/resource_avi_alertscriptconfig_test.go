@@ -2,11 +2,12 @@ package avi
 
 import (
 	"fmt"
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/resource"
-	"github.com/hashicorp/terraform/terraform"
 	"strings"
 	"testing"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/terraform"
 )
 
 func TestAVIAlertScriptConfigBasic(t *testing.T) {
@@ -94,10 +95,10 @@ data "avi_tenant" "default_tenant"{
     name= "admin"
 }
 resource "avi_alertscriptconfig" "testAlertScriptConfig" {
-	name = "test-se_grp_cleanup_old_spec_se-abc"
 	tenant_ref = data.avi_tenant.default_tenant.id
+	name = "test-se_grp_cleanup_old_spec_se-abc"
 	action_script = <<EOF
-#!/usr/bin/python3
+#!/usr/bin/python
 import os
 import json
 import sys
@@ -237,10 +238,10 @@ data "avi_tenant" "default_tenant"{
     name= "admin"
 }
 resource "avi_alertscriptconfig" "testAlertScriptConfig" {
-	name = "test-se_grp_cleanup_old_spec_se-updated"
 	tenant_ref = data.avi_tenant.default_tenant.id
+	name = "test-se_grp_cleanup_old_spec_se-updated"
 	action_script = <<EOF
-#!/usr/bin/python3
+#!/usr/bin/python
 import os
 import json
 import sys

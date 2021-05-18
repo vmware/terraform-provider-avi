@@ -2,11 +2,12 @@ package avi
 
 import (
 	"fmt"
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/resource"
-	"github.com/hashicorp/terraform/terraform"
 	"strings"
 	"testing"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/terraform"
 )
 
 func TestAVIVsVipBasic(t *testing.T) {
@@ -94,8 +95,6 @@ data "avi_tenant" "default_tenant"{
     name= "admin"
 }
 resource "avi_vsvip" "testVsVip" {
-	name = "test-vsvip-test-abc"
-	tenant_ref = data.avi_tenant.default_tenant.id
 	vip {
 	vip_id = "1"
 	avi_allocated_fip = false
@@ -108,6 +107,8 @@ resource "avi_vsvip" "testVsVip" {
 		addr = "1.2.3.1"
 	}
 }
+	tenant_ref = data.avi_tenant.default_tenant.id
+	name = "test-vsvip-test-abc"
 }
 `
 
@@ -116,8 +117,6 @@ data "avi_tenant" "default_tenant"{
     name= "admin"
 }
 resource "avi_vsvip" "testVsVip" {
-	name = "test-vsvip-updated"
-	tenant_ref = data.avi_tenant.default_tenant.id
 	vip {
 	vip_id = "1"
 	avi_allocated_fip = false
@@ -130,5 +129,7 @@ resource "avi_vsvip" "testVsVip" {
 		addr = "1.2.3.1"
 	}
 }
+	tenant_ref = data.avi_tenant.default_tenant.id
+	name = "test-vsvip-updated"
 }
 `

@@ -1,8 +1,12 @@
+// Copyright 2019 VMware, Inc.
+// SPDX-License-Identifier: Mozilla Public License 2.0
+
 package avi
 
 import (
-	"github.com/hashicorp/terraform/helper/resource"
 	"testing"
+
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
 )
 
 func TestAVIDataSourceUserBasic(t *testing.T) {
@@ -37,20 +41,20 @@ data "avi_useraccountprofile" "default-user-account-profile" {
     name= "Default-User-Account-Profile"
 }
 resource "avi_user" "testUser" {
-	access {
-	role_ref = data.avi_role.default-system-admin-role.id
-	tenant_ref = data.avi_tenant.default_tenant.id
-	all_tenants = false
-}
-	password = "pbkdf2_sha256$100000$vwZd950E3jSj$tC/x4hJBolHm2Ki4uVNbMW59ZQcC95/p5UZUWjmTuFs="
 	username = "test-tf-user"
-	name = "test-tf-user"
-	full_name = "System Administrator"
-	email = ""
-	is_superuser = true
-	default_tenant_ref = data.avi_tenant.default_tenant.id
-	local = true
 	user_profile_ref = data.avi_useraccountprofile.default-user-account-profile.id
+	name = "test-tf-user"
+	access {
+	all_tenants = false
+	tenant_ref = data.avi_tenant.default_tenant.id
+	role_ref = data.avi_role.default-system-admin-role.id
+}
+	is_superuser = true
+	full_name = "System Administrator"
+	password = "pbkdf2_sha256$100000$vwZd950E3jSj$tC/x4hJBolHm2Ki4uVNbMW59ZQcC95/p5UZUWjmTuFs="
+	local = true
+	email = ""
+	default_tenant_ref = data.avi_tenant.default_tenant.id
 }
 
 data "avi_user" "testUser" {

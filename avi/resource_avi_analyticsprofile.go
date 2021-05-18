@@ -1,15 +1,14 @@
-/*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
- */
+// Copyright 2019 VMware, Inc.
+// SPDX-License-Identifier: Mozilla Public License 2.0
+
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourceAnalyticsProfileSchema() map[string]*schema.Schema {
@@ -141,11 +140,6 @@ func ResourceAnalyticsProfileSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  false,
 		},
-		"enable_adaptive_config": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  true,
-		},
 		"enable_advanced_analytics": {
 			Type:     schema.TypeBool,
 			Optional: true,
@@ -181,11 +175,6 @@ func ResourceAnalyticsProfileSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  false,
 		},
-		"exclude_issuer_revoked_ocsp_responses_as_error": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  true,
-		},
 		"exclude_no_dns_record_as_error": {
 			Type:     schema.TypeBool,
 			Optional: true,
@@ -200,11 +189,6 @@ func ResourceAnalyticsProfileSchema() map[string]*schema.Schema {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  false,
-		},
-		"exclude_revoked_ocsp_responses_as_error": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  true,
 		},
 		"exclude_server_dns_error_as_error": {
 			Type:     schema.TypeBool,
@@ -221,11 +205,6 @@ func ResourceAnalyticsProfileSchema() map[string]*schema.Schema {
 			Optional: true,
 			Elem:     &schema.Schema{Type: schema.TypeInt},
 		},
-		"exclude_stale_ocsp_responses_as_error": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  true,
-		},
 		"exclude_syn_retransmit_as_error": {
 			Type:     schema.TypeBool,
 			Optional: true,
@@ -235,11 +214,6 @@ func ResourceAnalyticsProfileSchema() map[string]*schema.Schema {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  false,
-		},
-		"exclude_unavailable_ocsp_responses_as_error": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  true,
 		},
 		"exclude_unsupported_dns_query_as_error": {
 			Type:     schema.TypeBool,
@@ -351,11 +325,6 @@ func ResourceAnalyticsProfileSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  "1.0",
 		},
-		"hs_security_ocsp_revoked_score": {
-			Type:     schema.TypeFloat,
-			Optional: true,
-			Default:  "0.0",
-		},
 		"hs_security_selfsignedcert_penalty": {
 			Type:     schema.TypeFloat,
 			Optional: true,
@@ -385,11 +354,6 @@ func ResourceAnalyticsProfileSchema() map[string]*schema.Schema {
 			Type:     schema.TypeFloat,
 			Optional: true,
 			Default:  "1.0",
-		},
-		"labels": {
-			Type:     schema.TypeList,
-			Optional: true,
-			Elem:     ResourceKeyValueSchema(),
 		},
 		"name": {
 			Type:     schema.TypeString,
@@ -454,7 +418,7 @@ func ResourceAnalyticsProfileImporter(d *schema.ResourceData, m interface{}) ([]
 
 func ResourceAviAnalyticsProfileRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceAnalyticsProfileSchema()
-	err := ApiRead(d, meta, "analyticsprofile", s)
+	err := APIRead(d, meta, "analyticsprofile", s)
 	if err != nil {
 		log.Printf("[ERROR] in reading object %v\n", err)
 	}
@@ -463,7 +427,7 @@ func ResourceAviAnalyticsProfileRead(d *schema.ResourceData, meta interface{}) e
 
 func resourceAviAnalyticsProfileCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceAnalyticsProfileSchema()
-	err := ApiCreateOrUpdate(d, meta, "analyticsprofile", s)
+	err := APICreateOrUpdate(d, meta, "analyticsprofile", s)
 	if err == nil {
 		err = ResourceAviAnalyticsProfileRead(d, meta)
 	}
@@ -473,7 +437,7 @@ func resourceAviAnalyticsProfileCreate(d *schema.ResourceData, meta interface{})
 func resourceAviAnalyticsProfileUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceAnalyticsProfileSchema()
 	var err error
-	err = ApiCreateOrUpdate(d, meta, "analyticsprofile", s)
+	err = APICreateOrUpdate(d, meta, "analyticsprofile", s)
 	if err == nil {
 		err = ResourceAviAnalyticsProfileRead(d, meta)
 	}
@@ -483,7 +447,7 @@ func resourceAviAnalyticsProfileUpdate(d *schema.ResourceData, meta interface{})
 func resourceAviAnalyticsProfileDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "analyticsprofile"
 	client := meta.(*clients.AviClient)
-	if ApiDeleteSystemDefaultCheck(d) {
+	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
 	uuid := d.Get("uuid").(string)

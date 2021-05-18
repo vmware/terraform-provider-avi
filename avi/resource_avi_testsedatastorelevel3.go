@@ -1,15 +1,14 @@
-/*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
- */
+// Copyright 2019 VMware, Inc.
+// SPDX-License-Identifier: Mozilla Public License 2.0
+
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourceTestSeDatastoreLevel3Schema() map[string]*schema.Schema {
@@ -51,7 +50,7 @@ func ResourceTestSeDatastoreLevel3Importer(d *schema.ResourceData, m interface{}
 
 func ResourceAviTestSeDatastoreLevel3Read(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceTestSeDatastoreLevel3Schema()
-	err := ApiRead(d, meta, "testsedatastorelevel3", s)
+	err := APIRead(d, meta, "testsedatastorelevel3", s)
 	if err != nil {
 		log.Printf("[ERROR] in reading object %v\n", err)
 	}
@@ -60,7 +59,7 @@ func ResourceAviTestSeDatastoreLevel3Read(d *schema.ResourceData, meta interface
 
 func resourceAviTestSeDatastoreLevel3Create(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceTestSeDatastoreLevel3Schema()
-	err := ApiCreateOrUpdate(d, meta, "testsedatastorelevel3", s)
+	err := APICreateOrUpdate(d, meta, "testsedatastorelevel3", s)
 	if err == nil {
 		err = ResourceAviTestSeDatastoreLevel3Read(d, meta)
 	}
@@ -70,7 +69,7 @@ func resourceAviTestSeDatastoreLevel3Create(d *schema.ResourceData, meta interfa
 func resourceAviTestSeDatastoreLevel3Update(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceTestSeDatastoreLevel3Schema()
 	var err error
-	err = ApiCreateOrUpdate(d, meta, "testsedatastorelevel3", s)
+	err = APICreateOrUpdate(d, meta, "testsedatastorelevel3", s)
 	if err == nil {
 		err = ResourceAviTestSeDatastoreLevel3Read(d, meta)
 	}
@@ -80,7 +79,7 @@ func resourceAviTestSeDatastoreLevel3Update(d *schema.ResourceData, meta interfa
 func resourceAviTestSeDatastoreLevel3Delete(d *schema.ResourceData, meta interface{}) error {
 	objType := "testsedatastorelevel3"
 	client := meta.(*clients.AviClient)
-	if ApiDeleteSystemDefaultCheck(d) {
+	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
 	uuid := d.Get("uuid").(string)

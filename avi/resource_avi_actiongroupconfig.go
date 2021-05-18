@@ -1,15 +1,14 @@
-/*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
- */
+// Copyright 2019 VMware, Inc.
+// SPDX-License-Identifier: Mozilla Public License 2.0
+
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourceActionGroupConfigSchema() map[string]*schema.Schema {
@@ -89,7 +88,7 @@ func ResourceActionGroupConfigImporter(d *schema.ResourceData, m interface{}) ([
 
 func ResourceAviActionGroupConfigRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceActionGroupConfigSchema()
-	err := ApiRead(d, meta, "actiongroupconfig", s)
+	err := APIRead(d, meta, "actiongroupconfig", s)
 	if err != nil {
 		log.Printf("[ERROR] in reading object %v\n", err)
 	}
@@ -98,7 +97,7 @@ func ResourceAviActionGroupConfigRead(d *schema.ResourceData, meta interface{}) 
 
 func resourceAviActionGroupConfigCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceActionGroupConfigSchema()
-	err := ApiCreateOrUpdate(d, meta, "actiongroupconfig", s)
+	err := APICreateOrUpdate(d, meta, "actiongroupconfig", s)
 	if err == nil {
 		err = ResourceAviActionGroupConfigRead(d, meta)
 	}
@@ -108,7 +107,7 @@ func resourceAviActionGroupConfigCreate(d *schema.ResourceData, meta interface{}
 func resourceAviActionGroupConfigUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceActionGroupConfigSchema()
 	var err error
-	err = ApiCreateOrUpdate(d, meta, "actiongroupconfig", s)
+	err = APICreateOrUpdate(d, meta, "actiongroupconfig", s)
 	if err == nil {
 		err = ResourceAviActionGroupConfigRead(d, meta)
 	}
@@ -118,7 +117,7 @@ func resourceAviActionGroupConfigUpdate(d *schema.ResourceData, meta interface{}
 func resourceAviActionGroupConfigDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "actiongroupconfig"
 	client := meta.(*clients.AviClient)
-	if ApiDeleteSystemDefaultCheck(d) {
+	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
 	uuid := d.Get("uuid").(string)

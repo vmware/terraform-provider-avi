@@ -5,32 +5,23 @@ package avi
 
 import "github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 
-func dataSourceAviSSOPolicy() *schema.Resource {
+func dataSourceAviObjectAccessPolicy() *schema.Resource {
 	return &schema.Resource{
-		Read: ResourceAviSSOPolicyRead,
+		Read: ResourceAviObjectAccessPolicyRead,
 		Schema: map[string]*schema.Schema{
-			"authentication_policy": {
-				Type:     schema.TypeSet,
-				Computed: true,
-				Elem:     ResourceAuthenticationPolicySchema(),
-			},
-			"authorization_policy": {
-				Type:     schema.TypeSet,
-				Computed: true,
-				Elem:     ResourceAuthorizationPolicySchema(),
-			},
 			"name": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
+			"rules": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceObjectAccessPolicyRuleSchema(),
+			},
 			"tenant_ref": {
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
-			},
-			"type": {
-				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"uuid": {

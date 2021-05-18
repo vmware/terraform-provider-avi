@@ -2,11 +2,12 @@ package avi
 
 import (
 	"fmt"
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/resource"
-	"github.com/hashicorp/terraform/terraform"
 	"strings"
 	"testing"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/terraform"
 )
 
 func TestAVINetworkBasic(t *testing.T) {
@@ -111,8 +112,8 @@ data "avi_tenant" "default_tenant"{
 }
 resource "avi_network" "testNetwork" {
 	name = "test-network-test-abc"
-	tenant_ref = data.avi_tenant.default_tenant.id
 	exclude_discovered_subnets = false
+	tenant_ref = data.avi_tenant.default_tenant.id
 	synced_from_se = true
 	dhcp_enabled = true
 	vcenter_dvs = true
@@ -125,8 +126,8 @@ data "avi_tenant" "default_tenant"{
 }
 resource "avi_network" "testNetwork" {
 	name = "test-network-updated"
-	tenant_ref = data.avi_tenant.default_tenant.id
 	exclude_discovered_subnets = false
+	tenant_ref = data.avi_tenant.default_tenant.id
 	synced_from_se = true
 	dhcp_enabled = true
 	vcenter_dvs = true

@@ -1,15 +1,14 @@
-/*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
- */
+// Copyright 2019 VMware, Inc.
+// SPDX-License-Identifier: Mozilla Public License 2.0
+
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourceVsVipSchema() map[string]*schema.Schema {
@@ -29,21 +28,11 @@ func ResourceVsVipSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  false,
 		},
-		"labels": {
-			Type:     schema.TypeList,
-			Optional: true,
-			Elem:     ResourceKeyValueSchema(),
-		},
 		"name": {
 			Type:     schema.TypeString,
 			Required: true,
 		},
 		"tenant_ref": {
-			Type:     schema.TypeString,
-			Optional: true,
-			Computed: true,
-		},
-		"tier1_lr": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
@@ -96,7 +85,7 @@ func ResourceVsVipImporter(d *schema.ResourceData, m interface{}) ([]*schema.Res
 
 func ResourceAviVsVipRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceVsVipSchema()
-	err := ApiRead(d, meta, "vsvip", s)
+	err := APIRead(d, meta, "vsvip", s)
 	if err != nil {
 		log.Printf("[ERROR] in reading object %v\n", err)
 	}
@@ -105,7 +94,7 @@ func ResourceAviVsVipRead(d *schema.ResourceData, meta interface{}) error {
 
 func resourceAviVsVipCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceVsVipSchema()
-	err := ApiCreateOrUpdate(d, meta, "vsvip", s)
+	err := APICreateOrUpdate(d, meta, "vsvip", s)
 	if err == nil {
 		err = ResourceAviVsVipRead(d, meta)
 	}
@@ -128,11 +117,11 @@ func resourceAviVsVipUpdate(d *schema.ResourceData, meta interface{}) error {
 		//Before GO lang sets zero value to fields which are absent in api response
 		//setting those fields to schema default and then overwritting d (local state)
 		if localData, err := SchemaToAviData(d, s); err == nil {
-			apiResponse, err = SetDefaultsInAPIRes(existingvsvip, localData, s)
+			apiResponse, _ = SetDefaultsInAPIRes(existingvsvip, localData, s)
 		} else {
 			log.Printf("[ERROR] resourceAviVsVipUpdate in SchemaToAviData: %v\n", err)
 		}
-		if vsvipobj, err := ApiDataToSchema(apiResponse, nil, nil); err == nil {
+		if vsvipobj, err := APIDataToSchema(apiResponse, nil, nil); err == nil {
 			objs := vsvipobj.(*schema.Set).List()
 			for obj := 0; obj < len(objs); obj++ {
 				vipobjs = objs[obj].(map[string]interface{})["vip"].([]interface{})
@@ -151,12 +140,12 @@ func resourceAviVsVipUpdate(d *schema.ResourceData, meta interface{}) error {
 				}
 			}
 		} else {
-			log.Printf("[ERROR] resourceAviVsVipUpdate in ApiDataToSchema: %v\n", err)
+			log.Printf("[ERROR] resourceAviVsVipUpdate in APIDataToSchema: %v\n", err)
 		}
 	} else {
 		log.Printf("[ERROR] resourceAviVsVipUpdate in GET: %v\n", err)
 	}
-	err = ApiCreateOrUpdate(d, meta, "vsvip", s)
+	err = APICreateOrUpdate(d, meta, "vsvip", s)
 	if err == nil {
 		err = ResourceAviVsVipRead(d, meta)
 	}
@@ -166,7 +155,7 @@ func resourceAviVsVipUpdate(d *schema.ResourceData, meta interface{}) error {
 func resourceAviVsVipDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "vsvip"
 	client := meta.(*clients.AviClient)
-	if ApiDeleteSystemDefaultCheck(d) {
+	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
 	uuid := d.Get("uuid").(string)

@@ -1,8 +1,12 @@
+// Copyright 2019 VMware, Inc.
+// SPDX-License-Identifier: Mozilla Public License 2.0
+
 package avi
 
 import (
-	"github.com/hashicorp/terraform/helper/resource"
 	"testing"
+
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
 )
 
 func TestAVIDataSourceNetworkBasic(t *testing.T) {
@@ -36,8 +40,8 @@ data "avi_tenant" "default_tenant"{
 }
 resource "avi_network" "testNetwork" {
 	name = "test-network-test-abc"
-	tenant_ref = data.avi_tenant.default_tenant.id
 	exclude_discovered_subnets = false
+	tenant_ref = data.avi_tenant.default_tenant.id
 	synced_from_se = true
 	dhcp_enabled = true
 	vcenter_dvs = true

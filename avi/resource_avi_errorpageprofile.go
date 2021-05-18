@@ -1,15 +1,14 @@
-/*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
- */
+// Copyright 2019 VMware, Inc.
+// SPDX-License-Identifier: Mozilla Public License 2.0
+
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourceErrorPageProfileSchema() map[string]*schema.Schema {
@@ -19,15 +18,9 @@ func ResourceErrorPageProfileSchema() map[string]*schema.Schema {
 			Optional: true,
 			Elem:     ResourceErrorPageSchema(),
 		},
-		"labels": {
-			Type:     schema.TypeList,
-			Optional: true,
-			Elem:     ResourceKeyValueSchema(),
-		},
 		"name": {
 			Type:     schema.TypeString,
-			Optional: true,
-			Computed: true,
+			Required: true,
 		},
 		"tenant_ref": {
 			Type:     schema.TypeString,
@@ -62,7 +55,7 @@ func ResourceErrorPageProfileImporter(d *schema.ResourceData, m interface{}) ([]
 
 func ResourceAviErrorPageProfileRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceErrorPageProfileSchema()
-	err := ApiRead(d, meta, "errorpageprofile", s)
+	err := APIRead(d, meta, "errorpageprofile", s)
 	if err != nil {
 		log.Printf("[ERROR] in reading object %v\n", err)
 	}
@@ -71,7 +64,7 @@ func ResourceAviErrorPageProfileRead(d *schema.ResourceData, meta interface{}) e
 
 func resourceAviErrorPageProfileCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceErrorPageProfileSchema()
-	err := ApiCreateOrUpdate(d, meta, "errorpageprofile", s)
+	err := APICreateOrUpdate(d, meta, "errorpageprofile", s)
 	if err == nil {
 		err = ResourceAviErrorPageProfileRead(d, meta)
 	}
@@ -81,7 +74,7 @@ func resourceAviErrorPageProfileCreate(d *schema.ResourceData, meta interface{})
 func resourceAviErrorPageProfileUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceErrorPageProfileSchema()
 	var err error
-	err = ApiCreateOrUpdate(d, meta, "errorpageprofile", s)
+	err = APICreateOrUpdate(d, meta, "errorpageprofile", s)
 	if err == nil {
 		err = ResourceAviErrorPageProfileRead(d, meta)
 	}
@@ -91,7 +84,7 @@ func resourceAviErrorPageProfileUpdate(d *schema.ResourceData, meta interface{})
 func resourceAviErrorPageProfileDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "errorpageprofile"
 	client := meta.(*clients.AviClient)
-	if ApiDeleteSystemDefaultCheck(d) {
+	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
 	uuid := d.Get("uuid").(string)

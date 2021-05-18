@@ -1,11 +1,9 @@
-/*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
- */
+// Copyright 2019 VMware, Inc.
+// SPDX-License-Identifier: Mozilla Public License 2.0
+
 package avi
 
-import "github.com/hashicorp/terraform/helper/schema"
+import "github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 
 func dataSourceAviSSLKeyAndCertificate() *schema.Resource {
 	return &schema.Resource{
@@ -37,10 +35,6 @@ func dataSourceAviSSLKeyAndCertificate() *schema.Resource {
 				Type:     schema.TypeList,
 				Computed: true,
 				Elem:     ResourceCustomParamsSchema(),
-			},
-			"enable_ocsp_stapling": {
-				Type:     schema.TypeBool,
-				Computed: true,
 			},
 			"enckey_base64": {
 				Type:     schema.TypeString,
@@ -75,29 +69,10 @@ func dataSourceAviSSLKeyAndCertificate() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"labels": {
-				Type:     schema.TypeList,
-				Computed: true,
-				Elem:     ResourceKeyValueSchema(),
-			},
 			"name": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
-			},
-			"ocsp_config": {
-				Type:     schema.TypeSet,
-				Computed: true,
-				Elem:     ResourceOCSPConfigSchema(),
-			},
-			"ocsp_error_status": {
-				Type:     schema.TypeString,
-				Computed: true,
-			},
-			"ocsp_response_info": {
-				Type:     schema.TypeSet,
-				Computed: true,
-				Elem:     ResourceOCSPResponseInfoSchema(),
 			},
 			"status": {
 				Type:     schema.TypeString,

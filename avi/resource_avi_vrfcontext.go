@@ -1,30 +1,18 @@
-/*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
- */
+// Copyright 2019 VMware, Inc.
+// SPDX-License-Identifier: Mozilla Public License 2.0
+
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourceVrfContextSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"attrs": {
-			Type:     schema.TypeList,
-			Optional: true,
-			Elem:     ResourceKeyValueSchema(),
-		},
-		"bfd_profile": {
-			Type:     schema.TypeSet,
-			Optional: true,
-			Computed: true,
-			Elem:     ResourceBfdProfileSchema(),
-		},
 		"bgp_profile": {
 			Type:     schema.TypeSet,
 			Optional: true,
@@ -115,7 +103,7 @@ func ResourceVrfContextImporter(d *schema.ResourceData, m interface{}) ([]*schem
 
 func ResourceAviVrfContextRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceVrfContextSchema()
-	err := ApiRead(d, meta, "vrfcontext", s)
+	err := APIRead(d, meta, "vrfcontext", s)
 	if err != nil {
 		log.Printf("[ERROR] in reading object %v\n", err)
 	}
@@ -124,7 +112,7 @@ func ResourceAviVrfContextRead(d *schema.ResourceData, meta interface{}) error {
 
 func resourceAviVrfContextCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceVrfContextSchema()
-	err := ApiCreateOrUpdate(d, meta, "vrfcontext", s)
+	err := APICreateOrUpdate(d, meta, "vrfcontext", s)
 	if err == nil {
 		err = ResourceAviVrfContextRead(d, meta)
 	}
@@ -134,7 +122,7 @@ func resourceAviVrfContextCreate(d *schema.ResourceData, meta interface{}) error
 func resourceAviVrfContextUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceVrfContextSchema()
 	var err error
-	err = ApiCreateOrUpdate(d, meta, "vrfcontext", s)
+	err = APICreateOrUpdate(d, meta, "vrfcontext", s)
 	if err == nil {
 		err = ResourceAviVrfContextRead(d, meta)
 	}
@@ -144,7 +132,7 @@ func resourceAviVrfContextUpdate(d *schema.ResourceData, meta interface{}) error
 func resourceAviVrfContextDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "vrfcontext"
 	client := meta.(*clients.AviClient)
-	if ApiDeleteSystemDefaultCheck(d) {
+	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
 	uuid := d.Get("uuid").(string)

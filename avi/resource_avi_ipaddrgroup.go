@@ -1,17 +1,17 @@
-/*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
- */
+// Copyright 2019 VMware, Inc.
+// SPDX-License-Identifier: Mozilla Public License 2.0
+
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
+//nolint
 func ResourceIpAddrGroupSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"addrs": {
@@ -38,11 +38,6 @@ func ResourceIpAddrGroupSchema() map[string]*schema.Schema {
 			Type:     schema.TypeList,
 			Optional: true,
 			Elem:     ResourceIpAddrPortSchema(),
-		},
-		"labels": {
-			Type:     schema.TypeList,
-			Optional: true,
-			Elem:     ResourceKeyValueSchema(),
 		},
 		"marathon_app_name": {
 			Type:     schema.TypeString,
@@ -81,6 +76,7 @@ func ResourceIpAddrGroupSchema() map[string]*schema.Schema {
 	}
 }
 
+//nolint
 func resourceAviIpAddrGroup() *schema.Resource {
 	return &schema.Resource{
 		Create: resourceAviIpAddrGroupCreate,
@@ -94,43 +90,48 @@ func resourceAviIpAddrGroup() *schema.Resource {
 	}
 }
 
+//nolint
 func ResourceIpAddrGroupImporter(d *schema.ResourceData, m interface{}) ([]*schema.ResourceData, error) {
 	s := ResourceIpAddrGroupSchema()
 	return ResourceImporter(d, m, "ipaddrgroup", s)
 }
 
+//nolint
 func ResourceAviIpAddrGroupRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceIpAddrGroupSchema()
-	err := ApiRead(d, meta, "ipaddrgroup", s)
+	err := APIRead(d, meta, "ipaddrgroup", s)
 	if err != nil {
 		log.Printf("[ERROR] in reading object %v\n", err)
 	}
 	return err
 }
 
+//nolint
 func resourceAviIpAddrGroupCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceIpAddrGroupSchema()
-	err := ApiCreateOrUpdate(d, meta, "ipaddrgroup", s)
+	err := APICreateOrUpdate(d, meta, "ipaddrgroup", s)
 	if err == nil {
 		err = ResourceAviIpAddrGroupRead(d, meta)
 	}
 	return err
 }
 
+//nolint
 func resourceAviIpAddrGroupUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceIpAddrGroupSchema()
 	var err error
-	err = ApiCreateOrUpdate(d, meta, "ipaddrgroup", s)
+	err = APICreateOrUpdate(d, meta, "ipaddrgroup", s)
 	if err == nil {
 		err = ResourceAviIpAddrGroupRead(d, meta)
 	}
 	return err
 }
 
+//nolint
 func resourceAviIpAddrGroupDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "ipaddrgroup"
 	client := meta.(*clients.AviClient)
-	if ApiDeleteSystemDefaultCheck(d) {
+	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
 	uuid := d.Get("uuid").(string)

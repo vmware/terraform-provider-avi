@@ -2,11 +2,12 @@ package avi
 
 import (
 	"fmt"
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/resource"
-	"github.com/hashicorp/terraform/terraform"
 	"strings"
 	"testing"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/terraform"
 )
 
 func TestAVIActionGroupConfigBasic(t *testing.T) {
@@ -102,11 +103,11 @@ data "avi_tenant" "default_tenant"{
     name= "admin"
 }
 resource "avi_actiongroupconfig" "testActionGroupConfig" {
-	name = "test-System-Alert-Level-High-abc"
-	tenant_ref = data.avi_tenant.default_tenant.id
-	level = "ALERT_HIGH"
 	autoscale_trigger_notification = false
 	external_only = false
+	tenant_ref = data.avi_tenant.default_tenant.id
+	name = "test-System-Alert-Level-High-abc"
+	level = "ALERT_HIGH"
 }
 `
 
@@ -115,10 +116,10 @@ data "avi_tenant" "default_tenant"{
     name= "admin"
 }
 resource "avi_actiongroupconfig" "testActionGroupConfig" {
-	name = "test-System-Alert-Level-High-updated"
-	tenant_ref = data.avi_tenant.default_tenant.id
-	level = "ALERT_HIGH"
 	autoscale_trigger_notification = true
 	external_only = false
+	tenant_ref = data.avi_tenant.default_tenant.id
+	name = "test-System-Alert-Level-High-updated"
+	level = "ALERT_HIGH"
 }
 `

@@ -1,15 +1,14 @@
-/*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
- */
+// Copyright 2019 VMware, Inc.
+// SPDX-License-Identifier: Mozilla Public License 2.0
+
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourcePoolGroupSchema() map[string]*schema.Schema {
@@ -39,11 +38,6 @@ func ResourcePoolGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
-		"enable_http2": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
-		},
 		"fail_action": {
 			Type:     schema.TypeSet,
 			Optional: true,
@@ -54,11 +48,6 @@ func ResourcePoolGroupSchema() map[string]*schema.Schema {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  false,
-		},
-		"labels": {
-			Type:     schema.TypeList,
-			Optional: true,
-			Elem:     ResourceKeyValueSchema(),
 		},
 		"members": {
 			Type:     schema.TypeList,
@@ -117,7 +106,7 @@ func ResourcePoolGroupImporter(d *schema.ResourceData, m interface{}) ([]*schema
 
 func ResourceAviPoolGroupRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourcePoolGroupSchema()
-	err := ApiRead(d, meta, "poolgroup", s)
+	err := APIRead(d, meta, "poolgroup", s)
 	if err != nil {
 		log.Printf("[ERROR] in reading object %v\n", err)
 	}
@@ -126,7 +115,7 @@ func ResourceAviPoolGroupRead(d *schema.ResourceData, meta interface{}) error {
 
 func resourceAviPoolGroupCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourcePoolGroupSchema()
-	err := ApiCreateOrUpdate(d, meta, "poolgroup", s)
+	err := APICreateOrUpdate(d, meta, "poolgroup", s)
 	if err == nil {
 		err = ResourceAviPoolGroupRead(d, meta)
 	}
@@ -136,7 +125,7 @@ func resourceAviPoolGroupCreate(d *schema.ResourceData, meta interface{}) error 
 func resourceAviPoolGroupUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourcePoolGroupSchema()
 	var err error
-	err = ApiCreateOrUpdate(d, meta, "poolgroup", s)
+	err = APICreateOrUpdate(d, meta, "poolgroup", s)
 	if err == nil {
 		err = ResourceAviPoolGroupRead(d, meta)
 	}
@@ -146,7 +135,7 @@ func resourceAviPoolGroupUpdate(d *schema.ResourceData, meta interface{}) error 
 func resourceAviPoolGroupDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "poolgroup"
 	client := meta.(*clients.AviClient)
-	if ApiDeleteSystemDefaultCheck(d) {
+	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
 	uuid := d.Get("uuid").(string)

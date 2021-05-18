@@ -1,15 +1,14 @@
-/*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
- */
+// Copyright 2019 VMware, Inc.
+// SPDX-License-Identifier: Mozilla Public License 2.0
+
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourceAlertConfigSchema() map[string]*schema.Schema {
@@ -124,7 +123,7 @@ func ResourceAlertConfigImporter(d *schema.ResourceData, m interface{}) ([]*sche
 
 func ResourceAviAlertConfigRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceAlertConfigSchema()
-	err := ApiRead(d, meta, "alertconfig", s)
+	err := APIRead(d, meta, "alertconfig", s)
 	if err != nil {
 		log.Printf("[ERROR] in reading object %v\n", err)
 	}
@@ -133,7 +132,7 @@ func ResourceAviAlertConfigRead(d *schema.ResourceData, meta interface{}) error 
 
 func resourceAviAlertConfigCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceAlertConfigSchema()
-	err := ApiCreateOrUpdate(d, meta, "alertconfig", s)
+	err := APICreateOrUpdate(d, meta, "alertconfig", s)
 	if err == nil {
 		err = ResourceAviAlertConfigRead(d, meta)
 	}
@@ -143,7 +142,7 @@ func resourceAviAlertConfigCreate(d *schema.ResourceData, meta interface{}) erro
 func resourceAviAlertConfigUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceAlertConfigSchema()
 	var err error
-	err = ApiCreateOrUpdate(d, meta, "alertconfig", s)
+	err = APICreateOrUpdate(d, meta, "alertconfig", s)
 	if err == nil {
 		err = ResourceAviAlertConfigRead(d, meta)
 	}
@@ -153,7 +152,7 @@ func resourceAviAlertConfigUpdate(d *schema.ResourceData, meta interface{}) erro
 func resourceAviAlertConfigDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "alertconfig"
 	client := meta.(*clients.AviClient)
-	if ApiDeleteSystemDefaultCheck(d) {
+	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
 	uuid := d.Get("uuid").(string)

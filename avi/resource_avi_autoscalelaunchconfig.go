@@ -1,15 +1,14 @@
-/*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
- */
+// Copyright 2019 VMware, Inc.
+// SPDX-License-Identifier: Mozilla Public License 2.0
+
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourceAutoScaleLaunchConfigSchema() map[string]*schema.Schema {
@@ -23,11 +22,6 @@ func ResourceAutoScaleLaunchConfigSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
-		},
-		"labels": {
-			Type:     schema.TypeList,
-			Optional: true,
-			Elem:     ResourceKeyValueSchema(),
 		},
 		"mesos": {
 			Type:     schema.TypeSet,
@@ -83,7 +77,7 @@ func ResourceAutoScaleLaunchConfigImporter(d *schema.ResourceData, m interface{}
 
 func ResourceAviAutoScaleLaunchConfigRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceAutoScaleLaunchConfigSchema()
-	err := ApiRead(d, meta, "autoscalelaunchconfig", s)
+	err := APIRead(d, meta, "autoscalelaunchconfig", s)
 	if err != nil {
 		log.Printf("[ERROR] in reading object %v\n", err)
 	}
@@ -92,7 +86,7 @@ func ResourceAviAutoScaleLaunchConfigRead(d *schema.ResourceData, meta interface
 
 func resourceAviAutoScaleLaunchConfigCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceAutoScaleLaunchConfigSchema()
-	err := ApiCreateOrUpdate(d, meta, "autoscalelaunchconfig", s)
+	err := APICreateOrUpdate(d, meta, "autoscalelaunchconfig", s)
 	if err == nil {
 		err = ResourceAviAutoScaleLaunchConfigRead(d, meta)
 	}
@@ -102,7 +96,7 @@ func resourceAviAutoScaleLaunchConfigCreate(d *schema.ResourceData, meta interfa
 func resourceAviAutoScaleLaunchConfigUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceAutoScaleLaunchConfigSchema()
 	var err error
-	err = ApiCreateOrUpdate(d, meta, "autoscalelaunchconfig", s)
+	err = APICreateOrUpdate(d, meta, "autoscalelaunchconfig", s)
 	if err == nil {
 		err = ResourceAviAutoScaleLaunchConfigRead(d, meta)
 	}
@@ -112,7 +106,7 @@ func resourceAviAutoScaleLaunchConfigUpdate(d *schema.ResourceData, meta interfa
 func resourceAviAutoScaleLaunchConfigDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "autoscalelaunchconfig"
 	client := meta.(*clients.AviClient)
-	if ApiDeleteSystemDefaultCheck(d) {
+	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
 	uuid := d.Get("uuid").(string)

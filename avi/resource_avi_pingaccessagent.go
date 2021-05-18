@@ -1,15 +1,14 @@
-/*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
- */
+// Copyright 2019 VMware, Inc.
+// SPDX-License-Identifier: Mozilla Public License 2.0
+
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourcePingAccessAgentSchema() map[string]*schema.Schema {
@@ -19,31 +18,22 @@ func ResourcePingAccessAgentSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
-		"labels": {
-			Type:     schema.TypeList,
-			Optional: true,
-			Elem:     ResourceKeyValueSchema(),
-		},
 		"name": {
 			Type:     schema.TypeString,
-			Optional: true,
-			Computed: true,
+			Required: true,
 		},
 		"pingaccess_pool_ref": {
 			Type:     schema.TypeString,
-			Optional: true,
-			Computed: true,
+			Required: true,
 		},
 		"primary_server": {
 			Type:     schema.TypeSet,
-			Optional: true,
-			Computed: true,
+			Required: true,
 			Elem:     ResourcePoolServerSchema(),
 		},
 		"properties_file_data": {
 			Type:     schema.TypeString,
-			Optional: true,
-			Computed: true,
+			Required: true,
 		},
 		"tenant_ref": {
 			Type:     schema.TypeString,
@@ -78,7 +68,7 @@ func ResourcePingAccessAgentImporter(d *schema.ResourceData, m interface{}) ([]*
 
 func ResourceAviPingAccessAgentRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourcePingAccessAgentSchema()
-	err := ApiRead(d, meta, "pingaccessagent", s)
+	err := APIRead(d, meta, "pingaccessagent", s)
 	if err != nil {
 		log.Printf("[ERROR] in reading object %v\n", err)
 	}
@@ -87,7 +77,7 @@ func ResourceAviPingAccessAgentRead(d *schema.ResourceData, meta interface{}) er
 
 func resourceAviPingAccessAgentCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourcePingAccessAgentSchema()
-	err := ApiCreateOrUpdate(d, meta, "pingaccessagent", s)
+	err := APICreateOrUpdate(d, meta, "pingaccessagent", s)
 	if err == nil {
 		err = ResourceAviPingAccessAgentRead(d, meta)
 	}
@@ -97,7 +87,7 @@ func resourceAviPingAccessAgentCreate(d *schema.ResourceData, meta interface{}) 
 func resourceAviPingAccessAgentUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourcePingAccessAgentSchema()
 	var err error
-	err = ApiCreateOrUpdate(d, meta, "pingaccessagent", s)
+	err = APICreateOrUpdate(d, meta, "pingaccessagent", s)
 	if err == nil {
 		err = ResourceAviPingAccessAgentRead(d, meta)
 	}
@@ -107,7 +97,7 @@ func resourceAviPingAccessAgentUpdate(d *schema.ResourceData, meta interface{}) 
 func resourceAviPingAccessAgentDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "pingaccessagent"
 	client := meta.(*clients.AviClient)
-	if ApiDeleteSystemDefaultCheck(d) {
+	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
 	uuid := d.Get("uuid").(string)

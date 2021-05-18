@@ -1,15 +1,14 @@
-/*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
- */
+// Copyright 2019 VMware, Inc.
+// SPDX-License-Identifier: Mozilla Public License 2.0
+
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourcePoolGroupDeploymentPolicySchema() map[string]*schema.Schema {
@@ -28,11 +27,6 @@ func ResourcePoolGroupDeploymentPolicySchema() map[string]*schema.Schema {
 			Type:     schema.TypeInt,
 			Optional: true,
 			Default:  300,
-		},
-		"labels": {
-			Type:     schema.TypeList,
-			Optional: true,
-			Elem:     ResourceKeyValueSchema(),
 		},
 		"name": {
 			Type:     schema.TypeString,
@@ -96,7 +90,7 @@ func ResourcePoolGroupDeploymentPolicyImporter(d *schema.ResourceData, m interfa
 
 func ResourceAviPoolGroupDeploymentPolicyRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourcePoolGroupDeploymentPolicySchema()
-	err := ApiRead(d, meta, "poolgroupdeploymentpolicy", s)
+	err := APIRead(d, meta, "poolgroupdeploymentpolicy", s)
 	if err != nil {
 		log.Printf("[ERROR] in reading object %v\n", err)
 	}
@@ -105,7 +99,7 @@ func ResourceAviPoolGroupDeploymentPolicyRead(d *schema.ResourceData, meta inter
 
 func resourceAviPoolGroupDeploymentPolicyCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourcePoolGroupDeploymentPolicySchema()
-	err := ApiCreateOrUpdate(d, meta, "poolgroupdeploymentpolicy", s)
+	err := APICreateOrUpdate(d, meta, "poolgroupdeploymentpolicy", s)
 	if err == nil {
 		err = ResourceAviPoolGroupDeploymentPolicyRead(d, meta)
 	}
@@ -115,7 +109,7 @@ func resourceAviPoolGroupDeploymentPolicyCreate(d *schema.ResourceData, meta int
 func resourceAviPoolGroupDeploymentPolicyUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourcePoolGroupDeploymentPolicySchema()
 	var err error
-	err = ApiCreateOrUpdate(d, meta, "poolgroupdeploymentpolicy", s)
+	err = APICreateOrUpdate(d, meta, "poolgroupdeploymentpolicy", s)
 	if err == nil {
 		err = ResourceAviPoolGroupDeploymentPolicyRead(d, meta)
 	}
@@ -125,7 +119,7 @@ func resourceAviPoolGroupDeploymentPolicyUpdate(d *schema.ResourceData, meta int
 func resourceAviPoolGroupDeploymentPolicyDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "poolgroupdeploymentpolicy"
 	client := meta.(*clients.AviClient)
-	if ApiDeleteSystemDefaultCheck(d) {
+	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
 	uuid := d.Get("uuid").(string)

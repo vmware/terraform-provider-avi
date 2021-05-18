@@ -2,11 +2,12 @@ package avi
 
 import (
 	"fmt"
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/resource"
-	"github.com/hashicorp/terraform/terraform"
 	"strings"
 	"testing"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/terraform"
 )
 
 func TestAVIHealthMonitorBasic(t *testing.T) {
@@ -22,9 +23,9 @@ func TestAVIHealthMonitorBasic(t *testing.T) {
 					resource.TestCheckResourceAttr(
 						"avi_healthmonitor.testHealthMonitor", "name", "test-System-HTTP-abc"),
 					resource.TestCheckResourceAttr(
-						"avi_healthmonitor.testHealthMonitor", "is_federated", "false"),
-					resource.TestCheckResourceAttr(
 						"avi_healthmonitor.testHealthMonitor", "receive_timeout", "4"),
+					resource.TestCheckResourceAttr(
+						"avi_healthmonitor.testHealthMonitor", "is_federated", "false"),
 					resource.TestCheckResourceAttr(
 						"avi_healthmonitor.testHealthMonitor", "failed_checks", "3"),
 					resource.TestCheckResourceAttr(
@@ -40,9 +41,9 @@ func TestAVIHealthMonitorBasic(t *testing.T) {
 					resource.TestCheckResourceAttr(
 						"avi_healthmonitor.testHealthMonitor", "name", "test-System-HTTP-updated"),
 					resource.TestCheckResourceAttr(
-						"avi_healthmonitor.testHealthMonitor", "is_federated", "false"),
-					resource.TestCheckResourceAttr(
 						"avi_healthmonitor.testHealthMonitor", "receive_timeout", "4"),
+					resource.TestCheckResourceAttr(
+						"avi_healthmonitor.testHealthMonitor", "is_federated", "false"),
 					resource.TestCheckResourceAttr(
 						"avi_healthmonitor.testHealthMonitor", "failed_checks", "3"),
 					resource.TestCheckResourceAttr(
@@ -114,20 +115,19 @@ data "avi_tenant" "default_tenant"{
     name= "admin"
 }
 resource "avi_healthmonitor" "testHealthMonitor" {
-	name = "test-System-HTTP-abc"
-	is_federated = false
-	tenant_ref = data.avi_tenant.default_tenant.id
 	receive_timeout = "4"
+	name = "test-System-HTTP-abc"
+	tenant_ref = data.avi_tenant.default_tenant.id
+	is_federated = false
 	failed_checks = "3"
 	send_interval = "10"
 	http_monitor {
 		exact_http_request = false
 		http_request = "HEAD / HTTP/1.0"
-		response_size = "2050"
 		http_response_code = ["HTTP_2XX","HTTP_3XX"]
 	}
-	successful_checks = "3"
 	type = "HEALTH_MONITOR_HTTP"
+	successful_checks = "3"
 }
 `
 
@@ -136,19 +136,18 @@ data "avi_tenant" "default_tenant"{
     name= "admin"
 }
 resource "avi_healthmonitor" "testHealthMonitor" {
-	name = "test-System-HTTP-updated"
-	is_federated = false
-	tenant_ref = data.avi_tenant.default_tenant.id
 	receive_timeout = "4"
+	name = "test-System-HTTP-updated"
+	tenant_ref = data.avi_tenant.default_tenant.id
+	is_federated = false
 	failed_checks = "3"
 	send_interval = "10"
 	http_monitor {
 		exact_http_request = false
 		http_request = "HEAD / HTTP/1.0"
-		response_size = "2050"
 		http_response_code = ["HTTP_2XX","HTTP_3XX"]
 	}
-	successful_checks = "3"
 	type = "HEALTH_MONITOR_HTTP"
+	successful_checks = "3"
 }
 `

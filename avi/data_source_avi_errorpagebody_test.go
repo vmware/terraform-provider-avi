@@ -1,8 +1,12 @@
+// Copyright 2019 VMware, Inc.
+// SPDX-License-Identifier: Mozilla Public License 2.0
+
 package avi
 
 import (
-	"github.com/hashicorp/terraform/helper/resource"
 	"testing"
+
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
 )
 
 func TestAVIDataSourceErrorPageBodyBasic(t *testing.T) {
@@ -27,9 +31,9 @@ data "avi_tenant" "default_tenant"{
     name= "admin"
 }
 resource "avi_errorpagebody" "testErrorPageBody" {
-	name = "test-Custom-Error-Page-abc"
-	tenant_ref = data.avi_tenant.default_tenant.id
 	error_page_body = "<!DOCTYPE html><html><head></head><body><div><p> Please contact our technical support</p></div></body></html>"
+	tenant_ref = data.avi_tenant.default_tenant.id
+	name = "test-Custom-Error-Page-abc"
 }
 
 data "avi_errorpagebody" "testErrorPageBody" {

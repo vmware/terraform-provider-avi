@@ -1,15 +1,14 @@
-/*
- * Copyright (c) 2017. Avi Networks.
- * Author: Gaurav Rastogi (grastogi@avinetworks.com)
- *
- */
+// Copyright 2019 VMware, Inc.
+// SPDX-License-Identifier: Mozilla Public License 2.0
+
 package avi
 
 import (
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/avinetworks/sdk/go/clients"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourceCloudPropertiesSchema() map[string]*schema.Schema {
@@ -63,7 +62,7 @@ func ResourceCloudPropertiesImporter(d *schema.ResourceData, m interface{}) ([]*
 
 func ResourceAviCloudPropertiesRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceCloudPropertiesSchema()
-	err := ApiRead(d, meta, "cloudproperties", s)
+	err := APIRead(d, meta, "cloudproperties", s)
 	if err != nil {
 		log.Printf("[ERROR] in reading object %v\n", err)
 	}
@@ -72,7 +71,7 @@ func ResourceAviCloudPropertiesRead(d *schema.ResourceData, meta interface{}) er
 
 func resourceAviCloudPropertiesCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceCloudPropertiesSchema()
-	err := ApiCreateOrUpdate(d, meta, "cloudproperties", s)
+	err := APICreateOrUpdate(d, meta, "cloudproperties", s)
 	if err == nil {
 		err = ResourceAviCloudPropertiesRead(d, meta)
 	}
@@ -82,7 +81,7 @@ func resourceAviCloudPropertiesCreate(d *schema.ResourceData, meta interface{}) 
 func resourceAviCloudPropertiesUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceCloudPropertiesSchema()
 	var err error
-	err = ApiCreateOrUpdate(d, meta, "cloudproperties", s)
+	err = APICreateOrUpdate(d, meta, "cloudproperties", s)
 	if err == nil {
 		err = ResourceAviCloudPropertiesRead(d, meta)
 	}
@@ -92,7 +91,7 @@ func resourceAviCloudPropertiesUpdate(d *schema.ResourceData, meta interface{}) 
 func resourceAviCloudPropertiesDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "cloudproperties"
 	client := meta.(*clients.AviClient)
-	if ApiDeleteSystemDefaultCheck(d) {
+	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
 	uuid := d.Get("uuid").(string)
