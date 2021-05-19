@@ -11,6 +11,11 @@ func dataSourceAviJWTServerProfile() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviJWTServerProfileRead,
 		Schema: map[string]*schema.Schema{
+			"configpb_attributes": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceConfigPbAttributesSchema(),
+			},
 			"issuer": {
 				Type:     schema.TypeString,
 				Computed: true,

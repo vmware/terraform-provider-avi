@@ -16,6 +16,11 @@ func dataSourceAviClusterCloudDetails() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceAzureClusterInfoSchema(),
 			},
+			"configpb_attributes": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceConfigPbAttributesSchema(),
+			},
 			"name": {
 				Type:     schema.TypeString,
 				Optional: true,

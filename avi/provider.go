@@ -9,9 +9,9 @@ import (
 	"log"
 	"time"
 
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/avinetworks/sdk/go/session"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"github.com/vmware/alb-sdk/go/clients"
+	"github.com/vmware/alb-sdk/go/session"
 )
 
 func Provider() *schema.Provider {
@@ -118,6 +118,7 @@ func Provider() *schema.Provider {
 			"avi_wafapplicationsignatureprovider": dataSourceAviWafApplicationSignatureProvider(),
 			"avi_wafpolicy":                       dataSourceAviWafPolicy(),
 			"avi_botmapping":                      dataSourceAviBotMapping(),
+			"avi_botipreputationtypemapping":      dataSourceAviBotIPReputationTypeMapping(),
 			"avi_botconfigconsolidator":           dataSourceAviBotConfigConsolidator(),
 			"avi_botdetectionpolicy":              dataSourceAviBotDetectionPolicy(),
 			"avi_pool":                            dataSourceAviPool(),
@@ -139,6 +140,7 @@ func Provider() *schema.Provider {
 			"avi_networkprofile":                  dataSourceAviNetworkProfile(),
 			"avi_dnspolicy":                       dataSourceAviDnsPolicy(),
 			"avi_jwtserverprofile":                dataSourceAviJWTServerProfile(),
+			"avi_jwtprofile":                      dataSourceAviJWTProfile(),
 			"avi_nsxtsegmentruntime":              dataSourceAviNsxtSegmentRuntime(),
 			"avi_ipamdnsproviderprofile":          dataSourceAviIpamDnsProviderProfile(),
 			"avi_customipamdnsprofile":            dataSourceAviCustomIpamDnsProfile(),
@@ -147,6 +149,7 @@ func Provider() *schema.Provider {
 			"avi_ipreputationdb":                  dataSourceAviIPReputationDB(),
 			"avi_applicationpersistenceprofile":   dataSourceAviApplicationPersistenceProfile(),
 			"avi_natpolicy":                       dataSourceAviNatPolicy(),
+			"avi_labelgroup":                      dataSourceAviLabelGroup(),
 			"avi_trafficcloneprofile":             dataSourceAviTrafficCloneProfile(),
 			"avi_testsedatastorelevel1":           dataSourceAviTestSeDatastoreLevel1(),
 			"avi_testsedatastorelevel2":           dataSourceAviTestSeDatastoreLevel2(),
@@ -222,6 +225,7 @@ func Provider() *schema.Provider {
 			"avi_wafapplicationsignatureprovider": resourceAviWafApplicationSignatureProvider(),
 			"avi_wafpolicy":                       resourceAviWafPolicy(),
 			"avi_botmapping":                      resourceAviBotMapping(),
+			"avi_botipreputationtypemapping":      resourceAviBotIPReputationTypeMapping(),
 			"avi_botconfigconsolidator":           resourceAviBotConfigConsolidator(),
 			"avi_botdetectionpolicy":              resourceAviBotDetectionPolicy(),
 			"avi_pool":                            resourceAviPool(),
@@ -243,6 +247,7 @@ func Provider() *schema.Provider {
 			"avi_networkprofile":                  resourceAviNetworkProfile(),
 			"avi_dnspolicy":                       resourceAviDnsPolicy(),
 			"avi_jwtserverprofile":                resourceAviJWTServerProfile(),
+			"avi_jwtprofile":                      resourceAviJWTProfile(),
 			"avi_nsxtsegmentruntime":              resourceAviNsxtSegmentRuntime(),
 			"avi_ipamdnsproviderprofile":          resourceAviIpamDnsProviderProfile(),
 			"avi_customipamdnsprofile":            resourceAviCustomIpamDnsProfile(),
@@ -251,6 +256,7 @@ func Provider() *schema.Provider {
 			"avi_ipreputationdb":                  resourceAviIPReputationDB(),
 			"avi_applicationpersistenceprofile":   resourceAviApplicationPersistenceProfile(),
 			"avi_natpolicy":                       resourceAviNatPolicy(),
+			"avi_labelgroup":                      resourceAviLabelGroup(),
 			"avi_trafficcloneprofile":             resourceAviTrafficCloneProfile(),
 			"avi_testsedatastorelevel1":           resourceAviTestSeDatastoreLevel1(),
 			"avi_testsedatastorelevel2":           resourceAviTestSeDatastoreLevel2(),

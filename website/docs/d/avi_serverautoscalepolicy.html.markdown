@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "AVI: avi_serverautoscalepolicy"
@@ -34,12 +32,13 @@ data "avi_serverautoscalepolicy" "foo_serverautoscalepolicy" {
 
 In addition to all arguments above, the following attributes are exported:
 
+* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1.
 * `delay_for_server_garbage_collection` - Delay in minutes after which a down server will be removed from pool. Value 0 disables this functionality. Field introduced in 20.1.3.
 * `description` - User defined description for the object.
 * `intelligent_autoscale` - Use avi intelligent autoscale algorithm where autoscale is performed by comparing load on the pool against estimated capacity of all the servers.
 * `intelligent_scalein_margin` - Maximum extra capacity as percentage of load used by the intelligent scheme. Scalein is triggered when available capacity is more than this margin. Allowed values are 1-99.
 * `intelligent_scaleout_margin` - Minimum extra capacity as percentage of load used by the intelligent scheme. Scaleout is triggered when available capacity is less than this margin. Allowed values are 1-99.
-* `labels` - Key value pairs for granular object access control. Also allows for classification and tagging of similar objects. Field introduced in 20.1.3. Maximum of 4 items allowed.
+* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5.
 * `max_scalein_adjustment_step` - Maximum number of servers to scalein simultaneously. The actual number of servers to scalein is chosen such that target number of servers is always more than or equal to the min_size.
 * `max_scaleout_adjustment_step` - Maximum number of servers to scaleout simultaneously. The actual number of servers to scaleout is chosen such that target number of servers is always less than or equal to the max_size.
 * `max_size` - Maximum number of servers after scaleout. Allowed values are 0-400.

@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "AVI: avi_botconfigconsolidator"
@@ -36,7 +34,7 @@ In addition to all arguments above, the following attributes are exported:
 
 * `description` - Human-readable description of this consolidator. Field introduced in 21.1.1.
 * `name` - The name of this consolidator. Field introduced in 21.1.1.
-* `script` - Script that consolidates results from all components. Field introduced in 21.1.1.
-* `tenant_ref` - The unique identifier of the tenant to which this mapping belongs. It is a reference to an object of type tenant. Field introduced in 21.1.1.
-* `uuid` - A unique identifier to this consolidator. Field introduced in 21.1.1.
+* `script` - Script that consolidates results from all bot decision components. Field introduced in 21.1.1.
+* `tenant_ref` - The unique identifier of the tenant to which this consolidator belongs. It is a reference to an object of type tenant. Field introduced in 21.1.1.
+* `uuid` - A unique identifier for this consolidator. Field introduced in 21.1.1.
 

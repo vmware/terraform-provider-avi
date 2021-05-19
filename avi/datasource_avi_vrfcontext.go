@@ -31,6 +31,11 @@ func dataSourceAviVrfContext() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"configpb_attributes": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceConfigPbAttributesSchema(),
+			},
 			"debugvrfcontext": {
 				Type:     schema.TypeSet,
 				Computed: true,
@@ -50,14 +55,14 @@ func dataSourceAviVrfContext() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceInternalGatewayMonitorSchema(),
 			},
-			"labels": {
-				Type:     schema.TypeList,
-				Computed: true,
-				Elem:     ResourceKeyValueSchema(),
-			},
 			"lldp_enable": {
 				Type:     schema.TypeBool,
 				Computed: true,
+			},
+			"markers": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceRoleFilterMatchLabelSchema(),
 			},
 			"name": {
 				Type:     schema.TypeString,

@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "AVI: avi_securitypolicy"
@@ -34,10 +32,12 @@ data "avi_securitypolicy" "foo_securitypolicy" {
 
 In addition to all arguments above, the following attributes are exported:
 
+* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1.
 * `description` - Security policy is used to specify various configuration information used to perform distributed denial of service (ddos) attacks detection and mitigation. Field introduced in 18.2.1.
+* `dns_amplification_denyports` - Source ports and port ranges to deny in dns amplification attacks. Field introduced in 21.1.1.
 * `dns_attacks` - Attacks utilizing the dns protocol operations. Field introduced in 18.2.1.
 * `dns_policy_index` - Index of the dns policy to use for the mitigation rules applied to the dns attacks. Field introduced in 18.2.1.
-* `labels` - Key value pairs for granular object access control. Also allows for classification and tagging of similar objects. Field introduced in 20.1.2. Maximum of 4 items allowed.
+* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5.
 * `name` - The name of the security policy. Field introduced in 18.2.1.
 * `network_security_policy_index` - Index of the network security policy to use for the mitigation rules applied to the attacks. Field introduced in 18.2.1.
 * `oper_mode` - Mode of dealing with the attacks - perform detection only, or detect and mitigate the attacks. Enum options - DETECTION, MITIGATION. Field introduced in 18.2.1.

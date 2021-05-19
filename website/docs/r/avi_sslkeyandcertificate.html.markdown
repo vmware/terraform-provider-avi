@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "Avi: avi_sslkeyandcertificate"
@@ -34,6 +32,7 @@ The following arguments are supported:
 * `ca_certs` - (Optional) Ca certificates in certificate chain.
 * `certificate_base64` - (Optional) States if the certificate is base64 encoded.
 * `certificate_management_profile_ref` - (Optional) It is a reference to an object of type certificatemanagementprofile.
+* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1.
 * `created_by` - (Optional) Creator name.
 * `dynamic_params` - (Optional) Dynamic parameters needed for certificate management profile.
 * `enable_ocsp_stapling` - (Optional) Enables ocsp stapling. Field introduced in 20.1.1. Allowed in basic(allowed values- false) edition, essentials(allowed values- false) edition, enterprise edition.
@@ -45,7 +44,7 @@ The following arguments are supported:
 * `key_base64` - (Optional) States if the private key is base64 encoded.
 * `key_params` - (Optional) Dict settings for sslkeyandcertificate.
 * `key_passphrase` - (Optional) Passphrase used to encrypt the private key.
-* `labels` - (Optional) Key value pairs for granular object access control. Also allows for classification and tagging of similar objects. Field introduced in 20.1.2. Maximum of 4 items allowed.
+* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5.
 * `ocsp_config` - (Optional) Configuration related to ocsp. Field introduced in 20.1.1. Allowed in basic edition, essentials edition, enterprise edition.
 * `status` - (Optional) Enum options - ssl_certificate_finished, ssl_certificate_pending.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant.

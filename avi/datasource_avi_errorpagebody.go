@@ -11,6 +11,11 @@ func dataSourceAviErrorPageBody() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviErrorPageBodyRead,
 		Schema: map[string]*schema.Schema{
+			"configpb_attributes": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceConfigPbAttributesSchema(),
+			},
 			"error_page_body": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -19,10 +24,10 @@ func dataSourceAviErrorPageBody() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"labels": {
+			"markers": {
 				Type:     schema.TypeList,
 				Computed: true,
-				Elem:     ResourceKeyValueSchema(),
+				Elem:     ResourceRoleFilterMatchLabelSchema(),
 			},
 			"name": {
 				Type:     schema.TypeString,

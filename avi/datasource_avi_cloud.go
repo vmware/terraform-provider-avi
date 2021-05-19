@@ -39,6 +39,11 @@ func dataSourceAviCloud() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceCloudStackConfigurationSchema(),
 			},
+			"configpb_attributes": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceConfigPbAttributesSchema(),
+			},
 			"custom_tags": {
 				Type:     schema.TypeList,
 				Computed: true,
@@ -55,6 +60,11 @@ func dataSourceAviCloud() *schema.Resource {
 			"dns_resolution_on_se": {
 				Type:     schema.TypeBool,
 				Computed: true,
+			},
+			"dns_resolvers": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceDnsResolverSchema(),
 			},
 			"docker_configuration": {
 				Type:     schema.TypeSet,

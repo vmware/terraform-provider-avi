@@ -16,6 +16,11 @@ func dataSourceAviTenant() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceTenantConfigurationSchema(),
 			},
+			"configpb_attributes": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceConfigPbAttributesSchema(),
+			},
 			"created_by": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -23,6 +28,15 @@ func dataSourceAviTenant() *schema.Resource {
 			"description": {
 				Type:     schema.TypeString,
 				Computed: true,
+			},
+			"enforce_label_group": {
+				Type:     schema.TypeBool,
+				Computed: true,
+			},
+			"label_group_refs": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
 			"local": {
 				Type:     schema.TypeBool,
@@ -32,11 +46,6 @@ func dataSourceAviTenant() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
-			},
-			"suggested_object_labels": {
-				Type:     schema.TypeList,
-				Computed: true,
-				Elem:     ResourceTenantLabelSchema(),
 			},
 			"uuid": {
 				Type:     schema.TypeString,

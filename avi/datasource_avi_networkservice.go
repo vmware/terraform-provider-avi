@@ -16,10 +16,15 @@ func dataSourceAviNetworkService() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
-			"labels": {
+			"configpb_attributes": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceConfigPbAttributesSchema(),
+			},
+			"markers": {
 				Type:     schema.TypeList,
 				Computed: true,
-				Elem:     ResourceKeyValueSchema(),
+				Elem:     ResourceRoleFilterMatchLabelSchema(),
 			},
 			"name": {
 				Type:     schema.TypeString,

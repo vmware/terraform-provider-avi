@@ -16,6 +16,11 @@ func dataSourceAviPriorityLabels() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"configpb_attributes": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceConfigPbAttributesSchema(),
+			},
 			"description": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -25,10 +30,10 @@ func dataSourceAviPriorityLabels() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceEquivalentLabelsSchema(),
 			},
-			"labels": {
+			"markers": {
 				Type:     schema.TypeList,
 				Computed: true,
-				Elem:     ResourceKeyValueSchema(),
+				Elem:     ResourceRoleFilterMatchLabelSchema(),
 			},
 			"name": {
 				Type:     schema.TypeString,

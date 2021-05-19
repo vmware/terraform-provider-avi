@@ -31,6 +31,11 @@ func dataSourceAviBackupConfiguration() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"configpb_attributes": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceConfigPbAttributesSchema(),
+			},
 			"maximum_backups_stored": {
 				Type:     schema.TypeInt,
 				Computed: true,

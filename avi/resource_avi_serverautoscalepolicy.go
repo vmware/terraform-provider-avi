@@ -9,12 +9,18 @@ import (
 	"log"
 	"strings"
 
-	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"github.com/vmware/alb-sdk/go/clients"
 )
 
 func ResourceServerAutoScalePolicySchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
+		"configpb_attributes": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceConfigPbAttributesSchema(),
+		},
 		"delay_for_server_garbage_collection": {
 			Type:     schema.TypeInt,
 			Optional: true,
@@ -40,10 +46,10 @@ func ResourceServerAutoScalePolicySchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  20,
 		},
-		"labels": {
+		"markers": {
 			Type:     schema.TypeList,
 			Optional: true,
-			Elem:     ResourceKeyValueSchema(),
+			Elem:     ResourceRoleFilterMatchLabelSchema(),
 		},
 		"max_scalein_adjustment_step": {
 			Type:     schema.TypeInt,

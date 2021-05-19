@@ -15,6 +15,11 @@ func dataSourceAviGslbService() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"configpb_attributes": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceConfigPbAttributesSchema(),
+			},
 			"controller_health_status_enabled": {
 				Type:     schema.TypeBool,
 				Computed: true,
@@ -63,10 +68,10 @@ func dataSourceAviGslbService() *schema.Resource {
 				Type:     schema.TypeBool,
 				Computed: true,
 			},
-			"labels": {
+			"markers": {
 				Type:     schema.TypeList,
 				Computed: true,
-				Elem:     ResourceKeyValueSchema(),
+				Elem:     ResourceRoleFilterMatchLabelSchema(),
 			},
 			"min_members": {
 				Type:     schema.TypeInt,

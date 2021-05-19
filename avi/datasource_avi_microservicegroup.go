@@ -11,6 +11,11 @@ func dataSourceAviMicroServiceGroup() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviMicroServiceGroupRead,
 		Schema: map[string]*schema.Schema{
+			"configpb_attributes": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceConfigPbAttributesSchema(),
+			},
 			"created_by": {
 				Type:     schema.TypeString,
 				Computed: true,

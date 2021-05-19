@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "AVI: avi_backupconfiguration"
@@ -39,6 +37,7 @@ In addition to all arguments above, the following attributes are exported:
 * `aws_secret_access` - Aws secret access key. Field introduced in 18.2.3. Allowed in basic edition, essentials edition, enterprise edition.
 * `backup_file_prefix` - Prefix of the exported configuration file. Field introduced in 17.1.1.
 * `backup_passphrase` - Default passphrase for configuration export and periodic backup.
+* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1.
 * `maximum_backups_stored` - Rotate the backup files based on this count. Allowed values are 1-20.
 * `name` - Name of backup configuration.
 * `remote_directory` - Directory at remote destination with write permission for ssh user.

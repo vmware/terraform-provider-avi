@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "AVI: avi_cloud"
@@ -40,10 +38,12 @@ In addition to all arguments above, the following attributes are exported:
 * `aws_configuration` - Dict settings for cloud.
 * `azure_configuration` - Field introduced in 17.2.1. Allowed in basic edition, essentials edition, enterprise edition.
 * `cloudstack_configuration` - Dict settings for cloud.
+* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1.
 * `custom_tags` - Custom tags for all avi created resources in the cloud infrastructure. Field introduced in 17.1.5.
 * `dhcp_enabled` - Select the ip address management scheme.
 * `dns_provider_ref` - Dns profile for the cloud. It is a reference to an object of type ipamdnsproviderprofile.
 * `dns_resolution_on_se` - By default, pool member fqdns are resolved on the controller. When this is set, pool member fqdns are instead resolved on service engines in this cloud. This is useful in scenarios where pool member fqdns can only be resolved from service engines and not from the controller. Field introduced in 18.2.6. Allowed in basic(allowed values- false) edition, essentials(allowed values- false) edition, enterprise edition.
+* `dns_resolvers` - Dns resolver for the cloud. Field introduced in 20.1.5. Maximum of 1 items allowed.
 * `docker_configuration` - Dict settings for cloud.
 * `east_west_dns_provider_ref` - Dns profile for east-west services. It is a reference to an object of type ipamdnsproviderprofile.
 * `east_west_ipam_provider_ref` - Ipam profile for east-west services. Warning - please use virtual subnets in this ipam profile that do not conflict with the underlay networks or any overlay networks in the cluster. For example in aws and gcp, 169.254.0.0/16 is used for storing instance metadata. Hence, it should not be used in this profile. It is a reference to an object of type ipamdnsproviderprofile.

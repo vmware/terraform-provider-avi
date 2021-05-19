@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "AVI: avi_snmptrapprofile"
@@ -34,6 +32,7 @@ data "avi_snmptrapprofile" "foo_snmptrapprofile" {
 
 In addition to all arguments above, the following attributes are exported:
 
+* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1.
 * `name` - A user-friendly name of the snmp trap configuration.
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `trap_servers` - The ip address or hostname of the snmp trap destination server.

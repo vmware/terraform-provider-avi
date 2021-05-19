@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "Avi: avi_microservicegroup"
@@ -30,6 +28,7 @@ resource "avi_microservicegroup" "foo" {
 The following arguments are supported:
 
 * `name` - (Required) Name of the microservice group.
+* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1.
 * `created_by` - (Optional) Creator name.
 * `description` - (Optional) User defined description for the object.
 * `service_refs` - (Optional) Configure microservice(es). It is a reference to an object of type microservice.

@@ -14,8 +14,8 @@ import (
 
 	"time"
 
-	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"github.com/vmware/alb-sdk/go/clients"
 )
 
 func ResourceCloudSchema() map[string]*schema.Schema {
@@ -54,6 +54,12 @@ func ResourceCloudSchema() map[string]*schema.Schema {
 			Computed: true,
 			Elem:     ResourceCloudStackConfigurationSchema(),
 		},
+		"configpb_attributes": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceConfigPbAttributesSchema(),
+		},
 		"custom_tags": {
 			Type:     schema.TypeList,
 			Optional: true,
@@ -73,6 +79,11 @@ func ResourceCloudSchema() map[string]*schema.Schema {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  false,
+		},
+		"dns_resolvers": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceDnsResolverSchema(),
 		},
 		"docker_configuration": {
 			Type:     schema.TypeSet,

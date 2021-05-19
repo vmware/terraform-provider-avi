@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "Avi: avi_alertsyslogconfig"
@@ -30,6 +28,7 @@ resource "avi_alertsyslogconfig" "foo" {
 The following arguments are supported:
 
 * `name` - (Required) A user-friendly name of the syslog notification.
+* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1.
 * `description` - (Optional) User defined description for alert syslog config.
 * `syslog_servers` - (Optional) The list of syslog servers.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant.

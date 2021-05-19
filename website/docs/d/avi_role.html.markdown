@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "AVI: avi_role"
@@ -34,6 +32,8 @@ data "avi_role" "foo_role" {
 
 In addition to all arguments above, the following attributes are exported:
 
+* `allow_unlabelled_access` - Allow access to unlabelled objects. Field introduced in 20.1.5.
+* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1.
 * `filters` - Filters for granular object access control based on object labels. Multiple filters are merged using the and operator. If empty, all objects according to the privileges will be accessible to the user. Field introduced in 20.1.3. Maximum of 4 items allowed.
 * `name` - Name of the object.
 * `privileges` - List of list.

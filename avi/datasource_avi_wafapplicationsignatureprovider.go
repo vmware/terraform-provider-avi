@@ -11,6 +11,11 @@ func dataSourceAviWafApplicationSignatureProvider() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviWafApplicationSignatureProviderRead,
 		Schema: map[string]*schema.Schema{
+			"configpb_attributes": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceConfigPbAttributesSchema(),
+			},
 			"name": {
 				Type:     schema.TypeString,
 				Optional: true,

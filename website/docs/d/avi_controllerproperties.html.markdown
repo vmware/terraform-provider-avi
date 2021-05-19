@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "AVI: avi_controllerproperties"
@@ -50,6 +48,7 @@ In addition to all arguments above, the following attributes are exported:
 * `cleanup_sessions_timeout_period` - Period for sessions cleanup job. Field introduced in 18.1.1. Unit is min.
 * `cloud_reconcile` - Enable/disable periodic reconcile for all the clouds. Field introduced in 17.2.14,18.1.5,18.2.1.
 * `cluster_ip_gratuitous_arp_period` - Period for cluster ip gratuitous arp job. Unit is min.
+* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1.
 * `consistency_check_timeout_period` - Period for consistency check job. Field introduced in 18.1.1. Unit is min.
 * `controller_resource_info_collection_period` - Periodically collect stats. Field introduced in 20.1.3. Unit is min.
 * `crashed_se_reboot` - Unit is sec.
@@ -61,6 +60,7 @@ In addition to all arguments above, the following attributes are exported:
 * `edit_system_limits` - Allow editing of system limits. Keep in mind that these system limits have been carefully selected based on rigorous testing in our testig environments. Modifying these limits could destabilize your cluster. Do this at your own risk!. Field introduced in 20.1.1.
 * `enable_api_sharding` - This setting enables the controller leader to shard api requests to the followers (if any). Field introduced in 18.1.5, 18.2.1.
 * `enable_memory_balancer` - Enable/disable memory balancer. Field introduced in 17.2.8.
+* `enable_resmgr_log_cache_print` - Enable printing of cached logs inside resource manager. Used for debugging purposes only. Field introduced in 21.1.1.
 * `fatal_error_lease_time` - Unit is sec.
 * `federated_datastore_cleanup_duration` - Federated datastore will not cleanup diffs unless they are at least this duration in the past. Field introduced in 20.1.1. Unit is hours.
 * `file_object_cleanup_period` - Period for file object cleanup job. Field introduced in 20.1.1. Unit is min.

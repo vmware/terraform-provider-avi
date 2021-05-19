@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "AVI: avi_applicationprofile"
@@ -35,11 +33,13 @@ data "avi_applicationprofile" "foo_applicationprofile" {
 In addition to all arguments above, the following attributes are exported:
 
 * `cloud_config_cksum` - Checksum of application profiles. Internally set by cloud connector. Field introduced in 17.2.14, 18.1.5, 18.2.1.
+* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1.
 * `created_by` - Name of the application profile creator. Field introduced in 17.2.14, 18.1.5, 18.2.1.
 * `description` - User defined description for the object.
 * `dns_service_profile` - Specifies various dns service related controls for virtual service.
 * `dos_rl_profile` - Specifies various security related controls for virtual service.
 * `http_profile` - Specifies the http application proxy profile parameters.
+* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5.
 * `name` - The name of the application profile.
 * `preserve_client_ip` - Specifies if client ip needs to be preserved for backend connection. Not compatible with connection multiplexing.
 * `preserve_client_port` - Specifies if we need to preserve client port while preserving client ip for backend connections. Field introduced in 17.2.7.

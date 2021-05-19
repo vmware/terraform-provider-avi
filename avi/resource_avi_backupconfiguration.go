@@ -9,8 +9,8 @@ import (
 	"log"
 	"strings"
 
-	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"github.com/vmware/alb-sdk/go/clients"
 )
 
 func ResourceBackupConfigurationSchema() map[string]*schema.Schema {
@@ -45,6 +45,12 @@ func ResourceBackupConfigurationSchema() map[string]*schema.Schema {
 			Computed:         true,
 			Sensitive:        true,
 			DiffSuppressFunc: suppressSensitiveFieldDiffs,
+		},
+		"configpb_attributes": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceConfigPbAttributesSchema(),
 		},
 		"maximum_backups_stored": {
 			Type:     schema.TypeInt,

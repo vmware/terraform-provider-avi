@@ -20,6 +20,11 @@ func dataSourceAviPoolGroup() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"configpb_attributes": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceConfigPbAttributesSchema(),
+			},
 			"created_by": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -45,10 +50,10 @@ func dataSourceAviPoolGroup() *schema.Resource {
 				Type:     schema.TypeBool,
 				Computed: true,
 			},
-			"labels": {
+			"markers": {
 				Type:     schema.TypeList,
 				Computed: true,
-				Elem:     ResourceKeyValueSchema(),
+				Elem:     ResourceRoleFilterMatchLabelSchema(),
 			},
 			"members": {
 				Type:     schema.TypeList,

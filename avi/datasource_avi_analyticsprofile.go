@@ -61,6 +61,11 @@ func dataSourceAviAnalyticsProfile() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceClientLogStreamingConfigSchema(),
 			},
+			"configpb_attributes": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceConfigPbAttributesSchema(),
+			},
 			"conn_lossy_ooo_threshold": {
 				Type:     schema.TypeInt,
 				Computed: true,
@@ -311,10 +316,10 @@ func dataSourceAviAnalyticsProfile() *schema.Resource {
 				Type:     schema.TypeFloat,
 				Computed: true,
 			},
-			"labels": {
+			"markers": {
 				Type:     schema.TypeList,
 				Computed: true,
-				Elem:     ResourceKeyValueSchema(),
+				Elem:     ResourceRoleFilterMatchLabelSchema(),
 			},
 			"name": {
 				Type:     schema.TypeString,

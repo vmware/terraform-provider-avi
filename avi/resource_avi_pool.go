@@ -10,8 +10,8 @@ import (
 	"log"
 	"strings"
 
-	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"github.com/vmware/alb-sdk/go/clients"
 )
 
 func ResourcePoolSchema() map[string]*schema.Schema {
@@ -36,6 +36,11 @@ func ResourcePoolSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
+		},
+		"append_port": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Default:  "NON_DEFAULT_80_443",
 		},
 		"application_persistence_profile_ref": {
 			Type:     schema.TypeString,
@@ -76,6 +81,12 @@ func ResourcePoolSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
+		},
+		"configpb_attributes": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceConfigPbAttributesSchema(),
 		},
 		"conn_pool_properties": {
 			Type:     schema.TypeSet,
@@ -159,6 +170,12 @@ func ResourcePoolSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  false,
 		},
+		"http2_properties": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceHTTP2PoolPropertiesSchema(),
+		},
 		"ignore_server_port": {
 			Type:     schema.TypeBool,
 			Optional: true,
@@ -173,11 +190,6 @@ func ResourcePoolSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
-		},
-		"labels": {
-			Type:     schema.TypeList,
-			Optional: true,
-			Elem:     ResourceKeyValueSchema(),
 		},
 		"lb_algorithm": {
 			Type:     schema.TypeString,
@@ -203,6 +215,11 @@ func ResourcePoolSchema() map[string]*schema.Schema {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  false,
+		},
+		"markers": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceRoleFilterMatchLabelSchema(),
 		},
 		"max_concurrent_connections_per_server": {
 			Type:     schema.TypeInt,

@@ -75,6 +75,11 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Type:     schema.TypeInt,
 				Computed: true,
 			},
+			"configpb_attributes": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceConfigPbAttributesSchema(),
+			},
 			"consistency_check_timeout_period": {
 				Type:     schema.TypeInt,
 				Computed: true,
@@ -116,6 +121,10 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Computed: true,
 			},
 			"enable_memory_balancer": {
+				Type:     schema.TypeBool,
+				Computed: true,
+			},
+			"enable_resmgr_log_cache_print": {
 				Type:     schema.TypeBool,
 				Computed: true,
 			},

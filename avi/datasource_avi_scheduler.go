@@ -15,6 +15,11 @@ func dataSourceAviScheduler() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"configpb_attributes": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceConfigPbAttributesSchema(),
+			},
 			"enabled": {
 				Type:     schema.TypeBool,
 				Computed: true,

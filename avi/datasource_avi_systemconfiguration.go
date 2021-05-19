@@ -20,6 +20,11 @@ func dataSourceAviSystemConfiguration() *schema.Resource {
 				Type:     schema.TypeBool,
 				Computed: true,
 			},
+			"configpb_attributes": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceConfigPbAttributesSchema(),
+			},
 			"default_license_tier": {
 				Type:     schema.TypeString,
 				Computed: true,

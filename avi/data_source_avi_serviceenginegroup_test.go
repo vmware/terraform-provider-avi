@@ -144,6 +144,12 @@ func TestAVIDataSourceServiceEngineGroupBasic(t *testing.T) {
 						"avi_serviceenginegroup.testServiceEngineGroup", "vnic_ip_delete_interval", "5"),
 					resource.TestCheckResourceAttr(
 						"avi_serviceenginegroup.testServiceEngineGroup", "vnic_probe_interval", "5"),
+					resource.TestCheckResourceAttr(
+						"avi_serviceenginegroup.testServiceEngineGroup", "sdb_flush_interval", "100"),
+					resource.TestCheckResourceAttr(
+						"avi_serviceenginegroup.testServiceEngineGroup", "sdb_pipeline_size", "100"),
+					resource.TestCheckResourceAttr(
+						"avi_serviceenginegroup.testServiceEngineGroup", "sdb_scan_count", "1000"),
 				),
 			},
 		},
@@ -237,6 +243,9 @@ resource "avi_serviceenginegroup" "testServiceEngineGroup" {
 	vnic_dhcp_ip_max_retries = "10"
 	vnic_ip_delete_interval = "5"
 	vnic_probe_interval = "5"
+	sdb_flush_interval = "100"
+	sdb_pipeline_size = "100"
+	sdb_scan_count = "1000"
 }
 
 data "avi_serviceenginegroup" "testServiceEngineGroup" {

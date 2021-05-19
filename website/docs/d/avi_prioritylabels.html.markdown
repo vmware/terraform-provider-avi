@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "AVI: avi_prioritylabels"
@@ -37,9 +35,10 @@ data "avi_prioritylabels" "foo_prioritylabels" {
 In addition to all arguments above, the following attributes are exported:
 
 * `cloud_ref` - It is a reference to an object of type cloud.
+* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1.
 * `description` - A description of the priority labels.
 * `equivalent_labels` - Equivalent priority labels in descending order.
-* `labels` - Key value pairs for granular object access control. Also allows for classification and tagging of similar objects. Field introduced in 20.1.2. Maximum of 4 items allowed.
+* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5.
 * `name` - The name of the priority labels.
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `uuid` - Uuid of the priority labels.

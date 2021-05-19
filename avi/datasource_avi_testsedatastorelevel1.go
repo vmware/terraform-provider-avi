@@ -11,6 +11,11 @@ func dataSourceAviTestSeDatastoreLevel1() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviTestSeDatastoreLevel1Read,
 		Schema: map[string]*schema.Schema{
+			"configpb_attributes": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceConfigPbAttributesSchema(),
+			},
 			"name": {
 				Type:     schema.TypeString,
 				Optional: true,

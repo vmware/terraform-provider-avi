@@ -11,6 +11,11 @@ func dataSourceAviFederationCheckpoint() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviFederationCheckpointRead,
 		Schema: map[string]*schema.Schema{
+			"configpb_attributes": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceConfigPbAttributesSchema(),
+			},
 			"date": {
 				Type:     schema.TypeString,
 				Computed: true,

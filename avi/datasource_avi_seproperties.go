@@ -11,6 +11,11 @@ func dataSourceAviSeProperties() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviSePropertiesRead,
 		Schema: map[string]*schema.Schema{
+			"configpb_attributes": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceConfigPbAttributesSchema(),
+			},
 			"se_agent_properties": {
 				Type:     schema.TypeSet,
 				Computed: true,

@@ -15,6 +15,11 @@ func dataSourceAviUserAccountProfile() *schema.Resource {
 				Type:     schema.TypeInt,
 				Computed: true,
 			},
+			"configpb_attributes": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceConfigPbAttributesSchema(),
+			},
 			"credentials_timeout_threshold": {
 				Type:     schema.TypeInt,
 				Computed: true,

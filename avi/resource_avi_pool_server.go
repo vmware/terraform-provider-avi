@@ -9,9 +9,9 @@ import (
 	"log"
 	"strconv"
 
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/avinetworks/sdk/go/models"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"github.com/vmware/alb-sdk/go/clients"
+	"github.com/vmware/alb-sdk/go/models"
 )
 
 func ResourceAviPoolServerSchema() map[string]*schema.Schema {

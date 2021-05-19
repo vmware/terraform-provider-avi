@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "AVI: avi_gslbservice"
@@ -35,6 +33,7 @@ data "avi_gslbservice" "foo_gslbservice" {
 In addition to all arguments above, the following attributes are exported:
 
 * `application_persistence_profile_ref` - The federated application persistence associated with gslbservice site persistence functionality. It is a reference to an object of type applicationpersistenceprofile. Field introduced in 17.2.1.
+* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1.
 * `controller_health_status_enabled` - Gs member's overall health status is derived based on a combination of controller and datapath health-status inputs. Note that the datapath status is determined by the association of health monitor profiles. Only the controller provided status is determined through this configuration.
 * `created_by` - Creator name. Field introduced in 17.1.2.
 * `description` - User defined description for the object.
@@ -46,7 +45,7 @@ In addition to all arguments above, the following attributes are exported:
 * `health_monitor_scope` - Health monitor probe can be executed for all the members or it can be executed only for third-party members. This operational mode is useful to reduce the number of health monitor probes in case of a hybrid scenario. In such a case, avi members can have controller derived status while non-avi members can be probed by via health monitor probes in dataplane. Enum options - GSLB_SERVICE_HEALTH_MONITOR_ALL_MEMBERS, GSLB_SERVICE_HEALTH_MONITOR_ONLY_NON_AVI_MEMBERS.
 * `hm_off` - This field is an internal field and is used in se. Field introduced in 18.2.2.
 * `is_federated` - This field indicates that this object is replicated across gslb federation. Field introduced in 17.1.3.
-* `labels` - Key value pairs for granular object access control. Also allows for classification and tagging of similar objects. Field introduced in 20.1.2. Maximum of 4 items allowed.
+* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5.
 * `min_members` - The minimum number of members to distribute traffic to. Allowed values are 1-65535. Special values are 0 - 'disable'. Field introduced in 17.2.4.
 * `name` - Name for the gslb service.
 * `num_dns_ip` - Number of ip addresses of this gslb service to be returned by the dns service. Enter 0 to return all ip addresses. Allowed values are 1-20. Special values are 0- 'return all ip addresses'.

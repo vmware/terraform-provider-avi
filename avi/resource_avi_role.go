@@ -9,12 +9,23 @@ import (
 	"log"
 	"strings"
 
-	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"github.com/vmware/alb-sdk/go/clients"
 )
 
 func ResourceRoleSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
+		"allow_unlabelled_access": {
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  true,
+		},
+		"configpb_attributes": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceConfigPbAttributesSchema(),
+		},
 		"filters": {
 			Type:     schema.TypeList,
 			Optional: true,

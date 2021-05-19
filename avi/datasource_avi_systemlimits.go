@@ -11,6 +11,11 @@ func dataSourceAviSystemLimits() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviSystemLimitsRead,
 		Schema: map[string]*schema.Schema{
+			"configpb_attributes": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceConfigPbAttributesSchema(),
+			},
 			"controller_limits": {
 				Type:     schema.TypeSet,
 				Computed: true,

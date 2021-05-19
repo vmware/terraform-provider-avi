@@ -11,6 +11,11 @@ func dataSourceAviNetworkProfile() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviNetworkProfileRead,
 		Schema: map[string]*schema.Schema{
+			"configpb_attributes": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceConfigPbAttributesSchema(),
+			},
 			"connection_mirror": {
 				Type:     schema.TypeBool,
 				Computed: true,
@@ -19,10 +24,10 @@ func dataSourceAviNetworkProfile() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"labels": {
+			"markers": {
 				Type:     schema.TypeList,
 				Computed: true,
-				Elem:     ResourceKeyValueSchema(),
+				Elem:     ResourceRoleFilterMatchLabelSchema(),
 			},
 			"name": {
 				Type:     schema.TypeString,

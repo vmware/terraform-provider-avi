@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "AVI: avi_testsedatastorelevel2"
@@ -34,6 +32,7 @@ data "avi_testsedatastorelevel2" "foo_testsedatastorelevel2" {
 
 In addition to all arguments above, the following attributes are exported:
 
+* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1.
 * `name` - Name of the object.
 * `tenant_ref` - It is a reference to an object of type tenant. Field introduced in 18.2.6.
 * `test_se_datastore_level_3_refs` - It is a reference to an object of type testsedatastorelevel3. Field introduced in 18.2.6.
