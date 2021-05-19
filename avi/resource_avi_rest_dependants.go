@@ -1949,7 +1949,27 @@ func ResourceAttackMitigationActionSchema() *schema.Resource {
 func ResourceAuditComplianceEventInfoSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"cluster_uuid": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"core_archive": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"detailed_reason": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"event_generated_by_se": {
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
+			"fingerprint": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -1960,6 +1980,11 @@ func ResourceAuditComplianceEventInfoSchema() *schema.Resource {
 				Computed: true,
 			},
 			"node": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"patch_version": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -1977,6 +2002,11 @@ func ResourceAuditComplianceEventInfoSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Required: true,
 			},
+			"se_uuid": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"subjects": {
 				Type:     schema.TypeList,
 				Required: true,
@@ -1990,6 +2020,11 @@ func ResourceAuditComplianceEventInfoSchema() *schema.Resource {
 				Type:     schema.TypeList,
 				Required: true,
 				Elem:     ResourceACUserIdentitySchema(),
+			},
+			"version": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 		},
 	}
@@ -12049,6 +12084,11 @@ func ResourceGslbServiceRuntimeSchema() *schema.Resource {
 func ResourceGslbServiceSitePersistencePoolSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"enable_http2": {
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"name": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -18663,6 +18703,23 @@ func ResourceNsxConfigurationSchema() *schema.Resource {
 	}
 }
 
+func ResourceNsxtClustersSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"cluster_ids": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
+			"include": {
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  false,
+			},
+		},
+	}
+}
+
 func ResourceNsxtConfigurationSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -20414,6 +20471,12 @@ func ResourcePlacementNetworkSchema() *schema.Resource {
 func ResourcePlacementScopeConfigSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"nsxt_clusters": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceNsxtClustersSchema(),
+			},
 			"nsxt_datastores": {
 				Type:     schema.TypeSet,
 				Optional: true,
@@ -21551,6 +21614,11 @@ func ResourceRmAddNetworksEventDetailsSchema() *schema.Resource {
 func ResourceRmAddVnicSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"mac_addr": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"network_name": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -28162,7 +28230,8 @@ func ResourceTier1LogicalRouterInfoSchema() *schema.Resource {
 		Schema: map[string]*schema.Schema{
 			"segment_id": {
 				Type:     schema.TypeString,
-				Required: true,
+				Optional: true,
+				Computed: true,
 			},
 			"tier1_lr_id": {
 				Type:     schema.TypeString,

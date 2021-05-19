@@ -5,7 +5,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/avinetworks/sdk/go/models"
+	"github.com/vmware/alb-sdk/go/models"
 )
 
 var apipooldata = `{
