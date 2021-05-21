@@ -11003,6 +11003,11 @@ func ResourceGCPOneArmModeSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Required: true,
 			},
+			"management_vpc_project_id": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"management_vpc_subnet_name": {
 				Type:     schema.TypeString,
 				Required: true,
@@ -11015,6 +11020,11 @@ func ResourceGCPSeGroupConfigSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
 			"backend_data_vpc_network_name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"backend_data_vpc_project_id": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -11109,6 +11119,11 @@ func ResourceGCPTwoArmModeSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Required: true,
 			},
+			"backend_data_vpc_project_id": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"backend_data_vpc_subnet_name": {
 				Type:     schema.TypeString,
 				Required: true,
@@ -11129,6 +11144,11 @@ func ResourceGCPTwoArmModeSchema() *schema.Resource {
 			"management_vpc_network_name": {
 				Type:     schema.TypeString,
 				Required: true,
+			},
+			"management_vpc_project_id": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 			"management_vpc_subnet_name": {
 				Type:     schema.TypeString,
