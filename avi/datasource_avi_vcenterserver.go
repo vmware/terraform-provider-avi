@@ -16,6 +16,11 @@ func dataSourceAviVCenterServer() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"configpb_attributes": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceConfigPbAttributesSchema(),
+			},
 			"content_lib": {
 				Type:     schema.TypeSet,
 				Computed: true,

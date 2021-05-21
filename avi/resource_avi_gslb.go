@@ -9,8 +9,8 @@ import (
 	"log"
 	"strings"
 
-	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"github.com/vmware/alb-sdk/go/clients"
 )
 
 func ResourceGslbSchema() map[string]*schema.Schema {
@@ -31,6 +31,12 @@ func ResourceGslbSchema() map[string]*schema.Schema {
 			Computed: true,
 			Elem:     ResourceGslbClientIpAddrGroupSchema(),
 		},
+		"configpb_attributes": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceConfigPbAttributesSchema(),
+		},
 		"description": {
 			Type:     schema.TypeString,
 			Optional: true,
@@ -40,6 +46,11 @@ func ResourceGslbSchema() map[string]*schema.Schema {
 			Type:     schema.TypeList,
 			Optional: true,
 			Elem:     ResourceDNSConfigSchema(),
+		},
+		"enable_config_by_members": {
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  false,
 		},
 		"error_resync_interval": {
 			Type:     schema.TypeInt,

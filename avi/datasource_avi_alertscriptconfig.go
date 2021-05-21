@@ -15,6 +15,11 @@ func dataSourceAviAlertScriptConfig() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"configpb_attributes": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceConfigPbAttributesSchema(),
+			},
 			"name": {
 				Type:     schema.TypeString,
 				Optional: true,

@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "AVI: avi_nsxtsegmentruntime"
@@ -53,5 +51,6 @@ In addition to all arguments above, the following attributes are exported:
 * `tenant_ref` - Nsxt segment belongs to tenant. It is a reference to an object of type tenant. Field introduced in 20.1.1.
 * `tier1_id` - Tier1 router id. Field introduced in 20.1.1.
 * `uuid` - Uuid. Field introduced in 20.1.1.
+* `vlan_ids` - Segment vlan ids. Field introduced in 20.1.5.
 * `vrf_context_ref` - Corresponding vrf context object in avi. It is a reference to an object of type vrfcontext. Field introduced in 20.1.1.
 

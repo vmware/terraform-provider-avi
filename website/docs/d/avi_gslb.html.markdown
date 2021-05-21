@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "AVI: avi_gslb"
@@ -37,8 +35,10 @@ In addition to all arguments above, the following attributes are exported:
 * `async_interval` - Frequency with which messages are propagated to vs mgr. Value of 0 disables async behavior and rpc are sent inline. Allowed values are 0-5. Field introduced in 18.2.3. Unit is sec.
 * `clear_on_max_retries` - Max retries after which the remote site is treated as a fresh start. In fresh start all the configs are downloaded. Allowed values are 1-1024.
 * `client_ip_addr_group` - Group to specify if the client ip addresses are public or private. Field introduced in 17.1.2.
+* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1.
 * `description` - User defined description for the object.
 * `dns_configs` - Sub domain configuration for the gslb. Gslb service's fqdn must be a match one of these subdomains.
+* `enable_config_by_members` - Allows enable/disable of gslbservice pool groups and pool members from the gslb follower members. Field introduced in 20.1.5.
 * `error_resync_interval` - Frequency with which errored messages are resynced to follower sites. Value of 0 disables resync behavior. Allowed values are 60-3600. Special values are 0 - 'disable'. Field introduced in 18.2.3. Unit is sec.
 * `is_federated` - This field indicates that this object is replicated across gslb federation. Field introduced in 17.1.3.
 * `leader_cluster_uuid` - Mark this site as leader of gslb configuration. This site is the one among the avi sites.

@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "AVI: avi_seproperties"
@@ -34,6 +32,7 @@ data "avi_seproperties" "foo_seproperties" {
 
 In addition to all arguments above, the following attributes are exported:
 
+* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1.
 * `se_agent_properties` - Dict settings for seproperties.
 * `se_bootup_properties` - Dict settings for seproperties.
 * `se_runtime_properties` - Dict settings for seproperties.

@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "Avi: avi_systemlimits"
@@ -29,6 +27,7 @@ resource "avi_systemlimits" "foo" {
 
 The following arguments are supported:
 
+* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1.
 * `controller_limits` - (Optional) System limits for the entire controller cluster. Field introduced in 20.1.1.
 * `controller_sizes` - (Optional) Possible controller sizes. Field introduced in 20.1.1.
 * `serviceengine_limits` - (Optional) System limits that apply to a serviceengine. Field introduced in 20.1.1.

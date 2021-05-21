@@ -11,15 +11,20 @@ func dataSourceAviErrorPageProfile() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviErrorPageProfileRead,
 		Schema: map[string]*schema.Schema{
+			"configpb_attributes": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceConfigPbAttributesSchema(),
+			},
 			"error_pages": {
 				Type:     schema.TypeList,
 				Computed: true,
 				Elem:     ResourceErrorPageSchema(),
 			},
-			"labels": {
+			"markers": {
 				Type:     schema.TypeList,
 				Computed: true,
-				Elem:     ResourceKeyValueSchema(),
+				Elem:     ResourceRoleFilterMatchLabelSchema(),
 			},
 			"name": {
 				Type:     schema.TypeString,

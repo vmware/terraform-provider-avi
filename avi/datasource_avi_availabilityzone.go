@@ -16,6 +16,11 @@ func dataSourceAviAvailabilityZone() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"configpb_attributes": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceConfigPbAttributesSchema(),
+			},
 			"name": {
 				Type:     schema.TypeString,
 				Optional: true,

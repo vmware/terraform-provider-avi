@@ -28,6 +28,11 @@ func dataSourceAviIcapProfile() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"configpb_attributes": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceConfigPbAttributesSchema(),
+			},
 			"description": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -44,6 +49,11 @@ func dataSourceAviIcapProfile() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+			"nsx_defender_config": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceIcapNsxDefenderConfigSchema(),
 			},
 			"pool_group_ref": {
 				Type:     schema.TypeString,

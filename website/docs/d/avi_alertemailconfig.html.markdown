@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "AVI: avi_alertemailconfig"
@@ -35,6 +33,7 @@ data "avi_alertemailconfig" "foo_alertemailconfig" {
 In addition to all arguments above, the following attributes are exported:
 
 * `cc_emails` - Alerts are copied to the comma separated list of  email recipients.
+* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1.
 * `description` - User defined description for the object.
 * `name` - A user-friendly name of the email notification service.
 * `tenant_ref` - It is a reference to an object of type tenant.

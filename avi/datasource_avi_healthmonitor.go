@@ -20,6 +20,11 @@ func dataSourceAviHealthMonitor() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceHealthMonitorAuthInfoSchema(),
 			},
+			"configpb_attributes": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceConfigPbAttributesSchema(),
+			},
 			"description": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -65,6 +70,11 @@ func dataSourceAviHealthMonitor() *schema.Resource {
 			"is_federated": {
 				Type:     schema.TypeBool,
 				Computed: true,
+			},
+			"markers": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceRoleFilterMatchLabelSchema(),
 			},
 			"monitor_port": {
 				Type:     schema.TypeInt,

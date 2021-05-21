@@ -11,9 +11,19 @@ func dataSourceAviSecurityPolicy() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviSecurityPolicyRead,
 		Schema: map[string]*schema.Schema{
+			"configpb_attributes": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceConfigPbAttributesSchema(),
+			},
 			"description": {
 				Type:     schema.TypeString,
 				Computed: true,
+			},
+			"dns_amplification_denyports": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourcePortMatchGenericSchema(),
 			},
 			"dns_attacks": {
 				Type:     schema.TypeSet,
@@ -24,10 +34,10 @@ func dataSourceAviSecurityPolicy() *schema.Resource {
 				Type:     schema.TypeInt,
 				Computed: true,
 			},
-			"labels": {
+			"markers": {
 				Type:     schema.TypeList,
 				Computed: true,
-				Elem:     ResourceKeyValueSchema(),
+				Elem:     ResourceRoleFilterMatchLabelSchema(),
 			},
 			"name": {
 				Type:     schema.TypeString,

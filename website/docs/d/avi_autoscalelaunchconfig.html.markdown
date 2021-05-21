@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "AVI: avi_autoscalelaunchconfig"
@@ -34,9 +32,10 @@ data "avi_autoscalelaunchconfig" "foo_autoscalelaunchconfig" {
 
 In addition to all arguments above, the following attributes are exported:
 
+* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1.
 * `description` - User defined description for the object.
 * `image_id` - Unique id of the amazon machine image (ami)  or openstack vm id.
-* `labels` - Key value pairs for granular object access control. Also allows for classification and tagging of similar objects. Field introduced in 20.1.2. Maximum of 4 items allowed.
+* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5.
 * `mesos` - Dict settings for autoscalelaunchconfig.
 * `name` - Name of the object.
 * `openstack` - Dict settings for autoscalelaunchconfig.

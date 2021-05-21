@@ -21,6 +21,11 @@ func dataSourceAviCloudConnectorUser() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceAzureUserPassCredentialsSchema(),
 			},
+			"configpb_attributes": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceConfigPbAttributesSchema(),
+			},
 			"gcp_credentials": {
 				Type:     schema.TypeSet,
 				Computed: true,

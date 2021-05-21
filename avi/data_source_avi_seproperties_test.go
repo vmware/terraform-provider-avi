@@ -77,7 +77,6 @@ resource "avi_seproperties" "testSeProperties" {
 		upstream_connpool_cache_thresh = "-1"
 		connections_lossy_log_rate_limiter_threshold = "1000"
 		log_agent_unknown_vs_timer = "1800"
-		upstream_connpool_strategy = "-1"
 		upstream_connpool_conn_idle_thresh_tmo = "-1"
 		log_agent_min_storage_per_vs = "10"
 		feproxy_vips_enable_proxy_arp = true
@@ -116,7 +115,6 @@ resource "avi_seproperties" "testSeProperties" {
 		se_metrics_rt_enabled = true
 		upstream_connpool_enable = true
 		se_auth_ldap_connect_timeout = "10000"
-		spdy_fwd_proxy_parse_enable = true
 		se_auth_ldap_reconnect_timeout = "10000"
 		enable_hsm_log = false
 		se_auth_ldap_request_timeout = "10000"
@@ -176,7 +174,6 @@ app_headers {
 		se_ip_encap_ipc = "0"
 		se_log_buffer_applog_size = "4096"
 		se_log_buffer_events_size = "512"
-		ssl_sess_cache_timeout = "86400"
 		l7_conns_per_core = "16384"
 		ssl_sess_cache_per_vs = "4096"
 		log_agent_trace_enabled = true

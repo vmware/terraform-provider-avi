@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "Avi: avi_customipamdnsprofile"
@@ -31,6 +29,7 @@ The following arguments are supported:
 
 * `name` - (Required) Name of the custom ipam dns profile. Field introduced in 17.1.1.
 * `script_uri` - (Required) Script uri of form controller //ipamdnsscripts/<file-name>. Field introduced in 17.1.1.
+* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1.
 * `script_params` - (Optional) Parameters that are always passed to the ipam/dns script. Field introduced in 17.1.1.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant. Field introduced in 17.1.1.
 

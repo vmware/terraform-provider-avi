@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "Avi: avi_federationcheckpoint"
@@ -30,6 +28,7 @@ resource "avi_federationcheckpoint" "foo" {
 The following arguments are supported:
 
 * `name` - (Required) Name of the checkpoint. Field introduced in 20.1.1.
+* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1.
 * `date` - (Optional) Date when the checkpoint was created. Field introduced in 20.1.1.
 * `description` - (Optional) Description for this checkpoint. Field introduced in 20.1.1.
 * `is_federated` - (Optional) This field describes the object's replication scope. If the field is set to false, then the object is visible within the controller-cluster and its associated service-engines. If the field is set to true, then the object is replicated across the federation. Field introduced in 20.1.1.

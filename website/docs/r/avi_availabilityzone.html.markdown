@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "Avi: avi_availabilityzone"
@@ -32,6 +30,7 @@ The following arguments are supported:
 * `name` - (Required) Availabilty zone where vcenter list belongs to. Field introduced in 20.1.1.
 * `vcenter_refs` - (Required) Group of vcenter list belong to availabilty zone. It is a reference to an object of type vcenterserver. Field introduced in 20.1.1. Minimum of 1 items required.
 * `cloud_ref` - (Optional) Availability zone belongs to cloud. It is a reference to an object of type cloud. Field introduced in 20.1.1.
+* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1.
 * `tenant_ref` - (Optional) Availabilityzone belongs to tenant. It is a reference to an object of type tenant. Field introduced in 20.1.1.
 
 

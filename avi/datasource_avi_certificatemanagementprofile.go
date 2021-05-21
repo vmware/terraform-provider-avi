@@ -11,6 +11,11 @@ func dataSourceAviCertificateManagementProfile() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviCertificateManagementProfileRead,
 		Schema: map[string]*schema.Schema{
+			"configpb_attributes": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceConfigPbAttributesSchema(),
+			},
 			"name": {
 				Type:     schema.TypeString,
 				Optional: true,

@@ -11,8 +11,8 @@ import (
 
 	"time"
 
-	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"github.com/vmware/alb-sdk/go/clients"
 )
 
 func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
@@ -127,6 +127,12 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  false,
 		},
+		"configpb_attributes": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceConfigPbAttributesSchema(),
+		},
 		"connection_memory_percentage": {
 			Type:     schema.TypeInt,
 			Optional: true,
@@ -176,6 +182,11 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Type:     schema.TypeInt,
 			Optional: true,
 			Default:  1000000,
+		},
+		"deactivate_ipv6_discovery": {
+			Type:     schema.TypeBool,
+			Optional: true,
+			Computed: true,
 		},
 		"dedicated_dispatcher_core": {
 			Type:     schema.TypeBool,
@@ -237,6 +248,11 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  false,
 		},
+		"downstream_send_timeout": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  3600000,
+		},
 		"dp_aggressive_deq_interval_msec": {
 			Type:     schema.TypeInt,
 			Optional: true,
@@ -278,6 +294,11 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Default:  10,
 		},
 		"enable_gratarp_permanent": {
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  false,
+		},
+		"enable_hsm_log": {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  false,
@@ -378,6 +399,16 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  false,
 		},
+		"http_rum_console_log": {
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  false,
+		},
+		"http_rum_min_content_length": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  64,
+		},
 		"hypervisor": {
 			Type:     schema.TypeString,
 			Optional: true,
@@ -414,10 +445,30 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Elem:     ResourceIptableRuleSetSchema(),
 		},
+		"l7_conns_per_core": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  16384,
+		},
+		"l7_resvd_listen_conns_per_core": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  256,
+		},
 		"labels": {
 			Type:     schema.TypeList,
 			Optional: true,
 			Elem:     ResourceKeyValueSchema(),
+		},
+		"lbaction_num_requests_to_dispatch": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  4,
+		},
+		"lbaction_rq_per_request_max_retries": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  22,
 		},
 		"least_load_core_selection": {
 			Type:     schema.TypeBool,
@@ -434,6 +485,76 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"log_agent_compress_logs": {
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  true,
+		},
+		"log_agent_debug_enabled": {
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  false,
+		},
+		"log_agent_file_sz_appl": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  4,
+		},
+		"log_agent_file_sz_conn": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  4,
+		},
+		"log_agent_file_sz_debug": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  4,
+		},
+		"log_agent_file_sz_event": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  4,
+		},
+		"log_agent_log_storage_min_sz": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  1024,
+		},
+		"log_agent_max_concurrent_rsync": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  1024,
+		},
+		"log_agent_max_storage_excess_percent": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  110,
+		},
+		"log_agent_max_storage_ignore_percent": {
+			Type:     schema.TypeFloat,
+			Optional: true,
+			Default:  "20.0",
+		},
+		"log_agent_min_storage_per_vs": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  10,
+		},
+		"log_agent_sleep_interval": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  10,
+		},
+		"log_agent_trace_enabled": {
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  true,
+		},
+		"log_agent_unknown_vs_timer": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  1800,
+		},
 		"log_disksz": {
 			Type:     schema.TypeInt,
 			Optional: true,
@@ -443,6 +564,11 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  true,
+		},
+		"log_message_max_file_list_size": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  64,
 		},
 		"max_concurrent_external_hm": {
 			Type:     schema.TypeInt,
@@ -559,6 +685,11 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  4,
 		},
+		"ngx_free_connection_stack": {
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  false,
+		},
 		"non_significant_log_throttle": {
 			Type:     schema.TypeInt,
 			Optional: true,
@@ -651,6 +782,21 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  65536,
 		},
+		"sdb_flush_interval": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  100,
+		},
+		"sdb_pipeline_size": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  100,
+		},
+		"sdb_scan_count": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  1000,
+		},
 		"se_bandwidth_type": {
 			Type:     schema.TypeString,
 			Optional: true,
@@ -677,10 +823,30 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  0,
 		},
+		"se_dp_isolation": {
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  false,
+		},
+		"se_dp_isolation_num_non_dp_cpus": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  0,
+		},
+		"se_dp_log_nf_enqueue_percent": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  70,
+		},
+		"se_dp_log_udf_enqueue_percent": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  90,
+		},
 		"se_dp_max_hb_version": {
 			Type:     schema.TypeInt,
 			Optional: true,
-			Default:  2,
+			Default:  3,
 		},
 		"se_dp_vnic_queue_stall_event_sleep": {
 			Type:     schema.TypeInt,
@@ -747,6 +913,21 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Type:     schema.TypeInt,
 			Optional: true,
 			Default:  0,
+		},
+		"se_log_buffer_app_blocking_dequeue": {
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  false,
+		},
+		"se_log_buffer_conn_blocking_dequeue": {
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  false,
+		},
+		"se_log_buffer_events_blocking_dequeue": {
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  true,
 		},
 		"se_lro": {
 			Type:     schema.TypeBool,
@@ -935,6 +1116,11 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  true,
 		},
+		"ssl_sess_cache_per_vs": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  4096,
+		},
 		"tenant_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
@@ -950,10 +1136,35 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  100,
 		},
+		"upstream_connect_timeout": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  3600000,
+		},
+		"upstream_connpool_enable": {
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  true,
+		},
+		"upstream_read_timeout": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  3600000,
+		},
+		"upstream_send_timeout": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  3600000,
+		},
 		"use_hyperthreaded_cores": {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  true,
+		},
+		"use_legacy_netlink": {
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  false,
 		},
 		"use_objsync": {
 			Type:     schema.TypeBool,
@@ -970,6 +1181,11 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 			Elem:     ResourceUserAgentCacheConfigSchema(),
+		},
+		"user_defined_metric_age": {
+			Type:     schema.TypeInt,
+			Optional: true,
+			Default:  60,
 		},
 		"uuid": {
 			Type:     schema.TypeString,

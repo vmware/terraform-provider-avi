@@ -9,8 +9,8 @@ import (
 	"log"
 	"strings"
 
-	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"github.com/vmware/alb-sdk/go/clients"
 )
 
 //nolint
@@ -80,7 +80,7 @@ func ResourceDynamicDnsRecordSchema() map[string]*schema.Schema {
 		"num_records_in_response": {
 			Type:     schema.TypeInt,
 			Optional: true,
-			Default:  0,
+			Computed: true,
 		},
 		"service_locators": {
 			Type:     schema.TypeList,

@@ -25,7 +25,7 @@ func dataSourceAviPool() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"apic_epg_name": {
+			"append_port": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
@@ -62,6 +62,11 @@ func dataSourceAviPool() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+			"configpb_attributes": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceConfigPbAttributesSchema(),
 			},
 			"conn_pool_properties": {
 				Type:     schema.TypeSet,
@@ -132,6 +137,11 @@ func dataSourceAviPool() *schema.Resource {
 				Type:     schema.TypeBool,
 				Computed: true,
 			},
+			"http2_properties": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceHTTP2PoolPropertiesSchema(),
+			},
 			"ignore_server_port": {
 				Type:     schema.TypeBool,
 				Computed: true,
@@ -143,11 +153,6 @@ func dataSourceAviPool() *schema.Resource {
 			"ipaddrgroup_ref": {
 				Type:     schema.TypeString,
 				Computed: true,
-			},
-			"labels": {
-				Type:     schema.TypeList,
-				Computed: true,
-				Elem:     ResourceKeyValueSchema(),
 			},
 			"lb_algorithm": {
 				Type:     schema.TypeString,
@@ -168,6 +173,11 @@ func dataSourceAviPool() *schema.Resource {
 			"lookup_server_by_name": {
 				Type:     schema.TypeBool,
 				Computed: true,
+			},
+			"markers": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceRoleFilterMatchLabelSchema(),
 			},
 			"max_concurrent_connections_per_server": {
 				Type:     schema.TypeInt,
@@ -232,6 +242,10 @@ func dataSourceAviPool() *schema.Resource {
 			},
 			"routing_pool": {
 				Type:     schema.TypeBool,
+				Computed: true,
+			},
+			"server_disable_type": {
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"server_name": {

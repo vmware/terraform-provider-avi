@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "AVI: avi_wafapplicationsignatureprovider"
@@ -34,6 +32,7 @@ data "avi_wafapplicationsignatureprovider" "foo_wafapplicationsignatureprovider"
 
 In addition to all arguments above, the following attributes are exported:
 
+* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1.
 * `name` - Name of application specific ruleset provider. Field introduced in 20.1.1.
 * `service_status` - If this object is managed by the application signatures update  service, this field contain the status of this syncronization. Field introduced in 20.1.3.
 * `tenant_ref` - It is a reference to an object of type tenant. Field introduced in 20.1.1.

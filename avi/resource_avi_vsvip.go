@@ -9,16 +9,27 @@ import (
 	"log"
 	"strings"
 
-	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"github.com/vmware/alb-sdk/go/clients"
 )
 
 func ResourceVsVipSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
+		"bgp_peer_labels": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     &schema.Schema{Type: schema.TypeString},
+		},
 		"cloud_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
+		},
+		"configpb_attributes": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceConfigPbAttributesSchema(),
 		},
 		"dns_info": {
 			Type:     schema.TypeList,
@@ -36,19 +47,14 @@ func ResourceVsVipSchema() map[string]*schema.Schema {
 			Computed: true,
 			Elem:     ResourceSelectorSchema(),
 		},
-		"labels": {
+		"markers": {
 			Type:     schema.TypeList,
 			Optional: true,
-			Elem:     ResourceKeyValueSchema(),
+			Elem:     ResourceRoleFilterMatchLabelSchema(),
 		},
 		"name": {
 			Type:     schema.TypeString,
 			Required: true,
-		},
-		"peer_labels": {
-			Type:     schema.TypeList,
-			Optional: true,
-			Elem:     &schema.Schema{Type: schema.TypeString},
 		},
 		"tenant_ref": {
 			Type:     schema.TypeString,

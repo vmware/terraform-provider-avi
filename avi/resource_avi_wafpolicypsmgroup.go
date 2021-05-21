@@ -9,12 +9,18 @@ import (
 	"log"
 	"strings"
 
-	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"github.com/vmware/alb-sdk/go/clients"
 )
 
 func ResourceWafPolicyPSMGroupSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
+		"configpb_attributes": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceConfigPbAttributesSchema(),
+		},
 		"description": {
 			Type:     schema.TypeString,
 			Optional: true,
@@ -35,15 +41,15 @@ func ResourceWafPolicyPSMGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  false,
 		},
-		"labels": {
-			Type:     schema.TypeList,
-			Optional: true,
-			Elem:     ResourceKeyValueSchema(),
-		},
 		"locations": {
 			Type:     schema.TypeList,
 			Optional: true,
 			Elem:     ResourceWafPSMLocationSchema(),
+		},
+		"markers": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceRoleFilterMatchLabelSchema(),
 		},
 		"miss_action": {
 			Type:     schema.TypeString,

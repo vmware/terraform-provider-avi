@@ -11,15 +11,20 @@ func dataSourceAviHardwareSecurityModuleGroup() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviHardwareSecurityModuleGroupRead,
 		Schema: map[string]*schema.Schema{
+			"configpb_attributes": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceConfigPbAttributesSchema(),
+			},
 			"hsm": {
 				Type:     schema.TypeSet,
 				Computed: true,
 				Elem:     ResourceHardwareSecurityModuleSchema(),
 			},
-			"labels": {
+			"markers": {
 				Type:     schema.TypeList,
 				Computed: true,
-				Elem:     ResourceKeyValueSchema(),
+				Elem:     ResourceRoleFilterMatchLabelSchema(),
 			},
 			"name": {
 				Type:     schema.TypeString,

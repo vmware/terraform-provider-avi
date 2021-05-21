@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "Avi: avi_errorpageprofile"
@@ -30,8 +28,9 @@ resource "avi_errorpageprofile" "foo" {
 The following arguments are supported:
 
 * `name` - (Required) Field introduced in 17.2.4.
+* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1.
 * `error_pages` - (Optional) Defined error pages for http status codes. Field introduced in 17.2.4.
-* `labels` - (Optional) Key value pairs for granular object access control. Also allows for classification and tagging of similar objects. Field introduced in 20.1.3. Maximum of 4 items allowed.
+* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant. Field introduced in 17.2.4.
 
 

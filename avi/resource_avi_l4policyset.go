@@ -9,12 +9,18 @@ import (
 	"log"
 	"strings"
 
-	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"github.com/vmware/alb-sdk/go/clients"
 )
 
 func ResourceL4PolicySetSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
+		"configpb_attributes": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceConfigPbAttributesSchema(),
+		},
 		"created_by": {
 			Type:     schema.TypeString,
 			Optional: true,
@@ -36,10 +42,10 @@ func ResourceL4PolicySetSchema() map[string]*schema.Schema {
 			Computed: true,
 			Elem:     ResourceL4ConnectionPolicySchema(),
 		},
-		"labels": {
+		"markers": {
 			Type:     schema.TypeList,
 			Optional: true,
-			Elem:     ResourceKeyValueSchema(),
+			Elem:     ResourceRoleFilterMatchLabelSchema(),
 		},
 		"name": {
 			Type:     schema.TypeString,

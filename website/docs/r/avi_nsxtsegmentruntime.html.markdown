@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "Avi: avi_nsxtsegmentruntime"
@@ -45,6 +43,7 @@ The following arguments are supported:
 * `subnet6` - (Optional) V6 segment cidr. Field introduced in 20.1.1.
 * `tenant_ref` - (Optional) Nsxt segment belongs to tenant. It is a reference to an object of type tenant. Field introduced in 20.1.1.
 * `tier1_id` - (Optional) Tier1 router id. Field introduced in 20.1.1.
+* `vlan_ids` - (Optional) Segment vlan ids. Field introduced in 20.1.5.
 * `vrf_context_ref` - (Optional) Corresponding vrf context object in avi. It is a reference to an object of type vrfcontext. Field introduced in 20.1.1.
 
 

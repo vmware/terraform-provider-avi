@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "Avi: avi_analyticsprofile"
@@ -42,6 +40,7 @@ The following arguments are supported:
 * `apdex_server_rtt_tolerated_factor` - (Optional) Tolerated client to avi round trip time(rtt) factor. It is a multiple of apdex_rtt_tolerated_factor. Allowed values are 1-1000. Allowed in basic(allowed values- 4) edition, essentials(allowed values- 4) edition, enterprise edition.
 * `client_log_config` - (Optional) Configure which logs are sent to the avi controller from ses and how they are processed.
 * `client_log_streaming_config` - (Optional) Configure to stream logs to an external server. Field introduced in 17.1.1. Allowed in basic edition, essentials edition, enterprise edition.
+* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1.
 * `conn_lossy_ooo_threshold` - (Optional) A connection between client and avi is considered lossy when more than this percentage of out of order packets are received. Allowed values are 1-100. Unit is percent. Allowed in basic(allowed values- 50) edition, essentials(allowed values- 50) edition, enterprise edition.
 * `conn_lossy_timeo_rexmt_threshold` - (Optional) A connection between client and avi is considered lossy when more than this percentage of packets are retransmitted due to timeout. Allowed values are 1-100. Unit is percent. Allowed in basic(allowed values- 20) edition, essentials(allowed values- 20) edition, enterprise edition.
 * `conn_lossy_total_rexmt_threshold` - (Optional) A connection between client and avi is considered lossy when more than this percentage of packets are retransmitted. Allowed values are 1-100. Unit is percent. Allowed in basic(allowed values- 50) edition, essentials(allowed values- 50) edition, enterprise edition.
@@ -104,7 +103,7 @@ The following arguments are supported:
 * `hs_security_tls11_score` - (Optional) Score assigned when supporting tls1.1 encryption protocol. Allowed values are 0-5. Allowed in basic(allowed values- 5.0) edition, essentials(allowed values- 5.0) edition, enterprise edition.
 * `hs_security_tls12_score` - (Optional) Score assigned when supporting tls1.2 encryption protocol. Allowed values are 0-5. Allowed in basic(allowed values- 5.0) edition, essentials(allowed values- 5.0) edition, enterprise edition.
 * `hs_security_weak_signature_algo_penalty` - (Optional) Penalty for allowing weak signature algorithm(s). Allowed values are 0-5. Allowed in basic(allowed values- 1.0) edition, essentials(allowed values- 1.0) edition, enterprise edition.
-* `labels` - (Optional) Key value pairs for granular object access control. Also allows for classification and tagging of similar objects. Field introduced in 20.1.2. Maximum of 4 items allowed.
+* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5.
 * `ondemand_metrics_idle_timeout` - (Optional) This flag sets the time duration of no live data traffic after which virtual service metrics processing is suspended. It is applicable only when enable_ondemand_metrics is set to false. Field introduced in 18.1.1. Unit is seconds.
 * `ranges` - (Optional) List of http status code ranges to be excluded from being classified as an error.
 * `resp_code_block` - (Optional) Block of http response codes to be excluded from being classified as an error. Enum options - AP_HTTP_RSP_4XX, AP_HTTP_RSP_5XX.

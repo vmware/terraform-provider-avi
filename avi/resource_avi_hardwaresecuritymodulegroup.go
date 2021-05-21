@@ -9,21 +9,27 @@ import (
 	"log"
 	"strings"
 
-	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"github.com/vmware/alb-sdk/go/clients"
 )
 
 func ResourceHardwareSecurityModuleGroupSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
+		"configpb_attributes": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceConfigPbAttributesSchema(),
+		},
 		"hsm": {
 			Type:     schema.TypeSet,
 			Required: true,
 			Elem:     ResourceHardwareSecurityModuleSchema(),
 		},
-		"labels": {
+		"markers": {
 			Type:     schema.TypeList,
 			Optional: true,
-			Elem:     ResourceKeyValueSchema(),
+			Elem:     ResourceRoleFilterMatchLabelSchema(),
 		},
 		"name": {
 			Type:     schema.TypeString,
