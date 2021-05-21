@@ -11,6 +11,11 @@ func dataSourceAviAlertSyslogConfig() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviAlertSyslogConfigRead,
 		Schema: map[string]*schema.Schema{
+			"configpb_attributes": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceConfigPbAttributesSchema(),
+			},
 			"description": {
 				Type:     schema.TypeString,
 				Computed: true,

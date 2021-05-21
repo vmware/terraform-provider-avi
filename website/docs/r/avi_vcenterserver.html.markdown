@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "Avi: avi_vcenterserver"
@@ -34,6 +32,7 @@ The following arguments are supported:
 * `vcenter_credentials_ref` - (Required) Credentials to access vcenter. It is a reference to an object of type cloudconnectoruser. Field introduced in 20.1.1.
 * `vcenter_url` - (Required) Vcenter hostname or ip address. Field introduced in 20.1.1.
 * `cloud_ref` - (Optional) Vcenter belongs to cloud. It is a reference to an object of type cloud. Field introduced in 20.1.1.
+* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1.
 * `tenant_ref` - (Optional) Vcenter belongs to tenant. It is a reference to an object of type tenant. Field introduced in 20.1.1.
 
 

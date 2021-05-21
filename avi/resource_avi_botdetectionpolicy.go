@@ -9,8 +9,8 @@ import (
 	"log"
 	"strings"
 
-	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"github.com/vmware/alb-sdk/go/clients"
 )
 
 func ResourceBotDetectionPolicySchema() map[string]*schema.Schema {
@@ -20,16 +20,6 @@ func ResourceBotDetectionPolicySchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 			Elem:     ResourceBotAllowListSchema(),
-		},
-		"bot_mapping_uuids": {
-			Type:     schema.TypeList,
-			Optional: true,
-			Elem:     &schema.Schema{Type: schema.TypeString},
-		},
-		"consolidator_ref": {
-			Type:     schema.TypeString,
-			Optional: true,
-			Computed: true,
 		},
 		"description": {
 			Type:     schema.TypeString,
@@ -50,6 +40,16 @@ func ResourceBotDetectionPolicySchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Required: true,
 		},
+		"system_bot_mapping_ref": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
+		"system_consolidator_ref": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
 		"tenant_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
@@ -59,6 +59,16 @@ func ResourceBotDetectionPolicySchema() map[string]*schema.Schema {
 			Type:     schema.TypeSet,
 			Required: true,
 			Elem:     ResourceBotConfigUserAgentSchema(),
+		},
+		"user_bot_mapping_ref": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
+		"user_consolidator_ref": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
 		},
 		"uuid": {
 			Type:     schema.TypeString,

@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "Avi: avi_botdetectionpolicy"
@@ -34,10 +32,12 @@ The following arguments are supported:
 * `name` - (Required) The name of this bot detection policy. Field introduced in 21.1.1.
 * `user_agent_detector` - (Required) The user-agent configuration used in this policy. Field introduced in 21.1.1.
 * `allow_list` - (Optional) Allow the user to skip botmanagement for selected requests. Field introduced in 21.1.1.
-* `bot_mapping_uuids` - (Optional) System- and user-defined rules for classification. Field introduced in 21.1.1.
-* `consolidator_ref` - (Optional) The installation provides an updated ruleset for consolidating the results of different decider phases. It is a reference to an object of type botconfigconsolidator. Field introduced in 21.1.1.
 * `description` - (Optional) Human-readable description of this bot detection policy. Field introduced in 21.1.1.
+* `system_bot_mapping_ref` - (Optional) System-defined rules for classification. It is a reference to an object of type botmapping. Field introduced in 21.1.1.
+* `system_consolidator_ref` - (Optional) The installation provides an updated ruleset for consolidating the results of different decider phases. It is a reference to an object of type botconfigconsolidator. Field introduced in 21.1.1.
 * `tenant_ref` - (Optional) The unique identifier of the tenant to which this policy belongs. It is a reference to an object of type tenant. Field introduced in 21.1.1.
+* `user_bot_mapping_ref` - (Optional) User-defined rules for classification. These are applied before the system classification rules. If a rule matches, processing terminates and the system-defined rules will not run. It is a reference to an object of type botmapping. Field introduced in 21.1.1.
+* `user_consolidator_ref` - (Optional) The user-provided ruleset for consolidating the results of different decider phases. This runs before the system consolidator. If it successfully sets a consolidation, the system consolidator will not change it. It is a reference to an object of type botconfigconsolidator. Field introduced in 21.1.1.
 
 
 ### Timeouts

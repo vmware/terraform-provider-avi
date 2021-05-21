@@ -11,6 +11,11 @@ func dataSourceAviWafPolicyPSMGroup() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviWafPolicyPSMGroupRead,
 		Schema: map[string]*schema.Schema{
+			"configpb_attributes": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceConfigPbAttributesSchema(),
+			},
 			"description": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -27,15 +32,15 @@ func dataSourceAviWafPolicyPSMGroup() *schema.Resource {
 				Type:     schema.TypeBool,
 				Computed: true,
 			},
-			"labels": {
-				Type:     schema.TypeList,
-				Computed: true,
-				Elem:     ResourceKeyValueSchema(),
-			},
 			"locations": {
 				Type:     schema.TypeList,
 				Computed: true,
 				Elem:     ResourceWafPSMLocationSchema(),
+			},
+			"markers": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceRoleFilterMatchLabelSchema(),
 			},
 			"miss_action": {
 				Type:     schema.TypeString,

@@ -15,6 +15,11 @@ func dataSourceAviApplicationProfile() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"configpb_attributes": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceConfigPbAttributesSchema(),
+			},
 			"created_by": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -37,6 +42,11 @@ func dataSourceAviApplicationProfile() *schema.Resource {
 				Type:     schema.TypeSet,
 				Computed: true,
 				Elem:     ResourceHTTPApplicationProfileSchema(),
+			},
+			"markers": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceRoleFilterMatchLabelSchema(),
 			},
 			"name": {
 				Type:     schema.TypeString,

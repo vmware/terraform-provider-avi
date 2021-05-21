@@ -21,6 +21,11 @@ func dataSourceAviCloudProperties() *schema.Resource {
 				Computed: true,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
+			"configpb_attributes": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceConfigPbAttributesSchema(),
+			},
 			"hyp_props": {
 				Type:     schema.TypeList,
 				Computed: true,

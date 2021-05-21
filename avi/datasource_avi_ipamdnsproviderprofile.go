@@ -26,6 +26,11 @@ func dataSourceAviIpamDnsProviderProfile() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceIpamDnsAzureProfileSchema(),
 			},
+			"configpb_attributes": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceConfigPbAttributesSchema(),
+			},
 			"custom_profile": {
 				Type:     schema.TypeSet,
 				Computed: true,
@@ -46,10 +51,10 @@ func dataSourceAviIpamDnsProviderProfile() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceIpamDnsInternalProfileSchema(),
 			},
-			"labels": {
+			"markers": {
 				Type:     schema.TypeList,
 				Computed: true,
-				Elem:     ResourceKeyValueSchema(),
+				Elem:     ResourceRoleFilterMatchLabelSchema(),
 			},
 			"name": {
 				Type:     schema.TypeString,

@@ -11,6 +11,11 @@ func dataSourceAviWafCRS() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviWafCRSRead,
 		Schema: map[string]*schema.Schema{
+			"configpb_attributes": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceConfigPbAttributesSchema(),
+			},
 			"description": {
 				Type:     schema.TypeString,
 				Computed: true,

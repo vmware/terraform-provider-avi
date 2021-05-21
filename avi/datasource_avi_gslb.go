@@ -24,6 +24,11 @@ func dataSourceAviGslb() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceGslbClientIpAddrGroupSchema(),
 			},
+			"configpb_attributes": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceConfigPbAttributesSchema(),
+			},
 			"description": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -32,6 +37,10 @@ func dataSourceAviGslb() *schema.Resource {
 				Type:     schema.TypeList,
 				Computed: true,
 				Elem:     ResourceDNSConfigSchema(),
+			},
+			"enable_config_by_members": {
+				Type:     schema.TypeBool,
+				Computed: true,
 			},
 			"error_resync_interval": {
 				Type:     schema.TypeInt,

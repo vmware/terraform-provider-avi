@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "AVI: avi_trafficcloneprofile"
@@ -38,7 +36,8 @@ In addition to all arguments above, the following attributes are exported:
 
 * `clone_servers` - Field introduced in 17.1.1. Maximum of 10 items allowed.
 * `cloud_ref` - It is a reference to an object of type cloud. Field introduced in 17.1.1.
-* `labels` - Key value pairs for granular object access control. Also allows for classification and tagging of similar objects. Field introduced in 20.1.2. Maximum of 4 items allowed.
+* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1.
+* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5.
 * `name` - Name for the traffic clone profile. Field introduced in 17.1.1.
 * `preserve_client_ip` - Specifies if client ip needs to be preserved to clone destination. Field introduced in 17.1.1.
 * `tenant_ref` - It is a reference to an object of type tenant. Field introduced in 17.1.1.

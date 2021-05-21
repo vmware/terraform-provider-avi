@@ -16,15 +16,6 @@ func dataSourceAviBotDetectionPolicy() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceBotAllowListSchema(),
 			},
-			"bot_mapping_uuids": {
-				Type:     schema.TypeList,
-				Computed: true,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-			},
-			"consolidator_ref": {
-				Type:     schema.TypeString,
-				Computed: true,
-			},
 			"description": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -44,6 +35,14 @@ func dataSourceAviBotDetectionPolicy() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"system_bot_mapping_ref": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"system_consolidator_ref": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"tenant_ref": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -53,6 +52,14 @@ func dataSourceAviBotDetectionPolicy() *schema.Resource {
 				Type:     schema.TypeSet,
 				Computed: true,
 				Elem:     ResourceBotConfigUserAgentSchema(),
+			},
+			"user_bot_mapping_ref": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"user_consolidator_ref": {
+				Type:     schema.TypeString,
+				Computed: true,
 			},
 			"uuid": {
 				Type:     schema.TypeString,

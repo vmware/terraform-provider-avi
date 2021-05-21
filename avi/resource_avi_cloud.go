@@ -14,23 +14,12 @@ import (
 
 	"time"
 
-	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"github.com/vmware/alb-sdk/go/clients"
 )
 
 func ResourceCloudSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"apic_configuration": {
-			Type:     schema.TypeSet,
-			Optional: true,
-			Computed: true,
-			Elem:     ResourceAPICConfigurationSchema(),
-		},
-		"apic_mode": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
-		},
 		"autoscale_polling_interval": {
 			Type:     schema.TypeInt,
 			Optional: true,
@@ -54,6 +43,12 @@ func ResourceCloudSchema() map[string]*schema.Schema {
 			Computed: true,
 			Elem:     ResourceCloudStackConfigurationSchema(),
 		},
+		"configpb_attributes": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceConfigPbAttributesSchema(),
+		},
 		"custom_tags": {
 			Type:     schema.TypeList,
 			Optional: true,
@@ -73,6 +68,11 @@ func ResourceCloudSchema() map[string]*schema.Schema {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  false,
+		},
+		"dns_resolvers": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceDnsResolverSchema(),
 		},
 		"docker_configuration": {
 			Type:     schema.TypeSet,
@@ -140,12 +140,6 @@ func ResourceCloudSchema() map[string]*schema.Schema {
 		"name": {
 			Type:     schema.TypeString,
 			Required: true,
-		},
-		"nsx_configuration": {
-			Type:     schema.TypeSet,
-			Optional: true,
-			Computed: true,
-			Elem:     ResourceNsxConfigurationSchema(),
 		},
 		"nsxt_configuration": {
 			Type:     schema.TypeSet,

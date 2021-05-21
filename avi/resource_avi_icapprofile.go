@@ -9,8 +9,8 @@ import (
 	"log"
 	"strings"
 
-	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"github.com/vmware/alb-sdk/go/clients"
 )
 
 func ResourceIcapProfileSchema() map[string]*schema.Schema {
@@ -35,6 +35,12 @@ func ResourceIcapProfileSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"configpb_attributes": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceConfigPbAttributesSchema(),
+		},
 		"description": {
 			Type:     schema.TypeString,
 			Optional: true,
@@ -53,6 +59,12 @@ func ResourceIcapProfileSchema() map[string]*schema.Schema {
 		"name": {
 			Type:     schema.TypeString,
 			Required: true,
+		},
+		"nsx_defender_config": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceIcapNsxDefenderConfigSchema(),
 		},
 		"pool_group_ref": {
 			Type:     schema.TypeString,

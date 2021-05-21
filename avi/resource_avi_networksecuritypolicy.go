@@ -9,8 +9,8 @@ import (
 	"log"
 	"strings"
 
-	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"github.com/vmware/alb-sdk/go/clients"
 )
 
 func ResourceNetworkSecurityPolicySchema() map[string]*schema.Schema {
@@ -19,6 +19,12 @@ func ResourceNetworkSecurityPolicySchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
+		},
+		"configpb_attributes": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceConfigPbAttributesSchema(),
 		},
 		"created_by": {
 			Type:     schema.TypeString,
@@ -35,15 +41,20 @@ func ResourceNetworkSecurityPolicySchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"internal": {
+			Type:     schema.TypeBool,
+			Optional: true,
+			Computed: true,
+		},
 		"ip_reputation_db_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"labels": {
+		"markers": {
 			Type:     schema.TypeList,
 			Optional: true,
-			Elem:     ResourceKeyValueSchema(),
+			Elem:     ResourceRoleFilterMatchLabelSchema(),
 		},
 		"name": {
 			Type:     schema.TypeString,

@@ -21,6 +21,11 @@ func dataSourceAviALBServicesConfig() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceALBServicesUserSchema(),
 			},
+			"configpb_attributes": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceConfigPbAttributesSchema(),
+			},
 			"feature_opt_in_status": {
 				Type:     schema.TypeSet,
 				Computed: true,

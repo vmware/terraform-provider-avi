@@ -12,6 +12,11 @@ func dataSourceAviDnsPolicy() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviDnsPolicyRead,
 		Schema: map[string]*schema.Schema{
+			"configpb_attributes": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceConfigPbAttributesSchema(),
+			},
 			"created_by": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -20,10 +25,14 @@ func dataSourceAviDnsPolicy() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"labels": {
+			"internal": {
+				Type:     schema.TypeBool,
+				Computed: true,
+			},
+			"markers": {
 				Type:     schema.TypeList,
 				Computed: true,
-				Elem:     ResourceKeyValueSchema(),
+				Elem:     ResourceRoleFilterMatchLabelSchema(),
 			},
 			"name": {
 				Type:     schema.TypeString,

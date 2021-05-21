@@ -11,15 +11,6 @@ func dataSourceAviCloud() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviCloudRead,
 		Schema: map[string]*schema.Schema{
-			"apic_configuration": {
-				Type:     schema.TypeSet,
-				Computed: true,
-				Elem:     ResourceAPICConfigurationSchema(),
-			},
-			"apic_mode": {
-				Type:     schema.TypeBool,
-				Computed: true,
-			},
 			"autoscale_polling_interval": {
 				Type:     schema.TypeInt,
 				Computed: true,
@@ -39,6 +30,11 @@ func dataSourceAviCloud() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceCloudStackConfigurationSchema(),
 			},
+			"configpb_attributes": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceConfigPbAttributesSchema(),
+			},
 			"custom_tags": {
 				Type:     schema.TypeList,
 				Computed: true,
@@ -55,6 +51,11 @@ func dataSourceAviCloud() *schema.Resource {
 			"dns_resolution_on_se": {
 				Type:     schema.TypeBool,
 				Computed: true,
+			},
+			"dns_resolvers": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceDnsResolverSchema(),
 			},
 			"docker_configuration": {
 				Type:     schema.TypeSet,
@@ -111,11 +112,6 @@ func dataSourceAviCloud() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
-			},
-			"nsx_configuration": {
-				Type:     schema.TypeSet,
-				Computed: true,
-				Elem:     ResourceNsxConfigurationSchema(),
 			},
 			"nsxt_configuration": {
 				Type:     schema.TypeSet,

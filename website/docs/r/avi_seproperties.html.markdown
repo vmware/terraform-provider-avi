@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "Avi: avi_seproperties"
@@ -28,6 +26,7 @@ resource "avi_seproperties" "foo" {
 
 The following arguments are supported:
 
+* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1.
 * `se_agent_properties` - (Optional) Dict settings for seproperties.
 * `se_bootup_properties` - (Optional) Dict settings for seproperties.
 * `se_runtime_properties` - (Optional) Dict settings for seproperties.
