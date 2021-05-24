@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "AVI: avi_alertsyslogconfig"
@@ -34,6 +32,7 @@ data "avi_alertsyslogconfig" "foo_alertsyslogconfig" {
 
 In addition to all arguments above, the following attributes are exported:
 
+* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1.
 * `description` - User defined description for alert syslog config.
 * `name` - A user-friendly name of the syslog notification.
 * `syslog_servers` - The list of syslog servers.

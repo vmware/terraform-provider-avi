@@ -1,8 +1,6 @@
-/*
-* Copyright (c) 2017. Avi Networks.
-* Author: Gaurav Rastogi (grastogi@avinetworks.com)
-*
- */
+// Copyright 2019 VMware, Inc.
+// SPDX-License-Identifier: Mozilla Public License 2.0
+
 package avi
 
 import "github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
@@ -16,6 +14,11 @@ func dataSourceAviPriorityLabels() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"configpb_attributes": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceConfigPbAttributesSchema(),
+			},
 			"description": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -25,10 +28,10 @@ func dataSourceAviPriorityLabels() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceEquivalentLabelsSchema(),
 			},
-			"labels": {
+			"markers": {
 				Type:     schema.TypeList,
 				Computed: true,
-				Elem:     ResourceKeyValueSchema(),
+				Elem:     ResourceRoleFilterMatchLabelSchema(),
 			},
 			"name": {
 				Type:     schema.TypeString,

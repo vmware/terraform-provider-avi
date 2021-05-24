@@ -1,8 +1,6 @@
-/*
-* Copyright (c) 2017. Avi Networks.
-* Author: Gaurav Rastogi (grastogi@avinetworks.com)
-*
- */
+// Copyright 2019 VMware, Inc.
+// SPDX-License-Identifier: Mozilla Public License 2.0
+
 package avi
 
 import "github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
@@ -20,6 +18,11 @@ func dataSourceAviALBServicesConfig() *schema.Resource {
 				Type:     schema.TypeSet,
 				Computed: true,
 				Elem:     ResourceALBServicesUserSchema(),
+			},
+			"configpb_attributes": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceConfigPbAttributesSchema(),
 			},
 			"feature_opt_in_status": {
 				Type:     schema.TypeSet,

@@ -1,16 +1,14 @@
-/*
-* Copyright (c) 2017. Avi Networks.
-* Author: Gaurav Rastogi (grastogi@avinetworks.com)
-*
- */
+// Copyright 2019 VMware, Inc.
+// SPDX-License-Identifier: Mozilla Public License 2.0
+
 package avi
 
 import (
 	"log"
 	"strings"
 
-	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"github.com/vmware/alb-sdk/go/clients"
 )
 
 func ResourceAlertConfigSchema() map[string]*schema.Schema {
@@ -33,6 +31,12 @@ func ResourceAlertConfigSchema() map[string]*schema.Schema {
 		"category": {
 			Type:     schema.TypeString,
 			Required: true,
+		},
+		"configpb_attributes": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceConfigPbAttributesSchema(),
 		},
 		"description": {
 			Type:     schema.TypeString,

@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "Avi: avi_webhook"
@@ -31,6 +29,7 @@ The following arguments are supported:
 
 * `name` - (Required) The name of the webhook profile. Field introduced in 17.1.1.
 * `callback_url` - (Optional) Callback url for the webhook. Field introduced in 17.1.1.
+* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1.
 * `description` - (Optional) Field introduced in 17.1.1.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant. Field introduced in 17.1.1.
 * `verification_token` - (Optional) Verification token sent back with the callback asquery parameters. Field introduced in 17.1.1.

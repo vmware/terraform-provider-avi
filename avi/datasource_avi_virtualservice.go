@@ -1,8 +1,6 @@
-/*
-* Copyright (c) 2017. Avi Networks.
-* Author: Gaurav Rastogi (grastogi@avinetworks.com)
-*
- */
+// Copyright 2019 VMware, Inc.
+// SPDX-License-Identifier: Mozilla Public License 2.0
+
 package avi
 
 import "github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
@@ -32,13 +30,14 @@ func dataSourceAviVirtualService() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"apic_contract_graph": {
-				Type:     schema.TypeString,
-				Computed: true,
-			},
 			"application_profile_ref": {
 				Type:     schema.TypeString,
 				Computed: true,
+			},
+			"bgp_peer_labels": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
 			"bot_policy_ref": {
 				Type:     schema.TypeString,
@@ -64,6 +63,11 @@ func dataSourceAviVirtualService() *schema.Resource {
 			"cloud_type": {
 				Type:     schema.TypeString,
 				Computed: true,
+			},
+			"configpb_attributes": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceConfigPbAttributesSchema(),
 			},
 			"connections_rate_limit": {
 				Type:     schema.TypeSet,
@@ -161,11 +165,6 @@ func dataSourceAviVirtualService() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceL4PoliciesSchema(),
 			},
-			"labels": {
-				Type:     schema.TypeList,
-				Computed: true,
-				Elem:     ResourceKeyValueSchema(),
-			},
 			"ldap_vs_config": {
 				Type:     schema.TypeSet,
 				Computed: true,
@@ -174,6 +173,11 @@ func dataSourceAviVirtualService() *schema.Resource {
 			"limit_doser": {
 				Type:     schema.TypeBool,
 				Computed: true,
+			},
+			"markers": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceRoleFilterMatchLabelSchema(),
 			},
 			"max_cps_per_client": {
 				Type:     schema.TypeInt,

@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "AVI: avi_networksecuritypolicy"
@@ -35,11 +33,13 @@ data "avi_networksecuritypolicy" "foo_networksecuritypolicy" {
 In addition to all arguments above, the following attributes are exported:
 
 * `cloud_config_cksum` - Checksum of cloud configuration for network sec policy. Internally set by cloud connector.
+* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1.
 * `created_by` - Creator name.
 * `description` - User defined description for the object.
 * `geo_db_ref` - Geo database. It is a reference to an object of type geodb. Field introduced in 21.1.1.
+* `internal` - Network security policy is created and modified by internal modules only. Should not be modified by users. Field introduced in 21.1.1.
 * `ip_reputation_db_ref` - Ip reputation database. It is a reference to an object of type ipreputationdb. Field introduced in 20.1.1. Allowed in basic edition, essentials edition, enterprise edition.
-* `labels` - Key value pairs for granular object access control. Also allows for classification and tagging of similar objects. Field introduced in 20.1.2. Maximum of 4 items allowed.
+* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5.
 * `name` - Name of the object.
 * `rules` - List of list.
 * `tenant_ref` - It is a reference to an object of type tenant.

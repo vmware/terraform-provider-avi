@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "Avi: avi_albservicesconfig"
@@ -35,11 +33,12 @@ The following arguments are supported:
 * `portal_url` - (Required) The fqdn or ip address of the customer portal. Field introduced in 18.2.6.
 * `proactive_support_defaults` - (Required) Default values to be used during proactive case creation and techsupport attachment. Field introduced in 20.1.1.
 * `asset_contact` - (Optional) Information about the default contact for this controller cluster. Field introduced in 20.1.1.
+* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1.
 * `mode` - (Optional) Mode helps log collection and upload. Enum options - SALESFORCE, SYSTEST, MYVMWARE. Field introduced in 20.1.2. Allowed in basic(allowed values- salesforce,myvmware,systest) edition, essentials(allowed values- salesforce,myvmware,systest) edition, enterprise edition.
 * `polling_interval` - (Optional) Time interval in minutes. Allowed values are 5-60. Field introduced in 18.2.6.
 * `split_proxy_configuration` - (Optional) Split proxy configuration to connect external pulse services. Field introduced in 20.1.1.
 * `use_split_proxy` - (Optional) By default, use system proxy configuration.if true, use split proxy configuration. Field introduced in 20.1.1.
-* `use_tls` - (Optional) Secure the controller to pulse communication over tls. Field introduced in 20.1.3.
+* `use_tls` - (Optional) Secure the controller to pulse communication over tls. Field introduced in 20.1.3. Allowed in basic edition, enterprise edition.
 
 
 ### Timeouts

@@ -1,8 +1,6 @@
-/*
-* Copyright (c) 2017. Avi Networks.
-* Author: Gaurav Rastogi (grastogi@avinetworks.com)
-*
- */
+// Copyright 2019 VMware, Inc.
+// SPDX-License-Identifier: Mozilla Public License 2.0
+
 package avi
 
 import "github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
@@ -11,6 +9,11 @@ func dataSourceAviServerAutoScalePolicy() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviServerAutoScalePolicyRead,
 		Schema: map[string]*schema.Schema{
+			"configpb_attributes": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceConfigPbAttributesSchema(),
+			},
 			"delay_for_server_garbage_collection": {
 				Type:     schema.TypeInt,
 				Computed: true,
@@ -31,10 +34,10 @@ func dataSourceAviServerAutoScalePolicy() *schema.Resource {
 				Type:     schema.TypeInt,
 				Computed: true,
 			},
-			"labels": {
+			"markers": {
 				Type:     schema.TypeList,
 				Computed: true,
-				Elem:     ResourceKeyValueSchema(),
+				Elem:     ResourceRoleFilterMatchLabelSchema(),
 			},
 			"max_scalein_adjustment_step": {
 				Type:     schema.TypeInt,
@@ -74,6 +77,11 @@ func dataSourceAviServerAutoScalePolicy() *schema.Resource {
 			"scaleout_cooldown": {
 				Type:     schema.TypeInt,
 				Computed: true,
+			},
+			"scheduled_scalings": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceScheduledScalingSchema(),
 			},
 			"tenant_ref": {
 				Type:     schema.TypeString,

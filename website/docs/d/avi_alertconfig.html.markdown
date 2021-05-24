@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "AVI: avi_alertconfig"
@@ -38,6 +36,7 @@ In addition to all arguments above, the following attributes are exported:
 * `alert_rule` - List of filters matching on events or client logs used for triggering alerts.
 * `autoscale_alert` - This alert config applies to auto scale alerts.
 * `category` - Determines whether an alert is raised immediately when event occurs (realtime) or after specified number of events occurs within rolling time window. Enum options - REALTIME, ROLLINGWINDOW, WATERMARK.
+* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1.
 * `description` - A custom description field.
 * `enabled` - Enable or disable this alert config from generating new alerts.
 * `expiry_time` - An alert is expired and deleted after the expiry time has elapsed. The original event triggering the alert remains in the event's log. Allowed values are 1-31536000. Unit is sec.

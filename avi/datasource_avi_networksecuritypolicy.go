@@ -1,8 +1,6 @@
-/*
-* Copyright (c) 2017. Avi Networks.
-* Author: Gaurav Rastogi (grastogi@avinetworks.com)
-*
- */
+// Copyright 2019 VMware, Inc.
+// SPDX-License-Identifier: Mozilla Public License 2.0
+
 package avi
 
 import "github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
@@ -14,6 +12,11 @@ func dataSourceAviNetworkSecurityPolicy() *schema.Resource {
 			"cloud_config_cksum": {
 				Type:     schema.TypeString,
 				Computed: true,
+			},
+			"configpb_attributes": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceConfigPbAttributesSchema(),
 			},
 			"created_by": {
 				Type:     schema.TypeString,
@@ -27,14 +30,18 @@ func dataSourceAviNetworkSecurityPolicy() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"internal": {
+				Type:     schema.TypeBool,
+				Computed: true,
+			},
 			"ip_reputation_db_ref": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"labels": {
+			"markers": {
 				Type:     schema.TypeList,
 				Computed: true,
-				Elem:     ResourceKeyValueSchema(),
+				Elem:     ResourceRoleFilterMatchLabelSchema(),
 			},
 			"name": {
 				Type:     schema.TypeString,

@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "AVI: avi_dnspolicy"
@@ -34,9 +32,11 @@ data "avi_dnspolicy" "foo_dnspolicy" {
 
 In addition to all arguments above, the following attributes are exported:
 
+* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1.
 * `created_by` - Creator name. Field introduced in 17.1.1.
 * `description` - Field introduced in 17.1.1.
-* `labels` - Key value pairs for granular object access control. Also allows for classification and tagging of similar objects. Field introduced in 20.1.2. Maximum of 4 items allowed.
+* `internal` - The dns policy is created and modified by internal modules only. This should not be modified by users. Field introduced in 21.1.1.
+* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5.
 * `name` - Name of the dns policy. Field introduced in 17.1.1.
 * `rule` - Dns rules. Field introduced in 17.1.1.
 * `tenant_ref` - It is a reference to an object of type tenant. Field introduced in 17.1.1.

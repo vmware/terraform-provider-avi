@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "AVI: avi_scheduler"
@@ -35,6 +33,7 @@ data "avi_scheduler" "foo_scheduler" {
 In addition to all arguments above, the following attributes are exported:
 
 * `backup_config_ref` - Backup configuration to be executed by this scheduler. It is a reference to an object of type backupconfiguration.
+* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1.
 * `enabled` - Boolean flag to set enabled.
 * `end_date_time` - Scheduler end date and time.
 * `frequency` - Frequency at which custom scheduler will run. Allowed values are 0-60.

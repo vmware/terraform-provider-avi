@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "AVI: avi_healthmonitor"
@@ -36,6 +34,7 @@ In addition to all arguments above, the following attributes are exported:
 
 * `allow_duplicate_monitors` - By default, multiple instances of the same healthmonitor to the same server are suppressed intelligently. In rare cases, the monitor may have specific constructs that go beyond the server keys (ip, port, etc.) during which such suppression is not desired. Use this knob to allow duplicates. Field introduced in 18.2.8. Allowed in basic(allowed values- true) edition, essentials(allowed values- true) edition, enterprise edition.
 * `authentication` - Authentication information for username/password. Field introduced in 20.1.1. Allowed in basic edition, essentials edition, enterprise edition.
+* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1.
 * `description` - User defined description for the object.
 * `disable_quickstart` - During addition of a server or healthmonitors or during bootup, avi performs sequential health checks rather than waiting for send-interval to kick in, to mark the server up as soon as possible. This knob may be used to turn this feature off. Field introduced in 18.2.7. Allowed in basic(allowed values- false) edition, essentials(allowed values- false) edition, enterprise edition.
 * `dns_monitor` - Dict settings for healthmonitor.
@@ -46,6 +45,7 @@ In addition to all arguments above, the following attributes are exported:
 * `imap_monitor` - Health monitor for imap. Field introduced in 21.1.1.
 * `imaps_monitor` - Health monitor for imaps. Field introduced in 21.1.1.
 * `is_federated` - This field describes the object's replication scope. If the field is set to false, then the object is visible within the controller-cluster and its associated service-engines. If the field is set to true, then the object is replicated across the federation. Field introduced in 17.1.3. Allowed in basic(allowed values- false) edition, essentials(allowed values- false) edition, enterprise edition.
+* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5.
 * `monitor_port` - Use this port instead of the port defined for the server in the pool. If the monitor succeeds to this port, the load balanced traffic will still be sent to the port of the server defined within the pool. Allowed values are 1-65535. Special values are 0 - 'use server port'.
 * `name` - A user friendly name for this health monitor.
 * `pop3_monitor` - Health monitor for pop3. Field introduced in 21.1.1.

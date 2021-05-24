@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "AVI: avi_clusterclouddetails"
@@ -35,6 +33,7 @@ data "avi_clusterclouddetails" "foo_clusterclouddetails" {
 In addition to all arguments above, the following attributes are exported:
 
 * `azure_info` - Azure info to configure cluster_vip on the controller. Field introduced in 17.2.5.
+* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1.
 * `name` - Field introduced in 17.2.5.
 * `tenant_ref` - It is a reference to an object of type tenant. Field introduced in 17.2.5.
 * `uuid` - Field introduced in 17.2.5.

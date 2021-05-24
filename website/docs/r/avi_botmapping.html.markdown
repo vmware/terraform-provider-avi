@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "Avi: avi_botmapping"
@@ -30,7 +28,7 @@ resource "avi_botmapping" "foo" {
 The following arguments are supported:
 
 * `mapping_rules` - (Required) Rules for bot classification. Field introduced in 21.1.1. Minimum of 1 items required.
-* `name` - (Optional) The name of this mapping. Field introduced in 21.1.1.
+* `name` - (Required) The name of this mapping. Field introduced in 21.1.1.
 * `tenant_ref` - (Optional) The unique identifier of the tenant to which this mapping belongs. It is a reference to an object of type tenant. Field introduced in 21.1.1.
 
 
@@ -46,5 +44,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-* `uuid` -  A unique identifier of this mapping. Field introduced in 21.1.1.
+* `uuid` -  A unique identifier for this mapping. Field introduced in 21.1.1.
 

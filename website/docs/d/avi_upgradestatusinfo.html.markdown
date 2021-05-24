@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "AVI: avi_upgradestatusinfo"
@@ -42,6 +40,7 @@ In addition to all arguments above, the following attributes are exported:
 * `enable_rollback` - Check if the rollback is possible on this node. Field introduced in 18.2.6.
 * `end_time` - End time of upgrade operation. Field introduced in 18.2.6.
 * `enqueue_time` - Enqueue time of upgrade operation. Field introduced in 18.2.6.
+* `fips_mode` - Fips mode for the entire system. Field introduced in 20.1.5.
 * `history` - Record of past operations on this node. Field introduced in 20.1.4.
 * `image_path` - Image path of current base image. Field introduced in 18.2.10, 20.1.1.
 * `image_ref` - Image uuid for identifying the current base image. It is a reference to an object of type image. Field introduced in 18.2.6.
@@ -51,7 +50,7 @@ In addition to all arguments above, the following attributes are exported:
 * `params` - Parameters associated with the upgrade operation. Field introduced in 18.2.6.
 * `patch_image_path` - Image path of current patch image. Field introduced in 18.2.10, 20.1.1.
 * `patch_image_ref` - Image uuid for identifying the current patch.example  base-image is 18.2.6 and a patch 6p1 is applied, then this field will indicate the 6p1 value. It is a reference to an object of type image. Field introduced in 18.2.6.
-* `patch_list` - List of patches applied to this node. Example  base-image is 18.2.6 and a patch 6p1 is applied, then a patch 6p5 applied, this field will indicate the [{'6p1', '6p1_image_uuid'}, {'6p5', '6p5_image_uuid'}] value. Field introduced in 18.2.8, 20.1.1.
+* `patch_list` - List of patches applied to this node. Example  base-image is 18.2.6 and a patch 6p1 is applied, then a patch 6p5 applied. This field will indicate the [{'6p1', '6p1_image_uuid'}, {'6p5', '6p5_image_uuid'}] value. Field introduced in 18.2.8, 20.1.1.
 * `patch_reboot` - Flag for patch op with reboot. Field introduced in 18.2.10, 20.1.1.
 * `patch_version` - Current patch version applied to this node. Example  base-image is 18.2.6 and a patch 6p1 is applied, then this field will indicate the 6p1 value. Field introduced in 18.2.6.
 * `prev_image_path` - Image path of previous base image. Field introduced in 18.2.10, 20.1.1.

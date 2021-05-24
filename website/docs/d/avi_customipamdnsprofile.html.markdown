@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "AVI: avi_customipamdnsprofile"
@@ -34,6 +32,7 @@ data "avi_customipamdnsprofile" "foo_customipamdnsprofile" {
 
 In addition to all arguments above, the following attributes are exported:
 
+* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1.
 * `name` - Name of the custom ipam dns profile. Field introduced in 17.1.1.
 * `script_params` - Parameters that are always passed to the ipam/dns script. Field introduced in 17.1.1.
 * `script_uri` - Script uri of form controller //ipamdnsscripts/<file-name>. Field introduced in 17.1.1.

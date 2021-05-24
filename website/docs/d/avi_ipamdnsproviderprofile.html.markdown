@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "AVI: avi_ipamdnsproviderprofile"
@@ -37,11 +35,12 @@ In addition to all arguments above, the following attributes are exported:
 * `allocate_ip_in_vrf` - If this flag is set, only allocate ip from networks in the virtual service vrf. Applicable for avi vantage ipam only. Field introduced in 17.2.4.
 * `aws_profile` - Provider details if type is aws.
 * `azure_profile` - Provider details if type is microsoft azure. Field introduced in 17.2.1.
+* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1.
 * `custom_profile` - Provider details if type is custom. Field introduced in 17.1.1.
 * `gcp_profile` - Provider details if type is google cloud.
 * `infoblox_profile` - Provider details if type is infoblox.
 * `internal_profile` - Provider details if type is avi.
-* `labels` - Key value pairs for granular object access control. Also allows for classification and tagging of similar objects. Field introduced in 20.1.2. Maximum of 4 items allowed.
+* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5.
 * `name` - Name for the ipam/dns provider profile.
 * `oci_profile` - Provider details for oracle cloud. Field introduced in 18.2.1,18.1.3.
 * `openstack_profile` - Provider details if type is openstack.

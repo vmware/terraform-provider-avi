@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "AVI: avi_poolgroupdeploymentpolicy"
@@ -35,9 +33,10 @@ data "avi_poolgroupdeploymentpolicy" "foo_poolgroupdeploymentpolicy" {
 In addition to all arguments above, the following attributes are exported:
 
 * `auto_disable_old_prod_pools` - It will automatically disable old production pools once there is a new production candidate.
+* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1.
 * `description` - User defined description for the object.
 * `evaluation_duration` - Duration of evaluation period for automatic deployment. Allowed values are 60-86400. Unit is sec.
-* `labels` - Key value pairs for granular object access control. Also allows for classification and tagging of similar objects. Field introduced in 20.1.2. Maximum of 4 items allowed.
+* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5.
 * `name` - The name of the pool group deployment policy.
 * `rules` - List of list.
 * `scheme` - Deployment scheme. Enum options - BLUE_GREEN, CANARY.

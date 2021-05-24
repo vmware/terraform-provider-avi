@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "Avi: avi_alertemailconfig"
@@ -32,6 +30,7 @@ The following arguments are supported:
 * `name` - (Required) A user-friendly name of the email notification service.
 * `to_emails` - (Required) Alerts are sent to the comma separated list of  email recipients.
 * `cc_emails` - (Optional) Alerts are copied to the comma separated list of  email recipients.
+* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1.
 * `description` - (Optional) User defined description for the object.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant.
 

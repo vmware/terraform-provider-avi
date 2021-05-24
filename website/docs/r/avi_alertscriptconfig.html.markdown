@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "Avi: avi_alertscriptconfig"
@@ -31,6 +29,7 @@ The following arguments are supported:
 
 * `name` - (Required) A user-friendly name of the script.
 * `action_script` - (Optional) User defined alert action script. Please refer to kb.avinetworks.com for more information.
+* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant.
 
 

@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "Avi: avi_controllersite"
@@ -31,6 +29,7 @@ The following arguments are supported:
 
 * `address` - (Required) Ip address or a dns resolvable, fully qualified domain name of the site controller cluster. Field introduced in 18.2.5.
 * `name` - (Required) Name for the site controller cluster. Field introduced in 18.2.5.
+* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1.
 * `port` - (Optional) The controller site cluster's rest api port number. Allowed values are 1-65535. Field introduced in 18.2.5.
 * `tenant_ref` - (Optional) Reference for the tenant. It is a reference to an object of type tenant. Field introduced in 18.2.5.
 
