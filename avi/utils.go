@@ -15,9 +15,9 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/avinetworks/sdk/go/session"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"github.com/vmware/alb-sdk/go/clients"
+	"github.com/vmware/alb-sdk/go/session"
 )
 
 var postNotAllowed = [...]string{"systemconfiguration", "cluster", "seproperties"}

@@ -5,9 +5,9 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/terraform"
+	"github.com/vmware/alb-sdk/go/clients"
 )
 
 func TestAVIVrfContextBasic(t *testing.T) {
