@@ -56,11 +56,9 @@ resource "avi_seproperties" "testSeProperties" {
 		vnic_dhcp_ip_check_interval = "6"
 	}
 	se_runtime_properties {
-		log_agent_max_active_adf_files_per_vs = "100"
 		se_auth_ldap_conns_per_server = "1"
 		log_agent_file_sz_appl = "4"
 		se_packet_buffer_max = "0"
-		log_agent_max_logmessage_proto_sz = "65536"
 		se_hb_persist_fudge_bits = "3"
 		dp_aggressive_hb_timeout_count = "10"
 		se_metrics_rt_interval = "1000"
@@ -110,7 +108,6 @@ resource "avi_seproperties" "testSeProperties" {
 			max_low_rtt = "10"
 		}
 		dp_aggressive_hb_frequency = "100"
-		log_agent_pause_interval = "0"
 		user_defined_metric_age = "60"
 		se_metrics_rt_enabled = true
 		upstream_connpool_enable = true
@@ -122,14 +119,11 @@ resource "avi_seproperties" "testSeProperties" {
 		downstream_send_timeout = "3600000"
 		log_agent_file_sz_event = "4"
 		se_dp_log_udf_enqueue_percent = "90"
-		log_agent_export_msg_buffer_size = "524288"
 		se_dp_hm_drops = "0"
 		se_memory_poison = true
 		se_metrics_interval = "60000"
-		log_agent_export_wait_time = "100"
 		se_auth_ldap_bind_timeout = "5000"
 		se_auth_ldap_servers_failover_only = false
-		log_agent_conn_send_buffer_size = "16384"
 		global_mtu = "0"
 		upstream_read_timeout = "3600000"
 		se_handle_interface_routes = false

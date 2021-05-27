@@ -1,8 +1,6 @@
-/*
-* Copyright (c) 2017. Avi Networks.
-* Author: Gaurav Rastogi (grastogi@avinetworks.com)
-*
- */
+// Copyright 2019 VMware, Inc.
+// SPDX-License-Identifier: Mozilla Public License 2.0
+
 package avi
 
 import (
@@ -6429,6 +6427,43 @@ func ResourceControllerDiscontinuousTimeChangeEventDetailsSchema() *schema.Resou
 	}
 }
 
+func ResourceControllerFaultsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"backup_scheduler_faults": {
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  true,
+			},
+			"cluster_faults": {
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  true,
+			},
+			"deprecated_api_version_faults": {
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  true,
+			},
+			"license_faults": {
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  true,
+			},
+			"migration_faults": {
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  true,
+			},
+			"sslprofile_faults": {
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  true,
+			},
+		},
+	}
+}
+
 func ResourceControllerInfoSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -6922,8 +6957,7 @@ func ResourceCustomIpamSubnetSchema() *schema.Resource {
 		Schema: map[string]*schema.Schema{
 			"network_id": {
 				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
+				Required: true,
 			},
 			"subnet": {
 				Type:     schema.TypeSet,
@@ -9962,6 +9996,12 @@ func ResourceEventDetailsSchema() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceDosAttackEventDetailsSchema(),
 			},
+			"false_positive_details": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceFalsePositiveDetailsSchema(),
+			},
 			"gcp_cloud_router_info": {
 				Type:     schema.TypeSet,
 				Optional: true,
@@ -10911,6 +10951,88 @@ func ResourceFailActionHTTPRedirectSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Default:  "HTTP_REDIRECT_STATUS_CODE_302",
+			},
+		},
+	}
+}
+
+func ResourceFalsePositiveDetailsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"false_positive_results": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceFalsePositiveResultSchema(),
+			},
+			"vs_uuid": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceFalsePositiveResultSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"always_fail": {
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
+			"attack": {
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
+			"confidence": {
+				Type:     schema.TypeFloat,
+				Optional: true,
+				Computed: true,
+			},
+			"false_positive": {
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
+			"header_info": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceHeaderInfoInURISchema(),
+			},
+			"http_method": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"not_sure": {
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
+			"params_info": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceParamsInURISchema(),
+			},
+			"rule_info": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceRuleInfoSchema(),
+			},
+			"sometimes_fail": {
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
+			"uri": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 		},
 	}
@@ -14491,6 +14613,23 @@ func ResourceHdrPersistenceProfileSchema() *schema.Resource {
 	}
 }
 
+func ResourceHeaderInfoInURISchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"header_field_name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"value": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
 func ResourceHealthMonitorAuthInfoSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -17526,6 +17665,23 @@ func ResourceMatchTargetSchema() *schema.Resource {
 	}
 }
 
+func ResourceMatchesSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"match_element": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"match_value": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
 func ResourceMemberInterfaceSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -17560,6 +17716,11 @@ func ResourceMemoryBalancerInfoSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"debug_message": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"limit": {
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -17577,6 +17738,21 @@ func ResourceMemoryBalancerInfoSchema() *schema.Resource {
 			},
 			"process": {
 				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"process_mode": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"process_trend": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"threshold_percent": {
+				Type:     schema.TypeFloat,
 				Optional: true,
 				Computed: true,
 			},
@@ -20751,6 +20927,23 @@ func ResourcePackageDetailsSchema() *schema.Resource {
 	}
 }
 
+func ResourceParamInURISchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"param_name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"value": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
 func ResourceParamInfoSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -20807,6 +21000,18 @@ func ResourceParamTypeClassSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceParamsInURISchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"param_info": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceParamInURISchema(),
 			},
 		},
 	}
@@ -22873,6 +23078,28 @@ func ResourceRoutingServiceSchema() *schema.Resource {
 				Type:     schema.TypeBool,
 				Optional: true,
 				Default:  false,
+			},
+		},
+	}
+}
+
+func ResourceRuleInfoSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"matches": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceMatchesSchema(),
+			},
+			"rule_group_id": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"rule_id": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 		},
 	}
@@ -27453,6 +27680,18 @@ func ResourceServicePoolSelectorSchema() *schema.Resource {
 	}
 }
 
+func ResourceServiceengineFaultsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"debug_faults": {
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  true,
+			},
+		},
+	}
+}
+
 func ResourceSidebandProfileSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -31359,6 +31598,43 @@ func ResourceVirtualServiceRuntimeSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 				Elem:     ResourceVirtualServiceSchema(),
+			},
+		},
+	}
+}
+
+func ResourceVirtualserviceFaultsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"debug_faults": {
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  true,
+			},
+			"pool_server_faults": {
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  true,
+			},
+			"scaleout_faults": {
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  true,
+			},
+			"shared_vip_faults": {
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  true,
+			},
+			"ssl_cert_expiry_faults": {
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  true,
+			},
+			"ssl_cert_status_faults": {
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  true,
 			},
 		},
 	}

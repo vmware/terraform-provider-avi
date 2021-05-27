@@ -1,8 +1,6 @@
-/*
-* Copyright (c) 2017. Avi Networks.
-* Author: Gaurav Rastogi (grastogi@avinetworks.com)
-*
- */
+// Copyright 2019 VMware, Inc.
+// SPDX-License-Identifier: Mozilla Public License 2.0
+
 package avi
 
 import (
@@ -95,6 +93,7 @@ func Provider() *schema.Provider {
 			"avi_alertscriptconfig":               dataSourceAviAlertScriptConfig(),
 			"avi_actiongroupconfig":               dataSourceAviActionGroupConfig(),
 			"avi_alertconfig":                     dataSourceAviAlertConfig(),
+			"avi_inventoryfaultconfig":            dataSourceAviInventoryFaultConfig(),
 			"avi_vrfcontext":                      dataSourceAviVrfContext(),
 			"avi_applicationprofile":              dataSourceAviApplicationProfile(),
 			"avi_ipaddrgroup":                     dataSourceAviIpAddrGroup(),
@@ -203,6 +202,7 @@ func Provider() *schema.Provider {
 			"avi_alertscriptconfig":               resourceAviAlertScriptConfig(),
 			"avi_actiongroupconfig":               resourceAviActionGroupConfig(),
 			"avi_alertconfig":                     resourceAviAlertConfig(),
+			"avi_inventoryfaultconfig":            resourceAviInventoryFaultConfig(),
 			"avi_vrfcontext":                      resourceAviVrfContext(),
 			"avi_applicationprofile":              resourceAviApplicationProfile(),
 			"avi_ipaddrgroup":                     resourceAviIpAddrGroup(),
