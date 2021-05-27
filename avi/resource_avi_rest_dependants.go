@@ -3036,6 +3036,11 @@ func ResourceBgpPeerSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"ibgp_local_as_override": {
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"keepalive_interval": {
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -33052,10 +33057,15 @@ func ResourceWafApplicationSignaturesSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
-			"rules": {
+			"resolved_rules": {
 				Type:     schema.TypeList,
 				Optional: true,
 				Elem:     ResourceWafRuleSchema(),
+			},
+			"rule_overrides": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceWafRuleOverridesSchema(),
 			},
 			"selected_applications": {
 				Type:     schema.TypeList,
@@ -33706,6 +33716,37 @@ func ResourceWafRuleGroupSchema() *schema.Resource {
 	}
 }
 
+func ResourceWafRuleGroupOverridesSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"enable": {
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
+			"exclude_list": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceWafExcludeListEntrySchema(),
+			},
+			"mode": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"name": {
+				Type:     schema.TypeString,
+				Required: true,
+			},
+			"rule_overrides": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceWafRuleOverridesSchema(),
+			},
+		},
+	}
+}
+
 func ResourceWafRuleLogSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -33765,6 +33806,32 @@ func ResourceWafRuleMatchDataSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceWafRuleOverridesSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"enable": {
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
+			"exclude_list": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceWafExcludeListEntrySchema(),
+			},
+			"mode": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"rule_id": {
+				Type:     schema.TypeString,
+				Required: true,
 			},
 		},
 	}

@@ -92,7 +92,7 @@ provider "avi" {
   avi_tenant = "admin"
   avi_password = "password"
   avi_controller = "x.x.x.x"
-  avi_version = "21.1.1"
+  avi_version = "20.1.6"
 }
 ```
 
