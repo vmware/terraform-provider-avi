@@ -1,8 +1,6 @@
-/*
-* Copyright (c) 2017. Avi Networks.
-* Author: Gaurav Rastogi (grastogi@avinetworks.com)
-*
- */
+// Copyright 2019 VMware, Inc.
+// SPDX-License-Identifier: Mozilla Public License 2.0
+
 package avi
 
 import (
@@ -43,10 +41,10 @@ func ResourceWafPolicySchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
-		"crs_groups": {
+		"crs_overrides": {
 			Type:     schema.TypeList,
 			Optional: true,
-			Elem:     ResourceWafRuleGroupSchema(),
+			Elem:     ResourceWafRuleGroupOverridesSchema(),
 		},
 		"description": {
 			Type:     schema.TypeString,
@@ -115,6 +113,11 @@ func ResourceWafPolicySchema() map[string]*schema.Schema {
 			Elem:     ResourceWafRuleGroupSchema(),
 		},
 		"pre_crs_groups": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceWafRuleGroupSchema(),
+		},
+		"resolved_crs_groups": {
 			Type:     schema.TypeList,
 			Optional: true,
 			Elem:     ResourceWafRuleGroupSchema(),

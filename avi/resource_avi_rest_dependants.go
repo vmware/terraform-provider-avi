@@ -1,8 +1,6 @@
-/*
-* Copyright (c) 2017. Avi Networks.
-* Author: Gaurav Rastogi (grastogi@avinetworks.com)
-*
- */
+// Copyright 2019 VMware, Inc.
+// SPDX-License-Identifier: Mozilla Public License 2.0
+
 package avi
 
 import (
@@ -3035,6 +3033,11 @@ func ResourceBgpPeerSchema() *schema.Resource {
 			},
 			"hold_time": {
 				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
+			"ibgp_local_as_override": {
+				Type:     schema.TypeBool,
 				Optional: true,
 				Computed: true,
 			},
@@ -11003,6 +11006,11 @@ func ResourceGCPOneArmModeSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Required: true,
 			},
+			"management_vpc_project_id": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"management_vpc_subnet_name": {
 				Type:     schema.TypeString,
 				Required: true,
@@ -11015,6 +11023,11 @@ func ResourceGCPSeGroupConfigSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
 			"backend_data_vpc_network_name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"backend_data_vpc_project_id": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -11109,6 +11122,11 @@ func ResourceGCPTwoArmModeSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Required: true,
 			},
+			"backend_data_vpc_project_id": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"backend_data_vpc_subnet_name": {
 				Type:     schema.TypeString,
 				Required: true,
@@ -11129,6 +11147,11 @@ func ResourceGCPTwoArmModeSchema() *schema.Resource {
 			"management_vpc_network_name": {
 				Type:     schema.TypeString,
 				Required: true,
+			},
+			"management_vpc_project_id": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 			"management_vpc_subnet_name": {
 				Type:     schema.TypeString,
@@ -33034,10 +33057,15 @@ func ResourceWafApplicationSignaturesSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
-			"rules": {
+			"resolved_rules": {
 				Type:     schema.TypeList,
 				Optional: true,
 				Elem:     ResourceWafRuleSchema(),
+			},
+			"rule_overrides": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceWafRuleOverridesSchema(),
 			},
 			"selected_applications": {
 				Type:     schema.TypeList,
@@ -33688,6 +33716,37 @@ func ResourceWafRuleGroupSchema() *schema.Resource {
 	}
 }
 
+func ResourceWafRuleGroupOverridesSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"enable": {
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
+			"exclude_list": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceWafExcludeListEntrySchema(),
+			},
+			"mode": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"name": {
+				Type:     schema.TypeString,
+				Required: true,
+			},
+			"rule_overrides": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceWafRuleOverridesSchema(),
+			},
+		},
+	}
+}
+
 func ResourceWafRuleLogSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -33747,6 +33806,32 @@ func ResourceWafRuleMatchDataSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceWafRuleOverridesSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"enable": {
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
+			"exclude_list": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceWafExcludeListEntrySchema(),
+			},
+			"mode": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"rule_id": {
+				Type:     schema.TypeString,
+				Required: true,
 			},
 		},
 	}

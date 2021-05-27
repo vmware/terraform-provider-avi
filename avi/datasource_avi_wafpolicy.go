@@ -1,8 +1,6 @@
-/*
-* Copyright (c) 2017. Avi Networks.
-* Author: Gaurav Rastogi (grastogi@avinetworks.com)
-*
- */
+// Copyright 2019 VMware, Inc.
+// SPDX-License-Identifier: Mozilla Public License 2.0
+
 package avi
 
 import "github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
@@ -34,10 +32,10 @@ func dataSourceAviWafPolicy() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"crs_groups": {
+			"crs_overrides": {
 				Type:     schema.TypeList,
 				Computed: true,
-				Elem:     ResourceWafRuleGroupSchema(),
+				Elem:     ResourceWafRuleGroupOverridesSchema(),
 			},
 			"description": {
 				Type:     schema.TypeString,
@@ -97,6 +95,11 @@ func dataSourceAviWafPolicy() *schema.Resource {
 				Elem:     ResourceWafRuleGroupSchema(),
 			},
 			"pre_crs_groups": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceWafRuleGroupSchema(),
+			},
+			"resolved_crs_groups": {
 				Type:     schema.TypeList,
 				Computed: true,
 				Elem:     ResourceWafRuleGroupSchema(),
