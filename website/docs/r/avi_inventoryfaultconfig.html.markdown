@@ -27,12 +27,12 @@ resource "avi_inventoryfaultconfig" "foo" {
 
 The following arguments are supported:
 
-* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1.
-* `controller_faults` - (Optional) Configure controller faults. Field introduced in 21.1.1.
-* `name` - (Optional) Name. Field introduced in 21.1.1.
-* `serviceengine_faults` - (Optional) Configure serviceengine faults. Field introduced in 21.1.1.
-* `tenant_ref` - (Optional) Tenant. It is a reference to an object of type tenant. Field introduced in 21.1.1.
-* `virtualservice_faults` - (Optional) Configure virtualservice faults. Field introduced in 21.1.1.
+* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 20.1.6.
+* `controller_faults` - (Optional) Configure controller faults. Field introduced in 20.1.6.
+* `name` - (Optional) Name. Field introduced in 20.1.6.
+* `serviceengine_faults` - (Optional) Configure serviceengine faults. Field introduced in 20.1.6.
+* `tenant_ref` - (Optional) Tenant. It is a reference to an object of type tenant. Field introduced in 20.1.6.
+* `virtualservice_faults` - (Optional) Configure virtualservice faults. Field introduced in 20.1.6.
 
 
 ### Timeouts
@@ -47,5 +47,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-* `uuid` -  Uuid auto generated. Field introduced in 21.1.1.
+* `uuid` -  Uuid auto generated. Field introduced in 20.1.6.
 
