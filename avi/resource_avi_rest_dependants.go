@@ -6254,6 +6254,43 @@ func ResourceControllerDiscontinuousTimeChangeEventDetailsSchema() *schema.Resou
 	}
 }
 
+func ResourceControllerFaultsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"backup_scheduler_faults": {
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  true,
+			},
+			"cluster_faults": {
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  true,
+			},
+			"deprecated_api_version_faults": {
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  true,
+			},
+			"license_faults": {
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  true,
+			},
+			"migration_faults": {
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  true,
+			},
+			"sslprofile_faults": {
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  true,
+			},
+		},
+	}
+}
+
 func ResourceControllerLicenseSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -27034,6 +27071,18 @@ func ResourceServicePoolSelectorSchema() *schema.Resource {
 	}
 }
 
+func ResourceServiceengineFaultsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"debug_faults": {
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  true,
+			},
+		},
+	}
+}
+
 func ResourceSidebandProfileSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -31002,6 +31051,43 @@ func ResourceVirtualServiceRuntimeSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 				Elem:     ResourceVirtualServiceSchema(),
+			},
+		},
+	}
+}
+
+func ResourceVirtualserviceFaultsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"debug_faults": {
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  true,
+			},
+			"pool_server_faults": {
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  true,
+			},
+			"scaleout_faults": {
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  true,
+			},
+			"shared_vip_faults": {
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  true,
+			},
+			"ssl_cert_expiry_faults": {
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  true,
+			},
+			"ssl_cert_status_faults": {
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  true,
 			},
 		},
 	}
