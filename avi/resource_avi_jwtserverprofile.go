@@ -13,6 +13,11 @@ import (
 
 func ResourceJWTServerProfileSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
+		"is_federated": {
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  false,
+		},
 		"issuer": {
 			Type:     schema.TypeString,
 			Required: true,

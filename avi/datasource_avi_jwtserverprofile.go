@@ -9,6 +9,10 @@ func dataSourceAviJWTServerProfile() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviJWTServerProfileRead,
 		Schema: map[string]*schema.Schema{
+			"is_federated": {
+				Type:     schema.TypeBool,
+				Computed: true,
+			},
 			"issuer": {
 				Type:     schema.TypeString,
 				Computed: true,

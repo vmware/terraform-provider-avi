@@ -32,6 +32,7 @@ data "avi_jwtserverprofile" "foo_jwtserverprofile" {
 
 In addition to all arguments above, the following attributes are exported:
 
+* `is_federated` - This field describes the object's replication scope. If the field is set to false, then the object is visible within the controller-cluster. If the field is set to true, then the object is replicated across the federation. Field introduced in 20.1.6.
 * `issuer` - Uniquely identifiable name of the token issuer. Field introduced in 20.1.3.
 * `jwks_keys` - Jwks key set used for validating the jwt. Field introduced in 20.1.3.
 * `name` - Name of the jwt profile. Field introduced in 20.1.3.
