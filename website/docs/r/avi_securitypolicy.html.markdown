@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "Avi: avi_securitypolicy"
@@ -30,10 +28,12 @@ resource "avi_securitypolicy" "foo" {
 The following arguments are supported:
 
 * `name` - (Required) The name of the security policy. Field introduced in 18.2.1.
+* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1.
 * `description` - (Optional) Security policy is used to specify various configuration information used to perform distributed denial of service (ddos) attacks detection and mitigation. Field introduced in 18.2.1.
+* `dns_amplification_denyports` - (Optional) Source ports and port ranges to deny in dns amplification attacks. Field introduced in 21.1.1.
 * `dns_attacks` - (Optional) Attacks utilizing the dns protocol operations. Field introduced in 18.2.1.
 * `dns_policy_index` - (Optional) Index of the dns policy to use for the mitigation rules applied to the dns attacks. Field introduced in 18.2.1.
-* `labels` - (Optional) Key value pairs for granular object access control. Also allows for classification and tagging of similar objects. Field introduced in 20.1.2. Maximum of 4 items allowed.
+* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5.
 * `network_security_policy_index` - (Optional) Index of the network security policy to use for the mitigation rules applied to the attacks. Field introduced in 18.2.1.
 * `oper_mode` - (Optional) Mode of dealing with the attacks - perform detection only, or detect and mitigate the attacks. Enum options - DETECTION, MITIGATION. Field introduced in 18.2.1.
 * `tcp_attacks` - (Optional) Attacks utilizing the tcp protocol operations. Field introduced in 18.2.1.

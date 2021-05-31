@@ -1,8 +1,6 @@
-/*
-* Copyright (c) 2017. Avi Networks.
-* Author: Gaurav Rastogi (grastogi@avinetworks.com)
-*
- */
+// Copyright 2019 VMware, Inc.
+// SPDX-License-Identifier: Mozilla Public License 2.0
+
 package avi
 
 import "github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
@@ -41,6 +39,10 @@ func dataSourceAviUpgradeStatusInfo() *schema.Resource {
 			},
 			"enqueue_time": {
 				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"fips_mode": {
+				Type:     schema.TypeBool,
 				Computed: true,
 			},
 			"history": {

@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "AVI: avi_jwtserverprofile"
@@ -34,6 +32,7 @@ data "avi_jwtserverprofile" "foo_jwtserverprofile" {
 
 In addition to all arguments above, the following attributes are exported:
 
+* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1.
 * `issuer` - Uniquely identifiable name of the token issuer. Field introduced in 20.1.3.
 * `jwks_keys` - Jwks key set used for validating the jwt. Field introduced in 20.1.3.
 * `name` - Name of the jwt profile. Field introduced in 20.1.3.

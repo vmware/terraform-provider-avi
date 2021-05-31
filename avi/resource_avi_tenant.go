@@ -1,16 +1,14 @@
-/*
-* Copyright (c) 2017. Avi Networks.
-* Author: Gaurav Rastogi (grastogi@avinetworks.com)
-*
- */
+// Copyright 2019 VMware, Inc.
+// SPDX-License-Identifier: Mozilla Public License 2.0
+
 package avi
 
 import (
 	"log"
 	"strings"
 
-	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"github.com/vmware/alb-sdk/go/clients"
 )
 
 func ResourceTenantSchema() map[string]*schema.Schema {
@@ -20,6 +18,12 @@ func ResourceTenantSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 			Elem:     ResourceTenantConfigurationSchema(),
+		},
+		"configpb_attributes": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceConfigPbAttributesSchema(),
 		},
 		"created_by": {
 			Type:     schema.TypeString,
@@ -31,6 +35,16 @@ func ResourceTenantSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"enforce_label_group": {
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  false,
+		},
+		"label_group_refs": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     &schema.Schema{Type: schema.TypeString},
+		},
 		"local": {
 			Type:     schema.TypeBool,
 			Optional: true,
@@ -39,11 +53,6 @@ func ResourceTenantSchema() map[string]*schema.Schema {
 		"name": {
 			Type:     schema.TypeString,
 			Required: true,
-		},
-		"suggested_object_labels": {
-			Type:     schema.TypeList,
-			Optional: true,
-			Elem:     ResourceTenantLabelSchema(),
 		},
 		"uuid": {
 			Type:     schema.TypeString,

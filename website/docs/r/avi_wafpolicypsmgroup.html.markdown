@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "Avi: avi_wafpolicypsmgroup"
@@ -30,12 +28,13 @@ resource "avi_wafpolicypsmgroup" "foo" {
 The following arguments are supported:
 
 * `name` - (Required) User defined name of the group. Field introduced in 18.2.3.
+* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1.
 * `description` - (Optional) Free-text comment about this group. Field introduced in 18.2.3.
 * `enable` - (Optional) Enable or disable this waf rule group. Field introduced in 18.2.3.
 * `hit_action` - (Optional) If a rule in this group matches the match_value pattern, this action will be executed. Allowed actions are waf_action_no_op and waf_action_allow_parameter. Enum options - WAF_ACTION_NO_OP, WAF_ACTION_BLOCK, WAF_ACTION_ALLOW_PARAMETER. Field introduced in 18.2.3.
 * `is_learning_group` - (Optional) This field indicates that this group is used for learning. Field introduced in 18.2.3.
-* `labels` - (Optional) Key value pairs for granular object access control. Also allows for classification and tagging of similar objects. Field introduced in 20.1.2. Maximum of 4 items allowed.
 * `locations` - (Optional) Positive security model locations. These are used to partition the application name space. Field introduced in 18.2.3. Maximum of 16384 items allowed.
+* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5.
 * `miss_action` - (Optional) If a rule in this group does not match the match_value pattern, this action will be executed. Allowed actions are waf_action_no_op and waf_action_block. Enum options - WAF_ACTION_NO_OP, WAF_ACTION_BLOCK, WAF_ACTION_ALLOW_PARAMETER. Field introduced in 18.2.3.
 * `tenant_ref` - (Optional) Tenant that this object belongs to. It is a reference to an object of type tenant. Field introduced in 18.2.3.
 

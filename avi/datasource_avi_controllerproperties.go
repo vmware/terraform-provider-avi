@@ -1,8 +1,6 @@
-/*
-* Copyright (c) 2017. Avi Networks.
-* Author: Gaurav Rastogi (grastogi@avinetworks.com)
-*
- */
+// Copyright 2019 VMware, Inc.
+// SPDX-License-Identifier: Mozilla Public License 2.0
+
 package avi
 
 import "github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
@@ -75,6 +73,11 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Type:     schema.TypeInt,
 				Computed: true,
 			},
+			"configpb_attributes": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceConfigPbAttributesSchema(),
+			},
 			"consistency_check_timeout_period": {
 				Type:     schema.TypeInt,
 				Computed: true,
@@ -116,6 +119,14 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Computed: true,
 			},
 			"enable_memory_balancer": {
+				Type:     schema.TypeBool,
+				Computed: true,
+			},
+			"enable_per_process_stop": {
+				Type:     schema.TypeBool,
+				Computed: true,
+			},
+			"enable_resmgr_log_cache_print": {
 				Type:     schema.TypeBool,
 				Computed: true,
 			},
@@ -287,10 +298,6 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Computed: true,
 			},
 			"vnic_op_fail_time": {
-				Type:     schema.TypeInt,
-				Computed: true,
-			},
-			"vs_apic_scaleout_timeout": {
 				Type:     schema.TypeInt,
 				Computed: true,
 			},

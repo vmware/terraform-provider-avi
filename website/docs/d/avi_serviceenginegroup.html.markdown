@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "AVI: avi_serviceenginegroup"
@@ -58,6 +56,7 @@ In addition to all arguments above, the following attributes are exported:
 * `cloud_ref` - It is a reference to an object of type cloud.
 * `compress_ip_rules_for_each_ns_subnet` - Compress ip rules into a single subnet based ip rule for each north-south ipam subnet configured in pcap mode in openshift/kubernetes node. Field introduced in 18.2.9, 20.1.1.
 * `config_debugs_on_all_cores` - Enable config debugs on all cores of se. Field introduced in 17.2.13,18.1.5,18.2.1.
+* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1.
 * `connection_memory_percentage` - Percentage of memory for connection state. This will come at the expense of memory used for http in-memory cache. Allowed values are 10-90. Unit is percent.
 * `core_shm_app_cache` - Include shared memory for app cache in core file.requires se reboot. Field introduced in 18.2.8, 20.1.1.
 * `core_shm_app_learning` - Include shared memory for app learning in core file.requires se reboot. Field introduced in 18.2.8, 20.1.1.
@@ -68,6 +67,7 @@ In addition to all arguments above, the following attributes are exported:
 * `custom_tag` - Custom tag will be used to create the tags for se instance in aws. Note this is not the same as the prefix for se name.
 * `data_network_id` - Subnet used to spin up the data nic for service engines, used only for azure cloud. Overrides the cloud level setting for service engine subnet. Field introduced in 18.2.3.
 * `datascript_timeout` - Number of instructions before datascript times out. Allowed values are 0-100000000. Field introduced in 18.2.3.
+* `deactivate_ipv6_discovery` - If activated, ipv6 address and route discovery are deactivated.requires se reboot. Field introduced in 21.1.1.
 * `dedicated_dispatcher_core` - Dedicate the core that handles packet receive/transmit from the network to just the dispatching function. Don't use it for tcp/ip and ssl functions.
 * `description` - User defined description for the object.
 * `disable_avi_securitygroups` - By default, avi creates and manages security groups along with custom sg provided by user. Set this to true to disallow avi to create and manage new security groups. Avi will only make use of custom security groups provided by user. This option is supported for aws and openstack cloud types. Field introduced in 17.2.13,18.1.4,18.2.1.
@@ -80,15 +80,17 @@ In addition to all arguments above, the following attributes are exported:
 * `distribute_load_active_standby` - Use both the active and standby service engines for virtual service placement in the legacy active standby ha mode. Allowed in basic(allowed values- false) edition, essentials(allowed values- false) edition, enterprise edition.
 * `distribute_queues` - Distributes queue ownership among cores so multiple cores handle dispatcher duties. Requires se reboot. Deprecated from 18.2.8, instead use max_queues_per_vnic. Field introduced in 17.2.8. Allowed in basic(allowed values- false) edition, essentials(allowed values- false) edition, enterprise edition.
 * `distribute_vnics` - Distributes vnic ownership among cores so multiple cores handle dispatcher duties.requires se reboot. Field introduced in 18.2.5.
-* `dp_aggressive_deq_interval_msec` - Dequeue interval for receive queue from se_dp in aggressive mode. Allowed values are 1-1000. Field introduced in 21.1.1. Unit is milliseconds.
-* `dp_aggressive_enq_interval_msec` - Enqueue interval for request queue to se_dp in aggressive mode. Allowed values are 1-1000. Field introduced in 21.1.1. Unit is milliseconds.
+* `downstream_send_timeout` - Timeout for downstream to become writable. Field introduced in 21.1.1. Unit is milliseconds.
+* `dp_aggressive_deq_interval_msec` - Dequeue interval for receive queue from se_dp in aggressive mode. Allowed values are 1-1000. Field introduced in 21.1.1. Unit is milliseconds. Allowed in basic edition, essentials edition, enterprise edition.
+* `dp_aggressive_enq_interval_msec` - Enqueue interval for request queue to se_dp in aggressive mode. Allowed values are 1-1000. Field introduced in 21.1.1. Unit is milliseconds. Allowed in basic edition, essentials edition, enterprise edition.
 * `dp_aggressive_hb_frequency` - Frequency of se - se hb messages when aggressive failure mode detection is enabled. Field introduced in 20.1.3. Unit is milliseconds.
 * `dp_aggressive_hb_timeout_count` - Consecutive hb failures after which failure is reported to controller,when aggressive failure mode detection is enabled. Field introduced in 20.1.3.
-* `dp_deq_interval_msec` - Dequeue interval for receive queue from se_dp. Allowed values are 1-1000. Field introduced in 21.1.1. Unit is milliseconds.
-* `dp_enq_interval_msec` - Enqueue interval for request queue to se_dp. Allowed values are 1-1000. Field introduced in 21.1.1. Unit is milliseconds.
+* `dp_deq_interval_msec` - Dequeue interval for receive queue from se_dp. Allowed values are 1-1000. Field introduced in 21.1.1. Unit is milliseconds. Allowed in basic edition, essentials edition, enterprise edition.
+* `dp_enq_interval_msec` - Enqueue interval for request queue to se_dp. Allowed values are 1-1000. Field introduced in 21.1.1. Unit is milliseconds. Allowed in basic edition, essentials edition, enterprise edition.
 * `dp_hb_frequency` - Frequency of se - se hb messages when aggressive failure mode detection is not enabled. Field introduced in 20.1.3. Unit is milliseconds.
 * `dp_hb_timeout_count` - Consecutive hb failures after which failure is reported to controller, when aggressive failure mode detection is not enabled. Field introduced in 20.1.3.
 * `enable_gratarp_permanent` - Enable gratarp for vip_ip. Field introduced in 18.2.3.
+* `enable_hsm_log` - Enable hsm luna engine logs. Field introduced in 21.1.1.
 * `enable_hsm_priming` - (this is a beta feature). Enable hsm key priming. If enabled, key handles on the hsm will be synced to se before processing client connections. Field introduced in 17.2.7, 18.1.1.
 * `enable_multi_lb` - Applicable only for azure cloud with basic sku lb. If set, additional azure lbs will be automatically created if resources in existing lb are exhausted. Field introduced in 17.2.10, 18.1.2.
 * `enable_pcap_tx_ring` - Enable tx ring support in pcap mode of operation. Tso feature is not supported with tx ring enabled. Deprecated from 18.2.8, instead use pcap_tx_mode. Requires se reboot. Field introduced in 18.2.5.
@@ -108,6 +110,8 @@ In addition to all arguments above, the following attributes are exported:
 * `host_attribute_key` - Key of a (key, value) pair identifying a label for a set of nodes usually in container clouds. Needs to be specified together with host_attribute_value. Ses can be configured differently including ha modes across different se groups. May also be used for isolation between different classes of virtualservices. Virtualservices' se group may be specified via annotations/labels. A openshift/kubernetes namespace maybe annotated with a matching se group label as openshift.io/node-selector  apptype=prod. When multiple se groups are used in a cloud with host attributes specified,just a single se group can exist as a match-all se group without a host_attribute_key.
 * `host_attribute_value` - Value of a (key, value) pair identifying a label for a set of nodes usually in container clouds. Needs to be specified together with host_attribute_key.
 * `host_gateway_monitor` - Enable the host gateway monitor when service engine is deployed as docker container. Disabled by default. Field introduced in 17.2.4.
+* `http_rum_console_log` - Enable javascript console logs on the client browser when collecting client insights. Field introduced in 21.1.1. Allowed in basic(allowed values- false) edition, essentials(allowed values- false) edition, enterprise edition.
+* `http_rum_min_content_length` - Minimum response size content length to sample for client insights. Field introduced in 21.1.1. Allowed in basic(allowed values- 64) edition, essentials(allowed values- 64) edition, enterprise edition.
 * `hypervisor` - Override default hypervisor. Enum options - DEFAULT, VMWARE_ESX, KVM, VMWARE_VSAN, XEN.
 * `ignore_rtt_threshold` - Ignore rtt samples if it is above threshold. Field introduced in 17.1.6,17.2.2. Unit is milliseconds.
 * `ingress_access_data` - Program se security group ingress rules to allow vip data access from remote cidr type. Enum options - SG_INGRESS_ACCESS_NONE, SG_INGRESS_ACCESS_ALL, SG_INGRESS_ACCESS_VPC. Field introduced in 17.1.5.
@@ -115,12 +119,31 @@ In addition to all arguments above, the following attributes are exported:
 * `instance_flavor` - Instance/flavor name for se instance.
 * `instance_flavor_info` - Additional information associated with instance_flavor. Field introduced in 20.1.1.
 * `iptables` - Iptable rules. Maximum of 128 items allowed.
+* `l7_conns_per_core` - Number of l7 connections that can be cached per core. Field introduced in 21.1.1.
+* `l7_resvd_listen_conns_per_core` - Number of reserved l7 listener connections per core. Field introduced in 21.1.1.
 * `labels` - Labels associated with this se group. Field introduced in 20.1.1. Maximum of 1 items allowed.
+* `lbaction_num_requests_to_dispatch` - Number of requests to dispatch from the request. Queue at a regular interval. Field introduced in 21.1.1.
+* `lbaction_rq_per_request_max_retries` - Maximum retries per request in the request queue. Field introduced in 21.1.1.
 * `least_load_core_selection` - Select core with least load for new flow.
 * `license_tier` - Specifies the license tier which would be used. This field by default inherits the value from cloud. Enum options - ENTERPRISE_16, ENTERPRISE, ENTERPRISE_18, BASIC, ESSENTIALS. Field introduced in 17.2.5.
 * `license_type` - If no license type is specified then default license enforcement for the cloud type is chosen. Enum options - LIC_BACKEND_SERVERS, LIC_SOCKETS, LIC_CORES, LIC_HOSTS, LIC_SE_BANDWIDTH, LIC_METERED_SE_BANDWIDTH. Field introduced in 17.2.5.
+* `log_agent_compress_logs` - Flag to indicate if log files are compressed upon full on the service engine. Field introduced in 21.1.1.
+* `log_agent_debug_enabled` - Enable debug logs by default on service engine. This includes all other debugging logs. Debug logs can also be explcitly enabled from the cli shell. Field introduced in 21.1.1.
+* `log_agent_file_sz_appl` - Maximum application log file size before rollover. Field introduced in 21.1.1.
+* `log_agent_file_sz_conn` - Maximum connection log file size before rollover. Field introduced in 21.1.1.
+* `log_agent_file_sz_debug` - Maximum debug log file size before rollover. Field introduced in 21.1.1.
+* `log_agent_file_sz_event` - Maximum event log file size before rollover. Field introduced in 21.1.1.
+* `log_agent_log_storage_min_sz` - Minimum storage allocated for logs irrespective of memory and cores. Field introduced in 21.1.1. Unit is mb.
+* `log_agent_max_concurrent_rsync` - Maximum concurrent rsync requests initiated from log-agent to the controller. Field introduced in 21.1.1.
+* `log_agent_max_storage_excess_percent` - Excess percentage threshold of disk size to trigger cleanup of logs on the service engine. Field introduced in 21.1.1.
+* `log_agent_max_storage_ignore_percent` - Maximum storage on the disk not allocated for logs on the service engine. Field introduced in 21.1.1.
+* `log_agent_min_storage_per_vs` - Minimum storage allocated to any given virtualservice on the service engine. Field introduced in 21.1.1.
+* `log_agent_sleep_interval` - Internal timer to stall log-agent and prevent it from hogging cpu cycles on the service engine. Field introduced in 21.1.1. Unit is milliseconds.
+* `log_agent_trace_enabled` - Enable trace logs by default on service engine. Configuration operations are logged along with other important logs by service engine. Field introduced in 21.1.1.
+* `log_agent_unknown_vs_timer` - Timeout to purge unknown virtual service logs from the service engine. Field introduced in 21.1.1. Unit is sec.
 * `log_disksz` - Maximum disk capacity (in mb) to be allocated to an se. This is exclusively used for debug and log data. Unit is mb.
 * `log_malloc_failure` - Se will log memory allocation related failure to the se_trace file, wherever available. Field introduced in 20.1.2. Allowed in basic(allowed values- true) edition, essentials(allowed values- true) edition, enterprise edition.
+* `log_message_max_file_list_size` - Maximum number of file names in a log message. Field introduced in 21.1.1.
 * `max_concurrent_external_hm` - Maximum number of external health monitors that can run concurrently in a service engine. This helps control the cpu and memory use by external health monitors. Special values are 0- 'value will be internally calculated based on cpu and memory'. Field introduced in 18.2.7.
 * `max_cpu_usage` - When cpu usage on an se exceeds this threshold, virtual services hosted on this se may be rebalanced to other ses to reduce load. A new se may be created as part of this process. Allowed values are 40-90. Unit is percent.
 * `max_memory_per_mempool` - Max bytes that can be allocated in a single mempool. Field introduced in 18.1.5. Unit is mb.
@@ -144,8 +167,9 @@ In addition to all arguments above, the following attributes are exported:
 * `name` - Name of the object.
 * `netlink_poller_threads` - Number of threads to poll for netlink messages excluding the thread for default namespace. Requires se reboot. Allowed values are 1-32. Field introduced in 20.1.3.
 * `netlink_sock_buf_size` - Socket buffer size for the netlink sockets. Requires se reboot. Allowed values are 1-128. Field introduced in 20.1.3. Unit is mega_bytes.
+* `ngx_free_connection_stack` - Free the connection stack. Field introduced in 21.1.1.
 * `non_significant_log_throttle` - This setting limits the number of non-significant logs generated per second per core on this se. Default is 100 logs per second. Set it to zero (0) to deactivate throttling. Field introduced in 17.1.3. Unit is per_second.
-* `ns_helper_deq_interval_msec` - Dequeue interval for receive queue from ns helper. Allowed values are 1-1000. Field introduced in 21.1.1. Unit is milliseconds.
+* `ns_helper_deq_interval_msec` - Dequeue interval for receive queue from ns helper. Allowed values are 1-1000. Field introduced in 21.1.1. Unit is milliseconds. Allowed in basic edition, essentials edition, enterprise edition.
 * `num_dispatcher_cores` - Number of dispatcher cores (0,1,2,4,8 or 16). If set to 0, then number of dispatcher cores is deduced automatically.requires se reboot. Allowed values are 0,1,2,4,8,16. Field introduced in 17.2.12, 18.1.3, 18.2.1.
 * `num_flow_cores_sum_changes_to_ignore` - Number of changes in num flow cores sum to ignore.
 * `objsync_config` - Configuration knobs for interse object distribution. Field introduced in 20.1.3.
@@ -162,11 +186,18 @@ In addition to all arguments above, the following attributes are exported:
 * `realtime_se_metrics` - Enable or deactivate real time se metrics.
 * `reboot_on_panic` - Reboot the vm or host on kernel panic. Field introduced in 18.2.5.
 * `resync_time_interval` - Time interval to re-sync se's time with wall clock time. Allowed values are 8-600000. Field introduced in 20.1.1. Unit is milliseconds.
+* `sdb_flush_interval` - Sdb pipeline flush interval. Allowed values are 1-10000. Field introduced in 21.1.1. Unit is milliseconds. Allowed in basic edition, essentials edition, enterprise edition.
+* `sdb_pipeline_size` - Sdb pipeline size. Allowed values are 1-10000. Field introduced in 21.1.1. Allowed in basic edition, essentials edition, enterprise edition.
+* `sdb_scan_count` - Sdb scan count. Allowed values are 1-1000. Field introduced in 21.1.1. Allowed in basic edition, essentials edition, enterprise edition.
 * `se_bandwidth_type` - Select the se bandwidth for the bandwidth license. Enum options - SE_BANDWIDTH_UNLIMITED, SE_BANDWIDTH_25M, SE_BANDWIDTH_200M, SE_BANDWIDTH_1000M, SE_BANDWIDTH_10000M. Field introduced in 17.2.5. Allowed in basic(allowed values- se_bandwidth_unlimited) edition, essentials(allowed values- se_bandwidth_unlimited) edition, enterprise edition.
 * `se_delayed_flow_delete` - Delay the cleanup of flowtable entry. To be used under surveillance of avi support. Field introduced in 20.1.2. Allowed in basic(allowed values- true) edition, essentials(allowed values- true) edition, enterprise edition.
 * `se_deprovision_delay` - Duration to preserve unused service engine virtual machines before deleting them. If traffic to a virtual service were to spike up abruptly, this se would still be available to be utilized again rather than creating a new se. If this value is set to 0, controller will never delete any ses and administrator has to manually cleanup unused ses. Allowed values are 0-525600. Unit is min.
 * `se_dos_profile` - Dict settings for serviceenginegroup.
 * `se_dp_hm_drops` - Internal only. Used to simulate se - se hb failure. Field introduced in 20.1.3.
+* `se_dp_isolation` - Toggle support to run se datapath instances in isolation on exclusive cpus. This improves latency and performance. However, this could reduce the total number of se_dp instances created on that se instance. Supported for >= 8 cpus. Requires se reboot. Field introduced in 20.1.4.
+* `se_dp_isolation_num_non_dp_cpus` - Number of cpus for non se-dp tasks in se datapath isolation mode. Translates total cpus minus 'num_non_dp_cpus' for datapath use. It is recommended to reserve an even number of cpus for hyper-threaded processors. Requires se reboot. Allowed values are 1-8. Special values are 0- 'auto'. Field introduced in 20.1.4.
+* `se_dp_log_nf_enqueue_percent` - Internal buffer full indicator on the service engine beyond which the unfiltered logs are abandoned. Field introduced in 21.1.1.
+* `se_dp_log_udf_enqueue_percent` - Internal buffer full indicator on the service engine beyond which the user filtered logs are abandoned. Field introduced in 21.1.1.
 * `se_dp_max_hb_version` - The highest supported se-se heartbeat protocol version. This version is reported by secondary se to primary se in heartbeat response messages. Allowed values are 1-3. Field introduced in 20.1.1.
 * `se_dp_vnic_queue_stall_event_sleep` - Time (in seconds) service engine waits for after generating a vnic transmit queue stall event before resetting thenic. Field introduced in 18.2.5.
 * `se_dp_vnic_queue_stall_threshold` - Number of consecutive transmit failures to look for before generating a vnic transmit queue stall event. Field introduced in 18.2.5.
@@ -181,6 +212,9 @@ In addition to all arguments above, the following attributes are exported:
 * `se_ip_encap_ipc` - Determines if se-se ipc messages are encapsulated in an ip header       0        automatically determine based on hypervisor type    1        use ip encap unconditionally    ~[0,1]   don't use ip encaprequires se reboot. Field introduced in 20.1.3.
 * `se_kni_burst_factor` - This knob controls the resource availability and burst size used between se datapath and kni. This helps in minimising packet drops when there is higher kni traffic (non-vip traffic from and to linux). The factor takes the following values      0-default. 1-doubles the burst size and kni resources. 2-quadruples the burst size and kni resources. Allowed values are 0-2. Field introduced in 18.2.6.
 * `se_l3_encap_ipc` - Determines if se-se ipc messages use se interface ip instead of vip        0        automatically determine based on hypervisor type    1        use se interface ip unconditionally    ~[0,1]   don't use se interface iprequires se reboot. Field introduced in 20.1.3.
+* `se_log_buffer_app_blocking_dequeue` - Internal flag that blocks dataplane until all application logs are flushed to log-agent process. Field introduced in 21.1.1.
+* `se_log_buffer_conn_blocking_dequeue` - Internal flag that blocks dataplane until all connection logs are flushed to log-agent process. Field introduced in 21.1.1.
+* `se_log_buffer_events_blocking_dequeue` - Internal flag that blocks dataplane until all outstanding events are flushed to log-agent process. Field introduced in 21.1.1.
 * `se_lro` - Enable or disable large receive optimization for vnics. Requires se reboot. Field introduced in 18.2.5.
 * `se_mp_ring_retry_count` - The retry count for the multi-producer enqueue before yielding the cpu. To be used under surveillance of avi support. Field introduced in 20.1.3. Allowed in basic(allowed values- 500) edition, essentials(allowed values- 500) edition, enterprise edition.
 * `se_mtu` - Mtu for the vnics of ses in the se group. Allowed values are 512-9000. Field introduced in 18.2.8, 20.1.1.
@@ -212,19 +246,26 @@ In addition to all arguments above, the following attributes are exported:
 * `se_vs_hb_max_pkts_in_batch` - Maximum number of aggregated vs heartbeat packets to send in a batch. Allowed values are 1-256. Field introduced in 17.1.1.
 * `se_vs_hb_max_vs_in_pkt` - Maximum number of virtualservices for which heartbeat messages are aggregated in one packet. Allowed values are 1-1024. Field introduced in 17.1.1.
 * `self_se_election` - Enable ses to elect a primary amongst themselves in the absence of a connectivity to controller. Field introduced in 18.1.2. Allowed in basic(allowed values- false) edition, essentials(allowed values- false) edition, enterprise edition.
-* `send_se_ready_timeout` - Timeout for sending se_ready without ns helper registration completion. Allowed values are 10-600. Field introduced in 21.1.1. Unit is seconds.
+* `send_se_ready_timeout` - Timeout for sending se_ready without ns helper registration completion. Allowed values are 10-600. Field introduced in 21.1.1. Unit is seconds. Allowed in basic edition, essentials edition, enterprise edition.
 * `service_ip6_subnets` - Ipv6 subnets assigned to the se group. Required for vs group placement. Field introduced in 18.1.1. Maximum of 128 items allowed.
 * `service_ip_subnets` - Subnets assigned to the se group. Required for vs group placement. Field introduced in 17.1.1. Maximum of 128 items allowed.
 * `shm_minimum_config_memory` - Minimum required shared memory to apply any configuration. Allowed values are 0-100. Field introduced in 18.1.2. Unit is mb.
 * `significant_log_throttle` - This setting limits the number of significant logs generated per second per core on this se. Default is 100 logs per second. Set it to zero (0) to deactivate throttling. Field introduced in 17.1.3. Unit is per_second.
 * `ssl_preprocess_sni_hostname` - (beta) preprocess ssl client hello for sni hostname extension.if set to true, this will apply sni child's ssl protocol(s), if they are different from sni parent's allowed ssl protocol(s). Field introduced in 17.2.12, 18.1.3.
+* `ssl_sess_cache_per_vs` - Number of ssl sessions that can be cached per vs. Field introduced in 21.1.1.
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `transient_shared_memory_max` - The threshold for the transient shared config memory in the se. Allowed values are 0-100. Field introduced in 20.1.1. Unit is percent.
 * `udf_log_throttle` - This setting limits the number of udf logs generated per second per core on this se. Udf logs are generated due to the configured client log filters or the rules with logging enabled. Default is 100 logs per second. Set it to zero (0) to deactivate throttling. Field introduced in 17.1.3. Unit is per_second.
+* `upstream_connect_timeout` - Timeout for backend connection. Field introduced in 21.1.1. Unit is milliseconds.
+* `upstream_connpool_enable` - Enable upstream connection pool,. Field introduced in 21.1.1.
+* `upstream_read_timeout` - Timeout for data to be received from backend. Field introduced in 21.1.1. Unit is milliseconds.
+* `upstream_send_timeout` - Timeout for upstream to become writable. Field introduced in 21.1.1. Unit is milliseconds. Allowed in basic(allowed values- 3600000) edition, essentials(allowed values- 3600000) edition, enterprise edition.
 * `use_hyperthreaded_cores` - Enables the use of hyper-threaded cores on se. Requires se reboot. Field introduced in 20.1.1.
+* `use_legacy_netlink` - Enable legacy model of netlink notifications. Field introduced in 21.1.1.
 * `use_objsync` - Enable interse objsyc distribution framework. Field introduced in 20.1.3. Allowed in basic edition, essentials edition, enterprise edition.
 * `use_standard_alb` - Use standard sku azure load balancer. By default cloud level flag is set. If not set, it inherits/uses the use_standard_alb flag from the cloud. Field introduced in 18.2.3.
 * `user_agent_cache_config` - Configuration for user-agent cache used in bot management. Field introduced in 21.1.1.
+* `user_defined_metric_age` - Defines in seconds how long before an unused user-defined-metric is garbage collected. Field introduced in 21.1.1. Unit is sec.
 * `uuid` - Unique object identifier of the object.
 * `vcenter_clusters` - Dict settings for serviceenginegroup.
 * `vcenter_datastore_mode` - Enum options - vcenter_datastore_any, vcenter_datastore_local, vcenter_datastore_shared.
@@ -235,12 +276,12 @@ In addition to all arguments above, the following attributes are exported:
 * `vcenters` - Vcenter information for scoping at host/cluster level. Field introduced in 20.1.1.
 * `vcpus_per_se` - Number of vcpus for each of the service engine virtual machines. Changes to this setting do not affect existing ses.
 * `vip_asg` - When vip_asg is set, vip configuration will be managed by avi.user will be able to configure vip_asg or vips individually at the time of create. Field introduced in 17.2.12, 18.1.2.
-* `vnic_dhcp_ip_check_interval` - Dhcp ip check interval. Allowed values are 1-1000. Field introduced in 21.1.1. Unit is sec.
-* `vnic_dhcp_ip_max_retries` - Dhcp ip max retries. Field introduced in 21.1.1.
-* `vnic_ip_delete_interval` - Wait interval before deleting ip. Field introduced in 21.1.1. Unit is sec.
-* `vnic_probe_interval` - Probe vnic interval. Field introduced in 21.1.1. Unit is sec.
-* `vnic_rpc_retry_interval` - Time interval for retrying the failed vnic rpc requests. Field introduced in 21.1.1. Unit is sec.
-* `vnicdb_cmd_history_size` - Size of vnicdb command history. Allowed values are 0-65535. Field introduced in 21.1.1.
+* `vnic_dhcp_ip_check_interval` - Dhcp ip check interval. Allowed values are 1-1000. Field introduced in 21.1.1. Unit is sec. Allowed in basic edition, essentials edition, enterprise edition.
+* `vnic_dhcp_ip_max_retries` - Dhcp ip max retries. Field introduced in 21.1.1. Allowed in basic edition, essentials edition, enterprise edition.
+* `vnic_ip_delete_interval` - Wait interval before deleting ip. Field introduced in 21.1.1. Unit is sec. Allowed in basic edition, essentials edition, enterprise edition.
+* `vnic_probe_interval` - Probe vnic interval. Field introduced in 21.1.1. Unit is sec. Allowed in basic edition, essentials edition, enterprise edition.
+* `vnic_rpc_retry_interval` - Time interval for retrying the failed vnic rpc requests. Field introduced in 21.1.1. Unit is sec. Allowed in basic edition, essentials edition, enterprise edition.
+* `vnicdb_cmd_history_size` - Size of vnicdb command history. Allowed values are 0-65535. Field introduced in 21.1.1. Allowed in basic edition, essentials edition, enterprise edition.
 * `vs_host_redundancy` - Ensure primary and secondary service engines are deployed on different physical hosts. Allowed in basic(allowed values- true) edition, essentials(allowed values- true) edition, enterprise edition. Special default for basic edition is true, essentials edition is true, enterprise is true.
 * `vs_scalein_timeout` - Time to wait for the scaled in se to drain existing flows before marking the scalein done. Unit is sec.
 * `vs_scalein_timeout_for_upgrade` - During se upgrade, time to wait for the scaled-in se to drain existing flows before marking the scalein done. Unit is sec.

@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "AVI: avi_actiongroupconfig"
@@ -36,6 +34,7 @@ In addition to all arguments above, the following attributes are exported:
 
 * `action_script_config_ref` - Reference of the action script configuration to be used. It is a reference to an object of type alertscriptconfig.
 * `autoscale_trigger_notification` - Trigger notification to autoscale manager. Allowed in basic(allowed values- false) edition, essentials(allowed values- false) edition, enterprise edition.
+* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1.
 * `description` - User defined description for the object.
 * `email_config_ref` - Select the email notification configuration to use when sending alerts via email. It is a reference to an object of type alertemailconfig.
 * `external_only` - Generate alert only to external destinations. Allowed in basic(allowed values- false) edition, essentials(allowed values- false) edition, enterprise edition.

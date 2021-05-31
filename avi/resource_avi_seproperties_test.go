@@ -5,10 +5,10 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/avinetworks/sdk/go/models"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/terraform"
+	"github.com/vmware/alb-sdk/go/clients"
+	"github.com/vmware/alb-sdk/go/models"
 )
 
 func TestAVISePropertiesBasic(t *testing.T) {
@@ -27,7 +27,6 @@ func TestAVISePropertiesBasic(t *testing.T) {
 					testAccCheckAVISePropertiesValuesUpdated(&seProp, "se_agent_properties.controller_echo_rpc_aggressive_timeout", 2000),
 					testAccCheckAVISePropertiesValuesUpdated(&seProp, "se_agent_properties.dp_max_wait_rsp_time_sec", 60),
 					testAccCheckAVISePropertiesValuesUpdated(&seProp, "se_agent_properties.dp_batch_size", 100),
-					testAccCheckAVISePropertiesValuesUpdated(&seProp, "se_runtime_properties.log_agent_max_active_adf_files_per_vs", 100),
 					testAccCheckAVISePropertiesValuesUpdated(&seProp, "se_runtime_properties.dp_aggressive_hb_timeout_count", 10),
 				),
 			},
@@ -39,7 +38,6 @@ func TestAVISePropertiesBasic(t *testing.T) {
 					testAccCheckAVISePropertiesValuesUpdated(&seProp, "se_agent_properties.controller_echo_rpc_aggressive_timeout", 2010),
 					testAccCheckAVISePropertiesValuesUpdated(&seProp, "se_agent_properties.dp_max_wait_rsp_time_sec", 100),
 					testAccCheckAVISePropertiesValuesUpdated(&seProp, "se_agent_properties.dp_batch_size", 120),
-					testAccCheckAVISePropertiesValuesUpdated(&seProp, "se_runtime_properties.log_agent_max_active_adf_files_per_vs", 150),
 					testAccCheckAVISePropertiesValuesUpdated(&seProp, "se_runtime_properties.dp_aggressive_hb_timeout_count", 8),
 				),
 			},
@@ -91,9 +89,6 @@ func testAccCheckAVISePropertiesValuesUpdated(seProp *models.SeProperties, key s
 		if key == "se_agent_properties.dp_batch_size" && *seProp.SeAgentProperties.DpBatchSize != int32(val.(int)) {
 			return fmt.Errorf("bad dp_batch_size, expected \"%v\", got: %#v", val, *seProp.SeAgentProperties.DpBatchSize)
 		}
-		if key == "se_runtime_properties.log_agent_max_active_adf_files_per_vs" && *seProp.SeRuntimeProperties.LogAgentMaxActiveAdfFilesPerVs != int32(val.(int)) {
-			return fmt.Errorf("bad log_agent_max_active_adf_files_per_vs, expected \"%v\", got: %#v", val, *seProp.SeRuntimeProperties.LogAgentMaxActiveAdfFilesPerVs)
-		}
 		if key == "se_runtime_properties.dp_aggressive_hb_timeout_count" && *seProp.SeRuntimeProperties.DpAggressiveHbTimeoutCount != int32(val.(int)) {
 			return fmt.Errorf("bad dp_aggressive_hb_timeout_count, expected \"%v\", got: %#v", val, *seProp.SeRuntimeProperties.DpAggressiveHbTimeoutCount)
 		}
@@ -134,11 +129,9 @@ resource "avi_seproperties" "testSeProperties" {
 		vnic_dhcp_ip_check_interval = "6"
 	}
 	se_runtime_properties {
-		log_agent_max_active_adf_files_per_vs = "100"
 		se_auth_ldap_conns_per_server = "1"
 		log_agent_file_sz_appl = "4"
 		se_packet_buffer_max = "0"
-		log_agent_max_logmessage_proto_sz = "65536"
 		se_hb_persist_fudge_bits = "3"
 		dp_aggressive_hb_timeout_count = "10"
 		se_metrics_rt_interval = "1000"
@@ -155,7 +148,6 @@ resource "avi_seproperties" "testSeProperties" {
 		upstream_connpool_cache_thresh = "-1"
 		connections_lossy_log_rate_limiter_threshold = "1000"
 		log_agent_unknown_vs_timer = "1800"
-		upstream_connpool_strategy = "-1"
 		upstream_connpool_conn_idle_thresh_tmo = "-1"
 		log_agent_min_storage_per_vs = "10"
 		feproxy_vips_enable_proxy_arp = true
@@ -189,12 +181,10 @@ resource "avi_seproperties" "testSeProperties" {
 			max_low_rtt = "10"
 		}
 		dp_aggressive_hb_frequency = "100"
-		log_agent_pause_interval = "0"
 		user_defined_metric_age = "60"
 		se_metrics_rt_enabled = true
 		upstream_connpool_enable = true
 		se_auth_ldap_connect_timeout = "10000"
-		spdy_fwd_proxy_parse_enable = true
 		se_auth_ldap_reconnect_timeout = "10000"
 		enable_hsm_log = false
 		se_auth_ldap_request_timeout = "10000"
@@ -202,14 +192,11 @@ resource "avi_seproperties" "testSeProperties" {
 		downstream_send_timeout = "3600000"
 		log_agent_file_sz_event = "4"
 		se_dp_log_udf_enqueue_percent = "90"
-		log_agent_export_msg_buffer_size = "524288"
 		se_dp_hm_drops = "0"
 		se_memory_poison = true
 		se_metrics_interval = "60000"
-		log_agent_export_wait_time = "100"
 		se_auth_ldap_bind_timeout = "5000"
 		se_auth_ldap_servers_failover_only = false
-		log_agent_conn_send_buffer_size = "16384"
 		global_mtu = "0"
 		upstream_read_timeout = "3600000"
 		se_handle_interface_routes = false
@@ -254,7 +241,6 @@ app_headers {
 		se_ip_encap_ipc = "0"
 		se_log_buffer_applog_size = "4096"
 		se_log_buffer_events_size = "512"
-		ssl_sess_cache_timeout = "86400"
 		l7_conns_per_core = "16384"
 		ssl_sess_cache_per_vs = "4096"
 		log_agent_trace_enabled = true
@@ -296,11 +282,9 @@ resource "avi_seproperties" "testSeProperties" {
 		vnic_dhcp_ip_check_interval = "6"
 	}
 	se_runtime_properties {
-		log_agent_max_active_adf_files_per_vs = "150"
 		se_auth_ldap_conns_per_server = "1"
 		log_agent_file_sz_appl = "4"
 		se_packet_buffer_max = "0"
-		log_agent_max_logmessage_proto_sz = "65536"
 		se_hb_persist_fudge_bits = "3"
 		dp_aggressive_hb_timeout_count = "8"
 		se_metrics_rt_interval = "1000"
@@ -317,7 +301,6 @@ resource "avi_seproperties" "testSeProperties" {
 		upstream_connpool_cache_thresh = "-1"
 		connections_lossy_log_rate_limiter_threshold = "1000"
 		log_agent_unknown_vs_timer = "1800"
-		upstream_connpool_strategy = "-1"
 		upstream_connpool_conn_idle_thresh_tmo = "-1"
 		log_agent_min_storage_per_vs = "10"
 		feproxy_vips_enable_proxy_arp = true
@@ -351,12 +334,10 @@ resource "avi_seproperties" "testSeProperties" {
 			max_low_rtt = "10"
 		}
 		dp_aggressive_hb_frequency = "100"
-		log_agent_pause_interval = "0"
 		user_defined_metric_age = "60"
 		se_metrics_rt_enabled = true
 		upstream_connpool_enable = true
 		se_auth_ldap_connect_timeout = "10000"
-		spdy_fwd_proxy_parse_enable = true
 		se_auth_ldap_reconnect_timeout = "10000"
 		enable_hsm_log = false
 		se_auth_ldap_request_timeout = "10000"
@@ -364,14 +345,11 @@ resource "avi_seproperties" "testSeProperties" {
 		downstream_send_timeout = "3600000"
 		log_agent_file_sz_event = "4"
 		se_dp_log_udf_enqueue_percent = "90"
-		log_agent_export_msg_buffer_size = "524288"
 		se_dp_hm_drops = "0"
 		se_memory_poison = true
 		se_metrics_interval = "60000"
-		log_agent_export_wait_time = "100"
 		se_auth_ldap_bind_timeout = "5000"
 		se_auth_ldap_servers_failover_only = false
-		log_agent_conn_send_buffer_size = "16384"
 		global_mtu = "0"
 		upstream_read_timeout = "3600000"
 		se_handle_interface_routes = false
@@ -416,7 +394,6 @@ app_headers {
 		se_ip_encap_ipc = "0"
 		se_log_buffer_applog_size = "4096"
 		se_log_buffer_events_size = "512"
-		ssl_sess_cache_timeout = "86400"
 		l7_conns_per_core = "163843"
 		ssl_sess_cache_per_vs = "4096"
 		log_agent_trace_enabled = true

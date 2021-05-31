@@ -1,8 +1,6 @@
-/*
-* Copyright (c) 2017. Avi Networks.
-* Author: Gaurav Rastogi (grastogi@avinetworks.com)
-*
- */
+// Copyright 2019 VMware, Inc.
+// SPDX-License-Identifier: Mozilla Public License 2.0
+
 package avi
 
 import "github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
@@ -17,9 +15,10 @@ func dataSourceAviIpAddrGroup() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceIpAddrSchema(),
 			},
-			"apic_epg_name": {
-				Type:     schema.TypeString,
+			"configpb_attributes": {
+				Type:     schema.TypeSet,
 				Computed: true,
+				Elem:     ResourceConfigPbAttributesSchema(),
 			},
 			"country_codes": {
 				Type:     schema.TypeList,
@@ -35,11 +34,6 @@ func dataSourceAviIpAddrGroup() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceIpAddrPortSchema(),
 			},
-			"labels": {
-				Type:     schema.TypeList,
-				Computed: true,
-				Elem:     ResourceKeyValueSchema(),
-			},
 			"marathon_app_name": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -47,6 +41,11 @@ func dataSourceAviIpAddrGroup() *schema.Resource {
 			"marathon_service_port": {
 				Type:     schema.TypeInt,
 				Computed: true,
+			},
+			"markers": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceRoleFilterMatchLabelSchema(),
 			},
 			"name": {
 				Type:     schema.TypeString,

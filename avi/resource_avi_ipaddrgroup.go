@@ -1,16 +1,14 @@
-/*
-* Copyright (c) 2017. Avi Networks.
-* Author: Gaurav Rastogi (grastogi@avinetworks.com)
-*
- */
+// Copyright 2019 VMware, Inc.
+// SPDX-License-Identifier: Mozilla Public License 2.0
+
 package avi
 
 import (
 	"log"
 	"strings"
 
-	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"github.com/vmware/alb-sdk/go/clients"
 )
 
 //nolint
@@ -21,10 +19,11 @@ func ResourceIpAddrGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Elem:     ResourceIpAddrSchema(),
 		},
-		"apic_epg_name": {
-			Type:     schema.TypeString,
+		"configpb_attributes": {
+			Type:     schema.TypeSet,
 			Optional: true,
 			Computed: true,
+			Elem:     ResourceConfigPbAttributesSchema(),
 		},
 		"country_codes": {
 			Type:     schema.TypeList,
@@ -41,11 +40,6 @@ func ResourceIpAddrGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Elem:     ResourceIpAddrPortSchema(),
 		},
-		"labels": {
-			Type:     schema.TypeList,
-			Optional: true,
-			Elem:     ResourceKeyValueSchema(),
-		},
 		"marathon_app_name": {
 			Type:     schema.TypeString,
 			Optional: true,
@@ -55,6 +49,11 @@ func ResourceIpAddrGroupSchema() map[string]*schema.Schema {
 			Type:     schema.TypeInt,
 			Optional: true,
 			Computed: true,
+		},
+		"markers": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceRoleFilterMatchLabelSchema(),
 		},
 		"name": {
 			Type:     schema.TypeString,

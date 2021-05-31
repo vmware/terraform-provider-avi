@@ -1,16 +1,14 @@
-/*
-* Copyright (c) 2017. Avi Networks.
-* Author: Gaurav Rastogi (grastogi@avinetworks.com)
-*
- */
+// Copyright 2019 VMware, Inc.
+// SPDX-License-Identifier: Mozilla Public License 2.0
+
 package avi
 
 import (
 	"log"
 	"strings"
 
-	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"github.com/vmware/alb-sdk/go/clients"
 )
 
 func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
@@ -95,6 +93,12 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  60,
 		},
+		"configpb_attributes": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceConfigPbAttributesSchema(),
+		},
 		"consistency_check_timeout_period": {
 			Type:     schema.TypeInt,
 			Optional: true,
@@ -149,6 +153,16 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  true,
+		},
+		"enable_per_process_stop": {
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  false,
+		},
+		"enable_resmgr_log_cache_print": {
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  false,
 		},
 		"fatal_error_lease_time": {
 			Type:     schema.TypeInt,
@@ -362,11 +376,6 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Type:     schema.TypeInt,
 			Optional: true,
 			Default:  180,
-		},
-		"vs_apic_scaleout_timeout": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Default:  360,
 		},
 		"vs_awaiting_se_timeout": {
 			Type:     schema.TypeInt,

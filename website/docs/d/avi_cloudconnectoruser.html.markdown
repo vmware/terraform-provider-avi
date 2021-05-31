@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "AVI: avi_cloudconnectoruser"
@@ -36,6 +34,7 @@ In addition to all arguments above, the following attributes are exported:
 
 * `azure_serviceprincipal` - Field introduced in 17.2.1. Allowed in basic edition, essentials edition, enterprise edition.
 * `azure_userpass` - Field introduced in 17.2.1. Allowed in basic edition, essentials edition, enterprise edition.
+* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1.
 * `gcp_credentials` - Credentials for google cloud platform. Field introduced in 18.2.1. Allowed in basic edition, essentials edition, enterprise edition.
 * `name` - Name of the object.
 * `nsxt_credentials` - Credentials to talk to nsx-t manager. Field introduced in 20.1.1. Allowed in essentials edition, enterprise edition.

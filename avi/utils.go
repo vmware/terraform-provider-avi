@@ -10,13 +10,14 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"reflect"
 	"regexp"
 	"strconv"
 	"strings"
 
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/avinetworks/sdk/go/session"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"github.com/vmware/alb-sdk/go/clients"
+	"github.com/vmware/alb-sdk/go/session"
 )
 
 var postNotAllowed = [...]string{"systemconfiguration", "cluster", "seproperties"}
@@ -197,7 +198,7 @@ func APIDataToSchema(adata interface{}, d interface{}, t map[string]*schema.Sche
 						switch dType := d.(type) {
 						default:
 						case *schema.ResourceData:
-							if t[k].Type.String() == "TypeFloat" {
+							if t[k].Type.String() == "TypeFloat" && reflect.TypeOf(obj).Kind() == reflect.String {
 								if fObj, err := strconv.ParseFloat(obj.(string), 64); err != nil {
 									log.Printf("[ERROR] Converting obj %v for key %v to float", obj, k)
 								} else if err := d.(*schema.ResourceData).Set(k, fObj); err != nil {

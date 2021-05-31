@@ -5,9 +5,9 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/terraform"
+	"github.com/vmware/alb-sdk/go/clients"
 )
 
 func TestAVIApplicationProfileBasic(t *testing.T) {
@@ -108,6 +108,9 @@ data "avi_stringgroup" "system_compressiblestringgroup" {
 data "avi_stringgroup" "system_cacheablestringgroup" {
     name= "System-Cacheable-Resource-Types"
 }
+data "avi_stringgroup" "system_mobilestringgroup" {
+    name = "System-Devices-Mobile"
+}
 resource "avi_applicationprofile" "testApplicationProfile" {
 	name = "test-System-Secure-HTTP-abc"
 	type = "APPLICATION_PROFILE_TYPE_HTTP"
@@ -127,6 +130,7 @@ resource "avi_applicationprofile" "testApplicationProfile" {
 			compressible_content_ref = data.avi_stringgroup.system_compressiblestringgroup.id
 			compression = false
 			remove_accept_encoding_header = true
+			mobile_str_ref = data.avi_stringgroup.system_mobilestringgroup.id
 		}
 		xff_enabled = true
 		disable_keepalive_posts_msie6 = true
@@ -183,6 +187,9 @@ data "avi_stringgroup" "system_compressiblestringgroup" {
 data "avi_stringgroup" "system_cacheablestringgroup" {
     name= "System-Cacheable-Resource-Types"
 }
+data "avi_stringgroup" "system_mobilestringgroup" {
+    name = "System-Devices-Mobile"
+}
 resource "avi_applicationprofile" "testApplicationProfile" {
 	name = "test-System-Secure-HTTP-updated"
 	type = "APPLICATION_PROFILE_TYPE_HTTP"
@@ -202,6 +209,7 @@ resource "avi_applicationprofile" "testApplicationProfile" {
 			compressible_content_ref = data.avi_stringgroup.system_compressiblestringgroup.id
 			compression = false
 			remove_accept_encoding_header = true
+			mobile_str_ref = data.avi_stringgroup.system_mobilestringgroup.id
 		}
 		xff_enabled = true
 		disable_keepalive_posts_msie6 = true

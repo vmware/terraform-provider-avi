@@ -5,9 +5,9 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/avinetworks/sdk/go/clients"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/terraform"
+	"github.com/vmware/alb-sdk/go/clients"
 )
 
 func TestAVICloudBasic(t *testing.T) {
@@ -31,8 +31,6 @@ func TestAVICloudBasic(t *testing.T) {
 					resource.TestCheckResourceAttr(
 						"avi_cloud.testCloud", "prefer_static_routes", "false"),
 					resource.TestCheckResourceAttr(
-						"avi_cloud.testCloud", "apic_mode", "false"),
-					resource.TestCheckResourceAttr(
 						"avi_cloud.testCloud", "mtu", "1500"),
 				),
 			},
@@ -50,8 +48,6 @@ func TestAVICloudBasic(t *testing.T) {
 						"avi_cloud.testCloud", "state_based_dns_registration", "true"),
 					resource.TestCheckResourceAttr(
 						"avi_cloud.testCloud", "prefer_static_routes", "false"),
-					resource.TestCheckResourceAttr(
-						"avi_cloud.testCloud", "apic_mode", "false"),
 					resource.TestCheckResourceAttr(
 						"avi_cloud.testCloud", "mtu", "1500"),
 				),
@@ -128,7 +124,6 @@ resource "avi_cloud" "testCloud" {
 	state_based_dns_registration = true
 	prefer_static_routes = false
 	license_type = "LIC_CORES"
-	apic_mode = false
 	mtu = "1500"
 }
 `
@@ -147,7 +142,6 @@ resource "avi_cloud" "testCloud" {
 	state_based_dns_registration = true
 	prefer_static_routes = false
 	license_type = "LIC_CORES"
-	apic_mode = false
 	mtu = "1500"
 }
 `
