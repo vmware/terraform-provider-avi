@@ -30,6 +30,7 @@ The following arguments are supported:
 * `issuer` - (Required) Uniquely identifiable name of the token issuer. Field introduced in 20.1.3.
 * `jwks_keys` - (Required) Jwks key set used for validating the jwt. Field introduced in 20.1.3.
 * `name` - (Required) Name of the jwt profile. Field introduced in 20.1.3.
+* `is_federated` - (Optional) This field describes the object's replication scope. If the field is set to false, then the object is visible within the controller-cluster. If the field is set to true, then the object is replicated across the federation. Field introduced in 20.1.6.
 * `tenant_ref` - (Optional) Uuid of the tenant. It is a reference to an object of type tenant. Field introduced in 20.1.3.
 
 

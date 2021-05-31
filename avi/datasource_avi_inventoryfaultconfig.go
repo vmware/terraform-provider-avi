@@ -5,27 +5,24 @@ package avi
 
 import "github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 
-func dataSourceAviJWTProfile() *schema.Resource {
+func dataSourceAviInventoryFaultConfig() *schema.Resource {
 	return &schema.Resource{
-		Read: ResourceAviJWTProfileRead,
+		Read: ResourceAviInventoryFaultConfigRead,
 		Schema: map[string]*schema.Schema{
-			"is_federated": {
-				Type:     schema.TypeBool,
+			"controller_faults": {
+				Type:     schema.TypeSet,
 				Computed: true,
-			},
-			"jwks_keys": {
-				Type:     schema.TypeList,
-				Computed: true,
-				Elem:     ResourceJWSKeySchema(),
-			},
-			"jwt_auth_type": {
-				Type:     schema.TypeString,
-				Computed: true,
+				Elem:     ResourceControllerFaultsSchema(),
 			},
 			"name": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+			"serviceengine_faults": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceServiceengineFaultsSchema(),
 			},
 			"tenant_ref": {
 				Type:     schema.TypeString,
@@ -36,6 +33,11 @@ func dataSourceAviJWTProfile() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+			"virtualservice_faults": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceVirtualserviceFaultsSchema(),
 			},
 		},
 	}
