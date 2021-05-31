@@ -37,10 +37,10 @@ func dataSourceAviWafPolicy() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"crs_groups": {
+			"crs_overrides": {
 				Type:     schema.TypeList,
 				Computed: true,
-				Elem:     ResourceWafRuleGroupSchema(),
+				Elem:     ResourceWafRuleGroupOverridesSchema(),
 			},
 			"description": {
 				Type:     schema.TypeString,
@@ -104,6 +104,11 @@ func dataSourceAviWafPolicy() *schema.Resource {
 				Elem:     ResourceWafRuleGroupSchema(),
 			},
 			"pre_crs_groups": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceWafRuleGroupSchema(),
+			},
+			"resolved_crs_groups": {
 				Type:     schema.TypeList,
 				Computed: true,
 				Elem:     ResourceWafRuleGroupSchema(),

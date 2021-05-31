@@ -195,7 +195,7 @@ In addition to all arguments above, the following attributes are exported:
 * `se_dos_profile` - Dict settings for serviceenginegroup.
 * `se_dp_hm_drops` - Internal only. Used to simulate se - se hb failure. Field introduced in 20.1.3.
 * `se_dp_isolation` - Toggle support to run se datapath instances in isolation on exclusive cpus. This improves latency and performance. However, this could reduce the total number of se_dp instances created on that se instance. Supported for >= 8 cpus. Requires se reboot. Field introduced in 20.1.4.
-* `se_dp_isolation_num_non_dp_cpus` - Number of cpus for non se-dp tasks in se datapath isolation mode. Translates total cpus minus 'num_non_dp_cpus' for datapath use.requires se reboot. Allowed values are 1-8. Special values are 0- 'auto'. Field introduced in 20.1.4.
+* `se_dp_isolation_num_non_dp_cpus` - Number of cpus for non se-dp tasks in se datapath isolation mode. Translates total cpus minus 'num_non_dp_cpus' for datapath use. It is recommended to reserve an even number of cpus for hyper-threaded processors. Requires se reboot. Allowed values are 1-8. Special values are 0- 'auto'. Field introduced in 20.1.4.
 * `se_dp_log_nf_enqueue_percent` - Internal buffer full indicator on the service engine beyond which the unfiltered logs are abandoned. Field introduced in 21.1.1.
 * `se_dp_log_udf_enqueue_percent` - Internal buffer full indicator on the service engine beyond which the user filtered logs are abandoned. Field introduced in 21.1.1.
 * `se_dp_max_hb_version` - The highest supported se-se heartbeat protocol version. This version is reported by secondary se to primary se in heartbeat response messages. Allowed values are 1-3. Field introduced in 20.1.1.
