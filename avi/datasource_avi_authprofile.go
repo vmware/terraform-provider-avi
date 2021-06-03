@@ -27,6 +27,11 @@ func dataSourceAviAuthProfile() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceLdapAuthSettingsSchema(),
 			},
+			"markers": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceRoleFilterMatchLabelSchema(),
+			},
 			"name": {
 				Type:     schema.TypeString,
 				Optional: true,

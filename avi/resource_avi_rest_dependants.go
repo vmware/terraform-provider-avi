@@ -536,6 +536,11 @@ func ResourceAdminAuthConfigurationSchema() *schema.Resource {
 				Optional: true,
 				Default:  true,
 			},
+			"alternate_auth_configurations": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceAlternateAuthConfigurationSchema(),
+			},
 			"auth_profile_ref": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -891,6 +896,27 @@ func ResourceAllSeUpgradeEventDetailsSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 				Elem:     ResourceSeUpgradeParamsSchema(),
+			},
+		},
+	}
+}
+
+func ResourceAlternateAuthConfigurationSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"auth_profile_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"index": {
+				Type:     schema.TypeInt,
+				Required: true,
+			},
+			"mapping_rules": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceAuthMappingRuleSchema(),
 			},
 		},
 	}
@@ -6286,6 +6312,18 @@ func ResourceControllerFaultsSchema() *schema.Resource {
 				Type:     schema.TypeBool,
 				Optional: true,
 				Default:  true,
+			},
+		},
+	}
+}
+
+func ResourceControllerInternalAuthSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"symmetric_jwks_keys": {
+				Type:     schema.TypeList,
+				Required: true,
+				Elem:     ResourceJWSKeySchema(),
 			},
 		},
 	}
@@ -15794,6 +15832,33 @@ func ResourceIptableRuleSetSchema() *schema.Resource {
 	}
 }
 
+func ResourceJWSKeySchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"alg": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "HS256",
+			},
+			"key": {
+				Type:             schema.TypeString,
+				Required:         true,
+				Sensitive:        true,
+				DiffSuppressFunc: suppressSensitiveFieldDiffs,
+			},
+			"kid": {
+				Type:     schema.TypeString,
+				Required: true,
+			},
+			"kty": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "oct",
+			},
+		},
+	}
+}
+
 func ResourceJWTClaimMatchSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -15845,6 +15910,19 @@ func ResourceJWTMatchSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceJWTServerProfileConfigSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"controller_internal_auth": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceControllerInternalAuthSchema(),
 			},
 		},
 	}

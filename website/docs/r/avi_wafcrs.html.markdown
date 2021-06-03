@@ -33,6 +33,7 @@ The following arguments are supported:
 * `release_date` - (Required) The release date of this version in rfc 3339 / iso 8601 format. Field introduced in 18.1.1.
 * `version` - (Required) The version of this ruleset object. Field introduced in 18.1.1.
 * `groups` - (Optional) Waf rules are sorted in groups based on their characterization. Field introduced in 18.1.1. Maximum of 64 items allowed.
+* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.6.
 * `tenant_ref` - (Optional) Tenant that this object belongs to. It is a reference to an object of type tenant. Field introduced in 18.2.1.
 
 

@@ -73,6 +73,11 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  true,
 		},
+		"check_fqdn_syntax": {
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  true,
+		},
 		"cleanup_expired_authtoken_timeout_period": {
 			Type:     schema.TypeInt,
 			Optional: true,
@@ -147,6 +152,11 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  true,
+		},
+		"enable_resmgr_log_cache_print": {
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  false,
 		},
 		"fatal_error_lease_time": {
 			Type:     schema.TypeInt,

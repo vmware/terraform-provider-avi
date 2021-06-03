@@ -9,6 +9,11 @@ func dataSourceAviCertificateManagementProfile() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviCertificateManagementProfileRead,
 		Schema: map[string]*schema.Schema{
+			"markers": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceRoleFilterMatchLabelSchema(),
+			},
 			"name": {
 				Type:     schema.TypeString,
 				Optional: true,

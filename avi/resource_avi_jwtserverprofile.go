@@ -20,11 +20,24 @@ func ResourceJWTServerProfileSchema() map[string]*schema.Schema {
 		},
 		"issuer": {
 			Type:     schema.TypeString,
-			Required: true,
+			Optional: true,
+			Computed: true,
 		},
 		"jwks_keys": {
 			Type:     schema.TypeString,
-			Required: true,
+			Optional: true,
+			Computed: true,
+		},
+		"jwt_profile_type": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Default:  "CLIENT_AUTH",
+		},
+		"jwt_server_profile_config": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceJWTServerProfileConfigSchema(),
 		},
 		"name": {
 			Type:     schema.TypeString,

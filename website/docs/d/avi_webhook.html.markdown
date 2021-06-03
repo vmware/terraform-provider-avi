@@ -34,6 +34,7 @@ In addition to all arguments above, the following attributes are exported:
 
 * `callback_url` - Callback url for the webhook. Field introduced in 17.1.1.
 * `description` - Field introduced in 17.1.1.
+* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.6.
 * `name` - The name of the webhook profile. Field introduced in 17.1.1.
 * `tenant_ref` - It is a reference to an object of type tenant. Field introduced in 17.1.1.
 * `uuid` - Uuid of the webhook profile. Field introduced in 17.1.1.
