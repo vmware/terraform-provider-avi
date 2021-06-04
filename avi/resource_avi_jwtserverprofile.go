@@ -19,6 +19,11 @@ func ResourceJWTServerProfileSchema() map[string]*schema.Schema {
 			Computed: true,
 			Elem:     ResourceConfigPbAttributesSchema(),
 		},
+		"is_federated": {
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  false,
+		},
 		"issuer": {
 			Type:     schema.TypeString,
 			Required: true,

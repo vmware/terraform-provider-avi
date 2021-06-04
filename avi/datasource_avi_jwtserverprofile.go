@@ -14,6 +14,10 @@ func dataSourceAviJWTServerProfile() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceConfigPbAttributesSchema(),
 			},
+			"is_federated": {
+				Type:     schema.TypeBool,
+				Computed: true,
+			},
 			"issuer": {
 				Type:     schema.TypeString,
 				Computed: true,

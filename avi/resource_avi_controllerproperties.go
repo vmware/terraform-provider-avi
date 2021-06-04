@@ -73,6 +73,11 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  true,
 		},
+		"check_vsvip_fqdn_syntax": {
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  true,
+		},
 		"cleanup_expired_authtoken_timeout_period": {
 			Type:     schema.TypeInt,
 			Optional: true,

@@ -16319,33 +16319,6 @@ func ResourceIptableRuleSetSchema() *schema.Resource {
 	}
 }
 
-func ResourceJWSKeySchema() *schema.Resource {
-	return &schema.Resource{
-		Schema: map[string]*schema.Schema{
-			"alg": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Default:  "HS256",
-			},
-			"key": {
-				Type:             schema.TypeString,
-				Required:         true,
-				Sensitive:        true,
-				DiffSuppressFunc: suppressSensitiveFieldDiffs,
-			},
-			"kid": {
-				Type:     schema.TypeString,
-				Required: true,
-			},
-			"kty": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Default:  "oct",
-			},
-		},
-	}
-}
-
 func ResourceJWTClaimMatchSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
