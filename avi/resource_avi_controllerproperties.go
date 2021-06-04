@@ -73,7 +73,7 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  true,
 		},
-		"check_fqdn_syntax": {
+		"check_vsvip_fqdn_syntax": {
 			Type:     schema.TypeBool,
 			Optional: true,
 			Default:  true,

@@ -57,7 +57,7 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Type:     schema.TypeBool,
 				Computed: true,
 			},
-			"check_fqdn_syntax": {
+			"check_vsvip_fqdn_syntax": {
 				Type:     schema.TypeBool,
 				Computed: true,
 			},
