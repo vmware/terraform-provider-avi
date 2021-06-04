@@ -35,6 +35,7 @@ In addition to all arguments above, the following attributes are exported:
 * `description` - A short description of this ruleset. Field introduced in 18.1.1.
 * `groups` - Waf rules are sorted in groups based on their characterization. Field introduced in 18.1.1. Maximum of 64 items allowed.
 * `integrity` - Integrity protection value. Field introduced in 18.2.1.
+* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.6.
 * `name` - The name of this ruleset object. Field introduced in 18.2.1.
 * `release_date` - The release date of this version in rfc 3339 / iso 8601 format. Field introduced in 18.1.1.
 * `tenant_ref` - Tenant that this object belongs to. It is a reference to an object of type tenant. Field introduced in 18.2.1.

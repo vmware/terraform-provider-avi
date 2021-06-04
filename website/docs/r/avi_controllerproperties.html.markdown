@@ -39,6 +39,7 @@ The following arguments are supported:
 * `attach_ip_retry_interval` - (Optional) Unit is sec.
 * `attach_ip_retry_limit` - (Optional) Placeholder for description of property attach_ip_retry_limit of obj type controllerproperties field type integer  type int.
 * `bm_use_ansible` - (Optional) Use ansible for se creation in baremetal. Field introduced in 17.2.2.
+* `check_vsvip_fqdn_syntax` - (Optional) Enforce vsvip fqdn syntax checks. Field introduced in 20.1.6.
 * `cleanup_expired_authtoken_timeout_period` - (Optional) Period for auth token cleanup job. Field introduced in 18.1.1. Unit is min.
 * `cleanup_sessions_timeout_period` - (Optional) Period for sessions cleanup job. Field introduced in 18.1.1. Unit is min.
 * `cloud_reconcile` - (Optional) Enable/disable periodic reconcile for all the clouds. Field introduced in 17.2.14,18.1.5,18.2.1.
@@ -54,6 +55,7 @@ The following arguments are supported:
 * `edit_system_limits` - (Optional) Allow editing of system limits. Keep in mind that these system limits have been carefully selected based on rigorous testing in our testig environments. Modifying these limits could destabilize your cluster. Do this at your own risk!. Field introduced in 20.1.1.
 * `enable_api_sharding` - (Optional) This setting enables the controller leader to shard api requests to the followers (if any). Field introduced in 18.1.5, 18.2.1.
 * `enable_memory_balancer` - (Optional) Enable/disable memory balancer. Field introduced in 17.2.8.
+* `enable_resmgr_log_cache_print` - (Optional) Enable printing of cached logs inside resource manager. Used for debugging purposes only. Field introduced in 20.1.6.
 * `fatal_error_lease_time` - (Optional) Unit is sec.
 * `federated_datastore_cleanup_duration` - (Optional) Federated datastore will not cleanup diffs unless they are at least this duration in the past. Field introduced in 20.1.1. Unit is hours.
 * `file_object_cleanup_period` - (Optional) Period for file object cleanup job. Field introduced in 20.1.1. Unit is min.

@@ -23,6 +23,11 @@ func ResourceWebhookSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"markers": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceRoleFilterMatchLabelSchema(),
+		},
 		"name": {
 			Type:     schema.TypeString,
 			Required: true,

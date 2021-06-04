@@ -21,6 +21,15 @@ func dataSourceAviJWTServerProfile() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"jwt_profile_type": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"jwt_server_profile_config": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceJWTServerProfileConfigSchema(),
+			},
 			"name": {
 				Type:     schema.TypeString,
 				Optional: true,

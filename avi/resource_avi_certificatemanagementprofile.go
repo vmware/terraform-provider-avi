@@ -13,6 +13,11 @@ import (
 
 func ResourceCertificateManagementProfileSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
+		"markers": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceRoleFilterMatchLabelSchema(),
+		},
 		"name": {
 			Type:     schema.TypeString,
 			Required: true,
