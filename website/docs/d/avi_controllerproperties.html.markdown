@@ -44,7 +44,7 @@ In addition to all arguments above, the following attributes are exported:
 * `attach_ip_retry_interval` - Unit is sec.
 * `attach_ip_retry_limit` - Placeholder for description of property attach_ip_retry_limit of obj type controllerproperties field type integer  type int.
 * `bm_use_ansible` - Use ansible for se creation in baremetal. Field introduced in 17.2.2.
-* `check_fqdn_syntax` - Enforce fqdn syntax checks. Field introduced in 20.1.6.
+* `check_vsvip_fqdn_syntax` - Enforce vsvip fqdn syntax checks. Field introduced in 20.1.6.
 * `cleanup_expired_authtoken_timeout_period` - Period for auth token cleanup job. Field introduced in 18.1.1. Unit is min.
 * `cleanup_sessions_timeout_period` - Period for sessions cleanup job. Field introduced in 18.1.1. Unit is min.
 * `cloud_reconcile` - Enable/disable periodic reconcile for all the clouds. Field introduced in 17.2.14,18.1.5,18.2.1.
