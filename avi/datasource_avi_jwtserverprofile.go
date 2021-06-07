@@ -9,6 +9,11 @@ func dataSourceAviJWTServerProfile() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviJWTServerProfileRead,
 		Schema: map[string]*schema.Schema{
+			"controller_internal_auth": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceControllerInternalAuthSchema(),
+			},
 			"is_federated": {
 				Type:     schema.TypeBool,
 				Computed: true,
@@ -24,11 +29,6 @@ func dataSourceAviJWTServerProfile() *schema.Resource {
 			"jwt_profile_type": {
 				Type:     schema.TypeString,
 				Computed: true,
-			},
-			"jwt_server_profile_config": {
-				Type:     schema.TypeSet,
-				Computed: true,
-				Elem:     ResourceJWTServerProfileConfigSchema(),
 			},
 			"name": {
 				Type:     schema.TypeString,
