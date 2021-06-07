@@ -32,6 +32,11 @@ func ResourceWafCRSSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Required: true,
 		},
+		"markers": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceRoleFilterMatchLabelSchema(),
+		},
 		"name": {
 			Type:     schema.TypeString,
 			Required: true,

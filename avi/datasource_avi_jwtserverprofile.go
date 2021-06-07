@@ -14,11 +14,24 @@ func dataSourceAviJWTServerProfile() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceConfigPbAttributesSchema(),
 			},
+			"controller_internal_auth": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceControllerInternalAuthSchema(),
+			},
+			"is_federated": {
+				Type:     schema.TypeBool,
+				Computed: true,
+			},
 			"issuer": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"jwks_keys": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"jwt_profile_type": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},

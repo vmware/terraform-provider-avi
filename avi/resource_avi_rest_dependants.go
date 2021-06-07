@@ -424,6 +424,11 @@ func ResourceAdminAuthConfigurationSchema() *schema.Resource {
 				Optional: true,
 				Default:  true,
 			},
+			"alternate_auth_configurations": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceAlternateAuthConfigurationSchema(),
+			},
 			"auth_profile_ref": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -785,6 +790,27 @@ func ResourceAllSeUpgradeEventDetailsSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 				Elem:     ResourceSeUpgradeParamsSchema(),
+			},
+		},
+	}
+}
+
+func ResourceAlternateAuthConfigurationSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"auth_profile_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"index": {
+				Type:     schema.TypeInt,
+				Required: true,
+			},
+			"mapping_rules": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceAuthMappingRuleSchema(),
 			},
 		},
 	}
@@ -6471,6 +6497,18 @@ func ResourceControllerInfoSchema() *schema.Resource {
 				Type:     schema.TypeFloat,
 				Optional: true,
 				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceControllerInternalAuthSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"symmetric_jwks_keys": {
+				Type:     schema.TypeList,
+				Required: true,
+				Elem:     ResourceJWSKeySchema(),
 			},
 		},
 	}

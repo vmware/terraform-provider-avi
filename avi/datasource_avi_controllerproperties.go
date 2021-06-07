@@ -57,6 +57,10 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Type:     schema.TypeBool,
 				Computed: true,
 			},
+			"check_vsvip_fqdn_syntax": {
+				Type:     schema.TypeBool,
+				Computed: true,
+			},
 			"cleanup_expired_authtoken_timeout_period": {
 				Type:     schema.TypeInt,
 				Computed: true,

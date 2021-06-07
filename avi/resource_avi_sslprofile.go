@@ -86,7 +86,7 @@ func ResourceSSLProfileSchema() map[string]*schema.Schema {
 		"signature_algorithm": {
 			Type:     schema.TypeString,
 			Optional: true,
-			Default:  "ECDSA+SHA256:RSA+SHA256",
+			Default:  "auto",
 		},
 		"ssl_rating": {
 			Type:     schema.TypeSet,

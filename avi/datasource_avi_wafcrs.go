@@ -27,6 +27,11 @@ func dataSourceAviWafCRS() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"markers": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceRoleFilterMatchLabelSchema(),
+			},
 			"name": {
 				Type:     schema.TypeString,
 				Optional: true,
