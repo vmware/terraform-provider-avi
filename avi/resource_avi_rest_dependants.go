@@ -15915,19 +15915,6 @@ func ResourceJWTMatchSchema() *schema.Resource {
 	}
 }
 
-func ResourceJWTServerProfileConfigSchema() *schema.Resource {
-	return &schema.Resource{
-		Schema: map[string]*schema.Schema{
-			"controller_internal_auth": {
-				Type:     schema.TypeSet,
-				Optional: true,
-				Computed: true,
-				Elem:     ResourceControllerInternalAuthSchema(),
-			},
-		},
-	}
-}
-
 func ResourceJWTValidationVsConfigSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{

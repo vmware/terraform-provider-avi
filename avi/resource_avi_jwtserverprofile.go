@@ -13,6 +13,12 @@ import (
 
 func ResourceJWTServerProfileSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
+		"controller_internal_auth": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceControllerInternalAuthSchema(),
+		},
 		"is_federated": {
 			Type:     schema.TypeBool,
 			Optional: true,
@@ -32,12 +38,6 @@ func ResourceJWTServerProfileSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 			Default:  "CLIENT_AUTH",
-		},
-		"jwt_server_profile_config": {
-			Type:     schema.TypeSet,
-			Optional: true,
-			Computed: true,
-			Elem:     ResourceJWTServerProfileConfigSchema(),
 		},
 		"name": {
 			Type:     schema.TypeString,

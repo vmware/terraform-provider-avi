@@ -28,11 +28,11 @@ resource "avi_jwtserverprofile" "foo" {
 The following arguments are supported:
 
 * `name` - (Required) Name of the jwt profile. Field introduced in 20.1.3.
+* `controller_internal_auth` - (Optional) Jwt auth configuration for profile_type controller_internal_auth. Field introduced in 20.1.6.
 * `is_federated` - (Optional) This field describes the object's replication scope. If the field is set to false, then the object is visible within the controller-cluster. If the field is set to true, then the object is replicated across the federation. Field introduced in 20.1.6.
 * `issuer` - (Optional) Uniquely identifiable name of the token issuer, only allowed with profile_type client_auth. Field introduced in 20.1.3.
 * `jwks_keys` - (Optional) Jwks key set used for validating the jwt, only allowed with profile_type client_auth. Field introduced in 20.1.3.
 * `jwt_profile_type` - (Optional) Type of jwt server profile which defines the usage type. Enum options - CLIENT_AUTH, CONTROLLER_INTERNAL_AUTH. Field introduced in 20.1.6.
-* `jwt_server_profile_config` - (Optional) This is the union of all supported jwt auth profiles. Field introduced in 20.1.6.
 * `tenant_ref` - (Optional) Uuid of the tenant. It is a reference to an object of type tenant. Field introduced in 20.1.3.
 
 
