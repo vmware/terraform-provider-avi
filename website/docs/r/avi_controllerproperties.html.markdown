@@ -39,7 +39,7 @@ The following arguments are supported:
 * `attach_ip_retry_interval` - (Optional) Unit is sec.
 * `attach_ip_retry_limit` - (Optional) Placeholder for description of property attach_ip_retry_limit of obj type controllerproperties field type integer  type int.
 * `bm_use_ansible` - (Optional) Use ansible for se creation in baremetal. Field introduced in 17.2.2.
-* `check_vsvip_fqdn_syntax` - (Optional) Enforce vsvip fqdn syntax checks. Field introduced in 20.1.6.
+* `check_vsvip_fqdn_syntax` - (Optional) Enforce vsvip fqdn syntax checks. Field introduced in 20.1.6. Allowed in basic edition, essentials edition, enterprise edition.
 * `cleanup_expired_authtoken_timeout_period` - (Optional) Period for auth token cleanup job. Field introduced in 18.1.1. Unit is min.
 * `cleanup_sessions_timeout_period` - (Optional) Period for sessions cleanup job. Field introduced in 18.1.1. Unit is min.
 * `cloud_reconcile` - (Optional) Enable/disable periodic reconcile for all the clouds. Field introduced in 17.2.14,18.1.5,18.2.1.
