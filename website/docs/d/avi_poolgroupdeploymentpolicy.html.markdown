@@ -35,7 +35,7 @@ In addition to all arguments above, the following attributes are exported:
 * `auto_disable_old_prod_pools` - It will automatically disable old production pools once there is a new production candidate.
 * `description` - User defined description for the object.
 * `evaluation_duration` - Duration of evaluation period for automatic deployment. Allowed values are 60-86400. Unit is sec.
-* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5.
+* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in basic edition, essentials edition, enterprise edition.
 * `name` - The name of the pool group deployment policy.
 * `rules` - List of list.
 * `scheme` - Deployment scheme. Enum options - BLUE_GREEN, CANARY.

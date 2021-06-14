@@ -35,7 +35,7 @@ In addition to all arguments above, the following attributes are exported:
 * `description` - Security policy is used to specify various configuration information used to perform distributed denial of service (ddos) attacks detection and mitigation. Field introduced in 18.2.1.
 * `dns_attacks` - Attacks utilizing the dns protocol operations. Field introduced in 18.2.1.
 * `dns_policy_index` - Index of the dns policy to use for the mitigation rules applied to the dns attacks. Field introduced in 18.2.1.
-* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5.
+* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in basic edition, essentials edition, enterprise edition.
 * `name` - The name of the security policy. Field introduced in 18.2.1.
 * `network_security_policy_index` - Index of the network security policy to use for the mitigation rules applied to the attacks. Field introduced in 18.2.1.
 * `oper_mode` - Mode of dealing with the attacks - perform detection only, or detect and mitigate the attacks. Enum options - DETECTION, MITIGATION. Field introduced in 18.2.1.

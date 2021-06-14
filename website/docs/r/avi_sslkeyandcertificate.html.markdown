@@ -43,7 +43,7 @@ The following arguments are supported:
 * `key_base64` - (Optional) States if the private key is base64 encoded.
 * `key_params` - (Optional) Dict settings for sslkeyandcertificate.
 * `key_passphrase` - (Optional) Passphrase used to encrypt the private key.
-* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5.
+* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in basic edition, essentials edition, enterprise edition.
 * `ocsp_config` - (Optional) Configuration related to ocsp. Field introduced in 20.1.1. Allowed in basic edition, essentials edition, enterprise edition.
 * `status` - (Optional) Enum options - ssl_certificate_finished, ssl_certificate_pending.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant.

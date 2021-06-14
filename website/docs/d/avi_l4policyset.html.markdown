@@ -36,7 +36,7 @@ In addition to all arguments above, the following attributes are exported:
 * `description` - Field introduced in 17.2.7.
 * `is_internal_policy` - Field introduced in 17.2.7.
 * `l4_connection_policy` - Policy to apply when a new transport connection is setup. Field introduced in 17.2.7.
-* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5.
+* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in basic edition, essentials edition, enterprise edition.
 * `name` - Name of the l4 policy set. Field introduced in 17.2.7.
 * `tenant_ref` - It is a reference to an object of type tenant. Field introduced in 17.2.7.
 * `uuid` - Id of the l4 policy set. Field introduced in 17.2.7.

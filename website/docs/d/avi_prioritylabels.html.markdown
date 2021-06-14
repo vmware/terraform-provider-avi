@@ -37,7 +37,7 @@ In addition to all arguments above, the following attributes are exported:
 * `cloud_ref` - It is a reference to an object of type cloud.
 * `description` - A description of the priority labels.
 * `equivalent_labels` - Equivalent priority labels in descending order.
-* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5.
+* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in basic edition, essentials edition, enterprise edition.
 * `name` - The name of the priority labels.
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `uuid` - Uuid of the priority labels.

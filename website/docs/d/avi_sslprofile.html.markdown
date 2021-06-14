@@ -40,7 +40,7 @@ In addition to all arguments above, the following attributes are exported:
 * `dhparam` - Dh parameters used in ssl. At this time, it is not configurable and is set to 2048 bits.
 * `enable_early_data` - Enable early data processing for tls1.3 connections. Field introduced in 18.2.6. Allowed in basic(allowed values- false) edition, essentials(allowed values- false) edition, enterprise edition.
 * `enable_ssl_session_reuse` - Enable ssl session re-use.
-* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5.
+* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in basic edition, essentials edition, enterprise edition.
 * `name` - Name of the object.
 * `prefer_client_cipher_ordering` - Prefer the ssl cipher ordering presented by the client during the ssl handshake over the one specified in the ssl profile.
 * `send_close_notify` - Send 'close notify' alert message for a clean shutdown of the ssl connection.

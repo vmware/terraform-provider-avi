@@ -31,7 +31,7 @@ The following arguments are supported:
 * `created_by` - (Optional) Creator name.
 * `description` - (Optional) User defined description for the object.
 * `ip_reputation_db_ref` - (Optional) Ip reputation database. It is a reference to an object of type ipreputationdb. Field introduced in 20.1.1. Allowed in basic edition, essentials edition, enterprise edition.
-* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5.
+* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in basic edition, essentials edition, enterprise edition.
 * `name` - (Optional) Name of the object.
 * `rules` - (Optional) List of list.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant.

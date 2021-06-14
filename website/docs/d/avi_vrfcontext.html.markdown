@@ -43,7 +43,7 @@ In addition to all arguments above, the following attributes are exported:
 * `gateway_mon` - Configure ping based heartbeat check for gateway in service engines of vrf. Maximum of 32 items allowed.
 * `internal_gateway_monitor` - Configure ping based heartbeat check for all default gateways in service engines of vrf. Field introduced in 17.1.1.
 * `lldp_enable` - Enable lldp. Field introduced in 18.2.10, 20.1.1. Allowed in basic(allowed values- true) edition, essentials(allowed values- true) edition, enterprise edition.
-* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5.
+* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in basic edition, essentials edition, enterprise edition.
 * `name` - Name of the object.
 * `static_routes` - List of list.
 * `system_default` - Boolean flag to set system_default.

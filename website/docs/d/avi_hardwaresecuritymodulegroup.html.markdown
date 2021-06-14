@@ -33,7 +33,7 @@ data "avi_hardwaresecuritymodulegroup" "foo_hardwaresecuritymodulegroup" {
 In addition to all arguments above, the following attributes are exported:
 
 * `hsm` - Hardware security module configuration.
-* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5.
+* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in basic edition, essentials edition, enterprise edition.
 * `name` - Name of the hsm group configuration object.
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `uuid` - Uuid of the hsm group configuration object.

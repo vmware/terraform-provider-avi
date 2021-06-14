@@ -71,7 +71,7 @@ In addition to all arguments above, the following attributes are exported:
 * `jwt_config` - Application-specific config for jwt validation. Field introduced in 20.1.3.
 * `l4_policies` - L4 policies applied to the data traffic of the virtual service. Field introduced in 17.2.7.
 * `limit_doser` - Limit potential dos attackers who exceed max_cps_per_client significantly to a fraction of max_cps_per_client for a while.
-* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5.
+* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in basic edition, essentials edition, enterprise edition.
 * `max_cps_per_client` - Maximum connections per second per client ip. Allowed values are 10-1000. Special values are 0- 'unlimited'.
 * `microservice_ref` - Microservice representing the virtual service. It is a reference to an object of type microservice.
 * `min_pools_up` - Minimum number of up pools to mark vs up. Field introduced in 18.2.1, 17.2.12.

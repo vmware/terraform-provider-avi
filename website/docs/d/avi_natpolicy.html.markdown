@@ -34,7 +34,7 @@ In addition to all arguments above, the following attributes are exported:
 
 * `created_by` - Creator name. Field introduced in 18.2.3.
 * `description` - Field introduced in 18.2.3.
-* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5.
+* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in basic edition, essentials edition, enterprise edition.
 * `name` - Name of the nat policy. Field introduced in 18.2.3.
 * `rules` - Nat policy rules. Field introduced in 18.2.3.
 * `tenant_ref` - It is a reference to an object of type tenant. Field introduced in 18.2.3.

@@ -33,7 +33,7 @@ data "avi_protocolparser" "foo_protocolparser" {
 In addition to all arguments above, the following attributes are exported:
 
 * `description` - Description of the protocol parser. Field introduced in 18.2.3.
-* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5.
+* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in basic edition, essentials edition, enterprise edition.
 * `name` - Name of the protocol parser. Field introduced in 18.2.3.
 * `parser_code` - Command script provided inline. Field introduced in 18.2.3.
 * `tenant_ref` - Tenant uuid of the protocol parser. It is a reference to an object of type tenant. Field introduced in 18.2.3.
