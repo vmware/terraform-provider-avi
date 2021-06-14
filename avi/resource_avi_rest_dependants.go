@@ -21683,6 +21683,11 @@ func ResourcePortalFeatureOptInSchema() *schema.Resource {
 				Optional: true,
 				Default:  false,
 			},
+			"enable_systeminfo_collection": {
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  false,
+			},
 			"enable_waf_signatures_notifications": {
 				Type:     schema.TypeBool,
 				Optional: true,
