@@ -31,6 +31,7 @@ The following arguments are supported:
 * `callback_url` - (Optional) Callback url for the webhook. Field introduced in 17.1.1.
 * `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1.
 * `description` - (Optional) Field introduced in 17.1.1.
+* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.6.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant. Field introduced in 17.1.1.
 * `verification_token` - (Optional) Verification token sent back with the callback asquery parameters. Field introduced in 17.1.1.
 

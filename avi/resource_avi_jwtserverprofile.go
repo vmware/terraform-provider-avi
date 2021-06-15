@@ -19,13 +19,31 @@ func ResourceJWTServerProfileSchema() map[string]*schema.Schema {
 			Computed: true,
 			Elem:     ResourceConfigPbAttributesSchema(),
 		},
+		"controller_internal_auth": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceControllerInternalAuthSchema(),
+		},
+		"is_federated": {
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  false,
+		},
 		"issuer": {
 			Type:     schema.TypeString,
-			Required: true,
+			Optional: true,
+			Computed: true,
 		},
 		"jwks_keys": {
 			Type:     schema.TypeString,
-			Required: true,
+			Optional: true,
+			Computed: true,
+		},
+		"jwt_profile_type": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Default:  "CLIENT_AUTH",
 		},
 		"name": {
 			Type:     schema.TypeString,

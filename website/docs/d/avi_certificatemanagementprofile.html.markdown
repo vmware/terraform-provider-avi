@@ -33,6 +33,7 @@ data "avi_certificatemanagementprofile" "foo_certificatemanagementprofile" {
 In addition to all arguments above, the following attributes are exported:
 
 * `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1.
+* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.6.
 * `name` - Name of the pki profile.
 * `run_script_ref` - Alert script config object for certificate management profile. It is a reference to an object of type alertscriptconfig. Field introduced in 20.1.3.
 * `script_params` - List of list.

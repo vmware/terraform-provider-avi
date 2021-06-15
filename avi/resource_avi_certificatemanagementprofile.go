@@ -19,6 +19,11 @@ func ResourceCertificateManagementProfileSchema() map[string]*schema.Schema {
 			Computed: true,
 			Elem:     ResourceConfigPbAttributesSchema(),
 		},
+		"markers": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceRoleFilterMatchLabelSchema(),
+		},
 		"name": {
 			Type:     schema.TypeString,
 			Required: true,

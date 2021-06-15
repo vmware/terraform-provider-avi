@@ -14,6 +14,11 @@ func dataSourceAviCertificateManagementProfile() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceConfigPbAttributesSchema(),
 			},
+			"markers": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceRoleFilterMatchLabelSchema(),
+			},
 			"name": {
 				Type:     schema.TypeString,
 				Optional: true,
