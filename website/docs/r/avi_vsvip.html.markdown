@@ -33,7 +33,7 @@ The following arguments are supported:
 * `dns_info` - (Optional) Service discovery specific data including fully qualified domain name, type and time-to-live of the dns record. Field introduced in 17.1.1. Maximum of 1000 items allowed. Allowed in basic edition, essentials edition, enterprise edition.
 * `east_west_placement` - (Optional) Force placement on all service engines in the service engine group (container clouds only). Field introduced in 17.1.1. Allowed in basic(allowed values- false) edition, essentials(allowed values- false) edition, enterprise edition.
 * `ipam_selector` - (Optional) Determines the set of ipam networks to use for this vsvip. Selector type must be selector_ipam and only one label is supported. Field introduced in 20.1.3.
-* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5.
+* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in basic edition, essentials edition, enterprise edition.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant. Field introduced in 17.1.1.
 * `tier1_lr` - (Optional) This sets the placement scope of virtualservice to given tier1 logical router in nsx-t. Field introduced in 20.1.1.
 * `use_standard_alb` - (Optional) This overrides the cloud level default and needs to match the se group value in which it will be used if the se group use_standard_alb value is set. This is only used when fip is used for vs on azure cloud. Field introduced in 18.2.3. Allowed in basic edition, essentials edition, enterprise edition.

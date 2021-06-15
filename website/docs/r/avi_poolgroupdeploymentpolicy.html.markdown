@@ -31,7 +31,7 @@ The following arguments are supported:
 * `auto_disable_old_prod_pools` - (Optional) It will automatically disable old production pools once there is a new production candidate.
 * `description` - (Optional) User defined description for the object.
 * `evaluation_duration` - (Optional) Duration of evaluation period for automatic deployment. Allowed values are 60-86400. Unit is sec.
-* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5.
+* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in basic edition, essentials edition, enterprise edition.
 * `rules` - (Optional) List of list.
 * `scheme` - (Optional) Deployment scheme. Enum options - BLUE_GREEN, CANARY.
 * `target_test_traffic_ratio` - (Optional) Target traffic ratio before pool is made production. Allowed values are 1-100. Unit is ratio.

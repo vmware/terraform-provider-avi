@@ -31,7 +31,7 @@ The following arguments are supported:
 * `profile` - (Required) Dict settings for networkprofile.
 * `connection_mirror` - (Optional) When enabled, avi mirrors all tcp fastpath connections to standby. Applicable only in legacy ha mode. Field introduced in 18.1.3,18.2.1.
 * `description` - (Optional) User defined description for the object.
-* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5.
+* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in basic edition, essentials edition, enterprise edition.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant.
 
 

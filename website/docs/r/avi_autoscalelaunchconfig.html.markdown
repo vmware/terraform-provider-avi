@@ -30,7 +30,7 @@ The following arguments are supported:
 * `name` - (Required) Name of the object.
 * `description` - (Optional) User defined description for the object.
 * `image_id` - (Optional) Unique id of the amazon machine image (ami)  or openstack vm id.
-* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5.
+* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in basic edition, essentials edition, enterprise edition.
 * `mesos` - (Optional) Dict settings for autoscalelaunchconfig.
 * `openstack` - (Optional) Dict settings for autoscalelaunchconfig.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant.

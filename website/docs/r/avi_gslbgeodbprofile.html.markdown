@@ -31,7 +31,7 @@ The following arguments are supported:
 * `name` - (Required) A user-friendly name for the geodb profile. Field introduced in 17.1.1.
 * `description` - (Optional) Field introduced in 17.1.1.
 * `is_federated` - (Optional) This field indicates that this object is replicated across gslb federation. Field introduced in 17.1.3.
-* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5.
+* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in basic edition, essentials edition, enterprise edition.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant. Field introduced in 17.1.1.
 
 

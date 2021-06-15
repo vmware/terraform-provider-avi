@@ -31,7 +31,7 @@ The following arguments are supported:
 * `cloud_ref` - (Optional) It is a reference to an object of type cloud.
 * `description` - (Optional) A description of the priority labels.
 * `equivalent_labels` - (Optional) Equivalent priority labels in descending order.
-* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5.
+* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in basic edition, essentials edition, enterprise edition.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant.
 
 

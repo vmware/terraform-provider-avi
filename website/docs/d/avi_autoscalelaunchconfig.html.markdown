@@ -34,7 +34,7 @@ In addition to all arguments above, the following attributes are exported:
 
 * `description` - User defined description for the object.
 * `image_id` - Unique id of the amazon machine image (ami)  or openstack vm id.
-* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5.
+* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in basic edition, essentials edition, enterprise edition.
 * `mesos` - Dict settings for autoscalelaunchconfig.
 * `name` - Name of the object.
 * `openstack` - Dict settings for autoscalelaunchconfig.

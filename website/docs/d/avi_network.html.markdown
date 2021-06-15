@@ -40,7 +40,7 @@ In addition to all arguments above, the following attributes are exported:
 * `dhcp_enabled` - Select the ip address management scheme for this network.
 * `exclude_discovered_subnets` - When selected, excludes all discovered subnets in this network from consideration for virtual service placement.
 * `ip6_autocfg_enabled` - Enable ipv6 auto configuration. Field introduced in 18.1.1.
-* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5.
+* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in basic edition, essentials edition, enterprise edition.
 * `name` - Name of the object.
 * `synced_from_se` - Boolean flag to set synced_from_se.
 * `tenant_ref` - It is a reference to an object of type tenant.

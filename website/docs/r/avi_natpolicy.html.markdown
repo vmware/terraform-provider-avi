@@ -29,7 +29,7 @@ The following arguments are supported:
 
 * `created_by` - (Optional) Creator name. Field introduced in 18.2.3.
 * `description` - (Optional) Field introduced in 18.2.3.
-* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5.
+* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in basic edition, essentials edition, enterprise edition.
 * `name` - (Optional) Name of the nat policy. Field introduced in 18.2.3.
 * `rules` - (Optional) Nat policy rules. Field introduced in 18.2.3.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant. Field introduced in 18.2.3.

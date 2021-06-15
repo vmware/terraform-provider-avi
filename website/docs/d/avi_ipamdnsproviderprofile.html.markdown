@@ -39,7 +39,7 @@ In addition to all arguments above, the following attributes are exported:
 * `gcp_profile` - Provider details if type is google cloud.
 * `infoblox_profile` - Provider details if type is infoblox.
 * `internal_profile` - Provider details if type is avi.
-* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5.
+* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in basic edition, essentials edition, enterprise edition.
 * `name` - Name for the ipam/dns provider profile.
 * `oci_profile` - Provider details for oracle cloud. Field introduced in 18.2.1,18.1.3.
 * `openstack_profile` - Provider details if type is openstack.

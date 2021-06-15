@@ -33,7 +33,7 @@ data "avi_pingaccessagent" "foo_pingaccessagent" {
 In addition to all arguments above, the following attributes are exported:
 
 * `description` - Field introduced in 18.2.3.
-* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5.
+* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in basic edition, essentials edition, enterprise edition.
 * `name` - Name of the pingaccess agent. Field introduced in 18.2.3.
 * `pingaccess_pool_ref` - Pool containing a primary pingaccess server, as well as any failover servers included in the agent.properties file. It is a reference to an object of type pool. Field introduced in 18.2.3.
 * `primary_server` - The ip and port of the primary pingaccess server. Field introduced in 18.2.3.

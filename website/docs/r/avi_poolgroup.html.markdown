@@ -36,7 +36,7 @@ The following arguments are supported:
 * `enable_http2` - (Optional) Enable http/2 for traffic from virtualservice to all the backend servers in all the pools configured under this poolgroup. Field introduced in 20.1.1. Allowed in basic(allowed values- false) edition, essentials(allowed values- false) edition, enterprise edition.
 * `fail_action` - (Optional) Enable an action - close connection, http redirect, or local http response - when a pool group failure happens. By default, a connection will be closed, in case the pool group experiences a failure.
 * `implicit_priority_labels` - (Optional) Whether an implicit set of priority labels is generated. Field introduced in 17.1.9,17.2.3.
-* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5.
+* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in basic edition, essentials edition, enterprise edition.
 * `members` - (Optional) List of pool group members object of type poolgroupmember.
 * `min_servers` - (Optional) The minimum number of servers to distribute traffic to. Allowed values are 1-65535. Special values are 0 - 'disable'. Allowed in basic(allowed values- 0) edition, essentials(allowed values- 0) edition, enterprise edition.
 * `priority_labels_ref` - (Optional) Uuid of the priority labels. If not provided, pool group member priority label will be interpreted as a number with a larger number considered higher priority. It is a reference to an object of type prioritylabels.

@@ -35,7 +35,7 @@ In addition to all arguments above, the following attributes are exported:
 * `description` - Field introduced in 17.1.1.
 * `entries` - List of geodb entries. An entry can either be a geodb file or an ip address group with geo properties. Field introduced in 17.1.1. Minimum of 1 items required.
 * `is_federated` - This field indicates that this object is replicated across gslb federation. Field introduced in 17.1.3.
-* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5.
+* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in basic edition, essentials edition, enterprise edition.
 * `name` - A user-friendly name for the geodb profile. Field introduced in 17.1.1.
 * `tenant_ref` - It is a reference to an object of type tenant. Field introduced in 17.1.1.
 * `uuid` - Uuid of the geodb profile. Field introduced in 17.1.1.

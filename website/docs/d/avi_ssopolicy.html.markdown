@@ -34,7 +34,7 @@ In addition to all arguments above, the following attributes are exported:
 
 * `authentication_policy` - Authentication policy settings. Field introduced in 18.2.1.
 * `authorization_policy` - Authorization policy settings. Field introduced in 18.2.5.
-* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5.
+* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in basic edition, essentials edition, enterprise edition.
 * `name` - Name of the sso policy. Field introduced in 18.2.3.
 * `tenant_ref` - Uuid of the tenant. It is a reference to an object of type tenant. Field introduced in 18.2.3.
 * `type` - Sso policy type. Enum options - SSO_TYPE_SAML, SSO_TYPE_PINGACCESS, SSO_TYPE_JWT. Field introduced in 18.2.5.

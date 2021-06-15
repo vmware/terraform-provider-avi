@@ -29,7 +29,7 @@ The following arguments are supported:
 
 * `hsm` - (Required) Hardware security module configuration.
 * `name` - (Required) Name of the hsm group configuration object.
-* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5.
+* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in basic edition, essentials edition, enterprise edition.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant.
 
 

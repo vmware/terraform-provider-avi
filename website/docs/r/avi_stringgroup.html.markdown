@@ -32,7 +32,7 @@ The following arguments are supported:
 * `description` - (Optional) User defined description for the object.
 * `kv` - (Optional) Configure key value in the string group.
 * `longest_match` - (Optional) Enable the longest match, default is the shortest match. Field introduced in 18.2.8.
-* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5.
+* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in basic edition, essentials edition, enterprise edition.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant.
 
 

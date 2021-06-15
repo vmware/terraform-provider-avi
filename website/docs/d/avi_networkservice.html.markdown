@@ -35,7 +35,7 @@ data "avi_networkservice" "foo_networkservice" {
 In addition to all arguments above, the following attributes are exported:
 
 * `cloud_ref` - It is a reference to an object of type cloud. Field introduced in 18.2.5.
-* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5.
+* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in basic edition, essentials edition, enterprise edition.
 * `name` - Name of the networkservice. Field introduced in 18.2.5.
 * `routing_service` - Routing information of the networkservice. Field introduced in 18.2.5.
 * `se_group_ref` - Service engine group to which the service is applied. It is a reference to an object of type serviceenginegroup. Field introduced in 18.2.5.

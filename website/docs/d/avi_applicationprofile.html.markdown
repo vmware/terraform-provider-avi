@@ -38,7 +38,7 @@ In addition to all arguments above, the following attributes are exported:
 * `dns_service_profile` - Specifies various dns service related controls for virtual service.
 * `dos_rl_profile` - Specifies various security related controls for virtual service.
 * `http_profile` - Specifies the http application proxy profile parameters.
-* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5.
+* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in basic edition, essentials edition, enterprise edition.
 * `name` - The name of the application profile.
 * `preserve_client_ip` - Specifies if client ip needs to be preserved for backend connection. Not compatible with connection multiplexing.
 * `preserve_client_port` - Specifies if we need to preserve client port while preserving client ip for backend connections. Field introduced in 17.2.7.

@@ -32,7 +32,7 @@ data "avi_certificatemanagementprofile" "foo_certificatemanagementprofile" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.6.
+* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.6. Allowed in basic edition, essentials edition, enterprise edition.
 * `name` - Name of the pki profile.
 * `run_script_ref` - Alert script config object for certificate management profile. It is a reference to an object of type alertscriptconfig. Field introduced in 20.1.3.
 * `script_params` - List of list.
