@@ -48,7 +48,7 @@ In addition to all arguments above, the following attributes are exported:
 * `key_base64` - States if the private key is base64 encoded.
 * `key_params` - Dict settings for sslkeyandcertificate.
 * `key_passphrase` - Passphrase used to encrypt the private key.
-* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5.
+* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in basic edition, essentials edition, enterprise edition.
 * `name` - Name of the object.
 * `ocsp_config` - Configuration related to ocsp. Field introduced in 20.1.1. Allowed in basic edition, essentials edition, enterprise edition.
 * `status` - Enum options - ssl_certificate_finished, ssl_certificate_pending.

@@ -66,7 +66,7 @@ The following arguments are supported:
 * `l4_policies` - (Optional) L4 policies applied to the data traffic of the virtual service. Field introduced in 17.2.7.
 * `ldap_vs_config` - (Optional) Application-specific ldap config. Field introduced in 21.1.1.
 * `limit_doser` - (Optional) Limit potential dos attackers who exceed max_cps_per_client significantly to a fraction of max_cps_per_client for a while.
-* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5.
+* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in basic edition, essentials edition, enterprise edition.
 * `max_cps_per_client` - (Optional) Maximum connections per second per client ip. Allowed values are 10-1000. Special values are 0- 'unlimited'.
 * `microservice_ref` - (Optional) Microservice representing the virtual service. It is a reference to an object of type microservice.
 * `min_pools_up` - (Optional) Minimum number of up pools to mark vs up. Field introduced in 18.2.1, 17.2.12.

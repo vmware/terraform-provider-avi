@@ -39,7 +39,7 @@ In addition to all arguments above, the following attributes are exported:
 * `geo_db_ref` - Geo location mapping database used by this datascriptset. It is a reference to an object of type geodb. Field introduced in 21.1.1.
 * `ip_reputation_db_ref` - Ip reputation database that can be used by datascript functions. It is a reference to an object of type ipreputationdb. Field introduced in 20.1.3.
 * `ipgroup_refs` - Uuid of ip groups that could be referred by vsdatascriptset objects. It is a reference to an object of type ipaddrgroup.
-* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5.
+* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in basic edition, essentials edition, enterprise edition.
 * `name` - Name for the virtual service datascript collection.
 * `pki_profile_refs` - Uuids of pkiprofile objects that could be referred by vsdatascriptset objects. It is a reference to an object of type pkiprofile. Field introduced in 21.1.1.
 * `pool_group_refs` - Uuid of pool groups that could be referred by vsdatascriptset objects. It is a reference to an object of type poolgroup.

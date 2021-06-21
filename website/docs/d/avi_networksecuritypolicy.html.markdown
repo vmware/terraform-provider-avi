@@ -39,7 +39,7 @@ In addition to all arguments above, the following attributes are exported:
 * `geo_db_ref` - Geo database. It is a reference to an object of type geodb. Field introduced in 21.1.1.
 * `internal` - Network security policy is created and modified by internal modules only. Should not be modified by users. Field introduced in 21.1.1.
 * `ip_reputation_db_ref` - Ip reputation database. It is a reference to an object of type ipreputationdb. Field introduced in 20.1.1. Allowed in basic edition, essentials edition, enterprise edition.
-* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5.
+* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in basic edition, essentials edition, enterprise edition.
 * `name` - Name of the object.
 * `rules` - List of list.
 * `tenant_ref` - It is a reference to an object of type tenant.

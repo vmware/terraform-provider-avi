@@ -36,7 +36,7 @@ In addition to all arguments above, the following attributes are exported:
 * `created_by` - Creator name. Field introduced in 17.1.1.
 * `description` - Field introduced in 17.1.1.
 * `internal` - The dns policy is created and modified by internal modules only. This should not be modified by users. Field introduced in 21.1.1.
-* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5.
+* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in basic edition, essentials edition, enterprise edition.
 * `name` - Name of the dns policy. Field introduced in 17.1.1.
 * `rule` - Dns rules. Field introduced in 17.1.1.
 * `tenant_ref` - It is a reference to an object of type tenant. Field introduced in 17.1.1.

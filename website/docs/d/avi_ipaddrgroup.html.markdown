@@ -39,7 +39,7 @@ In addition to all arguments above, the following attributes are exported:
 * `ip_ports` - Configure (ip address, port) tuple(s).
 * `marathon_app_name` - Populate ip addresses from tasks of this marathon app.
 * `marathon_service_port` - Task port associated with marathon service port. If marathon app has multiple service ports, this is required. Else, the first task port is used.
-* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5.
+* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in basic edition, essentials edition, enterprise edition.
 * `name` - Name of the ip address group.
 * `prefixes` - Configure ip address prefix(es).
 * `ranges` - Configure ip address range(s).

@@ -293,6 +293,10 @@ func dataSourceAviPool() *schema.Resource {
 				Type:     schema.TypeBool,
 				Computed: true,
 			},
+			"use_service_ssl_mode": {
+				Type:     schema.TypeBool,
+				Computed: true,
+			},
 			"uuid": {
 				Type:     schema.TypeString,
 				Optional: true,

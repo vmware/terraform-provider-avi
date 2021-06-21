@@ -33,7 +33,7 @@ The following arguments are supported:
 * `vrf_ref` - (Required) Vrf context to which the service is scoped. It is a reference to an object of type vrfcontext. Field introduced in 18.2.5.
 * `cloud_ref` - (Optional) It is a reference to an object of type cloud. Field introduced in 18.2.5.
 * `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1.
-* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5.
+* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in basic edition, essentials edition, enterprise edition.
 * `routing_service` - (Optional) Routing information of the networkservice. Field introduced in 18.2.5.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant. Field introduced in 18.2.5.
 

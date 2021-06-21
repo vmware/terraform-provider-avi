@@ -30,7 +30,7 @@ The following arguments are supported:
 * `name` - (Required) Field introduced in 17.2.4.
 * `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1.
 * `error_pages` - (Optional) Defined error pages for http status codes. Field introduced in 17.2.4.
-* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5.
+* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in basic edition, essentials edition, enterprise edition.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant. Field introduced in 17.2.4.
 
 

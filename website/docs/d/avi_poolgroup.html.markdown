@@ -43,7 +43,7 @@ In addition to all arguments above, the following attributes are exported:
 * `enable_http2` - Enable http/2 for traffic from virtualservice to all the backend servers in all the pools configured under this poolgroup. Field introduced in 20.1.1. Allowed in basic(allowed values- false) edition, essentials(allowed values- false) edition, enterprise edition.
 * `fail_action` - Enable an action - close connection, http redirect, or local http response - when a pool group failure happens. By default, a connection will be closed, in case the pool group experiences a failure.
 * `implicit_priority_labels` - Whether an implicit set of priority labels is generated. Field introduced in 17.1.9,17.2.3.
-* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5.
+* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in basic edition, essentials edition, enterprise edition.
 * `members` - List of pool group members object of type poolgroupmember.
 * `min_servers` - The minimum number of servers to distribute traffic to. Allowed values are 1-65535. Special values are 0 - 'disable'. Allowed in basic(allowed values- 0) edition, essentials(allowed values- 0) edition, enterprise edition.
 * `name` - The name of the pool group.

@@ -31,7 +31,7 @@ The following arguments are supported:
 * `parser_code` - (Required) Command script provided inline. Field introduced in 18.2.3.
 * `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1.
 * `description` - (Optional) Description of the protocol parser. Field introduced in 18.2.3.
-* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5.
+* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in basic edition, essentials edition, enterprise edition.
 * `tenant_ref` - (Optional) Tenant uuid of the protocol parser. It is a reference to an object of type tenant. Field introduced in 18.2.3.
 
 

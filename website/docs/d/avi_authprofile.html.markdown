@@ -37,7 +37,7 @@ In addition to all arguments above, the following attributes are exported:
 * `http` - Http user authentication params.
 * `jwt_profile_ref` - Jwtserverprofile to be used for authentication. It is a reference to an object of type jwtserverprofile. Field introduced in 20.1.3.
 * `ldap` - Ldap server and directory settings.
-* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.6.
+* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.6. Allowed in basic edition, essentials edition, enterprise edition.
 * `name` - Name of the auth profile.
 * `pa_agent_ref` - Pingaccessagent uuid. It is a reference to an object of type pingaccessagent. Field introduced in 18.2.3. Allowed in basic edition, essentials edition, enterprise edition.
 * `saml` - Saml settings. Field introduced in 17.2.3.

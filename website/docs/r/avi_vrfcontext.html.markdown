@@ -38,7 +38,7 @@ The following arguments are supported:
 * `gateway_mon` - (Optional) Configure ping based heartbeat check for gateway in service engines of vrf.
 * `internal_gateway_monitor` - (Optional) Configure ping based heartbeat check for all default gateways in service engines of vrf. Field introduced in 17.1.1.
 * `lldp_enable` - (Optional) Enable lldp. Field introduced in 18.2.10, 20.1.1. Allowed in basic(allowed values- true) edition, essentials(allowed values- true) edition, enterprise edition.
-* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5.
+* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in basic edition, essentials edition, enterprise edition.
 * `static_routes` - (Optional) List of list.
 * `system_default` - (Optional) Boolean flag to set system_default.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant.

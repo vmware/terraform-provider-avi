@@ -33,7 +33,7 @@ The following arguments are supported:
 * `description` - (Optional) Field introduced in 17.2.7.
 * `is_internal_policy` - (Optional) Field introduced in 17.2.7.
 * `l4_connection_policy` - (Optional) Policy to apply when a new transport connection is setup. Field introduced in 17.2.7.
-* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5.
+* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in basic edition, essentials edition, enterprise edition.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant. Field introduced in 17.2.7.
 
 
