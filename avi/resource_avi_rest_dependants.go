@@ -21810,6 +21810,11 @@ func ResourcePortalFeatureOptInSchema() *schema.Resource {
 				Optional: true,
 				Default:  false,
 			},
+			"enable_user_agent_db_sync": {
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  false,
+			},
 			"enable_waf_signatures_notifications": {
 				Type:     schema.TypeBool,
 				Optional: true,
@@ -27050,15 +27055,10 @@ func ResourceSecureChannelAvailableLocalIPsSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
-			"free_controller_ips": {
-				Type:     schema.TypeList,
-				Optional: true,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-			},
 			"free_ips": {
 				Type:     schema.TypeList,
 				Optional: true,
-				Elem:     &schema.Schema{Type: schema.TypeString},
+				Elem:     &schema.Schema{Type: schema.TypeInt},
 			},
 			"name": {
 				Type:     schema.TypeString,
@@ -29586,6 +29586,18 @@ func ResourceUserAgentCacheConfigSchema() *schema.Resource {
 				Type:     schema.TypeInt,
 				Optional: true,
 				Default:  3600,
+			},
+		},
+	}
+}
+
+func ResourceUserAgentDBConfigSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"allowed_batch_size": {
+				Type:     schema.TypeInt,
+				Optional: true,
+				Default:  500,
 			},
 		},
 	}

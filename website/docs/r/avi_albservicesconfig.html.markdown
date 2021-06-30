@@ -32,6 +32,7 @@ The following arguments are supported:
 * `ip_reputation_config` - (Required) Default values to be used for ip reputation sync. Field introduced in 20.1.1.
 * `portal_url` - (Required) The fqdn or ip address of the customer portal. Field introduced in 18.2.6.
 * `proactive_support_defaults` - (Required) Default values to be used during proactive case creation and techsupport attachment. Field introduced in 20.1.1.
+* `user_agent_db_config` - (Required) Default values to be used for user agent db service. Field introduced in 21.1.1. Allowed in basic edition, essentials edition, enterprise edition.
 * `asset_contact` - (Optional) Information about the default contact for this controller cluster. Field introduced in 20.1.1.
 * `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1.
 * `mode` - (Optional) Mode helps log collection and upload. Enum options - SALESFORCE, SYSTEST, MYVMWARE. Field introduced in 20.1.2. Allowed in basic(allowed values- salesforce,myvmware,systest) edition, essentials(allowed values- salesforce,myvmware,systest) edition, enterprise edition.
