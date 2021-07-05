@@ -7225,6 +7225,12 @@ func ResourceDebugFilterUnionSchema() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceHSMgrDebugFilterSchema(),
 			},
+			"logmanager_debug_filter": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceLogManagerDebugFilterSchema(),
+			},
 			"mesos_metrics_debug_filter": {
 				Type:     schema.TypeSet,
 				Optional: true,
@@ -16825,6 +16831,18 @@ func ResourceLogControllerMappingSchema() *schema.Resource {
 			"vs_uuid": {
 				Type:     schema.TypeString,
 				Required: true,
+			},
+		},
+	}
+}
+
+func ResourceLogManagerDebugFilterSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"entity_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 		},
 	}
