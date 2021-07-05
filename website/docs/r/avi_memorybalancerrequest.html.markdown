@@ -30,6 +30,7 @@ The following arguments are supported:
 * `name` - (Required) Name of controller process. Field introduced in 21.1.1.
 * `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1.
 * `controller_info` - (Optional) Current details regarding controller. Field introduced in 21.1.1.
+* `node_uuid` - (Optional) Uuid of node. Field introduced in 21.1.1.
 * `process_info` - (Optional) Current process information of the controller process. Field introduced in 21.1.1.
 * `process_instance` - (Optional) Instance of the controller process. Field introduced in 21.1.1.
 * `tenant_ref` - (Optional) Uuid of tenant object. It is a reference to an object of type tenant. Field introduced in 21.1.1.

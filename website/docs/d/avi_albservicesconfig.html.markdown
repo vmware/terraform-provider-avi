@@ -44,5 +44,6 @@ In addition to all arguments above, the following attributes are exported:
 * `split_proxy_configuration` - Split proxy configuration to connect external pulse services. Field introduced in 20.1.1.
 * `use_split_proxy` - By default, use system proxy configuration.if true, use split proxy configuration. Field introduced in 20.1.1.
 * `use_tls` - Secure the controller to pulse communication over tls. Field introduced in 20.1.3. Allowed in basic edition, enterprise edition.
+* `user_agent_db_config` - Default values to be used for user agent db service. Field introduced in 21.1.1. Allowed in basic edition, essentials edition, enterprise edition.
 * `uuid` - Field introduced in 18.2.6.
 

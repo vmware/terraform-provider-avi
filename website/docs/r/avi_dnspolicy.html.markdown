@@ -32,7 +32,7 @@ The following arguments are supported:
 * `created_by` - (Optional) Creator name. Field introduced in 17.1.1.
 * `description` - (Optional) Field introduced in 17.1.1.
 * `internal` - (Optional) The dns policy is created and modified by internal modules only. This should not be modified by users. Field introduced in 21.1.1.
-* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5.
+* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in basic edition, essentials edition, enterprise edition.
 * `rule` - (Optional) Dns rules. Field introduced in 17.1.1.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant. Field introduced in 17.1.1.
 

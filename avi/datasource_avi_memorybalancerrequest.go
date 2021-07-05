@@ -24,6 +24,10 @@ func dataSourceAviMemoryBalancerRequest() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"node_uuid": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"process_info": {
 				Type:     schema.TypeSet,
 				Computed: true,

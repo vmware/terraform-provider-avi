@@ -64,6 +64,11 @@ func dataSourceAviALBServicesConfig() *schema.Resource {
 				Type:     schema.TypeBool,
 				Computed: true,
 			},
+			"user_agent_db_config": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceUserAgentDBConfigSchema(),
+			},
 			"uuid": {
 				Type:     schema.TypeString,
 				Optional: true,

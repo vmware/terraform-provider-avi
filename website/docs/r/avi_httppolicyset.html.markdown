@@ -38,7 +38,7 @@ The following arguments are supported:
 * `http_security_policy` - (Optional) Http security policy for the virtual service.
 * `ip_reputation_db_ref` - (Optional) Ip reputation database. It is a reference to an object of type ipreputationdb. Field introduced in 20.1.3.
 * `is_internal_policy` - (Optional) Boolean flag to set is_internal_policy.
-* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5.
+* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in basic edition, essentials edition, enterprise edition.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant.
 
 

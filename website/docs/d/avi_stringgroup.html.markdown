@@ -36,7 +36,7 @@ In addition to all arguments above, the following attributes are exported:
 * `description` - User defined description for the object.
 * `kv` - Configure key value in the string group.
 * `longest_match` - Enable the longest match, default is the shortest match. Field introduced in 18.2.8.
-* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5.
+* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in basic edition, essentials edition, enterprise edition.
 * `name` - Name of the string group.
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `type` - Type of stringgroup. Enum options - SG_TYPE_STRING, SG_TYPE_KEYVAL.

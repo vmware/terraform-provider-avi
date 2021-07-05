@@ -391,6 +391,12 @@ func ResourceAnalyticsProfileSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  "1.0",
 		},
+		"latency_audit_props": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceLatencyAuditPropertiesSchema(),
+		},
 		"markers": {
 			Type:     schema.TypeList,
 			Optional: true,

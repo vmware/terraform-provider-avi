@@ -1,3 +1,6 @@
+// Copyright 2019 VMware, Inc.
+// SPDX-License-Identifier: Mozilla Public License 2.0
+
 package avi
 
 import (
@@ -23,7 +26,6 @@ func TestAVIDataSourceSePropertiesBasic(t *testing.T) {
 
 }
 
-//nolint
 const testAccAVIDSSePropertiesConfig = `
 resource "avi_seproperties" "testSeProperties" {
 	se_agent_properties {
@@ -144,7 +146,6 @@ app_headers {
 }
 	}
 	se_bootup_properties {
-		docker_backend_portstart = "20480"
 		se_log_buffer_chunk_count = "1024"
 		se_dp_compression {
 			window_size = "4096"
@@ -176,6 +177,6 @@ app_headers {
 }
 
 data "avi_seproperties" "testSeProperties" {
-    uuid = "global"
+    uuid = "${avi_seproperties.testSeProperties.uuid}"
 }
 `

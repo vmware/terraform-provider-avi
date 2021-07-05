@@ -350,6 +350,11 @@ func ResourcePoolSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  false,
 		},
+		"use_service_ssl_mode": {
+			Type:     schema.TypeBool,
+			Optional: true,
+			Default:  false,
+		},
 		"uuid": {
 			Type:     schema.TypeString,
 			Optional: true,

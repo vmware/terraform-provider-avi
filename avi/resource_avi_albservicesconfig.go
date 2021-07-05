@@ -75,6 +75,11 @@ func ResourceALBServicesConfigSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  true,
 		},
+		"user_agent_db_config": {
+			Type:     schema.TypeSet,
+			Required: true,
+			Elem:     ResourceUserAgentDBConfigSchema(),
+		},
 		"uuid": {
 			Type:     schema.TypeString,
 			Optional: true,

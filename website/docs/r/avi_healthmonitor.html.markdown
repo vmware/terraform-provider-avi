@@ -42,7 +42,7 @@ The following arguments are supported:
 * `imap_monitor` - (Optional) Health monitor for imap. Field introduced in 21.1.1.
 * `imaps_monitor` - (Optional) Health monitor for imaps. Field introduced in 21.1.1.
 * `is_federated` - (Optional) This field describes the object's replication scope. If the field is set to false, then the object is visible within the controller-cluster and its associated service-engines. If the field is set to true, then the object is replicated across the federation. Field introduced in 17.1.3. Allowed in basic(allowed values- false) edition, essentials(allowed values- false) edition, enterprise edition.
-* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5.
+* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in basic edition, essentials edition, enterprise edition.
 * `monitor_port` - (Optional) Use this port instead of the port defined for the server in the pool. If the monitor succeeds to this port, the load balanced traffic will still be sent to the port of the server defined within the pool. Allowed values are 1-65535. Special values are 0 - 'use server port'.
 * `pop3_monitor` - (Optional) Health monitor for pop3. Field introduced in 21.1.1.
 * `pop3s_monitor` - (Optional) Health monitor for pop3s. Field introduced in 21.1.1.

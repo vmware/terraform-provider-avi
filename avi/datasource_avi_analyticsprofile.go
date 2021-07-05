@@ -314,6 +314,11 @@ func dataSourceAviAnalyticsProfile() *schema.Resource {
 				Type:     schema.TypeFloat,
 				Computed: true,
 			},
+			"latency_audit_props": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceLatencyAuditPropertiesSchema(),
+			},
 			"markers": {
 				Type:     schema.TypeList,
 				Computed: true,

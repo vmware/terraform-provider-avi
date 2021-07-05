@@ -35,7 +35,7 @@ The following arguments are supported:
 * `ip_ports` - (Optional) Configure (ip address, port) tuple(s).
 * `marathon_app_name` - (Optional) Populate ip addresses from tasks of this marathon app.
 * `marathon_service_port` - (Optional) Task port associated with marathon service port. If marathon app has multiple service ports, this is required. Else, the first task port is used.
-* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5.
+* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in basic edition, essentials edition, enterprise edition.
 * `prefixes` - (Optional) Configure ip address prefix(es).
 * `ranges` - (Optional) Configure ip address range(s).
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant.

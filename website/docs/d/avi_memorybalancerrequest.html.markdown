@@ -35,6 +35,7 @@ In addition to all arguments above, the following attributes are exported:
 * `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1.
 * `controller_info` - Current details regarding controller. Field introduced in 21.1.1.
 * `name` - Name of controller process. Field introduced in 21.1.1.
+* `node_uuid` - Uuid of node. Field introduced in 21.1.1.
 * `process_info` - Current process information of the controller process. Field introduced in 21.1.1.
 * `process_instance` - Instance of the controller process. Field introduced in 21.1.1.
 * `tenant_ref` - Uuid of tenant object. It is a reference to an object of type tenant. Field introduced in 21.1.1.

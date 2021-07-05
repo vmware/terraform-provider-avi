@@ -36,7 +36,7 @@ The following arguments are supported:
 * `http_cookie_persistence_profile` - (Optional) Specifies the http cookie persistence profile parameters.
 * `ip_persistence_profile` - (Optional) Specifies the client ip persistence profile parameters.
 * `is_federated` - (Optional) This field describes the object's replication scope. If the field is set to false, then the object is visible within the controller-cluster and its associated service-engines. If the field is set to true, then the object is replicated across the federation. Field introduced in 17.1.3.
-* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5.
+* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in basic edition, essentials edition, enterprise edition.
 * `server_hm_down_recovery` - (Optional) Specifies behavior when a persistent server has been marked down by a health monitor. Enum options - HM_DOWN_PICK_NEW_SERVER, HM_DOWN_ABORT_CONNECTION, HM_DOWN_CONTINUE_PERSISTENT_SERVER. Allowed in basic(allowed values- hm_down_pick_new_server) edition, essentials(allowed values- hm_down_pick_new_server) edition, enterprise edition.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant.
 

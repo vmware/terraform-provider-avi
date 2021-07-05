@@ -29,6 +29,11 @@ func ResourceMemoryBalancerRequestSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Required: true,
 		},
+		"node_uuid": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
 		"process_info": {
 			Type:     schema.TypeSet,
 			Optional: true,

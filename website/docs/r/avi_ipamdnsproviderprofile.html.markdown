@@ -37,7 +37,7 @@ The following arguments are supported:
 * `gcp_profile` - (Optional) Provider details if type is google cloud.
 * `infoblox_profile` - (Optional) Provider details if type is infoblox.
 * `internal_profile` - (Optional) Provider details if type is avi.
-* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5.
+* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in basic edition, essentials edition, enterprise edition.
 * `oci_profile` - (Optional) Provider details for oracle cloud. Field introduced in 18.2.1,18.1.3.
 * `openstack_profile` - (Optional) Provider details if type is openstack.
 * `proxy_configuration` - (Optional) Field introduced in 17.1.1.

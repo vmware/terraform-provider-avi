@@ -20,7 +20,7 @@ import (
 	"github.com/vmware/alb-sdk/go/session"
 )
 
-var postNotAllowed = [...]string{"systemconfiguration", "cluster", "seproperties"}
+var postNotAllowed = [...]string{"systemconfiguration", "cluster", "seproperties", "controllerproperties"}
 
 // It takes the terraform plan data and schema and converts it into Avi JSON
 // It recursively resolves the data type of the terraform schema and converts scalar to scalar, Set to dictionary,

@@ -1197,6 +1197,16 @@ func ResourceApplicationLogSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"avg_ingress_latency_be": {
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
+			"avg_ingress_latency_fe": {
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
 			"body_updated": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -1291,6 +1301,16 @@ func ResourceApplicationLogSchema() *schema.Resource {
 				Computed: true,
 			},
 			"compression_percentage": {
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
+			"conn_est_time_be": {
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
+			"conn_est_time_fe": {
 				Type:     schema.TypeInt,
 				Optional: true,
 				Computed: true,
@@ -1402,6 +1422,16 @@ func ResourceApplicationLogSchema() *schema.Resource {
 			"log_id": {
 				Type:     schema.TypeInt,
 				Required: true,
+			},
+			"max_ingress_latency_be": {
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
+			"max_ingress_latency_fe": {
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
 			},
 			"method": {
 				Type:     schema.TypeString,
@@ -3843,6 +3873,11 @@ func ResourceCaptureFiltersSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"src_port_range_end": {
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
 			"tcp_ack": {
 				Type:     schema.TypeBool,
 				Optional: true,
@@ -5888,6 +5923,16 @@ func ResourceConnectionLogSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"avg_ingress_latency_be": {
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
+			"avg_ingress_latency_fe": {
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
 			"client_dest_port": {
 				Type:     schema.TypeInt,
 				Required: true,
@@ -5918,6 +5963,16 @@ func ResourceConnectionLogSchema() *schema.Resource {
 			"client_src_port": {
 				Type:     schema.TypeInt,
 				Required: true,
+			},
+			"conn_est_time_be": {
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
+			"conn_est_time_fe": {
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
 			},
 			"connection_ended": {
 				Type:     schema.TypeBool,
@@ -5978,6 +6033,16 @@ func ResourceConnectionLogSchema() *schema.Resource {
 			"log_id": {
 				Type:     schema.TypeInt,
 				Required: true,
+			},
+			"max_ingress_latency_be": {
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
+			"max_ingress_latency_fe": {
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
 			},
 			"microservice": {
 				Type:     schema.TypeString,
@@ -7443,6 +7508,12 @@ func ResourceDebugFilterUnionSchema() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceHSMgrDebugFilterSchema(),
 			},
+			"logmanager_debug_filter": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceLogManagerDebugFilterSchema(),
+			},
 			"mesos_metrics_debug_filter": {
 				Type:     schema.TypeSet,
 				Optional: true,
@@ -7761,6 +7832,12 @@ func ResourceDebugVirtualServiceSchema() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				Elem:     ResourceDebugVsDataplaneSchema(),
+			},
+			"latency_audit_filters": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceCaptureFiltersSchema(),
 			},
 			"name": {
 				Type:     schema.TypeString,
@@ -10387,6 +10464,12 @@ func ResourceEventDetailsSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 				Elem:     ResourceSeHbRecoveredEventDetailsSchema(),
+			},
+			"se_high_ingress_proc_latency_event_details": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceSeHighIngressProcLatencyEventDetailsSchema(),
 			},
 			"se_hm_gs_details": {
 				Type:     schema.TypeSet,
@@ -16824,6 +16907,33 @@ func ResourceLDAPVSConfigSchema() *schema.Resource {
 	}
 }
 
+func ResourceLatencyAuditPropertiesSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"conn_est_audit_mode": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"conn_est_threshold": {
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
+			"latency_audit_mode": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"latency_threshold": {
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
 func ResourceLdapAuthSettingsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -17464,6 +17574,18 @@ func ResourceLogControllerMappingSchema() *schema.Resource {
 			"vs_uuid": {
 				Type:     schema.TypeString,
 				Required: true,
+			},
+		},
+	}
+}
+
+func ResourceLogManagerDebugFilterSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"entity_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 		},
 	}
@@ -21688,6 +21810,11 @@ func ResourcePortalFeatureOptInSchema() *schema.Resource {
 				Optional: true,
 				Default:  false,
 			},
+			"enable_user_agent_db_sync": {
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  false,
+			},
 			"enable_waf_signatures_notifications": {
 				Type:     schema.TypeBool,
 				Optional: true,
@@ -25025,6 +25152,58 @@ func ResourceSeHbRecoveredEventDetailsSchema() *schema.Resource {
 	}
 }
 
+func ResourceSeHighIngressProcLatencyEventDetailsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"dispatcher_core": {
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
+			"dispatcher_latency_ingress": {
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
+			"event_count": {
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
+			"flow_core": {
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
+			"proxy_latency_ingress": {
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
+			"se_name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"se_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"vs_name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"vs_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
 func ResourceSeHmEventGSDetailsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -26876,15 +27055,10 @@ func ResourceSecureChannelAvailableLocalIPsSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
-			"free_controller_ips": {
-				Type:     schema.TypeList,
-				Optional: true,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-			},
 			"free_ips": {
 				Type:     schema.TypeList,
 				Optional: true,
-				Elem:     &schema.Schema{Type: schema.TypeString},
+				Elem:     &schema.Schema{Type: schema.TypeInt},
 			},
 			"name": {
 				Type:     schema.TypeString,
@@ -29373,6 +29547,11 @@ func ResourceUserAgentCacheConfigSchema() *schema.Resource {
 				Optional: true,
 				Default:  300000,
 			},
+			"max_upstream_queries": {
+				Type:     schema.TypeInt,
+				Optional: true,
+				Default:  5,
+			},
 			"max_wait_time": {
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -29412,6 +29591,18 @@ func ResourceUserAgentCacheConfigSchema() *schema.Resource {
 				Type:     schema.TypeInt,
 				Optional: true,
 				Default:  3600,
+			},
+		},
+	}
+}
+
+func ResourceUserAgentDBConfigSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"allowed_batch_size": {
+				Type:     schema.TypeInt,
+				Optional: true,
+				Default:  500,
 			},
 		},
 	}
