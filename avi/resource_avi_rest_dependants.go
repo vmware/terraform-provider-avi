@@ -3876,7 +3876,7 @@ func ResourceCaptureFiltersSchema() *schema.Resource {
 			"src_port_range_end": {
 				Type:     schema.TypeInt,
 				Optional: true,
-				Default:  0,
+				Computed: true,
 			},
 			"tcp_ack": {
 				Type:     schema.TypeBool,
@@ -29546,6 +29546,11 @@ func ResourceUserAgentCacheConfigSchema() *schema.Resource {
 				Type:     schema.TypeInt,
 				Optional: true,
 				Default:  300000,
+			},
+			"max_upstream_queries": {
+				Type:     schema.TypeInt,
+				Optional: true,
+				Default:  5,
 			},
 			"max_wait_time": {
 				Type:     schema.TypeInt,
