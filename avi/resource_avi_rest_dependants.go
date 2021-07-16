@@ -17876,6 +17876,11 @@ func ResourceMemoryBalancerInfoSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"controller_memory_usage_percent": {
+				Type:     schema.TypeFloat,
+				Optional: true,
+				Computed: true,
+			},
 			"debug_message": {
 				Type:     schema.TypeString,
 				Optional: true,
