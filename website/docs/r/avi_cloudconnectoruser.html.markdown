@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "Avi: avi_cloudconnectoruser"
@@ -32,13 +30,13 @@ The following arguments are supported:
 * `name` - (Required) Name of the object.
 * `azure_serviceprincipal` - (Optional) Field introduced in 17.2.1.
 * `azure_userpass` - (Optional) Field introduced in 17.2.1.
-* `gcp_credentials` - (Optional) Credentials for google cloud platform.
-* `oci_credentials` - (Optional) Credentials for oracle cloud infrastructure.
+* `gcp_credentials` - (Optional) Credentials for google cloud platform. Field introduced in 18.2.1.
+* `oci_credentials` - (Optional) Credentials for oracle cloud infrastructure. Field introduced in 18.2.1,18.1.3.
 * `password` - (Optional) Placeholder for description of property password of obj type cloudconnectoruser field type string  type str.
 * `private_key` - (Optional) Placeholder for description of property private_key of obj type cloudconnectoruser field type string  type str.
 * `public_key` - (Optional) Placeholder for description of property public_key of obj type cloudconnectoruser field type string  type str.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant.
-* `tencent_credentials` - (Optional) Credentials for tencent cloud.
+* `tencent_credentials` - (Optional) Credentials for tencent cloud. Field introduced in 18.2.3.
 
 
 ### Timeouts

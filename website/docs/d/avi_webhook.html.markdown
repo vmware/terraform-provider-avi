@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "AVI: avi_webhook"
@@ -34,10 +32,10 @@ data "avi_webhook" "foo_webhook" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `callback_url` - Callback url for the webhook.
+* `callback_url` - Callback url for the webhook. Field introduced in 17.1.1.
 * `description` - Field introduced in 17.1.1.
-* `name` - The name of the webhook profile.
-* `tenant_ref` - It is a reference to an object of type tenant.
-* `uuid` - Uuid of the webhook profile.
-* `verification_token` - Verification token sent back with the callback asquery parameters.
+* `name` - The name of the webhook profile. Field introduced in 17.1.1.
+* `tenant_ref` - It is a reference to an object of type tenant. Field introduced in 17.1.1.
+* `uuid` - Uuid of the webhook profile. Field introduced in 17.1.1.
+* `verification_token` - Verification token sent back with the callback asquery parameters. Field introduced in 17.1.1.
 

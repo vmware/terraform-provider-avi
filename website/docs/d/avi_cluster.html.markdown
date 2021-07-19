@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "AVI: avi_cluster"
@@ -39,5 +37,5 @@ In addition to all arguments above, the following attributes are exported:
 * `rejoin_nodes_automatically` - Re-join cluster nodes automatically in the event one of the node is reset to factory.
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `uuid` - Unique object identifier of the object.
-* `virtual_ip` - A virtual ip address.
+* `virtual_ip` - A virtual ip address. This ip address will be dynamically reconfigured so that it always is the ip of the cluster leader.
 

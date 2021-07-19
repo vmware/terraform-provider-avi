@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "Avi: avi_controllersite"
@@ -29,10 +27,10 @@ resource "avi_controllersite" "foo" {
 
 The following arguments are supported:
 
-* `address` - (Optional) Ip address or a dns resolvable, fully qualified domain name of the site controller cluster.
-* `name` - (Optional) Name for the site controller cluster.
-* `port` - (Optional) The controller site cluster's rest api port number.
-* `tenant_ref` - (Optional) Reference for the tenant.
+* `address` - (Required) Ip address or a dns resolvable, fully qualified domain name of the site controller cluster. Field introduced in 18.2.5.
+* `name` - (Required) Name for the site controller cluster. Field introduced in 18.2.5.
+* `port` - (Optional) The controller site cluster's rest api port number. Allowed values are 1-65535. Field introduced in 18.2.5.
+* `tenant_ref` - (Optional) Reference for the tenant. It is a reference to an object of type tenant. Field introduced in 18.2.5.
 
 
 ### Timeouts
@@ -47,5 +45,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-* `uuid` -  Reference for the site controller cluster.
+* `uuid` -  Reference for the site controller cluster. Field introduced in 18.2.5.
 

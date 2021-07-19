@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "Avi: avi_actiongroupconfig"
@@ -30,14 +28,14 @@ resource "avi_actiongroupconfig" "foo" {
 The following arguments are supported:
 
 * `external_only` - (Required) Generate alert only to external destinations.
-* `level` - (Required) When an alert is generated, mark its priority via the alert level.
+* `level` - (Required) When an alert is generated, mark its priority via the alert level. Enum options - ALERT_LOW, ALERT_MEDIUM, ALERT_HIGH.
 * `name` - (Required) Name of the object.
-* `action_script_config_ref` - (Optional) Reference of the action script configuration to be used.
+* `action_script_config_ref` - (Optional) Reference of the action script configuration to be used. It is a reference to an object of type alertscriptconfig.
 * `autoscale_trigger_notification` - (Optional) Trigger notification to autoscale manager.
 * `description` - (Optional) User defined description for the object.
-* `email_config_ref` - (Optional) Select the email notification configuration to use when sending alerts via email.
-* `snmp_trap_profile_ref` - (Optional) Select the snmp trap notification to use when sending alerts via snmp trap.
-* `syslog_config_ref` - (Optional) Select the syslog notification configuration to use when sending alerts via syslog.
+* `email_config_ref` - (Optional) Select the email notification configuration to use when sending alerts via email. It is a reference to an object of type alertemailconfig.
+* `snmp_trap_profile_ref` - (Optional) Select the snmp trap notification to use when sending alerts via snmp trap. It is a reference to an object of type snmptrapprofile.
+* `syslog_config_ref` - (Optional) Select the syslog notification configuration to use when sending alerts via syslog. It is a reference to an object of type alertsyslogconfig.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant.
 
 

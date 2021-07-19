@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "AVI: avi_natpolicy"
@@ -34,11 +32,10 @@ data "avi_natpolicy" "foo_natpolicy" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `created_by` - Creator name.
+* `created_by` - Creator name. Field introduced in 18.2.3.
 * `description` - Field introduced in 18.2.3.
-* `labels` - Key value pairs for granular object access control.
-* `name` - Name of the nat policy.
-* `rules` - Nat policy rules.
-* `tenant_ref` - It is a reference to an object of type tenant.
-* `uuid` - Uuid of the nat policy.
+* `name` - Name of the nat policy. Field introduced in 18.2.3.
+* `rules` - Nat policy rules. Field introduced in 18.2.3.
+* `tenant_ref` - It is a reference to an object of type tenant. Field introduced in 18.2.3.
+* `uuid` - Uuid of the nat policy. Field introduced in 18.2.3.
 

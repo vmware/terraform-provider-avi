@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "Avi: avi_ssopolicy"
@@ -29,12 +27,11 @@ resource "avi_ssopolicy" "foo" {
 
 The following arguments are supported:
 
-* `authentication_policy` - (Optional) Authentication policy settings.
-* `authorization_policy` - (Optional) Authorization policy settings.
-* `labels` - (Optional) Key value pairs for granular object access control.
-* `name` - (Optional) Name of the sso policy.
-* `tenant_ref` - (Optional) Uuid of the tenant.
-* `type` - (Optional) Sso policy type.
+* `authentication_policy` - (Required) Authentication policy settings. Field introduced in 18.2.1.
+* `name` - (Required) Name of the sso policy. Field introduced in 18.2.3.
+* `authorization_policy` - (Optional) Authorization policy settings. Field introduced in 18.2.5.
+* `tenant_ref` - (Optional) Uuid of the tenant. It is a reference to an object of type tenant. Field introduced in 18.2.3.
+* `type` - (Optional) Sso policy type. Enum options - SSO_TYPE_SAML, SSO_TYPE_PINGACCESS. Field introduced in 18.2.5.
 
 
 ### Timeouts
@@ -49,5 +46,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-* `uuid` -  Uuid of the sso policy.
+* `uuid` -  Uuid of the sso policy. Field introduced in 18.2.3.
 

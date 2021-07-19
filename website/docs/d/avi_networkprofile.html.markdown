@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "AVI: avi_networkprofile"
@@ -34,9 +32,8 @@ data "avi_networkprofile" "foo_networkprofile" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `connection_mirror` - When enabled, avi mirrors all tcp fastpath connections to standby.
+* `connection_mirror` - When enabled, avi mirrors all tcp fastpath connections to standby. Applicable only in legacy ha mode. Field introduced in 18.1.3,18.2.1.
 * `description` - User defined description for the object.
-* `labels` - Key value pairs for granular object access control.
 * `name` - The name of the network profile.
 * `profile` - Dict settings for networkprofile.
 * `tenant_ref` - It is a reference to an object of type tenant.

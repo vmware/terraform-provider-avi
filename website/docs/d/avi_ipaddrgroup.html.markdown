@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "AVI: avi_ipaddrgroup"
@@ -39,9 +37,8 @@ In addition to all arguments above, the following attributes are exported:
 * `country_codes` - Populate the ip address ranges from the geo database for this country.
 * `description` - User defined description for the object.
 * `ip_ports` - Configure (ip address, port) tuple(s).
-* `labels` - Key value pairs for granular object access control.
 * `marathon_app_name` - Populate ip addresses from tasks of this marathon app.
-* `marathon_service_port` - Task port associated with marathon service port.
+* `marathon_service_port` - Task port associated with marathon service port. If marathon app has multiple service ports, this is required. Else, the first task port is used.
 * `name` - Name of the ip address group.
 * `prefixes` - Configure ip address prefix(es).
 * `ranges` - Configure ip address range(s).

@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "AVI: avi_microservicegroup"
@@ -37,7 +35,7 @@ In addition to all arguments above, the following attributes are exported:
 * `created_by` - Creator name.
 * `description` - User defined description for the object.
 * `name` - Name of the microservice group.
-* `service_refs` - Configure microservice(es).
+* `service_refs` - Configure microservice(es). It is a reference to an object of type microservice.
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `uuid` - Uuid of the microservice group.
 

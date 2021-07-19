@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "Avi: avi_cloud"
@@ -30,38 +28,38 @@ resource "avi_cloud" "foo" {
 The following arguments are supported:
 
 * `name` - (Required) Name of the object.
-* `vtype` - (Required) Cloud type.
+* `vtype` - (Required) Cloud type. Enum options - CLOUD_NONE, CLOUD_VCENTER, CLOUD_OPENSTACK, CLOUD_AWS, CLOUD_VCA, CLOUD_APIC, CLOUD_MESOS, CLOUD_LINUXSERVER, CLOUD_DOCKER_UCP, CLOUD_RANCHER, CLOUD_OSHIFT_K8S, CLOUD_AZURE, CLOUD_GCP.
 * `apic_configuration` - (Optional) Dict settings for cloud.
 * `apic_mode` - (Optional) Boolean flag to set apic_mode.
-* `autoscale_polling_interval` - (Optional) Cloudconnector polling interval in seconds for external autoscale groups, minimum 60 seconds.
+* `autoscale_polling_interval` - (Optional) Cloudconnector polling interval in seconds for external autoscale groups, minimum 60 seconds. Allowed values are 60-3600. Field introduced in 18.2.2.
 * `aws_configuration` - (Optional) Dict settings for cloud.
 * `azure_configuration` - (Optional) Field introduced in 17.2.1.
 * `cloudstack_configuration` - (Optional) Dict settings for cloud.
-* `custom_tags` - (Optional) Custom tags for all avi created resources in the cloud infrastructure.
+* `custom_tags` - (Optional) Custom tags for all avi created resources in the cloud infrastructure. Field introduced in 17.1.5.
 * `dhcp_enabled` - (Optional) Select the ip address management scheme.
-* `dns_provider_ref` - (Optional) Dns profile for the cloud.
-* `dns_resolution_on_se` - (Optional) By default, pool member fqdns are resolved on the controller.
+* `dns_provider_ref` - (Optional) Dns profile for the cloud. It is a reference to an object of type ipamdnsproviderprofile.
+* `dns_resolution_on_se` - (Optional) By default, pool member fqdns are resolved on the controller. When this is set, pool member fqdns are instead resolved on service engines in this cloud. This is useful in scenarios where pool member fqdns can only be resolved from service engines and not from the controller. Field introduced in 18.2.6.
 * `docker_configuration` - (Optional) Dict settings for cloud.
-* `east_west_dns_provider_ref` - (Optional) Dns profile for east-west services.
-* `east_west_ipam_provider_ref` - (Optional) Ipam profile for east-west services.
-* `enable_vip_on_all_interfaces` - (Optional) Enable vip on all data interfaces for the cloud.
+* `east_west_dns_provider_ref` - (Optional) Dns profile for east-west services. It is a reference to an object of type ipamdnsproviderprofile.
+* `east_west_ipam_provider_ref` - (Optional) Ipam profile for east-west services. Warning - please use virtual subnets in this ipam profile that do not conflict with the underlay networks or any overlay networks in the cluster. For example in aws and gcp, 169.254.0.0/16 is used for storing instance metadata. Hence, it should not be used in this profile. It is a reference to an object of type ipamdnsproviderprofile.
+* `enable_vip_on_all_interfaces` - (Optional) Enable vip on all data interfaces for the cloud. Field introduced in 18.2.9.
 * `enable_vip_static_routes` - (Optional) Use static routes for vip side network resolution during virtualservice placement.
-* `gcp_configuration` - (Optional) Google cloud platform configuration.
-* `ip6_autocfg_enabled` - (Optional) Enable ipv6 auto configuration.
-* `ipam_provider_ref` - (Optional) Ipam profile for the cloud.
-* `license_tier` - (Optional) Specifies the default license tier which would be used by new se groups.
-* `license_type` - (Optional) If no license type is specified then default license enforcement for the cloud type is chosen.
+* `gcp_configuration` - (Optional) Google cloud platform configuration. Field introduced in 18.2.1.
+* `ip6_autocfg_enabled` - (Optional) Enable ipv6 auto configuration. Field introduced in 18.1.1.
+* `ipam_provider_ref` - (Optional) Ipam profile for the cloud. It is a reference to an object of type ipamdnsproviderprofile.
+* `license_tier` - (Optional) Specifies the default license tier which would be used by new se groups. This field by default inherits the value from system configuration. Enum options - ENTERPRISE_16, ENTERPRISE_18. Field introduced in 17.2.5.
+* `license_type` - (Optional) If no license type is specified then default license enforcement for the cloud type is chosen. The default mappings are container cloud is max ses, openstack and vmware is cores and linux it is sockets. Enum options - LIC_BACKEND_SERVERS, LIC_SOCKETS, LIC_CORES, LIC_HOSTS, LIC_SE_BANDWIDTH, LIC_METERED_SE_BANDWIDTH.
 * `linuxserver_configuration` - (Optional) Dict settings for cloud.
 * `mtu` - (Optional) Mtu setting for the cloud.
-* `nsx_configuration` - (Optional) Configuration parameters for nsx manager.
-* `obj_name_prefix` - (Optional) Default prefix for all automatically created objects in this cloud.
+* `nsx_configuration` - (Optional) Configuration parameters for nsx manager. Field introduced in 17.1.1.
+* `obj_name_prefix` - (Optional) Default prefix for all automatically created objects in this cloud. This prefix can be overridden by the se-group template.
 * `openstack_configuration` - (Optional) Dict settings for cloud.
 * `oshiftk8s_configuration` - (Optional) Dict settings for cloud.
 * `prefer_static_routes` - (Optional) Prefer static routes over interface routes during virtualservice placement.
 * `proxy_configuration` - (Optional) Dict settings for cloud.
 * `rancher_configuration` - (Optional) Dict settings for cloud.
-* `se_group_template_ref` - (Optional) The service engine group to use as template.
-* `state_based_dns_registration` - (Optional) Dns records for vips are added/deleted based on the operational state of the vips.
+* `se_group_template_ref` - (Optional) The service engine group to use as template. It is a reference to an object of type serviceenginegroup. Field introduced in 18.2.5.
+* `state_based_dns_registration` - (Optional) Dns records for vips are added/deleted based on the operational state of the vips. Field introduced in 17.1.12.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant.
 * `vca_configuration` - (Optional) Dict settings for cloud.
 * `vcenter_configuration` - (Optional) Dict settings for cloud.

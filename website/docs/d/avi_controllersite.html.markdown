@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "AVI: avi_controllersite"
@@ -34,9 +32,9 @@ data "avi_controllersite" "foo_controllersite" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `address` - Ip address or a dns resolvable, fully qualified domain name of the site controller cluster.
-* `name` - Name for the site controller cluster.
-* `port` - The controller site cluster's rest api port number.
-* `tenant_ref` - Reference for the tenant.
-* `uuid` - Reference for the site controller cluster.
+* `address` - Ip address or a dns resolvable, fully qualified domain name of the site controller cluster. Field introduced in 18.2.5.
+* `name` - Name for the site controller cluster. Field introduced in 18.2.5.
+* `port` - The controller site cluster's rest api port number. Allowed values are 1-65535. Field introduced in 18.2.5.
+* `tenant_ref` - Reference for the tenant. It is a reference to an object of type tenant. Field introduced in 18.2.5.
+* `uuid` - Reference for the site controller cluster. Field introduced in 18.2.5.
 

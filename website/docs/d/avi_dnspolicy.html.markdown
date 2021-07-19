@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "AVI: avi_dnspolicy"
@@ -34,11 +32,10 @@ data "avi_dnspolicy" "foo_dnspolicy" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `created_by` - Creator name.
+* `created_by` - Creator name. Field introduced in 17.1.1.
 * `description` - Field introduced in 17.1.1.
-* `labels` - Key value pairs for granular object access control.
-* `name` - Name of the dns policy.
-* `rule` - Dns rules.
-* `tenant_ref` - It is a reference to an object of type tenant.
-* `uuid` - Uuid of the dns policy.
+* `name` - Name of the dns policy. Field introduced in 17.1.1.
+* `rule` - Dns rules. Field introduced in 17.1.1.
+* `tenant_ref` - It is a reference to an object of type tenant. Field introduced in 17.1.1.
+* `uuid` - Uuid of the dns policy. Field introduced in 17.1.1.
 

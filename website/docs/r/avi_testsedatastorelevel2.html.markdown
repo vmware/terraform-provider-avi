@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "Avi: avi_testsedatastorelevel2"
@@ -30,8 +28,8 @@ resource "avi_testsedatastorelevel2" "foo" {
 The following arguments are supported:
 
 * `name` - (Required) Name of the object.
-* `tenant_ref` - (Optional) It is a reference to an object of type tenant.
-* `test_se_datastore_level_3_refs` - (Optional) It is a reference to an object of type testsedatastorelevel3.
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant. Field introduced in 18.2.6.
+* `test_se_datastore_level_3_refs` - (Optional) It is a reference to an object of type testsedatastorelevel3. Field introduced in 18.2.6.
 
 
 ### Timeouts

@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "AVI: avi_wafprofile"
@@ -34,11 +32,10 @@ data "avi_wafprofile" "foo_wafprofile" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `config` - Config params for waf.
+* `config` - Config params for waf. Field introduced in 17.2.1.
 * `description` - Field introduced in 17.2.1.
-* `files` - List of data files used for waf rules.
-* `labels` - Key value pairs for granular object access control.
+* `files` - List of data files used for waf rules. Field introduced in 17.2.1.
 * `name` - Field introduced in 17.2.1.
-* `tenant_ref` - It is a reference to an object of type tenant.
+* `tenant_ref` - It is a reference to an object of type tenant. Field introduced in 17.2.1.
 * `uuid` - Field introduced in 17.2.1.
 

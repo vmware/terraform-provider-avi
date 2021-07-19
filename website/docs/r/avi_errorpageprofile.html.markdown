@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "Avi: avi_errorpageprofile"
@@ -29,10 +27,9 @@ resource "avi_errorpageprofile" "foo" {
 
 The following arguments are supported:
 
-* `error_pages` - (Optional) Defined error pages for http status codes.
-* `labels` - (Optional) Key value pairs for granular object access control.
-* `name` - (Optional) Field introduced in 17.2.4.
-* `tenant_ref` - (Optional) It is a reference to an object of type tenant.
+* `name` - (Required) Field introduced in 17.2.4.
+* `error_pages` - (Optional) Defined error pages for http status codes. Field introduced in 17.2.4.
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant. Field introduced in 17.2.4.
 
 
 ### Timeouts

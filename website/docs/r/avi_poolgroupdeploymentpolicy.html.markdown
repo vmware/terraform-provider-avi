@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "Avi: avi_poolgroupdeploymentpolicy"
@@ -32,14 +30,13 @@ The following arguments are supported:
 * `name` - (Required) The name of the pool group deployment policy.
 * `auto_disable_old_prod_pools` - (Optional) It will automatically disable old production pools once there is a new production candidate.
 * `description` - (Optional) User defined description for the object.
-* `evaluation_duration` - (Optional) Duration of evaluation period for automatic deployment.
-* `labels` - (Optional) Key value pairs for granular object access control.
+* `evaluation_duration` - (Optional) Duration of evaluation period for automatic deployment. Allowed values are 60-86400.
 * `rules` - (Optional) List of list.
-* `scheme` - (Optional) Deployment scheme.
-* `target_test_traffic_ratio` - (Optional) Target traffic ratio before pool is made production.
+* `scheme` - (Optional) Deployment scheme. Enum options - BLUE_GREEN, CANARY.
+* `target_test_traffic_ratio` - (Optional) Target traffic ratio before pool is made production. Allowed values are 1-100.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant.
-* `test_traffic_ratio_rampup` - (Optional) Ratio of the traffic that is sent to the pool under test.
-* `webhook_ref` - (Optional) Webhook configured with url that avi controller will pass back information about pool group, old and new pool information and current deployment rule results.
+* `test_traffic_ratio_rampup` - (Optional) Ratio of the traffic that is sent to the pool under test. Test ratio of 100 means blue green. Allowed values are 1-100.
+* `webhook_ref` - (Optional) Webhook configured with url that avi controller will pass back information about pool group, old and new pool information and current deployment rule results. It is a reference to an object of type webhook. Field introduced in 17.1.1.
 
 
 ### Timeouts

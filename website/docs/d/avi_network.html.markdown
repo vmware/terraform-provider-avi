@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "AVI: avi_network"
@@ -40,8 +38,8 @@ In addition to all arguments above, the following attributes are exported:
 * `configured_subnets` - List of list.
 * `dhcp_enabled` - Select the ip address management scheme for this network.
 * `exclude_discovered_subnets` - When selected, excludes all discovered subnets in this network from consideration for virtual service placement.
-* `ip6_autocfg_enabled` - Enable ipv6 auto configuration.
-* `labels` - Key/value labels which can be used for object access policy permission scoping.
+* `ip6_autocfg_enabled` - Enable ipv6 auto configuration. Field introduced in 18.1.1.
+* `labels` - Key/value labels which can be used for object access policy permission scoping. Field introduced in 18.2.7.
 * `name` - Name of the object.
 * `synced_from_se` - Boolean flag to set synced_from_se.
 * `tenant_ref` - It is a reference to an object of type tenant.

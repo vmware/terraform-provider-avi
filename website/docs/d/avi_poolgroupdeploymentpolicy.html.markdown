@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "AVI: avi_poolgroupdeploymentpolicy"
@@ -36,14 +34,13 @@ In addition to all arguments above, the following attributes are exported:
 
 * `auto_disable_old_prod_pools` - It will automatically disable old production pools once there is a new production candidate.
 * `description` - User defined description for the object.
-* `evaluation_duration` - Duration of evaluation period for automatic deployment.
-* `labels` - Key value pairs for granular object access control.
+* `evaluation_duration` - Duration of evaluation period for automatic deployment. Allowed values are 60-86400.
 * `name` - The name of the pool group deployment policy.
 * `rules` - List of list.
-* `scheme` - Deployment scheme.
-* `target_test_traffic_ratio` - Target traffic ratio before pool is made production.
+* `scheme` - Deployment scheme. Enum options - BLUE_GREEN, CANARY.
+* `target_test_traffic_ratio` - Target traffic ratio before pool is made production. Allowed values are 1-100.
 * `tenant_ref` - It is a reference to an object of type tenant.
-* `test_traffic_ratio_rampup` - Ratio of the traffic that is sent to the pool under test.
+* `test_traffic_ratio_rampup` - Ratio of the traffic that is sent to the pool under test. Test ratio of 100 means blue green. Allowed values are 1-100.
 * `uuid` - Uuid of the pool group deployment policy.
-* `webhook_ref` - Webhook configured with url that avi controller will pass back information about pool group, old and new pool information and current deployment rule results.
+* `webhook_ref` - Webhook configured with url that avi controller will pass back information about pool group, old and new pool information and current deployment rule results. It is a reference to an object of type webhook. Field introduced in 17.1.1.
 

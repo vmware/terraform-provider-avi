@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "AVI: avi_objectaccesspolicy"
@@ -34,8 +32,8 @@ data "avi_objectaccesspolicy" "foo_objectaccesspolicy" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `name` - Name of the object access policy.
-* `rules` - Rules which grant access to specific objects.
-* `tenant_ref` - Tenant that this object belongs to.
-* `uuid` - Uuid of the object access policy.
+* `name` - Name of the object access policy. Field introduced in 18.2.7.
+* `rules` - Rules which grant access to specific objects. Field introduced in 18.2.7.
+* `tenant_ref` - Tenant that this object belongs to. It is a reference to an object of type tenant. Field introduced in 18.2.7.
+* `uuid` - Uuid of the object access policy. Field introduced in 18.2.7.
 

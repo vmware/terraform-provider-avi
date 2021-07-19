@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "Avi: avi_customerportalinfo"
@@ -29,8 +27,8 @@ resource "avi_customerportalinfo" "foo" {
 
 The following arguments are supported:
 
-* `polling_interval` - (Optional) Time interval in minutes.
-* `portal_url` - (Optional) The fqdn or ip address of the customer portal.
+* `portal_url` - (Required) The fqdn or ip address of the customer portal. Field introduced in 18.2.6.
+* `polling_interval` - (Optional) Time interval in minutes. Allowed values are 5-60. Field introduced in 18.2.6.
 
 
 ### Timeouts

@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "AVI: avi_applicationpersistenceprofile"
@@ -39,11 +37,10 @@ In addition to all arguments above, the following attributes are exported:
 * `hdr_persistence_profile` - Specifies the custom http header persistence profile parameters.
 * `http_cookie_persistence_profile` - Specifies the http cookie persistence profile parameters.
 * `ip_persistence_profile` - Specifies the client ip persistence profile parameters.
-* `is_federated` - This field describes the object's replication scope.
-* `labels` - Key value pairs for granular object access control.
+* `is_federated` - This field describes the object's replication scope. If the field is set to false, then the object is visible within the controller-cluster and its associated service-engines. If the field is set to true, then the object is replicated across the federation. Field introduced in 17.1.3.
 * `name` - A user-friendly name for the persistence profile.
-* `persistence_type` - Method used to persist clients to the same server for a duration of time or a session.
-* `server_hm_down_recovery` - Specifies behavior when a persistent server has been marked down by a health monitor.
+* `persistence_type` - Method used to persist clients to the same server for a duration of time or a session. Enum options - PERSISTENCE_TYPE_CLIENT_IP_ADDRESS, PERSISTENCE_TYPE_HTTP_COOKIE, PERSISTENCE_TYPE_TLS, PERSISTENCE_TYPE_CLIENT_IPV6_ADDRESS, PERSISTENCE_TYPE_CUSTOM_HTTP_HEADER, PERSISTENCE_TYPE_APP_COOKIE, PERSISTENCE_TYPE_GSLB_SITE.
+* `server_hm_down_recovery` - Specifies behavior when a persistent server has been marked down by a health monitor. Enum options - HM_DOWN_PICK_NEW_SERVER, HM_DOWN_ABORT_CONNECTION, HM_DOWN_CONTINUE_PERSISTENT_SERVER.
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `uuid` - Uuid of the persistence profile.
 

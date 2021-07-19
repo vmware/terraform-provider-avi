@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "AVI: avi_errorpageprofile"
@@ -34,9 +32,8 @@ data "avi_errorpageprofile" "foo_errorpageprofile" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `error_pages` - Defined error pages for http status codes.
-* `labels` - Key value pairs for granular object access control.
+* `error_pages` - Defined error pages for http status codes. Field introduced in 17.2.4.
 * `name` - Field introduced in 17.2.4.
-* `tenant_ref` - It is a reference to an object of type tenant.
+* `tenant_ref` - It is a reference to an object of type tenant. Field introduced in 17.2.4.
 * `uuid` - Field introduced in 17.2.4.
 
