@@ -422,6 +422,11 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  true,
 		},
+		"markers": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceRoleFilterMatchLabelSchema(),
+		},
 		"max_concurrent_external_hm": {
 			Type:     schema.TypeInt,
 			Optional: true,

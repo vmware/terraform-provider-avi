@@ -77,7 +77,7 @@ In addition to all arguments above, the following attributes are exported:
 * `disk_per_se` - Amount of disk space for each of the service engine virtual machines. Unit is gb.
 * `distribute_load_active_standby` - Use both the active and standby service engines for virtual service placement in the legacy active standby ha mode. Allowed in basic(allowed values- false) edition, essentials(allowed values- false) edition, enterprise edition.
 * `distribute_queues` - Distributes queue ownership among cores so multiple cores handle dispatcher duties. Requires se reboot. Deprecated from 18.2.8, instead use max_queues_per_vnic. Field introduced in 17.2.8. Allowed in basic(allowed values- false) edition, essentials(allowed values- false) edition, enterprise edition.
-* `distribute_vnics` - Distributes vnic ownership among cores so multiple cores handle dispatcher duties.requires se reboot. Field introduced in 18.2.5.
+* `distribute_vnics` - Distributes vnic ownership among cores so multiple cores handle dispatcher duties.requires se reboot. Field introduced in 18.2.5. Allowed in basic(allowed values- false) edition, essentials(allowed values- false) edition, enterprise edition.
 * `dp_aggressive_hb_frequency` - Frequency of se - se hb messages when aggressive failure mode detection is enabled. Field introduced in 20.1.3. Unit is milliseconds.
 * `dp_aggressive_hb_timeout_count` - Consecutive hb failures after which failure is reported to controller,when aggressive failure mode detection is enabled. Field introduced in 20.1.3.
 * `dp_hb_frequency` - Frequency of se - se hb messages when aggressive failure mode detection is not enabled. Field introduced in 20.1.3. Unit is milliseconds.
@@ -115,12 +115,13 @@ In addition to all arguments above, the following attributes are exported:
 * `license_type` - If no license type is specified then default license enforcement for the cloud type is chosen. Enum options - LIC_BACKEND_SERVERS, LIC_SOCKETS, LIC_CORES, LIC_HOSTS, LIC_SE_BANDWIDTH, LIC_METERED_SE_BANDWIDTH. Field introduced in 17.2.5.
 * `log_disksz` - Maximum disk capacity (in mb) to be allocated to an se. This is exclusively used for debug and log data. Unit is mb.
 * `log_malloc_failure` - Se will log memory allocation related failure to the se_trace file, wherever available. Field introduced in 20.1.2. Allowed in basic(allowed values- true) edition, essentials(allowed values- true) edition, enterprise edition.
+* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.7. Allowed in basic edition, essentials edition, enterprise edition.
 * `max_concurrent_external_hm` - Maximum number of external health monitors that can run concurrently in a service engine. This helps control the cpu and memory use by external health monitors. Special values are 0- 'value will be internally calculated based on cpu and memory'. Field introduced in 18.2.7.
 * `max_cpu_usage` - When cpu usage on an se exceeds this threshold, virtual services hosted on this se may be rebalanced to other ses to reduce load. A new se may be created as part of this process. Allowed values are 40-90. Unit is percent.
 * `max_memory_per_mempool` - Max bytes that can be allocated in a single mempool. Field introduced in 18.1.5. Unit is mb.
 * `max_num_se_dps` - Configures the maximum number of se_dp processes created on the se, requires se reboot. If not configured, defaults to the number of cpus on the se. This should only be used if user wants to limit the number of se_dps to less than the available cpus on the se. Allowed values are 1-128. Field introduced in 20.1.1. Allowed in basic(allowed values- 0) edition, essentials(allowed values- 0) edition, enterprise edition.
 * `max_public_ips_per_lb` - Applicable to azure platform only. Maximum number of public ips per azure lb. Field introduced in 17.2.12, 18.1.2.
-* `max_queues_per_vnic` - Maximum number of queues per vnic setting to '0' utilises all queues that are distributed across dispatcher cores. Allowed values are 0,1,2,4,8,16. Field introduced in 18.2.7, 20.1.1.
+* `max_queues_per_vnic` - Maximum number of queues per vnic setting to '0' utilises all queues that are distributed across dispatcher cores. Allowed values are 0,1,2,4,8,16. Field introduced in 18.2.7, 20.1.1. Allowed in basic(allowed values- 1) edition, essentials(allowed values- 1) edition, enterprise edition.
 * `max_rules_per_lb` - Applicable to azure platform only. Maximum number of rules per azure lb. Field introduced in 17.2.12, 18.1.2.
 * `max_scaleout_per_vs` - Maximum number of active service engines for the virtual service. Allowed values are 1-64.
 * `max_se` - Maximum number of services engines in this group. Allowed values are 0-1000.
@@ -137,7 +138,7 @@ In addition to all arguments above, the following attributes are exported:
 * `n_log_streaming_threads` - Number of threads to use for log streaming. Allowed values are 1-100. Field introduced in 17.2.12, 18.1.2.
 * `name` - Name of the object.
 * `non_significant_log_throttle` - This setting limits the number of non-significant logs generated per second per core on this se. Default is 100 logs per second. Set it to zero (0) to deactivate throttling. Field introduced in 17.1.3. Unit is per_second.
-* `num_dispatcher_cores` - Number of dispatcher cores (0,1,2,4,8 or 16). If set to 0, then number of dispatcher cores is deduced automatically.requires se reboot. Allowed values are 0,1,2,4,8,16. Field introduced in 17.2.12, 18.1.3, 18.2.1.
+* `num_dispatcher_cores` - Number of dispatcher cores (0,1,2,4,8 or 16). If set to 0, then number of dispatcher cores is deduced automatically.requires se reboot. Allowed values are 0,1,2,4,8,16. Field introduced in 17.2.12, 18.1.3, 18.2.1. Allowed in basic(allowed values- 0) edition, essentials(allowed values- 0) edition, enterprise edition.
 * `num_flow_cores_sum_changes_to_ignore` - Number of changes in num flow cores sum to ignore.
 * `objsync_config` - Configuration knobs for interse object distribution. Field introduced in 20.1.3.
 * `objsync_port` - Tcp port on se management interface for interse object distribution. Supported only for externally managed security groups. Not supported on full access deployments. Requires se reboot. Field introduced in 20.1.3.

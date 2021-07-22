@@ -344,6 +344,11 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeBool,
 				Computed: true,
 			},
+			"markers": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceRoleFilterMatchLabelSchema(),
+			},
 			"max_concurrent_external_hm": {
 				Type:     schema.TypeInt,
 				Computed: true,
