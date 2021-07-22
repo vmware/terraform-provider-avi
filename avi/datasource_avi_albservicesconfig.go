@@ -19,6 +19,11 @@ func dataSourceAviALBServicesConfig() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceALBServicesUserSchema(),
 			},
+			"case_config": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceCaseConfigSchema(),
+			},
 			"configpb_attributes": {
 				Type:     schema.TypeSet,
 				Computed: true,
@@ -46,11 +51,6 @@ func dataSourceAviALBServicesConfig() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"proactive_support_defaults": {
-				Type:     schema.TypeSet,
-				Computed: true,
-				Elem:     ResourceProactiveSupportDefaultsSchema(),
-			},
 			"split_proxy_configuration": {
 				Type:     schema.TypeSet,
 				Computed: true,
@@ -73,6 +73,11 @@ func dataSourceAviALBServicesConfig() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+			"waf_config": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceWafCrsConfigSchema(),
 			},
 		},
 	}

@@ -3969,6 +3969,28 @@ func ResourceCaptureIPCSchema() *schema.Resource {
 	}
 }
 
+func ResourceCaseConfigSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"enable_auto_case_creation_on_controller_failure": {
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  false,
+			},
+			"enable_auto_case_creation_on_se_failure": {
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  false,
+			},
+			"enable_cleanup_of_attached_files": {
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  true,
+			},
+		},
+	}
+}
+
 func ResourceCdpLldpInfoSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -17876,6 +17898,11 @@ func ResourceMemoryBalancerInfoSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"controller_memory_usage_percent": {
+				Type:     schema.TypeFloat,
+				Optional: true,
+				Computed: true,
+			},
 			"debug_message": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -21785,40 +21812,25 @@ func ResourcePortalFeatureOptInSchema() *schema.Resource {
 				Optional: true,
 				Default:  false,
 			},
-			"enable_auto_case_creation_on_se_failure": {
-				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  false,
-			},
-			"enable_auto_case_creation_on_system_failure": {
-				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  false,
-			},
-			"enable_auto_download_waf_signatures": {
-				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  false,
-			},
 			"enable_ip_reputation": {
 				Type:     schema.TypeBool,
 				Optional: true,
 				Default:  false,
 			},
-			"enable_systeminfo_collection": {
+			"enable_pulse_case_management": {
 				Type:     schema.TypeBool,
 				Optional: true,
-				Default:  false,
+				Default:  true,
+			},
+			"enable_pulse_waf_management": {
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  true,
 			},
 			"enable_user_agent_db_sync": {
 				Type:     schema.TypeBool,
 				Optional: true,
 				Default:  false,
-			},
-			"enable_waf_signatures_notifications": {
-				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  true,
 			},
 		},
 	}
@@ -34032,6 +34044,23 @@ func ResourceWafConfigSchema() *schema.Resource {
 				Default:  "X-WAF-Result",
 			},
 			"xml_xxe_protection": {
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  true,
+			},
+		},
+	}
+}
+
+func ResourceWafCrsConfigSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"enable_auto_download_waf_signatures": {
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  false,
+			},
+			"enable_waf_signatures_notifications": {
 				Type:     schema.TypeBool,
 				Optional: true,
 				Default:  true,
