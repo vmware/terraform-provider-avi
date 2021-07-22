@@ -39,7 +39,7 @@ func dataSourceAviServer() *schema.Resource {
 				Elem:     ResourceDiscoveredNetworkSchema(),
 			},
 			"enabled": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"external_orchestration_id": {
@@ -68,7 +68,7 @@ func dataSourceAviServer() *schema.Resource {
 				Computed: true,
 			},
 			"port": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"prst_hdr_val": {
@@ -76,15 +76,15 @@ func dataSourceAviServer() *schema.Resource {
 				Computed: true,
 			},
 			"ratio": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"resolve_server_by_dns": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"rewrite_host_header": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"server_node": {
@@ -92,11 +92,11 @@ func dataSourceAviServer() *schema.Resource {
 				Computed: true,
 			},
 			"static": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"verify_network": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"vm_ref": {

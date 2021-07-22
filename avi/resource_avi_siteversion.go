@@ -23,9 +23,10 @@ func ResourceSiteVersionSchema() map[string]*schema.Schema {
 			Required: true,
 		},
 		"prev_target_version": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Computed: true,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Computed:     true,
+			ValidateFunc: validateInteger,
 		},
 		"replication_state": {
 			Type:     schema.TypeString,
@@ -43,9 +44,10 @@ func ResourceSiteVersionSchema() map[string]*schema.Schema {
 			Computed: true,
 		},
 		"target_version": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Computed: true,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Computed:     true,
+			ValidateFunc: validateInteger,
 		},
 		"tenant_ref": {
 			Type:     schema.TypeString,
@@ -63,9 +65,10 @@ func ResourceSiteVersionSchema() map[string]*schema.Schema {
 			Computed: true,
 		},
 		"version": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Computed: true,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Computed:     true,
+			ValidateFunc: validateInteger,
 		},
 		"version_type": {
 			Type:     schema.TypeString,

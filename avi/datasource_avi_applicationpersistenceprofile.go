@@ -39,7 +39,7 @@ func dataSourceAviApplicationPersistenceProfile() *schema.Resource {
 				Elem:     ResourceIPPersistenceProfileSchema(),
 			},
 			"is_federated": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"markers": {

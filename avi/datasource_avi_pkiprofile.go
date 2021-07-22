@@ -24,7 +24,7 @@ func dataSourceAviPKIProfile() *schema.Resource {
 				Computed: true,
 			},
 			"crl_check": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"crls": {
@@ -33,11 +33,11 @@ func dataSourceAviPKIProfile() *schema.Resource {
 				Elem:     ResourceCRLSchema(),
 			},
 			"ignore_peer_chain": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"is_federated": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"markers": {
@@ -61,7 +61,7 @@ func dataSourceAviPKIProfile() *schema.Resource {
 				Computed: true,
 			},
 			"validate_only_leaf_crl": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 		},

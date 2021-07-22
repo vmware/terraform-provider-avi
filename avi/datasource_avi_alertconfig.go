@@ -19,7 +19,7 @@ func dataSourceAviAlertConfig() *schema.Resource {
 				Elem:     ResourceAlertRuleSchema(),
 			},
 			"autoscale_alert": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"category": {
@@ -36,11 +36,11 @@ func dataSourceAviAlertConfig() *schema.Resource {
 				Computed: true,
 			},
 			"enabled": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"expiry_time": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"name": {
@@ -61,7 +61,7 @@ func dataSourceAviAlertConfig() *schema.Resource {
 				Computed: true,
 			},
 			"rolling_window": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"source": {
@@ -78,11 +78,11 @@ func dataSourceAviAlertConfig() *schema.Resource {
 				Computed: true,
 			},
 			"threshold": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"throttle": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"uuid": {

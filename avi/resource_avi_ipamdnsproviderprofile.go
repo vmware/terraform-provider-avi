@@ -15,9 +15,10 @@ import (
 func ResourceIpamDnsProviderProfileSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"allocate_ip_in_vrf": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
 		},
 		"aws_profile": {
 			Type:     schema.TypeSet,

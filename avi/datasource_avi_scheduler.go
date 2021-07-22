@@ -19,7 +19,7 @@ func dataSourceAviScheduler() *schema.Resource {
 				Elem:     ResourceConfigPbAttributesSchema(),
 			},
 			"enabled": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"end_date_time": {
@@ -27,7 +27,7 @@ func dataSourceAviScheduler() *schema.Resource {
 				Computed: true,
 			},
 			"frequency": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"frequency_unit": {

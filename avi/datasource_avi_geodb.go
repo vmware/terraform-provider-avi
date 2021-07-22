@@ -19,7 +19,7 @@ func dataSourceAviGeoDB() *schema.Resource {
 				Elem:     ResourceGeoDBFileSchema(),
 			},
 			"is_federated": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"mappings": {

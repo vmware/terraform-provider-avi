@@ -24,6 +24,11 @@ func ResourceALBServicesConfigSchema() map[string]*schema.Schema {
 			Computed: true,
 			Elem:     ResourceALBServicesUserSchema(),
 		},
+		"case_config": {
+			Type:     schema.TypeSet,
+			Required: true,
+			Elem:     ResourceCaseConfigSchema(),
+		},
 		"configpb_attributes": {
 			Type:     schema.TypeSet,
 			Optional: true,
@@ -46,18 +51,14 @@ func ResourceALBServicesConfigSchema() map[string]*schema.Schema {
 			Default:  "MYVMWARE",
 		},
 		"polling_interval": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Default:  10,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "10",
+			ValidateFunc: validateInteger,
 		},
 		"portal_url": {
 			Type:     schema.TypeString,
 			Required: true,
-		},
-		"proactive_support_defaults": {
-			Type:     schema.TypeSet,
-			Required: true,
-			Elem:     ResourceProactiveSupportDefaultsSchema(),
 		},
 		"split_proxy_configuration": {
 			Type:     schema.TypeSet,
@@ -66,14 +67,16 @@ func ResourceALBServicesConfigSchema() map[string]*schema.Schema {
 			Elem:     ResourceProxyConfigurationSchema(),
 		},
 		"use_split_proxy": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
 		},
 		"use_tls": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  true,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "true",
+			ValidateFunc: validateBool,
 		},
 		"user_agent_db_config": {
 			Type:     schema.TypeSet,
@@ -84,6 +87,11 @@ func ResourceALBServicesConfigSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
+		},
+		"waf_config": {
+			Type:     schema.TypeSet,
+			Required: true,
+			Elem:     ResourceWafCrsConfigSchema(),
 		},
 	}
 }

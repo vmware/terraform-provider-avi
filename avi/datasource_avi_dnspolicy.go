@@ -24,7 +24,7 @@ func dataSourceAviDnsPolicy() *schema.Resource {
 				Computed: true,
 			},
 			"internal": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"markers": {
