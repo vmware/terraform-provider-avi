@@ -24,6 +24,11 @@ func ResourceALBServicesConfigSchema() map[string]*schema.Schema {
 			Computed: true,
 			Elem:     ResourceALBServicesUserSchema(),
 		},
+		"case_config": {
+			Type:     schema.TypeSet,
+			Required: true,
+			Elem:     ResourceCaseConfigSchema(),
+		},
 		"configpb_attributes": {
 			Type:     schema.TypeSet,
 			Optional: true,
@@ -54,11 +59,6 @@ func ResourceALBServicesConfigSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Required: true,
 		},
-		"proactive_support_defaults": {
-			Type:     schema.TypeSet,
-			Required: true,
-			Elem:     ResourceProactiveSupportDefaultsSchema(),
-		},
 		"split_proxy_configuration": {
 			Type:     schema.TypeSet,
 			Optional: true,
@@ -84,6 +84,11 @@ func ResourceALBServicesConfigSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
+		},
+		"waf_config": {
+			Type:     schema.TypeSet,
+			Required: true,
+			Elem:     ResourceWafCrsConfigSchema(),
 		},
 	}
 }
