@@ -79,7 +79,7 @@ In addition to all arguments above, the following attributes are exported:
 * `disk_per_se` - Amount of disk space for each of the service engine virtual machines. Unit is gb.
 * `distribute_load_active_standby` - Use both the active and standby service engines for virtual service placement in the legacy active standby ha mode. Allowed in basic(allowed values- false) edition, essentials(allowed values- false) edition, enterprise edition.
 * `distribute_queues` - Distributes queue ownership among cores so multiple cores handle dispatcher duties. Requires se reboot. Deprecated from 18.2.8, instead use max_queues_per_vnic. Field introduced in 17.2.8. Allowed in basic(allowed values- false) edition, essentials(allowed values- false) edition, enterprise edition.
-* `distribute_vnics` - Distributes vnic ownership among cores so multiple cores handle dispatcher duties.requires se reboot. Field introduced in 18.2.5.
+* `distribute_vnics` - Distributes vnic ownership among cores so multiple cores handle dispatcher duties.requires se reboot. Field introduced in 18.2.5. Allowed in basic(allowed values- false) edition, essentials(allowed values- false) edition, enterprise edition.
 * `downstream_send_timeout` - Timeout for downstream to become writable. Field introduced in 21.1.1. Unit is milliseconds.
 * `dp_aggressive_deq_interval_msec` - Dequeue interval for receive queue from se_dp in aggressive mode. Allowed values are 1-1000. Field introduced in 21.1.1. Unit is milliseconds. Allowed in basic edition, essentials edition, enterprise edition.
 * `dp_aggressive_enq_interval_msec` - Enqueue interval for request queue to se_dp in aggressive mode. Allowed values are 1-1000. Field introduced in 21.1.1. Unit is milliseconds. Allowed in basic edition, essentials edition, enterprise edition.
@@ -144,12 +144,13 @@ In addition to all arguments above, the following attributes are exported:
 * `log_disksz` - Maximum disk capacity (in mb) to be allocated to an se. This is exclusively used for debug and log data. Unit is mb.
 * `log_malloc_failure` - Se will log memory allocation related failure to the se_trace file, wherever available. Field introduced in 20.1.2. Allowed in basic(allowed values- true) edition, essentials(allowed values- true) edition, enterprise edition.
 * `log_message_max_file_list_size` - Maximum number of file names in a log message. Field introduced in 21.1.1.
+* `markers` - List of labels to be used for granular rbac. Field introduced in 21.1.1. Allowed in basic edition, essentials edition, enterprise edition.
 * `max_concurrent_external_hm` - Maximum number of external health monitors that can run concurrently in a service engine. This helps control the cpu and memory use by external health monitors. Special values are 0- 'value will be internally calculated based on cpu and memory'. Field introduced in 18.2.7.
 * `max_cpu_usage` - When cpu usage on an se exceeds this threshold, virtual services hosted on this se may be rebalanced to other ses to reduce load. A new se may be created as part of this process. Allowed values are 40-90. Unit is percent.
 * `max_memory_per_mempool` - Max bytes that can be allocated in a single mempool. Field introduced in 18.1.5. Unit is mb.
 * `max_num_se_dps` - Configures the maximum number of se_dp processes that handles traffic. If not configured, defaults to the number of cpus on the se. If decreased, it will only take effect after se reboot. Allowed values are 1-128. Field introduced in 20.1.1. Allowed in basic(allowed values- 0) edition, essentials(allowed values- 0) edition, enterprise edition.
 * `max_public_ips_per_lb` - Applicable to azure platform only. Maximum number of public ips per azure lb. Field introduced in 17.2.12, 18.1.2.
-* `max_queues_per_vnic` - Maximum number of queues per vnic setting to '0' utilises all queues that are distributed across dispatcher cores. Allowed values are 0,1,2,4,8,16. Field introduced in 18.2.7, 20.1.1.
+* `max_queues_per_vnic` - Maximum number of queues per vnic setting to '0' utilises all queues that are distributed across dispatcher cores. Allowed values are 0,1,2,4,8,16. Field introduced in 18.2.7, 20.1.1. Allowed in basic(allowed values- 1) edition, essentials(allowed values- 1) edition, enterprise edition.
 * `max_rules_per_lb` - Applicable to azure platform only. Maximum number of rules per azure lb. Field introduced in 17.2.12, 18.1.2.
 * `max_scaleout_per_vs` - Maximum number of active service engines for the virtual service. Allowed values are 1-64.
 * `max_se` - Maximum number of services engines in this group. Allowed values are 0-1000.
@@ -170,7 +171,7 @@ In addition to all arguments above, the following attributes are exported:
 * `ngx_free_connection_stack` - Free the connection stack. Field introduced in 21.1.1.
 * `non_significant_log_throttle` - This setting limits the number of non-significant logs generated per second per core on this se. Default is 100 logs per second. Set it to zero (0) to deactivate throttling. Field introduced in 17.1.3. Unit is per_second.
 * `ns_helper_deq_interval_msec` - Dequeue interval for receive queue from ns helper. Allowed values are 1-1000. Field introduced in 21.1.1. Unit is milliseconds. Allowed in basic edition, essentials edition, enterprise edition.
-* `num_dispatcher_cores` - Number of dispatcher cores (0,1,2,4,8 or 16). If set to 0, then number of dispatcher cores is deduced automatically.requires se reboot. Allowed values are 0,1,2,4,8,16. Field introduced in 17.2.12, 18.1.3, 18.2.1.
+* `num_dispatcher_cores` - Number of dispatcher cores (0,1,2,4,8 or 16). If set to 0, then number of dispatcher cores is deduced automatically.requires se reboot. Allowed values are 0,1,2,4,8,16. Field introduced in 17.2.12, 18.1.3, 18.2.1. Allowed in basic(allowed values- 0) edition, essentials(allowed values- 0) edition, enterprise edition.
 * `num_flow_cores_sum_changes_to_ignore` - Number of changes in num flow cores sum to ignore.
 * `objsync_config` - Configuration knobs for interse object distribution. Field introduced in 20.1.3.
 * `objsync_port` - Tcp port on se management interface for interse object distribution. Supported only for externally managed security groups. Not supported on full access deployments. Requires se reboot. Field introduced in 20.1.3.

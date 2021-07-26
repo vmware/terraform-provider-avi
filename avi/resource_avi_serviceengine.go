@@ -24,9 +24,10 @@ func ResourceServiceEngineSchema() map[string]*schema.Schema {
 			Computed: true,
 		},
 		"container_mode": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
 		},
 		"container_type": {
 			Type:     schema.TypeString,
@@ -34,9 +35,10 @@ func ResourceServiceEngineSchema() map[string]*schema.Schema {
 			Default:  "CONTAINER_TYPE_HOST",
 		},
 		"controller_created": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
 		},
 		"controller_ip": {
 			Type:     schema.TypeString,

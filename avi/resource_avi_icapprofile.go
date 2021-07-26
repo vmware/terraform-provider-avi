@@ -14,14 +14,16 @@ import (
 func ResourceIcapProfileSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"allow_204": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  true,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "true",
+			ValidateFunc: validateBool,
 		},
 		"buffer_size": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Default:  51200,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "51200",
+			ValidateFunc: validateInteger,
 		},
 		"buffer_size_exceed_action": {
 			Type:     schema.TypeString,
@@ -45,9 +47,10 @@ func ResourceIcapProfileSchema() map[string]*schema.Schema {
 			Computed: true,
 		},
 		"enable_preview": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  true,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "true",
+			ValidateFunc: validateBool,
 		},
 		"fail_action": {
 			Type:     schema.TypeString,
@@ -69,23 +72,26 @@ func ResourceIcapProfileSchema() map[string]*schema.Schema {
 			Required: true,
 		},
 		"preview_size": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Default:  5000,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "5000",
+			ValidateFunc: validateInteger,
 		},
 		"response_timeout": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Default:  60000,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "60000",
+			ValidateFunc: validateInteger,
 		},
 		"service_uri": {
 			Type:     schema.TypeString,
 			Required: true,
 		},
 		"slow_response_warning_threshold": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Default:  10000,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "10000",
+			ValidateFunc: validateInteger,
 		},
 		"tenant_ref": {
 			Type:     schema.TypeString,

@@ -26,9 +26,10 @@ func ResourceJWTServerProfileSchema() map[string]*schema.Schema {
 			Elem:     ResourceControllerInternalAuthSchema(),
 		},
 		"is_federated": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
 		},
 		"issuer": {
 			Type:     schema.TypeString,

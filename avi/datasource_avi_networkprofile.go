@@ -15,7 +15,7 @@ func dataSourceAviNetworkProfile() *schema.Resource {
 				Elem:     ResourceConfigPbAttributesSchema(),
 			},
 			"connection_mirror": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"description": {

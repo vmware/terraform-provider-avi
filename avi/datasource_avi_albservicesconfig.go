@@ -19,6 +19,11 @@ func dataSourceAviALBServicesConfig() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceALBServicesUserSchema(),
 			},
+			"case_config": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceCaseConfigSchema(),
+			},
 			"configpb_attributes": {
 				Type:     schema.TypeSet,
 				Computed: true,
@@ -39,17 +44,12 @@ func dataSourceAviALBServicesConfig() *schema.Resource {
 				Computed: true,
 			},
 			"polling_interval": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"portal_url": {
 				Type:     schema.TypeString,
 				Computed: true,
-			},
-			"proactive_support_defaults": {
-				Type:     schema.TypeSet,
-				Computed: true,
-				Elem:     ResourceProactiveSupportDefaultsSchema(),
 			},
 			"split_proxy_configuration": {
 				Type:     schema.TypeSet,
@@ -57,11 +57,11 @@ func dataSourceAviALBServicesConfig() *schema.Resource {
 				Elem:     ResourceProxyConfigurationSchema(),
 			},
 			"use_split_proxy": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"use_tls": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"user_agent_db_config": {
@@ -73,6 +73,11 @@ func dataSourceAviALBServicesConfig() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+			"waf_config": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceWafCrsConfigSchema(),
 			},
 		},
 	}

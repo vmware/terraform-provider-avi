@@ -10,7 +10,7 @@ func dataSourceAviRmCloudOpsProto() *schema.Resource {
 		Read: ResourceAviRmCloudOpsProtoRead,
 		Schema: map[string]*schema.Schema{
 			"last_queried_se_creation_limit": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"name": {
@@ -19,11 +19,11 @@ func dataSourceAviRmCloudOpsProto() *schema.Resource {
 				Computed: true,
 			},
 			"pending_se_creation_count": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"pending_vnic_op_count": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"uuid": {
