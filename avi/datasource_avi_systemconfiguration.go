@@ -15,7 +15,7 @@ func dataSourceAviSystemConfiguration() *schema.Resource {
 				Elem:     ResourceAdminAuthConfigurationSchema(),
 			},
 			"common_criteria_mode": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"configpb_attributes": {
@@ -38,7 +38,7 @@ func dataSourceAviSystemConfiguration() *schema.Resource {
 				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
 			"docker_mode": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"email_configuration": {
@@ -47,11 +47,11 @@ func dataSourceAviSystemConfiguration() *schema.Resource {
 				Elem:     ResourceEmailConfigurationSchema(),
 			},
 			"enable_cors": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"fips_mode": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"global_tenant_config": {
@@ -110,7 +110,7 @@ func dataSourceAviSystemConfiguration() *schema.Resource {
 				Computed: true,
 			},
 			"welcome_workflow_complete": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 		},

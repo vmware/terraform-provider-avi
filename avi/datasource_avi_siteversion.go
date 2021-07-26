@@ -19,7 +19,7 @@ func dataSourceAviSiteVersion() *schema.Resource {
 				Computed: true,
 			},
 			"prev_target_version": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"replication_state": {
@@ -35,7 +35,7 @@ func dataSourceAviSiteVersion() *schema.Resource {
 				Computed: true,
 			},
 			"target_version": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"tenant_ref": {
@@ -53,7 +53,7 @@ func dataSourceAviSiteVersion() *schema.Resource {
 				Computed: true,
 			},
 			"version": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"version_type": {

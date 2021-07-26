@@ -25,9 +25,10 @@ func ResourceWafPolicyPSMGroupSchema() map[string]*schema.Schema {
 			Computed: true,
 		},
 		"enable": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  true,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "true",
+			ValidateFunc: validateBool,
 		},
 		"hit_action": {
 			Type:     schema.TypeString,
@@ -35,9 +36,10 @@ func ResourceWafPolicyPSMGroupSchema() map[string]*schema.Schema {
 			Default:  "WAF_ACTION_ALLOW_PARAMETER",
 		},
 		"is_learning_group": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
 		},
 		"locations": {
 			Type:     schema.TypeList,

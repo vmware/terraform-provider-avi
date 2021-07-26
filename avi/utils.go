@@ -12,6 +12,7 @@ import (
 	"path/filepath"
 	"reflect"
 	"regexp"
+	"runtime"
 	"strconv"
 	"strings"
 
@@ -25,13 +26,34 @@ var postNotAllowed = [...]string{"systemconfiguration", "cluster", "seproperties
 // It takes the terraform plan data and schema and converts it into Avi JSON
 // It recursively resolves the data type of the terraform schema and converts scalar to scalar, Set to dictionary,
 // and list to list.
-func SchemaToAviData(d interface{}, s map[string]*schema.Schema) (interface{}, error) {
+func SchemaToAviData(d interface{}, s interface{}) (interface{}, error) {
 	switch dType := d.(type) {
 	default:
+		// Convert schema data to expected data type for API payload
+		if isValidateFunction := s.(*schema.Schema).ValidateFunc; isValidateFunction != nil && d != "" {
+			validateFunctionRef := runtime.FuncForPC(reflect.ValueOf(s.(*schema.Schema).ValidateFunc).Pointer()).Name()
+			validateFunctionSplit := strings.Split(validateFunctionRef, ".")
+			validateFunctionName := validateFunctionSplit[len(validateFunctionSplit)-1]
+			var err error
+			switch validateFunctionName {
+			case "validateInteger":
+				if d, err = strconv.ParseInt(d.(string), 10, 64); err != nil {
+					log.Printf("[ERROR] SchemaToAviData in converting string %v to integer. Error: %v", d, err)
+				}
+			case "validateBool":
+				if d, err = strconv.ParseBool(d.(string)); err != nil {
+					log.Printf("[ERROR] SchemaToAviData in converting string %v to bool. Error: %v", d, err)
+				}
+			case "validateFloat":
+				if d, err = strconv.ParseFloat(d.(string), 64); err != nil {
+					log.Printf("[ERROR] SchemaToAviData in converting string %v to float. Error: %v", d, err)
+				}
+			}
+		}
 	case map[string]interface{}:
 		m := make(map[string]interface{})
 		for k, v := range d.(map[string]interface{}) {
-			if obj, err := SchemaToAviData(v, nil); err == nil && obj != nil && obj != "" {
+			if obj, err := SchemaToAviData(v, s.(map[string]*schema.Schema)[k]); err == nil && obj != nil && obj != "" {
 				m[k] = obj
 			} else if err != nil {
 				log.Printf("[ERROR] SchemaToAviData %v in parsing k: %v v: %v type: %v", err, k, v, dType)
@@ -41,8 +63,17 @@ func SchemaToAviData(d interface{}, s map[string]*schema.Schema) (interface{}, e
 	case []interface{}:
 		var objList []interface{}
 		varray := d.([]interface{})
+		var listSchema interface{}
+		switch sType := s.(*schema.Schema).Elem.(type) {
+		default:
+			log.Printf("%v", sType)
+		case *schema.Resource:
+			listSchema = s.(*schema.Schema).Elem.(*schema.Resource).Schema
+		case *schema.Schema:
+			listSchema = s.(*schema.Schema).Elem.(*schema.Schema)
+		}
 		for i := 0; i < len(varray); i++ {
-			obj, err := SchemaToAviData(varray[i], nil)
+			obj, err := SchemaToAviData(varray[i], listSchema)
 			if err == nil && obj != nil {
 				objList = append(objList, obj)
 			}
@@ -56,16 +87,16 @@ func SchemaToAviData(d interface{}, s map[string]*schema.Schema) (interface{}, e
 		if len(d.(*schema.Set).List()) == 0 {
 			return nil, nil
 		}
-		obj, err := SchemaToAviData(d.(*schema.Set).List()[0], nil)
+		obj, err := SchemaToAviData(d.(*schema.Set).List()[0], s.(*schema.Schema).Elem.(*schema.Resource).Schema)
 		return obj, err
 
 	case *schema.ResourceData:
 		// In this case the top level schema should be present.
 		m := make(map[string]interface{})
 		r := d.(*schema.ResourceData)
-		for k, v := range s {
+		for k, v := range s.(map[string]*schema.Schema) {
 			if data, ok := r.GetOkExists(k); ok {
-				if obj, err := SchemaToAviData(data, nil); err == nil && obj != nil && obj != "" {
+				if obj, err := SchemaToAviData(data, v); err == nil && obj != nil && obj != "" {
 					m[k] = obj
 				} else if err != nil {
 					log.Printf("[ERROR] SchemaToAviData %v in converting k: %v v: %v", err, k, v)
@@ -198,13 +229,7 @@ func APIDataToSchema(adata interface{}, d interface{}, t map[string]*schema.Sche
 						switch dType := d.(type) {
 						default:
 						case *schema.ResourceData:
-							if t[k].Type.String() == "TypeFloat" && reflect.TypeOf(obj).Kind() == reflect.String {
-								if fObj, err := strconv.ParseFloat(obj.(string), 64); err != nil {
-									log.Printf("[ERROR] Converting obj %v for key %v to float", obj, k)
-								} else if err := d.(*schema.ResourceData).Set(k, fObj); err != nil {
-									log.Printf("[ERROR] APIDataToSchema %v in setting %v   type %v", err, obj, dType)
-								}
-							} else if err := d.(*schema.ResourceData).Set(k, obj); err != nil {
+							if err := d.(*schema.ResourceData).Set(k, obj); err != nil {
 								log.Printf("[ERROR] APIDataToSchema %v in setting %v   type %v", err, obj, dType)
 							}
 						case map[string]interface{}:
@@ -422,6 +447,10 @@ func APIRead(d *schema.ResourceData, meta interface{}, objType string, s map[str
 		if err != nil {
 			log.Printf("[ERROR] APIRead in modifying api response object %v\n", err)
 		}
+		modAPIRes, err = PreprocessAPIRes(obj, s)
+		if err != nil {
+			log.Printf("[ERROR] APIRead in modifying api response object for conversion %v\n", err)
+		}
 		if _, err := APIDataToSchema(modAPIRes, d, s); err == nil {
 			if modAPIRes.(map[string]interface{})["uuid"] != nil {
 				uuid = modAPIRes.(map[string]interface{})["uuid"].(string)
@@ -489,8 +518,11 @@ func ResourceImporter(d *schema.ResourceData, meta interface{}, objType string, 
 func APIDeleteSystemDefaultCheck(d *schema.ResourceData) bool {
 	var systemDefault bool
 	var sysName string
+	var err error
 	if sysdef, ok := d.GetOk("system_default"); ok {
-		systemDefault = sysdef.(bool)
+		if systemDefault, err = strconv.ParseBool(sysdef.(string)); err != nil {
+			log.Printf("[ERROR] Error %v while converting system_default value %s to bool.", err, sysdef)
+		}
 	}
 	if name, ok := d.GetOk("name"); ok {
 		sysName = name.(string)
@@ -635,4 +667,94 @@ func IsPostNotAllowed(objtype string) bool {
 		}
 	}
 	return specialobj
+}
+
+// Preprocess API response to convert int/bool/float data from respose to string
+func PreprocessAPIRes(apiRes interface{}, s map[string]*schema.Schema) (interface{}, error) {
+	if apiRes == nil {
+		log.Printf("[ERROR] PreprocessAPIRes got nil for %v", s)
+		return apiRes, nil
+	}
+	switch apiRes.(type) {
+	default:
+	case map[string]interface{}:
+		for k, v := range apiRes.(map[string]interface{}) {
+			switch v.(type) {
+			//Getting key, value for response apiRes
+			default:
+				if _, ok := apiRes.(map[string]interface{})[k]; ok {
+					if dval, ok := s[k]; ok {
+						if isValidateFunction := dval.ValidateFunc; isValidateFunction != nil {
+							validateFunctionRef := runtime.FuncForPC(reflect.ValueOf(dval.ValidateFunc).Pointer()).Name()
+							validateFunctionSplit := strings.Split(validateFunctionRef, ".")
+							validateFunctionName := validateFunctionSplit[len(validateFunctionSplit)-1]
+							switch validateFunctionName {
+							default:
+							case "validateInteger":
+								if reflect.TypeOf(apiRes.(map[string]interface{})[k]).Kind() == reflect.Float64 {
+									apiRes.(map[string]interface{})[k] = strconv.FormatFloat(apiRes.(map[string]interface{})[k].(float64), 'f', -1, 64)
+								} else if reflect.TypeOf(apiRes.(map[string]interface{})[k]).Kind() == reflect.Int64 {
+									apiRes.(map[string]interface{})[k] = strconv.FormatInt(apiRes.(map[string]interface{})[k].(int64), 10)
+								}
+							case "validateBool":
+								if reflect.TypeOf(apiRes.(map[string]interface{})[k]).Kind() == reflect.Bool {
+									apiRes.(map[string]interface{})[k] = strconv.FormatBool(apiRes.(map[string]interface{})[k].(bool))
+								}
+							case "validateFloat":
+								if reflect.TypeOf(apiRes.(map[string]interface{})[k]).Kind() == reflect.Float64 {
+									apiRes.(map[string]interface{})[k] = strconv.FormatFloat(apiRes.(map[string]interface{})[k].(float64), 'f', -1, 64)
+								}
+							}
+						}
+					}
+				}
+			//apiRes nested dictionary.
+			case map[string]interface{}:
+				if s2, ok := s[k]; ok {
+					switch s2.Elem.(type) {
+					default:
+					case *schema.Resource:
+						if apiRes.(map[string]interface{})[k] != nil {
+							apiRes1, err := PreprocessAPIRes(v, s2.Elem.(*schema.Resource).Schema)
+							if err != nil {
+								log.Printf("[ERROR] PreprocessAPIRes %v", err)
+							} else {
+								apiRes.(map[string]interface{})[k] = apiRes1
+							}
+						} else {
+							apiRes.(map[string]interface{})[k] = v
+						}
+					}
+				}
+			//apiRes is array of dictionaries.
+			case []interface{}:
+				var objList []interface{}
+				if apiRes.(map[string]interface{})[k] != nil {
+					//getting schema for nested object.
+					s2, err := s[k]
+					//As err returned is boolean value
+					if !err {
+						log.Printf("[ERROR] PreprocessAPIRes in fetching k %v err %v", k, err)
+						continue
+					}
+					for x, y := range v.([]interface{}) {
+						switch s2.Elem.(type) {
+						default:
+						case *schema.Resource:
+							obj, err := PreprocessAPIRes(y, s2.Elem.(*schema.Resource).Schema)
+							if err != nil {
+								log.Printf("[ERROR] PreprocessAPIRes err %v in x %v y %v", err, x, y)
+							} else {
+								objList = append(objList, obj)
+							}
+						case *schema.Schema:
+							objList = append(objList, v.([]interface{})[x])
+						}
+					}
+				}
+				apiRes.(map[string]interface{})[k] = objList
+			}
+		}
+	}
+	return apiRes, nil
 }

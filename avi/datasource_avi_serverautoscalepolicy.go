@@ -15,7 +15,7 @@ func dataSourceAviServerAutoScalePolicy() *schema.Resource {
 				Elem:     ResourceConfigPbAttributesSchema(),
 			},
 			"delay_for_server_garbage_collection": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"description": {
@@ -23,15 +23,15 @@ func dataSourceAviServerAutoScalePolicy() *schema.Resource {
 				Computed: true,
 			},
 			"intelligent_autoscale": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"intelligent_scalein_margin": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"intelligent_scaleout_margin": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"markers": {
@@ -40,19 +40,19 @@ func dataSourceAviServerAutoScalePolicy() *schema.Resource {
 				Elem:     ResourceRoleFilterMatchLabelSchema(),
 			},
 			"max_scalein_adjustment_step": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"max_scaleout_adjustment_step": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"max_size": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"min_size": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"name": {
@@ -66,7 +66,7 @@ func dataSourceAviServerAutoScalePolicy() *schema.Resource {
 				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
 			"scalein_cooldown": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"scaleout_alertconfig_refs": {
@@ -75,7 +75,7 @@ func dataSourceAviServerAutoScalePolicy() *schema.Resource {
 				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
 			"scaleout_cooldown": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"scheduled_scalings": {
@@ -89,7 +89,7 @@ func dataSourceAviServerAutoScalePolicy() *schema.Resource {
 				Computed: true,
 			},
 			"use_predicted_load": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"uuid": {

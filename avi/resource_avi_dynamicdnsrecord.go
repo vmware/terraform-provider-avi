@@ -26,9 +26,10 @@ func ResourceDynamicDnsRecordSchema() map[string]*schema.Schema {
 			Elem:     ResourceDnsCnameRdataSchema(),
 		},
 		"delegated": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
 		},
 		"description": {
 			Type:     schema.TypeString,
@@ -76,9 +77,10 @@ func ResourceDynamicDnsRecordSchema() map[string]*schema.Schema {
 			Elem:     ResourceDnsNsRdataSchema(),
 		},
 		"num_records_in_response": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Computed: true,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Computed:     true,
+			ValidateFunc: validateInteger,
 		},
 		"service_locators": {
 			Type:     schema.TypeList,
@@ -91,9 +93,10 @@ func ResourceDynamicDnsRecordSchema() map[string]*schema.Schema {
 			Computed: true,
 		},
 		"ttl": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Computed: true,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Computed:     true,
+			ValidateFunc: validateInteger,
 		},
 		"txt_records": {
 			Type:     schema.TypeList,
@@ -111,9 +114,10 @@ func ResourceDynamicDnsRecordSchema() map[string]*schema.Schema {
 			Computed: true,
 		},
 		"wildcard_match": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
 		},
 	}
 }

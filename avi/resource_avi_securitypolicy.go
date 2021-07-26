@@ -37,9 +37,10 @@ func ResourceSecurityPolicySchema() map[string]*schema.Schema {
 			Elem:     ResourceDnsAttacksSchema(),
 		},
 		"dns_policy_index": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Default:  0,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "0",
+			ValidateFunc: validateInteger,
 		},
 		"markers": {
 			Type:     schema.TypeList,
@@ -51,9 +52,10 @@ func ResourceSecurityPolicySchema() map[string]*schema.Schema {
 			Required: true,
 		},
 		"network_security_policy_index": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Default:  0,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "0",
+			ValidateFunc: validateInteger,
 		},
 		"oper_mode": {
 			Type:     schema.TypeString,

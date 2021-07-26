@@ -10,7 +10,7 @@ func dataSourceAviCloud() *schema.Resource {
 		Read: ResourceAviCloudRead,
 		Schema: map[string]*schema.Schema{
 			"autoscale_polling_interval": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"aws_configuration": {
@@ -39,7 +39,7 @@ func dataSourceAviCloud() *schema.Resource {
 				Elem:     ResourceCustomTagSchema(),
 			},
 			"dhcp_enabled": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"dns_provider_ref": {
@@ -47,7 +47,7 @@ func dataSourceAviCloud() *schema.Resource {
 				Computed: true,
 			},
 			"dns_resolution_on_se": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"dns_resolvers": {
@@ -69,11 +69,11 @@ func dataSourceAviCloud() *schema.Resource {
 				Computed: true,
 			},
 			"enable_vip_on_all_interfaces": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"enable_vip_static_routes": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"gcp_configuration": {
@@ -82,7 +82,7 @@ func dataSourceAviCloud() *schema.Resource {
 				Elem:     ResourceGCPConfigurationSchema(),
 			},
 			"ip6_autocfg_enabled": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"ipam_provider_ref": {
@@ -103,7 +103,7 @@ func dataSourceAviCloud() *schema.Resource {
 				Elem:     ResourceLinuxServerConfigurationSchema(),
 			},
 			"mtu": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"name": {
@@ -126,7 +126,7 @@ func dataSourceAviCloud() *schema.Resource {
 				Elem:     ResourceOpenStackConfigurationSchema(),
 			},
 			"prefer_static_routes": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"proxy_configuration": {
@@ -144,7 +144,7 @@ func dataSourceAviCloud() *schema.Resource {
 				Computed: true,
 			},
 			"state_based_dns_registration": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"tenant_ref": {
@@ -168,7 +168,7 @@ func dataSourceAviCloud() *schema.Resource {
 				Elem:     ResourcevCenterConfigurationSchema(),
 			},
 			"vmc_deployment": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"vtype": {

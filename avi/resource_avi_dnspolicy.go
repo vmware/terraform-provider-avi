@@ -31,9 +31,10 @@ func ResourceDnsPolicySchema() map[string]*schema.Schema {
 			Computed: true,
 		},
 		"internal": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Computed: true,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Computed:     true,
+			ValidateFunc: validateBool,
 		},
 		"markers": {
 			Type:     schema.TypeList,

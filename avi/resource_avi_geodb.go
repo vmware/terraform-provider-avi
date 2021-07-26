@@ -24,9 +24,10 @@ func ResourceGeoDBSchema() map[string]*schema.Schema {
 			Elem:     ResourceGeoDBFileSchema(),
 		},
 		"is_federated": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
 		},
 		"mappings": {
 			Type:     schema.TypeList,

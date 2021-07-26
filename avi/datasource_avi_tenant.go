@@ -28,7 +28,7 @@ func dataSourceAviTenant() *schema.Resource {
 				Computed: true,
 			},
 			"enforce_label_group": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"label_group_refs": {
@@ -37,7 +37,7 @@ func dataSourceAviTenant() *schema.Resource {
 				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
 			"local": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"name": {
