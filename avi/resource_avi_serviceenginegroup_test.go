@@ -23,6 +23,8 @@ func TestAVIServiceEngineGroupBasic(t *testing.T) {
 					resource.TestCheckResourceAttr(
 						"avi_serviceenginegroup.testServiceEngineGroup", "name", "test-Default-Group-abc"),
 					resource.TestCheckResourceAttr(
+						"avi_serviceenginegroup.testServiceEngineGroup", "extra_config_multiplier", "0"),
+					resource.TestCheckResourceAttr(
 						"avi_serviceenginegroup.testServiceEngineGroup", "udf_log_throttle", "100"),
 					resource.TestCheckResourceAttr(
 						"avi_serviceenginegroup.testServiceEngineGroup", "vcpus_per_se", "1"),
@@ -162,6 +164,8 @@ func TestAVIServiceEngineGroupBasic(t *testing.T) {
 					testAccCheckAVIServiceEngineGroupExists("avi_serviceenginegroup.testServiceEngineGroup"),
 					resource.TestCheckResourceAttr(
 						"avi_serviceenginegroup.testServiceEngineGroup", "name", "test-Default-Group-updated"),
+					resource.TestCheckResourceAttr(
+						"avi_serviceenginegroup.testServiceEngineGroup", "extra_config_multiplier", "0"),
 					resource.TestCheckResourceAttr(
 						"avi_serviceenginegroup.testServiceEngineGroup", "udf_log_throttle", "100"),
 					resource.TestCheckResourceAttr(
@@ -365,7 +369,7 @@ resource "avi_serviceenginegroup" "testServiceEngineGroup" {
 	name = "test-Default-Group-abc"
 	tenant_ref = data.avi_tenant.default_tenant.id
 	cloud_ref = data.avi_cloud.default_cloud.id
-	extra_config_multiplier = "0.0"
+	extra_config_multiplier = "0"
 	udf_log_throttle = "100"
 	ingress_access_data = "SG_INGRESS_ACCESS_ALL"
 	vcpus_per_se = "1"
@@ -457,7 +461,7 @@ resource "avi_serviceenginegroup" "testServiceEngineGroup" {
 	name = "test-Default-Group-updated"
 	tenant_ref = data.avi_tenant.default_tenant.id
 	cloud_ref = data.avi_cloud.default_cloud.id
-	extra_config_multiplier = "0.0"
+	extra_config_multiplier = "0"
 	udf_log_throttle = "100"
 	ingress_access_data = "SG_INGRESS_ACCESS_ALL"
 	vcpus_per_se = "1"

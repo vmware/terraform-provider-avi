@@ -22,7 +22,7 @@ func ResourceAnalyticsProfileSchema() map[string]*schema.Schema {
 		"apdex_response_tolerated_factor": {
 			Type:         schema.TypeString,
 			Optional:     true,
-			Default:      "4.0",
+			Default:      "4",
 			ValidateFunc: validateFloat,
 		},
 		"apdex_rtt_threshold": {
@@ -34,7 +34,7 @@ func ResourceAnalyticsProfileSchema() map[string]*schema.Schema {
 		"apdex_rtt_tolerated_factor": {
 			Type:         schema.TypeString,
 			Optional:     true,
-			Default:      "4.0",
+			Default:      "4",
 			ValidateFunc: validateFloat,
 		},
 		"apdex_rum_threshold": {
@@ -46,7 +46,7 @@ func ResourceAnalyticsProfileSchema() map[string]*schema.Schema {
 		"apdex_rum_tolerated_factor": {
 			Type:         schema.TypeString,
 			Optional:     true,
-			Default:      "4.0",
+			Default:      "4",
 			ValidateFunc: validateFloat,
 		},
 		"apdex_server_response_threshold": {
@@ -58,7 +58,7 @@ func ResourceAnalyticsProfileSchema() map[string]*schema.Schema {
 		"apdex_server_response_tolerated_factor": {
 			Type:         schema.TypeString,
 			Optional:     true,
-			Default:      "4.0",
+			Default:      "4",
 			ValidateFunc: validateFloat,
 		},
 		"apdex_server_rtt_threshold": {
@@ -70,7 +70,7 @@ func ResourceAnalyticsProfileSchema() map[string]*schema.Schema {
 		"apdex_server_rtt_tolerated_factor": {
 			Type:         schema.TypeString,
 			Optional:     true,
-			Default:      "4.0",
+			Default:      "4",
 			ValidateFunc: validateFloat,
 		},
 		"client_log_config": {
@@ -337,55 +337,55 @@ func ResourceAnalyticsProfileSchema() map[string]*schema.Schema {
 		"hs_pscore_traffic_threshold_l4_client": {
 			Type:         schema.TypeString,
 			Optional:     true,
-			Default:      "10.0",
+			Default:      "10",
 			ValidateFunc: validateFloat,
 		},
 		"hs_pscore_traffic_threshold_l4_server": {
 			Type:         schema.TypeString,
 			Optional:     true,
-			Default:      "10.0",
+			Default:      "10",
 			ValidateFunc: validateFloat,
 		},
 		"hs_security_certscore_expired": {
 			Type:         schema.TypeString,
 			Optional:     true,
-			Default:      "0.0",
+			Default:      "0",
 			ValidateFunc: validateFloat,
 		},
 		"hs_security_certscore_gt30d": {
 			Type:         schema.TypeString,
 			Optional:     true,
-			Default:      "5.0",
+			Default:      "5",
 			ValidateFunc: validateFloat,
 		},
 		"hs_security_certscore_le07d": {
 			Type:         schema.TypeString,
 			Optional:     true,
-			Default:      "2.0",
+			Default:      "2",
 			ValidateFunc: validateFloat,
 		},
 		"hs_security_certscore_le30d": {
 			Type:         schema.TypeString,
 			Optional:     true,
-			Default:      "4.0",
+			Default:      "4",
 			ValidateFunc: validateFloat,
 		},
 		"hs_security_chain_invalidity_penalty": {
 			Type:         schema.TypeString,
 			Optional:     true,
-			Default:      "1.0",
+			Default:      "1",
 			ValidateFunc: validateFloat,
 		},
 		"hs_security_cipherscore_eq000b": {
 			Type:         schema.TypeString,
 			Optional:     true,
-			Default:      "0.0",
+			Default:      "0",
 			ValidateFunc: validateFloat,
 		},
 		"hs_security_cipherscore_ge128b": {
 			Type:         schema.TypeString,
 			Optional:     true,
-			Default:      "5.0",
+			Default:      "5",
 			ValidateFunc: validateFloat,
 		},
 		"hs_security_cipherscore_lt128b": {
@@ -397,7 +397,7 @@ func ResourceAnalyticsProfileSchema() map[string]*schema.Schema {
 		"hs_security_encalgo_score_none": {
 			Type:         schema.TypeString,
 			Optional:     true,
-			Default:      "0.0",
+			Default:      "0",
 			ValidateFunc: validateFloat,
 		},
 		"hs_security_encalgo_score_rc4": {
@@ -409,25 +409,25 @@ func ResourceAnalyticsProfileSchema() map[string]*schema.Schema {
 		"hs_security_hsts_penalty": {
 			Type:         schema.TypeString,
 			Optional:     true,
-			Default:      "1.0",
+			Default:      "1",
 			ValidateFunc: validateFloat,
 		},
 		"hs_security_nonpfs_penalty": {
 			Type:         schema.TypeString,
 			Optional:     true,
-			Default:      "1.0",
+			Default:      "1",
 			ValidateFunc: validateFloat,
 		},
 		"hs_security_ocsp_revoked_score": {
 			Type:         schema.TypeString,
 			Optional:     true,
-			Default:      "0.0",
+			Default:      "0",
 			ValidateFunc: validateFloat,
 		},
 		"hs_security_selfsignedcert_penalty": {
 			Type:         schema.TypeString,
 			Optional:     true,
-			Default:      "1.0",
+			Default:      "1",
 			ValidateFunc: validateFloat,
 		},
 		"hs_security_ssl30_score": {
@@ -439,25 +439,25 @@ func ResourceAnalyticsProfileSchema() map[string]*schema.Schema {
 		"hs_security_tls10_score": {
 			Type:         schema.TypeString,
 			Optional:     true,
-			Default:      "5.0",
+			Default:      "5",
 			ValidateFunc: validateFloat,
 		},
 		"hs_security_tls11_score": {
 			Type:         schema.TypeString,
 			Optional:     true,
-			Default:      "5.0",
+			Default:      "5",
 			ValidateFunc: validateFloat,
 		},
 		"hs_security_tls12_score": {
 			Type:         schema.TypeString,
 			Optional:     true,
-			Default:      "5.0",
+			Default:      "5",
 			ValidateFunc: validateFloat,
 		},
 		"hs_security_weak_signature_algo_penalty": {
 			Type:         schema.TypeString,
 			Optional:     true,
-			Default:      "1.0",
+			Default:      "1",
 			ValidateFunc: validateFloat,
 		},
 		"latency_audit_props": {

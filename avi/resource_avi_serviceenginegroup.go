@@ -380,7 +380,7 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 		"extra_config_multiplier": {
 			Type:         schema.TypeString,
 			Optional:     true,
-			Default:      "0.0",
+			Default:      "0",
 			ValidateFunc: validateFloat,
 		},
 		"extra_shared_config_memory": {
@@ -608,7 +608,7 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 		"log_agent_max_storage_ignore_percent": {
 			Type:         schema.TypeString,
 			Optional:     true,
-			Default:      "20.0",
+			Default:      "20",
 			ValidateFunc: validateFloat,
 		},
 		"log_agent_min_storage_per_vs": {
