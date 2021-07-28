@@ -34354,6 +34354,16 @@ func ResourceWafPSMMatchElementSchema() *schema.Resource {
 				Type:     schema.TypeInt,
 				Required: true,
 			},
+			"match_case": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "INSENSITIVE",
+			},
+			"match_op": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "EQUALS",
+			},
 			"name": {
 				Type:     schema.TypeString,
 				Required: true,
