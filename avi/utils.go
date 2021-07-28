@@ -30,10 +30,7 @@ func SchemaToAviData(d interface{}, s interface{}) (interface{}, error) {
 	switch dType := d.(type) {
 	default:
 		// Convert schema data to expected data type for API payload
-		if isValidateFunction := s.(*schema.Schema).ValidateFunc; isValidateFunction != nil && d != "" {
-			validateFunctionRef := runtime.FuncForPC(reflect.ValueOf(s.(*schema.Schema).ValidateFunc).Pointer()).Name()
-			validateFunctionSplit := strings.Split(validateFunctionRef, ".")
-			validateFunctionName := validateFunctionSplit[len(validateFunctionSplit)-1]
+		if validateFunctionName := getValidateFunction(s.(*schema.Schema)); validateFunctionName != "" && d != "" {
 			var err error
 			switch validateFunctionName {
 			case "validateInteger":
@@ -684,10 +681,8 @@ func PreprocessAPIRes(apiRes interface{}, s map[string]*schema.Schema) (interfac
 			default:
 				if _, ok := apiRes.(map[string]interface{})[k]; ok {
 					if dval, ok := s[k]; ok {
-						if isValidateFunction := dval.ValidateFunc; isValidateFunction != nil {
-							validateFunctionRef := runtime.FuncForPC(reflect.ValueOf(dval.ValidateFunc).Pointer()).Name()
-							validateFunctionSplit := strings.Split(validateFunctionRef, ".")
-							validateFunctionName := validateFunctionSplit[len(validateFunctionSplit)-1]
+						validateFunctionName := getValidateFunction(dval)
+						if validateFunctionName != "" {
 							switch validateFunctionName {
 							default:
 							case "validateInteger":
@@ -703,6 +698,13 @@ func PreprocessAPIRes(apiRes interface{}, s map[string]*schema.Schema) (interfac
 							case "validateFloat":
 								if reflect.TypeOf(apiRes.(map[string]interface{})[k]).Kind() == reflect.Float64 {
 									apiRes.(map[string]interface{})[k] = strconv.FormatFloat(apiRes.(map[string]interface{})[k].(float64), 'f', -1, 64)
+								} else if reflect.TypeOf(apiRes.(map[string]interface{})[k]).Kind() == reflect.String {
+									// Remove trailing zeroes from response
+									if strFloat, err := strconv.ParseFloat(apiRes.(map[string]interface{})[k].(string), 64); err == nil {
+										apiRes.(map[string]interface{})[k] = strconv.FormatFloat(strFloat, 'f', -1, 64)
+									} else {
+										log.Printf("[ERROR] PreprocessAPIRes in converting string %v to float. Error: %v", apiRes.(map[string]interface{})[k], err)
+									}
 								}
 							}
 						}
@@ -757,4 +759,14 @@ func PreprocessAPIRes(apiRes interface{}, s map[string]*schema.Schema) (interfac
 		}
 	}
 	return apiRes, nil
+}
+
+func getValidateFunction(schemaVal *schema.Schema) string {
+	if isValidateFunction := schemaVal.ValidateFunc; isValidateFunction != nil {
+		validateFunctionRef := runtime.FuncForPC(reflect.ValueOf(schemaVal.ValidateFunc).Pointer()).Name()
+		validateFunctionSplit := strings.Split(validateFunctionRef, ".")
+		validateFunctionName := validateFunctionSplit[len(validateFunctionSplit)-1]
+		return validateFunctionName
+	}
+	return ""
 }

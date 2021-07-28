@@ -897,7 +897,7 @@ func ResourceAnomalyEventDetailsSchema() *schema.Resource {
 			"deviation": {
 				Type:         schema.TypeString,
 				Optional:     true,
-				Default:      "0.0",
+				Default:      "0",
 				ValidateFunc: validateFloat,
 			},
 			"metric_id": {
@@ -18177,25 +18177,25 @@ func ResourceLicenseUsageSchema() *schema.Resource {
 			"available": {
 				Type:         schema.TypeString,
 				Optional:     true,
-				Default:      "0.0",
+				Default:      "0",
 				ValidateFunc: validateFloat,
 			},
 			"consumed": {
 				Type:         schema.TypeString,
 				Optional:     true,
-				Default:      "0.0",
+				Default:      "0",
 				ValidateFunc: validateFloat,
 			},
 			"escrow": {
 				Type:         schema.TypeString,
 				Optional:     true,
-				Default:      "0.0",
+				Default:      "0",
 				ValidateFunc: validateFloat,
 			},
 			"remaining": {
 				Type:         schema.TypeString,
 				Optional:     true,
-				Default:      "0.0",
+				Default:      "0",
 				ValidateFunc: validateFloat,
 			},
 		},
@@ -19085,7 +19085,7 @@ func ResourceMesosSeResourcesSchema() *schema.Resource {
 			"cpu": {
 				Type:         schema.TypeString,
 				Optional:     true,
-				Default:      "2.0",
+				Default:      "2",
 				ValidateFunc: validateFloat,
 			},
 			"memory": {
@@ -27652,7 +27652,7 @@ func ResourceSeRuntimePropertiesSchema() *schema.Resource {
 			"log_agent_max_storage_ignore_percent": {
 				Type:         schema.TypeString,
 				Optional:     true,
-				Default:      "20.0",
+				Default:      "20",
 				ValidateFunc: validateFloat,
 			},
 			"log_agent_min_storage_per_vs": {
@@ -29356,7 +29356,7 @@ func ResourceSingleLicenseSchema() *schema.Resource {
 			"cpu_cores": {
 				Type:         schema.TypeString,
 				Optional:     true,
-				Default:      "0.0",
+				Default:      "0",
 				ValidateFunc: validateFloat,
 			},
 			"created_on": {
@@ -29427,7 +29427,7 @@ func ResourceSingleLicenseSchema() *schema.Resource {
 			"service_cores": {
 				Type:         schema.TypeString,
 				Optional:     true,
-				Default:      "0.0",
+				Default:      "0",
 				ValidateFunc: validateFloat,
 			},
 			"sockets": {
