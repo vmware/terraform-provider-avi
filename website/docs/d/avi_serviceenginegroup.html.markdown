@@ -166,8 +166,8 @@ In addition to all arguments above, the following attributes are exported:
 * `minimum_connection_memory` - Indicates the percent of memory reserved for connections. Allowed values are 0-100. Field introduced in 18.1.2. Unit is percent.
 * `n_log_streaming_threads` - Number of threads to use for log streaming. Allowed values are 1-100. Field introduced in 17.2.12, 18.1.2.
 * `name` - Name of the object.
-* `netlink_poller_threads` - Number of threads to poll for netlink messages excluding the thread for default namespace. Requires se reboot. Allowed values are 1-32. Field introduced in 20.1.3.
-* `netlink_sock_buf_size` - Socket buffer size for the netlink sockets. Requires se reboot. Allowed values are 1-128. Field introduced in 20.1.3. Unit is mega_bytes.
+* `netlink_poller_threads` - Number of threads to poll for netlink messages excluding the thread for default namespace. Requires se reboot. Allowed values are 1-32. Field introduced in 21.1.1.
+* `netlink_sock_buf_size` - Socket buffer size for the netlink sockets. Requires se reboot. Allowed values are 1-128. Field introduced in 21.1.1. Unit is mega_bytes.
 * `ngx_free_connection_stack` - Free the connection stack. Field introduced in 21.1.1.
 * `non_significant_log_throttle` - This setting limits the number of non-significant logs generated per second per core on this se. Default is 100 logs per second. Set it to zero (0) to deactivate throttling. Field introduced in 17.1.3. Unit is per_second.
 * `ns_helper_deq_interval_msec` - Dequeue interval for receive queue from ns helper. Allowed values are 1-1000. Field introduced in 21.1.1. Unit is milliseconds. Allowed in basic edition, essentials edition, enterprise edition.
