@@ -32,7 +32,7 @@ data "avi_inventoryfaultconfig" "foo_inventoryfaultconfig" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 20.1.6.
+* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1.
 * `controller_faults` - Configure controller faults. Field introduced in 20.1.6.
 * `name` - Name. Field introduced in 20.1.6.
 * `serviceengine_faults` - Configure serviceengine faults. Field introduced in 20.1.6.

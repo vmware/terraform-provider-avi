@@ -27,7 +27,7 @@ resource "avi_inventoryfaultconfig" "foo" {
 
 The following arguments are supported:
 
-* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 20.1.6.
+* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1.
 * `controller_faults` - (Optional) Configure controller faults. Field introduced in 20.1.6.
 * `name` - (Optional) Name. Field introduced in 20.1.6.
 * `serviceengine_faults` - (Optional) Configure serviceengine faults. Field introduced in 20.1.6.
