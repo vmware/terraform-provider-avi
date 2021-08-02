@@ -5933,6 +5933,28 @@ func ResourceConnPoolPropertiesSchema() *schema.Resource {
 	}
 }
 
+func ResourceConnectionEventDetailsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"host": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"info": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"port": {
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
 func ResourceConnectionLogSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -10024,6 +10046,12 @@ func ResourceEventDetailsSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 				Elem:     ResourceConfigUserNotAuthrzByRuleSchema(),
+			},
+			"connection_event": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceConnectionEventDetailsSchema(),
 			},
 			"container_cloud_batch_setup": {
 				Type:     schema.TypeSet,
