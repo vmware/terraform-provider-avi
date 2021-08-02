@@ -444,7 +444,7 @@ func APIRead(d *schema.ResourceData, meta interface{}, objType string, s map[str
 		if err != nil {
 			log.Printf("[ERROR] APIRead in modifying api response object %v\n", err)
 		}
-		modAPIRes, err = PreprocessAPIRes(obj, s)
+		modAPIRes, err = PreprocessAPIRes(modAPIRes, s)
 		if err != nil {
 			log.Printf("[ERROR] APIRead in modifying api response object for conversion %v\n", err)
 		}
