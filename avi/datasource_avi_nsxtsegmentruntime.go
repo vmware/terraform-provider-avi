@@ -20,7 +20,7 @@ func dataSourceAviNsxtSegmentRuntime() *schema.Resource {
 				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
 			"dhcp_enabled": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"dhcp_ranges": {

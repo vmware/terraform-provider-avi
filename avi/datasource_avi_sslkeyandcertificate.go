@@ -20,7 +20,7 @@ func dataSourceAviSSLKeyAndCertificate() *schema.Resource {
 				Elem:     ResourceSSLCertificateSchema(),
 			},
 			"certificate_base64": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"certificate_management_profile_ref": {
@@ -42,7 +42,7 @@ func dataSourceAviSSLKeyAndCertificate() *schema.Resource {
 				Elem:     ResourceCustomParamsSchema(),
 			},
 			"enable_ocsp_stapling": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"enckey_base64": {
@@ -66,7 +66,7 @@ func dataSourceAviSSLKeyAndCertificate() *schema.Resource {
 				Computed: true,
 			},
 			"key_base64": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"key_params": {

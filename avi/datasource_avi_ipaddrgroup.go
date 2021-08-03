@@ -39,7 +39,7 @@ func dataSourceAviIpAddrGroup() *schema.Resource {
 				Computed: true,
 			},
 			"marathon_service_port": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"markers": {

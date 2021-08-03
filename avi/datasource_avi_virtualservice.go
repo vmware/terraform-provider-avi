@@ -14,11 +14,11 @@ func dataSourceAviVirtualService() *schema.Resource {
 				Computed: true,
 			},
 			"advertise_down_vs": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"allow_invalid_client_cert": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"analytics_policy": {
@@ -44,11 +44,11 @@ func dataSourceAviVirtualService() *schema.Resource {
 				Computed: true,
 			},
 			"bulk_sync_kvcache": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"close_client_conn_on_config_update": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"cloud_config_cksum": {
@@ -84,7 +84,7 @@ func dataSourceAviVirtualService() *schema.Resource {
 				Computed: true,
 			},
 			"delay_fairness": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"description": {
@@ -102,23 +102,23 @@ func dataSourceAviVirtualService() *schema.Resource {
 				Elem:     ResourceDnsPoliciesSchema(),
 			},
 			"east_west_placement": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"enable_autogw": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"enable_rhi": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"enable_rhi_snat": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"enabled": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"error_page_profile_ref": {
@@ -152,7 +152,7 @@ func dataSourceAviVirtualService() *schema.Resource {
 				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
 			"ign_pool_net_reach": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"jwt_config": {
@@ -171,7 +171,7 @@ func dataSourceAviVirtualService() *schema.Resource {
 				Elem:     ResourceLDAPVSConfigSchema(),
 			},
 			"limit_doser": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"markers": {
@@ -180,7 +180,7 @@ func dataSourceAviVirtualService() *schema.Resource {
 				Elem:     ResourceRoleFilterMatchLabelSchema(),
 			},
 			"max_cps_per_client": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"microservice_ref": {
@@ -188,7 +188,7 @@ func dataSourceAviVirtualService() *schema.Resource {
 				Computed: true,
 			},
 			"min_pools_up": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"name": {
@@ -223,7 +223,7 @@ func dataSourceAviVirtualService() *schema.Resource {
 				Computed: true,
 			},
 			"remove_listening_port_on_vs_down": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"requests_rate_limit": {
@@ -237,7 +237,7 @@ func dataSourceAviVirtualService() *schema.Resource {
 				Elem:     ResourceSAMLSPConfigSchema(),
 			},
 			"scaleout_ecmp": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"se_group_ref": {
@@ -291,7 +291,7 @@ func dataSourceAviVirtualService() *schema.Resource {
 				Elem:     ResourceSSLProfileSelectorSchema(),
 			},
 			"ssl_sess_cache_avg_size": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"sso_policy_ref": {
@@ -322,7 +322,7 @@ func dataSourceAviVirtualService() *schema.Resource {
 				Computed: true,
 			},
 			"traffic_enabled": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"type": {
@@ -330,11 +330,11 @@ func dataSourceAviVirtualService() *schema.Resource {
 				Computed: true,
 			},
 			"use_bridge_ip_as_vip": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"use_vip_as_snat": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"uuid": {
@@ -387,7 +387,7 @@ func dataSourceAviVirtualService() *schema.Resource {
 				Computed: true,
 			},
 			"weight": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 		},

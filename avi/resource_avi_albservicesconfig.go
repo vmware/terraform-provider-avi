@@ -51,9 +51,10 @@ func ResourceALBServicesConfigSchema() map[string]*schema.Schema {
 			Default:  "MYVMWARE",
 		},
 		"polling_interval": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Default:  10,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "10",
+			ValidateFunc: validateInteger,
 		},
 		"portal_url": {
 			Type:     schema.TypeString,
@@ -66,14 +67,16 @@ func ResourceALBServicesConfigSchema() map[string]*schema.Schema {
 			Elem:     ResourceProxyConfigurationSchema(),
 		},
 		"use_split_proxy": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
 		},
 		"use_tls": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  true,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "true",
+			ValidateFunc: validateBool,
 		},
 		"user_agent_db_config": {
 			Type:     schema.TypeSet,

@@ -49,9 +49,10 @@ func ResourceApplicationPersistenceProfileSchema() map[string]*schema.Schema {
 			Elem:     ResourceIPPersistenceProfileSchema(),
 		},
 		"is_federated": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
 		},
 		"markers": {
 			Type:     schema.TypeList,

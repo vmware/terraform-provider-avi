@@ -20,9 +20,10 @@ func ResourceNetworkProfileSchema() map[string]*schema.Schema {
 			Elem:     ResourceConfigPbAttributesSchema(),
 		},
 		"connection_mirror": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
 		},
 		"description": {
 			Type:     schema.TypeString,

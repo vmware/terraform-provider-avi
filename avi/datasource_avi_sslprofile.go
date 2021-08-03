@@ -45,11 +45,11 @@ func dataSourceAviSSLProfile() *schema.Resource {
 				Computed: true,
 			},
 			"enable_early_data": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"enable_ssl_session_reuse": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"markers": {
@@ -63,11 +63,11 @@ func dataSourceAviSSLProfile() *schema.Resource {
 				Computed: true,
 			},
 			"prefer_client_cipher_ordering": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"send_close_notify": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"signature_algorithm": {
@@ -80,7 +80,7 @@ func dataSourceAviSSLProfile() *schema.Resource {
 				Elem:     ResourceSSLRatingSchema(),
 			},
 			"ssl_session_timeout": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"tags": {

@@ -48,7 +48,7 @@ func dataSourceAviAutoScaleLaunchConfig() *schema.Resource {
 				Computed: true,
 			},
 			"use_external_asg": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"uuid": {
