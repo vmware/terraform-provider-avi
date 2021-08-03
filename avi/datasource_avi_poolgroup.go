@@ -36,7 +36,7 @@ func dataSourceAviPoolGroup() *schema.Resource {
 				Computed: true,
 			},
 			"enable_http2": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"fail_action": {
@@ -45,7 +45,7 @@ func dataSourceAviPoolGroup() *schema.Resource {
 				Elem:     ResourceFailActionSchema(),
 			},
 			"implicit_priority_labels": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"markers": {
@@ -59,7 +59,7 @@ func dataSourceAviPoolGroup() *schema.Resource {
 				Elem:     ResourcePoolGroupMemberSchema(),
 			},
 			"min_servers": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"name": {

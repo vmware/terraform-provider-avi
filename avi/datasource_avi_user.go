@@ -27,11 +27,11 @@ func dataSourceAviUser() *schema.Resource {
 				Computed: true,
 			},
 			"is_superuser": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"local": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"name": {

@@ -10,11 +10,11 @@ func dataSourceAviUpgradeStatusSummary() *schema.Resource {
 		Read: ResourceAviUpgradeStatusSummaryRead,
 		Schema: map[string]*schema.Schema{
 			"enable_patch_rollback": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"enable_rollback": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"end_time": {
@@ -52,7 +52,7 @@ func dataSourceAviUpgradeStatusSummary() *schema.Resource {
 				Elem:     ResourceUpgradeOpsStateSchema(),
 			},
 			"tasks_completed": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"tenant_ref": {
@@ -61,7 +61,7 @@ func dataSourceAviUpgradeStatusSummary() *schema.Resource {
 				Computed: true,
 			},
 			"total_tasks": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"upgrade_ops": {

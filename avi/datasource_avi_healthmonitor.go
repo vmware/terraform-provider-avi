@@ -10,7 +10,7 @@ func dataSourceAviHealthMonitor() *schema.Resource {
 		Read: ResourceAviHealthMonitorRead,
 		Schema: map[string]*schema.Schema{
 			"allow_duplicate_monitors": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"authentication": {
@@ -28,7 +28,7 @@ func dataSourceAviHealthMonitor() *schema.Resource {
 				Computed: true,
 			},
 			"disable_quickstart": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"dns_monitor": {
@@ -42,7 +42,7 @@ func dataSourceAviHealthMonitor() *schema.Resource {
 				Elem:     ResourceHealthMonitorExternalSchema(),
 			},
 			"failed_checks": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"http_monitor": {
@@ -66,7 +66,7 @@ func dataSourceAviHealthMonitor() *schema.Resource {
 				Elem:     ResourceHealthMonitorImapSchema(),
 			},
 			"is_federated": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"markers": {
@@ -75,7 +75,7 @@ func dataSourceAviHealthMonitor() *schema.Resource {
 				Elem:     ResourceRoleFilterMatchLabelSchema(),
 			},
 			"monitor_port": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"name": {
@@ -99,11 +99,11 @@ func dataSourceAviHealthMonitor() *schema.Resource {
 				Elem:     ResourceHealthMonitorRadiusSchema(),
 			},
 			"receive_timeout": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"send_interval": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"sip_monitor": {
@@ -122,7 +122,7 @@ func dataSourceAviHealthMonitor() *schema.Resource {
 				Elem:     ResourceHealthMonitorSmtpSchema(),
 			},
 			"successful_checks": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"tcp_monitor": {

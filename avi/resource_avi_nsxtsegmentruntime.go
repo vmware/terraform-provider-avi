@@ -24,9 +24,10 @@ func ResourceNsxtSegmentRuntimeSchema() map[string]*schema.Schema {
 			Elem:     &schema.Schema{Type: schema.TypeString},
 		},
 		"dhcp_enabled": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  true,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "true",
+			ValidateFunc: validateBool,
 		},
 		"dhcp_ranges": {
 			Type:     schema.TypeList,

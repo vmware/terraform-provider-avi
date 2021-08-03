@@ -10,11 +10,11 @@ func dataSourceAviIcapProfile() *schema.Resource {
 		Read: ResourceAviIcapProfileRead,
 		Schema: map[string]*schema.Schema{
 			"allow_204": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"buffer_size": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"buffer_size_exceed_action": {
@@ -36,7 +36,7 @@ func dataSourceAviIcapProfile() *schema.Resource {
 				Computed: true,
 			},
 			"enable_preview": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"fail_action": {
@@ -58,11 +58,11 @@ func dataSourceAviIcapProfile() *schema.Resource {
 				Computed: true,
 			},
 			"preview_size": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"response_timeout": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"service_uri": {
@@ -70,7 +70,7 @@ func dataSourceAviIcapProfile() *schema.Resource {
 				Computed: true,
 			},
 			"slow_response_warning_threshold": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"tenant_ref": {
