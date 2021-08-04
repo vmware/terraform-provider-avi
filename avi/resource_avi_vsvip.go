@@ -29,9 +29,10 @@ func ResourceVsVipSchema() map[string]*schema.Schema {
 			Elem:     ResourceDnsInfoSchema(),
 		},
 		"east_west_placement": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
 		},
 		"ipam_selector": {
 			Type:     schema.TypeSet,
@@ -59,9 +60,10 @@ func ResourceVsVipSchema() map[string]*schema.Schema {
 			Computed: true,
 		},
 		"use_standard_alb": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Computed: true,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Computed:     true,
+			ValidateFunc: validateBool,
 		},
 		"uuid": {
 			Type:     schema.TypeString,

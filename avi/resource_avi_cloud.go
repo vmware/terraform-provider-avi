@@ -25,14 +25,16 @@ func ResourceCloudSchema() map[string]*schema.Schema {
 			Elem:     ResourceAPICConfigurationSchema(),
 		},
 		"apic_mode": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
 		},
 		"autoscale_polling_interval": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Default:  60,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "60",
+			ValidateFunc: validateInteger,
 		},
 		"aws_configuration": {
 			Type:     schema.TypeSet,
@@ -58,9 +60,10 @@ func ResourceCloudSchema() map[string]*schema.Schema {
 			Elem:     ResourceCustomTagSchema(),
 		},
 		"dhcp_enabled": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
 		},
 		"dns_provider_ref": {
 			Type:     schema.TypeString,
@@ -68,9 +71,10 @@ func ResourceCloudSchema() map[string]*schema.Schema {
 			Computed: true,
 		},
 		"dns_resolution_on_se": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
 		},
 		"dns_resolvers": {
 			Type:     schema.TypeList,
@@ -94,14 +98,16 @@ func ResourceCloudSchema() map[string]*schema.Schema {
 			Computed: true,
 		},
 		"enable_vip_on_all_interfaces": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
 		},
 		"enable_vip_static_routes": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
 		},
 		"gcp_configuration": {
 			Type:     schema.TypeSet,
@@ -110,9 +116,10 @@ func ResourceCloudSchema() map[string]*schema.Schema {
 			Elem:     ResourceGCPConfigurationSchema(),
 		},
 		"ip6_autocfg_enabled": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
 		},
 		"ipam_provider_ref": {
 			Type:     schema.TypeString,
@@ -136,9 +143,10 @@ func ResourceCloudSchema() map[string]*schema.Schema {
 			Elem:     ResourceLinuxServerConfigurationSchema(),
 		},
 		"mtu": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Default:  1500,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "1500",
+			ValidateFunc: validateInteger,
 		},
 		"name": {
 			Type:     schema.TypeString,
@@ -168,9 +176,10 @@ func ResourceCloudSchema() map[string]*schema.Schema {
 			Elem:     ResourceOpenStackConfigurationSchema(),
 		},
 		"prefer_static_routes": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
 		},
 		"proxy_configuration": {
 			Type:     schema.TypeSet,
@@ -190,9 +199,10 @@ func ResourceCloudSchema() map[string]*schema.Schema {
 			Computed: true,
 		},
 		"state_based_dns_registration": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  true,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "true",
+			ValidateFunc: validateBool,
 		},
 		"tenant_ref": {
 			Type:     schema.TypeString,
@@ -217,9 +227,10 @@ func ResourceCloudSchema() map[string]*schema.Schema {
 			Elem:     ResourcevCenterConfigurationSchema(),
 		},
 		"vmc_deployment": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
 		},
 		"vtype": {
 			Type:     schema.TypeString,

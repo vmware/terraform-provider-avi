@@ -45,9 +45,10 @@ func ResourceIpAddrGroupSchema() map[string]*schema.Schema {
 			Computed: true,
 		},
 		"marathon_service_port": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Computed: true,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Computed:     true,
+			ValidateFunc: validateInteger,
 		},
 		"markers": {
 			Type:     schema.TypeList,

@@ -25,15 +25,15 @@ func dataSourceAviNetwork() *schema.Resource {
 				Elem:     ResourceSubnetSchema(),
 			},
 			"dhcp_enabled": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"exclude_discovered_subnets": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"ip6_autocfg_enabled": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"markers": {
@@ -47,7 +47,7 @@ func dataSourceAviNetwork() *schema.Resource {
 				Computed: true,
 			},
 			"synced_from_se": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"tenant_ref": {
@@ -61,7 +61,7 @@ func dataSourceAviNetwork() *schema.Resource {
 				Computed: true,
 			},
 			"vcenter_dvs": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"vrf_context_ref": {

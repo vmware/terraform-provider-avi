@@ -58,9 +58,10 @@ func ResourceVrfContextSchema() map[string]*schema.Schema {
 			Elem:     ResourceInternalGatewayMonitorSchema(),
 		},
 		"lldp_enable": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  true,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "true",
+			ValidateFunc: validateBool,
 		},
 		"markers": {
 			Type:     schema.TypeList,
@@ -77,9 +78,10 @@ func ResourceVrfContextSchema() map[string]*schema.Schema {
 			Elem:     ResourceStaticRouteSchema(),
 		},
 		"system_default": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
 		},
 		"tenant_ref": {
 			Type:     schema.TypeString,

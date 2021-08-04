@@ -33,9 +33,10 @@ func ResourceTrafficCloneProfileSchema() map[string]*schema.Schema {
 			Required: true,
 		},
 		"preserve_client_ip": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
 		},
 		"tenant_ref": {
 			Type:     schema.TypeString,

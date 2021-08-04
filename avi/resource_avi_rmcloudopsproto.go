@@ -14,9 +14,10 @@ import (
 func ResourceRmCloudOpsProtoSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"last_queried_se_creation_limit": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Computed: true,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Computed:     true,
+			ValidateFunc: validateInteger,
 		},
 		"name": {
 			Type:     schema.TypeString,
@@ -24,14 +25,16 @@ func ResourceRmCloudOpsProtoSchema() map[string]*schema.Schema {
 			Computed: true,
 		},
 		"pending_se_creation_count": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Computed: true,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Computed:     true,
+			ValidateFunc: validateInteger,
 		},
 		"pending_vnic_op_count": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Computed: true,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Computed:     true,
+			ValidateFunc: validateInteger,
 		},
 		"uuid": {
 			Type:     schema.TypeString,

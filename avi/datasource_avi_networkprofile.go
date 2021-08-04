@@ -10,7 +10,7 @@ func dataSourceAviNetworkProfile() *schema.Resource {
 		Read: ResourceAviNetworkProfileRead,
 		Schema: map[string]*schema.Schema{
 			"connection_mirror": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"description": {

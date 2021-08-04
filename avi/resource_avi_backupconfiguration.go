@@ -45,9 +45,10 @@ func ResourceBackupConfigurationSchema() map[string]*schema.Schema {
 			DiffSuppressFunc: suppressSensitiveFieldDiffs,
 		},
 		"maximum_backups_stored": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Default:  4,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "4",
+			ValidateFunc: validateInteger,
 		},
 		"name": {
 			Type:     schema.TypeString,
@@ -64,9 +65,10 @@ func ResourceBackupConfigurationSchema() map[string]*schema.Schema {
 			Computed: true,
 		},
 		"save_local": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Computed: true,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Computed:     true,
+			ValidateFunc: validateBool,
 		},
 		"ssh_user_ref": {
 			Type:     schema.TypeString,
@@ -79,14 +81,16 @@ func ResourceBackupConfigurationSchema() map[string]*schema.Schema {
 			Computed: true,
 		},
 		"upload_to_remote_host": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Computed: true,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Computed:     true,
+			ValidateFunc: validateBool,
 		},
 		"upload_to_s3": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Computed: true,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Computed:     true,
+			ValidateFunc: validateBool,
 		},
 		"uuid": {
 			Type:     schema.TypeString,

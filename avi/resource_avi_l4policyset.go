@@ -24,9 +24,10 @@ func ResourceL4PolicySetSchema() map[string]*schema.Schema {
 			Computed: true,
 		},
 		"is_internal_policy": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
 		},
 		"l4_connection_policy": {
 			Type:     schema.TypeSet,

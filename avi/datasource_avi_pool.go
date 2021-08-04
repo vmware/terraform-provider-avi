@@ -45,11 +45,11 @@ func dataSourceAviPool() *schema.Resource {
 				Computed: true,
 			},
 			"capacity_estimation": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"capacity_estimation_ttfb_thresh": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"cloud_config_cksum": {
@@ -67,7 +67,7 @@ func dataSourceAviPool() *schema.Resource {
 				Elem:     ResourceConnPoolPropertiesSchema(),
 			},
 			"connection_ramp_duration": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"created_by": {
@@ -75,11 +75,11 @@ func dataSourceAviPool() *schema.Resource {
 				Computed: true,
 			},
 			"default_server_port": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"delete_server_on_dns_refresh": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"description": {
@@ -92,15 +92,15 @@ func dataSourceAviPool() *schema.Resource {
 				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
 			"east_west": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"enable_http2": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"enabled": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"external_autoscale_groups": {
@@ -114,11 +114,11 @@ func dataSourceAviPool() *schema.Resource {
 				Elem:     ResourceFailActionSchema(),
 			},
 			"fewest_tasks_feedback_delay": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"graceful_disable_timeout": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"health_monitor_refs": {
@@ -127,15 +127,15 @@ func dataSourceAviPool() *schema.Resource {
 				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
 			"host_check_enabled": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"ignore_server_port": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"inline_health_monitor": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"ipaddrgroup_ref": {
@@ -151,7 +151,7 @@ func dataSourceAviPool() *schema.Resource {
 				Computed: true,
 			},
 			"lb_algorithm_core_nonaffinity": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"lb_algorithm_hash": {
@@ -159,7 +159,7 @@ func dataSourceAviPool() *schema.Resource {
 				Computed: true,
 			},
 			"lookup_server_by_name": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"markers": {
@@ -168,7 +168,7 @@ func dataSourceAviPool() *schema.Resource {
 				Elem:     ResourceRoleFilterMatchLabelSchema(),
 			},
 			"max_concurrent_connections_per_server": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"max_conn_rate_per_server": {
@@ -177,11 +177,11 @@ func dataSourceAviPool() *schema.Resource {
 				Elem:     ResourceRateProfileSchema(),
 			},
 			"min_health_monitors_up": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"min_servers_up": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"name": {
@@ -209,27 +209,27 @@ func dataSourceAviPool() *schema.Resource {
 				Elem:     ResourcePlacementNetworkSchema(),
 			},
 			"request_queue_depth": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"request_queue_enabled": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"resolve_pool_by_dns": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"rewrite_host_header_to_server_name": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"rewrite_host_header_to_sni": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"routing_pool": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"server_name": {
@@ -242,7 +242,7 @@ func dataSourceAviPool() *schema.Resource {
 				Elem:     ResourceHTTPServerReselectSchema(),
 			},
 			"server_timeout": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"servers": {
@@ -255,7 +255,7 @@ func dataSourceAviPool() *schema.Resource {
 				Computed: true,
 			},
 			"sni_enabled": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"ssl_key_and_certificate_ref": {
@@ -276,7 +276,7 @@ func dataSourceAviPool() *schema.Resource {
 				Computed: true,
 			},
 			"use_service_port": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"uuid": {

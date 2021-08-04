@@ -25,7 +25,7 @@ func dataSourceAviVsVip() *schema.Resource {
 				Elem:     ResourceDnsInfoSchema(),
 			},
 			"east_west_placement": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"ipam_selector": {
@@ -53,7 +53,7 @@ func dataSourceAviVsVip() *schema.Resource {
 				Computed: true,
 			},
 			"use_standard_alb": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"uuid": {

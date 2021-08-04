@@ -18,19 +18,19 @@ func dataSourceAviUpgradeStatusInfo() *schema.Resource {
 				Computed: true,
 			},
 			"clean": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"duration": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"enable_patch_rollback": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"enable_rollback": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"end_time": {
@@ -42,7 +42,7 @@ func dataSourceAviUpgradeStatusInfo() *schema.Resource {
 				Computed: true,
 			},
 			"fips_mode": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"history": {
@@ -90,7 +90,7 @@ func dataSourceAviUpgradeStatusInfo() *schema.Resource {
 				Elem:     ResourcePatchDataSchema(),
 			},
 			"patch_reboot": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"patch_version": {
@@ -127,7 +127,7 @@ func dataSourceAviUpgradeStatusInfo() *schema.Resource {
 				Computed: true,
 			},
 			"progress": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"se_patch_image_path": {
@@ -163,11 +163,11 @@ func dataSourceAviUpgradeStatusInfo() *schema.Resource {
 				Elem:     ResourceUpgradeOpsStateSchema(),
 			},
 			"system": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"tasks_completed": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"tenant_ref": {
@@ -176,7 +176,7 @@ func dataSourceAviUpgradeStatusInfo() *schema.Resource {
 				Computed: true,
 			},
 			"total_tasks": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"upgrade_events": {
