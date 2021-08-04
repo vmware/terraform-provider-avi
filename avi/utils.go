@@ -226,7 +226,6 @@ func APIDataToSchema(adata interface{}, d interface{}, t map[string]*schema.Sche
 						switch dType := d.(type) {
 						default:
 						case *schema.ResourceData:
-							log.Printf("Hiiiiiii 111111")
 							if err := d.(*schema.ResourceData).Set(k, obj); err != nil {
 								log.Printf("[ERROR] APIDataToSchema %v in setting %v   type %v", err, obj, dType)
 							}
@@ -347,6 +346,7 @@ func APICreateOrUpdate(d *schema.ResourceData, meta interface{}, objType string,
 				} else {
 					// found existing object.
 					SetIDFromObj(d, existingObj)
+					log.Printf("[INFO] APICreateOrUpdate: Updating obj type %v schema %v data %v\n", objType, d, data)
 					uuid = existingObj.(map[string]interface{})["uuid"].(string)
 					path = path + "/" + uuid.(string) + "?skip_default=true"
 					if !usePatchForUpdate {
