@@ -71,9 +71,10 @@ func ResourceImageSchema() map[string]*schema.Schema {
 			Computed: true,
 		},
 		"uber_bundle": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
 		},
 		"uuid": {
 			Type:     schema.TypeString,

@@ -51,14 +51,16 @@ func ResourceApplicationProfileSchema() map[string]*schema.Schema {
 			Required: true,
 		},
 		"preserve_client_ip": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
 		},
 		"preserve_client_port": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
 		},
 		"sip_service_profile": {
 			Type:     schema.TypeSet,

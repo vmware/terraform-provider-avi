@@ -19,9 +19,10 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 			Default:  "ACTIVE_STANDBY_SE_1",
 		},
 		"allow_invalid_client_cert": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
 		},
 		"analytics_policy": {
 			Type:     schema.TypeSet,
@@ -45,9 +46,10 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 			Computed: true,
 		},
 		"bulk_sync_kvcache": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
 		},
 		"client_auth": {
 			Type:     schema.TypeSet,
@@ -56,9 +58,10 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 			Elem:     ResourceHTTPClientAuthenticationParamsSchema(),
 		},
 		"close_client_conn_on_config_update": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
 		},
 		"cloud_config_cksum": {
 			Type:     schema.TypeString,
@@ -93,9 +96,10 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 			Computed: true,
 		},
 		"delay_fairness": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
 		},
 		"description": {
 			Type:     schema.TypeString,
@@ -113,29 +117,34 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 			Elem:     ResourceDnsPoliciesSchema(),
 		},
 		"east_west_placement": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
 		},
 		"enable_autogw": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  true,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "true",
+			ValidateFunc: validateBool,
 		},
 		"enable_rhi": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Computed: true,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Computed:     true,
+			ValidateFunc: validateBool,
 		},
 		"enable_rhi_snat": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Computed: true,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Computed:     true,
+			ValidateFunc: validateBool,
 		},
 		"enabled": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  true,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "true",
+			ValidateFunc: validateBool,
 		},
 		"error_page_profile_ref": {
 			Type:     schema.TypeString,
@@ -168,9 +177,10 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 			Elem:     ResourceHTTPPoliciesSchema(),
 		},
 		"ign_pool_net_reach": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
 		},
 		"l4_policies": {
 			Type:     schema.TypeList,
@@ -178,14 +188,16 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 			Elem:     ResourceL4PoliciesSchema(),
 		},
 		"limit_doser": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
 		},
 		"max_cps_per_client": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Default:  0,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "0",
+			ValidateFunc: validateInteger,
 		},
 		"microservice_ref": {
 			Type:     schema.TypeString,
@@ -193,9 +205,10 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 			Computed: true,
 		},
 		"min_pools_up": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Computed: true,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Computed:     true,
+			ValidateFunc: validateInteger,
 		},
 		"name": {
 			Type:     schema.TypeString,
@@ -233,9 +246,10 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 			Computed: true,
 		},
 		"remove_listening_port_on_vs_down": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
 		},
 		"requests_rate_limit": {
 			Type:     schema.TypeSet,
@@ -250,9 +264,10 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 			Elem:     ResourceSAMLSPConfigSchema(),
 		},
 		"scaleout_ecmp": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
 		},
 		"se_group_ref": {
 			Type:     schema.TypeString,
@@ -311,9 +326,10 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 			Elem:     ResourceSSLProfileSelectorSchema(),
 		},
 		"ssl_sess_cache_avg_size": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Default:  1024,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "1024",
+			ValidateFunc: validateInteger,
 		},
 		"sso_policy_ref": {
 			Type:     schema.TypeString,
@@ -346,9 +362,10 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 			Computed: true,
 		},
 		"traffic_enabled": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  true,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "true",
+			ValidateFunc: validateBool,
 		},
 		"type": {
 			Type:     schema.TypeString,
@@ -356,14 +373,16 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 			Default:  "VS_TYPE_NORMAL",
 		},
 		"use_bridge_ip_as_vip": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
 		},
 		"use_vip_as_snat": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
 		},
 		"uuid": {
 			Type:     schema.TypeString,
@@ -411,9 +430,10 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 			Computed: true,
 		},
 		"weight": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Default:  1,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "1",
+			ValidateFunc: validateInteger,
 		},
 	}
 }
@@ -468,7 +488,13 @@ func resourceAviVirtualServiceUpdate(d *schema.ResourceData, meta interface{}) e
 		//Before GO lang sets zero value to fields which are absent in api response
 		//setting those fields to schema default and then overwritting d (local state)
 		if localData, err := SchemaToAviData(d, s); err == nil {
-			apiResponse, _ = SetDefaultsInAPIRes(existingvirtualservice, localData, s)
+			if apiResponse, err = SetDefaultsInAPIRes(existingvirtualservice, localData, s); err == nil {
+				if apiResponse, err = PreprocessAPIRes(apiResponse, s); err != nil {
+					log.Printf("[ERROR] In modifying virtualservice api response object for type conversion %v\n", err)
+				}
+			} else {
+				log.Printf("[ERROR] In modifying virtualservice api response object for defaults %v\n", err)
+			}
 		} else {
 			log.Printf("[ERROR] resourceAviVirtualServiceUpdate in SchemaToAviData: %v\n", err)
 		}

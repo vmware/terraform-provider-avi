@@ -1,6 +1,7 @@
 package avi
 
 import (
+	"fmt"
 	"log"
 	"os"
 	"strconv"
@@ -22,4 +23,22 @@ func suppressSensitiveFieldDiffs(k, old, new string, d *schema.ResourceData) boo
 		}
 	}
 	return suppressSensitiveDiff
+}
+func validateInteger(val interface{}, key string) (warns []string, errs []error) {
+	if _, err := strconv.ParseInt(val.(string), 10, 64); err != nil {
+		errs = append(errs, fmt.Errorf("[ERROR] %q must be valid integers value: %v", key, val))
+	}
+	return
+}
+func validateBool(val interface{}, key string) (warns []string, errs []error) {
+	if _, err := strconv.ParseBool(val.(string)); err != nil {
+		errs = append(errs, fmt.Errorf("[ERROR] %q must be valid boolean value: %v", key, val))
+	}
+	return
+}
+func validateFloat(val interface{}, key string) (warns []string, errs []error) {
+	if _, err := strconv.ParseFloat(val.(string), 64); err != nil {
+		errs = append(errs, fmt.Errorf("[ERROR] %q must be valid float value: %v", key, val))
+	}
+	return
 }

@@ -19,7 +19,7 @@ func dataSourceAviSecurityPolicy() *schema.Resource {
 				Elem:     ResourceDnsAttacksSchema(),
 			},
 			"dns_policy_index": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"name": {
@@ -28,7 +28,7 @@ func dataSourceAviSecurityPolicy() *schema.Resource {
 				Computed: true,
 			},
 			"network_security_policy_index": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"oper_mode": {

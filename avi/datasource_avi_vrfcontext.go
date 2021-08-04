@@ -44,7 +44,7 @@ func dataSourceAviVrfContext() *schema.Resource {
 				Elem:     ResourceKeyValueSchema(),
 			},
 			"lldp_enable": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"name": {
@@ -58,7 +58,7 @@ func dataSourceAviVrfContext() *schema.Resource {
 				Elem:     ResourceStaticRouteSchema(),
 			},
 			"system_default": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"tenant_ref": {

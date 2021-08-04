@@ -52,9 +52,10 @@ func ResourceVrfContextSchema() map[string]*schema.Schema {
 			Elem:     ResourceKeyValueSchema(),
 		},
 		"lldp_enable": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  true,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "true",
+			ValidateFunc: validateBool,
 		},
 		"name": {
 			Type:     schema.TypeString,
@@ -66,9 +67,10 @@ func ResourceVrfContextSchema() map[string]*schema.Schema {
 			Elem:     ResourceStaticRouteSchema(),
 		},
 		"system_default": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
 		},
 		"tenant_ref": {
 			Type:     schema.TypeString,

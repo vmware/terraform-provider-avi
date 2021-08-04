@@ -10,7 +10,7 @@ func dataSourceAviCustomerPortalInfo() *schema.Resource {
 		Read: ResourceAviCustomerPortalInfoRead,
 		Schema: map[string]*schema.Schema{
 			"polling_interval": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"portal_url": {

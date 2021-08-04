@@ -11,7 +11,7 @@ func dataSourceAviIpamDnsProviderProfile() *schema.Resource {
 		Read: ResourceAviIpamDnsProviderProfileRead,
 		Schema: map[string]*schema.Schema{
 			"allocate_ip_in_vrf": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"aws_profile": {

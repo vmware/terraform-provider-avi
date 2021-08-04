@@ -19,7 +19,7 @@ func dataSourceAviControllerSite() *schema.Resource {
 				Computed: true,
 			},
 			"port": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"tenant_ref": {

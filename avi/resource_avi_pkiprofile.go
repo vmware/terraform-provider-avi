@@ -24,9 +24,10 @@ func ResourcePKIProfileSchema() map[string]*schema.Schema {
 			Computed: true,
 		},
 		"crl_check": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  true,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "true",
+			ValidateFunc: validateBool,
 		},
 		"crls": {
 			Type:     schema.TypeList,
@@ -34,14 +35,16 @@ func ResourcePKIProfileSchema() map[string]*schema.Schema {
 			Elem:     ResourceCRLSchema(),
 		},
 		"ignore_peer_chain": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
 		},
 		"is_federated": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
 		},
 		"name": {
 			Type:     schema.TypeString,
@@ -58,9 +61,10 @@ func ResourcePKIProfileSchema() map[string]*schema.Schema {
 			Computed: true,
 		},
 		"validate_only_leaf_crl": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  true,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "true",
+			ValidateFunc: validateBool,
 		},
 	}
 }

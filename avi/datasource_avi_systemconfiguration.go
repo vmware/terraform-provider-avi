@@ -29,7 +29,7 @@ func dataSourceAviSystemConfiguration() *schema.Resource {
 				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
 			"docker_mode": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"email_configuration": {
@@ -93,7 +93,7 @@ func dataSourceAviSystemConfiguration() *schema.Resource {
 				Computed: true,
 			},
 			"welcome_workflow_complete": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 		},

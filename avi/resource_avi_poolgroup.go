@@ -45,9 +45,10 @@ func ResourcePoolGroupSchema() map[string]*schema.Schema {
 			Elem:     ResourceFailActionSchema(),
 		},
 		"implicit_priority_labels": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
 		},
 		"members": {
 			Type:     schema.TypeList,
@@ -55,9 +56,10 @@ func ResourcePoolGroupSchema() map[string]*schema.Schema {
 			Elem:     ResourcePoolGroupMemberSchema(),
 		},
 		"min_servers": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Default:  0,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "0",
+			ValidateFunc: validateInteger,
 		},
 		"name": {
 			Type:     schema.TypeString,

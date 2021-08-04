@@ -18,7 +18,7 @@ func dataSourceAviL4PolicySet() *schema.Resource {
 				Computed: true,
 			},
 			"is_internal_policy": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"l4_connection_policy": {

@@ -14,9 +14,10 @@ import (
 func ResourceWafPolicySchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"allow_mode_delegation": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  true,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "true",
+			ValidateFunc: validateBool,
 		},
 		"created_by": {
 			Type:     schema.TypeString,
@@ -34,9 +35,10 @@ func ResourceWafPolicySchema() map[string]*schema.Schema {
 			Computed: true,
 		},
 		"enable_app_learning": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
 		},
 		"failure_mode": {
 			Type:     schema.TypeString,

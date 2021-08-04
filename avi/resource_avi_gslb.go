@@ -14,14 +14,16 @@ import (
 func ResourceGslbSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"async_interval": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Default:  0,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "0",
+			ValidateFunc: validateInteger,
 		},
 		"clear_on_max_retries": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Default:  20,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "20",
+			ValidateFunc: validateInteger,
 		},
 		"client_ip_addr_group": {
 			Type:     schema.TypeSet,
@@ -40,37 +42,42 @@ func ResourceGslbSchema() map[string]*schema.Schema {
 			Elem:     ResourceDNSConfigSchema(),
 		},
 		"error_resync_interval": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Default:  300,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "300",
+			ValidateFunc: validateInteger,
 		},
 		"is_federated": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  true,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "true",
+			ValidateFunc: validateBool,
 		},
 		"leader_cluster_uuid": {
 			Type:     schema.TypeString,
 			Required: true,
 		},
 		"maintenance_mode": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
 		},
 		"name": {
 			Type:     schema.TypeString,
 			Required: true,
 		},
 		"send_interval": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Default:  15,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "15",
+			ValidateFunc: validateInteger,
 		},
 		"send_interval_prior_to_maintenance_mode": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Computed: true,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Computed:     true,
+			ValidateFunc: validateInteger,
 		},
 		"sites": {
 			Type:     schema.TypeList,
@@ -83,9 +90,10 @@ func ResourceGslbSchema() map[string]*schema.Schema {
 			Computed: true,
 		},
 		"tenant_scoped": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  true,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "true",
+			ValidateFunc: validateBool,
 		},
 		"third_party_sites": {
 			Type:     schema.TypeList,
@@ -98,9 +106,10 @@ func ResourceGslbSchema() map[string]*schema.Schema {
 			Computed: true,
 		},
 		"view_id": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Default:  0,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "0",
+			ValidateFunc: validateInteger,
 		},
 	}
 }

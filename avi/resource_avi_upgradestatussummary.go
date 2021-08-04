@@ -14,14 +14,16 @@ import (
 func ResourceUpgradeStatusSummarySchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"enable_patch_rollback": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
 		},
 		"enable_rollback": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
 		},
 		"end_time": {
 			Type:     schema.TypeString,
@@ -65,9 +67,10 @@ func ResourceUpgradeStatusSummarySchema() map[string]*schema.Schema {
 			Elem:     ResourceUpgradeOpsStateSchema(),
 		},
 		"tasks_completed": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Computed: true,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Computed:     true,
+			ValidateFunc: validateInteger,
 		},
 		"tenant_ref": {
 			Type:     schema.TypeString,
@@ -75,9 +78,10 @@ func ResourceUpgradeStatusSummarySchema() map[string]*schema.Schema {
 			Computed: true,
 		},
 		"total_tasks": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Computed: true,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Computed:     true,
+			ValidateFunc: validateInteger,
 		},
 		"upgrade_ops": {
 			Type:     schema.TypeString,

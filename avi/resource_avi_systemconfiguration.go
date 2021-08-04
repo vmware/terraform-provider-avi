@@ -36,9 +36,10 @@ func ResourceSystemConfigurationSchema() map[string]*schema.Schema {
 			Elem:     &schema.Schema{Type: schema.TypeString},
 		},
 		"docker_mode": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
 		},
 		"email_configuration": {
 			Type:     schema.TypeSet,
@@ -110,9 +111,10 @@ func ResourceSystemConfigurationSchema() map[string]*schema.Schema {
 			Computed: true,
 		},
 		"welcome_workflow_complete": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
 		},
 	}
 }

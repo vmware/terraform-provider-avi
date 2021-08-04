@@ -24,9 +24,10 @@ func ResourceClusterSchema() map[string]*schema.Schema {
 			Elem:     ResourceClusterNodeSchema(),
 		},
 		"rejoin_nodes_automatically": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  true,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "true",
+			ValidateFunc: validateBool,
 		},
 		"tenant_ref": {
 			Type:     schema.TypeString,
@@ -56,9 +57,10 @@ func ResourceClusterSchema() map[string]*schema.Schema {
 						Computed: true,
 					},
 					"progress": {
-						Type:     schema.TypeInt,
-						Optional: true,
-						Computed: true,
+						Type:         schema.TypeString,
+						Optional:     true,
+						Computed:     true,
+						ValidateFunc: validateInteger,
 					},
 					"state": {
 						Type:     schema.TypeString,
@@ -142,8 +144,13 @@ func readClusterState(d *schema.ResourceData, meta interface{}, s map[string]*sc
 	if err = client.AviSession.Get("api/cluster/runtime", &robj); err == nil {
 		if localData, err := SchemaToAviData(d, s); err == nil {
 			if modAPIRes, err := SetDefaultsInAPIRes(robj, localData, s); err == nil {
-				if _, err := APIDataToSchema(modAPIRes, d, s); err != nil {
-					log.Printf("[ERROR] Converting APIDataToSchema object %v\n", err)
+				if modAPIRes, err = PreprocessAPIRes(modAPIRes, s); err == nil {
+					if _, err := APIDataToSchema(modAPIRes, d, s); err != nil {
+						log.Printf("[ERROR] Converting APIDataToSchema object %v\n", err)
+						return err
+					}
+				} else {
+					log.Printf("[ERROR] Update Cluster State in PreprocessAPIRes api response object %v\n", err)
 					return err
 				}
 			} else {

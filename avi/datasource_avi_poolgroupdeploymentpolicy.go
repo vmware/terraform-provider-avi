@@ -10,7 +10,7 @@ func dataSourceAviPoolGroupDeploymentPolicy() *schema.Resource {
 		Read: ResourceAviPoolGroupDeploymentPolicyRead,
 		Schema: map[string]*schema.Schema{
 			"auto_disable_old_prod_pools": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"description": {
@@ -18,7 +18,7 @@ func dataSourceAviPoolGroupDeploymentPolicy() *schema.Resource {
 				Computed: true,
 			},
 			"evaluation_duration": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"name": {
@@ -36,7 +36,7 @@ func dataSourceAviPoolGroupDeploymentPolicy() *schema.Resource {
 				Computed: true,
 			},
 			"target_test_traffic_ratio": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"tenant_ref": {
@@ -45,7 +45,7 @@ func dataSourceAviPoolGroupDeploymentPolicy() *schema.Resource {
 				Computed: true,
 			},
 			"test_traffic_ratio_rampup": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"uuid": {

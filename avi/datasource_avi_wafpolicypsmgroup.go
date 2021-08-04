@@ -14,7 +14,7 @@ func dataSourceAviWafPolicyPSMGroup() *schema.Resource {
 				Computed: true,
 			},
 			"enable": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"hit_action": {
@@ -22,7 +22,7 @@ func dataSourceAviWafPolicyPSMGroup() *schema.Resource {
 				Computed: true,
 			},
 			"is_learning_group": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"locations": {
