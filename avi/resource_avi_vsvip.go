@@ -120,6 +120,9 @@ func resourceAviVsVipUpdate(d *schema.ResourceData, meta interface{}) error {
 		//setting those fields to schema default and then overwritting d (local state)
 		if localData, err := SchemaToAviData(d, s); err == nil {
 			apiResponse, _ = SetDefaultsInAPIRes(existingvsvip, localData, s)
+			if apiResponse, err = PreprocessAPIRes(apiResponse, s); err != nil {
+				log.Printf("[ERROR] In modifying vsvip api response object for type conversion %v\n", err)
+			}
 		} else {
 			log.Printf("[ERROR] resourceAviVsVipUpdate in SchemaToAviData: %v\n", err)
 		}

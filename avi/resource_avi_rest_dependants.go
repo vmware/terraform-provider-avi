@@ -9816,25 +9816,6 @@ func ResourceMemoryBalancerInfoSchema() *schema.Resource {
 	}
 }
 
-func ResourceEventDetailsFilterSchema() *schema.Resource {
-	return &schema.Resource{
-		Schema: map[string]*schema.Schema{
-			"comparator": {
-				Type:     schema.TypeString,
-				Required: true,
-			},
-			"event_details_key": {
-				Type:     schema.TypeString,
-				Required: true,
-			},
-			"event_details_value": {
-				Type:     schema.TypeString,
-				Required: true,
-			},
-		},
-	}
-}
-
 func ResourceCloudAutoscalingConfigFailureDetailsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -18455,6 +18436,25 @@ func ResourceGslbClientIpAddrGroupSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Default:  "GSLB_IP_PUBLIC",
+			},
+		},
+	}
+}
+
+func ResourceEventDetailsFilterSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"comparator": {
+				Type:     schema.TypeString,
+				Required: true,
+			},
+			"event_details_key": {
+				Type:     schema.TypeString,
+				Required: true,
+			},
+			"event_details_value": {
+				Type:     schema.TypeString,
+				Required: true,
 			},
 		},
 	}

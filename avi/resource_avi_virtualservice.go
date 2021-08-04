@@ -488,12 +488,9 @@ func resourceAviVirtualServiceUpdate(d *schema.ResourceData, meta interface{}) e
 		//Before GO lang sets zero value to fields which are absent in api response
 		//setting those fields to schema default and then overwritting d (local state)
 		if localData, err := SchemaToAviData(d, s); err == nil {
-			if apiResponse, err = SetDefaultsInAPIRes(existingvirtualservice, localData, s); err == nil {
-				if apiResponse, err = PreprocessAPIRes(apiResponse, s); err != nil {
-					log.Printf("[ERROR] In modifying virtualservice api response object for type conversion %v\n", err)
-				}
-			} else {
-				log.Printf("[ERROR] In modifying virtualservice api response object for defaults %v\n", err)
+			apiResponse, _ = SetDefaultsInAPIRes(existingvirtualservice, localData, s)
+			if apiResponse, err = PreprocessAPIRes(apiResponse, s); err != nil {
+				log.Printf("[ERROR] In modifying virtualservice api response object for type conversion %v\n", err)
 			}
 		} else {
 			log.Printf("[ERROR] resourceAviVirtualServiceUpdate in SchemaToAviData: %v\n", err)
