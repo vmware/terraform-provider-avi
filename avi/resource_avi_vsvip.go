@@ -24,9 +24,10 @@ func ResourceVsVipSchema() map[string]*schema.Schema {
 			Elem:     ResourceDnsInfoSchema(),
 		},
 		"east_west_placement": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
 		},
 		"name": {
 			Type:     schema.TypeString,
@@ -38,9 +39,10 @@ func ResourceVsVipSchema() map[string]*schema.Schema {
 			Computed: true,
 		},
 		"use_standard_alb": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Computed: true,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Computed:     true,
+			ValidateFunc: validateBool,
 		},
 		"uuid": {
 			Type:     schema.TypeString,
@@ -118,6 +120,9 @@ func resourceAviVsVipUpdate(d *schema.ResourceData, meta interface{}) error {
 		//setting those fields to schema default and then overwritting d (local state)
 		if localData, err := SchemaToAviData(d, s); err == nil {
 			apiResponse, _ = SetDefaultsInAPIRes(existingvsvip, localData, s)
+			if apiResponse, err = PreprocessAPIRes(apiResponse, s); err != nil {
+				log.Printf("[ERROR] In modifying vsvip api response object for type conversion %v\n", err)
+			}
 		} else {
 			log.Printf("[ERROR] resourceAviVsVipUpdate in SchemaToAviData: %v\n", err)
 		}

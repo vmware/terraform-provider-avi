@@ -14,9 +14,10 @@ import (
 func ResourceCustomerPortalInfoSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"polling_interval": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Default:  10,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "10",
+			ValidateFunc: validateInteger,
 		},
 		"portal_url": {
 			Type:     schema.TypeString,

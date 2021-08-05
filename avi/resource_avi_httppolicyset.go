@@ -47,9 +47,10 @@ func ResourceHTTPPolicySetSchema() map[string]*schema.Schema {
 			Elem:     ResourceHTTPSecurityPolicySchema(),
 		},
 		"is_internal_policy": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
 		},
 		"name": {
 			Type:     schema.TypeString,

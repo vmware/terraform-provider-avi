@@ -59,7 +59,7 @@ func dataSourceAviImage() *schema.Resource {
 				Computed: true,
 			},
 			"uber_bundle": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"uuid": {

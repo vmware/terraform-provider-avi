@@ -14,7 +14,7 @@ func dataSourceAviGslbService() *schema.Resource {
 				Computed: true,
 			},
 			"controller_health_status_enabled": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"created_by": {
@@ -36,7 +36,7 @@ func dataSourceAviGslbService() *schema.Resource {
 				Elem:     ResourceGslbServiceDownResponseSchema(),
 			},
 			"enabled": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"groups": {
@@ -54,15 +54,15 @@ func dataSourceAviGslbService() *schema.Resource {
 				Computed: true,
 			},
 			"hm_off": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"is_federated": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"min_members": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"name": {
@@ -71,7 +71,7 @@ func dataSourceAviGslbService() *schema.Resource {
 				Computed: true,
 			},
 			"num_dns_ip": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"pool_algorithm": {
@@ -79,11 +79,11 @@ func dataSourceAviGslbService() *schema.Resource {
 				Computed: true,
 			},
 			"resolve_cname": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"site_persistence_enabled": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"tenant_ref": {
@@ -92,11 +92,11 @@ func dataSourceAviGslbService() *schema.Resource {
 				Computed: true,
 			},
 			"ttl": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"use_edns_client_subnet": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"uuid": {
@@ -105,7 +105,7 @@ func dataSourceAviGslbService() *schema.Resource {
 				Computed: true,
 			},
 			"wildcard_match": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 		},

@@ -10,11 +10,11 @@ func dataSourceAviGslb() *schema.Resource {
 		Read: ResourceAviGslbRead,
 		Schema: map[string]*schema.Schema{
 			"async_interval": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"clear_on_max_retries": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"client_ip_addr_group": {
@@ -32,11 +32,11 @@ func dataSourceAviGslb() *schema.Resource {
 				Elem:     ResourceDNSConfigSchema(),
 			},
 			"error_resync_interval": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"is_federated": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"leader_cluster_uuid": {
@@ -44,7 +44,7 @@ func dataSourceAviGslb() *schema.Resource {
 				Computed: true,
 			},
 			"maintenance_mode": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"name": {
@@ -53,11 +53,11 @@ func dataSourceAviGslb() *schema.Resource {
 				Computed: true,
 			},
 			"send_interval": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"send_interval_prior_to_maintenance_mode": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"sites": {
@@ -71,7 +71,7 @@ func dataSourceAviGslb() *schema.Resource {
 				Computed: true,
 			},
 			"tenant_scoped": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"third_party_sites": {
@@ -85,7 +85,7 @@ func dataSourceAviGslb() *schema.Resource {
 				Computed: true,
 			},
 			"view_id": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 		},

@@ -45,9 +45,10 @@ func ResourceAutoScaleLaunchConfigSchema() map[string]*schema.Schema {
 			Computed: true,
 		},
 		"use_external_asg": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  true,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "true",
+			ValidateFunc: validateBool,
 		},
 		"uuid": {
 			Type:     schema.TypeString,

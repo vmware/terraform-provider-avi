@@ -19,9 +19,10 @@ func ResourceActionGroupConfigSchema() map[string]*schema.Schema {
 			Computed: true,
 		},
 		"autoscale_trigger_notification": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
 		},
 		"description": {
 			Type:     schema.TypeString,
@@ -34,8 +35,9 @@ func ResourceActionGroupConfigSchema() map[string]*schema.Schema {
 			Computed: true,
 		},
 		"external_only": {
-			Type:     schema.TypeBool,
-			Required: true,
+			Type:         schema.TypeString,
+			Required:     true,
+			ValidateFunc: validateBool,
 		},
 		"level": {
 			Type:     schema.TypeString,

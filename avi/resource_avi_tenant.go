@@ -30,9 +30,10 @@ func ResourceTenantSchema() map[string]*schema.Schema {
 			Computed: true,
 		},
 		"local": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  true,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "true",
+			ValidateFunc: validateBool,
 		},
 		"name": {
 			Type:     schema.TypeString,

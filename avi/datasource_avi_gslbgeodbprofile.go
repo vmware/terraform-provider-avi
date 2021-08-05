@@ -19,7 +19,7 @@ func dataSourceAviGslbGeoDbProfile() *schema.Resource {
 				Elem:     ResourceGslbGeoDbEntrySchema(),
 			},
 			"is_federated": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"name": {

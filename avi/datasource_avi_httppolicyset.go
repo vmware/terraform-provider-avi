@@ -37,7 +37,7 @@ func dataSourceAviHTTPPolicySet() *schema.Resource {
 				Elem:     ResourceHTTPSecurityPolicySchema(),
 			},
 			"is_internal_policy": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"name": {

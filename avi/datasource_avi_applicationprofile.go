@@ -42,11 +42,11 @@ func dataSourceAviApplicationProfile() *schema.Resource {
 				Computed: true,
 			},
 			"preserve_client_ip": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"preserve_client_port": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"sip_service_profile": {
