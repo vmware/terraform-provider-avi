@@ -19,9 +19,10 @@ func ResourceGslbServiceSchema() map[string]*schema.Schema {
 			Computed: true,
 		},
 		"controller_health_status_enabled": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  true,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "true",
+			ValidateFunc: validateBool,
 		},
 		"created_by": {
 			Type:     schema.TypeString,
@@ -45,9 +46,10 @@ func ResourceGslbServiceSchema() map[string]*schema.Schema {
 			Elem:     ResourceGslbServiceDownResponseSchema(),
 		},
 		"enabled": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  true,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "true",
+			ValidateFunc: validateBool,
 		},
 		"groups": {
 			Type:     schema.TypeList,
@@ -65,14 +67,16 @@ func ResourceGslbServiceSchema() map[string]*schema.Schema {
 			Default:  "GSLB_SERVICE_HEALTH_MONITOR_ALL_MEMBERS",
 		},
 		"hm_off": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Computed: true,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Computed:     true,
+			ValidateFunc: validateBool,
 		},
 		"is_federated": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  true,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "true",
+			ValidateFunc: validateBool,
 		},
 		"markers": {
 			Type:     schema.TypeList,
@@ -80,18 +84,20 @@ func ResourceGslbServiceSchema() map[string]*schema.Schema {
 			Elem:     ResourceRoleFilterMatchLabelSchema(),
 		},
 		"min_members": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Default:  0,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "0",
+			ValidateFunc: validateInteger,
 		},
 		"name": {
 			Type:     schema.TypeString,
 			Required: true,
 		},
 		"num_dns_ip": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Computed: true,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Computed:     true,
+			ValidateFunc: validateInteger,
 		},
 		"pool_algorithm": {
 			Type:     schema.TypeString,
@@ -99,14 +105,16 @@ func ResourceGslbServiceSchema() map[string]*schema.Schema {
 			Default:  "GSLB_SERVICE_ALGORITHM_PRIORITY",
 		},
 		"resolve_cname": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
 		},
 		"site_persistence_enabled": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
 		},
 		"tenant_ref": {
 			Type:     schema.TypeString,
@@ -114,14 +122,16 @@ func ResourceGslbServiceSchema() map[string]*schema.Schema {
 			Computed: true,
 		},
 		"ttl": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Computed: true,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Computed:     true,
+			ValidateFunc: validateInteger,
 		},
 		"use_edns_client_subnet": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  true,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "true",
+			ValidateFunc: validateBool,
 		},
 		"uuid": {
 			Type:     schema.TypeString,
@@ -129,9 +139,10 @@ func ResourceGslbServiceSchema() map[string]*schema.Schema {
 			Computed: true,
 		},
 		"wildcard_match": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
 		},
 	}
 }

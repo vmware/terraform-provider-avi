@@ -14,7 +14,7 @@ func dataSourceAviActionGroupConfig() *schema.Resource {
 				Computed: true,
 			},
 			"autoscale_trigger_notification": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"description": {
@@ -26,7 +26,7 @@ func dataSourceAviActionGroupConfig() *schema.Resource {
 				Computed: true,
 			},
 			"external_only": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"level": {

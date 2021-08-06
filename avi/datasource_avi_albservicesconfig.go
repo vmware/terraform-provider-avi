@@ -34,7 +34,7 @@ func dataSourceAviALBServicesConfig() *schema.Resource {
 				Computed: true,
 			},
 			"polling_interval": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"portal_url": {
@@ -52,11 +52,11 @@ func dataSourceAviALBServicesConfig() *schema.Resource {
 				Elem:     ResourceProxyConfigurationSchema(),
 			},
 			"use_split_proxy": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"use_tls": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"uuid": {

@@ -14,7 +14,7 @@ func dataSourceAviFileObject() *schema.Resource {
 				Computed: true,
 			},
 			"compressed": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"created": {
@@ -30,7 +30,7 @@ func dataSourceAviFileObject() *schema.Resource {
 				Computed: true,
 			},
 			"is_federated": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"name": {
@@ -43,15 +43,15 @@ func dataSourceAviFileObject() *schema.Resource {
 				Computed: true,
 			},
 			"read_only": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"restrict_download": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"size": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"tenant_ref": {

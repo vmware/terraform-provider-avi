@@ -19,9 +19,10 @@ func ResourceSchedulerSchema() map[string]*schema.Schema {
 			Computed: true,
 		},
 		"enabled": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  true,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "true",
+			ValidateFunc: validateBool,
 		},
 		"end_date_time": {
 			Type:     schema.TypeString,
@@ -29,9 +30,10 @@ func ResourceSchedulerSchema() map[string]*schema.Schema {
 			Computed: true,
 		},
 		"frequency": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Computed: true,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Computed:     true,
+			ValidateFunc: validateInteger,
 		},
 		"frequency_unit": {
 			Type:     schema.TypeString,

@@ -20,7 +20,7 @@ func dataSourceAviCluster() *schema.Resource {
 				Elem:     ResourceClusterNodeSchema(),
 			},
 			"rejoin_nodes_automatically": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"tenant_ref": {
@@ -50,7 +50,7 @@ func dataSourceAviCluster() *schema.Resource {
 							Computed: true,
 						},
 						"progress": {
-							Type:     schema.TypeInt,
+							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
 						},

@@ -14,9 +14,10 @@ import (
 func ResourceHealthMonitorSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"allow_duplicate_monitors": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Computed: true,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Computed:     true,
+			ValidateFunc: validateBool,
 		},
 		"authentication": {
 			Type:     schema.TypeSet,
@@ -30,9 +31,10 @@ func ResourceHealthMonitorSchema() map[string]*schema.Schema {
 			Computed: true,
 		},
 		"disable_quickstart": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Computed: true,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Computed:     true,
+			ValidateFunc: validateBool,
 		},
 		"dns_monitor": {
 			Type:     schema.TypeSet,
@@ -47,9 +49,10 @@ func ResourceHealthMonitorSchema() map[string]*schema.Schema {
 			Elem:     ResourceHealthMonitorExternalSchema(),
 		},
 		"failed_checks": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Default:  2,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "2",
+			ValidateFunc: validateInteger,
 		},
 		"http_monitor": {
 			Type:     schema.TypeSet,
@@ -76,9 +79,10 @@ func ResourceHealthMonitorSchema() map[string]*schema.Schema {
 			Elem:     ResourceHealthMonitorImapSchema(),
 		},
 		"is_federated": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
 		},
 		"markers": {
 			Type:     schema.TypeList,
@@ -86,9 +90,10 @@ func ResourceHealthMonitorSchema() map[string]*schema.Schema {
 			Elem:     ResourceRoleFilterMatchLabelSchema(),
 		},
 		"monitor_port": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Computed: true,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Computed:     true,
+			ValidateFunc: validateInteger,
 		},
 		"name": {
 			Type:     schema.TypeString,
@@ -113,14 +118,16 @@ func ResourceHealthMonitorSchema() map[string]*schema.Schema {
 			Elem:     ResourceHealthMonitorRadiusSchema(),
 		},
 		"receive_timeout": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Default:  4,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "4",
+			ValidateFunc: validateInteger,
 		},
 		"send_interval": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Default:  10,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "10",
+			ValidateFunc: validateInteger,
 		},
 		"sip_monitor": {
 			Type:     schema.TypeSet,
@@ -141,9 +148,10 @@ func ResourceHealthMonitorSchema() map[string]*schema.Schema {
 			Elem:     ResourceHealthMonitorSmtpSchema(),
 		},
 		"successful_checks": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Default:  2,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "2",
+			ValidateFunc: validateInteger,
 		},
 		"tcp_monitor": {
 			Type:     schema.TypeSet,

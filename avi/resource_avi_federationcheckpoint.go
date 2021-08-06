@@ -24,9 +24,10 @@ func ResourceFederationCheckpointSchema() map[string]*schema.Schema {
 			Computed: true,
 		},
 		"is_federated": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  true,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "true",
+			ValidateFunc: validateBool,
 		},
 		"name": {
 			Type:     schema.TypeString,

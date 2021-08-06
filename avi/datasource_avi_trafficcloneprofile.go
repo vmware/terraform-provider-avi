@@ -30,7 +30,7 @@ func dataSourceAviTrafficCloneProfile() *schema.Resource {
 				Computed: true,
 			},
 			"preserve_client_ip": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"tenant_ref": {

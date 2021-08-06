@@ -24,9 +24,10 @@ func ResourceSSLKeyAndCertificateSchema() map[string]*schema.Schema {
 			Elem:     ResourceSSLCertificateSchema(),
 		},
 		"certificate_base64": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
 		},
 		"certificate_management_profile_ref": {
 			Type:     schema.TypeString,
@@ -44,9 +45,10 @@ func ResourceSSLKeyAndCertificateSchema() map[string]*schema.Schema {
 			Elem:     ResourceCustomParamsSchema(),
 		},
 		"enable_ocsp_stapling": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
 		},
 		"enckey_base64": {
 			Type:     schema.TypeString,
@@ -76,9 +78,10 @@ func ResourceSSLKeyAndCertificateSchema() map[string]*schema.Schema {
 			DiffSuppressFunc: suppressSensitiveFieldDiffs,
 		},
 		"key_base64": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
 		},
 		"key_params": {
 			Type:     schema.TypeSet,

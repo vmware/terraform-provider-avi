@@ -24,9 +24,10 @@ func ResourceAlertConfigSchema() map[string]*schema.Schema {
 			Elem:     ResourceAlertRuleSchema(),
 		},
 		"autoscale_alert": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Computed: true,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Computed:     true,
+			ValidateFunc: validateBool,
 		},
 		"category": {
 			Type:     schema.TypeString,
@@ -38,14 +39,16 @@ func ResourceAlertConfigSchema() map[string]*schema.Schema {
 			Computed: true,
 		},
 		"enabled": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  true,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "true",
+			ValidateFunc: validateBool,
 		},
 		"expiry_time": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Default:  86400,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "86400",
+			ValidateFunc: validateInteger,
 		},
 		"name": {
 			Type:     schema.TypeString,
@@ -67,9 +70,10 @@ func ResourceAlertConfigSchema() map[string]*schema.Schema {
 			Computed: true,
 		},
 		"rolling_window": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Default:  300,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "300",
+			ValidateFunc: validateInteger,
 		},
 		"source": {
 			Type:     schema.TypeString,
@@ -86,14 +90,16 @@ func ResourceAlertConfigSchema() map[string]*schema.Schema {
 			Computed: true,
 		},
 		"threshold": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Default:  1,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "1",
+			ValidateFunc: validateInteger,
 		},
 		"throttle": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Default:  600,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "600",
+			ValidateFunc: validateInteger,
 		},
 		"uuid": {
 			Type:     schema.TypeString,

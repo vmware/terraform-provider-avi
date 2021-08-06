@@ -19,7 +19,7 @@ func dataSourceAviServiceEngine() *schema.Resource {
 				Computed: true,
 			},
 			"container_mode": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"container_type": {
@@ -27,7 +27,7 @@ func dataSourceAviServiceEngine() *schema.Resource {
 				Computed: true,
 			},
 			"controller_created": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"controller_ip": {

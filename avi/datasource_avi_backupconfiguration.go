@@ -30,7 +30,7 @@ func dataSourceAviBackupConfiguration() *schema.Resource {
 				Computed: true,
 			},
 			"maximum_backups_stored": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"name": {
@@ -47,7 +47,7 @@ func dataSourceAviBackupConfiguration() *schema.Resource {
 				Computed: true,
 			},
 			"save_local": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"ssh_user_ref": {
@@ -60,11 +60,11 @@ func dataSourceAviBackupConfiguration() *schema.Resource {
 				Computed: true,
 			},
 			"upload_to_remote_host": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"upload_to_s3": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"uuid": {

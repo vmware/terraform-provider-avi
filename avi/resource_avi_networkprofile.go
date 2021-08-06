@@ -14,9 +14,10 @@ import (
 func ResourceNetworkProfileSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"connection_mirror": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
 		},
 		"description": {
 			Type:     schema.TypeString,

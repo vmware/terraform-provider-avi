@@ -49,7 +49,7 @@ func dataSourceAviVrfContext() *schema.Resource {
 				Elem:     ResourceInternalGatewayMonitorSchema(),
 			},
 			"lldp_enable": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"markers": {
@@ -68,7 +68,7 @@ func dataSourceAviVrfContext() *schema.Resource {
 				Elem:     ResourceStaticRouteSchema(),
 			},
 			"system_default": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"tenant_ref": {
