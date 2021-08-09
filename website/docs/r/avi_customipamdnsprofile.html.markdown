@@ -28,7 +28,7 @@ resource "avi_customipamdnsprofile" "foo" {
 The following arguments are supported:
 
 * `name` - (Required) Name of the custom ipam dns profile. Field introduced in 17.1.1.
-* `script_uri` - (Required) Script uri of form controller //ipamdnsscripts/<file-name>. Field introduced in 17.1.1.
+* `script_uri` - (Required) Script uri of form controller //ipamdnsscripts/<file-name>, file-name must have a .py extension and conform to pep8 naming convention. Field introduced in 17.1.1.
 * `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1.
 * `script_params` - (Optional) Parameters that are always passed to the ipam/dns script. Field introduced in 17.1.1.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant. Field introduced in 17.1.1.
