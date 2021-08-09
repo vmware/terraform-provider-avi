@@ -35,7 +35,7 @@ In addition to all arguments above, the following attributes are exported:
 * `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1.
 * `name` - Name of the custom ipam dns profile. Field introduced in 17.1.1.
 * `script_params` - Parameters that are always passed to the ipam/dns script. Field introduced in 17.1.1.
-* `script_uri` - Script uri of form controller //ipamdnsscripts/<file-name>. Field introduced in 17.1.1.
+* `script_uri` - Script uri of form controller //ipamdnsscripts/<file-name>, file-name must have a .py extension and conform to pep8 naming convention. Field introduced in 17.1.1.
 * `tenant_ref` - It is a reference to an object of type tenant. Field introduced in 17.1.1.
 * `uuid` - Field introduced in 17.1.1.
 
