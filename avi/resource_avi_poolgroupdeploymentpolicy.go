@@ -14,9 +14,10 @@ import (
 func ResourcePoolGroupDeploymentPolicySchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"auto_disable_old_prod_pools": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  true,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "true",
+			ValidateFunc: validateBool,
 		},
 		"description": {
 			Type:     schema.TypeString,
@@ -24,9 +25,10 @@ func ResourcePoolGroupDeploymentPolicySchema() map[string]*schema.Schema {
 			Computed: true,
 		},
 		"evaluation_duration": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Default:  300,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "300",
+			ValidateFunc: validateInteger,
 		},
 		"markers": {
 			Type:     schema.TypeList,
@@ -48,9 +50,10 @@ func ResourcePoolGroupDeploymentPolicySchema() map[string]*schema.Schema {
 			Default:  "BLUE_GREEN",
 		},
 		"target_test_traffic_ratio": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Default:  100,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "100",
+			ValidateFunc: validateInteger,
 		},
 		"tenant_ref": {
 			Type:     schema.TypeString,
@@ -58,9 +61,10 @@ func ResourcePoolGroupDeploymentPolicySchema() map[string]*schema.Schema {
 			Computed: true,
 		},
 		"test_traffic_ratio_rampup": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Default:  100,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "100",
+			ValidateFunc: validateInteger,
 		},
 		"uuid": {
 			Type:     schema.TypeString,

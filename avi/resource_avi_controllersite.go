@@ -22,9 +22,10 @@ func ResourceControllerSiteSchema() map[string]*schema.Schema {
 			Required: true,
 		},
 		"port": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Default:  443,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "443",
+			ValidateFunc: validateInteger,
 		},
 		"tenant_ref": {
 			Type:     schema.TypeString,

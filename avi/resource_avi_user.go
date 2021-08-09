@@ -34,14 +34,16 @@ func ResourceUserSchema() map[string]*schema.Schema {
 			Computed: true,
 		},
 		"is_superuser": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
 		},
 		"local": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Computed: true,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Computed:     true,
+			ValidateFunc: validateBool,
 		},
 		"name": {
 			Type:     schema.TypeString,

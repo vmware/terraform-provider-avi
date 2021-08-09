@@ -14,9 +14,10 @@ import (
 func ResourceServerAutoScalePolicySchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"delay_for_server_garbage_collection": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Default:  0,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "0",
+			ValidateFunc: validateInteger,
 		},
 		"description": {
 			Type:     schema.TypeString,
@@ -24,19 +25,22 @@ func ResourceServerAutoScalePolicySchema() map[string]*schema.Schema {
 			Computed: true,
 		},
 		"intelligent_autoscale": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
 		},
 		"intelligent_scalein_margin": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Default:  40,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "40",
+			ValidateFunc: validateInteger,
 		},
 		"intelligent_scaleout_margin": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Default:  20,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "20",
+			ValidateFunc: validateInteger,
 		},
 		"markers": {
 			Type:     schema.TypeList,
@@ -44,24 +48,28 @@ func ResourceServerAutoScalePolicySchema() map[string]*schema.Schema {
 			Elem:     ResourceRoleFilterMatchLabelSchema(),
 		},
 		"max_scalein_adjustment_step": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Default:  1,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "1",
+			ValidateFunc: validateInteger,
 		},
 		"max_scaleout_adjustment_step": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Default:  1,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "1",
+			ValidateFunc: validateInteger,
 		},
 		"max_size": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Computed: true,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Computed:     true,
+			ValidateFunc: validateInteger,
 		},
 		"min_size": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Computed: true,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Computed:     true,
+			ValidateFunc: validateInteger,
 		},
 		"name": {
 			Type:     schema.TypeString,
@@ -73,9 +81,10 @@ func ResourceServerAutoScalePolicySchema() map[string]*schema.Schema {
 			Elem:     &schema.Schema{Type: schema.TypeString},
 		},
 		"scalein_cooldown": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Default:  300,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "300",
+			ValidateFunc: validateInteger,
 		},
 		"scaleout_alertconfig_refs": {
 			Type:     schema.TypeList,
@@ -83,9 +92,10 @@ func ResourceServerAutoScalePolicySchema() map[string]*schema.Schema {
 			Elem:     &schema.Schema{Type: schema.TypeString},
 		},
 		"scaleout_cooldown": {
-			Type:     schema.TypeInt,
-			Optional: true,
-			Default:  300,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "300",
+			ValidateFunc: validateInteger,
 		},
 		"tenant_ref": {
 			Type:     schema.TypeString,
@@ -93,9 +103,10 @@ func ResourceServerAutoScalePolicySchema() map[string]*schema.Schema {
 			Computed: true,
 		},
 		"use_predicted_load": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  false,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
 		},
 		"uuid": {
 			Type:     schema.TypeString,

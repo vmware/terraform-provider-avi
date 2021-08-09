@@ -15,7 +15,7 @@ func dataSourceAviJWTServerProfile() *schema.Resource {
 				Elem:     ResourceControllerInternalAuthSchema(),
 			},
 			"is_federated": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"issuer": {

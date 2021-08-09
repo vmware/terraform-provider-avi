@@ -14,9 +14,10 @@ import (
 func ResourceRoleSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"allow_unlabelled_access": {
-			Type:     schema.TypeBool,
-			Optional: true,
-			Default:  true,
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "true",
+			ValidateFunc: validateBool,
 		},
 		"filters": {
 			Type:     schema.TypeList,

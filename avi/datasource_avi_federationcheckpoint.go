@@ -18,7 +18,7 @@ func dataSourceAviFederationCheckpoint() *schema.Resource {
 				Computed: true,
 			},
 			"is_federated": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"name": {

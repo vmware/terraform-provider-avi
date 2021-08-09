@@ -20,7 +20,7 @@ func dataSourceAviDynamicDnsRecord() *schema.Resource {
 				Elem:     ResourceDnsCnameRdataSchema(),
 			},
 			"delegated": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"description": {
@@ -65,7 +65,7 @@ func dataSourceAviDynamicDnsRecord() *schema.Resource {
 				Elem:     ResourceDnsNsRdataSchema(),
 			},
 			"num_records_in_response": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"service_locators": {
@@ -79,7 +79,7 @@ func dataSourceAviDynamicDnsRecord() *schema.Resource {
 				Computed: true,
 			},
 			"ttl": {
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"txt_records": {
@@ -97,7 +97,7 @@ func dataSourceAviDynamicDnsRecord() *schema.Resource {
 				Computed: true,
 			},
 			"wildcard_match": {
-				Type:     schema.TypeBool,
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 		},
