@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "Avi: avi_trafficcloneprofile"
@@ -29,12 +27,11 @@ resource "avi_trafficcloneprofile" "foo" {
 
 The following arguments are supported:
 
-* `name` - (Required) Name for the traffic clone profile.
+* `name` - (Required) Name for the traffic clone profile. Field introduced in 17.1.1.
 * `clone_servers` - (Optional) Field introduced in 17.1.1.
-* `cloud_ref` - (Optional) It is a reference to an object of type cloud.
-* `labels` - (Optional) Key value pairs for granular object access control.
-* `preserve_client_ip` - (Optional) Specifies if client ip needs to be preserved to clone destination.
-* `tenant_ref` - (Optional) It is a reference to an object of type tenant.
+* `cloud_ref` - (Optional) It is a reference to an object of type cloud. Field introduced in 17.1.1.
+* `preserve_client_ip` - (Optional) Specifies if client ip needs to be preserved to clone destination. Field introduced in 17.1.1.
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant. Field introduced in 17.1.1.
 
 
 ### Timeouts
@@ -49,5 +46,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-* `uuid` -  Uuid of the traffic clone profile.
+* `uuid` -  Uuid of the traffic clone profile. Field introduced in 17.1.1.
 

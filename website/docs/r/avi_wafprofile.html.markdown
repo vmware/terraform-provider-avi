@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "Avi: avi_wafprofile"
@@ -29,12 +27,11 @@ resource "avi_wafprofile" "foo" {
 
 The following arguments are supported:
 
+* `config` - (Required) Config params for waf. Field introduced in 17.2.1.
 * `name` - (Required) Field introduced in 17.2.1.
-* `config` - (Optional) Config params for waf.
 * `description` - (Optional) Field introduced in 17.2.1.
-* `files` - (Optional) List of data files used for waf rules.
-* `labels` - (Optional) Key value pairs for granular object access control.
-* `tenant_ref` - (Optional) It is a reference to an object of type tenant.
+* `files` - (Optional) List of data files used for waf rules. Field introduced in 17.2.1.
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant. Field introduced in 17.2.1.
 
 
 ### Timeouts

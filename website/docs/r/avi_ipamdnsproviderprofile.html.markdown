@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "Avi: avi_ipamdnsproviderprofile"
@@ -30,20 +28,19 @@ resource "avi_ipamdnsproviderprofile" "foo" {
 The following arguments are supported:
 
 * `name` - (Required) Name for the ipam/dns provider profile.
-* `type` - (Required) Provider type for the ipam/dns provider profile.
-* `allocate_ip_in_vrf` - (Optional) If this flag is set, only allocate ip from networks in the virtual service vrf.
+* `type` - (Required) Provider type for the ipam/dns provider profile. Enum options - IPAMDNS_TYPE_INFOBLOX, IPAMDNS_TYPE_AWS, IPAMDNS_TYPE_OPENSTACK, IPAMDNS_TYPE_GCP, IPAMDNS_TYPE_INFOBLOX_DNS, IPAMDNS_TYPE_CUSTOM, IPAMDNS_TYPE_CUSTOM_DNS, IPAMDNS_TYPE_AZURE, IPAMDNS_TYPE_OCI, IPAMDNS_TYPE_TENCENT, IPAMDNS_TYPE_INTERNAL, IPAMDNS_TYPE_INTERNAL_DNS, IPAMDNS_TYPE_AWS_DNS, IPAMDNS_TYPE_AZURE_DNS.
+* `allocate_ip_in_vrf` - (Optional) If this flag is set, only allocate ip from networks in the virtual service vrf. Applicable for avi vantage ipam only. Field introduced in 17.2.4.
 * `aws_profile` - (Optional) Provider details if type is aws.
-* `azure_profile` - (Optional) Provider details if type is microsoft azure.
-* `custom_profile` - (Optional) Provider details if type is custom.
+* `azure_profile` - (Optional) Provider details if type is microsoft azure. Field introduced in 17.2.1.
+* `custom_profile` - (Optional) Provider details if type is custom. Field introduced in 17.1.1.
 * `gcp_profile` - (Optional) Provider details if type is google cloud.
 * `infoblox_profile` - (Optional) Provider details if type is infoblox.
 * `internal_profile` - (Optional) Provider details if type is avi.
-* `labels` - (Optional) Key value pairs for granular object access control.
-* `oci_profile` - (Optional) Provider details for oracle cloud.
+* `oci_profile` - (Optional) Provider details for oracle cloud. Field introduced in 18.2.1,18.1.3.
 * `openstack_profile` - (Optional) Provider details if type is openstack.
 * `proxy_configuration` - (Optional) Field introduced in 17.1.1.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant.
-* `tencent_profile` - (Optional) Provider details for tencent cloud.
+* `tencent_profile` - (Optional) Provider details for tencent cloud. Field introduced in 18.2.3.
 
 
 ### Timeouts

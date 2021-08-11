@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "Avi: avi_backup"
@@ -30,10 +28,10 @@ resource "avi_backup" "foo" {
 The following arguments are supported:
 
 * `file_name` - (Required) The file name of backup.
-* `backup_config_ref` - (Optional) Backupconfiguration information.
+* `backup_config_ref` - (Optional) Backupconfiguration information. It is a reference to an object of type backupconfiguration.
 * `local_file_url` - (Optional) Url to download the backup file.
 * `remote_file_url` - (Optional) Url to download the backup file.
-* `scheduler_ref` - (Optional) Scheduler information.
+* `scheduler_ref` - (Optional) Scheduler information. It is a reference to an object of type scheduler.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant.
 * `timestamp` - (Optional) Unix timestamp of when the backup file is created.
 

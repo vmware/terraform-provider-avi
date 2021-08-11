@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "Avi: avi_httppolicyset"
@@ -30,14 +28,13 @@ resource "avi_httppolicyset" "foo" {
 The following arguments are supported:
 
 * `name` - (Required) Name of the http policy set.
-* `cloud_config_cksum` - (Optional) Checksum of cloud configuration for pool.
+* `cloud_config_cksum` - (Optional) Checksum of cloud configuration for pool. Internally set by cloud connector.
 * `created_by` - (Optional) Creator name.
 * `description` - (Optional) User defined description for the object.
 * `http_request_policy` - (Optional) Http request policy for the virtual service.
 * `http_response_policy` - (Optional) Http response policy for the virtual service.
 * `http_security_policy` - (Optional) Http security policy for the virtual service.
 * `is_internal_policy` - (Optional) Boolean flag to set is_internal_policy.
-* `labels` - (Optional) Key value pairs for granular object access control.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant.
 
 

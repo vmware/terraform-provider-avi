@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "AVI: avi_alertscriptconfig"
@@ -34,7 +32,7 @@ data "avi_alertscriptconfig" "foo_alertscriptconfig" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `action_script` - User defined alert action script.
+* `action_script` - User defined alert action script. Please refer to kb.avinetworks.com for more information.
 * `name` - A user-friendly name of the script.
 * `tenant_ref` - It is a reference to an object of type tenant.
 * `uuid` - Unique object identifier of the object.

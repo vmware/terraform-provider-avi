@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "Avi: avi_clusterclouddetails"
@@ -30,8 +28,8 @@ resource "avi_clusterclouddetails" "foo" {
 The following arguments are supported:
 
 * `name` - (Required) Field introduced in 17.2.5.
-* `azure_info` - (Optional) Azure info to configure cluster_vip on the controller.
-* `tenant_ref` - (Optional) It is a reference to an object of type tenant.
+* `azure_info` - (Optional) Azure info to configure cluster_vip on the controller. Field introduced in 17.2.5.
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant. Field introduced in 17.2.5.
 
 
 ### Timeouts

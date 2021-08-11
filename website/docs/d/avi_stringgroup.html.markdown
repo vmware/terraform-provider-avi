@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "AVI: avi_stringgroup"
@@ -36,10 +34,9 @@ In addition to all arguments above, the following attributes are exported:
 
 * `description` - User defined description for the object.
 * `kv` - Configure key value in the string group.
-* `labels` - Key value pairs for granular object access control.
-* `longest_match` - Enable the longest match, default is the shortest match.
+* `longest_match` - Enable the longest match, default is the shortest match. Field introduced in 18.2.8.
 * `name` - Name of the string group.
 * `tenant_ref` - It is a reference to an object of type tenant.
-* `type` - Type of stringgroup.
+* `type` - Type of stringgroup. Enum options - SG_TYPE_STRING, SG_TYPE_KEYVAL.
 * `uuid` - Uuid of the string group.
 

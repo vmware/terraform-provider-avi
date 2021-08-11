@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "AVI: avi_role"
@@ -34,7 +32,6 @@ data "avi_role" "foo_role" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `filters` - Filters for granular object access control based on object labels.
 * `name` - Name of the object.
 * `privileges` - List of list.
 * `tenant_ref` - It is a reference to an object of type tenant.

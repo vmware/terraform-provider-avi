@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "AVI: avi_trafficcloneprofile"
@@ -37,10 +35,9 @@ data "avi_trafficcloneprofile" "foo_trafficcloneprofile" {
 In addition to all arguments above, the following attributes are exported:
 
 * `clone_servers` - Field introduced in 17.1.1.
-* `cloud_ref` - It is a reference to an object of type cloud.
-* `labels` - Key value pairs for granular object access control.
-* `name` - Name for the traffic clone profile.
-* `preserve_client_ip` - Specifies if client ip needs to be preserved to clone destination.
-* `tenant_ref` - It is a reference to an object of type tenant.
-* `uuid` - Uuid of the traffic clone profile.
+* `cloud_ref` - It is a reference to an object of type cloud. Field introduced in 17.1.1.
+* `name` - Name for the traffic clone profile. Field introduced in 17.1.1.
+* `preserve_client_ip` - Specifies if client ip needs to be preserved to clone destination. Field introduced in 17.1.1.
+* `tenant_ref` - It is a reference to an object of type tenant. Field introduced in 17.1.1.
+* `uuid` - Uuid of the traffic clone profile. Field introduced in 17.1.1.
 

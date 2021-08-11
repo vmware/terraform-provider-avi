@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "Avi: avi_backupconfiguration"
@@ -30,19 +28,19 @@ resource "avi_backupconfiguration" "foo" {
 The following arguments are supported:
 
 * `name` - (Required) Name of backup configuration.
-* `aws_access_key` - (Optional) Aws access key id.
-* `aws_bucket_id` - (Optional) Aws bucket.
-* `aws_secret_access` - (Optional) Aws secret access key.
-* `backup_file_prefix` - (Optional) Prefix of the exported configuration file.
+* `aws_access_key` - (Optional) Aws access key id. Field introduced in 18.2.3.
+* `aws_bucket_id` - (Optional) Aws bucket. Field introduced in 18.2.3.
+* `aws_secret_access` - (Optional) Aws secret access key. Field introduced in 18.2.3.
+* `backup_file_prefix` - (Optional) Prefix of the exported configuration file. Field introduced in 17.1.1.
 * `backup_passphrase` - (Optional) Passphrase of backup configuration.
-* `maximum_backups_stored` - (Optional) Rotate the backup files based on this count.
+* `maximum_backups_stored` - (Optional) Rotate the backup files based on this count. Allowed values are 1-20.
 * `remote_directory` - (Optional) Directory at remote destination with write permission for ssh user.
 * `remote_hostname` - (Optional) Remote destination.
 * `save_local` - (Optional) Local backup.
-* `ssh_user_ref` - (Optional) Access credentials for remote destination.
+* `ssh_user_ref` - (Optional) Access credentials for remote destination. It is a reference to an object of type cloudconnectoruser.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant.
 * `upload_to_remote_host` - (Optional) Remote backup.
-* `upload_to_s3` - (Optional) Cloud backup.
+* `upload_to_s3` - (Optional) Cloud backup. Field introduced in 18.2.3.
 
 
 ### Timeouts

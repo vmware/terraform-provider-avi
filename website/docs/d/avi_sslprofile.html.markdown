@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "AVI: avi_sslprofile"
@@ -36,13 +34,12 @@ In addition to all arguments above, the following attributes are exported:
 
 * `accepted_ciphers` - Ciphers suites represented as defined by u(http //www.openssl.org/docs/apps/ciphers.html).
 * `accepted_versions` - Set of versions accepted by the server.
-* `cipher_enums` - Enum options - tls_ecdhe_ecdsa_with_aes_128_gcm_sha256, tls_ecdhe_ecdsa_with_aes_256_gcm_sha384, tls_ecdhe_rsa_with_aes_128_gcm_sha256, tls_ecdhe_rsa_with_aes_256_gcm_sha384, tls_ecdhe_ecdsa_with_aes_128_cbc_sha256, tls_ecdhe_ecdsa_with_aes_256_cbc_sha384, tls_ecdhe_rsa_with_aes_128_cbc_sha256, tls_ecdhe_rsa_with_aes_256_cbc_sha384, tls_rsa_with_aes_128_gcm_sha256, tls_rsa_with_aes_256_gcm_sha384, tls_rsa_with_aes_128_cbc_sha256, tls_rsa_with_aes_256_cbc_sha256, tls_ecdhe_ecdsa_with_aes_128_cbc_sha, tls_ecdhe_ecdsa_with_aes_256_cbc_sha, tls_ecdhe_rsa_with_aes_128_cbc_sha, tls_ecdhe_rsa_with_aes_256_cbc_sha, tls_rsa_with_aes_128_cbc_sha, tls_rsa_with_aes_256_cbc_sha, tls_rsa_with_3des_ede_cbc_sha, tls_rsa_with_rc4_128_sha, tls_aes_256_gcm_sha384, tls_chacha20_poly1305_sha256, tls_aes_128_gcm_sha256.
-* `ciphersuites` - Tls 1.3 ciphers suites represented as defined by u(https //www.openssl.org/docs/manmaster/man1/ciphers.html).
+* `cipher_enums` - Enum options - tls_ecdhe_ecdsa_with_aes_128_gcm_sha256, tls_ecdhe_ecdsa_with_aes_256_gcm_sha384, tls_ecdhe_rsa_with_aes_128_gcm_sha256, tls_ecdhe_rsa_with_aes_256_gcm_sha384, tls_ecdhe_ecdsa_with_aes_128_cbc_sha256, tls_ecdhe_ecdsa_with_aes_256_cbc_sha384, tls_ecdhe_rsa_with_aes_128_cbc_sha256, tls_ecdhe_rsa_with_aes_256_cbc_sha384, tls_rsa_with_aes_128_gcm_sha256, tls_rsa_with_aes_256_gcm_sha384, tls_rsa_with_aes_128_cbc_sha256, tls_rsa_with_aes_256_cbc_sha256, tls_ecdhe_ecdsa_with_aes_128_cbc_sha, tls_ecdhe_ecdsa_with_aes_256_cbc_sha, tls_ecdhe_rsa_with_aes_128_cbc_sha, tls_ecdhe_rsa_with_aes_256_cbc_sha, tls_rsa_with_aes_128_cbc_sha, tls_rsa_with_aes_256_cbc_sha, tls_rsa_with_3des_ede_cbc_sha, tls_rsa_with_rc4_128_sha...
+* `ciphersuites` - Tls 1.3 ciphers suites represented as defined by u(https //www.openssl.org/docs/manmaster/man1/ciphers.html). Field introduced in 18.2.6.
 * `description` - User defined description for the object.
-* `dhparam` - Dh parameters used in ssl.
-* `enable_early_data` - Enable early data processing for tls1.3 connections.
+* `dhparam` - Dh parameters used in ssl. At this time, it is not configurable and is set to 2048 bits.
+* `enable_early_data` - Enable early data processing for tls1.3 connections. Field introduced in 18.2.6.
 * `enable_ssl_session_reuse` - Enable ssl session re-use.
-* `labels` - Key value pairs for granular object access control.
 * `name` - Name of the object.
 * `prefer_client_cipher_ordering` - Prefer the ssl cipher ordering presented by the client during the ssl handshake over the one specified in the ssl profile.
 * `send_close_notify` - Send 'close notify' alert message for a clean shutdown of the ssl connection.
@@ -50,6 +47,6 @@ In addition to all arguments above, the following attributes are exported:
 * `ssl_session_timeout` - The amount of time in seconds before an ssl session expires.
 * `tags` - List of list.
 * `tenant_ref` - It is a reference to an object of type tenant.
-* `type` - Ssl profile type.
+* `type` - Ssl profile type. Enum options - SSL_PROFILE_TYPE_APPLICATION, SSL_PROFILE_TYPE_SYSTEM. Field introduced in 17.2.8.
 * `uuid` - Unique object identifier of the object.
 

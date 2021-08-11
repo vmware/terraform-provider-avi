@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "Avi: avi_serviceengine"
@@ -36,7 +34,7 @@ The following arguments are supported:
 * `controller_created` - (Optional) Boolean flag to set controller_created.
 * `controller_ip` - (Optional) Placeholder for description of property controller_ip of obj type serviceengine field type string  type str.
 * `data_vnics` - (Optional) List of list.
-* `enable_state` - (Optional) Inorder to disable se set this field appropriately.
+* `enable_state` - (Optional) Inorder to disable se set this field appropriately. Enum options - SE_STATE_ENABLED, SE_STATE_DISABLED_FOR_PLACEMENT, SE_STATE_DISABLED, SE_STATE_DISABLED_FORCE.
 * `flavor` - (Optional) Placeholder for description of property flavor of obj type serviceengine field type string  type str.
 * `host_ref` - (Optional) It is a reference to an object of type vimgrhostruntime.
 * `hypervisor` - (Optional) Enum options - default, vmware_esx, kvm, vmware_vsan, xen.

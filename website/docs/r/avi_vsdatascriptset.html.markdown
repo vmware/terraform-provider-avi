@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "Avi: avi_vsdatascriptset"
@@ -30,16 +28,15 @@ resource "avi_vsdatascriptset" "foo" {
 The following arguments are supported:
 
 * `name` - (Required) Name for the virtual service datascript collection.
-* `created_by` - (Optional) Creator name.
+* `created_by` - (Optional) Creator name. Field introduced in 17.1.11,17.2.4.
 * `datascript` - (Optional) Datascripts to execute.
 * `description` - (Optional) User defined description for the object.
-* `ipgroup_refs` - (Optional) Uuid of ip groups that could be referred by vsdatascriptset objects.
-* `labels` - (Optional) Key value pairs for granular object access control.
-* `pool_group_refs` - (Optional) Uuid of pool groups that could be referred by vsdatascriptset objects.
-* `pool_refs` - (Optional) Uuid of pools that could be referred by vsdatascriptset objects.
-* `protocol_parser_refs` - (Optional) List of protocol parsers that could be referred by vsdatascriptset objects.
-* `rate_limiters` - (Optional) The rate limit definitions needed for this datascript.
-* `string_group_refs` - (Optional) Uuid of string groups that could be referred by vsdatascriptset objects.
+* `ipgroup_refs` - (Optional) Uuid of ip groups that could be referred by vsdatascriptset objects. It is a reference to an object of type ipaddrgroup.
+* `pool_group_refs` - (Optional) Uuid of pool groups that could be referred by vsdatascriptset objects. It is a reference to an object of type poolgroup.
+* `pool_refs` - (Optional) Uuid of pools that could be referred by vsdatascriptset objects. It is a reference to an object of type pool.
+* `protocol_parser_refs` - (Optional) List of protocol parsers that could be referred by vsdatascriptset objects. It is a reference to an object of type protocolparser. Field introduced in 18.2.3.
+* `rate_limiters` - (Optional) The rate limit definitions needed for this datascript. The name is composed of the virtual service name and the datascript name. Field introduced in 18.2.9.
+* `string_group_refs` - (Optional) Uuid of string groups that could be referred by vsdatascriptset objects. It is a reference to an object of type stringgroup.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant.
 
 

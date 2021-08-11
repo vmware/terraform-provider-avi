@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "AVI: avi_wafcrs"
@@ -34,12 +32,12 @@ data "avi_wafcrs" "foo_wafcrs" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `description` - A short description of this ruleset.
-* `groups` - Waf rules are sorted in groups based on their characterization.
-* `integrity` - Integrity protection value.
-* `name` - The name of this ruleset object.
-* `release_date` - The release date of this version in rfc 3339 / iso 8601 format.
-* `tenant_ref` - Tenant that this object belongs to.
+* `description` - A short description of this ruleset. Field introduced in 18.1.1.
+* `groups` - Waf rules are sorted in groups based on their characterization. Field introduced in 18.1.1.
+* `integrity` - Integrity protection value. Field introduced in 18.2.1.
+* `name` - The name of this ruleset object. Field introduced in 18.2.1.
+* `release_date` - The release date of this version in rfc 3339 / iso 8601 format. Field introduced in 18.1.1.
+* `tenant_ref` - Tenant that this object belongs to. It is a reference to an object of type tenant. Field introduced in 18.2.1.
 * `uuid` - Field introduced in 18.1.1.
-* `version` - The version of this ruleset object.
+* `version` - The version of this ruleset object. Field introduced in 18.1.1.
 

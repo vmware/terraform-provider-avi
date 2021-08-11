@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "Avi: avi_protocolparser"
@@ -29,11 +27,10 @@ resource "avi_protocolparser" "foo" {
 
 The following arguments are supported:
 
-* `description` - (Optional) Description of the protocol parser.
-* `labels` - (Optional) Key value pairs for granular object access control.
-* `name` - (Optional) Name of the protocol parser.
-* `parser_code` - (Optional) Command script provided inline.
-* `tenant_ref` - (Optional) Tenant uuid of the protocol parser.
+* `name` - (Required) Name of the protocol parser. Field introduced in 18.2.3.
+* `parser_code` - (Required) Command script provided inline. Field introduced in 18.2.3.
+* `description` - (Optional) Description of the protocol parser. Field introduced in 18.2.3.
+* `tenant_ref` - (Optional) Tenant uuid of the protocol parser. It is a reference to an object of type tenant. Field introduced in 18.2.3.
 
 
 ### Timeouts
@@ -48,5 +45,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-* `uuid` -  Uuid of the protocol parser.
+* `uuid` -  Uuid of the protocol parser. Field introduced in 18.2.3.
 

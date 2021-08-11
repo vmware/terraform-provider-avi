@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "Avi: avi_objectaccesspolicy"
@@ -29,9 +27,9 @@ resource "avi_objectaccesspolicy" "foo" {
 
 The following arguments are supported:
 
-* `name` - (Optional) Name of the object access policy.
-* `rules` - (Optional) Rules which grant access to specific objects.
-* `tenant_ref` - (Optional) Tenant that this object belongs to.
+* `name` - (Required) Name of the object access policy. Field introduced in 18.2.7.
+* `rules` - (Required) Rules which grant access to specific objects. Field introduced in 18.2.7.
+* `tenant_ref` - (Optional) Tenant that this object belongs to. It is a reference to an object of type tenant. Field introduced in 18.2.7.
 
 
 ### Timeouts
@@ -46,5 +44,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-* `uuid` -  Uuid of the object access policy.
+* `uuid` -  Uuid of the object access policy. Field introduced in 18.2.7.
 

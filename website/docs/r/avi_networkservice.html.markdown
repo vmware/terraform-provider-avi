@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "Avi: avi_networkservice"
@@ -29,14 +27,13 @@ resource "avi_networkservice" "foo" {
 
 The following arguments are supported:
 
-* `cloud_ref` - (Optional) It is a reference to an object of type cloud.
-* `labels` - (Optional) Key value pairs for granular object access control.
-* `name` - (Optional) Name of the networkservice.
-* `routing_service` - (Optional) Routing information of the networkservice.
-* `se_group_ref` - (Optional) Service engine group to which the service is applied.
-* `service_type` - (Optional) Indicates the type of networkservice.
-* `tenant_ref` - (Optional) It is a reference to an object of type tenant.
-* `vrf_ref` - (Optional) Vrf context to which the service is scoped.
+* `name` - (Required) Name of the networkservice. Field introduced in 18.2.5.
+* `se_group_ref` - (Required) Service engine group to which the service is applied. It is a reference to an object of type serviceenginegroup. Field introduced in 18.2.5.
+* `service_type` - (Required) Indicates the type of networkservice. Enum options - ROUTING_SERVICE. Field introduced in 18.2.5.
+* `vrf_ref` - (Required) Vrf context to which the service is scoped. It is a reference to an object of type vrfcontext. Field introduced in 18.2.5.
+* `cloud_ref` - (Optional) It is a reference to an object of type cloud. Field introduced in 18.2.5.
+* `routing_service` - (Optional) Routing information of the networkservice. Field introduced in 18.2.5.
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant. Field introduced in 18.2.5.
 
 
 ### Timeouts
@@ -51,5 +48,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-* `uuid` -  Uuid of the networkservice.
+* `uuid` -  Uuid of the networkservice. Field introduced in 18.2.5.
 

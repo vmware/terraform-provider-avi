@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "AVI: avi_tenant"
@@ -39,6 +37,5 @@ In addition to all arguments above, the following attributes are exported:
 * `description` - User defined description for the object.
 * `local` - Boolean flag to set local.
 * `name` - Name of the object.
-* `suggested_object_labels` - Suggestive pool of key value pairs for recommending assignment of labels to objects in the user interface.
 * `uuid` - Unique object identifier of the object.
 

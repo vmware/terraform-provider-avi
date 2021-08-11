@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "AVI: avi_authprofile"
@@ -38,10 +36,10 @@ In addition to all arguments above, the following attributes are exported:
 * `http` - Http user authentication params.
 * `ldap` - Ldap server and directory settings.
 * `name` - Name of the auth profile.
-* `pa_agent_ref` - Pingaccessagent uuid.
-* `saml` - Saml settings.
+* `pa_agent_ref` - Pingaccessagent uuid. It is a reference to an object of type pingaccessagent. Field introduced in 18.2.3.
+* `saml` - Saml settings. Field introduced in 17.2.3.
 * `tacacs_plus` - Tacacs+ settings.
 * `tenant_ref` - It is a reference to an object of type tenant.
-* `type` - Type of the auth profile.
+* `type` - Type of the auth profile. Enum options - AUTH_PROFILE_LDAP, AUTH_PROFILE_TACACS_PLUS, AUTH_PROFILE_SAML, AUTH_PROFILE_PINGACCESS.
 * `uuid` - Uuid of the auth profile.
 

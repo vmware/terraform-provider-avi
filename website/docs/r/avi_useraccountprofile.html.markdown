@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "Avi: avi_useraccountprofile"
@@ -30,11 +28,11 @@ resource "avi_useraccountprofile" "foo" {
 The following arguments are supported:
 
 * `name` - (Required) Name of the object.
-* `account_lock_timeout` - (Optional) Lock timeout period (in minutes).
-* `credentials_timeout_threshold` - (Optional) The time period after which credentials expire.
-* `max_concurrent_sessions` - (Optional) Maximum number of concurrent sessions allowed.
-* `max_login_failure_count` - (Optional) Number of login attempts before lockout.
-* `max_password_history_count` - (Optional) Maximum number of passwords to be maintained in the password history.
+* `account_lock_timeout` - (Optional) Lock timeout period (in minutes). Default is 30 minutes.
+* `credentials_timeout_threshold` - (Optional) The time period after which credentials expire. Default is 180 days.
+* `max_concurrent_sessions` - (Optional) Maximum number of concurrent sessions allowed. There are unlimited sessions by default.
+* `max_login_failure_count` - (Optional) Number of login attempts before lockout. Default is 3 attempts.
+* `max_password_history_count` - (Optional) Maximum number of passwords to be maintained in the password history. Default is 4 passwords.
 
 
 ### Timeouts

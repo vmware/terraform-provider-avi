@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "Avi: avi_stringgroup"
@@ -30,11 +28,10 @@ resource "avi_stringgroup" "foo" {
 The following arguments are supported:
 
 * `name` - (Required) Name of the string group.
-* `type` - (Required) Type of stringgroup.
+* `type` - (Required) Type of stringgroup. Enum options - SG_TYPE_STRING, SG_TYPE_KEYVAL.
 * `description` - (Optional) User defined description for the object.
 * `kv` - (Optional) Configure key value in the string group.
-* `labels` - (Optional) Key value pairs for granular object access control.
-* `longest_match` - (Optional) Enable the longest match, default is the shortest match.
+* `longest_match` - (Optional) Enable the longest match, default is the shortest match. Field introduced in 18.2.8.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant.
 
 

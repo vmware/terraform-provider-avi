@@ -1,9 +1,7 @@
-############################################################################
-# ------------------------------------------------------------------------
-# Copyright 2020 VMware, Inc.  All rights reserved. VMware Confidential
-# ------------------------------------------------------------------------
-###
-
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
 ---
 layout: "avi"
 page_title: "AVI: avi_networksecuritypolicy"
@@ -34,7 +32,7 @@ data "avi_networksecuritypolicy" "foo_networksecuritypolicy" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `cloud_config_cksum` - Checksum of cloud configuration for network sec policy.
+* `cloud_config_cksum` - Checksum of cloud configuration for network sec policy. Internally set by cloud connector.
 * `created_by` - Creator name.
 * `description` - User defined description for the object.
 * `name` - Name of the object.
