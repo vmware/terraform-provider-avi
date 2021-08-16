@@ -35898,6 +35898,11 @@ func ResourceWafConfigSchema() *schema.Resource {
 				Default:      "32",
 				ValidateFunc: validateInteger,
 			},
+			"content_type_mappings": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceWafContentTypeMappingSchema(),
+			},
 			"cookie_format_version": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -35990,6 +35995,21 @@ func ResourceWafConfigSchema() *schema.Resource {
 				Optional:     true,
 				Default:      "true",
 				ValidateFunc: validateBool,
+			},
+		},
+	}
+}
+
+func ResourceWafContentTypeMappingSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"content_type": {
+				Type:     schema.TypeString,
+				Required: true,
+			},
+			"request_body_parser": {
+				Type:     schema.TypeString,
+				Required: true,
 			},
 		},
 	}
