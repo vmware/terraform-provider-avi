@@ -142,6 +142,12 @@ func ResourceCloudSchema() map[string]*schema.Schema {
 			Computed: true,
 			Elem:     ResourceLinuxServerConfigurationSchema(),
 		},
+		"maintenance_mode": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
+		},
 		"mtu": {
 			Type:         schema.TypeString,
 			Optional:     true,
