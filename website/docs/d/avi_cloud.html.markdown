@@ -53,6 +53,7 @@ In addition to all arguments above, the following attributes are exported:
 * `license_tier` - Specifies the default license tier which would be used by new se groups. This field by default inherits the value from system configuration. Enum options - ENTERPRISE_16, ENTERPRISE, ENTERPRISE_18, BASIC, ESSENTIALS. Field introduced in 17.2.5.
 * `license_type` - If no license type is specified then default license enforcement for the cloud type is chosen. The default mappings are container cloud is max ses, openstack and vmware is cores and linux it is sockets. Enum options - LIC_BACKEND_SERVERS, LIC_SOCKETS, LIC_CORES, LIC_HOSTS, LIC_SE_BANDWIDTH, LIC_METERED_SE_BANDWIDTH.
 * `linuxserver_configuration` - Dict settings for cloud.
+* `maintenance_mode` - Cloud is in maintenance mode. Field introduced in 20.1.7,21.1.3.
 * `mtu` - Mtu setting for the cloud. Unit is bytes.
 * `name` - Name of the object.
 * `nsxt_configuration` - Nsx-t cloud platform configuration. Field introduced in 20.1.1. Allowed in essentials edition, enterprise edition.
