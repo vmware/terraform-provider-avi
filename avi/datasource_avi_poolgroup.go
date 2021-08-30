@@ -30,6 +30,10 @@ func dataSourceAviPoolGroup() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"disable_primary_pool_on_down": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"enable_http2": {
 				Type:     schema.TypeString,
 				Computed: true,

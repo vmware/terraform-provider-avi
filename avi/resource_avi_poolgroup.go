@@ -38,6 +38,12 @@ func ResourcePoolGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"disable_primary_pool_on_down": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
+		},
 		"enable_http2": {
 			Type:         schema.TypeString,
 			Optional:     true,
