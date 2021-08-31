@@ -11421,6 +11421,11 @@ func ResourceGCPConfigurationSchema() *schema.Resource {
 				Optional: true,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
+			"gcp_service_account_email": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"gcs_bucket_name": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -11767,6 +11772,12 @@ func ResourceGCPVIPRoutesSchema() *schema.Resource {
 				Optional:     true,
 				Default:      "false",
 				ValidateFunc: validateBool,
+			},
+			"route_priority": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "2000",
+				ValidateFunc: validateInteger,
 			},
 		},
 	}
@@ -31078,6 +31089,11 @@ func ResourceVIMgrSEVMRuntimeSchema() *schema.Resource {
 				ValidateFunc: validateInteger,
 			},
 			"flavor": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"gcp_se_project_id": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
