@@ -5238,6 +5238,29 @@ func ResourceClusterConfigFailedEventSchema() *schema.Resource {
 	}
 }
 
+func ResourceClusterHAConfigSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"cluster_id": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"override_vsphere_ha": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
+			"vmg_name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
 func ResourceClusterLeaderFailoverEventSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -11297,6 +11320,12 @@ func ResourceEventDetailsSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 				Elem:     ResourceVCASetupSchema(),
+			},
+			"vcenter_cluster_details": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceVcenterClusterDetailsSchema(),
 			},
 			"vcenter_connectivity_status": {
 				Type:     schema.TypeSet,
@@ -22459,6 +22488,11 @@ func ResourcePlacementNetworkSchema() *schema.Resource {
 func ResourcePlacementScopeConfigSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"clusters": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceClusterHAConfigSchema(),
+			},
 			"nsxt_clusters": {
 				Type:     schema.TypeSet,
 				Optional: true,
@@ -31876,6 +31910,16 @@ func ResourceVIMgrSEVMRuntimeSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"cluster_id": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"cluster_vmgroup": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"connection_state": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -32020,6 +32064,16 @@ func ResourceVIMgrSEVMRuntimeSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"vcenter_host_connection_state": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"vcenter_host_ha_state": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"vcenter_instance_uuid": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -32071,6 +32125,18 @@ func ResourceVIMgrSEVMRuntimeSchema() *schema.Resource {
 				Optional:     true,
 				Computed:     true,
 				ValidateFunc: validateInteger,
+			},
+			"vsphere_ha_enabled": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateBool,
+			},
+			"vsphere_ha_inprogress": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateBool,
 			},
 		},
 	}
@@ -32456,6 +32522,38 @@ func ResourceVSDataScriptsSchema() *schema.Resource {
 			"vs_datascript_set_ref": {
 				Type:     schema.TypeString,
 				Required: true,
+			},
+		},
+	}
+}
+
+func ResourceVcenterClusterDetailsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"cc_id": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"cluster": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"error_string": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"hosts": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
+			"vc_url": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 		},
 	}
