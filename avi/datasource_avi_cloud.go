@@ -102,6 +102,10 @@ func dataSourceAviCloud() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceLinuxServerConfigurationSchema(),
 			},
+			"maintenance_mode": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"mtu": {
 				Type:     schema.TypeString,
 				Computed: true,
