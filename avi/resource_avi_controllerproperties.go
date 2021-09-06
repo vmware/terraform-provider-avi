@@ -490,6 +490,24 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Default:      "120",
 			ValidateFunc: validateInteger,
 		},
+		"vsphere_ha_detection_timeout": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "120",
+			ValidateFunc: validateInteger,
+		},
+		"vsphere_ha_recovery_timeout": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "480",
+			ValidateFunc: validateInteger,
+		},
+		"vsphere_ha_timer_interval": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "20",
+			ValidateFunc: validateInteger,
+		},
 		"warmstart_se_reconnect_wait_time": {
 			Type:         schema.TypeString,
 			Optional:     true,

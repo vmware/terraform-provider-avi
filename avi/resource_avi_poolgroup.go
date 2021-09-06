@@ -28,6 +28,12 @@ func ResourcePoolGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"deactivate_primary_pool_on_down": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
+		},
 		"deployment_policy_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
@@ -37,12 +43,6 @@ func ResourcePoolGroupSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
-		},
-		"disable_primary_pool_on_down": {
-			Type:         schema.TypeString,
-			Optional:     true,
-			Default:      "false",
-			ValidateFunc: validateBool,
 		},
 		"enable_http2": {
 			Type:         schema.TypeString,
