@@ -260,4 +260,16 @@ it to false, i.e. export `AVI_SUPPRESS_SENSITIVE_FIELDS_DIFF=false` or unset `AV
 $ export AVI_SUPPRESS_SENSITIVE_FIELDS_DIFF = true
 ```
 
-### [Click here](https://github.com/vmware/terraform-provider-avi/tree/eng/examples) for more examples
+# Examples
+| Name                   | Link       |
+|------------------------|------------|
+| Virtual Services             | [Basic VS](https://github.com/vmware/terraform-provider-avi/tree/eng/examples/basic) <br>[HTTPS VS](https://github.com/vmware/terraform-provider-avi/tree/eng/examples/virtualservice/https_vs) <br> [HTTP VS](https://github.com/vmware/terraform-provider-avi/tree/eng/examples/virtualservice/http_vs) <br> [HTTP VS](https://github.com/vmware/terraform-provider-avi/tree/eng/examples/virtualservice/http_vs) <br> [DNS VS](https://github.com/vmware/terraform-provider-avi/tree/eng/examples/virtualservice/dns_vs) <br> [TCP VS](https://github.com/vmware/terraform-provider-avi/tree/eng/examples/virtualservice/tcp_vs) |
+| VMware Environment    | [Vcenter Cloud](https://github.com/vmware/terraform-provider-avi/tree/eng/examples/cloud/vmware) <br> [Vcenter Controller Deployment](https://github.com/vmware/terraform-provider-avi/tree/eng/examples/vmware) |
+| NSXT Environment    | [nsx-t Cloud](https://github.com/vmware/terraform-provider-avi/tree/eng/examples/nsxt/avi_nsxt_cloud) |
+| GCP Environment     | [GCP Cloud and Controller](https://github.com/vmware/terraform-provider-avi/tree/eng/examples/gcp) |
+| Azure Environment   | [Azure Cloud and Controller](https://github.com/vmware/terraform-provider-avi/tree/eng/examples/azure) |
+| AWS Environment     | [AWS Cloud and Controller](https://github.com/vmware/terraform-provider-avi/tree/eng/examples/aws) |
+| WAF                 | [Waf Profile/Policy](https://github.com/vmware/terraform-provider-avi/tree/eng/examples/waf_V2) |
+| Horizon             | [Horizon VS](https://github.com/vmware/terraform-provider-avi/tree/eng/examples/Horizon) |
+| Openstack Environment | [Openstack Cloud and Controller](https://github.com/vmware/terraform-provider-avi/tree/eng/examples/openstack) |
+
