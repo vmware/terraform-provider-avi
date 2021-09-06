@@ -31901,6 +31901,11 @@ func ResourceVIMgrSEVMRuntimeSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"gcp_se_project_id": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"guest_nic": {
 				Type:     schema.TypeList,
 				Optional: true,

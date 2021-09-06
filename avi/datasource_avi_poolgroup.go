@@ -27,6 +27,10 @@ func dataSourceAviPoolGroup() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"deactivate_primary_pool_on_down": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"deployment_policy_ref": {
 				Type:     schema.TypeString,
 				Computed: true,
