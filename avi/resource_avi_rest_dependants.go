@@ -25313,10 +25313,6 @@ func ResourceScheduledScalingSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
-			"recurrence": {
-				Type:     schema.TypeString,
-				Required: true,
-			},
 			"schedule_max_step": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -29012,6 +29008,12 @@ func ResourceServerAutoScaleInInfoSchema() *schema.Resource {
 				Optional: true,
 				Elem:     ResourceServerIdSchema(),
 			},
+			"scheduled_desired_capacity": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
 		},
 	}
 }
@@ -29099,6 +29101,12 @@ func ResourceServerAutoScaleOutInfoSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Default:  "SYSERR_SUCCESS",
+			},
+			"scheduled_desired_capacity": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
 			},
 		},
 	}
@@ -31970,6 +31978,11 @@ func ResourceVIMgrSEVMRuntimeSchema() *schema.Resource {
 				ValidateFunc: validateInteger,
 			},
 			"flavor": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"gcp_se_project_id": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,

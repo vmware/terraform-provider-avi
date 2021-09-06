@@ -34,6 +34,12 @@ func ResourcePoolGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"deactivate_primary_pool_on_down": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
+		},
 		"deployment_policy_ref": {
 			Type:     schema.TypeString,
 			Optional: true,

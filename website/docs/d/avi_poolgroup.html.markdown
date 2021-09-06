@@ -38,6 +38,7 @@ In addition to all arguments above, the following attributes are exported:
 * `cloud_ref` - It is a reference to an object of type cloud.
 * `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1.
 * `created_by` - Name of the user who created the object.
+* `deactivate_primary_pool_on_down` - Deactivate primary pool for selection when down until it is activated by user via clear poolgroup command. Field introduced in 20.1.7, 21.1.2, 21.1.3.
 * `deployment_policy_ref` - When setup autoscale manager will automatically promote new pools into production when deployment goals are met. It is a reference to an object of type poolgroupdeploymentpolicy.
 * `description` - Description of pool group.
 * `enable_http2` - Enable http/2 for traffic from virtualservice to all the backend servers in all the pools configured under this poolgroup. Field introduced in 20.1.1. Allowed in basic(allowed values- false) edition, essentials(allowed values- false) edition, enterprise edition.
