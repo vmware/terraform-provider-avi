@@ -30,7 +30,7 @@ resource "avi_pool" "testpool" {
   servers {
     ip {
       type= "V4"
-      addr= "10.90.64.66"
+      addr= "x.x.x.x"
     }
     port= 8080
   }
@@ -96,7 +96,7 @@ provider "avi" {
   avi_username = "admin"
   avi_tenant = "admin"
   avi_password = "password"
-  avi_controller = "42.42.42.42"
+  avi_controller = "x.x.x.x"
   avi_version = "21.1.1"
 }  
 ```
@@ -166,7 +166,7 @@ resource "avi_pool" "testpool" {
   servers {
     ip {
       type= "V4"
-      addr= "10.90.64.66"
+      addr= "x.x.x.x"
     }
     port= 8080
   }
@@ -180,7 +180,7 @@ resource "avi_vsvip" "test_vsvip" {
     vip_id = "0"
     ip_address {
       type = "V4"
-      addr = "10.20.30.45"
+      addr = "x.x.x.x"
     }
   }
   cloud_ref = data.avi_cloud.default_cloud.id
@@ -225,7 +225,7 @@ provider "avi" {
   avi_username = "admin"
   avi_tenant = "admin"
   avi_password = "password"
-  avi_controller = "42.42.42.42"
+  avi_controller = "x.x.x.x"
   avi_version = "21.1.1"
 } 
 ```
@@ -243,7 +243,7 @@ provider "avi" {}
 ```sh
 $ export AVI_USERNAME = username
 $ export AVI_PASSWORD = password
-$ export AVI_CONTROLLER = 10.0.0.3
+$ export AVI_CONTROLLER = x.x.x.x
 $ export AVI_TENANT = foo
 $ export AVI_VERSION=21.1.1
 $ terraform init
