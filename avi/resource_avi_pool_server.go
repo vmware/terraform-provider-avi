@@ -160,8 +160,12 @@ func resourceAviServerCreateOrUpdate(d *schema.ResourceData, meta interface{}) e
 		// not found
 		newServer := models.Server{}
 		if port, ok := d.GetOk("port"); ok {
-			portV := int32(port.(int))
-			newServer.Port = &portV
+			if portV, err := strconv.ParseInt(port.(string), 10, 32); err == nil {
+				portV32 := int32(portV)
+				newServer.Port = &portV32
+			} else {
+				log.Printf("[ERROR] resourceAviServerCreateOrUpdate while converting port to integer %v\n", err)
+			}
 		}
 		pserver = &newServer
 	}
@@ -187,8 +191,11 @@ func resourceAviServerCreateOrUpdate(d *schema.ResourceData, meta interface{}) e
 		pserver.DiscoveredNetworks = DiscoveredNetworks.([]*models.DiscoveredNetwork)
 	}
 	if Enabled, ok := d.GetOk("enabled"); ok {
-		en := Enabled.(bool)
-		pserver.Enabled = &en
+		if en, err := strconv.ParseBool(Enabled.(string)); err == nil {
+			pserver.Enabled = &en
+		} else {
+			log.Printf("[ERROR] resourceAviServerCreateOrUpdate while converting enabled to boolean %v\n", err)
+		}
 	}
 	if ExternalOrchestrationID, ok := d.GetOk("external_orchestration_id"); ok {
 		extOrc := ExternalOrchestrationID.(string)
@@ -214,28 +221,44 @@ func resourceAviServerCreateOrUpdate(d *schema.ResourceData, meta interface{}) e
 		pserver.PrstHdrVal = &pHdrVal
 	}
 	if Ratio, ok := d.GetOk("ratio"); ok {
-		r := int32(Ratio.(int))
-		pserver.Ratio = &r
+		if r, err := strconv.ParseInt(Ratio.(string), 10, 32); err == nil {
+			ratio32 := int32(r)
+			pserver.Ratio = &ratio32
+		} else {
+			log.Printf("[ERROR] resourceAviServerCreateOrUpdate while converting ratio to integer %v\n", err)
+		}
 	}
 	if ResolveServerByDNS, ok := d.GetOk("resolve_server_by_dns"); ok {
-		resolveSvrByDNS := ResolveServerByDNS.(bool)
-		pserver.ResolveServerByDNS = &resolveSvrByDNS
+		if resolveSvrByDNS, err := strconv.ParseBool(ResolveServerByDNS.(string)); err == nil {
+			pserver.ResolveServerByDNS = &resolveSvrByDNS
+		} else {
+			log.Printf("[ERROR] resourceAviServerCreateOrUpdate while converting resolve_server_by_dns to boolean %v\n", err)
+		}
 	}
 	if RewriteHostHeader, ok := d.GetOk("rewrite_host_header"); ok {
-		rewriteHostHdr := RewriteHostHeader.(bool)
-		pserver.RewriteHostHeader = &rewriteHostHdr
+		if rewriteHostHdr, err := strconv.ParseBool(RewriteHostHeader.(string)); err == nil {
+			pserver.RewriteHostHeader = &rewriteHostHdr
+		} else {
+			log.Printf("[ERROR] resourceAviServerCreateOrUpdate while converting rewrite_host_header to boolean %v\n", err)
+		}
 	}
 	if ServerNode, ok := d.GetOk("server_node"); ok {
 		sn := ServerNode.(string)
 		pserver.ServerNode = &sn
 	}
 	if Static, ok := d.GetOk("static"); ok {
-		s := Static.(bool)
-		pserver.Static = &s
+		if s, err := strconv.ParseBool(Static.(string)); err == nil {
+			pserver.Static = &s
+		} else {
+			log.Printf("[ERROR] resourceAviServerCreateOrUpdate while converting static to boolean %v\n", err)
+		}
 	}
 	if VerifyNetwork, ok := d.GetOk("verify_network"); ok {
-		verifyNet := VerifyNetwork.(bool)
-		pserver.VerifyNetwork = &verifyNet
+		if verifyNet, err := strconv.ParseBool(VerifyNetwork.(string)); err == nil {
+			pserver.VerifyNetwork = &verifyNet
+		} else {
+			log.Printf("[ERROR] resourceAviServerCreateOrUpdate while converting verify_network to boolean %v\n", err)
+		}
 	}
 	if VMRef, ok := d.GetOk("vm_ref"); ok {
 		vmRefStr := VMRef.(string)
@@ -271,7 +294,7 @@ func ResourceAviServerRead(d *schema.ResourceData, meta interface{}) error {
 		portStr := "0"
 		ip := d.Get("ip").(string)
 		if port, ok := d.GetOk("port"); ok {
-			portStr = strconv.Itoa(port.(int))
+			portStr = port.(string)
 		}
 		sUUID = pUUID + ":" + ip + ":" + portStr
 		log.Printf("[INFO] pool %v ip %v port %v", pUUID, ip, portStr)
@@ -355,9 +378,14 @@ func resourceAviServerReadAPI(d *schema.ResourceData, meta interface{}) (string,
 				matchedServer = sObj
 				break
 			} else if port != nil && sObj.Port != nil {
-				if int32(port.(int)) == *sObj.Port {
-					matchedServer = sObj
-					break
+				if portV, errInt := strconv.ParseInt(port.(string), 10, 32); errInt == nil {
+					portV32 := int32(portV)
+					if portV32 == *sObj.Port {
+						matchedServer = sObj
+						break
+					}
+				} else {
+					log.Printf("[ERROR] resourceAviServerReadAPI while converting port to integer %v\n", err)
 				}
 			}
 		}
