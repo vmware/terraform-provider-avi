@@ -11345,6 +11345,12 @@ func ResourceEventDetailsSchema() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceVinfraVcenterDiscoveryFailureSchema(),
 			},
+			"vcenter_img_details": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceVcenterImageDetailsSchema(),
+			},
 			"vcenter_network_limit": {
 				Type:     schema.TypeSet,
 				Optional: true,
@@ -32630,6 +32636,33 @@ func ResourceVcenterHostsSchema() *schema.Resource {
 	}
 }
 
+func ResourceVcenterImageDetailsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"cc_id": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"error_string": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"image_version": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"vc_url": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
 func ResourceVersionInfoSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -36873,6 +36906,12 @@ func ResourceWebApplicationSignatureServiceStatusSchema() *schema.Resource {
 func ResourcevCenterConfigurationSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"content_lib": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceContentLibConfigSchema(),
+			},
 			"datacenter": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -36905,6 +36944,12 @@ func ResourcevCenterConfigurationSchema() *schema.Resource {
 			"privilege": {
 				Type:     schema.TypeString,
 				Required: true,
+			},
+			"use_content_lib": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "true",
+				ValidateFunc: validateBool,
 			},
 			"username": {
 				Type:     schema.TypeString,
