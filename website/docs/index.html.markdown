@@ -15,9 +15,9 @@ to be configured with the proper credentials before it can be used.
 Use the navigation to the left to read about the available resources.
 
 # Integrating Terraform with Avi Vantage
-Each Avi Vantage REST resource is exposed as a resource in Terraform. For instance, you can setup a pool by using avi_pool as the resource type in Terraform. There are more than 50 different REST resource supported.
+Each Avi Vantage REST resource is exposed as a resource in Terraform. For instance, you can setup a pool by using avi_pool as the resource type in Terraform. There are more than 50 different REST resources supported.
 
-The definition of every resource or resource schema is built using Avi Vantage API spec represented as swagger specs or in Avi API guide. There is 1:1 mapping between the fields in Terraform schema to Avi Vantage object/resource definition. For instance, the definition of Avi Pool in Terraform is coded as Terraform Avi Pool Resource schema.
+Each Terraform resource maps directly to a corresponding Avi Vantage API as defined in the Swagger Spec (available on any Avi Vantage Controller at https://<controller>/swagger/) or the API documentation (available [here](https://avinetworks.com/docs/latest/api-guide/)). There is a 1:1 mapping between the fields in the Terraform schema and the corresponding Avi Vantage object definition.
 
 Avi Terraform provider is a native integration into the Terraform to setup all Avi configuration that is part of Avi REST API. With the Avi Terraform provider, a Terraform plan written in HCL syntax can specify any Avi configuration and it will be reflected on the Avi Controller. For instance, you can use a Terraform plan with the following code to setup a pool in Avi Vantage.
 
@@ -39,24 +39,24 @@ resource "avi_pool" "testpool" {
   }
 }
 ```
-You can break the above code as follows:
-* The following is the CLI to setup a resource of avi pool type with testpool name:
+The above code breaks down as follows::
+* The line below declares a resource of type ‘pool’ with name ‘testpool’:
 
 ```hcl
   resource "avi_pool" "testpool" {
 ```
-* The following is the CLI to reference another resource that was specified in the Terraform plan:
+* The line below shows a field that is a reference to another Terraform resource declared elsewhere in the plan:
 
 ```hcl 
   health_monitor_refs= [avi_healthmonitor.test_hm_1.id]
 ```
-The following is the CLI to reference a read only resource that is not being created and managed via this plan.
+* The line below shows a field that is a reference to a read-only data source corresponding to an existing Avi object not defined through the Terraform plan:
 
 ```hcl
   tenant_ref= data.avi_tenant.default_tenant.id
 ```
 
-In addition to the Terraform resource you can check for the existing objects in Avi Controller using data sources. For instance, you can load **System HTTP Application** profile in a Terraform plan as follows:
+* Read-only data sources can be imported either by name or by UUID. For example, the “System-HTTP” application profile can be imported as a data source by name using the following:
 
 ```hcl
 data "avi_applicationprofile" "system_http_profile" {
@@ -65,7 +65,7 @@ data "avi_applicationprofile" "system_http_profile" {
 
 // can be referenced as data.avi_applicationprofile.system_http_profile.id
 ```
-You can also use existing UUID of the object to lookup from the Avi Controller as follows:
+* Alternatively, a data source can be imported based on the object’s UUID rather than it’s name, for example:
 ```hcl
 data "avi_applicationprofile" "system_http_profile" {
 uuid= "applicationprofile-xxxxxxx"
@@ -73,7 +73,7 @@ uuid= "applicationprofile-xxxxxxx"
 ```
 # Usage Avi Terraform
 The following are the steps to use the provider:
-1. Terraform module must declare which providers it requires, so that Terraform can install and use them. Provider requirements are declared in a required_providers block. Starting with Terraform version 0.13+, Avi terraform provider has been migrated to terraform registry. In order to use it, you need to add the below block in versions.tf file.
+1. Terraform module must declare which providers it requires, so that Terraform can install and use them. Provider requirements are declared in a required_providers block. Starting with Terraform version 0.13+, Avi Terraform provider has been migrated to Terraform registry. In order to use it, you need to add the below block in versions.tf file.
 
 ```hcl
 terraform {
@@ -251,7 +251,7 @@ $ terraform plan
 ```
 
 You can export `AVI_SUPPRESS_SENSITIVE_FIELDS_DIFF` environment variable as `AVI_SUPPRESS_SENSITIVE_FIELDS_DIFF=true`
-if you want terraform to suppress the difference for sensitive fields during the plan update. However, if you want to
+if you want Terraform to suppress the difference for sensitive fields during the plan update. However, if you want to
 intentionally update the sensitive fields in the plan update then you need to un-export the environment variable or set
 it to false, i.e. export `AVI_SUPPRESS_SENSITIVE_FIELDS_DIFF=false` or unset `AVI_SUPPRESS_SENSITIVE_FIELDS_DIFF`.
 
@@ -265,10 +265,11 @@ $ export AVI_SUPPRESS_SENSITIVE_FIELDS_DIFF = true
 |------------------------|------------|-------------|
 | Virtual Services             | [Basic VS](https://github.com/vmware/terraform-provider-avi/tree/eng/examples/basic) <br>[HTTPS VS](https://github.com/vmware/terraform-provider-avi/tree/eng/examples/virtualservice/https_vs) <br> [HTTP VS](https://github.com/vmware/terraform-provider-avi/tree/eng/examples/virtualservice/http_vs) <br> [HTTP VS](https://github.com/vmware/terraform-provider-avi/tree/eng/examples/virtualservice/http_vs) <br> [DNS VS](https://github.com/vmware/terraform-provider-avi/tree/eng/examples/virtualservice/dns_vs) <br> [TCP VS](https://github.com/vmware/terraform-provider-avi/tree/eng/examples/virtualservice/tcp_vs) | Using these examples we can configure HTTPS Virtual Service on AVI controller with dependent resources including Pool, Pool Group, SSL Certificates, Health Monitor, VsVip, Application Persistence Profile, Network Profile and datasources including Application Profiles, Tenant, Cloud, Service Engine Group, Network Profile, Analytics Profile, SSL certificates, SSl Profiles, VRF Context. |
 | VMware Environment    | [Vcenter Cloud](https://github.com/vmware/terraform-provider-avi/tree/eng/examples/cloud/vmware) <br> [Vcenter Controller Deployment](https://github.com/vmware/terraform-provider-avi/tree/eng/examples/vmware) | Using Vcenter Cloud example we can configure cloud of type CLOUD_VCENTER on AVI controller. <br> Using Controller Deployment examples we can deploy AVI Controller on the Vcenter using Ova or Ovf or content library. |
-| NSXT Environment    | [nsx-t Cloud](https://github.com/vmware/terraform-provider-avi/tree/eng/examples/nsxt/avi_nsxt_cloud) | Using this example we can integrate AVI Solution with NSX-T. This terraform plan will create NSX-T cloud using AVI terraform provider. |
+| NSXT Environment    | [nsx-t Cloud](https://github.com/vmware/terraform-provider-avi/tree/eng/examples/nsxt/avi_nsxt_cloud) | Using this example we can integrate AVI Solution with NSX-T. This Terraform plan will create NSX-T cloud using AVI Terraform provider. |
 | GCP Environment     | [GCP Cloud and Controller](https://github.com/vmware/terraform-provider-avi/tree/eng/examples/gcp) | These examples deploy AVI controller on GCP, configures AVI controller cluster and cloud of type GCP. |
 | Azure Environment   | [Azure Cloud and Controller](https://github.com/vmware/terraform-provider-avi/tree/eng/examples/azure) | These examples deploy AVI controller on Azure, configures AVI controller cluster, cloud of type Azure, Virtual Services and its dependent resources. |
 | AWS Environment     | [AWS Cloud and Controller](https://github.com/vmware/terraform-provider-avi/tree/eng/examples/aws) | These examples deploy AVI controller on AWS, configures AVI controller cluster, cloud of type AWS, Virtual Services and its dependent resources. |
 | WAF                 | [Waf Profile/Policy](https://github.com/vmware/terraform-provider-avi/tree/eng/examples/waf_V2) | Using this example we can configure WAF Policy on AVI controller with resources including Waf Profile, WAF Policy, Virtual Service, Pool, Pool Group, SSL profile, VsVip, Network Profile and datasources including WAF Application Signature Provider, Application Profiles, Tenant, Cloud, SSL certificates, SSl Profiles, VRF Context. |
-| Horizon             | [Horizon VS](https://github.com/vmware/terraform-provider-avi/tree/eng/examples/Horizon) | This terraform example can be used to configure AVI for Horizon in a Shared VIP with L7 and L4 Virtual Services. |
+| Horizon             | [Horizon VS](https://github.com/vmware/terraform-provider-avi/tree/eng/examples/Horizon) | This Terraform example can be used to configure AVI for Horizon in a Shared VIP with L7 and L4 Virtual Services. |
 | Openstack Environment | [Openstack Cloud and Controller](https://github.com/vmware/terraform-provider-avi/tree/eng/examples/openstack) | Using this example we can launch AVI controller instance in openstack environment and configure application(Virtual Service) on controller. |
+
