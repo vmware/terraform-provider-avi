@@ -108,6 +108,9 @@ The following arguments are supported:
 * `vs_se_ping_fail` - (Optional) Unit is sec.
 * `vs_se_vnic_fail` - (Optional) Unit is sec.
 * `vs_se_vnic_ip_fail` - (Optional) Unit is sec.
+* `vsphere_ha_detection_timeout` - (Optional) Vsphere ha monitor detection timeout. If vsphere_ha_enabled is true and the controller is not able to reach the se, placement will wait for this duration for vsphere_ha_inprogress to be marked true before taking corrective action. Field introduced in 20.1.7, 21.1.3. Unit is sec.
+* `vsphere_ha_recovery_timeout` - (Optional) Vsphere ha monitor recovery timeout. Once vsphere_ha_inprogress is set to true (meaning host failure detected and vsphere ha will recover the service engine), placement will wait for at least this duration for the se to reconnect to the controller before taking corrective action. Field introduced in 20.1.7, 21.1.3. Unit is sec.
+* `vsphere_ha_timer_interval` - (Optional) Vsphere ha monitor timer interval for sending cc_check_se_status to cloud connector. Field introduced in 20.1.7, 21.1.3. Unit is sec.
 * `warmstart_se_reconnect_wait_time` - (Optional) Unit is sec.
 * `warmstart_vs_resync_wait_time` - (Optional) Timeout for warmstart vs resync. Field introduced in 18.1.4, 18.2.1. Unit is sec.
 
