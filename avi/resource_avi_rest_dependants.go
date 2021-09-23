@@ -28794,6 +28794,11 @@ func ResourceSensitiveLogProfileSchema() *schema.Resource {
 				Optional: true,
 				Elem:     ResourceSensitiveFieldRuleSchema(),
 			},
+			"uri_query_field_rules": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceSensitiveFieldRuleSchema(),
+			},
 			"waf_field_rules": {
 				Type:     schema.TypeList,
 				Optional: true,
