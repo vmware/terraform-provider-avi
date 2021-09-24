@@ -80,7 +80,7 @@ terraform {
   required_providers {
     avi = {
       source  = "vmware/avi"
-      version = "21.1.1"
+      version = "20.1.1"
     }
   }
 }
@@ -97,7 +97,7 @@ provider "avi" {
   avi_tenant = "admin"
   avi_password = "password"
   avi_controller = "x.x.x.x"
-  avi_version = "21.1.1"
+  avi_version = "20.1.1"
 }  
 ```
 3. Create Avi virtual service and pool example. Here the VS and Pool depends on read only tenant, cloud, applicationprofile, sslkeyandcertificate, sslprofile data sources and another networkprofile, vsvip, health monitor defined as a resource in the Terraform plan.
@@ -226,7 +226,7 @@ provider "avi" {
   avi_tenant = "admin"
   avi_password = "password"
   avi_controller = "x.x.x.x"
-  avi_version = "21.1.1"
+  avi_version = "20.1.1"
 } 
 ```
 
@@ -245,7 +245,7 @@ $ export AVI_USERNAME = username
 $ export AVI_PASSWORD = password
 $ export AVI_CONTROLLER = x.x.x.x
 $ export AVI_TENANT = foo
-$ export AVI_VERSION=21.1.1
+$ export AVI_VERSION=20.1.1
 $ terraform init
 $ terraform plan
 ```

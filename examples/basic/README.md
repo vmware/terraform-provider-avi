@@ -3,4 +3,4 @@
 * We are reading certificates and key from files app_cert.crt and app_cert.key for SSL key and certificates resource. 
 * Update required AVI terraform provider version in versions.tf file.
 * Update required variables in variables.tf file or you can set those variables individually while running you terraform plan using -var or define those in .tfvars files.
-* [Click here](https://avinetworks.com/docs/21.1/configuration-guide/applications/virtual-services/) for detailed Virtual Service guide.
+* [Click here](https://avinetworks.com/docs/20.1/configuration-guide/applications/virtual-services/) for detailed Virtual Service guide.
