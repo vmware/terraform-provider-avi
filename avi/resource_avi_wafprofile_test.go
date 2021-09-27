@@ -4085,6 +4085,62 @@ EOF
 		regex_match_limit = "1500"
 		allowed_request_content_types = ["application/x-www-form-urlencoded","multipart/form-data","text/xml","application/xml","application/x-amf","application/json"]
 		allowed_methods = ["HTTP_METHOD_GET","HTTP_METHOD_HEAD","HTTP_METHOD_POST","HTTP_METHOD_OPTIONS"]
+		content_type_mappings {
+	content_type = "application/x-www-form-urlencoded"
+	request_body_parser = "WAF_REQUEST_PARSER_URLENCODED"
+}
+content_type_mappings {
+	content_type = "multipart/form-data"
+	request_body_parser = "WAF_REQUEST_PARSER_MULTIPART"
+}
+content_type_mappings {
+	content_type = "application/json"
+	request_body_parser = "WAF_REQUEST_PARSER_JSON"
+}
+content_type_mappings {
+	content_type = "text/xml"
+	request_body_parser = "WAF_REQUEST_PARSER_XML"
+}
+content_type_mappings {
+	content_type = "application/xml"
+	request_body_parser = "WAF_REQUEST_PARSER_XML"
+}
+content_type_mappings {
+	content_type = "application/cloudevents+json"
+	request_body_parser = "WAF_REQUEST_PARSER_JSON"
+}
+content_type_mappings {
+	content_type = "application/cloudevents-batch+json"
+	request_body_parser = "WAF_REQUEST_PARSER_JSON"
+}
+content_type_mappings {
+	content_type = "application/soap+xml"
+	request_body_parser = "WAF_REQUEST_PARSER_XML"
+}
+content_type_mappings {
+	content_type = "multipart/related"
+	request_body_parser = "WAF_REQUEST_PARSER_HANDLE_AS_STRING"
+}
+content_type_mappings {
+	content_type = "application/x-amf"
+	request_body_parser = "WAF_REQUEST_PARSER_HANDLE_AS_STRING"
+}
+content_type_mappings {
+	content_type = "application/octet-stream"
+	request_body_parser = "WAF_REQUEST_PARSER_HANDLE_AS_STRING"
+}
+content_type_mappings {
+	content_type = "application/csp-report"
+	request_body_parser = "WAF_REQUEST_PARSER_HANDLE_AS_STRING"
+}
+content_type_mappings {
+	content_type = "application/xss-auditor-report"
+	request_body_parser = "WAF_REQUEST_PARSER_HANDLE_AS_STRING"
+}
+content_type_mappings {
+	content_type = "text/plain"
+	request_body_parser = "WAF_REQUEST_PARSER_HANDLE_AS_STRING"
+}
 		response_hdr_default_action = "phase:3,deny,status:403,log,auditlog"
 		allowed_http_versions = ["ONE_ZERO","ONE_ONE"]
 		request_body_default_action = "phase:2,deny,status:403,log,auditlog"
@@ -8096,6 +8152,62 @@ EOF
 		allowed_methods = ["HTTP_METHOD_GET","HTTP_METHOD_HEAD","HTTP_METHOD_POST","HTTP_METHOD_OPTIONS"]
 		response_hdr_default_action = "phase:3,deny,status:403,log,auditlog"
 		allowed_http_versions = ["ONE_ZERO","ONE_ONE"]
+		content_type_mappings {
+	content_type = "application/x-www-form-urlencoded"
+	request_body_parser = "WAF_REQUEST_PARSER_URLENCODED"
+}
+content_type_mappings {
+	content_type = "multipart/form-data"
+	request_body_parser = "WAF_REQUEST_PARSER_MULTIPART"
+}
+content_type_mappings {
+	content_type = "application/json"
+	request_body_parser = "WAF_REQUEST_PARSER_JSON"
+}
+content_type_mappings {
+	content_type = "text/xml"
+	request_body_parser = "WAF_REQUEST_PARSER_XML"
+}
+content_type_mappings {
+	content_type = "application/xml"
+	request_body_parser = "WAF_REQUEST_PARSER_XML"
+}
+content_type_mappings {
+	content_type = "application/cloudevents+json"
+	request_body_parser = "WAF_REQUEST_PARSER_JSON"
+}
+content_type_mappings {
+	content_type = "application/cloudevents-batch+json"
+	request_body_parser = "WAF_REQUEST_PARSER_JSON"
+}
+content_type_mappings {
+	content_type = "application/soap+xml"
+	request_body_parser = "WAF_REQUEST_PARSER_XML"
+}
+content_type_mappings {
+	content_type = "multipart/related"
+	request_body_parser = "WAF_REQUEST_PARSER_HANDLE_AS_STRING"
+}
+content_type_mappings {
+	content_type = "application/x-amf"
+	request_body_parser = "WAF_REQUEST_PARSER_HANDLE_AS_STRING"
+}
+content_type_mappings {
+	content_type = "application/octet-stream"
+	request_body_parser = "WAF_REQUEST_PARSER_HANDLE_AS_STRING"
+}
+content_type_mappings {
+	content_type = "application/csp-report"
+	request_body_parser = "WAF_REQUEST_PARSER_HANDLE_AS_STRING"
+}
+content_type_mappings {
+	content_type = "application/xss-auditor-report"
+	request_body_parser = "WAF_REQUEST_PARSER_HANDLE_AS_STRING"
+}
+content_type_mappings {
+	content_type = "text/plain"
+	request_body_parser = "WAF_REQUEST_PARSER_HANDLE_AS_STRING"
+}
 		request_body_default_action = "phase:2,deny,status:403,log,auditlog"
 		response_body_default_action = "phase:4,deny,status:403,log,auditlog"
 		request_hdr_default_action = "phase:1,deny,status:403,log,auditlog"
