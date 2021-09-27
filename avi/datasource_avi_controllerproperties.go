@@ -341,6 +341,18 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"vsphere_ha_detection_timeout": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"vsphere_ha_recovery_timeout": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"vsphere_ha_timer_interval": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"warmstart_se_reconnect_wait_time": {
 				Type:     schema.TypeString,
 				Computed: true,

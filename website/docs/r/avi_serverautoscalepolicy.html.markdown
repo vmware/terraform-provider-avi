@@ -43,7 +43,7 @@ The following arguments are supported:
 * `scalein_cooldown` - (Optional) Cooldown period during which no new scale-in is triggered to allow previous scale-in to successfully complete. Unit is sec.
 * `scaleout_alertconfig_refs` - (Optional) Trigger scale-out when alerts due to any of these alert configurations are raised. It is a reference to an object of type alertconfig.
 * `scaleout_cooldown` - (Optional) Cooldown period during which no new scale-out is triggered to allow previous scale-out to successfully complete. Unit is sec.
-* `scheduled_scalings` - (Optional) Schedule-based scale-in/out policy. During schedule intervals, metrics based autoscale is not enabled and number of servers will be solely derived from schedulescale policy. Field introduced in 21.1.1. Maximum of 1 items allowed.
+* `scheduled_scalings` - (Optional) Scheduled-based scale-in/out policy. During scheduled intervals, metrics based autoscale is not enabled and number of servers will be solely derived from schedulescale policy. Field introduced in 21.1.1. Maximum of 1 items allowed.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant.
 * `use_predicted_load` - (Optional) Use predicted load rather than current load.
 
