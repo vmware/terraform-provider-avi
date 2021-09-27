@@ -11107,6 +11107,12 @@ func ResourceEventDetailsSchema() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceSecMgrDataEventSchema(),
 			},
+			"sec_mgr_ua_event_details": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceSecMgrUAEventDetailsSchema(),
+			},
 			"secure_key_exchange_info": {
 				Type:     schema.TypeSet,
 				Optional: true,
@@ -28408,6 +28414,18 @@ func ResourceSecMgrThresholdSchema() *schema.Resource {
 				Type:         schema.TypeString,
 				Required:     true,
 				ValidateFunc: validateInteger,
+			},
+		},
+	}
+}
+
+func ResourceSecMgrUAEventDetailsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"error": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 		},
 	}
