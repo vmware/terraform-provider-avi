@@ -1145,6 +1145,11 @@ func ResourceAppSignatureConfigSchema() *schema.Resource {
 				Default:      "1440",
 				ValidateFunc: validateInteger,
 			},
+			"category": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "ALB_THREAT_INTELLIGENCE_CATEGORY",
+			},
 		},
 	}
 }
@@ -4163,6 +4168,11 @@ func ResourceCaptureIPCSchema() *schema.Resource {
 func ResourceCaseConfigSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"category": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "ALB_SUPPORT_CATEGORY",
+			},
 			"enable_auto_case_creation_on_controller_failure": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -16803,6 +16813,11 @@ func ResourceIpCommunitySchema() *schema.Resource {
 func ResourceIpReputationConfigSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"category": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "ALB_THREAT_INTELLIGENCE_CATEGORY",
+			},
 			"ip_reputation_file_object_expiry_duration": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -31224,6 +31239,11 @@ func ResourceUserAgentDBConfigSchema() *schema.Resource {
 				Default:      "500",
 				ValidateFunc: validateInteger,
 			},
+			"category": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "ALB_THREAT_INTELLIGENCE_CATEGORY",
+			},
 		},
 	}
 }
@@ -36293,6 +36313,11 @@ func ResourceWafContentTypeMappingSchema() *schema.Resource {
 func ResourceWafCrsConfigSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"category": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "ALB_THREAT_INTELLIGENCE_CATEGORY",
+			},
 			"enable_auto_download_waf_signatures": {
 				Type:         schema.TypeString,
 				Optional:     true,
