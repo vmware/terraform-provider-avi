@@ -3513,9 +3513,10 @@ func ResourceBotMappingRuleSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
-			"conditions": {
-				Type:     schema.TypeList,
+			"condition": {
+				Type:     schema.TypeSet,
 				Optional: true,
+				Computed: true,
 				Elem:     ResourceMatchTargetSchema(),
 			},
 			"identifier_matcher": {
