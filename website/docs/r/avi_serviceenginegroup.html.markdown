@@ -119,7 +119,7 @@ The following arguments are supported:
 * `lbaction_num_requests_to_dispatch` - (Optional) Number of requests to dispatch from the request. Queue at a regular interval. Field introduced in 21.1.1.
 * `lbaction_rq_per_request_max_retries` - (Optional) Maximum retries per request in the request queue. Field introduced in 21.1.1.
 * `least_load_core_selection` - (Optional) Select core with least load for new flow.
-* `license_tier` - (Optional) Specifies the license tier which would be used. This field by default inherits the value from cloud. Enum options - ENTERPRISE_16, ENTERPRISE, ENTERPRISE_18, BASIC, ESSENTIALS. Field introduced in 17.2.5.
+* `license_tier` - (Optional) Specifies the license tier which would be used. This field by default inherits the value from cloud. Enum options - ENTERPRISE_16, ENTERPRISE, ENTERPRISE_18, BASIC, ESSENTIALS, SAAS. Field introduced in 17.2.5.
 * `license_type` - (Optional) If no license type is specified then default license enforcement for the cloud type is chosen. Enum options - LIC_BACKEND_SERVERS, LIC_SOCKETS, LIC_CORES, LIC_HOSTS, LIC_SE_BANDWIDTH, LIC_METERED_SE_BANDWIDTH. Field introduced in 17.2.5.
 * `log_agent_compress_logs` - (Optional) Flag to indicate if log files are compressed upon full on the service engine. Field introduced in 21.1.1.
 * `log_agent_debug_enabled` - (Optional) Enable debug logs by default on service engine. This includes all other debugging logs. Debug logs can also be explcitly enabled from the cli shell. Field introduced in 21.1.1.
