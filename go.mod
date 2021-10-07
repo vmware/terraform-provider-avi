@@ -4,5 +4,5 @@ go 1.13
 
 require (
 	github.com/hashicorp/terraform-plugin-sdk/v2 v2.0.2
-	github.com/vmware/alb-sdk v0.0.0-20211005035134-1eb4b479f230
+	github.com/vmware/alb-sdk v0.0.0-20211006035147-cae882c65371
 )
