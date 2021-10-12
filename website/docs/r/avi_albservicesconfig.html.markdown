@@ -38,8 +38,9 @@ The following arguments are supported:
 * `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1.
 * `mode` - (Optional) Mode helps log collection and upload. Enum options - SALESFORCE, SYSTEST, MYVMWARE. Field introduced in 20.1.2. Allowed in basic(allowed values- salesforce,myvmware,systest) edition, essentials(allowed values- salesforce,myvmware,systest) edition, enterprise edition.
 * `polling_interval` - (Optional) Time interval in minutes. Allowed values are 5-60. Field introduced in 18.2.6.
+* `saas_licensing_config` - (Optional) Saas licensing configuration. Field introduced in 21.1.3. Allowed in basic edition, essentials edition, enterprise edition.
 * `split_proxy_configuration` - (Optional) Split proxy configuration to connect external pulse services. Field introduced in 20.1.1.
-* `use_split_proxy` - (Optional) By default, use system proxy configuration.if true, use split proxy configuration. Field introduced in 20.1.1.
+* `use_split_proxy` - (Optional) By default, pulse uses proxy added in system configuration. If pulse needs to use a seperate proxy, set this flag to true and configure split proxy configuration. Field introduced in 20.1.1.
 * `use_tls` - (Optional) Secure the controller to pulse communication over tls. Field introduced in 20.1.3. Allowed in basic edition, enterprise edition.
 
 
