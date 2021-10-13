@@ -42,7 +42,7 @@ In addition to all arguments above, the following attributes are exported:
 * `polling_interval` - Time interval in minutes. Allowed values are 5-60. Field introduced in 18.2.6.
 * `portal_url` - The fqdn or ip address of the customer portal. Field introduced in 18.2.6.
 * `split_proxy_configuration` - Split proxy configuration to connect external pulse services. Field introduced in 20.1.1.
-* `use_split_proxy` - By default, use system proxy configuration.if true, use split proxy configuration. Field introduced in 20.1.1.
+* `use_split_proxy` - By default, pulse uses proxy added in system configuration. If pulse needs to use a seperate proxy, set this flag to true and configure split proxy configuration. Field introduced in 20.1.1.
 * `use_tls` - Secure the controller to pulse communication over tls. Field introduced in 20.1.3. Allowed in basic edition, enterprise edition.
 * `user_agent_db_config` - Default values to be used for user agent db service. Field introduced in 21.1.1. Allowed in basic edition, essentials edition, enterprise edition.
 * `uuid` - Field introduced in 18.2.6.
