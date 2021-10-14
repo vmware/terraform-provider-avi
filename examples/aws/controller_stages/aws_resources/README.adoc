@@ -1,0 +1,46 @@
+== Avi Controller
+
+* You will need to make sure to have an IAM role with the options to deploy Avi Controller.
+
+The full schema can be checked from:
+https://avinetworks.com/docs/latest/iam-role-setup-for-installation-into-aws/[Full Role Settings]
+Here is a very basic version to allow deployment.
+----
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetBucketLocation",
+                "s3:ListBucket"
+            ],
+            "Resource": "arn:aws:s3:::avi-se-*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetObject"
+            ],
+            "Resource": "arn:aws:s3:::avi-se-*/*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ec2:ModifySnapshotAttribute",
+                "ec2:CopySnapshot",
+                "ec2:RegisterImage",
+                "ec2:Describe*"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
+----
+Once that's done, create a file named terraform.tfvars to add your password. An example is included as terraform.tfvars.example.
+
+Update the variables to match what will be available into your AWS.
+
+
+NOTE: if you are going to delete the Avi Controllers and you have deployed the SE, terraform will not be able to finish the task!
+Which means you will have to do a lot of manual deletion and then clean up the terraform to get back into the clean state. 

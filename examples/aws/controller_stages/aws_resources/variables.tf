@@ -6,18 +6,18 @@ variable "aws_secret_key" {
   default = ""
 }
 
+variable "controller_counts" {
+  default = 3
+
+}
 variable "aws_region" {
-  type    = string
   default = "us-west-2"
 }
 
 variable "aws_vpc_id" {
-  type    = string
-  default = "vpc-19295f7c"
 }
 
 variable "avi_username" {
-  type    = string
   default = "admin"
 }
 
@@ -25,7 +25,6 @@ variable "avi_password" {
 }
 
 variable "aws_availability_zone" {
-  type    = string
   default = "us-west-2a"
 }
 
@@ -34,6 +33,7 @@ variable "aws_subnet_mask" {
 }
 
 variable "project_name" {
+  default = "remo-demo"
 }
 
 variable "aws_creds_file" {
@@ -41,12 +41,14 @@ variable "aws_creds_file" {
 }
 
 variable "aws_subnets" {
-  type    = list(string)
-  default = [""]
+  default = ["10.155.251.0", "10.155.252.0", "10.155.253.0"]
 }
 
+variable "avi_controller_iam" {
+  default = "remo-avi-controller"
+}
 variable "avi_controller_ami" {
-  default = "ami-1426aa6c"
+  default = "ami-0451e26f70764fc9e"
 }
 
 variable "aws_availability_zones" {
