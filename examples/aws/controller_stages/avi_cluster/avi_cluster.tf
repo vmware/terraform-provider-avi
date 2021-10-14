@@ -6,7 +6,7 @@ provider "aws" {
 data "aws_instance" "avi_controller" {
   filter {
     name   = "tag:Name"
-    values = ["${var.project_name}-terraform-controller"]
+    values = ["${var.project_name}-terraform-controller-1"]
   }
 }
 
@@ -25,7 +25,7 @@ data "aws_instance" "avi_controller_3" {
 }
 
 resource "avi_cluster" "aws_cluster" {
-  name = "cluster-0-1"
+  name =  var.cluster_name
   nodes {
     ip {
       type = "V4"
@@ -52,7 +52,29 @@ resource "avi_cluster" "aws_cluster" {
 provider "avi" {
   avi_username   = var.avi_username
   avi_password   = var.avi_password
-  avi_controller = data.aws_instance.avi_controller.private_ip
+  avi_controller = data.aws_instance.avi_controller.public_ip
   avi_tenant     = "admin"
+  avi_api_timeout    = 50
+  avi_version    = var.api_version
 }
 
+resource "avi_systemconfiguration" "avi_system" {
+    common_criteria_mode      = false
+    #uuid                      = "default-uuid"
+    #dns_configuration        = "8.8.8.8"
+    #email_configuration      = remo@avinetworks.com
+    #ntp_configuration        = "time.apple.com"
+    welcome_workflow_complete = true
+    }
+
+resource "avi_backupconfiguration" "backup_config" {
+  name                     = "Backup-Configuration"
+  tenant_ref               =  "admin"
+  #tenant_ref              = data.avi_tenant.default_tenant.id
+  save_local               = true
+  maximum_backups_stored   = 4
+  backup_passphrase        =  var.avi_password
+  configpb_attributes {
+     version = 1
+   }
+}
