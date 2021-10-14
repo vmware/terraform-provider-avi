@@ -51,6 +51,7 @@ In addition to all arguments above, the following attributes are exported:
 * `auto_rebalance_interval` - Frequency of rebalance, if 'auto rebalance' is enabled. Unit is sec.
 * `auto_redistribute_active_standby_load` - Redistribution of virtual services from the takeover se to the replacement se can cause momentary traffic loss. If the auto-redistribute load option is left in its default off state, any desired rebalancing requires calls to rest api. Allowed in basic(allowed values- false) edition, essentials(allowed values- false) edition, enterprise edition.
 * `availability_zone_refs` - Availability zones for virtual service high availability. It is a reference to an object of type availabilityzone. Field introduced in 20.1.1.
+* `bgp_peer_monitor_failover_enabled` - Enable bgp peer monitoring based failover. Field introduced in 21.1.3.
 * `bgp_state_update_interval` - Bgp peer state update interval. Allowed values are 5-100. Field introduced in 17.2.14,18.1.5,18.2.1. Unit is sec.
 * `buffer_se` - Excess service engine capacity provisioned for ha failover.
 * `cloud_ref` - It is a reference to an object of type cloud.
