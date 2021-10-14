@@ -1,8 +1,0 @@
-### AWS Controller deployment and AVI Configuration Examples
-* These examples deploy AVI controller on AWS, configures AVI controller cluster, cloud of type AWS, Virtual Services and its dependent resources and data sources.
-* [Click here](https://github.com/vmware/terraform-provider-avi/tree/eng/examples/aws/aws_resources) to deploy AVI controller on AWS using ami. [Click here](https://avinetworks.com/docs/21.1/installing-avi-vantage-in-amazon-web-services/) for AWS deployment guide.
-* [Click here](https://github.com/vmware/terraform-provider-avi/tree/eng/examples/aws/avi_cluster) to configure AVI controller cluster. [Click here](https://avinetworks.com/docs/21.1/cluster-configuration-in-aws/) for AVI controller cluster configuration guide in AWS.
-* [Click here](https://github.com/vmware/terraform-provider-avi/tree/eng/examples/aws/avi_infra) to configure cloud of type CLOUD_AWS on AVI controller. [Click here](https://avinetworks.com/docs/21.1/configuring-avi-vantage-for-application-delivery-in-amazon-web-services/) for detailed cloud configuration guide.
-* [Click here](https://github.com/vmware/terraform-provider-avi/tree/eng/examples/aws/avi_app) to configure Virtual Service and dependent resources in AWS enviornment. [Click here](https://avinetworks.com/docs/21.1/configuration-guide/applications/virtual-services/) for detailed guide to configure virtual service. 
-* Update required AVI terraform provider version in versions.tf file.
-* Update required variables in variables.tf file or you can set those variables individually while running you terraform plan using -var or define those in .tfvars files.
