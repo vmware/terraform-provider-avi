@@ -1,8 +1,8 @@
-variable "aws_access_key" {
-}
+ variable "aws_access_key" {
+ }
 
-variable "aws_secret_key" {
-}
+ variable "aws_secret_key" {
+ }
 
 variable "aws_region" {
   type    = string
@@ -11,7 +11,7 @@ variable "aws_region" {
 
 variable "aws_vpc_id" {
   type    = string
-  default = "vpc-19295f7c"
+  default = "vpc-46246520"
 }
 
 variable "avi_username" {
@@ -28,5 +28,5 @@ variable "aws_availability_zones" {
 }
 
 variable "project_name" {
+  default = "remo-demo"
 }
-
