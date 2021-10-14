@@ -1,0 +1,4 @@
+project_name = "remo-demo"
+
+avi_current_password = "this can be found in the vmware download section"
+avi_new_password     = "YourPasswordGoesHere"
