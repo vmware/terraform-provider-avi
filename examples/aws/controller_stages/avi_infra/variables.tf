@@ -30,3 +30,6 @@ variable "aws_availability_zones" {
 variable "project_name" {
   default = "remo-demo"
 }
+variable "api_version" {
+  default = "20.1.6"
+}

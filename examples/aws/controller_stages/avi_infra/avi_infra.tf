@@ -39,7 +39,7 @@ provider "avi" {
   avi_password   = var.avi_password
   avi_controller = data.aws_instance.avi_controller.public_ip
   avi_tenant     = "admin"
-  avi_version    = "20.1.6"
+  avi_version    = var.api_version
 }
 
 data "avi_tenant" "default_tenant" {
