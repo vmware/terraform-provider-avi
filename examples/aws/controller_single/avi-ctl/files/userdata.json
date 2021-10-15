@@ -1,0 +1,71 @@
+{
+"SystemConfiguration": [{
+	"welcome_workflow_complete": true,
+	"dns_configuration": {
+		"search_domain": "",
+		"server_list": [{
+			"type": "V4",
+			"addr": "8.8.8.8"
+		}]
+	},
+	"ntp_configuration": {
+		"ntp_servers": [{
+				"server": {
+					"type": "DNS",
+					"addr": "0.us.pool.ntp.org"
+				}
+			},
+			{
+				"server": {
+					"type": "DNS",
+					"addr": "1.us.pool.ntp.org"
+				}
+			},
+			{
+				"server": {
+					"type": "DNS",
+					"addr": "2.us.pool.ntp.org"
+				}
+			},
+			{
+				"server": {
+					"type": "DNS",
+					"addr": "3.us.pool.ntp.org"
+				}
+			}
+		]
+	}
+}],
+"InitialConfiguration": [{
+	"user_initial_setup": false,
+	"setup_failed": false,
+	"error_message": ""
+}],
+"User": [{
+	"username": "admin",
+	"user_profile_ref": "/api/useraccountprofile/?name=Default-User-Account-Profile",
+	"name": "admin",
+	"is_active": true,
+	"access": [{
+		"all_tenants": false,
+		"tenant_ref": "/api/tenant/?name=admin",
+		"role_ref": "/api/role/?tenant=admin&name=System-Admin"
+	}],
+	"is_superuser": true,
+	"full_name": "System Administrator",
+	"uid": 2000,
+	"password": "${password}",
+	"local": true,
+	"email": "",
+	"default_tenant_ref": "/api/tenant/?name=admin"
+}],
+ "BackupConfiguration": [
+    {
+       "name": "Backup-Configuration",
+       "tenant_ref": "/api/tenant/?name=admin",
+       "save_local": true,
+       "backup_passphrase":  "${password}",
+       "maximum_backups_stored": 4
+    }
+  ]
+ }
