@@ -6134,6 +6134,23 @@ func ResourceConfigUserPasswordChangeRequestSchema() *schema.Resource {
 	}
 }
 
+func ResourceConfigVersionStatusSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"obj_name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"obj_uuid": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
 func ResourceConnErrorInfoSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -13544,6 +13561,22 @@ func ResourceGslbSiteCfgSyncInfoSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 				Elem:     ResourceTimeStampSchema(),
+			},
+			"last_fail_obj": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceConfigVersionStatusSchema(),
+			},
+			"reason": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"recommendation": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 			"sync_state": {
 				Type:     schema.TypeString,
