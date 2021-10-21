@@ -80,6 +80,10 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Computed: true,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
+			"bgp_peer_monitor_failover_enabled": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"bgp_state_update_interval": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -499,6 +503,10 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Computed: true,
 			},
 			"max_se": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"max_skb_frags": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},

@@ -34,6 +34,17 @@ func ResourceImageSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"events": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceImageEventMapSchema(),
+		},
+		"img_state": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceImageUploadOpsStatusSchema(),
+		},
 		"migrations": {
 			Type:     schema.TypeSet,
 			Optional: true,
@@ -43,6 +54,12 @@ func ResourceImageSchema() map[string]*schema.Schema {
 		"name": {
 			Type:     schema.TypeString,
 			Required: true,
+		},
+		"progress": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "0",
+			ValidateFunc: validateInteger,
 		},
 		"se_info": {
 			Type:     schema.TypeSet,
@@ -60,15 +77,22 @@ func ResourceImageSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
-		"status": {
-			Type:     schema.TypeString,
-			Optional: true,
-			Computed: true,
+		"tasks_completed": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "0",
+			ValidateFunc: validateInteger,
 		},
 		"tenant_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
+		},
+		"total_tasks": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "0",
+			ValidateFunc: validateInteger,
 		},
 		"type": {
 			Type:     schema.TypeString,

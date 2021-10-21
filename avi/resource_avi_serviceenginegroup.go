@@ -113,6 +113,12 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Elem:     &schema.Schema{Type: schema.TypeString},
 		},
+		"bgp_peer_monitor_failover_enabled": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
+		},
 		"bgp_state_update_interval": {
 			Type:         schema.TypeString,
 			Optional:     true,
@@ -710,6 +716,12 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Type:         schema.TypeString,
 			Optional:     true,
 			Default:      "10",
+			ValidateFunc: validateInteger,
+		},
+		"max_skb_frags": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "17",
 			ValidateFunc: validateInteger,
 		},
 		"max_vs_per_se": {

@@ -27,6 +27,16 @@ func dataSourceAviImage() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"events": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceImageEventMapSchema(),
+			},
+			"img_state": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceImageUploadOpsStatusSchema(),
+			},
 			"migrations": {
 				Type:     schema.TypeSet,
 				Computed: true,
@@ -35,6 +45,10 @@ func dataSourceAviImage() *schema.Resource {
 			"name": {
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
+			},
+			"progress": {
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"se_info": {
@@ -50,13 +64,17 @@ func dataSourceAviImage() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"status": {
+			"tasks_completed": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"tenant_ref": {
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
+			},
+			"total_tasks": {
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"type": {

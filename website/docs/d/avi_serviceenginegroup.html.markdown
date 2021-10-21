@@ -51,6 +51,7 @@ In addition to all arguments above, the following attributes are exported:
 * `auto_rebalance_interval` - Frequency of rebalance, if 'auto rebalance' is enabled. Unit is sec.
 * `auto_redistribute_active_standby_load` - Redistribution of virtual services from the takeover se to the replacement se can cause momentary traffic loss. If the auto-redistribute load option is left in its default off state, any desired rebalancing requires calls to rest api. Allowed in basic(allowed values- false) edition, essentials(allowed values- false) edition, enterprise edition.
 * `availability_zone_refs` - Availability zones for virtual service high availability. It is a reference to an object of type availabilityzone. Field introduced in 20.1.1.
+* `bgp_peer_monitor_failover_enabled` - Enable bgp peer monitoring based failover. Field introduced in 21.1.3.
 * `bgp_state_update_interval` - Bgp peer state update interval. Allowed values are 5-100. Field introduced in 17.2.14,18.1.5,18.2.1. Unit is sec.
 * `buffer_se` - Excess service engine capacity provisioned for ha failover.
 * `cloud_ref` - It is a reference to an object of type cloud.
@@ -154,6 +155,7 @@ In addition to all arguments above, the following attributes are exported:
 * `max_rules_per_lb` - Applicable to azure platform only. Maximum number of rules per azure lb. Field introduced in 17.2.12, 18.1.2.
 * `max_scaleout_per_vs` - Maximum number of active service engines for the virtual service. Allowed values are 1-64.
 * `max_se` - Maximum number of services engines in this group. Allowed values are 0-1000.
+* `max_skb_frags` - Maximum of number of 4 kb pages allocated to the linux kernel gro subsystem for packet coalescing. This parameter is limited to supported kernels only. Requires se reboot. Allowed values are 1-17. Field introduced in 21.1.3.
 * `max_vs_per_se` - Maximum number of virtual services that can be placed on a single service engine. Allowed values are 1-1000.
 * `mem_reserve` - Boolean flag to set mem_reserve.
 * `memory_for_config_update` - Indicates the percent of memory reserved for config updates. Allowed values are 0-100. Field introduced in 18.1.2. Unit is percent.

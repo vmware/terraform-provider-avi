@@ -51,6 +51,11 @@ func dataSourceAviALBServicesConfig() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"saas_licensing_config": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceSaasLicensingInfoSchema(),
+			},
 			"split_proxy_configuration": {
 				Type:     schema.TypeSet,
 				Computed: true,
