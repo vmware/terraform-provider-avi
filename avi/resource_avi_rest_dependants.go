@@ -16673,6 +16673,95 @@ func ResourceImageCloudSpecificDataSchema() *schema.Resource {
 	}
 }
 
+func ResourceImageEventSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"duration": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"end_time": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"ip": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceIpAddrSchema(),
+			},
+			"message": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"start_time": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"status": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"sub_tasks": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
+		},
+	}
+}
+
+func ResourceImageEventMapSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"nodes_events": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceImageEventSchema(),
+			},
+			"sub_events": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceImageEventSchema(),
+			},
+			"task_name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceImageUploadOpsStatusSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"last_changed_time": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceTimeStampSchema(),
+			},
+			"reason": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"state": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
 func ResourceInfobloxSubnetSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{

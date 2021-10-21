@@ -718,6 +718,12 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Default:      "10",
 			ValidateFunc: validateInteger,
 		},
+		"max_skb_frags": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "17",
+			ValidateFunc: validateInteger,
+		},
 		"max_vs_per_se": {
 			Type:         schema.TypeString,
 			Optional:     true,

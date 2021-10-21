@@ -155,6 +155,7 @@ In addition to all arguments above, the following attributes are exported:
 * `max_rules_per_lb` - Applicable to azure platform only. Maximum number of rules per azure lb. Field introduced in 17.2.12, 18.1.2.
 * `max_scaleout_per_vs` - Maximum number of active service engines for the virtual service. Allowed values are 1-64.
 * `max_se` - Maximum number of services engines in this group. Allowed values are 0-1000.
+* `max_skb_frags` - Maximum of number of 4 kb pages allocated to the linux kernel gro subsystem for packet coalescing. This parameter is limited to supported kernels only. Requires se reboot. Allowed values are 1-17. Field introduced in 21.1.3.
 * `max_vs_per_se` - Maximum number of virtual services that can be placed on a single service engine. Allowed values are 1-1000.
 * `mem_reserve` - Boolean flag to set mem_reserve.
 * `memory_for_config_update` - Indicates the percent of memory reserved for config updates. Allowed values are 0-100. Field introduced in 18.1.2. Unit is percent.

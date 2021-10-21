@@ -506,6 +506,10 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"max_skb_frags": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"max_vs_per_se": {
 				Type:     schema.TypeString,
 				Computed: true,
