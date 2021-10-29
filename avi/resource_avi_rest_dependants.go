@@ -1813,6 +1813,17 @@ func ResourceApplicationLogSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"source_ip": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"source_ip6": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"spdy_version": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -2275,7 +2286,8 @@ func ResourceAuthenticationPolicySchema() *schema.Resource {
 			},
 			"default_auth_profile_ref": {
 				Type:     schema.TypeString,
-				Required: true,
+				Optional: true,
+				Computed: true,
 			},
 		},
 	}
@@ -14883,7 +14895,19 @@ func ResourceHTTPApplicationProfileSchema() *schema.Resource {
 				Optional: true,
 				Default:  "SSL_CLIENT_CERTIFICATE_NONE",
 			},
+			"true_client_ip": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceTrueClientIPConfigSchema(),
+			},
 			"use_app_keepalive_timeout": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
+			"use_true_client_ip": {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Default:      "false",
@@ -17579,6 +17603,17 @@ func ResourceJWTMatchSchema() *schema.Resource {
 	}
 }
 
+func ResourceJWTValidationParamsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"audience": {
+				Type:     schema.TypeString,
+				Required: true,
+			},
+		},
+	}
+}
+
 func ResourceJWTValidationVsConfigSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -18922,6 +18957,12 @@ func ResourceMatchTargetSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 				Elem:     ResourceQueryMatchSchema(),
+			},
+			"source_ip": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceIpAddrMatchSchema(),
 			},
 			"version": {
 				Type:     schema.TypeSet,
@@ -21139,6 +21180,164 @@ func ResourceNuageSDNControllerSchema() *schema.Resource {
 	}
 }
 
+func ResourceOAuthAppSettingsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"client_id": {
+				Type:     schema.TypeString,
+				Required: true,
+			},
+			"client_secret": {
+				Type:     schema.TypeString,
+				Required: true,
+			},
+			"oidc_config": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceOIDCConfigSchema(),
+			},
+			"scopes": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
+		},
+	}
+}
+
+func ResourceOAuthProfileSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"authorization_endpoint": {
+				Type:     schema.TypeString,
+				Required: true,
+			},
+			"introspection_endpoint": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"issuer": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"jwks_timeout": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"jwks_uri": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"oauth_resp_buffer_sz": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "102400",
+				ValidateFunc: validateInteger,
+			},
+			"pool_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"token_endpoint": {
+				Type:     schema.TypeString,
+				Required: true,
+			},
+			"userinfo_endpoint": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceOAuthResourceServerSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"access_type": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "ACCESS_TOKEN_TYPE_JWT",
+			},
+			"jwt_params": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceJWTValidationParamsSchema(),
+			},
+			"opaque_token_params": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceOpaqueTokenValidationParamsSchema(),
+			},
+		},
+	}
+}
+
+func ResourceOAuthSettingsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"app_settings": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceOAuthAppSettingsSchema(),
+			},
+			"auth_profile_ref": {
+				Type:     schema.TypeString,
+				Required: true,
+			},
+			"resource_server": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceOAuthResourceServerSchema(),
+			},
+		},
+	}
+}
+
+func ResourceOAuthVSConfigSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"cookie_name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"cookie_timeout": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "60",
+				ValidateFunc: validateInteger,
+			},
+			"key": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceHttpCookiePersistenceKeySchema(),
+			},
+			"oauth_settings": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceOAuthSettingsSchema(),
+			},
+			"redirect_uri": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
 func ResourceOCICredentialsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -21253,6 +21452,31 @@ func ResourceOCSPConfigSchema() *schema.Resource {
 func ResourceOCSPResponseInfoSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{},
+	}
+}
+
+func ResourceOIDCConfigSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"oidc_enable": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateBool,
+			},
+			"profile": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "true",
+				ValidateFunc: validateBool,
+			},
+			"userinfo": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateBool,
+			},
+		},
 	}
 }
 
@@ -21578,6 +21802,21 @@ func ResourceObjSyncConfigSchema() *schema.Resource {
 				Optional:     true,
 				Default:      "10",
 				ValidateFunc: validateInteger,
+			},
+		},
+	}
+}
+
+func ResourceOpaqueTokenValidationParamsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"server_id": {
+				Type:     schema.TypeString,
+				Required: true,
+			},
+			"server_secret": {
+				Type:     schema.TypeString,
+				Required: true,
 			},
 		},
 	}
@@ -23866,6 +24105,12 @@ func ResourceResponseMatchTargetSchema() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				Elem:     ResourceHdrMatchSchema(),
+			},
+			"source_ip": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceIpAddrMatchSchema(),
 			},
 			"status": {
 				Type:     schema.TypeSet,
@@ -30888,6 +31133,29 @@ func ResourceTimeStampSchema() *schema.Resource {
 			"usecs": {
 				Type:         schema.TypeString,
 				Required:     true,
+				ValidateFunc: validateInteger,
+			},
+		},
+	}
+}
+
+func ResourceTrueClientIPConfigSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"direction": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "LEFT",
+			},
+			"headers": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
+			"index_in_header": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "1",
 				ValidateFunc: validateInteger,
 			},
 		},

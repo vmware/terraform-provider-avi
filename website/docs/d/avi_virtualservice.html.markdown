@@ -80,6 +80,7 @@ In addition to all arguments above, the following attributes are exported:
 * `network_profile_ref` - Determines network settings such as protocol, tcp or udp, and related options for the protocol. It is a reference to an object of type networkprofile. Special default for essentials edition is system-tcp-fast-path.
 * `network_security_policy_ref` - Network security policies for the virtual service. It is a reference to an object of type networksecuritypolicy.
 * `nsx_securitygroup` - A list of nsx groups representing the clients which can access the virtual ip of the virtual service. Field introduced in 17.1.1.
+* `oauth_vs_config` - Virtualservice specific oauth config. Field introduced in 21.1.3.
 * `performance_limits` - Optional settings that determine performance limits like max connections or bandwdith etc.
 * `pool_group_ref` - The pool group is an object that contains pools. It is a reference to an object of type poolgroup.
 * `pool_ref` - The pool is an object that contains destination servers and related attributes such as load-balancing and persistence. It is a reference to an object of type pool.

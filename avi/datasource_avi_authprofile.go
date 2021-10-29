@@ -42,6 +42,11 @@ func dataSourceAviAuthProfile() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"oauth_profile": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceOAuthProfileSchema(),
+			},
 			"pa_agent_ref": {
 				Type:     schema.TypeString,
 				Computed: true,
