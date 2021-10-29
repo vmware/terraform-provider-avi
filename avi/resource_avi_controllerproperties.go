@@ -316,7 +316,7 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 		"se_from_marketplace": {
 			Type:     schema.TypeString,
 			Optional: true,
-			Default:  "IMAGE",
+			Default:  "IMAGE_SE",
 		},
 		"se_offline_del": {
 			Type:         schema.TypeString,
