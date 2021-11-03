@@ -84,3 +84,6 @@ subnets = [
   "10.155.253.0/24",
 ]
 ----
+
+=== Next Step
+Before you move on to the next steps, please wait a few min to get the Avi Controller up. 
