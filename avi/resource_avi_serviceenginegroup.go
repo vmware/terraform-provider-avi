@@ -113,6 +113,12 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Elem:     &schema.Schema{Type: schema.TypeString},
 		},
+		"baremetal_dispatcher_handles_flows": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
+		},
 		"bgp_peer_monitor_failover_enabled": {
 			Type:         schema.TypeString,
 			Optional:     true,
@@ -475,10 +481,22 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Default:      "64",
 			ValidateFunc: validateInteger,
 		},
+		"hybrid_rss_mode": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
+		},
 		"hypervisor": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
+		},
+		"ignore_docker_mac_change": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "true",
+			ValidateFunc: validateBool,
 		},
 		"ignore_rtt_threshold": {
 			Type:         schema.TypeString,
@@ -829,6 +847,12 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Default:      "0",
 			ValidateFunc: validateInteger,
 		},
+		"num_dispatcher_queues": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "1",
+			ValidateFunc: validateInteger,
+		},
 		"num_flow_cores_sum_changes_to_ignore": {
 			Type:         schema.TypeString,
 			Optional:     true,
@@ -961,6 +985,12 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Default:      "0",
 			ValidateFunc: validateInteger,
 		},
+		"se_dp_if_state_poll_interval": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "10",
+			ValidateFunc: validateInteger,
+		},
 		"se_dp_isolation": {
 			Type:         schema.TypeString,
 			Optional:     true,
@@ -1022,6 +1052,18 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			ValidateFunc: validateInteger,
 		},
 		"se_dpdk_pmd": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "0",
+			ValidateFunc: validateInteger,
+		},
+		"se_dump_core_on_assert": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
+		},
+		"se_emulated_cores": {
 			Type:         schema.TypeString,
 			Optional:     true,
 			Default:      "0",
@@ -1108,6 +1150,12 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 			Default:  "Avi",
+		},
+		"se_packet_buffer_max": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "0",
+			ValidateFunc: validateInteger,
 		},
 		"se_pcap_lookahead": {
 			Type:         schema.TypeString,

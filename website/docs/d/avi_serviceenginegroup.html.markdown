@@ -51,6 +51,7 @@ In addition to all arguments above, the following attributes are exported:
 * `auto_rebalance_interval` - Frequency of rebalance, if 'auto rebalance' is enabled. Unit is sec.
 * `auto_redistribute_active_standby_load` - Redistribution of virtual services from the takeover se to the replacement se can cause momentary traffic loss. If the auto-redistribute load option is left in its default off state, any desired rebalancing requires calls to rest api. Allowed in basic(allowed values- false) edition, essentials(allowed values- false) edition, enterprise edition.
 * `availability_zone_refs` - Availability zones for virtual service high availability. It is a reference to an object of type availabilityzone. Field introduced in 20.1.1.
+* `baremetal_dispatcher_handles_flows` - Control if dispatcher core also handles tcp flows in baremetal se. Field introduced in 21.1.3. Allowed in basic edition, essentials edition, enterprise edition.
 * `bgp_peer_monitor_failover_enabled` - Enable bgp peer monitoring based failover. Field introduced in 21.1.3.
 * `bgp_state_update_interval` - Bgp peer state update interval. Allowed values are 5-100. Field introduced in 17.2.14,18.1.5,18.2.1. Unit is sec.
 * `buffer_se` - Excess service engine capacity provisioned for ha failover.
@@ -113,7 +114,9 @@ In addition to all arguments above, the following attributes are exported:
 * `host_gateway_monitor` - Enable the host gateway monitor when service engine is deployed as docker container. Disabled by default. Field introduced in 17.2.4.
 * `http_rum_console_log` - Enable javascript console logs on the client browser when collecting client insights. Field introduced in 21.1.1. Allowed in basic(allowed values- false) edition, essentials(allowed values- false) edition, enterprise edition.
 * `http_rum_min_content_length` - Minimum response size content length to sample for client insights. Field introduced in 21.1.1. Allowed in basic(allowed values- 64) edition, essentials(allowed values- 64) edition, enterprise edition.
+* `hybrid_rss_mode` - Toggles se hybrid only mode of operation in dpdk mode with rss configured;where-in each se datapath instance operates as an independent standalonehybrid instance performing both dispatcher and proxy function. Requires reboot. Field introduced in 21.1.3.
 * `hypervisor` - Override default hypervisor. Enum options - DEFAULT, VMWARE_ESX, KVM, VMWARE_VSAN, XEN.
+* `ignore_docker_mac_change` - Ignore docker mac change. Field introduced in 21.1.3. Allowed in basic edition, essentials edition, enterprise edition.
 * `ignore_rtt_threshold` - Ignore rtt samples if it is above threshold. Field introduced in 17.1.6,17.2.2. Unit is milliseconds.
 * `ingress_access_data` - Program se security group ingress rules to allow vip data access from remote cidr type. Enum options - SG_INGRESS_ACCESS_NONE, SG_INGRESS_ACCESS_ALL, SG_INGRESS_ACCESS_VPC. Field introduced in 17.1.5.
 * `ingress_access_mgmt` - Program se security group ingress rules to allow ssh/icmp management access from remote cidr type. Enum options - SG_INGRESS_ACCESS_NONE, SG_INGRESS_ACCESS_ALL, SG_INGRESS_ACCESS_VPC. Field introduced in 17.1.5.
@@ -174,6 +177,7 @@ In addition to all arguments above, the following attributes are exported:
 * `non_significant_log_throttle` - This setting limits the number of non-significant logs generated per second per core on this se. Default is 100 logs per second. Set it to zero (0) to deactivate throttling. Field introduced in 17.1.3. Unit is per_second.
 * `ns_helper_deq_interval_msec` - Dequeue interval for receive queue from ns helper. Allowed values are 1-1000. Field introduced in 21.1.1. Unit is milliseconds. Allowed in basic edition, essentials edition, enterprise edition.
 * `num_dispatcher_cores` - Number of dispatcher cores (0,1,2,4,8 or 16). If set to 0, then number of dispatcher cores is deduced automatically.requires se reboot. Allowed values are 0,1,2,4,8,16. Field introduced in 17.2.12, 18.1.3, 18.2.1. Allowed in basic(allowed values- 0) edition, essentials(allowed values- 0) edition, enterprise edition.
+* `num_dispatcher_queues` - Number of queues to each dispatcher. Allowed values are 2-8. Special values are 0 - 'auto-compute', 1 - 'single-queue'. Field introduced in 21.1.3.
 * `num_flow_cores_sum_changes_to_ignore` - Number of changes in num flow cores sum to ignore.
 * `objsync_config` - Configuration knobs for interse object distribution. Field introduced in 20.1.3.
 * `objsync_port` - Tcp port on se management interface for interse object distribution. Supported only for externally managed security groups. Not supported on full access deployments. Requires se reboot. Field introduced in 20.1.3.
@@ -197,6 +201,7 @@ In addition to all arguments above, the following attributes are exported:
 * `se_deprovision_delay` - Duration to preserve unused service engine virtual machines before deleting them. If traffic to a virtual service were to spike up abruptly, this se would still be available to be utilized again rather than creating a new se. If this value is set to 0, controller will never delete any ses and administrator has to manually cleanup unused ses. Allowed values are 0-525600. Unit is min.
 * `se_dos_profile` - Dict settings for serviceenginegroup.
 * `se_dp_hm_drops` - Internal only. Used to simulate se - se hb failure. Field introduced in 20.1.3.
+* `se_dp_if_state_poll_interval` - Number of jiffies between polling interface state. Field introduced in 21.1.3. Allowed in basic edition, essentials edition, enterprise edition.
 * `se_dp_isolation` - Toggle support to run se datapath instances in isolation on exclusive cpus. This improves latency and performance. However, this could reduce the total number of se_dp instances created on that se instance. Supported for >= 8 cpus. Requires se reboot. Field introduced in 20.1.4.
 * `se_dp_isolation_num_non_dp_cpus` - Number of cpus for non se-dp tasks in se datapath isolation mode. Translates total cpus minus 'num_non_dp_cpus' for datapath use. It is recommended to reserve an even number of cpus for hyper-threaded processors. Requires se reboot. Allowed values are 1-8. Special values are 0- 'auto'. Field introduced in 20.1.4.
 * `se_dp_log_nf_enqueue_percent` - Internal buffer full indicator on the service engine beyond which the unfiltered logs are abandoned. Field introduced in 21.1.1.
@@ -208,6 +213,8 @@ In addition to all arguments above, the following attributes are exported:
 * `se_dp_vnic_restart_on_queue_stall_count` - Number of consecutive transmit queue stall events in se_dp_vnic_stall_se_restart_window to look for before restarting se. Field introduced in 18.2.5.
 * `se_dp_vnic_stall_se_restart_window` - Window of time (in seconds) during which se_dp_vnic_restart_on_queue_stall_count number of consecutive stalls results in a se restart. Field introduced in 18.2.5.
 * `se_dpdk_pmd` - Determines if dpdk pool mode driver should be used or not   0  automatically determine based on hypervisor/nic type 1  unconditionally use dpdk poll mode driver 2  don't use dpdk poll mode driver.requires se reboot. Allowed values are 0-2. Field introduced in 18.1.3.
+* `se_dump_core_on_assert` - Enable core dump on assert. Field introduced in 21.1.3. Allowed in basic edition, essentials edition, enterprise edition.
+* `se_emulated_cores` - Use this to emulate more/less cpus than is actually available. One datapath process is started for each core. Field introduced in 21.1.3. Allowed in basic(allowed values- 0) edition, essentials(allowed values- 0) edition, enterprise edition.
 * `se_flow_probe_retries` - Flow probe retry count if no replies are received.requires se reboot. Allowed values are 0-5. Field introduced in 18.1.4, 18.2.1.
 * `se_flow_probe_retry_timer` - Timeout in milliseconds for flow probe retries.requires se reboot. Allowed values are 20-50. Field introduced in 18.2.5. Unit is milliseconds.
 * `se_group_analytics_policy` - Analytics policy for serviceenginegroup. Field introduced in 20.1.3.
@@ -222,6 +229,7 @@ In addition to all arguments above, the following attributes are exported:
 * `se_mp_ring_retry_count` - The retry count for the multi-producer enqueue before yielding the cpu. To be used under surveillance of avi support. Field introduced in 20.1.3. Allowed in basic(allowed values- 500) edition, essentials(allowed values- 500) edition, enterprise edition.
 * `se_mtu` - Mtu for the vnics of ses in the se group. Allowed values are 512-9000. Field introduced in 18.2.8, 20.1.1.
 * `se_name_prefix` - Prefix to use for virtual machine name of service engines.
+* `se_packet_buffer_max` - Internal use only. Used to artificially reduce the available number of packet buffers. Field introduced in 21.1.3. Allowed in basic edition, essentials edition, enterprise edition.
 * `se_pcap_lookahead` - Enables lookahead mode of packet receive in pcap mode. Introduced to overcome an issue with hv_netvsc driver. Lookahead mode attempts to ensure that application and kernel's view of the receive rings are consistent. Field introduced in 18.2.3.
 * `se_pcap_pkt_count` - Max number of packets the pcap interface can hold and if the value is 0 the optimum value will be chosen. The optimum value will be chosen based on se-memory, cloud type and number of interfaces.requires se reboot. Field introduced in 18.2.5.
 * `se_pcap_pkt_sz` - Max size of each packet in the pcap interface. Requires se reboot. Field introduced in 18.2.5.
