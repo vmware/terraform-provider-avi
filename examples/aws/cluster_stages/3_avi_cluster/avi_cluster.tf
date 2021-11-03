@@ -60,10 +60,7 @@ provider "avi" {
 
 resource "avi_systemconfiguration" "avi_system" {
     common_criteria_mode      = false
-    #uuid                      = "default-uuid"
-    #dns_configuration        = "8.8.8.8"
-    #email_configuration      = remo@avinetworks.com
-    #ntp_configuration        = "time.apple.com"
+    uuid                      = "default-uuid"
     welcome_workflow_complete = true
     }
 
