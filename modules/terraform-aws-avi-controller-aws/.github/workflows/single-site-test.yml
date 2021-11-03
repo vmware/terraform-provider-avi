@@ -1,0 +1,115 @@
+name: Avi - Single Site Deployment
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  release:
+    types: [released]
+
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# These scenarios will be ran in parallel
+jobs:
+  # This workflow contains multiple jobs to test various scenarios
+  single-site:
+    name: 1-site (Network_${{ matrix.create_networking }},HA_${{ matrix.controller_ha }})
+    runs-on: ubuntu-latest
+    env:
+      site_type: "single-site"
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.TF_VAR_AWS_SECRET_KEY }}
+      AWS_ACCESS_KEY_ID: ${{ secrets.TF_VAR_AWS_ACCESS_KEY }}
+      TF_VAR_aws_secret_key: ${{ secrets.TF_VAR_AWS_SECRET_KEY }}
+      TF_VAR_aws_access_key: ${{ secrets.TF_VAR_AWS_ACCESS_KEY }}
+      TF_VAR_create_iam: ${{ matrix.create_iam }}
+      TF_VAR_create_networking: ${{ matrix.create_networking }}
+      TF_VAR_controller_password: ${{ secrets.TF_VAR_CONTROLLER_PASSWORD }}
+      TF_VAR_custom_vpc_id: ${{ secrets.TF_VAR_CUSTOM_VPC_ID_WEST }}
+      TF_VAR_custom_subnet_ids: ${{ secrets.TF_VAR_CUSTOM_SUBNET_IDS_WEST }}
+      TF_VAR_avi_cidr_block: "10.254.0.0/16"
+      TF_VAR_dns_vs_settings: ${{ secrets.TF_VAR_DNS_VS_SETTINGS_WEST }}
+      TF_VAR_controller_ha: ${{ matrix.controller_ha }}
+      TF_VAR_controller_public_address: ${{ matrix.controller_public_address }}
+      TF_VAR_configure_dns_profile: "true"
+      TF_VAR_dns_service_domain: "aviterraform.local"
+      TF_VAR_configure_dns_vs: "true"
+      TF_VAR_private_key_path: "/home/runner/pkey"
+      TF_VAR_key_pair_name: ${{ secrets.TF_VAR_KEY_PAIR_NAME }}
+      TF_VAR_avi_version: ${{ matrix.avi_version }}
+      avi_version: ${{ matrix.avi_version }}
+    defaults:
+      run:
+        shell: bash
+        working-directory: test
+    strategy:
+      matrix:
+        include:
+          - avi_version: "20.1.6"
+            create_networking: false
+            controller_ha: false
+            controller_public_address: true
+            create_iam: false
+          - avi_version: "20.1.6"
+            create_networking: false
+            controller_ha: true
+            controller_public_address: true
+            create_iam: false
+          - avi_version: "21.1.1"
+            create_networking: false
+            controller_ha: false
+            controller_public_address: true
+            create_iam: false
+          - avi_version: "21.1.1"
+            create_networking: false
+            controller_ha: true
+            controller_public_address: true
+            create_iam: false
+      fail-fast: false
+        
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      - name: Setup Go environment
+        uses: actions/setup-go@v2.1.3
+        with:
+          go-version: 1.16
+
+      - name: Setup Env
+        run: |
+          go mod download
+          pipx inject ansible-core avisdk requests --include-deps --include-apps
+          pipx list
+          ansible-galaxy collection install vmware.alb
+          echo "$PKEY" > pkey_enc
+          cat pkey_enc | base64 -d > /home/runner/pkey
+          chmod 600 /home/runner/pkey
+        env:
+          PKEY: ${{ secrets.PKEY }}
+      
+      - name: Create Infrastructure and run Go Tests
+        run: go test -v create_infra_test.go -tags=e2e -timeout 120m
+
+      - name: Run Ansible Playbook to verify Avi Controller Status
+        run: |
+          export name_prefix=$(cat ../examples/single-site/.test-data/TF_VAR_name_prefix.json)
+          export controller_ip=$(terraform -chdir="../examples/single-site" output -no-color  -json | jq .controllers.value[0].public_ip_address)
+          ansible-playbook ansible_test.yml -e password=$TF_VAR_controller_password -e controller_ip=$controller_ip -e avi_version=$avi_version -e name_prefix=$name_prefix -e controller_ha=$TF_VAR_controller_ha
+
+      - name: Cleanup Avi Created Infra
+        if: ${{ always() }}
+        run: |
+          export controller_ip=$(terraform -chdir="../examples/single-site" output -no-color  -json | jq .controllers.value[0].public_ip_address)
+          ansible-playbook ansible_avi_cleanup.yml -e password=$TF_VAR_controller_password -e controller_ip=$controller_ip -e avi_version=$avi_version
+        
+      - name: Run Terraform Destroy
+        if: ${{ always() }}
+        run: |
+          go test -v destroy_infra_test.go -timeout 30m
