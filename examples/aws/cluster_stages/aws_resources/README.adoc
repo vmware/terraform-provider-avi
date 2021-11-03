@@ -44,3 +44,14 @@ Update the variables to match what will be available into your AWS.
 
 NOTE: if you are going to delete the Avi Controllers and you have deployed the SE, terraform will not be able to finish the task!
 Which means you will have to do a lot of manual deletion and then clean up the terraform to get back into the clean state. 
+
+=== Info
+This section will generate the SSH keys and it will be injected into the Avi Controller. Then you do have the option to login using the ssh, or username/pass. The password will be set on the next play, even though you do have the variable in the terraform.tfvars. Keep that password the same. 
+
+=== Terraform.tfvars
+Here is the example you will want to use and set your variables
+
+----
+avi_password = "yournewpasswordgoeshere!@"
+aws_vpc_id   = "yourvpcnumberhere"
+----
