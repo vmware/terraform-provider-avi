@@ -1,0 +1,6 @@
+== Apps deployment
+This part of the code does the following:
+
+** Creates a Virtual Server
+** Creates 3 Pools
+** Creates a VS VIP
