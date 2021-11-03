@@ -55,3 +55,32 @@ Here is the example you will want to use and set your variables
 avi_password = "yournewpasswordgoeshere!@"
 aws_vpc_id   = "yourvpcnumberhere"
 ----
+
+=== Output
+The output will show you the Avi Controller and Leader as well as the public IP address. Example of the output
+
+----
+avi_controller_iam_role = "remo-avi-controller"
+avi_controller_ip = [
+  "10.155.251.246",
+  "10.155.251.200",
+  "10.155.251.212",
+]
+avi_controller_public_dns = "ec2-52-39-129-160.us-west-2.compute.amazonaws.com"
+avi_controller_public_ip_leader = "52.39.129.160"
+aws_controller_instance = [
+  "remo-demo-terraform-controller-1",
+  "remo-demo-terraform-controller-2",
+  "remo-demo-terraform-controller-3",
+]
+aws_subnets = [
+  "remo-demo-terraform-subnet-0",
+  "remo-demo-terraform-subnet-1",
+  "remo-demo-terraform-subnet-2",
+]
+subnets = [
+  "10.155.251.0/24",
+  "10.155.252.0/24",
+  "10.155.253.0/24",
+]
+----
