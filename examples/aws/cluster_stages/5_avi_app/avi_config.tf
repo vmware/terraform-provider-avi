@@ -4,8 +4,8 @@
 //
 
 provider "aws" {
-  //access_key = "${var.aws_access_key}"
-  //secret_key = "${var.aws_secret_key}"
+  #access_key = var.aws_access_key
+  #secret_key = var.aws_secret_key
   shared_credentials_file = var.aws_creds_file
   region                  = var.aws_region
 }
@@ -17,14 +17,12 @@ data "avi_applicationprofile" "system_http_profile" {
 data "avi_applicationprofile" "system_https_profile" {
   name = "System-Secure-HTTP"
 }
-
 data "aws_instance" "avi_controller" {
   filter {
     name   = "tag:Name"
-    values = ["${var.project_name}-terraform-controller"]
+    values = ["${var.project_name}-terraform-controller-1"]
   }
 }
-
 resource "aws_instance" "terraform-webserver" {
   count         = var.webserver_count
   ami           = var.webserver_ami
@@ -35,15 +33,6 @@ resource "aws_instance" "terraform-webserver" {
     Project = "${var.project_name}-terraform-webservers"
   }
 }
-
-output "aws_webserver_ips" {
-  value = aws_instance.terraform-webserver.*.private_ip
-}
-
-output "aws_webserver_tags" {
-  value = aws_instance.terraform-webserver.*.tags
-}
-
 data "aws_subnet" "terraform-subnets-0" {
   filter {
     name   = "tag:Name"
@@ -72,8 +61,9 @@ data "aws_vpc" "avi_vpc" {
 provider "avi" {
   avi_username   = var.avi_username
   avi_password   = var.avi_password
-  avi_controller = data.aws_instance.avi_controller.private_ip
+  avi_controller = data.aws_instance.avi_controller.public_ip
   avi_tenant     = "admin"
+  avi_version    = var.api_version
 }
 
 data "avi_tenant" "default_tenant" {
@@ -247,8 +237,6 @@ resource "avi_pool" "terraform-pool-version3" {
   vrf_ref             = data.avi_vrfcontext.terraform_vrf.id
   cloud_ref           = data.avi_cloud.aws_cloud_cfg.id
 
-  external_autoscale_groups = [aws_autoscaling_group.asg_based_pool.name]
-
   fail_action {
     type = "FAIL_ACTION_CLOSE_CONN"
   }
@@ -277,7 +265,7 @@ resource "avi_poolgroup" "terraform-poolgroup" {
 
 resource "avi_vsvip" "terraform-vip" {
   name            = "aws_vip"
-  tenant_ref      = data.avi_tenant.default_tenant.id
+  tenant_ref      = "admin"
   cloud_ref       = data.avi_cloud.aws_cloud_cfg.id
   vrf_context_ref = data.avi_vrfcontext.terraform_vrf.id
 
@@ -338,9 +326,9 @@ resource "avi_virtualservice" "terraform-virtualservice" {
   vrf_context_ref              = data.avi_vrfcontext.terraform_vrf.id
   vsvip_ref                    = avi_vsvip.terraform-vip.id
 
-  dns_info {
-    fqdn = "aws_vs.${var.project_name}.awsavi.net"
-  }
+  # dns_info {
+  #   fqdn = "aws_vs.${var.project_name}.awsavi.net"
+  # }
 
   services {
     port = 80
@@ -366,16 +354,16 @@ resource "aws_launch_configuration" "web_app_launch_conf" {
   instance_type = var.webserver_instance_type
 }
 
-resource "aws_autoscaling_group" "asg_based_pool" {
-  name                 = "${var.project_name}-aws-vs-pool3-asg"
-  availability_zones   = var.aws_availability_zones
-  max_size             = 2
-  min_size             = 1
-  launch_configuration = aws_launch_configuration.web_app_launch_conf.name
-  vpc_zone_identifier = [
-    data.aws_subnet.terraform-subnets-0.id,
-    data.aws_subnet.terraform-subnets-1.id,
-    data.aws_subnet.terraform-subnets-2.id,
-  ]
-}
+# resource "aws_autoscaling_group" "asg_based_pool" {
+#   name                 = "${var.project_name}-aws-vs-pool3-asg"
+#   availability_zones   = var.aws_availability_zones
+#   max_size             = 2
+#   min_size             = 1
+#   launch_configuration = aws_launch_configuration.web_app_launch_conf.name
+#    # vpc_zone_identifier = [
+#    #   data.aws_subnet.terraform-subnets-0.id,
+#    #   data.aws_subnet.terraform-subnets-1.id,
+#    #   data.aws_subnet.terraform-subnets-2.id,
+#    # ]
+# }
 
