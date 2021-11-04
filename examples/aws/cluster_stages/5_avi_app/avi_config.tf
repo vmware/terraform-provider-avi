@@ -277,6 +277,7 @@ resource "avi_vsvip" "terraform-vip" {
     vip_id            = "0"
     auto_allocate_ip  = true
     avi_allocated_vip = true
+    avi_allocated_fip = var.floating_ip
     availability_zone = var.aws_availability_zone
     subnet_uuid       = data.aws_subnet.terraform-subnets-0.id
 
@@ -293,6 +294,7 @@ resource "avi_vsvip" "terraform-vip" {
     vip_id            = "1"
     auto_allocate_ip  = true
     avi_allocated_vip = true
+    avi_allocated_fip = var.floating_ip
     availability_zone = var.aws_availability_zone
     subnet_uuid       = data.aws_subnet.terraform-subnets-1.id
 
@@ -305,10 +307,6 @@ resource "avi_vsvip" "terraform-vip" {
       mask = var.aws_subnet_mask
     }
   }
-}
-
-output "aws_vs_vip_0" {
-  value = avi_vsvip.terraform-vip.vip[0]
 }
 
 resource "avi_virtualservice" "terraform-virtualservice" {
@@ -344,9 +342,6 @@ resource "avi_virtualservice" "terraform-virtualservice" {
   }
 }
 
-output "aws_vs_vip" {
-  value = avi_virtualservice.terraform-virtualservice.vip
-}
 
 resource "aws_launch_configuration" "web_app_launch_conf" {
   name          = "${var.project_name}-app-launch-config"
@@ -354,16 +349,16 @@ resource "aws_launch_configuration" "web_app_launch_conf" {
   instance_type = var.webserver_instance_type
 }
 
-# resource "aws_autoscaling_group" "asg_based_pool" {
-#   name                 = "${var.project_name}-aws-vs-pool3-asg"
-#   availability_zones   = var.aws_availability_zones
-#   max_size             = 2
-#   min_size             = 1
-#   launch_configuration = aws_launch_configuration.web_app_launch_conf.name
-#    # vpc_zone_identifier = [
-#    #   data.aws_subnet.terraform-subnets-0.id,
-#    #   data.aws_subnet.terraform-subnets-1.id,
-#    #   data.aws_subnet.terraform-subnets-2.id,
-#    # ]
-# }
+resource "aws_autoscaling_group" "asg_based_pool" {
+  name                 = "${var.project_name}-aws-vs-pool3-asg"
+  availability_zones   = var.aws_availability_zones
+  max_size             = 2
+  min_size             = 1
+  launch_configuration = aws_launch_configuration.web_app_launch_conf.name
+   # vpc_zone_identifier = [
+   #   data.aws_subnet.terraform-subnets-0.id,
+   #   data.aws_subnet.terraform-subnets-1.id,
+   #   data.aws_subnet.terraform-subnets-2.id,
+   # ]
+}
 
