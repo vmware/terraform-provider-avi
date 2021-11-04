@@ -7,3 +7,5 @@
 *** avi_cluster – Creates the cluster for the 3 controllers <br/> 
 *** avi_infra – Creates the subnets, se groups, sets the flavors and set the demo license <br/>
 *** avi_app – This will deploy the web servers backend and configure your virtual servers <br/>
+
+NOTE: Check the single cluster option as well. 
