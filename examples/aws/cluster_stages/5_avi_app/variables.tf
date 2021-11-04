@@ -43,3 +43,7 @@ variable "aws_creds_file" {
 variable "api_version" {
   default = "20.1.6"
 }
+variable "floating_ip" {
+  default     = true
+  description = "If you want to assign the floating IP to your VS"
+}
