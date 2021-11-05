@@ -5,7 +5,7 @@
 		"search_domain": "",
 		"server_list": [{
 			"type": "V4",
-			"addr": "8.8.8.8"
+			"addr": "${dns}"
 		}]
 	},
 	"ntp_configuration": {
@@ -54,7 +54,7 @@
 	"is_superuser": true,
 	"full_name": "System Administrator",
 	"uid": 2000,
-	"password": "${password}",
+	"password": "${avi_controller_password}",
 	"local": true,
 	"email": "",
 	"default_tenant_ref": "/api/tenant/?name=admin"
@@ -64,7 +64,7 @@
        "name": "Backup-Configuration",
        "tenant_ref": "/api/tenant/?name=admin",
        "save_local": true,
-       "backup_passphrase":  "${password}",
+       "backup_passphrase":  "${avi_controller_password}",
        "maximum_backups_stored": 4
     }
   ]

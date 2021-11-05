@@ -1,7 +1,8 @@
 data "template_file" "userdata" {
-  template = file("files/userdata.json")
-  vars = {
-    password = var.admin_password
+  template   = file("files/userdata.json")
+  vars       = {
+    avi_controller_password = var.admin_password
+    dns                     = var.dns_ip
   }
 }
 resource "aws_instance" "avi-controller" {
@@ -17,7 +18,7 @@ resource "aws_instance" "avi-controller" {
       aws_security_group.remo_sg.id,
   ]
   tags                        = {
-    Name                      = "ctl-avi-tf-rm-${count.index +1}"
+    Name                      = "ctl-avi-tf-${count.index +1}"
     dept                      = var.department_name
     shutdown_policy           = var.shutdown_rules
     owner                     = var.owner

@@ -63,3 +63,6 @@ variable "aws_secret_key" {}
 variable "api_version" {
   default = "21.1.1"
 }
+variable "dns_ip" {
+  default = "8.8.8.8"
+}
