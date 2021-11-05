@@ -92,31 +92,28 @@ data "avi_tenant" "default_tenant" {
  }
 
 resource "avi_serviceenginegroup" "aws_se_group" {
-  name                          = "Default-Group"
-  archive_shm_limit             = 8
-  algo                          = "PLACEMENT_ALGO_PACKED"
-  buffer_se                     = 0
-  cloud_ref                     = avi_cloud.aws_cloud_cfg.id
-  connection_memory_percentage  = 50
-  disk_per_se                   = 10
-  #enable_vip_on_all_interfaces = true
-  ha_mode                       = "HA_MODE_SHARED"
-  instance_flavor               = "t2.large"
-  license_tier                  = "ENTERPRISE_18"
-  license_type                  = "LIC_CORES"
-  se_bandwidth_type             = "SE_BANDWIDTH_UNLIMITED"
-  max_se                       = 2
-  se_dp_max_hb_version          = 2
-  max_vs_per_se                 = 20
-  memory_per_se                 = 2048
-  min_scaleout_per_vs           = 1
+  name                         = "Default-Group"
+  archive_shm_limit            = 8
+  algo                         = "PLACEMENT_ALGO_PACKED"
+  buffer_se                    = 0
+  cloud_ref                    = avi_cloud.aws_cloud_cfg.id
+  connection_memory_percentage = var.connection_mem_percentage #default 50
+  disk_per_se                  = var.disk_per_se # default 10
+  ha_mode                      = var.ha_mode # default "HA_MODE_SHARED"
+  instance_flavor              = var.instance_flavor_se #default "t2.large"
+  license_tier                 = "ENTERPRISE_18"
+  license_type                 = "LIC_CORES"
+  se_bandwidth_type            = "SE_BANDWIDTH_UNLIMITED"
+  max_se                       = var.max_se #default 2
+  max_vs_per_se                = var.max_vs_per_se # default 20
+  memory_per_se                = var.mem_per_se #default 2048
+  min_scaleout_per_vs          = 1
   realtime_se_metrics {
     duration = 0
     enabled  = true
   }
-  vcpus_per_se         = 2
-  se_deprovision_delay = 5
-  se_name_prefix       = "REMO_AA"
-  #tenant_ref           = "admin"
+  vcpus_per_se         = var.vcpus_per_se # default 2
+  se_deprovision_delay = var.deprovision_delay # default 5
+  se_name_prefix       = var.project_name
   tenant_ref           = data.avi_tenant.default_tenant.id
 }
