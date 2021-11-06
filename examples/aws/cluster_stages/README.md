@@ -9,3 +9,7 @@
 *** avi_app – This will deploy the web servers backend and configure your virtual servers <br/>
 
 NOTE: Check the single cluster option as well. 
+
+
+*** DELETE 
+To delete your env you must start from the bottom up so reverse order. 
