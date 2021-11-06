@@ -84,6 +84,16 @@ subnets = [
   "10.155.253.0/24",
 ]
 ----
+=== Trusted IPs
+In order to avoid to have the controller wide open to the web, I created a sec group which will only allow Trusted IPs to connect to the controler. 
+
+example are in the terraform.tfvars.example but it looks like this:
+Very important make sure to add the IPs (internal) like you see below 10.155.xx.0 to the list otherwise it fails. 
+
+----
+trusted_cidr = ["12.10.13.51/32","9.19.51.25/32","10.155.251.0/24", "10.155.252.0/24", "10.155.253.0/24"]
+----
+
 
 === Next Step
 Before you move on to the next steps, please wait a few min to get the Avi Controller up. 
