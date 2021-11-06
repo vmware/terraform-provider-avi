@@ -28,7 +28,7 @@ variable "aws_availability_zones" {
 }
 
 variable "project_name" {
-  default = "remo-demo"
+  default = "awesome-avi"
 }
 variable "api_version" {
   default = "20.1.6"
@@ -67,4 +67,7 @@ variable "vcpus_per_se" {
 }
 variable "deprovision_delay" {
   default = 5
+}
+variable "se_prefix" {
+  default = "REMO_AA"
 }

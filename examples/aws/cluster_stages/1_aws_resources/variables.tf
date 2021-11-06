@@ -56,3 +56,9 @@ variable "aws_availability_zones" {
   default = ["us-west-2a", "us-west-2b", "us-west-2c"]
 }
 
+variable "avi_sg_name" {
+   description = "Name of the Sec Groups"
+ }
+ variable "trusted_cidr" {
+    description = "cidr block of addresses trusted for access to the kubernetes API server"
+}

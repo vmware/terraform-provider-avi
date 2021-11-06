@@ -17,6 +17,9 @@ resource "aws_instance" "avi_controller" {
   instance_type        = "c4.2xlarge"
   subnet_id            = aws_subnet.terraform-subnet[0].id
   iam_instance_profile = data.aws_iam_instance_profile.avi_controller_iam.name
+  vpc_security_group_ids      = [
+      aws_security_group.avi_sg.id,
+  ]
   key_name             = aws_key_pair.generated.key_name
 
   tags = {

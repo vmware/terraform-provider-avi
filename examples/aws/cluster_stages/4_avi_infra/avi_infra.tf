@@ -106,6 +106,7 @@ resource "avi_serviceenginegroup" "aws_se_group" {
   se_bandwidth_type            = "SE_BANDWIDTH_UNLIMITED"
   max_se                       = var.max_se #default 2
   max_vs_per_se                = var.max_vs_per_se # default 20
+  se_dp_max_hb_version         = 1
   memory_per_se                = var.mem_per_se #default 2048
   min_scaleout_per_vs          = 1
   realtime_se_metrics {
@@ -114,6 +115,6 @@ resource "avi_serviceenginegroup" "aws_se_group" {
   }
   vcpus_per_se         = var.vcpus_per_se # default 2
   se_deprovision_delay = var.deprovision_delay # default 5
-  se_name_prefix       = var.project_name
+  se_name_prefix       = var.se_prefix
   tenant_ref           = data.avi_tenant.default_tenant.id
 }
