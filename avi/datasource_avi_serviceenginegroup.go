@@ -376,6 +376,11 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceIptableRuleSetSchema(),
 			},
+			"kni_allowed_server_ports": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceKniPortRangeSchema(),
+			},
 			"l7_conns_per_core": {
 				Type:     schema.TypeString,
 				Computed: true,

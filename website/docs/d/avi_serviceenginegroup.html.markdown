@@ -123,6 +123,7 @@ In addition to all arguments above, the following attributes are exported:
 * `instance_flavor` - Instance/flavor name for se instance.
 * `instance_flavor_info` - Additional information associated with instance_flavor. Field introduced in 20.1.1.
 * `iptables` - Iptable rules. Maximum of 128 items allowed.
+* `kni_allowed_server_ports` - Port ranges for any servers running in inband linuxserver clouds. Field introduced in 21.1.3.
 * `l7_conns_per_core` - Number of l7 connections that can be cached per core. Field introduced in 21.1.1.
 * `l7_resvd_listen_conns_per_core` - Number of reserved l7 listener connections per core. Field introduced in 21.1.1.
 * `labels` - Labels associated with this se group. Field introduced in 20.1.1. Maximum of 1 items allowed.

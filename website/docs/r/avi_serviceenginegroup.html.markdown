@@ -117,6 +117,7 @@ The following arguments are supported:
 * `instance_flavor` - (Optional) Instance/flavor name for se instance.
 * `instance_flavor_info` - (Optional) Additional information associated with instance_flavor. Field introduced in 20.1.1.
 * `iptables` - (Optional) Iptable rules. Maximum of 128 items allowed.
+* `kni_allowed_server_ports` - (Optional) Port ranges for any servers running in inband linuxserver clouds. Field introduced in 21.1.3.
 * `l7_conns_per_core` - (Optional) Number of l7 connections that can be cached per core. Field introduced in 21.1.1.
 * `l7_resvd_listen_conns_per_core` - (Optional) Number of reserved l7 listener connections per core. Field introduced in 21.1.1.
 * `labels` - (Optional) Labels associated with this se group. Field introduced in 20.1.1. Maximum of 1 items allowed.

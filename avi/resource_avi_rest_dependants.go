@@ -11932,6 +11932,58 @@ func ResourceFalsePositiveResultSchema() *schema.Resource {
 	}
 }
 
+func ResourceFbGsInfoSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"oper_status": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceOperationalStatusSchema(),
+			},
+		},
+	}
+}
+
+func ResourceFbPoolInfoSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"oper_status": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceOperationalStatusSchema(),
+			},
+		},
+	}
+}
+
+func ResourceFbSeInfoSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"oper_status": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceOperationalStatusSchema(),
+			},
+		},
+	}
+}
+
+func ResourceFbVsInfoSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"oper_status": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceOperationalStatusSchema(),
+			},
+		},
+	}
+}
+
 func ResourceFeProxyRoutePublishConfigSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -17848,6 +17900,22 @@ func ResourceKeyValueTupleSchema() *schema.Resource {
 	}
 }
 
+func ResourceKniPortRangeSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"protocol": {
+				Type:     schema.TypeString,
+				Required: true,
+			},
+			"range": {
+				Type:     schema.TypeSet,
+				Required: true,
+				Elem:     ResourcePortRangeSchema(),
+			},
+		},
+	}
+}
+
 func ResourceL4ConnectionPolicySchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -21449,8 +21517,10 @@ func ResourceOAuthAppSettingsSchema() *schema.Resource {
 				Required: true,
 			},
 			"client_secret": {
-				Type:     schema.TypeString,
-				Required: true,
+				Type:             schema.TypeString,
+				Required:         true,
+				Sensitive:        true,
+				DiffSuppressFunc: suppressSensitiveFieldDiffs,
 			},
 			"oidc_config": {
 				Type:     schema.TypeSet,
@@ -22158,8 +22228,10 @@ func ResourceOpaqueTokenValidationParamsSchema() *schema.Resource {
 				Required: true,
 			},
 			"server_secret": {
-				Type:     schema.TypeString,
-				Required: true,
+				Type:             schema.TypeString,
+				Required:         true,
+				Sensitive:        true,
+				DiffSuppressFunc: suppressSensitiveFieldDiffs,
 			},
 		},
 	}
@@ -22719,6 +22791,11 @@ func ResourceOpsHistorySchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 				Elem:     ResourceUpgradeOpsStateSchema(),
+			},
+			"statediff_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 			"upgrade_events": {
 				Type:     schema.TypeList,
@@ -30686,6 +30763,44 @@ func ResourceStateCacheMgrDebugFilterSchema() *schema.Resource {
 	}
 }
 
+func ResourceStatediffEventSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"duration": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"end_time": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"message": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"start_time": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"status": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "FB_INIT",
+			},
+			"task_name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
 func ResourceStaticIpAllocInfoSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -37973,6 +38088,68 @@ func ResourceWebApplicationSignatureServiceStatusSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 				Elem:     ResourceTimeStampSchema(),
+			},
+		},
+	}
+}
+
+func ResourcepostsnapshotSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"gssnapshot": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceFbGsInfoSchema(),
+			},
+			"poolsnapshot": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceFbPoolInfoSchema(),
+			},
+			"sesnapshot": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceFbSeInfoSchema(),
+			},
+			"vssnapshot": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceFbVsInfoSchema(),
+			},
+		},
+	}
+}
+
+func ResourcepresnapshotSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"gssnapshot": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceFbGsInfoSchema(),
+			},
+			"poolsnapshot": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceFbPoolInfoSchema(),
+			},
+			"sesnapshot": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceFbSeInfoSchema(),
+			},
+			"vssnapshot": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceFbVsInfoSchema(),
 			},
 		},
 	}

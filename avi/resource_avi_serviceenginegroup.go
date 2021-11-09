@@ -530,6 +530,11 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Elem:     ResourceIptableRuleSetSchema(),
 		},
+		"kni_allowed_server_ports": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceKniPortRangeSchema(),
+		},
 		"l7_conns_per_core": {
 			Type:         schema.TypeString,
 			Optional:     true,
