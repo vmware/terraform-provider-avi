@@ -45,6 +45,16 @@ func dataSourceAviHealthMonitor() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"ftp_monitor": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceHealthMonitorFtpSchema(),
+			},
+			"ftps_monitor": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceHealthMonitorFtpSchema(),
+			},
 			"http_monitor": {
 				Type:     schema.TypeSet,
 				Computed: true,
@@ -68,6 +78,16 @@ func dataSourceAviHealthMonitor() *schema.Resource {
 			"is_federated": {
 				Type:     schema.TypeString,
 				Computed: true,
+			},
+			"ldap_monitor": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceHealthMonitorLdapSchema(),
+			},
+			"ldaps_monitor": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceHealthMonitorLdapSchema(),
 			},
 			"markers": {
 				Type:     schema.TypeList,

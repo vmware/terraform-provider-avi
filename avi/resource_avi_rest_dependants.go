@@ -15892,6 +15892,28 @@ func ResourceHealthMonitorExternalSchema() *schema.Resource {
 	}
 }
 
+func ResourceHealthMonitorFtpSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"filename": {
+				Type:     schema.TypeString,
+				Required: true,
+			},
+			"mode": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "FTP_PASSIVE_MODE",
+			},
+			"ssl_attributes": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceHealthMonitorSSLAttributesSchema(),
+			},
+		},
+	}
+}
+
 func ResourceHealthMonitorHttpSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -15956,6 +15978,38 @@ func ResourceHealthMonitorImapSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
 			"folder": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"ssl_attributes": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceHealthMonitorSSLAttributesSchema(),
+			},
+		},
+	}
+}
+
+func ResourceHealthMonitorLdapSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"attributes": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"base_dn": {
+				Type:     schema.TypeString,
+				Required: true,
+			},
+			"filter": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"scope": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
