@@ -50,12 +50,12 @@ resource "avi_cluster" "aws_cluster" {
 }
 
 provider "avi" {
-  avi_username   = var.avi_username
-  avi_password   = var.avi_password
-  avi_controller = data.aws_instance.avi_controller.public_ip
-  avi_tenant     = "admin"
-  avi_api_timeout    = 50
-  avi_version    = var.api_version
+  avi_username    = var.avi_username
+  avi_password    = var.avi_password
+  avi_controller  = data.aws_instance.avi_controller.public_ip
+  avi_tenant      = "admin"
+  avi_api_timeout = 50
+  avi_version     = var.api_version
 }
 
 resource "avi_systemconfiguration" "avi_system" {

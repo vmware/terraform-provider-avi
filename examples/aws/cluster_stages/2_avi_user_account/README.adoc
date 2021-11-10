@@ -1,0 +1,3 @@
+= Be Aware
+Make sure the project name matches the other steps.
+Once you verified the project name set the new password and retrieve the old password from VMware Portal where you get your license.

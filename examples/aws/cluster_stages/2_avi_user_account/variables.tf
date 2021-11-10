@@ -10,7 +10,6 @@ variable "avi_current_password" {
 }
 
 variable "avi_new_password" {
-  default = "RemoMattei@21"
 }
 
 variable "project_name" {

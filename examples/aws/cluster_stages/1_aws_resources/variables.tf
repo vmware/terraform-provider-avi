@@ -33,7 +33,7 @@ variable "aws_subnet_mask" {
 }
 
 variable "project_name" {
-  default = "remo-demo"
+  default = "avi-demo"
 }
 
 variable "aws_creds_file" {
@@ -61,4 +61,7 @@ variable "avi_sg_name" {
  }
  variable "trusted_cidr" {
     description = "cidr block of addresses trusted for access to the kubernetes API server"
+}
+variable "dns_ip" {
+  default = "8.8.8.8"
 }
