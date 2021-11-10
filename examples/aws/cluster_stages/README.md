@@ -12,4 +12,4 @@ NOTE: Check the single cluster option as well.
 
 
 *** DELETE 
-To delete your env you must start from the bottom up so reverse order. 
+To delete your env you must start from the bottom up so reverse order. Keep in mind that if Service Engines have been deployed the terraform destroy may fail. 
