@@ -1,5 +1,5 @@
 ### AWS Controller deployment and AVI Configuration Examples
-** Each section will have the appropriate README <br />
+** Each section does have the appropriate README. Make sure to read it <br />
 ** You will start with: <br /> <br />
 
 *** aws_resources – Builds 3 controllers <br/> 
