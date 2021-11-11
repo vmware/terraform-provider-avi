@@ -324,10 +324,6 @@ resource "avi_virtualservice" "terraform-virtualservice" {
   vrf_context_ref              = data.avi_vrfcontext.terraform_vrf.id
   vsvip_ref                    = avi_vsvip.terraform-vip.id
 
-  # dns_info {
-  #   fqdn = "aws_vs.${var.project_name}.awsavi.net"
-  # }
-
   services {
     port = 80
 
@@ -355,10 +351,5 @@ resource "aws_autoscaling_group" "asg_based_pool" {
   max_size             = 2
   min_size             = 1
   launch_configuration = aws_launch_configuration.web_app_launch_conf.name
-   # vpc_zone_identifier = [
-   #   data.aws_subnet.terraform-subnets-0.id,
-   #   data.aws_subnet.terraform-subnets-1.id,
-   #   data.aws_subnet.terraform-subnets-2.id,
-   # ]
 }
 
