@@ -50,6 +50,12 @@ func ResourceAuthProfileSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Required: true,
 		},
+		"oauth_profile": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceOAuthProfileSchema(),
+		},
 		"pa_agent_ref": {
 			Type:     schema.TypeString,
 			Optional: true,

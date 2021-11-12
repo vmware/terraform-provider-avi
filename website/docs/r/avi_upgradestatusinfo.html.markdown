@@ -63,6 +63,7 @@ The following arguments are supported:
 * `seg_status` - (Optional) Detailed segroup status. Field introduced in 18.2.6.
 * `start_time` - (Optional) Start time of upgrade operation. Field introduced in 18.2.6.
 * `state` - (Optional) Current status of the upgrade operation. Field introduced in 18.2.6.
+* `statediff_ref` - (Optional) Record of pre/post snapshot captured for current upgrade operation. It is a reference to an object of type statediffoperation. Field introduced in 21.1.3.
 * `system` - (Optional) Flag is set only in the cluster if the upgrade is initiated as a system-upgrade. Field introduced in 18.2.6.
 * `tasks_completed` - (Optional) Completed set of tasks in the upgrade operation. Field introduced in 18.2.6.
 * `tenant_ref` - (Optional) Tenant that this object belongs to. It is a reference to an object of type tenant. Field introduced in 18.2.6.

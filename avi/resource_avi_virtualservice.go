@@ -262,6 +262,12 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 			Optional: true,
 			Elem:     &schema.Schema{Type: schema.TypeString},
 		},
+		"oauth_vs_config": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceOAuthVSConfigSchema(),
+		},
 		"performance_limits": {
 			Type:     schema.TypeSet,
 			Optional: true,

@@ -4019,7 +4019,6 @@ EOF
 }
 	config {
 		regex_match_limit = "1500"
-		allowed_request_content_types = ["application/x-www-form-urlencoded","multipart/form-data","text/xml","application/xml","application/x-amf","application/json"]
 		allowed_methods = ["HTTP_METHOD_GET","HTTP_METHOD_HEAD","HTTP_METHOD_POST","HTTP_METHOD_OPTIONS"]
 		content_type_mappings {
 	content_type = "application/x-www-form-urlencoded"

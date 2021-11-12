@@ -38,7 +38,7 @@ In addition to all arguments above, the following attributes are exported:
 * `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1.
 * `feature_opt_in_status` - Information about the portal features opted in for controller. Field introduced in 20.1.1.
 * `ip_reputation_config` - Default values to be used for ip reputation sync. Field introduced in 20.1.1.
-* `mode` - Mode helps log collection and upload. Enum options - SALESFORCE, SYSTEST, MYVMWARE. Field introduced in 20.1.2. Allowed in basic(allowed values- salesforce,myvmware,systest) edition, essentials(allowed values- salesforce,myvmware,systest) edition, enterprise edition.
+* `mode` - Mode helps log collection and upload. Enum options - MODE_UNKNOWN, SALESFORCE, SYSTEST, MYVMWARE. Field introduced in 20.1.2. Allowed in basic(allowed values- salesforce,myvmware,systest) edition, essentials(allowed values- salesforce,myvmware,systest) edition, enterprise edition.
 * `polling_interval` - Time interval in minutes. Allowed values are 5-60. Field introduced in 18.2.6.
 * `portal_url` - The fqdn or ip address of the customer portal. Field introduced in 18.2.6.
 * `saas_licensing_config` - Saas licensing configuration. Field introduced in 21.1.3. Allowed in basic edition, essentials edition, enterprise edition.

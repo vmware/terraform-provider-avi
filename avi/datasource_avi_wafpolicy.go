@@ -108,11 +108,6 @@ func dataSourceAviWafPolicy() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceWafRuleGroupSchema(),
 			},
-			"resolved_crs_groups": {
-				Type:     schema.TypeList,
-				Computed: true,
-				Elem:     ResourceWafRuleGroupSchema(),
-			},
 			"tenant_ref": {
 				Type:     schema.TypeString,
 				Optional: true,

@@ -62,8 +62,7 @@ func ResourceALBServicesConfigSchema() map[string]*schema.Schema {
 		},
 		"saas_licensing_config": {
 			Type:     schema.TypeSet,
-			Optional: true,
-			Computed: true,
+			Required: true,
 			Elem:     ResourceSaasLicensingInfoSchema(),
 		},
 		"split_proxy_configuration": {

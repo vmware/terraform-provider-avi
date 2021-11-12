@@ -5,74 +5,86 @@ package avi
 
 import "github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 
-func dataSourceAviAuthProfile() *schema.Resource {
+func dataSourceAviStatediffSnapshot() *schema.Resource {
 	return &schema.Resource{
-		Read: ResourceAviAuthProfileRead,
+		Read: ResourceAviStatediffSnapshotRead,
 		Schema: map[string]*schema.Schema{
 			"configpb_attributes": {
 				Type:     schema.TypeSet,
 				Computed: true,
 				Elem:     ResourceConfigPbAttributesSchema(),
 			},
-			"description": {
+			"gslb_name": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"http": {
-				Type:     schema.TypeSet,
-				Computed: true,
-				Elem:     ResourceAuthProfileHTTPClientParamsSchema(),
-			},
-			"jwt_profile_ref": {
+			"gslb_uuid": {
 				Type:     schema.TypeString,
 				Computed: true,
-			},
-			"ldap": {
-				Type:     schema.TypeSet,
-				Computed: true,
-				Elem:     ResourceLdapAuthSettingsSchema(),
-			},
-			"markers": {
-				Type:     schema.TypeList,
-				Computed: true,
-				Elem:     ResourceRoleFilterMatchLabelSchema(),
 			},
 			"name": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
-			"oauth_profile": {
-				Type:     schema.TypeSet,
-				Computed: true,
-				Elem:     ResourceOAuthProfileSchema(),
-			},
-			"pa_agent_ref": {
+			"pool_name": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"saml": {
-				Type:     schema.TypeSet,
+			"pool_uuid": {
+				Type:     schema.TypeString,
 				Computed: true,
-				Elem:     ResourceSamlSettingsSchema(),
 			},
-			"tacacs_plus": {
+			"post_snapshot": {
 				Type:     schema.TypeSet,
 				Computed: true,
-				Elem:     ResourceTacacsPlusAuthSettingsSchema(),
+				Elem:     ResourcepostsnapshotSchema(),
+			},
+			"pre_snapshot": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourcepresnapshotSchema(),
+			},
+			"se_group_name": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"se_group_uuid": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"se_name": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"se_uuid": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"snapshot_type": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"statediff_operation_ref": {
+				Type:     schema.TypeString,
+				Computed: true,
 			},
 			"tenant_ref": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
-			"type": {
-				Type:     schema.TypeString,
-				Computed: true,
-			},
 			"uuid": {
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
+			},
+			"vs_name": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"vs_uuid": {
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 		},

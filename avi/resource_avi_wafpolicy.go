@@ -132,11 +132,6 @@ func ResourceWafPolicySchema() map[string]*schema.Schema {
 			Optional: true,
 			Elem:     ResourceWafRuleGroupSchema(),
 		},
-		"resolved_crs_groups": {
-			Type:     schema.TypeList,
-			Optional: true,
-			Elem:     ResourceWafRuleGroupSchema(),
-		},
 		"tenant_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
