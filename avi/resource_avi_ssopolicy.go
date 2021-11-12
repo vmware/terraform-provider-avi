@@ -15,7 +15,8 @@ func ResourceSSOPolicySchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"authentication_policy": {
 			Type:     schema.TypeSet,
-			Required: true,
+			Optional: true,
+			Computed: true,
 			Elem:     ResourceAuthenticationPolicySchema(),
 		},
 		"authorization_policy": {

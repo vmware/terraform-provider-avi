@@ -80,6 +80,10 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Computed: true,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
+			"baremetal_dispatcher_handles_flows": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"bgp_peer_monitor_failover_enabled": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -334,7 +338,15 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"hybrid_rss_mode": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"hypervisor": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"ignore_docker_mac_change": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
@@ -363,6 +375,11 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeList,
 				Computed: true,
 				Elem:     ResourceIptableRuleSetSchema(),
+			},
+			"kni_allowed_server_ports": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceKniPortRangeSchema(),
 			},
 			"l7_conns_per_core": {
 				Type:     schema.TypeString,
@@ -584,6 +601,10 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"num_dispatcher_queues": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"num_flow_cores_sum_changes_to_ignore": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -680,6 +701,10 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"se_dp_if_state_poll_interval": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"se_dp_isolation": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -721,6 +746,14 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Computed: true,
 			},
 			"se_dpdk_pmd": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"se_dump_core_on_assert": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"se_emulated_cores": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
@@ -778,6 +811,10 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Computed: true,
 			},
 			"se_name_prefix": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"se_packet_buffer_max": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},

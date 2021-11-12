@@ -60,6 +60,18 @@ func ResourceHealthMonitorSchema() map[string]*schema.Schema {
 			Default:      "2",
 			ValidateFunc: validateInteger,
 		},
+		"ftp_monitor": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceHealthMonitorFtpSchema(),
+		},
+		"ftps_monitor": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceHealthMonitorFtpSchema(),
+		},
 		"http_monitor": {
 			Type:     schema.TypeSet,
 			Optional: true,
@@ -89,6 +101,18 @@ func ResourceHealthMonitorSchema() map[string]*schema.Schema {
 			Optional:     true,
 			Default:      "false",
 			ValidateFunc: validateBool,
+		},
+		"ldap_monitor": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceHealthMonitorLdapSchema(),
+		},
+		"ldaps_monitor": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceHealthMonitorLdapSchema(),
 		},
 		"markers": {
 			Type:     schema.TypeList,

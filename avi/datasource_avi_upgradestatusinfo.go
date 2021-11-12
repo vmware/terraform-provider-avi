@@ -162,6 +162,10 @@ func dataSourceAviUpgradeStatusInfo() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceUpgradeOpsStateSchema(),
 			},
+			"statediff_ref": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"system": {
 				Type:     schema.TypeString,
 				Computed: true,

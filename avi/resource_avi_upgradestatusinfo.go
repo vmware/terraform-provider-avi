@@ -204,6 +204,11 @@ func ResourceUpgradeStatusInfoSchema() map[string]*schema.Schema {
 			Computed: true,
 			Elem:     ResourceUpgradeOpsStateSchema(),
 		},
+		"statediff_ref": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
 		"system": {
 			Type:         schema.TypeString,
 			Optional:     true,

@@ -12,9 +12,8 @@ import (
 
 func TestAVIControllerPropertiesBasic(t *testing.T) {
 	resource.Test(t, resource.TestCase{
-		PreCheck:     func() { testAccPreCheck(t) },
-		Providers:    testAccProviders,
-		CheckDestroy: testAccCheckAVIControllerPropertiesDestroy,
+		PreCheck:  func() { testAccPreCheck(t) },
+		Providers: testAccProviders,
 		Steps: []resource.TestStep{
 			{
 				Config: testAccAVIControllerPropertiesConfig,
@@ -228,30 +227,6 @@ func testAccCheckAVIControllerPropertiesExists(resourcename string) resource.Tes
 		return nil
 	}
 
-}
-
-func testAccCheckAVIControllerPropertiesDestroy(s *terraform.State) error {
-	conn := testAccProvider.Meta().(*clients.AviClient).AviSession
-	var obj interface{}
-	for _, rs := range s.RootModule().Resources {
-		if rs.Type != "avi_controllerproperties" {
-			continue
-		}
-		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
-		uuid := strings.Split(url, "#")[0]
-		path := "api" + uuid
-		err := conn.Get(path, &obj)
-		if err != nil {
-			if strings.Contains(err.Error(), "404") {
-				return nil
-			}
-			return err
-		}
-		if len(obj.(map[string]interface{})) > 0 {
-			return fmt.Errorf("AVI ControllerProperties still exists")
-		}
-	}
-	return nil
 }
 
 const testAccAVIControllerPropertiesConfig = `

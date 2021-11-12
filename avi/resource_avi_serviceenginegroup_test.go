@@ -156,6 +156,18 @@ func TestAVIServiceEngineGroupBasic(t *testing.T) {
 						"avi_serviceenginegroup.testServiceEngineGroup", "sdb_pipeline_size", "100"),
 					resource.TestCheckResourceAttr(
 						"avi_serviceenginegroup.testServiceEngineGroup", "sdb_scan_count", "1000"),
+					resource.TestCheckResourceAttr(
+						"avi_serviceenginegroup.testServiceEngineGroup", "ignore_docker_mac_change", "true"),
+					resource.TestCheckResourceAttr(
+						"avi_serviceenginegroup.testServiceEngineGroup", "se_emulated_cores", "0"),
+					resource.TestCheckResourceAttr(
+						"avi_serviceenginegroup.testServiceEngineGroup", "se_dump_core_on_assert", "false"),
+					resource.TestCheckResourceAttr(
+						"avi_serviceenginegroup.testServiceEngineGroup", "se_packet_buffer_max", "0"),
+					resource.TestCheckResourceAttr(
+						"avi_serviceenginegroup.testServiceEngineGroup", "se_dp_if_state_poll_interval", "10"),
+					resource.TestCheckResourceAttr(
+						"avi_serviceenginegroup.testServiceEngineGroup", "baremetal_dispatcher_handles_flows", "false"),
 				),
 			},
 			{
@@ -298,6 +310,18 @@ func TestAVIServiceEngineGroupBasic(t *testing.T) {
 						"avi_serviceenginegroup.testServiceEngineGroup", "sdb_pipeline_size", "100"),
 					resource.TestCheckResourceAttr(
 						"avi_serviceenginegroup.testServiceEngineGroup", "sdb_scan_count", "1000"),
+					resource.TestCheckResourceAttr(
+						"avi_serviceenginegroup.testServiceEngineGroup", "ignore_docker_mac_change", "true"),
+					resource.TestCheckResourceAttr(
+						"avi_serviceenginegroup.testServiceEngineGroup", "se_emulated_cores", "0"),
+					resource.TestCheckResourceAttr(
+						"avi_serviceenginegroup.testServiceEngineGroup", "se_dump_core_on_assert", "false"),
+					resource.TestCheckResourceAttr(
+						"avi_serviceenginegroup.testServiceEngineGroup", "se_packet_buffer_max", "0"),
+					resource.TestCheckResourceAttr(
+						"avi_serviceenginegroup.testServiceEngineGroup", "se_dp_if_state_poll_interval", "10"),
+					resource.TestCheckResourceAttr(
+						"avi_serviceenginegroup.testServiceEngineGroup", "baremetal_dispatcher_handles_flows", "false"),
 				),
 			},
 			{
@@ -447,6 +471,12 @@ resource "avi_serviceenginegroup" "testServiceEngineGroup" {
 	sdb_flush_interval = "100"
 	sdb_pipeline_size = "100"
 	sdb_scan_count = "1000"
+	ignore_docker_mac_change = true
+	se_emulated_cores = "0"
+	se_dump_core_on_assert = false
+	se_packet_buffer_max = "0"
+	se_dp_if_state_poll_interval = "10"
+	baremetal_dispatcher_handles_flows = false
 }
 `
 
@@ -539,5 +569,11 @@ resource "avi_serviceenginegroup" "testServiceEngineGroup" {
 	sdb_flush_interval = "100"
 	sdb_pipeline_size = "100"
 	sdb_scan_count = "1000"
+	ignore_docker_mac_change = true
+	se_emulated_cores = "0"
+	se_dump_core_on_assert = false
+	se_packet_buffer_max = "0"
+	se_dp_if_state_poll_interval = "10"
+	baremetal_dispatcher_handles_flows = false
 }
 `

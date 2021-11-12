@@ -209,6 +209,11 @@ func dataSourceAviVirtualService() *schema.Resource {
 				Computed: true,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
+			"oauth_vs_config": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceOAuthVSConfigSchema(),
+			},
 			"performance_limits": {
 				Type:     schema.TypeSet,
 				Computed: true,
