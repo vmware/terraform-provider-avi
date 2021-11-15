@@ -48,5 +48,9 @@ variable "vs_port" {
 }
 variable "waf_crs_name" {
   type    = string
-  default = "CRS-2021-1"
+  default = "CRS-2021-2"
+}
+variable "waf_profile" {
+   type    = string 
+   default = "System-WAF-Profile"
 }
