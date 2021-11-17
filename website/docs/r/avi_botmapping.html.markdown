@@ -27,8 +27,8 @@ resource "avi_botmapping" "foo" {
 
 The following arguments are supported:
 
-* `mapping_rules` - (Required) Rules for bot classification. Field introduced in 21.1.1. Minimum of 1 items required.
 * `name` - (Required) The name of this mapping. Field introduced in 21.1.1.
+* `mapping_rules` - (Optional) Rules for bot classification. Field introduced in 21.1.1.
 * `tenant_ref` - (Optional) The unique identifier of the tenant to which this mapping belongs. It is a reference to an object of type tenant. Field introduced in 21.1.1.
 
 

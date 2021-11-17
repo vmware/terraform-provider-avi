@@ -15,7 +15,7 @@ func ResourceBotMappingSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"mapping_rules": {
 			Type:     schema.TypeList,
-			Required: true,
+			Optional: true,
 			Elem:     ResourceBotMappingRuleSchema(),
 		},
 		"name": {

@@ -79,7 +79,7 @@ The following arguments are supported:
 * `safenet_hsm_version` - (Optional) Version of the safenet package installed on the controller. Field introduced in 16.5.2,17.2.3.
 * `se_create_timeout` - (Optional) Unit is sec.
 * `se_failover_attempt_interval` - (Optional) Interval between attempting failovers to an se. Unit is sec.
-* `se_from_marketplace` - (Optional) This setting decides whether se is to be deployed from the cloud marketplace or to be created by the controller. The setting is applicable only when byol license is selected. Enum options - MARKETPLACE, IMAGE. Field introduced in 18.1.4, 18.2.1.
+* `se_from_marketplace` - (Optional) This setting decides whether se is to be deployed from the cloud marketplace or to be created by the controller. The setting is applicable only when byol license is selected. Enum options - MARKETPLACE, IMAGE_SE. Field introduced in 18.1.4, 18.2.1.
 * `se_offline_del` - (Optional) Unit is sec.
 * `se_spawn_retry_interval` - (Optional) Default retry period before attempting another service engine spawn in se group. Field introduced in 20.1.1. Unit is sec.
 * `se_vnic_cooldown` - (Optional) Unit is sec.
