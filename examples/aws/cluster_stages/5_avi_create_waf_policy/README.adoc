@@ -1,0 +1,4 @@
+= Creating a Waf Profile and Policy
+
+This will create a new policy under the Templates WAF Policy. It will use the WAF Profile based on System-WAF-Policy. +
+There are rules enabled and those are explained in the file. +

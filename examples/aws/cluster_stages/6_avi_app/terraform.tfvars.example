@@ -1,0 +1,8 @@
+avi_password = "yourpassword@1"
+avi_username = "admin"
+project_name = "avi-demo"
+aws_access_key = "youraccesskey"
+aws_secret_key = "yourseckey"
+aws_vpc_id     = "yourvpc"
+
+

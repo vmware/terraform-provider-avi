@@ -1,0 +1,4 @@
+aws_access_key = "YOURACCESSKEY"
+aws_secret_key = "YOURSECUREKEY"
+avi_password = "THEPASSWORDYOUSETBEFORE"
+project_name = "avi-demo"

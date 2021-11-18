@@ -1,0 +1,3 @@
+= Project Update
+
+Make sure the project name matches the one you set on the step 1.

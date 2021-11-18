@@ -1,0 +1,5 @@
+avi_password = "yournewpasswordgoeshere!@"
+aws_vpc_id   = "yourvpcnumberhere"
+avi_sg_name  = "awsome_avi"
+trusted_cidr = ["72.10.63.21/32","9.19.51.20/32","10.155.251.0/24","10.155.252.0/24","10.155.253.0/24"]
+# List of the IPs you trust. make sure to add the IP you will use from the variable file (block) otherwise it will fail.

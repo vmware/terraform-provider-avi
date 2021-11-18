@@ -1,0 +1,99 @@
+== Avi Controller
+
+* You will need to make sure to have an IAM role with the options to deploy Avi Controller.
+
+The full schema can be checked from:
+https://avinetworks.com/docs/latest/iam-role-setup-for-installation-into-aws/[Full Role Settings]
+Here is a very basic version to allow deployment.
+----
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetBucketLocation",
+                "s3:ListBucket"
+            ],
+            "Resource": "arn:aws:s3:::avi-se-*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetObject"
+            ],
+            "Resource": "arn:aws:s3:::avi-se-*/*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ec2:ModifySnapshotAttribute",
+                "ec2:CopySnapshot",
+                "ec2:RegisterImage",
+                "ec2:Describe*"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
+----
+Once that's done, create a file named terraform.tfvars to add your password. An example is included as terraform.tfvars.example.
+
+Update the variables to match what will be available into your AWS.
+
+
+NOTE: if you are going to delete the Avi Controllers and you have deployed the SE, terraform will not be able to finish the task!
+Which means you will have to do a lot of manual deletion and then clean up the terraform to get back into the clean state. 
+
+=== Info
+This section will generate the SSH keys and it will be injected into the Avi Controller. Then you do have the option to login using the ssh, or username/pass. The password will be set on the next play, even though you do have the variable in the terraform.tfvars. Keep that password the same. 
+
+=== Terraform.tfvars
+Here is the example you will want to use and set your variables
+
+----
+avi_password = "yournewpasswordgoeshere!@"
+aws_vpc_id   = "yourvpcnumberhere"
+----
+
+=== Output
+The output will show you the Avi Controller and Leader as well as the public IP address. Example of the output
+
+----
+avi_controller_iam_role = "remo-avi-controller"
+avi_controller_ip = [
+  "10.155.251.246",
+  "10.155.251.200",
+  "10.155.251.212",
+]
+avi_controller_public_dns = "ec2-52-39-129-160.us-west-2.compute.amazonaws.com"
+avi_controller_public_ip_leader = "52.39.129.160"
+aws_controller_instance = [
+  "remo-demo-terraform-controller-1",
+  "remo-demo-terraform-controller-2",
+  "remo-demo-terraform-controller-3",
+]
+aws_subnets = [
+  "remo-demo-terraform-subnet-0",
+  "remo-demo-terraform-subnet-1",
+  "remo-demo-terraform-subnet-2",
+]
+subnets = [
+  "10.155.251.0/24",
+  "10.155.252.0/24",
+  "10.155.253.0/24",
+]
+----
+=== Trusted IPs
+In order to avoid to have the controller wide open to the web, I created a sec group which will only allow Trusted IPs to connect to the controler. 
+
+example are in the terraform.tfvars.example but it looks like this:
+Very important make sure to add the IPs (internal) like you see below 10.155.xx.0 to the list otherwise it fails. 
+
+----
+trusted_cidr = ["12.10.13.51/32","9.19.51.25/32","10.155.251.0/24", "10.155.252.0/24", "10.155.253.0/24"]
+----
+
+
+=== Next Step
+Before you move on to the next steps, please wait a few min to get the Avi Controller up. 
