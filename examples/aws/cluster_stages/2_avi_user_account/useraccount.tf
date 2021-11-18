@@ -1,8 +1,3 @@
-provider "aws" {
-  shared_credentials_file = var.aws_creds_file
-  region                  = var.aws_region
-}
-
 data "aws_instance" "avi_controller" {
   count = var.controller_counts
   filter {
