@@ -106,6 +106,18 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"detach_ip_retry_interval": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"detach_ip_retry_limit": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"detach_ip_timeout": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"dns_refresh_period": {
 				Type:     schema.TypeString,
 				Computed: true,

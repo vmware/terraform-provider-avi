@@ -1921,6 +1921,33 @@ func ResourceApplicationLogSchema() *schema.Resource {
 	}
 }
 
+func ResourceAttachIpStatusEventDetailsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"reason": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"se_name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"vip_id": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"vs_name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
 func ResourceAttackDnsAmplificationSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -8613,6 +8640,33 @@ func ResourceDebugVsDataplaneSchema() *schema.Resource {
 	}
 }
 
+func ResourceDetachIpStatusEventDetailsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"reason": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"se_name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"vip_id": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"vs_name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
 func ResourceDisableSeMigrateEventDetailsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -10443,6 +10497,12 @@ func ResourceEventDetailsSchema() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceAppSignatureEventDataSchema(),
 			},
+			"attach_ip_status_details": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceAttachIpStatusEventDetailsSchema(),
+			},
 			"avg_uptime_change_details": {
 				Type:     schema.TypeSet,
 				Optional: true,
@@ -10802,6 +10862,12 @@ func ResourceEventDetailsSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 				Elem:     ResourceRmDeleteSeEventDetailsSchema(),
+			},
+			"detach_ip_status_details": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceDetachIpStatusEventDetailsSchema(),
 			},
 			"disable_se_migrate_details": {
 				Type:     schema.TypeSet,
@@ -11612,6 +11678,12 @@ func ResourceEventDetailsSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 				Elem:     ResourceVsScaleOutEventDetailsSchema(),
+			},
+			"vs_switchover_details": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceVsSwitchoverEventDetailsSchema(),
 			},
 		},
 	}
@@ -27924,27 +27996,51 @@ func ResourceSeLicensedBandwdithExceededEventDetailsSchema() *schema.Resource {
 func ResourceSeListSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"active_on_cloud": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateBool,
+			},
+			"active_on_se": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateBool,
+			},
 			"admin_down_requested": {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Default:      "false",
 				ValidateFunc: validateBool,
 			},
-			"attach_ip_status": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Default:  "Programming Network reachability to the Virtual Service IP in the Cloud",
-			},
-			"attach_ip_success": {
+			"attach_ip_in_progress": {
 				Type:         schema.TypeString,
 				Optional:     true,
-				Default:      "false",
+				Computed:     true,
 				ValidateFunc: validateBool,
+			},
+			"cloud_programming_done": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateBool,
+			},
+			"cloud_programming_status": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 			"delete_in_progress": {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Default:      "false",
+				ValidateFunc: validateBool,
+			},
+			"detach_ip_in_progress": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
 				ValidateFunc: validateBool,
 			},
 			"floating_intf_ip": {
@@ -27997,6 +28093,18 @@ func ResourceSeListSchema() *schema.Resource {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Default:      "false",
+				ValidateFunc: validateBool,
+			},
+			"se_programming_done": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateBool,
+			},
+			"se_ready_in_progress": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
 				ValidateFunc: validateBool,
 			},
 			"se_ref": {
@@ -34531,13 +34639,37 @@ func ResourceVipScaleDetailsSchema() *schema.Resource {
 func ResourceVipSeAssignedSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"active_on_cloud": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateBool,
+			},
+			"active_on_se": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateBool,
+			},
 			"admin_down_requested": {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Default:      "false",
 				ValidateFunc: validateBool,
 			},
+			"attach_ip_in_progress": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateBool,
+			},
 			"connected": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateBool,
+			},
+			"detach_ip_in_progress": {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Computed:     true,
@@ -34581,6 +34713,18 @@ func ResourceVipSeAssignedSchema() *schema.Resource {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Default:      "false",
+				ValidateFunc: validateBool,
+			},
+			"scaleout_in_progress": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateBool,
+			},
+			"se_ready_in_progress": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
 				ValidateFunc: validateBool,
 			},
 			"snat_ip": {
@@ -35113,6 +35257,11 @@ func ResourceVsInitialPlacementEventDetailsSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"ip6": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"rpc_status": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -35440,6 +35589,49 @@ func ResourceVsSeVnicSchema() *schema.Resource {
 				Required: true,
 			},
 			"type": {
+				Type:     schema.TypeString,
+				Required: true,
+			},
+		},
+	}
+}
+
+func ResourceVsSwitchoverEventDetailsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"error_message": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"ip": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"ip6": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"rpc_status": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"se_assigned": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceVipSeAssignedSchema(),
+			},
+			"se_requested": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceVirtualServiceResourceSchema(),
+			},
+			"vs_uuid": {
 				Type:     schema.TypeString,
 				Required: true,
 			},
