@@ -25,3 +25,6 @@ variable "controller_counts" {
   default =  3
 
 }
+variable "avi_tenant" {
+  default = "admin"
+}
