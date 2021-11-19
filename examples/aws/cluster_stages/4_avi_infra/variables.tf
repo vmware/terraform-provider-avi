@@ -69,5 +69,5 @@ variable "deprovision_delay" {
   default = 5
 }
 variable "se_prefix" {
-  default = "REMO_AA"
+  default = "Avi_SE_AA"
 }
