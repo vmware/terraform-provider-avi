@@ -31,3 +31,31 @@ variable "cluster_name" {
 variable "api_version" {
   default = "20.1.6"
 }
+variable "ntp_servers" {
+  type    = list(any)
+  default = ["0.us.pool.ntp.org", "1.us.pool.ntp.org", "2.us.pool.ntp.org", "3.us.pool.ntp.org"]
+}
+variable "mail_server_tls" {
+  default = false
+}
+variable "email" {
+  default = "admin@avinetworks.com"
+}
+variable "mail_server" {
+  default = "localhost"
+}
+variable "mail_server_port" {
+  default = 25
+}
+variable "mail_type" {
+  default = "SMTP_LOCAL_HOST"
+}
+variable "dns_servers" {
+  default = ["8.8.8.8", "8.8.4.4", "1.1.1.1"]
+}
+variable "search_domain" {
+  default = "io.local"
+}
+variable "banner" {
+  default = "Avi Demo with Terraform"
+}

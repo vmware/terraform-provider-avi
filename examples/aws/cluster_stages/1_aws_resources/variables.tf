@@ -57,8 +57,8 @@ variable "aws_availability_zones" {
 }
 
 variable "avi_sg_name" {
-   description = "Name of the Sec Groups"
- }
- variable "trusted_cidr" {
-    description = "cidr block of addresses trusted for access to the kubernetes API server"
+  description = "Name of the Sec Groups"
+}
+variable "trusted_cidr" {
+  description = "cidr block of addresses trusted for access to the kubernetes API server"
 }

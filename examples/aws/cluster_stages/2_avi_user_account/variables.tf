@@ -10,7 +10,7 @@ variable "avi_current_password" {
 }
 
 variable "avi_new_password" {
- sensitive    = true
+  sensitive = true
 
 }
 
@@ -22,7 +22,7 @@ variable "aws_creds_file" {
 }
 
 variable "controller_counts" {
-  default =  3
+  default = 3
 
 }
 variable "avi_tenant" {

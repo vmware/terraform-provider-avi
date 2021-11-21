@@ -3,3 +3,4 @@
 *.bk
 .terraform.lock.hcl
 .terraform
+terraform.tfstate*

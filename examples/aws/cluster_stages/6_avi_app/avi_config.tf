@@ -257,16 +257,16 @@ resource "avi_vsvip" "terraform-vip" {
   vrf_context_ref = data.avi_vrfcontext.terraform_vrf.id
 
   dns_info {
-    fqdn = "aws_vs.${var.project_name}.awsavi.net"
+    fqdn = "${var.vs_hostname}.${var.domain_name}"
   }
 
   vip {
-    vip_id            = "0"
-    auto_allocate_ip  = true
-    avi_allocated_vip = true
+    vip_id                    = "0"
+    auto_allocate_ip          = true
+    avi_allocated_vip         = true
     auto_allocate_floating_ip = var.floating_ip
-    availability_zone = var.aws_availability_zone
-    subnet_uuid       = data.aws_subnet.terraform-subnets-0.id
+    availability_zone         = var.aws_availability_zone
+    subnet_uuid               = data.aws_subnet.terraform-subnets-0.id
 
     subnet {
       ip_addr {
@@ -278,12 +278,12 @@ resource "avi_vsvip" "terraform-vip" {
     }
   }
   vip {
-    vip_id            = "1"
-    auto_allocate_ip  = true
-    avi_allocated_vip = true
+    vip_id                    = "1"
+    auto_allocate_ip          = true
+    avi_allocated_vip         = true
     auto_allocate_floating_ip = var.floating_ip
-    availability_zone = var.aws_availability_zone
-    subnet_uuid       = data.aws_subnet.terraform-subnets-1.id
+    availability_zone         = var.aws_availability_zone
+    subnet_uuid               = data.aws_subnet.terraform-subnets-1.id
 
     subnet {
       ip_addr {
@@ -322,10 +322,10 @@ resource "avi_virtualservice" "terraform-virtualservice" {
   #error_page_profile_ref      = avi_errorpageprofile.cop_errorpage.id == 0 ? avi_errorpageprofile.cop_errorpage.id : ""
 
   services {
-   enable_http2 = false
-   enable_ssl   = true
-   port         = 443
- }
+    enable_http2 = false
+    enable_ssl   = true
+    port         = 443
+  }
   services {
     port = 80
     //enable_ssl     = true
@@ -346,18 +346,18 @@ resource "aws_launch_configuration" "web_app_launch_conf" {
 }
 
 resource "aws_autoscaling_group" "asg_based_pool" {
-  name                 = "${var.project_name}-aws-vs-pool3-asg"
+  name = "${var.project_name}-aws-vs-pool3-asg"
   #availability_zones   = var.aws_availability_zones
   max_size             = 2
   min_size             = 1
   force_delete         = true
   launch_configuration = aws_launch_configuration.web_app_launch_conf.name
   # If you do not use the az above you can enable the zone below
-     vpc_zone_identifier = [
-       data.aws_subnet.terraform-subnets-0.id,
-       data.aws_subnet.terraform-subnets-1.id,
-       data.aws_subnet.terraform-subnets-2.id
-     ]
+  vpc_zone_identifier = [
+    data.aws_subnet.terraform-subnets-0.id,
+    data.aws_subnet.terraform-subnets-1.id,
+    data.aws_subnet.terraform-subnets-2.id
+  ]
 }
 
 
@@ -367,17 +367,17 @@ data "avi_errorpagebody" "default_error_page" {
 resource "avi_errorpageprofile" "demo_errorpage" {
   name = "Custom-Error-Page"
   error_pages {
-     enable              = true
-     error_page_body_ref = data.avi_errorpagebody.default_error_page.id
-     index               = 0
-  match {
-     match_criteria = "IS_IN"
-     status_codes = [
-       400,
-       401,
-       403,
-     ]
-   }
+    enable              = true
+    error_page_body_ref = data.avi_errorpagebody.default_error_page.id
+    index               = 0
+    match {
+      match_criteria = "IS_IN"
+      status_codes = [
+        400,
+        401,
+        403,
+      ]
+    }
   }
 }
-   
+

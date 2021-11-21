@@ -1,8 +1,8 @@
- variable "aws_access_key" {
- }
+variable "aws_access_key" {
+}
 
- variable "aws_secret_key" {
- }
+variable "aws_secret_key" {
+}
 
 variable "aws_region" {
   type    = string
@@ -34,20 +34,20 @@ variable "api_version" {
   default = "20.1.6"
 }
 variable "connection_mem_percentage" {
-  default = 50
+  default     = 50
   description = "default"
 }
 
 variable "disk_per_se" {
-  default = 10
+  default     = 10
   description = "default"
 }
 variable "ha_mode" {
-  default =  "HA_MODE_SHARED"
+  default = "HA_MODE_SHARED"
 }
 
 variable "instance_flavor_se" {
-  default     = "t2.large"
+  default = "t2.large"
 }
 variable "max_se" {
   default     = 2
@@ -70,4 +70,7 @@ variable "deprovision_delay" {
 }
 variable "se_prefix" {
   default = "Avi_SE_AA"
+}
+variable "enable_route53" {
+  default = true
 }

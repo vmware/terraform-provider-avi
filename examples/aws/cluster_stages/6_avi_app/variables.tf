@@ -63,4 +63,9 @@ variable "cloud_type" {
 variable "avi_vip" {
   default = "aws_vip"
 }
-
+variable "vs_hostname" {
+  default = "demoavi"
+}
+variable "domain_name" {
+  default = ".remo.demoavi.us"
+}
