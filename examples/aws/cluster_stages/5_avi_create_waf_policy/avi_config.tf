@@ -131,3 +131,21 @@ resource "avi_wafpolicy" "custom_waf_policy" {
     }
   }
 }
+
+data "avi_cloud" "waf_cloud" {
+  name = var.cloud_name
+}
+resource "avi_serviceenginegroup" "waf_cloud_group" {
+  accelerated_networking  = var.accelerated_networking
+  buffer_se               = 0
+  cloud_ref               = data.avi_cloud.waf_cloud.id
+  instance_flavor         = var.inst_flavor
+  license_tier            = "ENTERPRISE"
+  license_type            = "LIC_CORES"
+  name                    = var.se_group_name
+  se_bandwidth_type       = "SE_BANDWIDTH_UNLIMITED"
+  se_deprovision_delay    = 5
+  se_name_prefix          = var.se_prefix
+  use_hyperthreaded_cores = var.hyperthreaded_cores
+  se_dp_max_hb_version    = 2
+}
