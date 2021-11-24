@@ -51,6 +51,9 @@ The following arguments are supported:
 * `dead_se_detection_timer` - (Optional) Unit is sec.
 * `default_minimum_api_timeout` - (Optional) Minimum api timeout value.if this value is not 60, it will be the default timeout for all apis that do not have a specific timeout.if an api has a specific timeout but is less than this value, this value will become the new timeout. Allowed values are 60-3600. Field introduced in 18.2.6. Unit is sec.
 * `del_offline_se_after_reboot_delay` - (Optional) The amount of time the controller will wait before deleting an offline se after it has been rebooted. For unresponsive ses, the total time will be  unresponsive_se_reboot + del_offline_se_after_reboot_delay. For crashed ses, the total time will be crashed_se_reboot + del_offline_se_after_reboot_delay. Field introduced in 20.1.5. Unit is sec.
+* `detach_ip_retry_interval` - (Optional) Amount of time to wait after last detach ip failure before attempting next detach ip retry. Field introduced in 21.1.3. Unit is sec.
+* `detach_ip_retry_limit` - (Optional) Maximum number of detach ip retries. Field introduced in 21.1.3.
+* `detach_ip_timeout` - (Optional) Time to wait before marking detach ip as failed. Field introduced in 21.1.3. Unit is sec.
 * `dns_refresh_period` - (Optional) Period for refresh pool and gslb dns job. Unit is min. Allowed in basic(allowed values- 60) edition, essentials(allowed values- 60) edition, enterprise edition.
 * `dummy` - (Optional) Placeholder for description of property dummy of obj type controllerproperties field type integer  type int.
 * `edit_system_limits` - (Optional) Allow editing of system limits. Keep in mind that these system limits have been carefully selected based on rigorous testing in our testig environments. Modifying these limits could destabilize your cluster. Do this at your own risk!. Field introduced in 20.1.1.
@@ -79,7 +82,7 @@ The following arguments are supported:
 * `safenet_hsm_version` - (Optional) Version of the safenet package installed on the controller. Field introduced in 16.5.2,17.2.3.
 * `se_create_timeout` - (Optional) Unit is sec.
 * `se_failover_attempt_interval` - (Optional) Interval between attempting failovers to an se. Unit is sec.
-* `se_from_marketplace` - (Optional) This setting decides whether se is to be deployed from the cloud marketplace or to be created by the controller. The setting is applicable only when byol license is selected. Enum options - MARKETPLACE, IMAGE. Field introduced in 18.1.4, 18.2.1.
+* `se_from_marketplace` - (Optional) This setting decides whether se is to be deployed from the cloud marketplace or to be created by the controller. The setting is applicable only when byol license is selected. Enum options - MARKETPLACE, IMAGE_SE. Field introduced in 18.1.4, 18.2.1.
 * `se_offline_del` - (Optional) Unit is sec.
 * `se_spawn_retry_interval` - (Optional) Default retry period before attempting another service engine spawn in se group. Field introduced in 20.1.1. Unit is sec.
 * `se_vnic_cooldown` - (Optional) Unit is sec.

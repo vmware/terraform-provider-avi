@@ -157,6 +157,24 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Default:      "300",
 			ValidateFunc: validateInteger,
 		},
+		"detach_ip_retry_interval": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "60",
+			ValidateFunc: validateInteger,
+		},
+		"detach_ip_retry_limit": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "4",
+			ValidateFunc: validateInteger,
+		},
+		"detach_ip_timeout": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "300",
+			ValidateFunc: validateInteger,
+		},
 		"dns_refresh_period": {
 			Type:         schema.TypeString,
 			Optional:     true,
@@ -328,7 +346,7 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 		"se_from_marketplace": {
 			Type:     schema.TypeString,
 			Optional: true,
-			Default:  "IMAGE",
+			Default:  "IMAGE_SE",
 		},
 		"se_offline_del": {
 			Type:         schema.TypeString,
