@@ -131,6 +131,11 @@ func dataSourceAviPool() *schema.Resource {
 				Computed: true,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
+			"horizon_profile": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceHorizonProfileSchema(),
+			},
 			"host_check_enabled": {
 				Type:     schema.TypeString,
 				Computed: true,
