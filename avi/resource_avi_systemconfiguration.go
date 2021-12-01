@@ -40,7 +40,7 @@ func ResourceSystemConfigurationSchema() map[string]*schema.Schema {
 		"default_license_tier": {
 			Type:     schema.TypeString,
 			Optional: true,
-			Default:  "ENTERPRISE",
+			Default:  "SAAS",
 		},
 		"dns_configuration": {
 			Type:     schema.TypeSet,
