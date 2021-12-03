@@ -422,6 +422,29 @@ func ResourceAbPoolSchema() *schema.Resource {
 	}
 }
 
+func ResourceAdaptReplEventInfoSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"obj_info": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceConfigVersionStatusSchema(),
+			},
+			"reason": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"recommendation": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
 func ResourceAdminAuthConfigurationSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -6192,6 +6215,11 @@ func ResourceConfigUserPasswordChangeRequestSchema() *schema.Resource {
 func ResourceConfigVersionStatusSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"event_type": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"obj_name": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -6946,32 +6974,27 @@ func ResourceContentLibConfigSchema() *schema.Resource {
 func ResourceContentRewriteProfileSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
-			"req_match_replace_pair": {
-				Type:     schema.TypeList,
-				Optional: true,
-				Elem:     ResourceMatchReplacePairSchema(),
-			},
-			"request_rewrite_enabled": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Default:      "false",
-				ValidateFunc: validateBool,
-			},
-			"response_rewrite_enabled": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Default:      "false",
-				ValidateFunc: validateBool,
-			},
 			"rewritable_content_ref": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
-			"rsp_match_replace_pair": {
+			"rsp_rewrite_rules": {
 				Type:     schema.TypeList,
 				Optional: true,
-				Elem:     ResourceMatchReplacePairSchema(),
+				Elem:     ResourceRspContentRewriteRuleSchema(),
+			},
+		},
+	}
+}
+
+func ResourceControllerAnalyticsPolicySchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"metrics_event_thresholds": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceMetricsEventThresholdSchema(),
 			},
 		},
 	}
@@ -10449,6 +10472,12 @@ func ResourceEventCacheSchema() *schema.Resource {
 func ResourceEventDetailsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"adaptrepl_event": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceAdaptReplEventInfoSchema(),
+			},
 			"add_networks_details": {
 				Type:     schema.TypeSet,
 				Optional: true,
@@ -13552,6 +13581,11 @@ func ResourceGslbServiceRuntimeSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"domain_names": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
 			"flr_state": {
 				Type:     schema.TypeList,
 				Optional: true,
@@ -16339,6 +16373,25 @@ func ResourceHealthScoreDetailsSchema() *schema.Resource {
 				Type:         schema.TypeString,
 				Required:     true,
 				ValidateFunc: validateFloat,
+			},
+		},
+	}
+}
+
+func ResourceHorizonProfileSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"blast_port": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "8443",
+				ValidateFunc: validateInteger,
+			},
+			"pcoip_port": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "4172",
+				ValidateFunc: validateInteger,
 			},
 		},
 	}
@@ -19187,18 +19240,7 @@ func ResourceMarathonServicePortConflictSchema() *schema.Resource {
 
 func ResourceMatchReplacePairSchema() *schema.Resource {
 	return &schema.Resource{
-		Schema: map[string]*schema.Schema{
-			"match_string": {
-				Type:     schema.TypeString,
-				Required: true,
-			},
-			"replacement_string": {
-				Type:     schema.TypeSet,
-				Optional: true,
-				Computed: true,
-				Elem:     ResourceReplaceStringVarSchema(),
-			},
-		},
+		Schema: map[string]*schema.Schema{},
 	}
 }
 
@@ -24557,7 +24599,7 @@ func ResourceReplaceStringVarSchema() *schema.Resource {
 			"type": {
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
+				Default:  "LITERAL_STRING",
 			},
 			"val": {
 				Type:     schema.TypeString,
@@ -25422,6 +25464,35 @@ func ResourceRoutingServiceSchema() *schema.Resource {
 	}
 }
 
+func ResourceRspContentRewriteRuleSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"enable": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateBool,
+			},
+			"index": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"pairs": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceSearchReplacePairSchema(),
+			},
+		},
+	}
+}
+
 func ResourceRuleInfoSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -26038,6 +26109,12 @@ func ResourceSaasLicensingStatusSchema() *schema.Resource {
 				ValidateFunc: validateBool,
 			},
 			"enabled": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateBool,
+			},
+			"expired": {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Computed:     true,
@@ -29540,6 +29617,40 @@ func ResourceSeVsPktBufHighEventDetailsSchema() *schema.Resource {
 	}
 }
 
+func ResourceSearchReplacePairSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"replacement_string": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceReplaceStringVarSchema(),
+			},
+			"search_string": {
+				Type:     schema.TypeSet,
+				Required: true,
+				Elem:     ResourceSearchStringVarSchema(),
+			},
+		},
+	}
+}
+
+func ResourceSearchStringVarSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"type": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "SEARCH_LITERAL_STRING",
+			},
+			"val": {
+				Type:     schema.TypeString,
+				Required: true,
+			},
+		},
+	}
+}
+
 func ResourceSecMgrDataEventSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -30335,6 +30446,12 @@ func ResourceServiceSchema() *schema.Resource {
 				ValidateFunc: validateBool,
 			},
 			"enable_ssl": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
+			"horizon_internal_ports": {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Default:      "false",

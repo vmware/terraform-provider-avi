@@ -23,6 +23,11 @@ func dataSourceAviSystemConfiguration() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceConfigPbAttributesSchema(),
 			},
+			"controller_analytics_policy": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceControllerAnalyticsPolicySchema(),
+			},
 			"default_license_tier": {
 				Type:     schema.TypeString,
 				Computed: true,

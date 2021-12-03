@@ -168,6 +168,12 @@ func ResourcePoolSchema() map[string]*schema.Schema {
 			Optional: true,
 			Elem:     &schema.Schema{Type: schema.TypeString},
 		},
+		"horizon_profile": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceHorizonProfileSchema(),
+		},
 		"host_check_enabled": {
 			Type:         schema.TypeString,
 			Optional:     true,

@@ -27,7 +27,7 @@ resource "avi_statediffsnapshot" "foo" {
 
 The following arguments are supported:
 
-* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1.
+* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.3.
 * `gslb_name` - (Optional) Name of gslb object. Field introduced in 21.1.3.
 * `gslb_uuid` - (Optional) Reference to base gslb object. Field introduced in 21.1.3.
 * `name` - (Optional) Name of statediff operation. Field introduced in 21.1.3.

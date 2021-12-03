@@ -9,6 +9,10 @@ func dataSourceAviApplicationProfile() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviApplicationProfileRead,
 		Schema: map[string]*schema.Schema{
+			"app_service_type": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"cloud_config_cksum": {
 				Type:     schema.TypeString,
 				Computed: true,
