@@ -17,25 +17,25 @@
                 "ntp_servers": [{
                                 "server": {
                                         "type": "DNS",
-                                        "addr": "0.us.pool.ntp.org"
+                                        "addr": "${ntp_server1}"
                                 }
                         },
                         {
                                 "server": {
                                         "type": "DNS",
-                                        "addr": "1.us.pool.ntp.org"
+                                        "addr": "${ntp_server2}"
                                 }
                         },
                         {
                                 "server": {
                                         "type": "DNS",
-                                        "addr": "2.us.pool.ntp.org"
+                                        "addr": "${ntp_server3}"
                                 }
                         },
                         {
                                 "server": {
                                         "type": "DNS",
-                                        "addr": "3.us.pool.ntp.org"
+                                        "addr": "${ntp_server4}"
                                 }
                         }
                 ]

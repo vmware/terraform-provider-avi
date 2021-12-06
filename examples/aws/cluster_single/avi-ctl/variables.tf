@@ -69,6 +69,11 @@ variable "dns_ip" {
 variable "dns1_ip" {
   default = "8.8.4.4"
 }
+variable "ntp_servers" {
+  type    = list(string)
+  default = ["0.us.pool.ntp.org","1.us.pool.ntp.org","2.us.pool.ntp.org","3.us.pool.ntp.org"]
+}
+
 variable "search_default_domain" {
   default = "io.local"
 }

@@ -1,11 +1,15 @@
 data "template_file" "userdata" {
-  template = file("files/userdata.json")
-  vars = {
+  template                  = file("files/userdata.json")
+  vars                      = {
     avi_controller_password = var.admin_password
     dns                     = var.dns_ip
     dns1                    = var.dns1_ip
     search_domain           = var.search_default_domain
     welcome_banner          = var.welcome_banner
+    ntp_server1             = var.ntp_servers[0]
+    ntp_server2             = var.ntp_servers[1]
+    ntp_server3             = var.ntp_servers[2]
+    ntp_server4             = var.ntp_servers[3]
   }
 }
 resource "aws_instance" "avi-controller" {
