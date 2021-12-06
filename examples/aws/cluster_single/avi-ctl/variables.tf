@@ -49,9 +49,9 @@ variable "owner" {
 variable "ami-image" {
   default = {
     us-west-1 = "ami-03baad459ee4a3980"
-    us-west-2 =  "ami-04d08b852b47a5876"
-   }
+    us-west-2 = "ami-04d08b852b47a5876"
   }
+}
 
 
 # You could spin up more than 1 but use the other repo for cluster
@@ -65,4 +65,16 @@ variable "api_version" {
 }
 variable "dns_ip" {
   default = "8.8.8.8"
+}
+variable "dns1_ip" {
+  default = "8.8.4.4"
+}
+variable "search_default_domain" {
+  default = "io.local"
+}
+variable "trusted_cidr" {
+  description = "cidr block of addresses trusted for access to the kubernetes API server"
+}
+variable "welcome_banner" {
+  default = "Ciao and Welcome to my new Avi Controller!"
 }

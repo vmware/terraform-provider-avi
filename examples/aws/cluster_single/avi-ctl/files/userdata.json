@@ -6,35 +6,45 @@
 		"server_list": [{
 			"type": "V4",
 			"addr": "${dns}"
-		}]
+		},
+                  {
+			"type": "V4",
+			"addr": "${dns1}"
+		  }
+                ]
 	},
-	"ntp_configuration": {
-		"ntp_servers": [{
-				"server": {
-					"type": "DNS",
-					"addr": "0.us.pool.ntp.org"
-				}
-			},
-			{
-				"server": {
-					"type": "DNS",
-					"addr": "1.us.pool.ntp.org"
-				}
-			},
-			{
-				"server": {
-					"type": "DNS",
-					"addr": "2.us.pool.ntp.org"
-				}
-			},
-			{
-				"server": {
-					"type": "DNS",
-					"addr": "3.us.pool.ntp.org"
-				}
-			}
-		]
-	}
+	        "ntp_configuration": {
+                "ntp_servers": [{
+                                "server": {
+                                        "type": "DNS",
+                                        "addr": "0.us.pool.ntp.org"
+                                }
+                        },
+                        {
+                                "server": {
+                                        "type": "DNS",
+                                        "addr": "1.us.pool.ntp.org"
+                                }
+                        },
+                        {
+                                "server": {
+                                        "type": "DNS",
+                                        "addr": "2.us.pool.ntp.org"
+                                }
+                        },
+                        {
+                                "server": {
+                                        "type": "DNS",
+                                        "addr": "3.us.pool.ntp.org"
+                                }
+                        }
+                ]
+        },
+        "linux_configuration": {
+                "motd": "",
+                "banner": "${welcome_banner}",
+                "cis_mode": false
+       }
 }],
 "InitialConfiguration": [{
 	"user_initial_setup": false,
