@@ -34,6 +34,17 @@ func ResourceImageSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"duration": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Computed:     true,
+			ValidateFunc: validateInteger,
+		},
+		"end_time": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
 		"events": {
 			Type:     schema.TypeList,
 			Optional: true,
@@ -73,6 +84,11 @@ func ResourceImageSchema() map[string]*schema.Schema {
 			Computed: true,
 		},
 		"se_patch_uuid": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
+		"start_time": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,

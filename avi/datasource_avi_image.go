@@ -27,6 +27,14 @@ func dataSourceAviImage() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"duration": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"end_time": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"events": {
 				Type:     schema.TypeList,
 				Computed: true,
@@ -61,6 +69,10 @@ func dataSourceAviImage() *schema.Resource {
 				Computed: true,
 			},
 			"se_patch_uuid": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"start_time": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},

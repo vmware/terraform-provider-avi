@@ -1,5 +1,11 @@
 #!/bin/bash
 
+############################################################################
+# ========================================================================
+# Copyright 2021 VMware, Inc.  All rights reserved. VMware Confidential
+# ========================================================================
+###
+
 # This script rewrites [GH-nnnn]-style references in the CHANGELOG.md file to
 # be Markdown links to the given github issues.
 #

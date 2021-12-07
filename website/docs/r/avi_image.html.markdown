@@ -32,6 +32,8 @@ The following arguments are supported:
 * `controller_info` - (Optional) Controller package details. Field introduced in 18.2.6.
 * `controller_patch_name` - (Optional) Mandatory controller patch name that is applied along with this base image. Field introduced in 18.2.10, 20.1.1.
 * `controller_patch_uuid` - (Optional) It references the controller-patch associated with the uber image. Field introduced in 18.2.8, 20.1.1.
+* `duration` - (Optional) Time taken to upload the image in seconds. Field introduced in 21.1.3. Unit is sec.
+* `end_time` - (Optional) Image upload end time. Field introduced in 21.1.3.
 * `events` - (Optional) Image events for image upload operation. Field introduced in 21.1.3.
 * `img_state` - (Optional) Status of the image. Field introduced in 21.1.3.
 * `migrations` - (Optional) This field describes the api migration related information. Field introduced in 18.2.6.
@@ -39,6 +41,7 @@ The following arguments are supported:
 * `se_info` - (Optional) Se package details. Field introduced in 18.2.6.
 * `se_patch_name` - (Optional) Mandatory serviceengine patch name that is applied along with this base image. Field introduced in 18.2.10, 20.1.1.
 * `se_patch_uuid` - (Optional) It references the service engine patch associated with the uber image. Field introduced in 18.2.8, 20.1.1.
+* `start_time` - (Optional) Image upload start time. Field introduced in 21.1.3.
 * `tasks_completed` - (Optional) Completed set of tasks for image upload. Field introduced in 21.1.3.
 * `tenant_ref` - (Optional) Tenant that this object belongs to. It is a reference to an object of type tenant. Field introduced in 18.2.6.
 * `total_tasks` - (Optional) Total number of tasks for image upload. Field introduced in 21.1.3.
