@@ -5106,6 +5106,11 @@ func ResourceClusterNodeSchema() *schema.Resource {
 				Optional: true,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
+			"interfaces": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceControllerInterfaceSchema(),
+			},
 			"ip": {
 				Type:     schema.TypeSet,
 				Required: true,
@@ -5128,6 +5133,11 @@ func ResourceClusterNodeSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 				Elem:     ResourceIpAddrSchema(),
+			},
+			"static_routes": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceStaticRouteSchema(),
 			},
 			"vm_hostname": {
 				Type:     schema.TypeString,
@@ -6623,6 +6633,51 @@ func ResourceControllerFaultsSchema() *schema.Resource {
 				Optional:     true,
 				Default:      "true",
 				ValidateFunc: validateBool,
+			},
+		},
+	}
+}
+
+func ResourceControllerInterfaceSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"gateway": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceIpAddrSchema(),
+			},
+			"if_name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"ip": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceIpAddrPrefixSchema(),
+			},
+			"labels": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
+			"mac_address": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"mode": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"public_ip_or_name": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceIpAddrSchema(),
 			},
 		},
 	}
