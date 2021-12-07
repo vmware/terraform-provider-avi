@@ -29,7 +29,8 @@ The following arguments are supported:
 * `admin_auth_configuration` - (Optional) Dict settings for systemconfiguration.
 * `common_criteria_mode` - (Optional) Common criteria mode's current state. Field introduced in 20.1.3.
 * `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1.
-* `default_license_tier` - (Optional) Specifies the default license tier which would be used by new clouds. Enum options - ENTERPRISE_16, ENTERPRISE, ENTERPRISE_18, BASIC, ESSENTIALS, SAAS. Field introduced in 17.2.5. Allowed in basic edition, essentials edition, enterprise edition. Special default for basic edition is basic, essentials edition is essentials, enterprise is enterprise.
+* `controller_analytics_policy` - (Optional) Controller metrics event dynamic thresholds can be set here. Controller_cpu_high and controller_mem_high evets can take configured dynamic thresholds. Field introduced in 21.1.3.
+* `default_license_tier` - (Optional) Specifies the default license tier which would be used by new clouds. Enum options - ENTERPRISE_16, ENTERPRISE, ENTERPRISE_18, BASIC, ESSENTIALS, SAAS. Field introduced in 17.2.5. Allowed in basic edition, essentials edition, enterprise edition. Special default for basic edition is basic, essentials edition is essentials, enterprise is saas.
 * `dns_configuration` - (Optional) Dict settings for systemconfiguration.
 * `dns_virtualservice_refs` - (Optional) Dns virtualservices hosting fqdn records for applications across avi vantage. If no virtualservices are provided, avi vantage will provide dns services for configured applications. Switching back to avi vantage from dns virtualservices is not allowed. It is a reference to an object of type virtualservice.
 * `docker_mode` - (Optional) Boolean flag to set docker_mode.

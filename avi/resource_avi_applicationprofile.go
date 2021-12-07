@@ -13,6 +13,11 @@ import (
 
 func ResourceApplicationProfileSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
+		"app_service_type": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
 		"cloud_config_cksum": {
 			Type:     schema.TypeString,
 			Optional: true,

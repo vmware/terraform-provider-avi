@@ -31,10 +31,16 @@ func ResourceSystemConfigurationSchema() map[string]*schema.Schema {
 			Computed: true,
 			Elem:     ResourceConfigPbAttributesSchema(),
 		},
+		"controller_analytics_policy": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceControllerAnalyticsPolicySchema(),
+		},
 		"default_license_tier": {
 			Type:     schema.TypeString,
 			Optional: true,
-			Default:  "ENTERPRISE",
+			Default:  "SAAS",
 		},
 		"dns_configuration": {
 			Type:     schema.TypeSet,

@@ -27,7 +27,7 @@ resource "avi_statediffoperation" "foo" {
 
 The following arguments are supported:
 
-* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1.
+* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.3.
 * `events` - (Optional) Info for each statediff event. Field introduced in 21.1.3.
 * `name` - (Optional) Name of statediff operation. Field introduced in 21.1.3.
 * `node_uuid` - (Optional) Uuid of node for statediff operation entry. Field introduced in 21.1.3.
