@@ -7,6 +7,7 @@ variable "avi_username" {
 }
 
 variable "avi_current_password" {
+  sensitive = true
 }
 
 variable "avi_new_password" {

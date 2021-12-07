@@ -3,7 +3,7 @@ variable "avi_username" {
 variable "avi_password" {
 }
 variable "avi_controller" {
-  default = "35.155.133.19"
+  default = "100.20.43.30"
 }
 variable "avi_version" {
   default = "20.1.6"

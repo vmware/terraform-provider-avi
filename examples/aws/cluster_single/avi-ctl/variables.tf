@@ -64,10 +64,8 @@ variable "api_version" {
   default = "21.1.1"
 }
 variable "dns_ip" {
-  default = "8.8.8.8"
-}
-variable "dns1_ip" {
-  default = "8.8.4.4"
+  type    = list(string)
+  default = ["8.8.8.8","8.8.4.4"]
 }
 variable "ntp_servers" {
   type    = list(string)

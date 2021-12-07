@@ -67,5 +67,5 @@ variable "vs_hostname" {
   default = "demoavi"
 }
 variable "domain_name" {
-  default = ".remo.demoavi.us"
+  default = "remo.demoavi.us"
 }

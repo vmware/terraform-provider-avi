@@ -2,8 +2,8 @@ data "template_file" "userdata" {
   template                  = file("files/userdata.json")
   vars                      = {
     avi_controller_password = var.admin_password
-    dns                     = var.dns_ip
-    dns1                    = var.dns1_ip
+    dns                     = var.dns_ip[0]
+    dns1                    = var.dns_ip[1]
     search_domain           = var.search_default_domain
     welcome_banner          = var.welcome_banner
     ntp_server1             = var.ntp_servers[0]
