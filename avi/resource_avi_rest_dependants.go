@@ -11066,6 +11066,12 @@ func ResourceEventDetailsSchema() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceMetricsDbQueueHealthyEventDetailsSchema(),
 			},
+			"metrics_db_sync_failure_details": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceMetricsDbSyncFailureEventDetailsSchema(),
+			},
 			"mgmt_nw_change_details": {
 				Type:     schema.TypeSet,
 				Optional: true,
@@ -20417,6 +20423,28 @@ func ResourceMetricsDbRuntimeSchema() *schema.Resource {
 				Optional:     true,
 				Computed:     true,
 				ValidateFunc: validateInteger,
+			},
+		},
+	}
+}
+
+func ResourceMetricsDbSyncFailureEventDetailsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"node_name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"process_name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"timestamp": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 		},
 	}
