@@ -31,7 +31,7 @@ variable "project_name" {
   default = "awesome-avi"
 }
 variable "api_version" {
-  default = "20.1.6"
+  default = "21.1.2"
 }
 variable "connection_mem_percentage" {
   default     = 50

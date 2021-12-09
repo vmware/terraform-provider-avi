@@ -48,7 +48,9 @@ variable "avi_controller_iam" {
   default = "remo-avi-controller"
 }
 variable "avi_controller_ami" {
-  default = "ami-0451e26f70764fc9e"
+  default = "ami-06da24088ea4fcc85"
+  #ami-007edf6b2b302cce5"
+  #default = "ami-0451e26f70764fc9e"
 }
 
 variable "aws_availability_zones" {

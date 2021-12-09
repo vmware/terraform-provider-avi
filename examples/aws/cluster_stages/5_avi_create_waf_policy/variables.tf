@@ -5,7 +5,7 @@ variable "avi_password" {
 variable "avi_controller" {
 }
 variable "avi_version" {
-  default = "20.1.6"
+  default = "21.1.2"
 }
 variable "avi_tenant" {
   default = "admin"
@@ -30,4 +30,8 @@ variable "hyperthreaded_cores" {
 }
 variable "se_group_name" {
   default = "Default-Group"
+}
+variable "csr_version" {
+  default = "CRS-2021-1" # 21.1.3
+  #default = "CRS-2020-3" #20.1.6
 }

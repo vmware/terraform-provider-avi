@@ -1,5 +1,5 @@
 data "avi_wafcrs" "wafcrs_2020_3" {
-  name = "CRS-2020-3"
+  name = var.csr_version
 }
 
 data "avi_wafprofile" "default_wafprofile" {

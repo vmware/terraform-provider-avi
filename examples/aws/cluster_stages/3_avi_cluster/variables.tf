@@ -29,7 +29,7 @@ variable "cluster_name" {
   default = "avi-cluster-tf"
 }
 variable "api_version" {
-  default = "20.1.6"
+  default = "21.1.2"
 }
 variable "ntp_servers" {
   type    = list(any)

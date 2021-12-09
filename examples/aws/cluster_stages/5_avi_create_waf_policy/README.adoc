@@ -3,4 +3,11 @@
 This will create a new policy under the Templates WAF Policy. It will use the WAF Profile based on System-WAF-Policy. +
 There are rules enabled and those are explained in the file. +
 
-NOTE: MUST set the Avi Controller public IP address otherwise it will not work
+NOTE: MUST set the Avi Controller public IP address otherwise it will not work. Also make sure to use the right API version for Avi otherwise it will fail
+
+
+== WAF
+Our Avi Controller will have diff CSR version therefore, make sure to use the right for the version you are deploying
+
+**   CRS-2021-1 # 21.1.3
+**   CRS-2020-3 # 20.1.6

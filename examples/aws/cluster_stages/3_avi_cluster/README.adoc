@@ -1,3 +1,5 @@
 = Project Update
 
 Make sure the project name matches the one you set on the step 1.
+
+NOTE: Make sure to use the right API version for Avi otherwise it will fail
