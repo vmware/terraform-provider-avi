@@ -15104,6 +15104,12 @@ func ResourceHTTPApplicationProfileSchema() *schema.Resource {
 				Default:      "0",
 				ValidateFunc: validateInteger,
 			},
+			"pass_through_x_accel_headers": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
 			"pki_profile_ref": {
 				Type:     schema.TypeString,
 				Optional: true,
