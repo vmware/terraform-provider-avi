@@ -3587,8 +3587,7 @@ func ResourceBotMappingRuleSchema() *schema.Resource {
 			},
 			"name": {
 				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
+				Required: true,
 			},
 		},
 	}
@@ -22365,6 +22364,12 @@ func ResourceOauthLogSchema() *schema.Resource {
 				Elem:     ResourceOauthSubRequestLogSchema(),
 			},
 			"token_refresh_subrequest": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceOauthSubRequestLogSchema(),
+			},
+			"userinfo_subrequest": {
 				Type:     schema.TypeSet,
 				Optional: true,
 				Computed: true,

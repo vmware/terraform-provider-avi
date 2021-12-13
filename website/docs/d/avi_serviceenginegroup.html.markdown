@@ -70,6 +70,7 @@ In addition to all arguments above, the following attributes are exported:
 * `data_network_id` - Subnet used to spin up the data nic for service engines, used only for azure cloud. Overrides the cloud level setting for service engine subnet. Field introduced in 18.2.3.
 * `datascript_timeout` - Number of instructions before datascript times out. Allowed values are 0-100000000. Field introduced in 18.2.3.
 * `deactivate_ipv6_discovery` - If activated, ipv6 address and route discovery are deactivated.requires se reboot. Field introduced in 21.1.1.
+* `deactivate_kni_filtering_at_dispatcher` - Deactivate filtering of packets to kni interface. To be used under surveillance of avi support. Field introduced in 21.1.3.
 * `dedicated_dispatcher_core` - Dedicate the core that handles packet receive/transmit from the network to just the dispatching function. Don't use it for tcp/ip and ssl functions.
 * `description` - User defined description for the object.
 * `disable_avi_securitygroups` - By default, avi creates and manages security groups along with custom sg provided by user. Set this to true to disallow avi to create and manage new security groups. Avi will only make use of custom security groups provided by user. This option is supported for aws and openstack cloud types. Field introduced in 17.2.13,18.1.4,18.2.1.
@@ -130,7 +131,7 @@ In addition to all arguments above, the following attributes are exported:
 * `lbaction_num_requests_to_dispatch` - Number of requests to dispatch from the request. Queue at a regular interval. Field introduced in 21.1.1.
 * `lbaction_rq_per_request_max_retries` - Maximum retries per request in the request queue. Field introduced in 21.1.1.
 * `least_load_core_selection` - Select core with least load for new flow.
-* `license_tier` - Specifies the license tier which would be used. This field by default inherits the value from cloud. Enum options - ENTERPRISE_16, ENTERPRISE, ENTERPRISE_18, BASIC, ESSENTIALS, SAAS. Field introduced in 17.2.5.
+* `license_tier` - Specifies the license tier which would be used. This field by default inherits the value from cloud. Enum options - ENTERPRISE_16, ENTERPRISE, ENTERPRISE_18, BASIC, ESSENTIALS, ENTERPRISE_WITH_CLOUD_SERVICES. Field introduced in 17.2.5.
 * `license_type` - If no license type is specified then default license enforcement for the cloud type is chosen. Enum options - LIC_BACKEND_SERVERS, LIC_SOCKETS, LIC_CORES, LIC_HOSTS, LIC_SE_BANDWIDTH, LIC_METERED_SE_BANDWIDTH. Field introduced in 17.2.5.
 * `log_agent_compress_logs` - Flag to indicate if log files are compressed upon full on the service engine. Field introduced in 21.1.1.
 * `log_agent_debug_enabled` - Enable debug logs by default on service engine. This includes all other debugging logs. Debug logs can also be explcitly enabled from the cli shell. Field introduced in 21.1.1.

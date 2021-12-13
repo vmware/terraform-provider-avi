@@ -222,6 +222,12 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Computed:     true,
 			ValidateFunc: validateBool,
 		},
+		"deactivate_kni_filtering_at_dispatcher": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Computed:     true,
+			ValidateFunc: validateBool,
+		},
 		"dedicated_dispatcher_core": {
 			Type:         schema.TypeString,
 			Optional:     true,
