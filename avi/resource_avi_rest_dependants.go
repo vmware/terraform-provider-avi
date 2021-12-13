@@ -22369,6 +22369,12 @@ func ResourceOauthLogSchema() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceOauthSubRequestLogSchema(),
 			},
+			"userinfo_subrequest": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceOauthSubRequestLogSchema(),
+			},
 		},
 	}
 }
