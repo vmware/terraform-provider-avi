@@ -161,6 +161,10 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"deactivate_kni_filtering_at_dispatcher": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"dedicated_dispatcher_core": {
 				Type:     schema.TypeString,
 				Computed: true,

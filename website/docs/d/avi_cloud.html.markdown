@@ -50,7 +50,7 @@ In addition to all arguments above, the following attributes are exported:
 * `gcp_configuration` - Google cloud platform configuration. Field introduced in 18.2.1. Allowed in basic edition, essentials edition, enterprise edition.
 * `ip6_autocfg_enabled` - Enable ipv6 auto configuration. Field introduced in 18.1.1.
 * `ipam_provider_ref` - Ipam profile for the cloud. It is a reference to an object of type ipamdnsproviderprofile.
-* `license_tier` - Specifies the default license tier which would be used by new se groups. This field by default inherits the value from system configuration. Enum options - ENTERPRISE_16, ENTERPRISE, ENTERPRISE_18, BASIC, ESSENTIALS, SAAS. Field introduced in 17.2.5.
+* `license_tier` - Specifies the default license tier which would be used by new se groups. This field by default inherits the value from system configuration. Enum options - ENTERPRISE_16, ENTERPRISE, ENTERPRISE_18, BASIC, ESSENTIALS, ENTERPRISE_WITH_CLOUD_SERVICES. Field introduced in 17.2.5.
 * `license_type` - If no license type is specified then default license enforcement for the cloud type is chosen. The default mappings are container cloud is max ses, openstack and vmware is cores and linux it is sockets. Enum options - LIC_BACKEND_SERVERS, LIC_SOCKETS, LIC_CORES, LIC_HOSTS, LIC_SE_BANDWIDTH, LIC_METERED_SE_BANDWIDTH.
 * `linuxserver_configuration` - Dict settings for cloud.
 * `maintenance_mode` - Cloud is in maintenance mode. Field introduced in 20.1.7,21.1.3.
