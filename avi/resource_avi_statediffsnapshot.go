@@ -13,12 +13,6 @@ import (
 
 func ResourceStatediffSnapshotSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"configpb_attributes": {
-			Type:     schema.TypeSet,
-			Optional: true,
-			Computed: true,
-			Elem:     ResourceConfigPbAttributesSchema(),
-		},
 		"gslb_name": {
 			Type:     schema.TypeString,
 			Optional: true,
