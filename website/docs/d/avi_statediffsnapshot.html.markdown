@@ -32,7 +32,6 @@ data "avi_statediffsnapshot" "foo_statediffsnapshot" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.3.
 * `gslb_name` - Name of gslb object. Field introduced in 21.1.3.
 * `gslb_uuid` - Reference to base gslb object. Field introduced in 21.1.3.
 * `name` - Name of statediff operation. Field introduced in 21.1.3.
