@@ -32,7 +32,6 @@ data "avi_statediffoperation" "foo_statediffoperation" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.3.
 * `events` - Info for each statediff event. Field introduced in 21.1.3.
 * `name` - Name of statediff operation. Field introduced in 21.1.3.
 * `node_uuid` - Uuid of node for statediff operation entry. Field introduced in 21.1.3.

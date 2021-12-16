@@ -9,11 +9,6 @@ func dataSourceAviStatediffSnapshot() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviStatediffSnapshotRead,
 		Schema: map[string]*schema.Schema{
-			"configpb_attributes": {
-				Type:     schema.TypeSet,
-				Computed: true,
-				Elem:     ResourceConfigPbAttributesSchema(),
-			},
 			"gslb_name": {
 				Type:     schema.TypeString,
 				Computed: true,
