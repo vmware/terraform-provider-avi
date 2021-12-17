@@ -13,12 +13,6 @@ import (
 
 func ResourceStatediffOperationSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"configpb_attributes": {
-			Type:     schema.TypeSet,
-			Optional: true,
-			Computed: true,
-			Elem:     ResourceConfigPbAttributesSchema(),
-		},
 		"events": {
 			Type:     schema.TypeList,
 			Optional: true,

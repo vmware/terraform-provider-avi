@@ -19,20 +19,11 @@ func ResourceLicenseStatusSchema() map[string]*schema.Schema {
 			Computed: true,
 			Elem:     ResourceConfigPbAttributesSchema(),
 		},
-		"name": {
-			Type:     schema.TypeString,
-			Required: true,
-		},
 		"saas_status": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Computed: true,
 			Elem:     ResourceSaasLicensingStatusSchema(),
-		},
-		"tenant_ref": {
-			Type:     schema.TypeString,
-			Optional: true,
-			Computed: true,
 		},
 		"uuid": {
 			Type:     schema.TypeString,

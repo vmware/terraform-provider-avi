@@ -3587,8 +3587,7 @@ func ResourceBotMappingRuleSchema() *schema.Resource {
 			},
 			"name": {
 				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
+				Required: true,
 			},
 		},
 	}
@@ -11066,6 +11065,12 @@ func ResourceEventDetailsSchema() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceMetricsDbQueueHealthyEventDetailsSchema(),
 			},
+			"metrics_db_sync_failure_details": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceMetricsDbSyncFailureEventDetailsSchema(),
+			},
 			"mgmt_nw_change_details": {
 				Type:     schema.TypeSet,
 				Optional: true,
@@ -11653,6 +11658,12 @@ func ResourceEventDetailsSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 				Elem:     ResourceDNSRegisterInfoSchema(),
+			},
+			"vip_symmetry_details": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceVipSymmetryDetailsSchema(),
 			},
 			"vm_details": {
 				Type:     schema.TypeSet,
@@ -15097,6 +15108,12 @@ func ResourceHTTPApplicationProfileSchema() *schema.Resource {
 				Optional:     true,
 				Default:      "0",
 				ValidateFunc: validateInteger,
+			},
+			"pass_through_x_accel_headers": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
 			},
 			"pki_profile_ref": {
 				Type:     schema.TypeString,
@@ -20422,6 +20439,28 @@ func ResourceMetricsDbRuntimeSchema() *schema.Resource {
 	}
 }
 
+func ResourceMetricsDbSyncFailureEventDetailsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"node_name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"process_name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"timestamp": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
 func ResourceMetricsDerivationDataSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -22331,6 +22370,12 @@ func ResourceOauthLogSchema() *schema.Resource {
 				Elem:     ResourceOauthSubRequestLogSchema(),
 			},
 			"token_refresh_subrequest": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceOauthSubRequestLogSchema(),
+			},
+			"userinfo_subrequest": {
 				Type:     schema.TypeSet,
 				Optional: true,
 				Computed: true,
@@ -34855,6 +34900,63 @@ func ResourceVipSeAssignedSchema() *schema.Resource {
 				Optional:     true,
 				Computed:     true,
 				ValidateFunc: validateBool,
+			},
+		},
+	}
+}
+
+func ResourceVipSymmetryDetailsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"max_num_se_assigned": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"max_num_se_requested": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"min_num_se_assigned": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"min_num_se_requested": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"num_vs": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"reason": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"vip_id": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"vsvip_name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"vsvip_uuid": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 		},
 	}

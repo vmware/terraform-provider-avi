@@ -27,10 +27,8 @@ resource "avi_licensestatus" "foo" {
 
 The following arguments are supported:
 
-* `name` - (Required) Name. Field introduced in 21.1.3.
 * `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.3.
 * `saas_status` - (Optional) Saas licensing status. Field introduced in 21.1.3.
-* `tenant_ref` - (Optional) Tenant. It is a reference to an object of type tenant. Field introduced in 21.1.3.
 
 
 ### Timeouts
