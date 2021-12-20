@@ -11425,6 +11425,12 @@ func ResourceEventDetailsSchema() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceSeVnicUpEventDetailsSchema(),
 			},
+			"se_vs_del_flows_disrupted": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceSeVsDelFlowsDisruptedSchema(),
+			},
 			"se_vs_fault_event_details": {
 				Type:     schema.TypeSet,
 				Optional: true,
@@ -29597,6 +29603,29 @@ func ResourceSeVnicUpEventDetailsSchema() *schema.Resource {
 				Computed: true,
 			},
 			"se_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceSeVsDelFlowsDisruptedSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"deleted_vs_name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"num_vs_flows_disrupted": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"reporting_se_name": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
