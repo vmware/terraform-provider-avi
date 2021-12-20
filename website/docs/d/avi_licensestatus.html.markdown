@@ -33,8 +33,6 @@ data "avi_licensestatus" "foo_licensestatus" {
 In addition to all arguments above, the following attributes are exported:
 
 * `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.3.
-* `name` - Name. Field introduced in 21.1.3.
 * `saas_status` - Saas licensing status. Field introduced in 21.1.3.
-* `tenant_ref` - Tenant. It is a reference to an object of type tenant. Field introduced in 21.1.3.
 * `uuid` - Uuid. Field introduced in 21.1.3.
 
