@@ -107,3 +107,16 @@ resource "avi_serviceenginegroup" "aws_se_group" {
   se_name_prefix       = var.se_prefix
   tenant_ref           = data.avi_tenant.default_tenant.id
 }
+
+resource "avi_backupconfiguration" "backup_config" {
+  name       = "Backup-Configuration"
+  tenant_ref = "admin"
+  #tenant_ref              = data.avi_tenant.default_tenant.id
+  save_local             = true
+  maximum_backups_stored = 4
+  backup_passphrase      = var.avi_password
+  configpb_attributes {
+    version = 1
+  }
+}
+
