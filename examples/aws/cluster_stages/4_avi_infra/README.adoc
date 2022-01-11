@@ -1,0 +1,6 @@
+= Be Aware
+
+Make sure the project name matches the other steps, as well as the password you have set on step 2.
+Set the AWS key and AWS secrets to connect to the cloud.
+
+NOTE: Make sure to use the right API Version for Avi otherwise it will fail. 

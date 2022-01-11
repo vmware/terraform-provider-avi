@@ -1,0 +1,48 @@
+= Deploy Avi Controller using Terraform
+
+This deploys a new controller using Terraform in AWS.
+
+== Credentials
+
+Using AWS profile now
+
+
+My Example:
+----
+[default]
+access_key = "XXXXXXXXXXXXXX"
+secret_key = "XXXXXXXXXXXXXX"
+
+[avi]
+aws_access_key_id = "XXXXXXXXXXXXXXXX"
+aws_secret_access_key = "XXXXXXXXXXXX"
+----
+
+You could overwrite the profile with the following:
+----
+terraform plan -var region=us-west-1 -var profile=default
+----
+This will not use the avi profile even though it's in the variables
+
+
+== AMI
+I implemented the map options and based on your regions it will pick the AMI. YOu can add more AMI as needed
+
+to overwrite a region you can use the following command:
+
+----
+terraform plan -var region=us-west-1
+----
+
+== Variable output to variable input
+We will use the output of the main build of the 3 controllers for the input of the cluster
+Before you run the cluster terraform, you will need to make sure the controllers are up and you can login on the 1st controller.
+Then, run the following:
+
+
+== SSH keys
+The ssh keys will be generated and you will need to make sure the keys folder exist. The key will be injected so you will be able to ssh intot he controller without the pass.
+----
+ssh -i keys/generated-access-key-moccasin.pem admin@134.212.234.145
+----
+

@@ -1,0 +1,15 @@
+data "avi_wafcrs" "wafcrs_2020_3" {
+  name = "CRS-2020-3"
+}
+data "avi_wafprofile" "default_wafprofile" {
+  name = "Demo_Profile"
+}
+
+resource "avi_wafpolicy" "custom_waf_policy" {
+    mode            = "WAF_MODE_ENFORCEMENT"
+    name            = "Demo_Policy"
+    waf_crs_ref     = data.avi_wafcrs.wafcrs_2020_3.id
+    waf_profile_ref = "Demo_Profile"
+    #waf_profile_ref = data.avi_wafprofile.default_wafprofile.name
+
+}
