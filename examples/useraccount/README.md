@@ -1,8 +1,8 @@
 ### Change controller password using useraccount resource
 
 * Initially configure the current password in both the places
-  * provider initialization(var.admin_old_password)
-  * old_password field of useraccount resource.
+  * avi_password of provider config(var.admin_old_password)
+  * old_password of useraccount resource.
 ```
 provider "avi" {
   avi_username   = var.admin_username
@@ -24,7 +24,7 @@ resource "avi_useraccount" "avi_user" {
 Terraform runs resources and datasources concurrently. 
 Useraccount password reset functionality will invalidate the session at some point which invalidates
 the controller session and there is possibility that other resources will harm due to this behaviour.
-Example
+<br />**Example:**
 ```
 data "avi_cloud" "default_cloud" {
     name= "Default-Cloud"
@@ -33,7 +33,7 @@ data "avi_cloud" "default_cloud" {
 ```
 * Then before next run set the new password for both old_password(var.admin_old_password) and
 new_password(var.admin_new_password) variables. 
-* **(Optional)** Now you can assign var.admin_new_password instead of var.admin_old_password
+* **(Optional)** Now assign var.admin_new_password instead of var.admin_old_password
 to the provider password variable.
 ```
 provider "avi" {
