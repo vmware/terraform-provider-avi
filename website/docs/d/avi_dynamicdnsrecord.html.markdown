@@ -44,7 +44,7 @@ In addition to all arguments above, the following attributes are exported:
 * `mx_records` - Mx record. Field introduced in 20.1.3. Maximum of 4 items allowed.
 * `name` - Dynamicdnsrecord name, needed for a top level uuid protobuf, for display in shell. Field introduced in 20.1.3.
 * `ns` - Name server information in ns record. Field introduced in 20.1.3. Maximum of 13 items allowed.
-* `num_records_in_response` - Specifies the number of records returned by the dns service.enter 0 to return all records. Default is 0. Allowed values are 0-20. Special values are 0- 'return all records'. Field introduced in 20.1.3.
+* `num_records_in_response` - Specifies the number of records returned by the dns service.enter 0 to return all records. Default is 0. Allowed values are 0-20. Special values are 0- return all records. Field introduced in 20.1.3.
 * `service_locators` - Service locator info in srv record. Field introduced in 20.1.3. Maximum of 4 items allowed.
 * `tenant_ref` - Tenant_uuid from dns vs's tenant_uuid. It is a reference to an object of type tenant. Field introduced in 20.1.3.
 * `ttl` - Time to live for this dns record. Field introduced in 20.1.3.
