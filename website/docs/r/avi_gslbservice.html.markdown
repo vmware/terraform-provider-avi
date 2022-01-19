@@ -42,8 +42,8 @@ The following arguments are supported:
 * `hm_off` - (Optional) This field is an internal field and is used in se. Field introduced in 18.2.2.
 * `is_federated` - (Optional) This field indicates that this object is replicated across gslb federation. Field introduced in 17.1.3.
 * `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in basic edition, essentials edition, enterprise edition.
-* `min_members` - (Optional) The minimum number of members to distribute traffic to. Allowed values are 1-65535. Special values are 0 - 'disable'. Field introduced in 17.2.4.
-* `num_dns_ip` - (Optional) Number of ip addresses of this gslb service to be returned by the dns service. Enter 0 to return all ip addresses. Allowed values are 1-20. Special values are 0- 'return all ip addresses'.
+* `min_members` - (Optional) The minimum number of members to distribute traffic to. Allowed values are 1-65535. Special values are 0 - disable. Field introduced in 17.2.4.
+* `num_dns_ip` - (Optional) Number of ip addresses of this gslb service to be returned by the dns service. Enter 0 to return all ip addresses. Allowed values are 1-20. Special values are 0- return all ip addresses.
 * `pool_algorithm` - (Optional) The load balancing algorithm will pick a gslb pool within the gslb service list of available pools. Enum options - GSLB_SERVICE_ALGORITHM_PRIORITY, GSLB_SERVICE_ALGORITHM_GEO. Field introduced in 17.2.3.
 * `resolve_cname` - (Optional) This field indicates that for a cname query, respond with resolved cnames in the additional section with a records. Field introduced in 18.2.5.
 * `site_persistence_enabled` - (Optional) Enable site-persistence for the gslbservice. Field introduced in 17.2.1.

@@ -37,7 +37,7 @@ The following arguments are supported:
 * `description` - (Optional) User defined description for the object.
 * `dns_configs` - (Optional) Sub domain configuration for the gslb. Gslb service's fqdn must be a match one of these subdomains.
 * `enable_config_by_members` - (Optional) Allows enable/disable of gslbservice pool groups and pool members from the gslb follower members. Field introduced in 20.1.5.
-* `error_resync_interval` - (Optional) Frequency with which errored messages are resynced to follower sites. Value of 0 disables resync behavior. Allowed values are 60-3600. Special values are 0 - 'disable'. Field introduced in 18.2.3. Unit is sec.
+* `error_resync_interval` - (Optional) Frequency with which errored messages are resynced to follower sites. Value of 0 disables resync behavior. Allowed values are 60-3600. Special values are 0 - disable. Field introduced in 18.2.3. Unit is sec.
 * `is_federated` - (Optional) This field indicates that this object is replicated across gslb federation. Field introduced in 17.1.3.
 * `maintenance_mode` - (Optional) This field disables the configuration operations on the leader for all federated objects. Cud operations on gslb, gslbservice, gslbgeodbprofile and other federated objects will be rejected. The rest-api disabling helps in upgrade scenarios where we don't want configuration sync operations to the gslb member when the member is being upgraded. This configuration programmatically blocks the leader from accepting new gslb configuration when member sites are undergoing upgrade. Field introduced in 17.2.1.
 * `replication_policy` - (Optional) Policy for replicating configuration to the active follower sites. Field introduced in 20.1.1.

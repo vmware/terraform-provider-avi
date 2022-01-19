@@ -32,7 +32,7 @@ The following arguments are supported:
 * `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1.
 * `credentials_timeout_threshold` - (Optional) The time period after which credentials expire. Default is 180 days. Unit is days.
 * `max_concurrent_sessions` - (Optional) Maximum number of concurrent sessions allowed. There are unlimited sessions by default.
-* `max_login_failure_count` - (Optional) Number of login attempts before lockout. Default is 3 attempts. Allowed values are 3-20. Special values are 0 - 'unlimited login attempts allowed.'.
+* `max_login_failure_count` - (Optional) Number of login attempts before lockout. Default is 3 attempts. Allowed values are 3-20. Special values are 0- unlimited login attempts allowed..
 * `max_password_history_count` - (Optional) Maximum number of passwords to be maintained in the password history. Default is 4 passwords.
 
 
