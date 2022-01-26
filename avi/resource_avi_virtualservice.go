@@ -438,7 +438,7 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 			Optional: true,
 			Elem:     ResourceVHMatchSchema(),
 		},
-		"vh_parent_vs_uuid": {
+		"vh_parent_vs_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,

@@ -32,6 +32,7 @@ The following arguments are supported:
 * `allow_mode_delegation` - (Optional) Allow rules to overwrite the policy mode. This must be set if the policy mode is set to enforcement. Field introduced in 18.1.5, 18.2.1.
 * `allowlist` - (Optional) A set of rules which describe conditions under which the request will bypass the waf. This will be processed in the request header phase before any other waf related code. Field introduced in 20.1.3.
 * `application_signatures` - (Optional) Application specific signatures. Field introduced in 20.1.1.
+* `bypass_static_extensions` - (Optional) Enable the functionality to bypass waf for static file extensions. Field introduced in 22.1.1.
 * `confidence_override` - (Optional) Configure thresholds for confidence labels. Field introduced in 20.1.1.
 * `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1.
 * `created_by` - (Optional) Creator name. Field introduced in 17.2.4.

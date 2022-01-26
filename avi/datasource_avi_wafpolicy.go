@@ -23,6 +23,10 @@ func dataSourceAviWafPolicy() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceWafApplicationSignaturesSchema(),
 			},
+			"bypass_static_extensions": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"confidence_override": {
 				Type:     schema.TypeSet,
 				Computed: true,
