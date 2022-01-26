@@ -31,6 +31,12 @@ func ResourceWafPolicySchema() map[string]*schema.Schema {
 			Computed: true,
 			Elem:     ResourceWafApplicationSignaturesSchema(),
 		},
+		"bypass_static_extensions": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "true",
+			ValidateFunc: validateBool,
+		},
 		"confidence_override": {
 			Type:     schema.TypeSet,
 			Optional: true,

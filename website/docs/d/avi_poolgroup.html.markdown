@@ -46,7 +46,7 @@ In addition to all arguments above, the following attributes are exported:
 * `implicit_priority_labels` - Whether an implicit set of priority labels is generated. Field introduced in 17.1.9,17.2.3.
 * `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in basic edition, essentials edition, enterprise edition.
 * `members` - List of pool group members object of type poolgroupmember.
-* `min_servers` - The minimum number of servers to distribute traffic to. Allowed values are 1-65535. Special values are 0 - 'disable'. Allowed in basic(allowed values- 0) edition, essentials(allowed values- 0) edition, enterprise edition.
+* `min_servers` - The minimum number of servers to distribute traffic to. Allowed values are 1-65535. Special values are 0 - disable. Allowed in basic(allowed values- 0) edition, essentials(allowed values- 0) edition, enterprise edition.
 * `name` - The name of the pool group.
 * `priority_labels_ref` - Uuid of the priority labels. If not provided, pool group member priority label will be interpreted as a number with a larger number considered higher priority. It is a reference to an object of type prioritylabels.
 * `service_metadata` - Metadata pertaining to the service provided by this poolgroup. In openshift/kubernetes environments, app metadata info is stored. Any user input to this field will be overwritten by avi vantage. Field introduced in 17.2.14,18.1.5,18.2.1.

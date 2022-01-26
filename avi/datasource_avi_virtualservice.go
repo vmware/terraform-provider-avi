@@ -357,7 +357,7 @@ func dataSourceAviVirtualService() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceVHMatchSchema(),
 			},
-			"vh_parent_vs_uuid": {
+			"vh_parent_vs_ref": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},

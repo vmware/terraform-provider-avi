@@ -73,7 +73,7 @@ In addition to all arguments above, the following attributes are exported:
 * `ldap_vs_config` - Application-specific ldap config. Field introduced in 21.1.1.
 * `limit_doser` - Limit potential dos attackers who exceed max_cps_per_client significantly to a fraction of max_cps_per_client for a while.
 * `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in basic edition, essentials edition, enterprise edition.
-* `max_cps_per_client` - Maximum connections per second per client ip. Allowed values are 10-1000. Special values are 0- 'unlimited'.
+* `max_cps_per_client` - Maximum connections per second per client ip. Allowed values are 10-1000. Special values are 0- unlimited.
 * `microservice_ref` - Microservice representing the virtual service. It is a reference to an object of type microservice.
 * `min_pools_up` - Minimum number of up pools to mark vs up. Field introduced in 18.2.1, 17.2.12.
 * `name` - Name for the virtual service.
@@ -113,7 +113,7 @@ In addition to all arguments above, the following attributes are exported:
 * `uuid` - Uuid of the virtualservice.
 * `vh_domain_name` - The exact name requested from the client's sni-enabled tls hello domain name field. If this is a match, the parent vs will forward the connection to this child vs.
 * `vh_matches` - Host and path match criteria to select this child vs. Field introduced in 20.1.3.
-* `vh_parent_vs_uuid` - Specifies the virtual service acting as virtual hosting (sni) parent.
+* `vh_parent_vs_ref` - Specifies the virtual service acting as virtual hosting (sni) parent. It is a reference to an object of type virtualservice.
 * `vh_type` - Specify if the virtual hosting vs is of type sni or enhanced. Enum options - VS_TYPE_VH_SNI, VS_TYPE_VH_ENHANCED. Field introduced in 20.1.3. Allowed in basic(allowed values- vs_type_vh_enhanced) edition, enterprise edition. Special default for basic edition is vs_type_vh_enhanced, enterprise is vs_type_vh_sni.
 * `vip` - List of virtual service ips. While creating a 'shared vs',please use vsvip_ref to point to the shared entities. Field introduced in 17.1.1.
 * `vrf_context_ref` - Virtual routing context that the virtual service is bound to. This is used to provide the isolation of the set of networks the application is attached to. It is a reference to an object of type vrfcontext.

@@ -29,7 +29,7 @@ func ResourceImageSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
-		"controller_patch_uuid": {
+		"controller_patch_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
@@ -83,7 +83,7 @@ func ResourceImageSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
-		"se_patch_uuid": {
+		"se_patch_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,

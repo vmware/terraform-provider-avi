@@ -50,7 +50,7 @@ In addition to all arguments above, the following attributes are exported:
 * `ldap_monitor` - Health monitor for ldap. Field introduced in 21.1.3.
 * `ldaps_monitor` - Health monitor for ldaps. Field introduced in 21.1.3.
 * `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in basic edition, essentials edition, enterprise edition.
-* `monitor_port` - Use this port instead of the port defined for the server in the pool. If the monitor succeeds to this port, the load balanced traffic will still be sent to the port of the server defined within the pool. Allowed values are 1-65535. Special values are 0 - 'use server port'.
+* `monitor_port` - Use this port instead of the port defined for the server in the pool. If the monitor succeeds to this port, the load balanced traffic will still be sent to the port of the server defined within the pool. Allowed values are 1-65535. Special values are 0 - use server port.
 * `name` - A user friendly name for this health monitor.
 * `pop3_monitor` - Health monitor for pop3. Field introduced in 21.1.1.
 * `pop3s_monitor` - Health monitor for pop3s. Field introduced in 21.1.1.

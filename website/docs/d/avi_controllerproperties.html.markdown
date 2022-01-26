@@ -39,7 +39,7 @@ In addition to all arguments above, the following attributes are exported:
 * `api_idle_timeout` - Allowed values are 0-1440. Unit is min.
 * `api_perf_logging_threshold` - Threshold to log request timing in portal_performance.log and server-timing response header. Any stage taking longer than 1% of the threshold will be included in the server-timing header. Field introduced in 18.1.4, 18.2.1. Unit is milliseconds.
 * `appviewx_compat_mode` - Export configuration in appviewx compatibility mode. Field introduced in 17.1.1. Allowed in basic(allowed values- false) edition, essentials(allowed values- false) edition, enterprise edition.
-* `async_patch_merge_period` - Period for which asynchronous patch requests are queued. Allowed values are 30-120. Special values are 0 - 'deactivated'. Field introduced in 18.2.11, 20.1.3. Unit is sec.
+* `async_patch_merge_period` - Period for which asynchronous patch requests are queued. Allowed values are 30-120. Special values are 0 - deactivated. Field introduced in 18.2.11, 20.1.3. Unit is sec.
 * `async_patch_request_cleanup_duration` - Duration for which asynchronous patch requests should be kept, after being marked as success or fail. Allowed values are 5-120. Field introduced in 18.2.11, 20.1.3. Unit is min.
 * `attach_ip_retry_interval` - Unit is sec.
 * `attach_ip_retry_limit` - Placeholder for description of property attach_ip_retry_limit of obj type controllerproperties field type integer  type int.
@@ -76,7 +76,7 @@ In addition to all arguments above, the following attributes are exported:
 * `max_seq_vnic_failures` - Placeholder for description of property max_seq_vnic_failures of obj type controllerproperties field type integer  type int.
 * `max_threads_cc_vip_bg_worker` - Maximum number of threads in threadpool used by cloud connector ccvipbgworker. Allowed values are 1-100. Field introduced in 20.1.3.
 * `permission_scoped_shared_admin_networks` - Network and vrfcontext objects from the admin tenant will not be shared to non-admin tenants unless admin permissions are granted. Field introduced in 18.2.7, 20.1.1.
-* `persistence_key_rotate_period` - Period for rotate app persistence keys job. Allowed values are 1-1051200. Special values are 0 - 'disabled'. Unit is min. Allowed in basic(allowed values- 0) edition, essentials(allowed values- 0) edition, enterprise edition.
+* `persistence_key_rotate_period` - Period for rotate app persistence keys job. Allowed values are 1-1051200. Special values are 0 - disabled. Unit is min. Allowed in basic(allowed values- 0) edition, essentials(allowed values- 0) edition, enterprise edition.
 * `portal_request_burst_limit` - Burst limit on number of incoming requests. 0 to disable. Field introduced in 20.1.1.
 * `portal_request_rate_limit` - Maximum average number of requests allowed per second. 0 to disable. Field introduced in 20.1.1. Unit is per_second.
 * `portal_token` - Token used for uploading tech-support to portal. Field introduced in 16.4.6,17.1.2.
@@ -109,7 +109,7 @@ In addition to all arguments above, the following attributes are exported:
 * `uuid` - Unique object identifier of the object.
 * `vnic_op_fail_time` - Unit is sec.
 * `vs_awaiting_se_timeout` - Unit is sec.
-* `vs_key_rotate_period` - Period for rotate vs keys job. Allowed values are 1-1051200. Special values are 0 - 'disabled'. Unit is min.
+* `vs_key_rotate_period` - Period for rotate vs keys job. Allowed values are 1-1051200. Special values are 0 - disabled. Unit is min.
 * `vs_scaleout_ready_check_interval` - Interval for checking scaleout_ready status while controller is waiting for scaleoutready rpc from the service engine. Field introduced in 18.2.2. Unit is sec.
 * `vs_se_attach_ip_fail` - Time to wait before marking attach ip operation on an se as failed. Field introduced in 17.2.2. Unit is sec.
 * `vs_se_bootup_fail` - Unit is sec.
