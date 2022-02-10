@@ -19,6 +19,11 @@ func dataSourceAviLicenseStatus() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceSaasLicensingStatusSchema(),
 			},
+			"service_update": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceLicenseServiceUpdateSchema(),
+			},
 			"uuid": {
 				Type:     schema.TypeString,
 				Optional: true,

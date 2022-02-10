@@ -4335,6 +4335,36 @@ func ResourceCdpLldpInfoSchema() *schema.Resource {
 	}
 }
 
+func ResourceCentralLicenseRefreshDetailsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"message": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"service_units": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateFloat,
+			},
+		},
+	}
+}
+
+func ResourceCentralLicenseSubscriptionDetailsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"message": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
 func ResourceCertificateAuthoritySchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -10662,6 +10692,18 @@ func ResourceEventDetailsSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 				Elem:     ResourceCloudVnicChangeSchema(),
+			},
+			"central_license_refresh_details": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceCentralLicenseRefreshDetailsSchema(),
+			},
+			"central_license_subscription_details": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceCentralLicenseSubscriptionDetailsSchema(),
 			},
 			"cloud_asg_notif_details": {
 				Type:     schema.TypeSet,
@@ -18759,6 +18801,24 @@ func ResourceLicenseInfoSchema() *schema.Resource {
 	}
 }
 
+func ResourceLicenseServiceUpdateSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"service_units": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceOrgServiceUnitsSchema(),
+			},
+		},
+	}
+}
+
 func ResourceLicenseTierSwitchDetiailsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -23019,6 +23079,30 @@ func ResourceOpsHistorySchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceOrgServiceUnitsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"available_service_units": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateFloat,
+			},
+			"org_id": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"used_service_units": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateFloat,
 			},
 		},
 	}

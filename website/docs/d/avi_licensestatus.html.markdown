@@ -34,5 +34,6 @@ In addition to all arguments above, the following attributes are exported:
 
 * `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.3.
 * `saas_status` - Saas licensing status. Field introduced in 21.1.3.
+* `service_update` - Pulse license service update. Field introduced in 21.1.4.
 * `uuid` - Uuid. Field introduced in 21.1.3.
 
