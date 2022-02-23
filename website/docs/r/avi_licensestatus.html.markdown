@@ -29,6 +29,7 @@ The following arguments are supported:
 
 * `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.3.
 * `saas_status` - (Optional) Saas licensing status. Field introduced in 21.1.3.
+* `service_update` - (Optional) Pulse license service update. Field introduced in 21.1.4.
 
 
 ### Timeouts
