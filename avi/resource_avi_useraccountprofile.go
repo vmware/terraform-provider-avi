@@ -31,6 +31,12 @@ func ResourceUserAccountProfileSchema() map[string]*schema.Schema {
 			Default:      "180",
 			ValidateFunc: validateInteger,
 		},
+		"login_failure_count_expiry_window": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "0",
+			ValidateFunc: validateInteger,
+		},
 		"max_concurrent_sessions": {
 			Type:         schema.TypeString,
 			Optional:     true,

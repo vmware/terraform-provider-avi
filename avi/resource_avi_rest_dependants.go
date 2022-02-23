@@ -32662,6 +32662,11 @@ func ResourceUserActivitySchema() *schema.Resource {
 				Computed:     true,
 				ValidateFunc: validateBool,
 			},
+			"login_failure_timestamps": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
 			"name": {
 				Type:     schema.TypeString,
 				Optional: true,
