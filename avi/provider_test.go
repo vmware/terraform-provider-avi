@@ -1,3 +1,9 @@
+/***************************************************************************
+ * ========================================================================
+ * Copyright 2022 VMware, Inc.  All rights reserved. VMware Confidential
+ * ========================================================================
+ */
+
 /*
  * Copyright (c) 2017. Avi Networks.
  * Author: Gaurav Rastogi (grastogi@avinetworks.com)

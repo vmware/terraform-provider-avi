@@ -31653,6 +31653,18 @@ func ResourceSupportedMigrationsSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"podman_controller_host_min_free_disk_size": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "24",
+				ValidateFunc: validateInteger,
+			},
+			"podman_se_host_min_free_disk_size": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "12",
+				ValidateFunc: validateInteger,
+			},
 			"rollback_controller_disk_space": {
 				Type:         schema.TypeString,
 				Optional:     true,
