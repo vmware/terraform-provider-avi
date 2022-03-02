@@ -1,4 +1,9 @@
 #!/usr/bin/env bash
+############################################################################
+# ========================================================================
+# Copyright 2022 VMware, Inc.  All rights reserved. VMware Confidential
+# ========================================================================
+###
 
 # Check gofmt
 echo "==> Checking that code complies with gofmt requirements..."

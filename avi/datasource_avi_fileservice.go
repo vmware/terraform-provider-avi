@@ -1,3 +1,9 @@
+/***************************************************************************
+ * ========================================================================
+ * Copyright 2022 VMware, Inc.  All rights reserved. VMware Confidential
+ * ========================================================================
+ */
+
 package avi
 
 import "github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
