@@ -425,6 +425,18 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Default:      "300",
 			ValidateFunc: validateInteger,
 		},
+		"update_dns_entry_retry_limit": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "3",
+			ValidateFunc: validateInteger,
+		},
+		"update_dns_entry_timeout": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "120",
+			ValidateFunc: validateInteger,
+		},
 		"upgrade_dns_ttl": {
 			Type:         schema.TypeString,
 			Optional:     true,

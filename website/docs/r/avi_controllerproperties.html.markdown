@@ -96,6 +96,8 @@ The following arguments are supported:
 * `shared_ssl_certificates` - (Optional) Ssl certificates in the admin tenant can be used in non-admin tenants. Field introduced in 18.2.5.
 * `ssl_certificate_expiry_warning_days` - (Optional) Number of days for ssl certificate expiry warning. Unit is days.
 * `unresponsive_se_reboot` - (Optional) Unit is sec.
+* `update_dns_entry_retry_limit` - (Optional) Number of times to retry a dns entry update/delete operation. Field introduced in 21.1.4.
+* `update_dns_entry_timeout` - (Optional) Timeout period for a dns entry update/delete operation. Field introduced in 21.1.4. Unit is sec.
 * `upgrade_dns_ttl` - (Optional) Time to account for dns ttl during upgrade. This is in addition to vs_scalein_timeout_for_upgrade in se_group. Field introduced in 17.1.1. Unit is sec. Allowed in basic(allowed values- 5) edition, essentials(allowed values- 5) edition, enterprise edition.
 * `upgrade_fat_se_lease_time` - (Optional) Amount of time controller waits for a large-sized se (>=128gb memory) to reconnect after it is rebooted during upgrade. Field introduced in 18.2.10, 20.1.1. Unit is sec.
 * `upgrade_lease_time` - (Optional) Amount of time controller waits for a regular-sized se (<128gb memory) to reconnect after it is rebooted during upgrade. Starting 18.2.10/20.1.1, the default time has increased from 360 seconds to 600 seconds. Unit is sec.
