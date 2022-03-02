@@ -1,8 +1,7 @@
 #!/bin/bash
-
 ############################################################################
 # ========================================================================
-# Copyright 2021 VMware, Inc.  All rights reserved. VMware Confidential
+# Copyright 2022 VMware, Inc.  All rights reserved. VMware Confidential
 # ========================================================================
 ###
 

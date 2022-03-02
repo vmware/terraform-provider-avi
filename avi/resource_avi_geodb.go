@@ -20,7 +20,7 @@ func ResourceGeoDBSchema() map[string]*schema.Schema {
 		},
 		"files": {
 			Type:     schema.TypeList,
-			Required: true,
+			Optional: true,
 			Elem:     ResourceGeoDBFileSchema(),
 		},
 		"is_federated": {
