@@ -3089,6 +3089,31 @@ func ResourceBMSetupSchema() *schema.Resource {
 	}
 }
 
+func ResourceBOTLimitsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"allow_rules": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"hdrs": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"mapping_rules": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+		},
+	}
+}
+
 func ResourceBfdProfileSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -7362,6 +7387,12 @@ func ResourceControllerLicenseReconcileDetailsSchema() *schema.Resource {
 func ResourceControllerLimitsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"bot_limits": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceBOTLimitsSchema(),
+			},
 			"certificates_per_virtualservice": {
 				Type:         schema.TypeString,
 				Optional:     true,
