@@ -10414,6 +10414,11 @@ func ResourceEmailConfigurationSchema() *schema.Resource {
 				Optional: true,
 				Default:  "admin@avicontroller.net",
 			},
+			"from_name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"mail_server_name": {
 				Type:     schema.TypeString,
 				Optional: true,
