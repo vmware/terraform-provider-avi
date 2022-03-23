@@ -33,7 +33,7 @@ data "avi_networkprofile" "foo_networkprofile" {
 In addition to all arguments above, the following attributes are exported:
 
 * `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1.
-* `connection_mirror` - When enabled, avi mirrors all tcp fastpath connections to standby. Applicable only in legacy ha mode. Field introduced in 18.1.3,18.2.1.
+* `connection_mirror` - When enabled, avi mirrors all tcp fastpath connections to standby. Applicable only in legacy ha mode. Field introduced in 18.1.3,18.2.1. Allowed in essentials(allowed values- false) edition, enterprise edition.
 * `description` - User defined description for the object.
 * `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in basic edition, essentials edition, enterprise edition.
 * `name` - The name of the network profile.
