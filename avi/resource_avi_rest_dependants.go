@@ -1332,6 +1332,12 @@ func ResourceApplicationLogSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"client_finger_prints": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceClientFingerPrintsSchema(),
+			},
 			"client_insights": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -4466,6 +4472,24 @@ func ResourceChildProcessInfoSchema() *schema.Resource {
 				Optional:     true,
 				Computed:     true,
 				ValidateFunc: validateInteger,
+			},
+		},
+	}
+}
+
+func ResourceClientFingerPrintsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"tls_client_info": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceTlsClientInfoSchema(),
+			},
+			"tls_fingerprint": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 		},
 	}
@@ -15013,6 +15037,12 @@ func ResourceHTTPApplicationProfileSchema() *schema.Resource {
 				Optional:     true,
 				Default:      "48",
 				ValidateFunc: validateInteger,
+			},
+			"collect_client_tls_fingerprint": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
 			},
 			"compression_profile": {
 				Type:     schema.TypeSet,
@@ -32226,6 +32256,45 @@ func ResourceTimeStampSchema() *schema.Resource {
 	}
 }
 
+func ResourceTlsClientInfoSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"cipher_suites": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeInt},
+			},
+			"point_formats": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeInt},
+			},
+			"supported_groups": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeInt},
+			},
+			"tls_extensions": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeInt},
+			},
+			"uses_grease": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateBool,
+			},
+			"version": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+		},
+	}
+}
+
 func ResourceTrueClientIPConfigSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -38155,6 +38224,12 @@ func ResourceWafLogSchema() *schema.Resource {
 				ValidateFunc: validateInteger,
 			},
 			"latency_response_header_phase": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"memory_allocated": {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Computed:     true,

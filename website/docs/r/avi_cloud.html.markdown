@@ -51,6 +51,7 @@ The following arguments are supported:
 * `license_type` - (Optional) If no license type is specified then default license enforcement for the cloud type is chosen. The default mappings are container cloud is max ses, openstack and vmware is cores and linux it is sockets. Enum options - LIC_BACKEND_SERVERS, LIC_SOCKETS, LIC_CORES, LIC_HOSTS, LIC_SE_BANDWIDTH, LIC_METERED_SE_BANDWIDTH.
 * `linuxserver_configuration` - (Optional) Dict settings for cloud.
 * `maintenance_mode` - (Optional) Cloud is in maintenance mode. Field introduced in 20.1.7,21.1.3.
+* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 22.1.1. Allowed in basic edition, essentials edition, enterprise edition.
 * `mtu` - (Optional) Mtu setting for the cloud. Unit is bytes.
 * `nsxt_configuration` - (Optional) Nsx-t cloud platform configuration. Field introduced in 20.1.1. Allowed in essentials edition, enterprise edition.
 * `obj_name_prefix` - (Optional) Default prefix for all automatically created objects in this cloud. This prefix can be overridden by the se-group template.

@@ -4146,6 +4146,7 @@ content_type_mappings {
 		response_body_default_action = "phase:4,deny,status:403,log,auditlog"
 		request_hdr_default_action = "phase:1,deny,status:403,log,auditlog"
 		static_extensions = [".gif",".jpg",".jpeg",".png",".js",".css",".ico",".svg",".webp"]
+		allowed_request_content_type_charsets = ["utf-8","iso-8859-1","iso-8859-15","windows-1252"]
 		restricted_extensions = [".asa",".asax",".ascx",".axd",".backup",".bak",".bat",".cdx",".cer",".cfg",".cmd",".com",".config",".conf",".cs",".csproj",".csr",".dat",".db",".dbf",".dll",".dos",".htr",".htw",".ida",".idc",".idq",".inc",".ini",".key",".licx",".lnk",".log",".mdb",".old",".pass",".pdb",".pol",".printer",".pwd",".resources",".resx",".sql",".sys",".vb",".vbs",".vbproj",".vsdisco",".webinfo",".xsd",".xsx"]
 		cookie_format_version = "0"
 		restricted_headers = ["Proxy-Connection","Lock-Token","Content-Range","Translate","via","if"]
@@ -8210,6 +8211,7 @@ content_type_mappings {
 		response_body_default_action = "phase:4,deny,status:403,log,auditlog"
 		request_hdr_default_action = "phase:1,deny,status:403,log,auditlog"
 		static_extensions = [".gif",".jpg",".jpeg",".png",".js",".css",".ico",".svg",".webp"]
+		allowed_request_content_type_charsets = ["utf-8","iso-8859-1","iso-8859-15","windows-1252"]
 		restricted_extensions = [".asa",".asax",".ascx",".axd",".backup",".bak",".bat",".cdx",".cer",".cfg",".cmd",".com",".config",".conf",".cs",".csproj",".csr",".dat",".db",".dbf",".dll",".dos",".htr",".htw",".ida",".idc",".idq",".inc",".ini",".key",".licx",".lnk",".log",".mdb",".old",".pass",".pdb",".pol",".printer",".pwd",".resources",".resx",".sql",".sys",".vb",".vbs",".vbproj",".vsdisco",".webinfo",".xsd",".xsx"]
 		cookie_format_version = "0"
 		restricted_headers = ["Proxy-Connection","Lock-Token","Content-Range","Translate","via","if"]
