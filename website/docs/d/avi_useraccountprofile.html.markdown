@@ -35,6 +35,7 @@ In addition to all arguments above, the following attributes are exported:
 * `account_lock_timeout` - Lock timeout period (in minutes). Default is 30 minutes. Unit is min.
 * `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1.
 * `credentials_timeout_threshold` - The time period after which credentials expire. Default is 180 days. Unit is days.
+* `login_failure_count_expiry_window` - The configurable time window beyond which we need to pop all the login failure timestamps from the login_failure_timestamps. Special values are 0 - do not reset login_failure_counts on the basis of time. Field introduced in 22.1.1. Unit is min.
 * `max_concurrent_sessions` - Maximum number of concurrent sessions allowed. There are unlimited sessions by default.
 * `max_login_failure_count` - Number of login attempts before lockout. Default is 3 attempts. Allowed values are 3-20. Special values are 0- unlimited login attempts allowed..
 * `max_password_history_count` - Maximum number of passwords to be maintained in the password history. Default is 4 passwords.

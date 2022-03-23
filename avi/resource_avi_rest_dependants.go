@@ -1332,6 +1332,12 @@ func ResourceApplicationLogSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"client_finger_prints": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceClientFingerPrintsSchema(),
+			},
 			"client_insights": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -3089,6 +3095,31 @@ func ResourceBMSetupSchema() *schema.Resource {
 	}
 }
 
+func ResourceBOTLimitsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"allow_rules": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"hdrs": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"mapping_rules": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+		},
+	}
+}
+
 func ResourceBfdProfileSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -4335,6 +4366,36 @@ func ResourceCdpLldpInfoSchema() *schema.Resource {
 	}
 }
 
+func ResourceCentralLicenseRefreshDetailsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"message": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"service_units": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateFloat,
+			},
+		},
+	}
+}
+
+func ResourceCentralLicenseSubscriptionDetailsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"message": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
 func ResourceCertificateAuthoritySchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -4411,6 +4472,24 @@ func ResourceChildProcessInfoSchema() *schema.Resource {
 				Optional:     true,
 				Computed:     true,
 				ValidateFunc: validateInteger,
+			},
+		},
+	}
+}
+
+func ResourceClientFingerPrintsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"tls_client_info": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceTlsClientInfoSchema(),
+			},
+			"tls_fingerprint": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 		},
 	}
@@ -7332,6 +7411,12 @@ func ResourceControllerLicenseReconcileDetailsSchema() *schema.Resource {
 func ResourceControllerLimitsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"bot_limits": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceBOTLimitsSchema(),
+			},
 			"certificates_per_virtualservice": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -10662,6 +10747,18 @@ func ResourceEventDetailsSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 				Elem:     ResourceCloudVnicChangeSchema(),
+			},
+			"central_license_refresh_details": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceCentralLicenseRefreshDetailsSchema(),
+			},
+			"central_license_subscription_details": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceCentralLicenseSubscriptionDetailsSchema(),
 			},
 			"cloud_asg_notif_details": {
 				Type:     schema.TypeSet,
@@ -14941,6 +15038,12 @@ func ResourceHTTPApplicationProfileSchema() *schema.Resource {
 				Default:      "48",
 				ValidateFunc: validateInteger,
 			},
+			"collect_client_tls_fingerprint": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
 			"compression_profile": {
 				Type:     schema.TypeSet,
 				Optional: true,
@@ -18760,6 +18863,24 @@ func ResourceLicenseInfoSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceLicenseServiceUpdateSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"service_units": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceOrgServiceUnitsSchema(),
 			},
 		},
 	}
@@ -23025,6 +23146,30 @@ func ResourceOpsHistorySchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceOrgServiceUnitsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"available_service_units": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateFloat,
+			},
+			"org_id": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"used_service_units": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateFloat,
 			},
 		},
 	}
@@ -31569,6 +31714,18 @@ func ResourceSupportedMigrationsSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"podman_controller_host_min_free_disk_size": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "24",
+				ValidateFunc: validateInteger,
+			},
+			"podman_se_host_min_free_disk_size": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "12",
+				ValidateFunc: validateInteger,
+			},
 			"rollback_controller_disk_space": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -32099,6 +32256,45 @@ func ResourceTimeStampSchema() *schema.Resource {
 	}
 }
 
+func ResourceTlsClientInfoSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"cipher_suites": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeInt},
+			},
+			"point_formats": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeInt},
+			},
+			"supported_groups": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeInt},
+			},
+			"tls_extensions": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeInt},
+			},
+			"uses_grease": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateBool,
+			},
+			"version": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+		},
+	}
+}
+
 func ResourceTrueClientIPConfigSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -32577,6 +32773,11 @@ func ResourceUserActivitySchema() *schema.Resource {
 				Optional:     true,
 				Computed:     true,
 				ValidateFunc: validateBool,
+			},
+			"login_failure_timestamps": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
 			"name": {
 				Type:     schema.TypeString,
@@ -37581,6 +37782,12 @@ func ResourceWAFLimitsSchema() *schema.Resource {
 				Computed:     true,
 				ValidateFunc: validateInteger,
 			},
+			"num_allowed_request_content_type_charsets": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
 			"num_allowlist_policy_rules": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -37722,6 +37929,11 @@ func ResourceWafConfigSchema() *schema.Resource {
 				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
 			"allowed_methods": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
+			"allowed_request_content_type_charsets": {
 				Type:     schema.TypeList,
 				Optional: true,
 				Elem:     &schema.Schema{Type: schema.TypeString},
@@ -38012,6 +38224,12 @@ func ResourceWafLogSchema() *schema.Resource {
 				ValidateFunc: validateInteger,
 			},
 			"latency_response_header_phase": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"memory_allocated": {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Computed:     true,

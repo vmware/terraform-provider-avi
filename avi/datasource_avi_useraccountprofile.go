@@ -22,6 +22,10 @@ func dataSourceAviUserAccountProfile() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"login_failure_count_expiry_window": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"max_concurrent_sessions": {
 				Type:     schema.TypeString,
 				Computed: true,

@@ -326,6 +326,12 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Default:      "21600",
 			ValidateFunc: validateInteger,
 		},
+		"restrict_cloud_read_access": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
+		},
 		"safenet_hsm_version": {
 			Type:     schema.TypeString,
 			Optional: true,

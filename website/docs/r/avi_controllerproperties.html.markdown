@@ -79,6 +79,7 @@ The following arguments are supported:
 * `process_pki_profile_timeout_period` - (Optional) Period for process pki profile job. Field introduced in 18.1.1. Unit is min.
 * `query_host_fail` - (Optional) Unit is sec.
 * `resmgr_log_caching_period` - (Optional) Period for each cycle of log caching in resource manager. At the end of each cycle, the in memory cached log history will be cleared. Field introduced in 20.1.5. Unit is sec.
+* `restrict_cloud_read_access` - (Optional) Restrict read access to cloud. Field introduced in 22.1.1.
 * `safenet_hsm_version` - (Optional) Version of the safenet package installed on the controller. Field introduced in 16.5.2,17.2.3.
 * `se_create_timeout` - (Optional) Unit is sec.
 * `se_failover_attempt_interval` - (Optional) Interval between attempting failovers to an se. Unit is sec.

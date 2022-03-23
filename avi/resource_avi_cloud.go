@@ -142,6 +142,11 @@ func ResourceCloudSchema() map[string]*schema.Schema {
 			Default:      "false",
 			ValidateFunc: validateBool,
 		},
+		"markers": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceRoleFilterMatchLabelSchema(),
+		},
 		"mtu": {
 			Type:         schema.TypeString,
 			Optional:     true,

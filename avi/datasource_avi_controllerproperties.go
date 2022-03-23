@@ -218,6 +218,10 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"restrict_cloud_read_access": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"safenet_hsm_version": {
 				Type:     schema.TypeString,
 				Computed: true,

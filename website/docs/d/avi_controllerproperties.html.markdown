@@ -84,6 +84,7 @@ In addition to all arguments above, the following attributes are exported:
 * `process_pki_profile_timeout_period` - Period for process pki profile job. Field introduced in 18.1.1. Unit is min.
 * `query_host_fail` - Unit is sec.
 * `resmgr_log_caching_period` - Period for each cycle of log caching in resource manager. At the end of each cycle, the in memory cached log history will be cleared. Field introduced in 20.1.5. Unit is sec.
+* `restrict_cloud_read_access` - Restrict read access to cloud. Field introduced in 22.1.1.
 * `safenet_hsm_version` - Version of the safenet package installed on the controller. Field introduced in 16.5.2,17.2.3.
 * `se_create_timeout` - Unit is sec.
 * `se_failover_attempt_interval` - Interval between attempting failovers to an se. Unit is sec.
