@@ -22,7 +22,7 @@ resource "aws_instance" "avi-controller" {
   key_name                    = aws_key_pair.generated.key_name
   iam_instance_profile        = var.iam_profile
   vpc_security_group_ids = [
-    aws_security_group.remo_sg.id,
+    aws_security_group.avi_sg.id,
   ]
   tags = {
     Name            = "ctl-avi-tf-${count.index + 1}"

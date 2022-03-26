@@ -37,7 +37,7 @@ variable "department_name" {
 variable "myregion" {
   description = "Region"
 }
-variable "remo_sg_name" {
+variable "avi_sg_name" {
   description = "Name of the Sec Groups"
 }
 variable "profile" {
