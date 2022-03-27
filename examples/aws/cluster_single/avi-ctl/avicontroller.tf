@@ -25,7 +25,7 @@ resource "aws_instance" "avi-controller" {
     aws_security_group.avi_sg.id,
   ]
   tags = {
-    Name            = "ctl-avi-tf-${count.index + 1}"
+    Name            = "${var.tag_name}-${count.index}"
     dept            = var.department_name
     shutdown_policy = var.shutdown_rules
     owner           = var.owner

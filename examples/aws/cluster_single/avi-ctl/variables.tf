@@ -81,3 +81,6 @@ variable "trusted_cidr" {
 variable "welcome_banner" {
   default = "Ciao and Welcome to my new Avi Controller!"
 }
+variable "tag_name" {
+  default = "avi-ctl-tf"
+}
