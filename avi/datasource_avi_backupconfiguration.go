@@ -47,6 +47,10 @@ func dataSourceAviBackupConfiguration() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"remote_file_transfer_protocol": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"remote_hostname": {
 				Type:     schema.TypeString,
 				Computed: true,

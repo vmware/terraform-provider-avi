@@ -41,6 +41,7 @@ In addition to all arguments above, the following attributes are exported:
 * `maximum_backups_stored` - Rotate the backup files based on this count. Allowed values are 1-20.
 * `name` - Name of backup configuration.
 * `remote_directory` - Directory at remote destination with write permission for ssh user.
+* `remote_file_transfer_protocol` - Remote file transfer protocol type. Enum options - SCP, SFTP. Field introduced in 22.1.1. Allowed in basic(allowed values- scp,sftp) edition, enterprise edition.
 * `remote_hostname` - Remote destination.
 * `save_local` - Local backup.
 * `ssh_user_ref` - Access credentials for remote destination. It is a reference to an object of type cloudconnectoruser.

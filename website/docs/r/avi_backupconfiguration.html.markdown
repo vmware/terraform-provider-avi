@@ -36,6 +36,7 @@ The following arguments are supported:
 * `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1.
 * `maximum_backups_stored` - (Optional) Rotate the backup files based on this count. Allowed values are 1-20.
 * `remote_directory` - (Optional) Directory at remote destination with write permission for ssh user.
+* `remote_file_transfer_protocol` - (Optional) Remote file transfer protocol type. Enum options - SCP, SFTP. Field introduced in 22.1.1. Allowed in basic(allowed values- scp,sftp) edition, enterprise edition.
 * `remote_hostname` - (Optional) Remote destination.
 * `save_local` - (Optional) Local backup.
 * `ssh_user_ref` - (Optional) Access credentials for remote destination. It is a reference to an object of type cloudconnectoruser.

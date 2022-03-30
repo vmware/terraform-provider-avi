@@ -12792,6 +12792,11 @@ func ResourceGcpInfoSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"machine_type": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"network": {
 				Type:     schema.TypeString,
 				Required: true,
@@ -21907,8 +21912,7 @@ func ResourceOAuthProfileSchema() *schema.Resource {
 			},
 			"pool_ref": {
 				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
+				Required: true,
 			},
 			"token_endpoint": {
 				Type:     schema.TypeString,
