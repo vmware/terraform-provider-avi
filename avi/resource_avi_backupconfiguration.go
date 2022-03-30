@@ -65,6 +65,11 @@ func ResourceBackupConfigurationSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"remote_file_transfer_protocol": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Default:  "SCP",
+		},
 		"remote_hostname": {
 			Type:     schema.TypeString,
 			Optional: true,
