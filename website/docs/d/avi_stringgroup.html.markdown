@@ -32,13 +32,13 @@ data "avi_stringgroup" "foo_stringgroup" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1.
-* `description` - User defined description for the object.
-* `kv` - Configure key value in the string group.
-* `longest_match` - Enable the longest match, default is the shortest match. Field introduced in 18.2.8.
-* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in basic edition, essentials edition, enterprise edition.
-* `name` - Name of the string group.
-* `tenant_ref` - It is a reference to an object of type tenant.
-* `type` - Type of stringgroup. Enum options - SG_TYPE_STRING, SG_TYPE_KEYVAL.
-* `uuid` - Uuid of the string group.
+* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed in enterprise with any value edition, essentials with any value edition, basic with any value edition, enterprise with cloud services edition.
+* `description` - Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `kv` - Configure key value in the string group. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `longest_match` - Enable the longest match, default is the shortest match. Field introduced in 18.2.8. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in enterprise with any value edition, essentials with any value edition, basic with any value edition, enterprise with cloud services edition.
+* `name` - Name of the string group. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `tenant_ref` - It is a reference to an object of type tenant. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `type` - Type of stringgroup. Enum options - SG_TYPE_STRING, SG_TYPE_KEYVAL. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `uuid` - Uuid of the string group. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
 

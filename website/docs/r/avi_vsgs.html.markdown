@@ -27,14 +27,14 @@ resource "avi_vsgs" "foo" {
 
 The following arguments are supported:
 
-* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.3.
-* `geodb_uuid` - (Optional) Gslb geodb being associated using this object. Field introduced in 21.1.3.
-* `gs_uuid` - (Optional) Gslb service being associated using this object. Field introduced in 21.1.3.
-* `gslb_uuid` - (Optional) Gslb being associated using this object. Field introduced in 21.1.3.
-* `name` - (Optional) Name of the vs-gs association object. Field introduced in 21.1.3.
-* `tenant_ref` - (Optional) Tenant. It is a reference to an object of type tenant. Field introduced in 21.1.3.
-* `type` - (Optional) Type of the vs-gs association object. Enum options - VSGS_TYPE_GSLB, VSGS_TYPE_GS, VSGS_TYPE_GEO_DB. Field introduced in 21.1.3.
-* `vs_uuid` - (Optional) Virtual service being associated using this object. Field introduced in 21.1.3.
+* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.3. Allowed in enterprise with any value edition, essentials with any value edition, basic with any value edition, enterprise with cloud services edition.
+* `geodb_uuid` - (Optional) Gslb geodb being associated using this object. Field introduced in 21.1.3. Allowed in enterprise with any value edition, enterprise with cloud services edition.
+* `gs_uuid` - (Optional) Gslb service being associated using this object. Field introduced in 21.1.3. Allowed in enterprise with any value edition, enterprise with cloud services edition.
+* `gslb_uuid` - (Optional) Gslb being associated using this object. Field introduced in 21.1.3. Allowed in enterprise with any value edition, enterprise with cloud services edition.
+* `name` - (Optional) Name of the vs-gs association object. Field introduced in 21.1.3. Allowed in enterprise with any value edition, enterprise with cloud services edition.
+* `tenant_ref` - (Optional) Tenant. It is a reference to an object of type tenant. Field introduced in 21.1.3. Allowed in enterprise with any value edition, enterprise with cloud services edition.
+* `type` - (Optional) Type of the vs-gs association object. Enum options - VSGS_TYPE_GSLB, VSGS_TYPE_GS, VSGS_TYPE_GEO_DB. Field introduced in 21.1.3. Allowed in enterprise with any value edition, enterprise with cloud services edition.
+* `vs_uuid` - (Optional) Virtual service being associated using this object. Field introduced in 21.1.3. Allowed in enterprise with any value edition, enterprise with cloud services edition.
 
 
 ### Timeouts
@@ -49,5 +49,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-* `uuid` -  Uuid of the vs-gs association object. Field introduced in 21.1.3.
+* `uuid` -  Uuid of the vs-gs association object. Field introduced in 21.1.3. Allowed in enterprise with any value edition, enterprise with cloud services edition.
 

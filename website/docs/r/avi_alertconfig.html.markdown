@@ -27,24 +27,24 @@ resource "avi_alertconfig" "foo" {
 
 The following arguments are supported:
 
-* `alert_rule` - (Required) List of filters matching on events or client logs used for triggering alerts.
-* `category` - (Required) Determines whether an alert is raised immediately when event occurs (realtime) or after specified number of events occurs within rolling time window. Enum options - REALTIME, ROLLINGWINDOW, WATERMARK.
-* `name` - (Required) Name of the alert configuration.
-* `source` - (Required) Signifies system events or the type of client logsused in this alert configuration. Enum options - CONN_LOGS, APP_LOGS, EVENT_LOGS, METRICS.
-* `action_group_ref` - (Optional) The alert config will trigger the selected alert action, which can send notifications and execute a controlscript. It is a reference to an object of type actiongroupconfig.
-* `autoscale_alert` - (Optional) This alert config applies to auto scale alerts.
-* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1.
-* `description` - (Optional) A custom description field.
-* `enabled` - (Optional) Enable or disable this alert config from generating new alerts.
-* `expiry_time` - (Optional) An alert is expired and deleted after the expiry time has elapsed. The original event triggering the alert remains in the event's log. Allowed values are 1-31536000. Unit is sec.
-* `obj_uuid` - (Optional) Uuid of the resource for which alert was raised.
-* `object_type` - (Optional) The object type to which the alert config is associated with. Valid object types are - virtual service, pool, service engine. Enum options - VIRTUALSERVICE, POOL, HEALTHMONITOR, NETWORKPROFILE, APPLICATIONPROFILE, HTTPPOLICYSET, DNSPOLICY, SECURITYPOLICY, IPADDRGROUP, STRINGGROUP, SSLPROFILE, SSLKEYANDCERTIFICATE, NETWORKSECURITYPOLICY, APPLICATIONPERSISTENCEPROFILE, ANALYTICSPROFILE, VSDATASCRIPTSET, TENANT, PKIPROFILE, AUTHPROFILE, CLOUD...
-* `recommendation` - (Optional) Placeholder for description of property recommendation of obj type alertconfig field type string  type str.
-* `rolling_window` - (Optional) Only if the number of events is reached or exceeded within the time window will an alert be generated. Allowed values are 1-31536000. Unit is sec.
-* `summary` - (Optional) Summary of reason why alert is generated.
-* `tenant_ref` - (Optional) It is a reference to an object of type tenant.
-* `threshold` - (Optional) An alert is created only when the number of events meets or exceeds this number within the chosen time frame. Allowed values are 1-65536.
-* `throttle` - (Optional) Alerts are suppressed (throttled) for this duration of time since the last alert was raised for this alert config. Allowed values are 0-31536000. Unit is sec.
+* `alert_rule` - (Required) List of filters matching on events or client logs used for triggering alerts. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `category` - (Required) Determines whether an alert is raised immediately when event occurs (realtime) or after specified number of events occurs within rolling time window. Enum options - REALTIME, ROLLINGWINDOW, WATERMARK. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `name` - (Required) Name of the alert configuration. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `source` - (Required) Signifies system events or the type of client logsused in this alert configuration. Enum options - CONN_LOGS, APP_LOGS, EVENT_LOGS, METRICS. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `action_group_ref` - (Optional) The alert config will trigger the selected alert action, which can send notifications and execute a controlscript. It is a reference to an object of type actiongroupconfig. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `autoscale_alert` - (Optional) This alert config applies to auto scale alerts. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed in enterprise with any value edition, essentials with any value edition, basic with any value edition, enterprise with cloud services edition.
+* `description` - (Optional) A custom description field. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `enabled` - (Optional) Enable or disable this alert config from generating new alerts. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `expiry_time` - (Optional) An alert is expired and deleted after the expiry time has elapsed. The original event triggering the alert remains in the event's log. Allowed values are 1-31536000. Unit is sec. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `obj_uuid` - (Optional) Uuid of the resource for which alert was raised. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `object_type` - (Optional) The object type to which the alert config is associated with. Valid object types are - virtual service, pool, service engine. Enum options - VIRTUALSERVICE, POOL, HEALTHMONITOR, NETWORKPROFILE, APPLICATIONPROFILE, HTTPPOLICYSET, DNSPOLICY, SECURITYPOLICY, IPADDRGROUP, STRINGGROUP, SSLPROFILE, SSLKEYANDCERTIFICATE, NETWORKSECURITYPOLICY, APPLICATIONPERSISTENCEPROFILE, ANALYTICSPROFILE, VSDATASCRIPTSET, TENANT, PKIPROFILE, AUTHPROFILE, CLOUD... Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `recommendation` - (Optional) Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `rolling_window` - (Optional) Only if the number of events is reached or exceeded within the time window will an alert be generated. Allowed values are 1-31536000. Unit is sec. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `summary` - (Optional) Summary of reason why alert is generated. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `threshold` - (Optional) An alert is created only when the number of events meets or exceeds this number within the chosen time frame. Allowed values are 1-65536. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `throttle` - (Optional) Alerts are suppressed (throttled) for this duration of time since the last alert was raised for this alert config. Allowed values are 0-31536000. Unit is sec. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
 
 
 ### Timeouts
@@ -59,5 +59,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-* `uuid` -  Unique object identifier of the object.
+* `uuid` -  Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
 

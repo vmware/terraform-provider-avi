@@ -27,12 +27,12 @@ resource "avi_role" "foo" {
 
 The following arguments are supported:
 
-* `name` - (Required) Name of the object.
-* `allow_unlabelled_access` - (Optional) Allow access to unlabelled objects. Field introduced in 20.1.5.
-* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1.
-* `filters` - (Optional) Filters for granular object access control based on object labels. Multiple filters are merged using the and operator. If empty, all objects according to the privileges will be accessible to the user. Field introduced in 20.1.3. Maximum of 4 items allowed.
-* `privileges` - (Optional) List of list.
-* `tenant_ref` - (Optional) It is a reference to an object of type tenant.
+* `name` - (Required) Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `allow_unlabelled_access` - (Optional) Allow access to unlabelled objects. Field introduced in 20.1.5. Allowed in enterprise with any value edition, enterprise with cloud services edition.
+* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed in enterprise with any value edition, essentials with any value edition, basic with any value edition, enterprise with cloud services edition.
+* `filters` - (Optional) Filters for granular object access control based on object labels. Multiple filters are merged using the and operator. If empty, all objects according to the privileges will be accessible to the user. Field introduced in 20.1.3. Maximum of 4 items allowed. Allowed in enterprise with any value edition, enterprise with cloud services edition.
+* `privileges` - (Optional) Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
 
 
 ### Timeouts
@@ -47,5 +47,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-* `uuid` -  Unique object identifier of the object.
+* `uuid` -  Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
 

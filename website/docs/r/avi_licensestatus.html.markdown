@@ -27,9 +27,9 @@ resource "avi_licensestatus" "foo" {
 
 The following arguments are supported:
 
-* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.3.
-* `saas_status` - (Optional) Saas licensing status. Field introduced in 21.1.3.
-* `service_update` - (Optional) Pulse license service update. Field introduced in 21.1.4.
+* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.3. Allowed in enterprise with any value edition, essentials with any value edition, basic with any value edition, enterprise with cloud services edition.
+* `saas_status` - (Optional) Saas licensing status. Field introduced in 21.1.3. Allowed in enterprise with any value edition, enterprise with cloud services edition.
+* `service_update` - (Optional) Pulse license service update. Field introduced in 21.1.4. Allowed in enterprise with any value edition, enterprise with cloud services edition.
 
 
 ### Timeouts
@@ -44,5 +44,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-* `uuid` -  Uuid. Field introduced in 21.1.3.
+* `uuid` -  Uuid. Field introduced in 21.1.3. Allowed in enterprise with any value edition, enterprise with cloud services edition.
 

@@ -27,10 +27,10 @@ resource "avi_systemlimits" "foo" {
 
 The following arguments are supported:
 
-* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1.
-* `controller_limits` - (Optional) System limits for the entire controller cluster. Field introduced in 20.1.1.
-* `controller_sizes` - (Optional) Possible controller sizes. Field introduced in 20.1.1.
-* `serviceengine_limits` - (Optional) System limits that apply to a serviceengine. Field introduced in 20.1.1.
+* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed in enterprise with any value edition, essentials with any value edition, basic with any value edition, enterprise with cloud services edition.
+* `controller_limits` - (Optional) System limits for the entire controller cluster. Field introduced in 20.1.1. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `controller_sizes` - (Optional) Possible controller sizes. Field introduced in 20.1.1. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `serviceengine_limits` - (Optional) System limits that apply to a serviceengine. Field introduced in 20.1.1. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
 
 
 ### Timeouts
@@ -45,5 +45,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-* `uuid` -  Uuid for the system limits object. Field introduced in 20.1.1.
+* `uuid` -  Uuid for the system limits object. Field introduced in 20.1.1. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
 

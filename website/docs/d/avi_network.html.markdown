@@ -34,18 +34,18 @@ data "avi_network" "foo_network" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `attrs` - Key/value network attributes. Field introduced in 20.1.1.
-* `cloud_ref` - It is a reference to an object of type cloud.
-* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1.
-* `configured_subnets` - List of list.
-* `dhcp_enabled` - Select the ip address management scheme for this network.
-* `exclude_discovered_subnets` - When selected, excludes all discovered subnets in this network from consideration for virtual service placement.
-* `ip6_autocfg_enabled` - Enable ipv6 auto configuration. Field introduced in 18.1.1.
-* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in basic edition, essentials edition, enterprise edition.
-* `name` - Name of the object.
-* `synced_from_se` - Boolean flag to set synced_from_se.
-* `tenant_ref` - It is a reference to an object of type tenant.
-* `uuid` - Unique object identifier of the object.
-* `vcenter_dvs` - Boolean flag to set vcenter_dvs.
-* `vrf_context_ref` - It is a reference to an object of type vrfcontext.
+* `attrs` - Key/value network attributes. Field introduced in 20.1.1. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `cloud_ref` - It is a reference to an object of type cloud. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed in enterprise with any value edition, essentials with any value edition, basic with any value edition, enterprise with cloud services edition.
+* `configured_subnets` - Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `dhcp_enabled` - Select the ip address management scheme for this network. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `exclude_discovered_subnets` - When selected, excludes all discovered subnets in this network from consideration for virtual service placement. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `ip6_autocfg_enabled` - Enable ipv6 auto configuration. Field introduced in 18.1.1. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in enterprise with any value edition, essentials with any value edition, basic with any value edition, enterprise with cloud services edition.
+* `name` - Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `synced_from_se` - Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `tenant_ref` - It is a reference to an object of type tenant. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `uuid` - Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `vcenter_dvs` - Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `vrf_context_ref` - It is a reference to an object of type vrfcontext. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
 

@@ -27,13 +27,13 @@ resource "avi_networkprofile" "foo" {
 
 The following arguments are supported:
 
-* `name` - (Required) The name of the network profile.
-* `profile` - (Required) Dict settings for networkprofile.
-* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1.
-* `connection_mirror` - (Optional) When enabled, avi mirrors all tcp fastpath connections to standby. Applicable only in legacy ha mode. Field introduced in 18.1.3,18.2.1. Allowed in essentials(allowed values- false) edition, enterprise edition.
-* `description` - (Optional) User defined description for the object.
-* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in basic edition, essentials edition, enterprise edition.
-* `tenant_ref` - (Optional) It is a reference to an object of type tenant.
+* `name` - (Required) The name of the network profile. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `profile` - (Required) Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed in enterprise with any value edition, essentials with any value edition, basic with any value edition, enterprise with cloud services edition.
+* `connection_mirror` - (Optional) When enabled, avi mirrors all tcp fastpath connections to standby. Applicable only in legacy ha mode. Field introduced in 18.1.3,18.2.1. Allowed in enterprise with any value edition, essentials(allowed values- false) edition, basic edition, enterprise with cloud services edition.
+* `description` - (Optional) Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in enterprise with any value edition, essentials with any value edition, basic with any value edition, enterprise with cloud services edition.
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
 
 
 ### Timeouts
@@ -48,5 +48,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-* `uuid` -  Uuid of the network profile.
+* `uuid` -  Uuid of the network profile. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
 

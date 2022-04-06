@@ -32,9 +32,9 @@ data "avi_alertscriptconfig" "foo_alertscriptconfig" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `action_script` - User defined alert action script. Please refer to kb.avinetworks.com for more information.
-* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1.
-* `name` - A user-friendly name of the script.
-* `tenant_ref` - It is a reference to an object of type tenant.
-* `uuid` - Unique object identifier of the object.
+* `action_script` - User defined alert action script. Please refer to kb.avinetworks.com for more information. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed in enterprise with any value edition, essentials with any value edition, basic with any value edition, enterprise with cloud services edition.
+* `name` - A user-friendly name of the script. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `tenant_ref` - It is a reference to an object of type tenant. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `uuid` - Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
 

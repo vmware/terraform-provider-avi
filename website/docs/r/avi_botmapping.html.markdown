@@ -27,9 +27,9 @@ resource "avi_botmapping" "foo" {
 
 The following arguments are supported:
 
-* `name` - (Required) The name of this mapping. Field introduced in 21.1.1.
-* `mapping_rules` - (Optional) Rules for bot classification. Field introduced in 21.1.1.
-* `tenant_ref` - (Optional) The unique identifier of the tenant to which this mapping belongs. It is a reference to an object of type tenant. Field introduced in 21.1.1.
+* `name` - (Required) The name of this mapping. Field introduced in 21.1.1. Allowed in enterprise with any value edition, enterprise with cloud services edition.
+* `mapping_rules` - (Optional) Rules for bot classification. Field introduced in 21.1.1. Allowed in enterprise with any value edition, enterprise with cloud services edition.
+* `tenant_ref` - (Optional) The unique identifier of the tenant to which this mapping belongs. It is a reference to an object of type tenant. Field introduced in 21.1.1. Allowed in enterprise with any value edition, enterprise with cloud services edition.
 
 
 ### Timeouts
@@ -44,5 +44,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-* `uuid` -  A unique identifier for this mapping. Field introduced in 21.1.1.
+* `uuid` -  A unique identifier for this mapping. Field introduced in 21.1.1. Allowed in enterprise with any value edition, enterprise with cloud services edition.
 

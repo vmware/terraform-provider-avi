@@ -32,10 +32,10 @@ data "avi_albservicesfileupload" "foo_albservicesfileupload" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `case_id` - Salesforce alphanumeric caseid to attach uploaded file to. Field introduced in 18.2.6.
-* `file_path` - Stores output file path, for upload to aws s3. Field introduced in 18.2.6.
-* `name` - Field introduced in 18.2.6.
-* `s3_directory` - Custom aws s3 directory path to upload file. Field introduced in 18.2.6.
-* `tenant_ref` - It is a reference to an object of type tenant. Field introduced in 18.2.6.
-* `uuid` - Unique object identifier of the object.
+* `case_id` - Salesforce alphanumeric caseid to attach uploaded file to. Field introduced in 18.2.6. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `file_path` - Stores output file path, for upload to aws s3. Field introduced in 18.2.6. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `name` - Field introduced in 18.2.6. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `s3_directory` - Custom aws s3 directory path to upload file. Field introduced in 18.2.6. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `tenant_ref` - It is a reference to an object of type tenant. Field introduced in 18.2.6. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `uuid` - Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
 

@@ -27,13 +27,13 @@ resource "avi_ssopolicy" "foo" {
 
 The following arguments are supported:
 
-* `name` - (Required) Name of the sso policy. Field introduced in 18.2.3.
-* `authentication_policy` - (Optional) Authentication policy settings. Field introduced in 18.2.1.
-* `authorization_policy` - (Optional) Authorization policy settings. Field introduced in 18.2.5.
-* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1.
-* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in basic edition, essentials edition, enterprise edition.
-* `tenant_ref` - (Optional) Uuid of the tenant. It is a reference to an object of type tenant. Field introduced in 18.2.3.
-* `type` - (Optional) Sso policy type. Enum options - SSO_TYPE_SAML, SSO_TYPE_PINGACCESS, SSO_TYPE_JWT, SSO_TYPE_LDAP, SSO_TYPE_OAUTH. Field introduced in 18.2.5.
+* `name` - (Required) Name of the sso policy. Field introduced in 18.2.3. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `authentication_policy` - (Optional) Authentication policy settings. Field introduced in 18.2.1. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `authorization_policy` - (Optional) Authorization policy settings. Field introduced in 18.2.5. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed in enterprise with any value edition, essentials with any value edition, basic with any value edition, enterprise with cloud services edition.
+* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in enterprise with any value edition, essentials with any value edition, basic with any value edition, enterprise with cloud services edition.
+* `tenant_ref` - (Optional) Uuid of the tenant. It is a reference to an object of type tenant. Field introduced in 18.2.3. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `type` - (Optional) Sso policy type. Enum options - SSO_TYPE_SAML, SSO_TYPE_PINGACCESS, SSO_TYPE_JWT, SSO_TYPE_LDAP, SSO_TYPE_OAUTH. Field introduced in 18.2.5. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
 
 
 ### Timeouts
@@ -48,5 +48,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-* `uuid` -  Uuid of the sso policy. Field introduced in 18.2.3.
+* `uuid` -  Uuid of the sso policy. Field introduced in 18.2.3. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
 

@@ -27,18 +27,18 @@ resource "avi_scheduler" "foo" {
 
 The following arguments are supported:
 
-* `name` - (Required) Name of scheduler.
-* `backup_config_ref` - (Optional) Backup configuration to be executed by this scheduler. It is a reference to an object of type backupconfiguration.
-* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1.
-* `enabled` - (Optional) Boolean flag to set enabled.
-* `end_date_time` - (Optional) Scheduler end date and time.
-* `frequency` - (Optional) Frequency at which custom scheduler will run. Allowed values are 0-60.
-* `frequency_unit` - (Optional) Unit at which custom scheduler will run. Enum options - SCHEDULER_FREQUENCY_UNIT_MIN, SCHEDULER_FREQUENCY_UNIT_HOUR, SCHEDULER_FREQUENCY_UNIT_DAY, SCHEDULER_FREQUENCY_UNIT_WEEK, SCHEDULER_FREQUENCY_UNIT_MONTH.
-* `run_mode` - (Optional) Scheduler run mode. Enum options - RUN_MODE_PERIODIC, RUN_MODE_AT, RUN_MODE_NOW.
-* `run_script_ref` - (Optional) Control script to be executed by this scheduler. It is a reference to an object of type alertscriptconfig.
-* `scheduler_action` - (Optional) Define scheduler action. Enum options - SCHEDULER_ACTION_RUN_A_SCRIPT, SCHEDULER_ACTION_BACKUP.
-* `start_date_time` - (Optional) Scheduler start date and time.
-* `tenant_ref` - (Optional) It is a reference to an object of type tenant.
+* `name` - (Required) Name of scheduler. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `backup_config_ref` - (Optional) Backup configuration to be executed by this scheduler. It is a reference to an object of type backupconfiguration. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed in enterprise with any value edition, essentials with any value edition, basic with any value edition, enterprise with cloud services edition.
+* `enabled` - (Optional) Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `end_date_time` - (Optional) Scheduler end date and time. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `frequency` - (Optional) Frequency at which custom scheduler will run. Allowed values are 0-60. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `frequency_unit` - (Optional) Unit at which custom scheduler will run. Enum options - SCHEDULER_FREQUENCY_UNIT_MIN, SCHEDULER_FREQUENCY_UNIT_HOUR, SCHEDULER_FREQUENCY_UNIT_DAY, SCHEDULER_FREQUENCY_UNIT_WEEK, SCHEDULER_FREQUENCY_UNIT_MONTH. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `run_mode` - (Optional) Scheduler run mode. Enum options - RUN_MODE_PERIODIC, RUN_MODE_AT, RUN_MODE_NOW. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `run_script_ref` - (Optional) Control script to be executed by this scheduler. It is a reference to an object of type alertscriptconfig. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `scheduler_action` - (Optional) Define scheduler action. Enum options - SCHEDULER_ACTION_RUN_A_SCRIPT, SCHEDULER_ACTION_BACKUP. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `start_date_time` - (Optional) Scheduler start date and time. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
 
 
 ### Timeouts
@@ -53,5 +53,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-* `uuid` -  Unique object identifier of the object.
+* `uuid` -  Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
 

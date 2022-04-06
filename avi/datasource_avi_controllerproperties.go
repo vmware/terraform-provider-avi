@@ -291,6 +291,14 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"update_dns_entry_retry_limit": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"update_dns_entry_timeout": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"upgrade_dns_ttl": {
 				Type:     schema.TypeString,
 				Computed: true,

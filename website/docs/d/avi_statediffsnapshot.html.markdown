@@ -32,21 +32,21 @@ data "avi_statediffsnapshot" "foo_statediffsnapshot" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `gslb_name` - Name of gslb object. Field introduced in 21.1.3.
-* `gslb_uuid` - Reference to base gslb object. Field introduced in 21.1.3.
-* `name` - Name of statediff operation. Field introduced in 21.1.3.
-* `pool_name` - Name of pool object. Field introduced in 21.1.3.
-* `pool_uuid` - Reference to base pool object. Field introduced in 21.1.3.
-* `post_snapshot` - Post-upgrade snapshot for vs. Field introduced in 21.1.3.
-* `pre_snapshot` - Pre-upgrade snapshot for vs. Field introduced in 21.1.3.
-* `se_group_name` - Name of seg object. Field introduced in 21.1.3.
-* `se_group_uuid` - Reference to base seg object. Field introduced in 21.1.3.
-* `se_name` - Name of seg object. Field introduced in 21.1.3.
-* `se_uuid` - Reference to base se object. Field introduced in 21.1.3.
-* `snapshot_type` - Type of snapshot eg. Vs_snapshot, se_snapshot etc. Enum options - FB_VS_SNAPSHOT, FB_SE_SNAPSHOT, FB_GSLB_SNAPSHOT, FB_POOL_SNAPSHOT. Field introduced in 21.1.3.
-* `statediff_operation_ref` - Statediff operation uuid for identifying the operation. It is a reference to an object of type statediffoperation. Field introduced in 21.1.3.
-* `tenant_ref` - Tenant that this object belongs to. It is a reference to an object of type tenant. Field introduced in 21.1.3.
-* `uuid` - Unique identifier for statediff entry. Field introduced in 21.1.3.
-* `vs_name` - Name of vs object. Field introduced in 21.1.3.
-* `vs_uuid` - Reference to base vs object. Field introduced in 21.1.3.
+* `gslb_name` - Name of gslb object. Field introduced in 21.1.3. Allowed in enterprise with any value edition, enterprise with cloud services edition.
+* `gslb_uuid` - Reference to base gslb object. Field introduced in 21.1.3. Allowed in enterprise with any value edition, enterprise with cloud services edition.
+* `name` - Name of statediff operation. Field introduced in 21.1.3. Allowed in enterprise with any value edition, enterprise with cloud services edition.
+* `pool_name` - Name of pool object. Field introduced in 21.1.3. Allowed in enterprise with any value edition, enterprise with cloud services edition.
+* `pool_uuid` - Reference to base pool object. Field introduced in 21.1.3. Allowed in enterprise with any value edition, enterprise with cloud services edition.
+* `post_snapshot` - Post-upgrade snapshot for vs. Field introduced in 21.1.3. Allowed in enterprise with any value edition, enterprise with cloud services edition.
+* `pre_snapshot` - Pre-upgrade snapshot for vs. Field introduced in 21.1.3. Allowed in enterprise with any value edition, enterprise with cloud services edition.
+* `se_group_name` - Name of seg object. Field introduced in 21.1.3. Allowed in enterprise with any value edition, enterprise with cloud services edition.
+* `se_group_uuid` - Reference to base seg object. Field introduced in 21.1.3. Allowed in enterprise with any value edition, enterprise with cloud services edition.
+* `se_name` - Name of seg object. Field introduced in 21.1.3. Allowed in enterprise with any value edition, enterprise with cloud services edition.
+* `se_uuid` - Reference to base se object. Field introduced in 21.1.3. Allowed in enterprise with any value edition, enterprise with cloud services edition.
+* `snapshot_type` - Type of snapshot eg. Vs_snapshot, se_snapshot etc. Enum options - FB_VS_SNAPSHOT, FB_SE_SNAPSHOT, FB_GSLB_SNAPSHOT, FB_POOL_SNAPSHOT. Field introduced in 21.1.3. Allowed in enterprise with any value edition, enterprise with cloud services edition.
+* `statediff_operation_ref` - Statediff operation uuid for identifying the operation. It is a reference to an object of type statediffoperation. Field introduced in 21.1.3. Allowed in enterprise with any value edition, enterprise with cloud services edition.
+* `tenant_ref` - Tenant that this object belongs to. It is a reference to an object of type tenant. Field introduced in 21.1.3. Allowed in enterprise with any value edition, enterprise with cloud services edition.
+* `uuid` - Unique identifier for statediff entry. Field introduced in 21.1.3. Allowed in enterprise with any value edition, enterprise with cloud services edition.
+* `vs_name` - Name of vs object. Field introduced in 21.1.3. Allowed in enterprise with any value edition, enterprise with cloud services edition.
+* `vs_uuid` - Reference to base vs object. Field introduced in 21.1.3. Allowed in enterprise with any value edition, enterprise with cloud services edition.
 

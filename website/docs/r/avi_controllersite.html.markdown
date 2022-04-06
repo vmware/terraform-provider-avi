@@ -27,11 +27,11 @@ resource "avi_controllersite" "foo" {
 
 The following arguments are supported:
 
-* `address` - (Required) Ip address or a dns resolvable, fully qualified domain name of the site controller cluster. Field introduced in 18.2.5.
-* `name` - (Required) Name for the site controller cluster. Field introduced in 18.2.5.
-* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1.
-* `port` - (Optional) The controller site cluster's rest api port number. Allowed values are 1-65535. Field introduced in 18.2.5.
-* `tenant_ref` - (Optional) Reference for the tenant. It is a reference to an object of type tenant. Field introduced in 18.2.5.
+* `address` - (Required) Ip address or a dns resolvable, fully qualified domain name of the site controller cluster. Field introduced in 18.2.5. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `name` - (Required) Name for the site controller cluster. Field introduced in 18.2.5. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed in enterprise with any value edition, essentials with any value edition, basic with any value edition, enterprise with cloud services edition.
+* `port` - (Optional) The controller site cluster's rest api port number. Allowed values are 1-65535. Field introduced in 18.2.5. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `tenant_ref` - (Optional) Reference for the tenant. It is a reference to an object of type tenant. Field introduced in 18.2.5. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
 
 
 ### Timeouts
@@ -46,5 +46,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-* `uuid` -  Reference for the site controller cluster. Field introduced in 18.2.5.
+* `uuid` -  Reference for the site controller cluster. Field introduced in 18.2.5. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
 

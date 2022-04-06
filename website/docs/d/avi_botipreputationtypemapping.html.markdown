@@ -32,8 +32,8 @@ data "avi_botipreputationtypemapping" "foo_botipreputationtypemapping" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `ip_reputation_mappings` - Map every ipreputationtype to a bot type (can be unknown). Field introduced in 21.1.1.
-* `name` - The name of this mapping. Field introduced in 21.1.1.
-* `tenant_ref` - The unique identifier of the tenant to which this mapping belongs. It is a reference to an object of type tenant. Field introduced in 21.1.1.
-* `uuid` - A unique identifier of this mapping. Field introduced in 21.1.1.
+* `ip_reputation_mappings` - Map every ipreputationtype to a bot type (can be unknown). Field introduced in 21.1.1. Allowed in enterprise with any value edition, enterprise with cloud services edition.
+* `name` - The name of this mapping. Field introduced in 21.1.1. Allowed in enterprise with any value edition, enterprise with cloud services edition.
+* `tenant_ref` - The unique identifier of the tenant to which this mapping belongs. It is a reference to an object of type tenant. Field introduced in 21.1.1. Allowed in enterprise with any value edition, enterprise with cloud services edition.
+* `uuid` - A unique identifier of this mapping. Field introduced in 21.1.1. Allowed in enterprise with any value edition, enterprise with cloud services edition.
 

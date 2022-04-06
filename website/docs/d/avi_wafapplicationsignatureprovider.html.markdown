@@ -32,9 +32,9 @@ data "avi_wafapplicationsignatureprovider" "foo_wafapplicationsignatureprovider"
 
 In addition to all arguments above, the following attributes are exported:
 
-* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1.
-* `name` - Name of application specific ruleset provider. Field introduced in 20.1.1.
-* `service_status` - If this object is managed by the application signatures update  service, this field contain the status of this syncronization. Field introduced in 20.1.3.
-* `tenant_ref` - It is a reference to an object of type tenant. Field introduced in 20.1.1.
-* `uuid` - Field introduced in 20.1.1.
+* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed in enterprise with any value edition, essentials with any value edition, basic with any value edition, enterprise with cloud services edition.
+* `name` - Name of application specific ruleset provider. Field introduced in 20.1.1. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `service_status` - If this object is managed by the application signatures update  service, this field contain the status of this syncronization. Field introduced in 20.1.3. Allowed in enterprise with any value edition, enterprise with cloud services edition.
+* `tenant_ref` - It is a reference to an object of type tenant. Field introduced in 20.1.1. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `uuid` - Field introduced in 20.1.1. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
 

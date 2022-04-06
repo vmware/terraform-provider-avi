@@ -32,16 +32,16 @@ data "avi_networksecuritypolicy" "foo_networksecuritypolicy" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `cloud_config_cksum` - Checksum of cloud configuration for network sec policy. Internally set by cloud connector.
-* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1.
-* `created_by` - Creator name.
-* `description` - User defined description for the object.
-* `geo_db_ref` - Geo database. It is a reference to an object of type geodb. Field introduced in 21.1.1.
-* `internal` - Network security policy is created and modified by internal modules only. Should not be modified by users. Field introduced in 21.1.1.
-* `ip_reputation_db_ref` - Ip reputation database. It is a reference to an object of type ipreputationdb. Field introduced in 20.1.1. Allowed in basic edition, essentials edition, enterprise edition.
-* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in basic edition, essentials edition, enterprise edition.
-* `name` - Name of the object.
-* `rules` - List of list.
-* `tenant_ref` - It is a reference to an object of type tenant.
-* `uuid` - Unique object identifier of the object.
+* `cloud_config_cksum` - Checksum of cloud configuration for network sec policy. Internally set by cloud connector. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed in enterprise with any value edition, essentials with any value edition, basic with any value edition, enterprise with cloud services edition.
+* `created_by` - Creator name. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `description` - Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `geo_db_ref` - Geo database. It is a reference to an object of type geodb. Field introduced in 21.1.1. Allowed in enterprise with any value edition, enterprise with cloud services edition.
+* `internal` - Network security policy is created and modified by internal modules only. Should not be modified by users. Field introduced in 21.1.1. Allowed in enterprise with any value edition, enterprise with cloud services edition.
+* `ip_reputation_db_ref` - Ip reputation database. It is a reference to an object of type ipreputationdb. Field introduced in 20.1.1. Allowed in enterprise with any value edition, enterprise with cloud services edition.
+* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in enterprise with any value edition, essentials with any value edition, basic with any value edition, enterprise with cloud services edition.
+* `name` - Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `rules` - Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `tenant_ref` - It is a reference to an object of type tenant. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `uuid` - Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
 

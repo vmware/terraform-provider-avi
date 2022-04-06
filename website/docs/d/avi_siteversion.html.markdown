@@ -32,16 +32,16 @@ data "avi_siteversion" "foo_siteversion" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `datetime` - This field represents the creation time of the federateddiff. Field introduced in 20.1.1.
-* `name` - Name of the site. Field introduced in 20.1.1.
-* `prev_target_version` - Previous targer version for a site. Field introduced in 20.1.1.
-* `replication_state` - Replication state for a site. Enum options - REPLICATION_STATE_FASTFORWARD, REPLICATION_STATE_FORCESYNC, REPLICATION_STATE_STREAMING, REPLICATION_STATE_SUSPENDED, REPLICATION_STATE_INIT, REPLICATION_STATE_WAIT, REPLICATION_STATE_NOT_APPLICABLE. Field introduced in 20.1.1.
-* `site_id` - Cluster uuid of the site. Field introduced in 20.1.1.
-* `target_timeline` - Target timeline of the site. Field introduced in 20.1.1.
-* `target_version` - Target version of the site. Field introduced in 20.1.1.
-* `tenant_ref` - Tenant that this object belongs to. It is a reference to an object of type tenant. Field introduced in 20.1.1.
-* `timeline` - Timeline of the site. Field introduced in 20.1.1.
-* `uuid` - Uuid of the siteversion object. Field introduced in 20.1.1.
-* `version` - Version of the site. Field introduced in 20.1.1.
-* `version_type` - Type of message for which version is maintained. Enum options - CONFIG_VERSION, HEALTH_STATUS_VERSION. Field introduced in 20.1.1.
+* `datetime` - This field represents the creation time of the federateddiff. Field introduced in 20.1.1. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `name` - Name of the site. Field introduced in 20.1.1. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `prev_target_version` - Previous targer version for a site. Field introduced in 20.1.1. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `replication_state` - Replication state for a site. Enum options - REPLICATION_STATE_FASTFORWARD, REPLICATION_STATE_FORCESYNC, REPLICATION_STATE_STREAMING, REPLICATION_STATE_SUSPENDED, REPLICATION_STATE_INIT, REPLICATION_STATE_WAIT, REPLICATION_STATE_NOT_APPLICABLE. Field introduced in 20.1.1. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `site_id` - Cluster uuid of the site. Field introduced in 20.1.1. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `target_timeline` - Target timeline of the site. Field introduced in 20.1.1. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `target_version` - Target version of the site. Field introduced in 20.1.1. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `tenant_ref` - Tenant that this object belongs to. It is a reference to an object of type tenant. Field introduced in 20.1.1. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `timeline` - Timeline of the site. Field introduced in 20.1.1. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `uuid` - Uuid of the siteversion object. Field introduced in 20.1.1. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `version` - Version of the site. Field introduced in 20.1.1. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `version_type` - Type of message for which version is maintained. Enum options - CONFIG_VERSION, HEALTH_STATUS_VERSION. Field introduced in 20.1.1. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
 
