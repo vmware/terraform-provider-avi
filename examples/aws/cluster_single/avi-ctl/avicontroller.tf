@@ -15,8 +15,8 @@ data "aws_ami" "latest-avi_controller" {
 }
 
 data "template_file" "userdata" {
-  template                  = file("files/userdata.json")
-  vars                      = {
+  template = file("files/userdata.json")
+  vars = {
     avi_controller_password = var.admin_password
     dns                     = var.dns_ip[0]
     dns1                    = var.dns_ip[1]

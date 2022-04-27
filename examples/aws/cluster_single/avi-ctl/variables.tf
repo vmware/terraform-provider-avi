@@ -58,11 +58,11 @@ variable "api_version" {
 }
 variable "dns_ip" {
   type    = list(string)
-  default = ["8.8.8.8","8.8.4.4"]
+  default = ["8.8.8.8", "8.8.4.4"]
 }
 variable "ntp_servers" {
   type    = list(string)
-  default = ["0.us.pool.ntp.org","1.us.pool.ntp.org","2.us.pool.ntp.org","3.us.pool.ntp.org"]
+  default = ["0.us.pool.ntp.org", "1.us.pool.ntp.org", "2.us.pool.ntp.org", "3.us.pool.ntp.org"]
 }
 
 variable "search_default_domain" {
