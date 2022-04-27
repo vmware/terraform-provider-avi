@@ -52,7 +52,9 @@ variable "controller_count" {
   default = 1
 }
 variable "aws_access_key" {}
+
 variable "aws_secret_key" {}
+
 variable "api_version" {
   default = "21.1.4"
 }

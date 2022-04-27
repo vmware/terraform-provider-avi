@@ -48,3 +48,17 @@ resource "aws_instance" "avi-controller" {
   }
 }
 
+
+resource "null_resource" "wait_for_controller" {
+  count = length(aws_instance.avi-controller)
+  provisioner "local-exec" {
+    command = "./wait-for-controller.sh"
+    environment = {
+      CONTROLLER_ADDRESS = aws_instance.avi-controller[count.index].public_ip
+      POLL_INTERVAL      = 45
+    }
+  }
+  depends_on = [
+    aws_instance.avi-controller
+  ]
+}
