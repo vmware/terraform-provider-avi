@@ -8,12 +8,16 @@ Using AWS profile now
 
 
 My Example:
+my aws profile looks like this
 ----
 [default]
 access_key = "XXXXXXXXXXXXXX"
 secret_key = "XXXXXXXXXXXXXX"
+----
 
-[avi]
+If you do not have the aws cli with profile setup you can just use the aws keys
+----
+[aws]
 aws_access_key_id = "XXXXXXXXXXXXXXXX"
 aws_secret_access_key = "XXXXXXXXXXXX"
 ----
