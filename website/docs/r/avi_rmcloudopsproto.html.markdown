@@ -27,10 +27,10 @@ resource "avi_rmcloudopsproto" "foo" {
 
 The following arguments are supported:
 
-* `last_queried_se_creation_limit` - (Optional) The most recent value of concurrent se creation limit from cloudconnectorstatus. Field introduced in 20.1.1. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
-* `name` - (Optional) Cloud name. Field introduced in 20.1.1. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
-* `pending_se_creation_count` - (Optional) Number of se creations in progress. Field introduced in 20.1.1. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
-* `pending_vnic_op_count` - (Optional) Number of vnic operations in progress (both add and delete). Field introduced in 20.1.1. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `last_queried_se_creation_limit` - (Optional) The most recent value of concurrent se creation limit from cloudconnectorstatus. Field introduced in 20.1.1. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `name` - (Optional) Cloud name. Field introduced in 20.1.1. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `pending_se_creation_count` - (Optional) Number of se creations in progress. Field introduced in 20.1.1. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `pending_vnic_op_count` - (Optional) Number of vnic operations in progress (both add and delete). Field introduced in 20.1.1. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 
 
 ### Timeouts
@@ -45,5 +45,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-* `uuid` -  Cloud uuid. Field introduced in 20.1.1. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `uuid` -  Cloud uuid. Field introduced in 20.1.1. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 

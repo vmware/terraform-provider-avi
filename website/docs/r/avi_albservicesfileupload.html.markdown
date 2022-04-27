@@ -27,11 +27,11 @@ resource "avi_albservicesfileupload" "foo" {
 
 The following arguments are supported:
 
-* `file_path` - (Required) Stores output file path, for upload to aws s3. Field introduced in 18.2.6. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
-* `name` - (Required) Field introduced in 18.2.6. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
-* `case_id` - (Optional) Salesforce alphanumeric caseid to attach uploaded file to. Field introduced in 18.2.6. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
-* `s3_directory` - (Optional) Custom aws s3 directory path to upload file. Field introduced in 18.2.6. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
-* `tenant_ref` - (Optional) It is a reference to an object of type tenant. Field introduced in 18.2.6. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `file_path` - (Required) Stores output file path, for upload to aws s3. Field introduced in 18.2.6. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `name` - (Required) Field introduced in 18.2.6. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `case_id` - (Optional) Salesforce alphanumeric caseid to attach uploaded file to. Field introduced in 18.2.6. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `s3_directory` - (Optional) Custom aws s3 directory path to upload file. Field introduced in 18.2.6. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant. Field introduced in 18.2.6. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 
 
 ### Timeouts
@@ -46,5 +46,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-* `uuid` -  Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `uuid` -  Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 

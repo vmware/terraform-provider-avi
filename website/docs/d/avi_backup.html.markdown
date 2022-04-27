@@ -32,12 +32,12 @@ data "avi_backup" "foo_backup" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `backup_config_ref` - Backupconfiguration information. It is a reference to an object of type backupconfiguration. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
-* `file_name` - The file name of backup. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
-* `local_file_url` - Url to download the backup file. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
-* `remote_file_url` - Url to download the backup file. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
-* `scheduler_ref` - Scheduler information. It is a reference to an object of type scheduler. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
-* `tenant_ref` - It is a reference to an object of type tenant. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
-* `timestamp` - Unix timestamp of when the backup file is created. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
-* `uuid` - Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `backup_config_ref` - Backupconfiguration information. It is a reference to an object of type backupconfiguration. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `file_name` - The file name of backup. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `local_file_url` - Url to download the backup file. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `remote_file_url` - Url to download the backup file. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `scheduler_ref` - Scheduler information. It is a reference to an object of type scheduler. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `tenant_ref` - It is a reference to an object of type tenant. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `timestamp` - Unix timestamp of when the backup file is created. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `uuid` - Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 

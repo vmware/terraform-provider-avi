@@ -32,12 +32,12 @@ data "avi_networkprofile" "foo_networkprofile" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed in enterprise with any value edition, essentials with any value edition, basic with any value edition, enterprise with cloud services edition.
-* `connection_mirror` - When enabled, avi mirrors all tcp fastpath connections to standby. Applicable only in legacy ha mode. Field introduced in 18.1.3,18.2.1. Allowed in enterprise with any value edition, essentials(allowed values- false) edition, basic edition, enterprise with cloud services edition.
-* `description` - Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
-* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in enterprise with any value edition, essentials with any value edition, basic with any value edition, enterprise with cloud services edition.
-* `name` - The name of the network profile. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
-* `profile` - Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
-* `tenant_ref` - It is a reference to an object of type tenant. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
-* `uuid` - Uuid of the network profile. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services edition.
+* `connection_mirror` - When enabled, avi mirrors all tcp fastpath connections to standby. Applicable only in legacy ha mode. Field introduced in 18.1.3,18.2.1. Allowed in enterprise edition with any value, essentials edition(allowed values- false), basic, enterprise with cloud services edition.
+* `description` - Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services edition.
+* `name` - The name of the network profile. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `profile` - Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `tenant_ref` - It is a reference to an object of type tenant. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `uuid` - Uuid of the network profile. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 

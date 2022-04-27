@@ -246,6 +246,10 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"se_upgrade_flow_cleanup_timeout": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"se_vnic_cooldown": {
 				Type:     schema.TypeString,
 				Computed: true,

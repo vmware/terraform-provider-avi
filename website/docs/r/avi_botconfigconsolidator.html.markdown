@@ -27,10 +27,10 @@ resource "avi_botconfigconsolidator" "foo" {
 
 The following arguments are supported:
 
-* `name` - (Required) The name of this consolidator. Field introduced in 21.1.1. Allowed in enterprise with any value edition, enterprise with cloud services edition.
-* `description` - (Optional) Human-readable description of this consolidator. Field introduced in 21.1.1. Allowed in enterprise with any value edition, enterprise with cloud services edition.
-* `script` - (Optional) Script that consolidates results from all bot decision components. Field introduced in 21.1.1. Allowed in enterprise with any value edition, enterprise with cloud services edition.
-* `tenant_ref` - (Optional) The unique identifier of the tenant to which this consolidator belongs. It is a reference to an object of type tenant. Field introduced in 21.1.1. Allowed in enterprise with any value edition, enterprise with cloud services edition.
+* `name` - (Required) The name of this consolidator. Field introduced in 21.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `description` - (Optional) Human-readable description of this consolidator. Field introduced in 21.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `script` - (Optional) Script that consolidates results from all bot decision components. Field introduced in 21.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `tenant_ref` - (Optional) The unique identifier of the tenant to which this consolidator belongs. It is a reference to an object of type tenant. Field introduced in 21.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 
 
 ### Timeouts
@@ -45,5 +45,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-* `uuid` -  A unique identifier for this consolidator. Field introduced in 21.1.1. Allowed in enterprise with any value edition, enterprise with cloud services edition.
+* `uuid` -  A unique identifier for this consolidator. Field introduced in 21.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 

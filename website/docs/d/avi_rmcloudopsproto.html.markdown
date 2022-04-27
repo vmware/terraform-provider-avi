@@ -32,9 +32,9 @@ data "avi_rmcloudopsproto" "foo_rmcloudopsproto" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `last_queried_se_creation_limit` - The most recent value of concurrent se creation limit from cloudconnectorstatus. Field introduced in 20.1.1. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
-* `name` - Cloud name. Field introduced in 20.1.1. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
-* `pending_se_creation_count` - Number of se creations in progress. Field introduced in 20.1.1. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
-* `pending_vnic_op_count` - Number of vnic operations in progress (both add and delete). Field introduced in 20.1.1. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
-* `uuid` - Cloud uuid. Field introduced in 20.1.1. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `last_queried_se_creation_limit` - The most recent value of concurrent se creation limit from cloudconnectorstatus. Field introduced in 20.1.1. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `name` - Cloud name. Field introduced in 20.1.1. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `pending_se_creation_count` - Number of se creations in progress. Field introduced in 20.1.1. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `pending_vnic_op_count` - Number of vnic operations in progress (both add and delete). Field introduced in 20.1.1. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `uuid` - Cloud uuid. Field introduced in 20.1.1. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 

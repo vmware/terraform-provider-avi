@@ -1048,6 +1048,10 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceVcenterHostsSchema(),
 			},
+			"vcenter_parking_vnic_pg": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"vcenters": {
 				Type:     schema.TypeList,
 				Computed: true,

@@ -27,14 +27,14 @@ resource "avi_memorybalancerrequest" "foo" {
 
 The following arguments are supported:
 
-* `name` - (Required) Name of controller process. Field introduced in 21.1.1. Allowed in enterprise with any value edition, enterprise with cloud services edition.
-* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed in enterprise with any value edition, essentials with any value edition, basic with any value edition, enterprise with cloud services edition.
-* `controller_info` - (Optional) Current details regarding controller. Field introduced in 21.1.1. Allowed in enterprise with any value edition, enterprise with cloud services edition.
-* `node_uuid` - (Optional) Uuid of node. Field introduced in 21.1.1. Allowed in enterprise with any value edition, enterprise with cloud services edition.
-* `process_info` - (Optional) Current process information of the controller process. Field introduced in 21.1.1. Allowed in enterprise with any value edition, enterprise with cloud services edition.
-* `process_instance` - (Optional) Instance of the controller process. Field introduced in 21.1.1. Allowed in enterprise with any value edition, enterprise with cloud services edition.
-* `tenant_ref` - (Optional) Uuid of tenant object. It is a reference to an object of type tenant. Field introduced in 21.1.1. Allowed in enterprise with any value edition, enterprise with cloud services edition.
-* `timestamp` - (Optional) Time at which memory balancer request was created/updated. Field introduced in 21.1.1. Allowed in enterprise with any value edition, enterprise with cloud services edition.
+* `name` - (Required) Name of controller process. Field introduced in 21.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services edition.
+* `controller_info` - (Optional) Current details regarding controller. Field introduced in 21.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `node_uuid` - (Optional) Uuid of node. Field introduced in 21.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `process_info` - (Optional) Current process information of the controller process. Field introduced in 21.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `process_instance` - (Optional) Instance of the controller process. Field introduced in 21.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `tenant_ref` - (Optional) Uuid of tenant object. It is a reference to an object of type tenant. Field introduced in 21.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `timestamp` - (Optional) Time at which memory balancer request was created/updated. Field introduced in 21.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 
 
 ### Timeouts
@@ -49,5 +49,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-* `uuid` -  Uuid of memory balancer request object. Field introduced in 21.1.1. Allowed in enterprise with any value edition, enterprise with cloud services edition.
+* `uuid` -  Uuid of memory balancer request object. Field introduced in 21.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 

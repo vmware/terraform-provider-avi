@@ -32,18 +32,18 @@ data "avi_authprofile" "foo_authprofile" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed in enterprise with any value edition, essentials with any value edition, basic with any value edition, enterprise with cloud services edition.
-* `description` - Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
-* `http` - Http user authentication params. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
-* `jwt_profile_ref` - Jwtserverprofile to be used for authentication. It is a reference to an object of type jwtserverprofile. Field introduced in 20.1.3. Allowed in enterprise with any value edition, enterprise with cloud services edition.
-* `ldap` - Ldap server and directory settings. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
-* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.6. Allowed in enterprise with any value edition, essentials with any value edition, basic with any value edition, enterprise with cloud services edition.
-* `name` - Name of the auth profile. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
-* `oauth_profile` - Oauth profile - common endpoint information. Field introduced in 21.1.3. Allowed in enterprise with any value edition, enterprise with cloud services edition.
-* `pa_agent_ref` - Pingaccessagent uuid. It is a reference to an object of type pingaccessagent. Field introduced in 18.2.3. Allowed in enterprise with any value edition, enterprise with cloud services edition.
-* `saml` - Saml settings. Field introduced in 17.2.3. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
-* `tacacs_plus` - Tacacs+ settings. Allowed in enterprise with any value edition, enterprise with cloud services edition.
-* `tenant_ref` - It is a reference to an object of type tenant. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
-* `type` - Type of the auth profile. Enum options - AUTH_PROFILE_LDAP, AUTH_PROFILE_TACACS_PLUS, AUTH_PROFILE_SAML, AUTH_PROFILE_PINGACCESS, AUTH_PROFILE_JWT, AUTH_PROFILE_OAUTH. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
-* `uuid` - Uuid of the auth profile. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services edition.
+* `description` - Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `http` - Http user authentication params. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `jwt_profile_ref` - Jwtserverprofile to be used for authentication. It is a reference to an object of type jwtserverprofile. Field introduced in 20.1.3. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `ldap` - Ldap server and directory settings. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.6. Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services edition.
+* `name` - Name of the auth profile. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `oauth_profile` - Oauth profile - common endpoint information. Field introduced in 21.1.3. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `pa_agent_ref` - Pingaccessagent uuid. It is a reference to an object of type pingaccessagent. Field introduced in 18.2.3. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `saml` - Saml settings. Field introduced in 17.2.3. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `tacacs_plus` - Tacacs+ settings. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `tenant_ref` - It is a reference to an object of type tenant. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `type` - Type of the auth profile. Enum options - AUTH_PROFILE_LDAP, AUTH_PROFILE_TACACS_PLUS, AUTH_PROFILE_SAML, AUTH_PROFILE_PINGACCESS, AUTH_PROFILE_JWT, AUTH_PROFILE_OAUTH. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `uuid` - Uuid of the auth profile. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 

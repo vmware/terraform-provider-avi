@@ -27,13 +27,13 @@ resource "avi_prioritylabels" "foo" {
 
 The following arguments are supported:
 
-* `name` - (Required) The name of the priority labels. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
-* `cloud_ref` - (Optional) It is a reference to an object of type cloud. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
-* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed in enterprise with any value edition, essentials with any value edition, basic with any value edition, enterprise with cloud services edition.
-* `description` - (Optional) A description of the priority labels. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
-* `equivalent_labels` - (Optional) Equivalent priority labels in descending order. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
-* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in enterprise with any value edition, essentials with any value edition, basic with any value edition, enterprise with cloud services edition.
-* `tenant_ref` - (Optional) It is a reference to an object of type tenant. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `name` - (Required) The name of the priority labels. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `cloud_ref` - (Optional) It is a reference to an object of type cloud. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services edition.
+* `description` - (Optional) A description of the priority labels. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `equivalent_labels` - (Optional) Equivalent priority labels in descending order. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services edition.
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 
 
 ### Timeouts
@@ -48,5 +48,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-* `uuid` -  Uuid of the priority labels. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `uuid` -  Uuid of the priority labels. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 

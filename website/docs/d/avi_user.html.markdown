@@ -32,15 +32,15 @@ data "avi_user" "foo_user" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `access` - Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
-* `default_tenant_ref` - It is a reference to an object of type tenant. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
-* `email` - Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
-* `full_name` - Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
-* `is_superuser` - Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
-* `local` - Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
-* `name` - Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
-* `password` - Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
-* `user_profile_ref` - It is a reference to an object of type useraccountprofile. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
-* `username` - Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
-* `uuid` - Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `access` - Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `default_tenant_ref` - It is a reference to an object of type tenant. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `email` - Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `full_name` - Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `is_superuser` - Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `local` - Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `name` - Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `password` - Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `user_profile_ref` - It is a reference to an object of type useraccountprofile. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `username` - Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `uuid` - Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 

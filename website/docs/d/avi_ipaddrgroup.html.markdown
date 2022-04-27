@@ -32,17 +32,17 @@ data "avi_ipaddrgroup" "foo_ipaddrgroup" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `addrs` - Configure ip address(es). Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
-* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed in enterprise with any value edition, essentials with any value edition, basic with any value edition, enterprise with cloud services edition.
-* `country_codes` - Populate the ip address ranges from the geo database for this country. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
-* `description` - Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
-* `ip_ports` - Configure (ip address, port) tuple(s). Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
-* `marathon_app_name` - Populate ip addresses from tasks of this marathon app. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
-* `marathon_service_port` - Task port associated with marathon service port. If marathon app has multiple service ports, this is required. Else, the first task port is used. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
-* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in enterprise with any value edition, essentials with any value edition, basic with any value edition, enterprise with cloud services edition.
-* `name` - Name of the ip address group. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
-* `prefixes` - Configure ip address prefix(es). Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
-* `ranges` - Configure ip address range(s). Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
-* `tenant_ref` - It is a reference to an object of type tenant. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
-* `uuid` - Uuid of the ip address group. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `addrs` - Configure ip address(es). Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services edition.
+* `country_codes` - Populate the ip address ranges from the geo database for this country. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `description` - Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `ip_ports` - Configure (ip address, port) tuple(s). Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `marathon_app_name` - Populate ip addresses from tasks of this marathon app. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `marathon_service_port` - Task port associated with marathon service port. If marathon app has multiple service ports, this is required. Else, the first task port is used. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services edition.
+* `name` - Name of the ip address group. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `prefixes` - Configure ip address prefix(es). Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `ranges` - Configure ip address range(s). Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `tenant_ref` - It is a reference to an object of type tenant. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `uuid` - Uuid of the ip address group. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 

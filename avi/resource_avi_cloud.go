@@ -147,6 +147,12 @@ func ResourceCloudSchema() map[string]*schema.Schema {
 			Optional: true,
 			Elem:     ResourceRoleFilterMatchLabelSchema(),
 		},
+		"metrics_polling_interval": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "300",
+			ValidateFunc: validateInteger,
+		},
 		"mtu": {
 			Type:         schema.TypeString,
 			Optional:     true,

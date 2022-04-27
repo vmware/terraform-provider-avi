@@ -32,11 +32,11 @@ data "avi_inventoryfaultconfig" "foo_inventoryfaultconfig" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed in enterprise with any value edition, essentials with any value edition, basic with any value edition, enterprise with cloud services edition.
-* `controller_faults` - Configure controller faults. Field introduced in 20.1.6. Allowed in enterprise with any value edition, enterprise with cloud services edition.
-* `name` - Name. Field introduced in 20.1.6. Allowed in enterprise with any value edition, enterprise with cloud services edition.
-* `serviceengine_faults` - Configure serviceengine faults. Field introduced in 20.1.6. Allowed in enterprise with any value edition, enterprise with cloud services edition.
-* `tenant_ref` - Tenant. It is a reference to an object of type tenant. Field introduced in 20.1.6. Allowed in enterprise with any value edition, enterprise with cloud services edition.
-* `uuid` - Uuid auto generated. Field introduced in 20.1.6. Allowed in enterprise with any value edition, enterprise with cloud services edition.
-* `virtualservice_faults` - Configure virtualservice faults. Field introduced in 20.1.6. Allowed in enterprise with any value edition, enterprise with cloud services edition.
+* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services edition.
+* `controller_faults` - Configure controller faults. Field introduced in 20.1.6. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `name` - Name. Field introduced in 20.1.6. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `serviceengine_faults` - Configure serviceengine faults. Field introduced in 20.1.6. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `tenant_ref` - Tenant. It is a reference to an object of type tenant. Field introduced in 20.1.6. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `uuid` - Uuid auto generated. Field introduced in 20.1.6. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `virtualservice_faults` - Configure virtualservice faults. Field introduced in 20.1.6. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 

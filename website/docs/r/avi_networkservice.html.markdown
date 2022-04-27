@@ -27,15 +27,15 @@ resource "avi_networkservice" "foo" {
 
 The following arguments are supported:
 
-* `name` - (Required) Name of the networkservice. Field introduced in 18.2.5. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
-* `se_group_ref` - (Required) Service engine group to which the service is applied. It is a reference to an object of type serviceenginegroup. Field introduced in 18.2.5. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
-* `service_type` - (Required) Indicates the type of networkservice. Enum options - ROUTING_SERVICE. Field introduced in 18.2.5. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
-* `vrf_ref` - (Required) Vrf context to which the service is scoped. It is a reference to an object of type vrfcontext. Field introduced in 18.2.5. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
-* `cloud_ref` - (Optional) It is a reference to an object of type cloud. Field introduced in 18.2.5. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
-* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed in enterprise with any value edition, essentials with any value edition, basic with any value edition, enterprise with cloud services edition.
-* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in enterprise with any value edition, essentials with any value edition, basic with any value edition, enterprise with cloud services edition.
-* `routing_service` - (Optional) Routing information of the networkservice. Field introduced in 18.2.5. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
-* `tenant_ref` - (Optional) It is a reference to an object of type tenant. Field introduced in 18.2.5. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `name` - (Required) Name of the networkservice. Field introduced in 18.2.5. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `se_group_ref` - (Required) Service engine group to which the service is applied. It is a reference to an object of type serviceenginegroup. Field introduced in 18.2.5. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `service_type` - (Required) Indicates the type of networkservice. Enum options - ROUTING_SERVICE. Field introduced in 18.2.5. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `vrf_ref` - (Required) Vrf context to which the service is scoped. It is a reference to an object of type vrfcontext. Field introduced in 18.2.5. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `cloud_ref` - (Optional) It is a reference to an object of type cloud. Field introduced in 18.2.5. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services edition.
+* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services edition.
+* `routing_service` - (Optional) Routing information of the networkservice. Field introduced in 18.2.5. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant. Field introduced in 18.2.5. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 
 
 ### Timeouts
@@ -50,5 +50,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-* `uuid` -  Uuid of the networkservice. Field introduced in 18.2.5. Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+* `uuid` -  Uuid of the networkservice. Field introduced in 18.2.5. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 
