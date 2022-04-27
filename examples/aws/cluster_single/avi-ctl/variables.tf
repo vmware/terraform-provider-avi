@@ -34,6 +34,7 @@ variable "shutdown_rules" {
 variable "department_name" {
   description = "Department Name"
 }
+# this defines which AMI will be used
 variable "myregion" {
   description = "Region"
 }
