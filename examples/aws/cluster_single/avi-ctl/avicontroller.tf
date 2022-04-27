@@ -1,3 +1,19 @@
+
+data "aws_ami" "latest-avi_controller" {
+  most_recent = true
+  owners      = ["aws-marketplace"]
+
+  filter {
+    name   = "name"
+    values = ["Avi*Controller-*"]
+  }
+
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+}
+
 data "template_file" "userdata" {
   template                  = file("files/userdata.json")
   vars                      = {
@@ -15,7 +31,7 @@ data "template_file" "userdata" {
 resource "aws_instance" "avi-controller" {
   count                       = var.controller_count
   user_data                   = count.index == 0 ? data.template_file.userdata.rendered : ""
-  ami                         = lookup(var.ami-image, var.myregion)
+  ami                         = data.aws_ami.latest-avi_controller.id
   associate_public_ip_address = var.public_ip
   instance_type               = var.image-size
   subnet_id                   = var.se_subnet_id

@@ -46,14 +46,6 @@ variable "profile" {
 variable "owner" {
   description = "owner"
 }
-variable "ami-image" {
-  default = {
-    us-west-1 = "ami-03baad459ee4a3980"
-    us-west-2 = "ami-04d08b852b47a5876"
-  }
-}
-
-
 # You could spin up more than 1 but use the other repo for cluster
 variable "controller_count" {
   default = 1
@@ -61,7 +53,7 @@ variable "controller_count" {
 variable "aws_access_key" {}
 variable "aws_secret_key" {}
 variable "api_version" {
-  default = "21.1.1"
+  default = "21.1.4"
 }
 variable "dns_ip" {
   type    = list(string)
