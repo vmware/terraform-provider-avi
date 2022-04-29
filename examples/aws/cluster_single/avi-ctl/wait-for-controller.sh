@@ -1,5 +1,5 @@
 #!/bin/bash
-
+# This script does the magic for checking and waiting for the Avi Controller
 sleep 360
 response=0
 retries=0
