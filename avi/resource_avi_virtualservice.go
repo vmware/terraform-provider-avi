@@ -46,6 +46,11 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"azure_availability_set": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
 		"bgp_peer_labels": {
 			Type:     schema.TypeList,
 			Optional: true,
@@ -348,6 +353,11 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 			Type:     schema.TypeList,
 			Optional: true,
 			Elem:     ResourceIpAddrSchema(),
+		},
+		"sp_pool_refs": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     &schema.Schema{Type: schema.TypeString},
 		},
 		"ssl_key_and_certificate_refs": {
 			Type:     schema.TypeList,

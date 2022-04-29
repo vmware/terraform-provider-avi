@@ -117,6 +117,22 @@ func ResourceSSLKeyAndCertificateSchema() map[string]*schema.Schema {
 			Computed: true,
 			Elem:     ResourceOCSPConfigSchema(),
 		},
+		"ocsp_error_status": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
+		"ocsp_responder_url_list_from_certs": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     &schema.Schema{Type: schema.TypeString},
+		},
+		"ocsp_response_info": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceOCSPResponseInfoSchema(),
+		},
 		"status": {
 			Type:     schema.TypeString,
 			Optional: true,

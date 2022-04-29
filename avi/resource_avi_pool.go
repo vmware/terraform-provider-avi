@@ -163,6 +163,12 @@ func ResourcePoolSchema() map[string]*schema.Schema {
 			Default:      "1",
 			ValidateFunc: validateInteger,
 		},
+		"gslb_sp_enabled": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Computed:     true,
+			ValidateFunc: validateBool,
+		},
 		"health_monitor_refs": {
 			Type:     schema.TypeList,
 			Optional: true,

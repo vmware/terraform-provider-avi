@@ -27,13 +27,13 @@ resource "avi_vcenterserver" "foo" {
 
 The following arguments are supported:
 
-* `content_lib` - (Required) Vcenter template to create service engine. Field introduced in 20.1.1.
-* `name` - (Required) Availabilty zone where vcenter list belongs to. Field introduced in 20.1.1.
-* `vcenter_credentials_ref` - (Required) Credentials to access vcenter. It is a reference to an object of type cloudconnectoruser. Field introduced in 20.1.1.
-* `vcenter_url` - (Required) Vcenter hostname or ip address. Field introduced in 20.1.1.
-* `cloud_ref` - (Optional) Vcenter belongs to cloud. It is a reference to an object of type cloud. Field introduced in 20.1.1.
-* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1.
-* `tenant_ref` - (Optional) Vcenter belongs to tenant. It is a reference to an object of type tenant. Field introduced in 20.1.1.
+* `content_lib` - (Required) Vcenter template to create service engine. Field introduced in 20.1.1. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `name` - (Required) Availabilty zone where vcenter list belongs to. Field introduced in 20.1.1. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `vcenter_credentials_ref` - (Required) Credentials to access vcenter. It is a reference to an object of type cloudconnectoruser. Field introduced in 20.1.1. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `vcenter_url` - (Required) Vcenter hostname or ip address. Field introduced in 20.1.1. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `cloud_ref` - (Optional) Vcenter belongs to cloud. It is a reference to an object of type cloud. Field introduced in 20.1.1. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services edition.
+* `tenant_ref` - (Optional) Vcenter belongs to tenant. It is a reference to an object of type tenant. Field introduced in 20.1.1. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 
 
 ### Timeouts
@@ -48,5 +48,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-* `uuid` -  Vcenter config uuid. Field introduced in 20.1.1.
+* `uuid` -  Vcenter config uuid. Field introduced in 20.1.1. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 

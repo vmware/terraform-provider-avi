@@ -32,13 +32,13 @@ data "avi_memorybalancerrequest" "foo_memorybalancerrequest" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1.
-* `controller_info` - Current details regarding controller. Field introduced in 21.1.1.
-* `name` - Name of controller process. Field introduced in 21.1.1.
-* `node_uuid` - Uuid of node. Field introduced in 21.1.1.
-* `process_info` - Current process information of the controller process. Field introduced in 21.1.1.
-* `process_instance` - Instance of the controller process. Field introduced in 21.1.1.
-* `tenant_ref` - Uuid of tenant object. It is a reference to an object of type tenant. Field introduced in 21.1.1.
-* `timestamp` - Time at which memory balancer request was created/updated. Field introduced in 21.1.1.
-* `uuid` - Uuid of memory balancer request object. Field introduced in 21.1.1.
+* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services edition.
+* `controller_info` - Current details regarding controller. Field introduced in 21.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `name` - Name of controller process. Field introduced in 21.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `node_uuid` - Uuid of node. Field introduced in 21.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `process_info` - Current process information of the controller process. Field introduced in 21.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `process_instance` - Instance of the controller process. Field introduced in 21.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `tenant_ref` - Uuid of tenant object. It is a reference to an object of type tenant. Field introduced in 21.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `timestamp` - Time at which memory balancer request was created/updated. Field introduced in 21.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `uuid` - Uuid of memory balancer request object. Field introduced in 21.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 

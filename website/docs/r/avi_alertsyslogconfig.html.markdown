@@ -27,11 +27,11 @@ resource "avi_alertsyslogconfig" "foo" {
 
 The following arguments are supported:
 
-* `name` - (Required) A user-friendly name of the syslog notification.
-* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1.
-* `description` - (Optional) User defined description for alert syslog config.
-* `syslog_servers` - (Optional) The list of syslog servers.
-* `tenant_ref` - (Optional) It is a reference to an object of type tenant.
+* `name` - (Required) A user-friendly name of the syslog notification. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services edition.
+* `description` - (Optional) User defined description for alert syslog config. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `syslog_servers` - (Optional) The list of syslog servers. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 
 
 ### Timeouts
@@ -46,5 +46,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-* `uuid` -  Unique object identifier of the object.
+* `uuid` -  Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 

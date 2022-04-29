@@ -93,6 +93,20 @@ func dataSourceAviSSLKeyAndCertificate() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceOCSPConfigSchema(),
 			},
+			"ocsp_error_status": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"ocsp_responder_url_list_from_certs": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
+			"ocsp_response_info": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceOCSPResponseInfoSchema(),
+			},
 			"status": {
 				Type:     schema.TypeString,
 				Computed: true,

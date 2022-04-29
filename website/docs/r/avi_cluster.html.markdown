@@ -27,11 +27,11 @@ resource "avi_cluster" "foo" {
 
 The following arguments are supported:
 
-* `name` - (Required) Name of the object.
-* `nodes` - (Required) Minimum of 1 items required. Maximum of 7 items allowed.
-* `rejoin_nodes_automatically` - (Optional) Re-join cluster nodes automatically in the event one of the node is reset to factory.
-* `tenant_ref` - (Optional) It is a reference to an object of type tenant.
-* `virtual_ip` - (Optional) A virtual ip address. This ip address will be dynamically reconfigured so that it always is the ip of the cluster leader.
+* `name` - (Required) Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `nodes` - (Required) Minimum of 1 items required. Maximum of 7 items allowed. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `rejoin_nodes_automatically` - (Optional) Re-join cluster nodes automatically in the event one of the node is reset to factory. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `virtual_ip` - (Optional) A virtual ip address. This ip address will be dynamically reconfigured so that it always is the ip of the cluster leader. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 
 
 ### Timeouts
@@ -46,5 +46,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-* `uuid` -  Unique object identifier of the object.
+* `uuid` -  Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 

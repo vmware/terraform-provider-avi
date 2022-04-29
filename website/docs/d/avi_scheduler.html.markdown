@@ -32,17 +32,17 @@ data "avi_scheduler" "foo_scheduler" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `backup_config_ref` - Backup configuration to be executed by this scheduler. It is a reference to an object of type backupconfiguration.
-* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1.
-* `enabled` - Boolean flag to set enabled.
-* `end_date_time` - Scheduler end date and time.
-* `frequency` - Frequency at which custom scheduler will run. Allowed values are 0-60.
-* `frequency_unit` - Unit at which custom scheduler will run. Enum options - SCHEDULER_FREQUENCY_UNIT_MIN, SCHEDULER_FREQUENCY_UNIT_HOUR, SCHEDULER_FREQUENCY_UNIT_DAY, SCHEDULER_FREQUENCY_UNIT_WEEK, SCHEDULER_FREQUENCY_UNIT_MONTH.
-* `name` - Name of scheduler.
-* `run_mode` - Scheduler run mode. Enum options - RUN_MODE_PERIODIC, RUN_MODE_AT, RUN_MODE_NOW.
-* `run_script_ref` - Control script to be executed by this scheduler. It is a reference to an object of type alertscriptconfig.
-* `scheduler_action` - Define scheduler action. Enum options - SCHEDULER_ACTION_RUN_A_SCRIPT, SCHEDULER_ACTION_BACKUP.
-* `start_date_time` - Scheduler start date and time.
-* `tenant_ref` - It is a reference to an object of type tenant.
-* `uuid` - Unique object identifier of the object.
+* `backup_config_ref` - Backup configuration to be executed by this scheduler. It is a reference to an object of type backupconfiguration. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services edition.
+* `enabled` - Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `end_date_time` - Scheduler end date and time. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `frequency` - Frequency at which custom scheduler will run. Allowed values are 0-60. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `frequency_unit` - Unit at which custom scheduler will run. Enum options - SCHEDULER_FREQUENCY_UNIT_MIN, SCHEDULER_FREQUENCY_UNIT_HOUR, SCHEDULER_FREQUENCY_UNIT_DAY, SCHEDULER_FREQUENCY_UNIT_WEEK, SCHEDULER_FREQUENCY_UNIT_MONTH. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `name` - Name of scheduler. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `run_mode` - Scheduler run mode. Enum options - RUN_MODE_PERIODIC, RUN_MODE_AT, RUN_MODE_NOW. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `run_script_ref` - Control script to be executed by this scheduler. It is a reference to an object of type alertscriptconfig. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `scheduler_action` - Define scheduler action. Enum options - SCHEDULER_ACTION_RUN_A_SCRIPT, SCHEDULER_ACTION_BACKUP. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `start_date_time` - Scheduler start date and time. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `tenant_ref` - It is a reference to an object of type tenant. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `uuid` - Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 

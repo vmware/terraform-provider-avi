@@ -83,6 +83,11 @@ func ResourceNetworkSchema() map[string]*schema.Schema {
 			Default:      "true",
 			ValidateFunc: validateBool,
 		},
+		"vimgrnw_ref": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
 		"vrf_context_ref": {
 			Type:     schema.TypeString,
 			Optional: true,

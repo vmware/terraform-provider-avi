@@ -32,14 +32,14 @@ data "avi_autoscalelaunchconfig" "foo_autoscalelaunchconfig" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1.
-* `description` - User defined description for the object.
-* `image_id` - Unique id of the amazon machine image (ami)  or openstack vm id.
-* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in basic edition, essentials edition, enterprise edition.
-* `mesos` - Dict settings for autoscalelaunchconfig.
-* `name` - Name of the object.
-* `openstack` - Dict settings for autoscalelaunchconfig.
-* `tenant_ref` - It is a reference to an object of type tenant.
-* `use_external_asg` - If set to true, serverautoscalepolicy will use the autoscaling group (external_autoscaling_groups) from pool to perform scale up and scale down. Pool should have single autoscaling group configured. Field introduced in 17.2.3.
-* `uuid` - Unique object identifier of the object.
+* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services edition.
+* `description` - Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `image_id` - Unique id of the amazon machine image (ami)  or openstack vm id. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services edition.
+* `mesos` - Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `name` - Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `openstack` - Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `tenant_ref` - It is a reference to an object of type tenant. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `use_external_asg` - If set to true, serverautoscalepolicy will use the autoscaling group (external_autoscaling_groups) from pool to perform scale up and scale down. Pool should have single autoscaling group configured. Field introduced in 17.2.3. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `uuid` - Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 

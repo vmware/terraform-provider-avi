@@ -18,6 +18,11 @@ func ResourceALBServicesFileUploadSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"error": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
 		"file_path": {
 			Type:     schema.TypeString,
 			Required: true,
@@ -27,6 +32,11 @@ func ResourceALBServicesFileUploadSchema() map[string]*schema.Schema {
 			Required: true,
 		},
 		"s3_directory": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
+		"status": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,

@@ -126,6 +126,10 @@ func dataSourceAviPool() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"gslb_sp_enabled": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"health_monitor_refs": {
 				Type:     schema.TypeList,
 				Computed: true,

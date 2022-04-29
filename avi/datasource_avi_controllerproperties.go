@@ -246,6 +246,10 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"se_upgrade_flow_cleanup_timeout": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"se_vnic_cooldown": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -288,6 +292,14 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Elem:     &schema.Schema{Type: schema.TypeInt},
 			},
 			"unresponsive_se_reboot": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"update_dns_entry_retry_limit": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"update_dns_entry_timeout": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},

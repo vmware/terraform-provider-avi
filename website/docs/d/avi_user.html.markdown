@@ -32,15 +32,15 @@ data "avi_user" "foo_user" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `access` - List of list.
-* `default_tenant_ref` - It is a reference to an object of type tenant.
-* `email` - Placeholder for description of property email of obj type user field type string  type str.
-* `full_name` - Placeholder for description of property full_name of obj type user field type string  type str.
-* `is_superuser` - Boolean flag to set is_superuser.
-* `local` - Boolean flag to set local.
-* `name` - Name of the object.
-* `password` - Placeholder for description of property password of obj type user field type string  type str.
-* `user_profile_ref` - It is a reference to an object of type useraccountprofile.
-* `username` - Placeholder for description of property username of obj type user field type string  type str.
-* `uuid` - Unique object identifier of the object.
+* `access` - Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `default_tenant_ref` - It is a reference to an object of type tenant. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `email` - Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `full_name` - Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `is_superuser` - Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `local` - Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `name` - Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `password` - Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `user_profile_ref` - It is a reference to an object of type useraccountprofile. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `username` - Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `uuid` - Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 

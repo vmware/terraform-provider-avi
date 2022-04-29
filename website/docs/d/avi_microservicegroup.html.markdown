@@ -32,11 +32,11 @@ data "avi_microservicegroup" "foo_microservicegroup" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1.
-* `created_by` - Creator name.
-* `description` - User defined description for the object.
-* `name` - Name of the microservice group.
-* `service_refs` - Configure microservice(es). It is a reference to an object of type microservice.
-* `tenant_ref` - It is a reference to an object of type tenant.
-* `uuid` - Uuid of the microservice group.
+* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services edition.
+* `created_by` - Creator name. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `description` - Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `name` - Name of the microservice group. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `service_refs` - Configure microservice(es). It is a reference to an object of type microservice. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `tenant_ref` - It is a reference to an object of type tenant. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `uuid` - Uuid of the microservice group. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 

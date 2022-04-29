@@ -32,8 +32,8 @@ data "avi_labelgroup" "foo_labelgroup" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1.
-* `labels` - List of allowed or suggested labels for the label group. Field introduced in 20.1.5.
-* `name` - Name of the label group. Field introduced in 20.1.5.
-* `uuid` - Uuid of the label group. Field introduced in 20.1.5.
+* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services edition.
+* `labels` - List of allowed or suggested labels for the label group. Field introduced in 20.1.5. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `name` - Name of the label group. Field introduced in 20.1.5. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `uuid` - Uuid of the label group. Field introduced in 20.1.5. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 
