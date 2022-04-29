@@ -27,18 +27,18 @@ resource "avi_ipaddrgroup" "foo" {
 
 The following arguments are supported:
 
-* `name` - (Required) Name of the ip address group.
-* `addrs` - (Optional) Configure ip address(es).
-* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1.
-* `country_codes` - (Optional) Populate the ip address ranges from the geo database for this country.
-* `description` - (Optional) User defined description for the object.
-* `ip_ports` - (Optional) Configure (ip address, port) tuple(s).
-* `marathon_app_name` - (Optional) Populate ip addresses from tasks of this marathon app.
-* `marathon_service_port` - (Optional) Task port associated with marathon service port. If marathon app has multiple service ports, this is required. Else, the first task port is used.
-* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in basic edition, essentials edition, enterprise edition.
-* `prefixes` - (Optional) Configure ip address prefix(es).
-* `ranges` - (Optional) Configure ip address range(s).
-* `tenant_ref` - (Optional) It is a reference to an object of type tenant.
+* `name` - (Required) Name of the ip address group. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `addrs` - (Optional) Configure ip address(es). Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services edition.
+* `country_codes` - (Optional) Populate the ip address ranges from the geo database for this country. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `description` - (Optional) Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `ip_ports` - (Optional) Configure (ip address, port) tuple(s). Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `marathon_app_name` - (Optional) Populate ip addresses from tasks of this marathon app. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `marathon_service_port` - (Optional) Task port associated with marathon service port. If marathon app has multiple service ports, this is required. Else, the first task port is used. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services edition.
+* `prefixes` - (Optional) Configure ip address prefix(es). Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `ranges` - (Optional) Configure ip address range(s). Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 
 
 ### Timeouts
@@ -53,5 +53,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-* `uuid` -  Uuid of the ip address group.
+* `uuid` -  Uuid of the ip address group. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 

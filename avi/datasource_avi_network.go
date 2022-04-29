@@ -69,6 +69,10 @@ func dataSourceAviNetwork() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"vimgrnw_ref": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"vrf_context_ref": {
 				Type:     schema.TypeString,
 				Computed: true,

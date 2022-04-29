@@ -32,13 +32,13 @@ data "avi_jwtserverprofile" "foo_jwtserverprofile" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1.
-* `controller_internal_auth` - Jwt auth configuration for profile_type controller_internal_auth. Field introduced in 20.1.6.
-* `is_federated` - This field describes the object's replication scope. If the field is set to false, then the object is visible within the controller-cluster. If the field is set to true, then the object is replicated across the federation. Field introduced in 20.1.6.
-* `issuer` - Uniquely identifiable name of the token issuer, only allowed with profile_type client_auth. Field introduced in 20.1.3.
-* `jwks_keys` - Jwks key set used for validating the jwt, only allowed with profile_type client_auth. Field introduced in 20.1.3.
-* `jwt_profile_type` - Type of jwt server profile which defines the usage type. Enum options - CLIENT_AUTH, CONTROLLER_INTERNAL_AUTH. Field introduced in 20.1.6.
-* `name` - Name of the jwt profile. Field introduced in 20.1.3.
-* `tenant_ref` - Uuid of the tenant. It is a reference to an object of type tenant. Field introduced in 20.1.3.
-* `uuid` - Uuid of the jwtprofile. Field introduced in 20.1.3.
+* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services edition.
+* `controller_internal_auth` - Jwt auth configuration for profile_type controller_internal_auth. Field introduced in 20.1.6. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `is_federated` - This field describes the object's replication scope. If the field is set to false, then the object is visible within the controller-cluster. If the field is set to true, then the object is replicated across the federation. Field introduced in 20.1.6. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `issuer` - Uniquely identifiable name of the token issuer, only allowed with profile_type client_auth. Field introduced in 20.1.3. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `jwks_keys` - Jwks key set used for validating the jwt, only allowed with profile_type client_auth. Field introduced in 20.1.3. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `jwt_profile_type` - Type of jwt server profile which defines the usage type. Enum options - CLIENT_AUTH, CONTROLLER_INTERNAL_AUTH. Field introduced in 20.1.6. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `name` - Name of the jwt profile. Field introduced in 20.1.3. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `tenant_ref` - Uuid of the tenant. It is a reference to an object of type tenant. Field introduced in 20.1.3. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `uuid` - Uuid of the jwtprofile. Field introduced in 20.1.3. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 

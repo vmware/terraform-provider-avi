@@ -32,9 +32,9 @@ data "avi_seproperties" "foo_seproperties" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1.
-* `se_agent_properties` - Dict settings for seproperties.
-* `se_bootup_properties` - Dict settings for seproperties.
-* `se_runtime_properties` - Dict settings for seproperties.
-* `uuid` - Unique object identifier of the object.
+* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services edition.
+* `se_agent_properties` - Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `se_bootup_properties` - Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `se_runtime_properties` - Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `uuid` - Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 

@@ -366,6 +366,12 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Default:      "300",
 			ValidateFunc: validateInteger,
 		},
+		"se_upgrade_flow_cleanup_timeout": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "30",
+			ValidateFunc: validateInteger,
+		},
 		"se_vnic_cooldown": {
 			Type:         schema.TypeString,
 			Optional:     true,
@@ -429,6 +435,18 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Type:         schema.TypeString,
 			Optional:     true,
 			Default:      "300",
+			ValidateFunc: validateInteger,
+		},
+		"update_dns_entry_retry_limit": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "3",
+			ValidateFunc: validateInteger,
+		},
+		"update_dns_entry_timeout": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "120",
 			ValidateFunc: validateInteger,
 		},
 		"upgrade_dns_ttl": {

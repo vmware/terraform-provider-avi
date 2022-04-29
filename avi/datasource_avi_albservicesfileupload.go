@@ -13,6 +13,10 @@ func dataSourceAviALBServicesFileUpload() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"error": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"file_path": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -23,6 +27,10 @@ func dataSourceAviALBServicesFileUpload() *schema.Resource {
 				Computed: true,
 			},
 			"s3_directory": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"status": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},

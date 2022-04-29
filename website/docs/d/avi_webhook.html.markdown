@@ -32,12 +32,12 @@ data "avi_webhook" "foo_webhook" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `callback_url` - Callback url for the webhook. Field introduced in 17.1.1.
-* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1.
-* `description` - Field introduced in 17.1.1.
-* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.6. Allowed in basic edition, essentials edition, enterprise edition.
-* `name` - The name of the webhook profile. Field introduced in 17.1.1.
-* `tenant_ref` - It is a reference to an object of type tenant. Field introduced in 17.1.1.
-* `uuid` - Uuid of the webhook profile. Field introduced in 17.1.1.
-* `verification_token` - Verification token sent back with the callback asquery parameters. Field introduced in 17.1.1.
+* `callback_url` - Callback url for the webhook. Field introduced in 17.1.1. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services edition.
+* `description` - Field introduced in 17.1.1. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.6. Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services edition.
+* `name` - The name of the webhook profile. Field introduced in 17.1.1. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `tenant_ref` - It is a reference to an object of type tenant. Field introduced in 17.1.1. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `uuid` - Uuid of the webhook profile. Field introduced in 17.1.1. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `verification_token` - Verification token sent back with the callback asquery parameters. Field introduced in 17.1.1. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 

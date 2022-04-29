@@ -1485,6 +1485,11 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Computed: true,
 			Elem:     ResourceVcenterHostsSchema(),
 		},
+		"vcenter_parking_vnic_pg": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
 		"vcenters": {
 			Type:     schema.TypeList,
 			Optional: true,

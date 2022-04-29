@@ -32,16 +32,16 @@ data "avi_pkiprofile" "foo_pkiprofile" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `ca_certs` - List of certificate authorities (root and intermediate) trusted that is used for certificate validation.
-* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1.
-* `created_by` - Creator name.
-* `crl_check` - When enabled, avi will verify via crl checks that certificates in the trust chain have not been revoked.
-* `crls` - Certificate revocation lists.
-* `ignore_peer_chain` - When enabled, avi will not trust intermediate and root certs presented by a client. Instead, only the chain certs configured in the certificate authority section will be used to verify trust of the client's cert. Allowed in basic(allowed values- true) edition, essentials(allowed values- true) edition, enterprise edition. Special default for basic edition is true, essentials edition is true, enterprise is false.
-* `is_federated` - This field describes the object's replication scope. If the field is set to false, then the object is visible within the controller-cluster and its associated service-engines. If the field is set to true, then the object is replicated across the federation. Field introduced in 17.1.3.
-* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in basic edition, essentials edition, enterprise edition.
-* `name` - Name of the pki profile.
-* `tenant_ref` - It is a reference to an object of type tenant.
-* `uuid` - Unique object identifier of the object.
-* `validate_only_leaf_crl` - When enabled, avi will only validate the revocation status of the leaf certificate using crl. To enable validation for the entire chain, disable this option and provide all the relevant crls. Allowed in basic(allowed values- true) edition, essentials(allowed values- true) edition, enterprise edition.
+* `ca_certs` - List of certificate authorities (root and intermediate) trusted that is used for certificate validation. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services edition.
+* `created_by` - Creator name. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `crl_check` - When enabled, avi will verify via crl checks that certificates in the trust chain have not been revoked. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `crls` - Certificate revocation lists. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `ignore_peer_chain` - When enabled, avi will not trust intermediate and root certs presented by a client. Instead, only the chain certs configured in the certificate authority section will be used to verify trust of the client's cert. Allowed in enterprise edition with any value, essentials edition(allowed values- true), basic edition(allowed values- true), enterprise with cloud services edition. Special default for essentials edition is true, basic edition is true, enterprise is false.
+* `is_federated` - This field describes the object's replication scope. If the field is set to false, then the object is visible within the controller-cluster and its associated service-engines. If the field is set to true, then the object is replicated across the federation. Field introduced in 17.1.3. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services edition.
+* `name` - Name of the pki profile. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `tenant_ref` - It is a reference to an object of type tenant. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `uuid` - Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `validate_only_leaf_crl` - When enabled, avi will only validate the revocation status of the leaf certificate using crl. To enable validation for the entire chain, disable this option and provide all the relevant crls. Allowed in enterprise edition with any value, essentials edition(allowed values- true), basic edition(allowed values- true), enterprise with cloud services edition.
 

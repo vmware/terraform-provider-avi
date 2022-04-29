@@ -32,8 +32,8 @@ data "avi_botmapping" "foo_botmapping" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `mapping_rules` - Rules for bot classification. Field introduced in 21.1.1.
-* `name` - The name of this mapping. Field introduced in 21.1.1.
-* `tenant_ref` - The unique identifier of the tenant to which this mapping belongs. It is a reference to an object of type tenant. Field introduced in 21.1.1.
-* `uuid` - A unique identifier for this mapping. Field introduced in 21.1.1.
+* `mapping_rules` - Rules for bot classification. Field introduced in 21.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `name` - The name of this mapping. Field introduced in 21.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `tenant_ref` - The unique identifier of the tenant to which this mapping belongs. It is a reference to an object of type tenant. Field introduced in 21.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `uuid` - A unique identifier for this mapping. Field introduced in 21.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 

@@ -13,6 +13,11 @@ import (
 
 func ResourceWafApplicationSignatureProviderSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
+		"available_applications": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceWafApplicationSignatureAppVersionSchema(),
+		},
 		"configpb_attributes": {
 			Type:     schema.TypeSet,
 			Optional: true,
@@ -24,11 +29,21 @@ func ResourceWafApplicationSignatureProviderSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"ruleset_version": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
 		"service_status": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Computed: true,
 			Elem:     ResourceWebApplicationSignatureServiceStatusSchema(),
+		},
+		"signatures": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceWafRuleSchema(),
 		},
 		"tenant_ref": {
 			Type:     schema.TypeString,

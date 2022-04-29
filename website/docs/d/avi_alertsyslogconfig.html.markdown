@@ -32,10 +32,10 @@ data "avi_alertsyslogconfig" "foo_alertsyslogconfig" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1.
-* `description` - User defined description for alert syslog config.
-* `name` - A user-friendly name of the syslog notification.
-* `syslog_servers` - The list of syslog servers.
-* `tenant_ref` - It is a reference to an object of type tenant.
-* `uuid` - Unique object identifier of the object.
+* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services edition.
+* `description` - User defined description for alert syslog config. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `name` - A user-friendly name of the syslog notification. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `syslog_servers` - The list of syslog servers. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `tenant_ref` - It is a reference to an object of type tenant. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `uuid` - Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 

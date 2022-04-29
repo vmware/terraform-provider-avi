@@ -27,14 +27,14 @@ resource "avi_albservicesjob" "foo" {
 
 The following arguments are supported:
 
-* `command` - (Required) The command to be triggered by the albservicesjob. Field introduced in 21.1.3.
-* `name` - (Required) The name of the albservicesjob. Field introduced in 21.1.3.
-* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.3.
-* `end_time` - (Optional) The time at which the albservicesjob is ended. Field introduced in 21.1.3.
-* `pulse_job_id` - (Optional) A unique identifier for this job entry on the pulse portal. Field introduced in 21.1.3.
-* `start_time` - (Optional) The time at which the albservicesjob is started. Field introduced in 21.1.3.
-* `status` - (Optional) The status of the albservicesjob. Enum options - UNDETERMINED, PENDING, IN_PROGRESS, COMPLETED, FAILED. Field introduced in 21.1.3.
-* `tenant_ref` - (Optional) The unique identifier of the tenant to which this albservicesjob belongs. It is a reference to an object of type tenant. Field introduced in 21.1.3.
+* `command` - (Required) The command to be triggered by the albservicesjob. Field introduced in 21.1.3. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `name` - (Required) The name of the albservicesjob. Field introduced in 21.1.3. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.3. Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services edition.
+* `end_time` - (Optional) The time at which the albservicesjob is ended. Field introduced in 21.1.3. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `pulse_job_id` - (Optional) A unique identifier for this job entry on the pulse portal. Field introduced in 21.1.3. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `start_time` - (Optional) The time at which the albservicesjob is started. Field introduced in 21.1.3. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `status` - (Optional) The status of the albservicesjob. Enum options - UNDETERMINED, PENDING, IN_PROGRESS, COMPLETED, FAILED. Field introduced in 21.1.3. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `tenant_ref` - (Optional) The unique identifier of the tenant to which this albservicesjob belongs. It is a reference to an object of type tenant. Field introduced in 21.1.3. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 
 
 ### Timeouts
@@ -49,5 +49,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-* `uuid` -  A unique identifier for this albservicesjob entry. Field introduced in 21.1.3.
+* `uuid` -  A unique identifier for this albservicesjob entry. Field introduced in 21.1.3. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 

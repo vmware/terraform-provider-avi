@@ -454,6 +454,12 @@ func ResourceAnalyticsProfileSchema() map[string]*schema.Schema {
 			Default:      "5",
 			ValidateFunc: validateFloat,
 		},
+		"hs_security_tls13_score": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Computed:     true,
+			ValidateFunc: validateFloat,
+		},
 		"hs_security_weak_signature_algo_penalty": {
 			Type:         schema.TypeString,
 			Optional:     true,

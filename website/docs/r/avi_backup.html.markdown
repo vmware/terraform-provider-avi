@@ -27,13 +27,13 @@ resource "avi_backup" "foo" {
 
 The following arguments are supported:
 
-* `file_name` - (Required) The file name of backup.
-* `backup_config_ref` - (Optional) Backupconfiguration information. It is a reference to an object of type backupconfiguration.
-* `local_file_url` - (Optional) Url to download the backup file.
-* `remote_file_url` - (Optional) Url to download the backup file.
-* `scheduler_ref` - (Optional) Scheduler information. It is a reference to an object of type scheduler.
-* `tenant_ref` - (Optional) It is a reference to an object of type tenant.
-* `timestamp` - (Optional) Unix timestamp of when the backup file is created.
+* `file_name` - (Required) The file name of backup. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `backup_config_ref` - (Optional) Backupconfiguration information. It is a reference to an object of type backupconfiguration. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `local_file_url` - (Optional) Url to download the backup file. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `remote_file_url` - (Optional) Url to download the backup file. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `scheduler_ref` - (Optional) Scheduler information. It is a reference to an object of type scheduler. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `timestamp` - (Optional) Unix timestamp of when the backup file is created. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 
 
 ### Timeouts
@@ -48,5 +48,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-* `uuid` -  Unique object identifier of the object.
+* `uuid` -  Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 

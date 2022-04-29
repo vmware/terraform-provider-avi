@@ -310,6 +310,10 @@ func dataSourceAviAnalyticsProfile() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"hs_security_tls13_score": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"hs_security_weak_signature_algo_penalty": {
 				Type:     schema.TypeString,
 				Computed: true,
