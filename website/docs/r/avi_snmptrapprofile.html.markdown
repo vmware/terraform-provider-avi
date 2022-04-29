@@ -27,10 +27,10 @@ resource "avi_snmptrapprofile" "foo" {
 
 The following arguments are supported:
 
-* `name` - (Required) A user-friendly name of the snmp trap configuration.
-* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1.
-* `tenant_ref` - (Optional) It is a reference to an object of type tenant.
-* `trap_servers` - (Optional) The ip address or hostname of the snmp trap destination server.
+* `name` - (Required) A user-friendly name of the snmp trap configuration. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services edition.
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `trap_servers` - (Optional) The ip address or hostname of the snmp trap destination server. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 
 
 ### Timeouts
@@ -45,5 +45,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-* `uuid` -  Uuid of the snmp trap profile object.
+* `uuid` -  Uuid of the snmp trap profile object. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 

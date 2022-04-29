@@ -27,19 +27,19 @@ resource "avi_cloudconnectoruser" "foo" {
 
 The following arguments are supported:
 
-* `name` - (Required) Name of the object.
-* `azure_serviceprincipal` - (Optional) Field introduced in 17.2.1. Allowed in basic edition, essentials edition, enterprise edition.
-* `azure_userpass` - (Optional) Field introduced in 17.2.1. Allowed in basic edition, essentials edition, enterprise edition.
-* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1.
-* `gcp_credentials` - (Optional) Credentials for google cloud platform. Field introduced in 18.2.1. Allowed in basic edition, essentials edition, enterprise edition.
-* `nsxt_credentials` - (Optional) Credentials to talk to nsx-t manager. Field introduced in 20.1.1. Allowed in essentials edition, enterprise edition.
-* `oci_credentials` - (Optional) Credentials for oracle cloud infrastructure. Field introduced in 18.2.1,18.1.3. Allowed in basic edition, essentials edition, enterprise edition.
-* `password` - (Optional) Placeholder for description of property password of obj type cloudconnectoruser field type string  type str.
-* `private_key` - (Optional) Placeholder for description of property private_key of obj type cloudconnectoruser field type string  type str.
-* `public_key` - (Optional) Placeholder for description of property public_key of obj type cloudconnectoruser field type string  type str.
-* `tenant_ref` - (Optional) It is a reference to an object of type tenant.
-* `tencent_credentials` - (Optional) Credentials for tencent cloud. Field introduced in 18.2.3. Allowed in basic edition, essentials edition, enterprise edition.
-* `vcenter_credentials` - (Optional) Credentials to talk to vcenter. Field introduced in 20.1.1.
+* `name` - (Required) Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `azure_serviceprincipal` - (Optional) Field introduced in 17.2.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `azure_userpass` - (Optional) Field introduced in 17.2.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services edition.
+* `gcp_credentials` - (Optional) Credentials for google cloud platform. Field introduced in 18.2.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `nsxt_credentials` - (Optional) Credentials to talk to nsx-t manager. Field introduced in 20.1.1. Allowed in enterprise edition with any value, basic, enterprise with cloud services edition.
+* `oci_credentials` - (Optional) Credentials for oracle cloud infrastructure. Field introduced in 18.2.1,18.1.3. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `password` - (Optional) Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `private_key` - (Optional) Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `public_key` - (Optional) Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `tencent_credentials` - (Optional) Credentials for tencent cloud. Field introduced in 18.2.3. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `vcenter_credentials` - (Optional) Credentials to talk to vcenter. Field introduced in 20.1.1. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 
 
 ### Timeouts
@@ -54,5 +54,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-* `uuid` -  Unique object identifier of the object.
+* `uuid` -  Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 

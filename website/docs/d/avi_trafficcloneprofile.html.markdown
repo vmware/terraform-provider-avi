@@ -34,12 +34,12 @@ data "avi_trafficcloneprofile" "foo_trafficcloneprofile" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `clone_servers` - Field introduced in 17.1.1. Maximum of 10 items allowed.
-* `cloud_ref` - It is a reference to an object of type cloud. Field introduced in 17.1.1.
-* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1.
-* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in basic edition, essentials edition, enterprise edition.
-* `name` - Name for the traffic clone profile. Field introduced in 17.1.1.
-* `preserve_client_ip` - Specifies if client ip needs to be preserved to clone destination. Field introduced in 17.1.1.
-* `tenant_ref` - It is a reference to an object of type tenant. Field introduced in 17.1.1.
-* `uuid` - Uuid of the traffic clone profile. Field introduced in 17.1.1.
+* `clone_servers` - Field introduced in 17.1.1. Maximum of 10 items allowed. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `cloud_ref` - It is a reference to an object of type cloud. Field introduced in 17.1.1. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services edition.
+* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services edition.
+* `name` - Name for the traffic clone profile. Field introduced in 17.1.1. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `preserve_client_ip` - Specifies if client ip needs to be preserved to clone destination. Field introduced in 17.1.1. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `tenant_ref` - It is a reference to an object of type tenant. Field introduced in 17.1.1. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `uuid` - Uuid of the traffic clone profile. Field introduced in 17.1.1. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 

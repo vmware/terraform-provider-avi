@@ -32,8 +32,8 @@ data "avi_licenseledgerdetails" "foo_licenseledgerdetails" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `escrow_infos` - Maintain information about reservation against cookie. Field introduced in 20.1.1.
-* `se_infos` - Maintain information about consumed licenses against se_uuid. Field introduced in 20.1.1.
-* `tier_usages` - License usage per tier. Field introduced in 20.1.1.
-* `uuid` - Uuid for reference. Field introduced in 20.1.1.
+* `escrow_infos` - Maintain information about reservation against cookie. Field introduced in 20.1.1. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `se_infos` - Maintain information about consumed licenses against se_uuid. Field introduced in 20.1.1. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `tier_usages` - License usage per tier. Field introduced in 20.1.1. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `uuid` - Uuid for reference. Field introduced in 20.1.1. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 

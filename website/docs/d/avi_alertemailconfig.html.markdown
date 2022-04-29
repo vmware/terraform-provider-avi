@@ -32,11 +32,11 @@ data "avi_alertemailconfig" "foo_alertemailconfig" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `cc_emails` - Alerts are copied to the comma separated list of  email recipients.
-* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1.
-* `description` - User defined description for the object.
-* `name` - A user-friendly name of the email notification service.
-* `tenant_ref` - It is a reference to an object of type tenant.
-* `to_emails` - Alerts are sent to the comma separated list of  email recipients.
-* `uuid` - Unique object identifier of the object.
+* `cc_emails` - Alerts are copied to the comma separated list of  email recipients. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services edition.
+* `description` - Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `name` - A user-friendly name of the email notification service. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `tenant_ref` - It is a reference to an object of type tenant. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `to_emails` - Alerts are sent to the comma separated list of  email recipients. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `uuid` - Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 

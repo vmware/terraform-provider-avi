@@ -27,22 +27,22 @@ resource "avi_serviceengine" "foo" {
 
 The following arguments are supported:
 
-* `availability_zone` - (Optional) Placeholder for description of property availability_zone of obj type serviceengine field type string  type str.
-* `cloud_ref` - (Optional) It is a reference to an object of type cloud.
-* `container_mode` - (Optional) Boolean flag to set container_mode.
-* `container_type` - (Optional) Enum options - container_type_bridge, container_type_host, container_type_host_dpdk.
-* `controller_created` - (Optional) Boolean flag to set controller_created.
-* `controller_ip` - (Optional) Placeholder for description of property controller_ip of obj type serviceengine field type string  type str.
-* `data_vnics` - (Optional) List of list.
-* `enable_state` - (Optional) Inorder to disable se set this field appropriately. Enum options - SE_STATE_ENABLED, SE_STATE_DISABLED_FOR_PLACEMENT, SE_STATE_DISABLED, SE_STATE_DISABLED_FORCE.
-* `flavor` - (Optional) Placeholder for description of property flavor of obj type serviceengine field type string  type str.
-* `host_ref` - (Optional) It is a reference to an object of type vimgrhostruntime.
-* `hypervisor` - (Optional) Enum options - default, vmware_esx, kvm, vmware_vsan, xen.
-* `mgmt_vnic` - (Optional) Dict settings for serviceengine.
-* `name` - (Optional) Name of the object.
-* `resources` - (Optional) Dict settings for serviceengine.
-* `se_group_ref` - (Optional) It is a reference to an object of type serviceenginegroup.
-* `tenant_ref` - (Optional) It is a reference to an object of type tenant.
+* `availability_zone` - (Optional) Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `cloud_ref` - (Optional) It is a reference to an object of type cloud. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `container_mode` - (Optional) Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `container_type` - (Optional) Enum options - container_type_bridge, container_type_host, container_type_host_dpdk. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `controller_created` - (Optional) Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `controller_ip` - (Optional) Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `data_vnics` - (Optional) Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `enable_state` - (Optional) Inorder to disable se set this field appropriately. Enum options - SE_STATE_ENABLED, SE_STATE_DISABLED_FOR_PLACEMENT, SE_STATE_DISABLED, SE_STATE_DISABLED_FORCE. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `flavor` - (Optional) Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `host_ref` - (Optional) It is a reference to an object of type vimgrhostruntime. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `hypervisor` - (Optional) Enum options - default, vmware_esx, kvm, vmware_vsan, xen. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `mgmt_vnic` - (Optional) Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `name` - (Optional) Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `resources` - (Optional) Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `se_group_ref` - (Optional) It is a reference to an object of type serviceenginegroup. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 
 
 ### Timeouts
@@ -57,5 +57,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-* `uuid` -  Unique object identifier of the object.
+* `uuid` -  Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 
