@@ -27,20 +27,20 @@ resource "avi_fileobject" "foo" {
 
 The following arguments are supported:
 
-* `name` - (Required) Name of the file object. Field introduced in 20.1.1.
-* `type` - (Required) Type of the file. Enum options - OTHER_FILE_TYPES, IP_REPUTATION, GEO_DB, TECH_SUPPORT, HSMPACKAGES, IPAMDNSSCRIPTS, CONTROLLER_IMAGE. Field introduced in 20.1.1. Allowed in basic(allowed values- other_file_types) edition, essentials(allowed values- other_file_types) edition, enterprise edition.
-* `checksum` - (Optional) Sha1 checksum of the file. Field introduced in 20.1.1.
-* `compressed` - (Optional) This field indicates whether the file is gzip-compressed. Field introduced in 20.1.1.
-* `created` - (Optional) Timestamp of creation for the file. Field introduced in 20.1.1.
-* `description` - (Optional) Description of the file. Field introduced in 20.1.1.
-* `expires_at` - (Optional) Timestamp when the file will be no longer needed and can be removed by the system. If this is set, a garbage collector process will try to remove the file after this time. Field introduced in 20.1.1.
-* `is_federated` - (Optional) This field describes the object's replication scope. If the field is set to false, then the object is visible within the controller-cluster and its associated service-engines. If the field is set to true, then the object is replicated across the federation. Field introduced in 20.1.1.
-* `path` - (Optional) Path to the file. Field introduced in 20.1.1.
-* `read_only` - (Optional) Enforce read-only on the file. Field introduced in 20.1.1.
-* `restrict_download` - (Optional) Flag to allow/restrict download of the file. Field introduced in 20.1.1.
-* `size` - (Optional) Size of the file. Field introduced in 20.1.1.
-* `tenant_ref` - (Optional) Tenant that this object belongs to. It is a reference to an object of type tenant. Field introduced in 20.1.1.
-* `version` - (Optional) Version of the file. Field introduced in 20.1.1.
+* `name` - (Required) Name of the file object. Field introduced in 20.1.1. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `type` - (Required) Type of the file. Enum options - OTHER_FILE_TYPES, IP_REPUTATION, GEO_DB, TECH_SUPPORT, HSMPACKAGES, IPAMDNSSCRIPTS, CONTROLLER_IMAGE. Field introduced in 20.1.1. Allowed in enterprise edition with any value, essentials edition(allowed values- other_file_types), basic edition(allowed values- other_file_types), enterprise with cloud services edition.
+* `checksum` - (Optional) Sha1 checksum of the file. Field introduced in 20.1.1. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `compressed` - (Optional) This field indicates whether the file is gzip-compressed. Field introduced in 20.1.1. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `created` - (Optional) Timestamp of creation for the file. Field introduced in 20.1.1. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `description` - (Optional) Description of the file. Field introduced in 20.1.1. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `expires_at` - (Optional) Timestamp when the file will be no longer needed and can be removed by the system. If this is set, a garbage collector process will try to remove the file after this time. Field introduced in 20.1.1. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `is_federated` - (Optional) This field describes the object's replication scope. If the field is set to false, then the object is visible within the controller-cluster and its associated service-engines. If the field is set to true, then the object is replicated across the federation. Field introduced in 20.1.1. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `path` - (Optional) Path to the file. Field introduced in 20.1.1. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `read_only` - (Optional) Enforce read-only on the file. Field introduced in 20.1.1. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `restrict_download` - (Optional) Flag to allow/restrict download of the file. Field introduced in 20.1.1. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `size` - (Optional) Size of the file. Field introduced in 20.1.1. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `tenant_ref` - (Optional) Tenant that this object belongs to. It is a reference to an object of type tenant. Field introduced in 20.1.1. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `version` - (Optional) Version of the file. Field introduced in 20.1.1. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 
 
 ### Timeouts
@@ -55,5 +55,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-* `uuid` -  Uuid of the file. Field introduced in 20.1.1.
+* `uuid` -  Uuid of the file. Field introduced in 20.1.1. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 

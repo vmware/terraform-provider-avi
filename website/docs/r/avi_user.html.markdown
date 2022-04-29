@@ -27,16 +27,16 @@ resource "avi_user" "foo" {
 
 The following arguments are supported:
 
-* `name` - (Required) Name of the object.
-* `access` - (Optional) List of list.
-* `default_tenant_ref` - (Optional) It is a reference to an object of type tenant.
-* `email` - (Optional) Placeholder for description of property email of obj type user field type string  type str.
-* `full_name` - (Optional) Placeholder for description of property full_name of obj type user field type string  type str.
-* `is_superuser` - (Optional) Boolean flag to set is_superuser.
-* `local` - (Optional) Boolean flag to set local.
-* `password` - (Optional) Placeholder for description of property password of obj type user field type string  type str.
-* `user_profile_ref` - (Optional) It is a reference to an object of type useraccountprofile.
-* `username` - (Optional) Placeholder for description of property username of obj type user field type string  type str.
+* `name` - (Required) Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `access` - (Optional) Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `default_tenant_ref` - (Optional) It is a reference to an object of type tenant. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `email` - (Optional) Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `full_name` - (Optional) Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `is_superuser` - (Optional) Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `local` - (Optional) Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `password` - (Optional) Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `user_profile_ref` - (Optional) It is a reference to an object of type useraccountprofile. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `username` - (Optional) Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 
 
 ### Timeouts
@@ -51,5 +51,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-* `uuid` -  Unique object identifier of the object.
+* `uuid` -  Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 

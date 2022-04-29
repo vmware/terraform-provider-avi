@@ -27,13 +27,13 @@ resource "avi_useraccountprofile" "foo" {
 
 The following arguments are supported:
 
-* `name` - (Required) Name of the object.
-* `account_lock_timeout` - (Optional) Lock timeout period (in minutes). Default is 30 minutes. Unit is min.
-* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1.
-* `credentials_timeout_threshold` - (Optional) The time period after which credentials expire. Default is 180 days. Unit is days.
-* `max_concurrent_sessions` - (Optional) Maximum number of concurrent sessions allowed. There are unlimited sessions by default.
-* `max_login_failure_count` - (Optional) Number of login attempts before lockout. Default is 3 attempts. Allowed values are 3-20. Special values are 0- unlimited login attempts allowed..
-* `max_password_history_count` - (Optional) Maximum number of passwords to be maintained in the password history. Default is 4 passwords.
+* `name` - (Required) Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `account_lock_timeout` - (Optional) Lock timeout period (in minutes). Default is 30 minutes. Unit is min. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services edition.
+* `credentials_timeout_threshold` - (Optional) The time period after which credentials expire. Default is 180 days. Unit is days. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `max_concurrent_sessions` - (Optional) Maximum number of concurrent sessions allowed. There are unlimited sessions by default. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `max_login_failure_count` - (Optional) Number of login attempts before lockout. Default is 3 attempts. Allowed values are 3-20. Special values are 0- unlimited login attempts allowed. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `max_password_history_count` - (Optional) Maximum number of passwords to be maintained in the password history. Default is 4 passwords. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 
 
 ### Timeouts
@@ -48,5 +48,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-* `uuid` -  Unique object identifier of the object.
+* `uuid` -  Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 

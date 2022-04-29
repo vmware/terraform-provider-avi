@@ -32,10 +32,10 @@ data "avi_hardwaresecuritymodulegroup" "foo_hardwaresecuritymodulegroup" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1.
-* `hsm` - Hardware security module configuration.
-* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in basic edition, essentials edition, enterprise edition.
-* `name` - Name of the hsm group configuration object.
-* `tenant_ref` - It is a reference to an object of type tenant.
-* `uuid` - Uuid of the hsm group configuration object.
+* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services edition.
+* `hsm` - Hardware security module configuration. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services edition.
+* `name` - Name of the hsm group configuration object. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `tenant_ref` - It is a reference to an object of type tenant. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `uuid` - Uuid of the hsm group configuration object. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 

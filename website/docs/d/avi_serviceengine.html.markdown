@@ -34,21 +34,21 @@ data "avi_serviceengine" "foo_serviceengine" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `availability_zone` - Placeholder for description of property availability_zone of obj type serviceengine field type string  type str.
-* `cloud_ref` - It is a reference to an object of type cloud.
-* `container_mode` - Boolean flag to set container_mode.
-* `container_type` - Enum options - container_type_bridge, container_type_host, container_type_host_dpdk.
-* `controller_created` - Boolean flag to set controller_created.
-* `controller_ip` - Placeholder for description of property controller_ip of obj type serviceengine field type string  type str.
-* `data_vnics` - List of list.
-* `enable_state` - Inorder to disable se set this field appropriately. Enum options - SE_STATE_ENABLED, SE_STATE_DISABLED_FOR_PLACEMENT, SE_STATE_DISABLED, SE_STATE_DISABLED_FORCE.
-* `flavor` - Placeholder for description of property flavor of obj type serviceengine field type string  type str.
-* `host_ref` - It is a reference to an object of type vimgrhostruntime.
-* `hypervisor` - Enum options - default, vmware_esx, kvm, vmware_vsan, xen.
-* `mgmt_vnic` - Dict settings for serviceengine.
-* `name` - Name of the object.
-* `resources` - Dict settings for serviceengine.
-* `se_group_ref` - It is a reference to an object of type serviceenginegroup.
-* `tenant_ref` - It is a reference to an object of type tenant.
-* `uuid` - Unique object identifier of the object.
+* `availability_zone` - Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `cloud_ref` - It is a reference to an object of type cloud. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `container_mode` - Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `container_type` - Enum options - container_type_bridge, container_type_host, container_type_host_dpdk. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `controller_created` - Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `controller_ip` - Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `data_vnics` - Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `enable_state` - Inorder to disable se set this field appropriately. Enum options - SE_STATE_ENABLED, SE_STATE_DISABLED_FOR_PLACEMENT, SE_STATE_DISABLED, SE_STATE_DISABLED_FORCE. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `flavor` - Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `host_ref` - It is a reference to an object of type vimgrhostruntime. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `hypervisor` - Enum options - default, vmware_esx, kvm, vmware_vsan, xen. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `mgmt_vnic` - Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `name` - Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `resources` - Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `se_group_ref` - It is a reference to an object of type serviceenginegroup. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `tenant_ref` - It is a reference to an object of type tenant. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `uuid` - Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 

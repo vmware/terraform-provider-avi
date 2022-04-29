@@ -27,19 +27,19 @@ resource "avi_network" "foo" {
 
 The following arguments are supported:
 
-* `name` - (Required) Name of the object.
-* `attrs` - (Optional) Key/value network attributes. Field introduced in 20.1.1.
-* `cloud_ref` - (Optional) It is a reference to an object of type cloud.
-* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1.
-* `configured_subnets` - (Optional) List of list.
-* `dhcp_enabled` - (Optional) Select the ip address management scheme for this network.
-* `exclude_discovered_subnets` - (Optional) When selected, excludes all discovered subnets in this network from consideration for virtual service placement.
-* `ip6_autocfg_enabled` - (Optional) Enable ipv6 auto configuration. Field introduced in 18.1.1.
-* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in basic edition, essentials edition, enterprise edition.
-* `synced_from_se` - (Optional) Boolean flag to set synced_from_se.
-* `tenant_ref` - (Optional) It is a reference to an object of type tenant.
-* `vcenter_dvs` - (Optional) Boolean flag to set vcenter_dvs.
-* `vrf_context_ref` - (Optional) It is a reference to an object of type vrfcontext.
+* `name` - (Required) Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `attrs` - (Optional) Key/value network attributes. Field introduced in 20.1.1. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `cloud_ref` - (Optional) It is a reference to an object of type cloud. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services edition.
+* `configured_subnets` - (Optional) Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `dhcp_enabled` - (Optional) Select the ip address management scheme for this network. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `exclude_discovered_subnets` - (Optional) When selected, excludes all discovered subnets in this network from consideration for virtual service placement. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `ip6_autocfg_enabled` - (Optional) Enable ipv6 auto configuration. Field introduced in 18.1.1. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services edition.
+* `synced_from_se` - (Optional) Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `vcenter_dvs` - (Optional) Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `vrf_context_ref` - (Optional) It is a reference to an object of type vrfcontext. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 
 
 ### Timeouts
@@ -54,5 +54,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-* `uuid` -  Unique object identifier of the object.
+* `uuid` -  Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 
