@@ -2,4 +2,4 @@
 This branch will allow you to spin up an Avi Controller within a few min.
 
 === Steps
-The details are in the readme inside the avi-ctl folder
+The step details are in the readme inside the avi-ctl folder. If you do find or have questions please open an issue and we will help / fix the issue. Thanks.
