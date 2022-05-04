@@ -1,5 +1,5 @@
-resource "aws_security_group" "remo_sg" {
-  name = var.remo_sg_name
+resource "aws_security_group" "avi_sg" {
+  name = var.avi_sg_name
 
   description = "Allow inbound SSH traffic from my IP"
   vpc_id      = var.vpc_id_fse

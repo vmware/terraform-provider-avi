@@ -8,12 +8,16 @@ Using AWS profile now
 
 
 My Example:
+my aws profile looks like this
 ----
 [default]
 access_key = "XXXXXXXXXXXXXX"
 secret_key = "XXXXXXXXXXXXXX"
+----
 
-[avi]
+If you do not have the aws cli with profile setup you can just use the aws keys
+----
+[aws]
 aws_access_key_id = "XXXXXXXXXXXXXXXX"
 aws_secret_access_key = "XXXXXXXXXXXX"
 ----
@@ -26,23 +30,27 @@ This will not use the avi profile even though it's in the variables
 
 
 == AMI
-I implemented the map options and based on your regions it will pick the AMI. YOu can add more AMI as needed
+The region will define the AMI for that location. Originally I had a static map. Consequently, you need to make sure you set your region.
 
-to overwrite a region you can use the following command:
-
-----
-terraform plan -var region=us-west-1
-----
 
 == Variable output to variable input
-We will use the output of the main build of the 3 controllers for the input of the cluster
-Before you run the cluster terraform, you will need to make sure the controllers are up and you can login on the 1st controller.
-Then, run the following:
+Vars are what set the values for your env, therefore make sure they are correct otherwise you will get errors. As of April 27th, the release of 21.1.4 is out and therefore I have set as default the API of 21.1.4. I will try to update this often.If you run terraform plan, I have added a variable that will show the version then you can make the final changes in case it's different that 21.1.4
 
+We will use the output of the main build of the 1 or 3 controllers for the input of the cluster
+Before you run the cluster terraform, you will need to make sure the controllers are up and you can login on the 1st controller.
+This repo is mostly design for single cluster, even though you could run 3 of them. 
 
 == SSH keys
 The ssh keys will be generated and you will need to make sure the keys folder exist. The key will be injected so you will be able to ssh intot he controller without the pass.
+
 ----
 ssh -i keys/generated-access-key-moccasin.pem admin@134.212.234.145
 ----
+
+== Terraform.tfvars
+I have added a copy of what I used for my terraform.tfvars as terraform.tfvars.example. Therefore, cp that and apply the changes necessary. 
+
+== Added wait for controller option
+I have added a script which will check when the controller is ready. Depending on the AWS, it can take from 8 to 13 min. 
+
 

@@ -10,6 +10,6 @@ provider "avi" {
   avi_username   = var.admin_username
   avi_password   = var.admin_password
   avi_controller = aws_instance.avi-controller[0].public_ip
-  avi_tenant     = "admin"
+  avi_tenant     = var.admin_username
   avi_version    = var.api_version
 }

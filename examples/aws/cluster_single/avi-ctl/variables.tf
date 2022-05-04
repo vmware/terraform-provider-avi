@@ -34,10 +34,11 @@ variable "shutdown_rules" {
 variable "department_name" {
   description = "Department Name"
 }
+# this defines which AMI will be used
 variable "myregion" {
   description = "Region"
 }
-variable "remo_sg_name" {
+variable "avi_sg_name" {
   description = "Name of the Sec Groups"
 }
 variable "profile" {
@@ -46,30 +47,24 @@ variable "profile" {
 variable "owner" {
   description = "owner"
 }
-variable "ami-image" {
-  default = {
-    us-west-1 = "ami-03baad459ee4a3980"
-    us-west-2 = "ami-04d08b852b47a5876"
-  }
-}
-
-
 # You could spin up more than 1 but use the other repo for cluster
 variable "controller_count" {
   default = 1
 }
 variable "aws_access_key" {}
+
 variable "aws_secret_key" {}
+
 variable "api_version" {
-  default = "21.1.1"
+  default = "21.1.4"
 }
 variable "dns_ip" {
   type    = list(string)
-  default = ["8.8.8.8","8.8.4.4"]
+  default = ["8.8.8.8", "8.8.4.4"]
 }
 variable "ntp_servers" {
   type    = list(string)
-  default = ["0.us.pool.ntp.org","1.us.pool.ntp.org","2.us.pool.ntp.org","3.us.pool.ntp.org"]
+  default = ["0.us.pool.ntp.org", "1.us.pool.ntp.org", "2.us.pool.ntp.org", "3.us.pool.ntp.org"]
 }
 
 variable "search_default_domain" {
@@ -80,4 +75,7 @@ variable "trusted_cidr" {
 }
 variable "welcome_banner" {
   default = "Ciao and Welcome to my new Avi Controller!"
+}
+variable "tag_name" {
+  default = "avi-ctl-tf"
 }
