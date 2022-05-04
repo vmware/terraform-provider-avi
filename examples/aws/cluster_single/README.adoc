@@ -3,3 +3,6 @@ This branch will allow you to spin up an Avi Controller within a few min.
 
 === Steps
 The step details are in the readme inside the avi-ctl folder. If you do find or have questions please open an issue and we will help / fix the issue. Thanks.
+
+=== Cluster Avi Controller
+If you need to build a cluster then we suggest to look at the other repo which will build an Avi Cluster with 3 nodes. 
