@@ -3528,6 +3528,12 @@ func ResourceBotConfigUserAgentSchema() *schema.Resource {
 				Default:      "true",
 				ValidateFunc: validateBool,
 			},
+			"use_tls_fingerprint": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "true",
+				ValidateFunc: validateBool,
+			},
 		},
 	}
 }
