@@ -74,3 +74,21 @@ variable "se_prefix" {
 variable "enable_route53" {
   default = true
 }
+variable "owner_key" {
+  default = "Owner"
+}
+variable "owner_value" {
+  default = "Your Name"
+}
+variable "policy_key" {
+  default = "shutdown_policy"
+}
+variable "policy_value" {
+  default = "noshut"
+}
+variable "dept_key" {
+  default = "Dept"
+}
+variable "dept_value" {
+  default = "My TEAM"
+}

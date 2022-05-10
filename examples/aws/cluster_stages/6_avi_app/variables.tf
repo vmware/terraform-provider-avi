@@ -64,8 +64,11 @@ variable "avi_vip" {
   default = "aws_vip"
 }
 variable "vs_hostname" {
-  default = "demoavi"
+  default = "myavidemo"
 }
 variable "domain_name" {
   default = "remo.demoavi.us"
+}
+variable "autoscaling_name" {
+  default = "pool3_autoscaling"
 }

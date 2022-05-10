@@ -1,3 +1,18 @@
+data "aws_ami" "latest-avi_controller" {
+  most_recent = true
+  owners      = ["aws-marketplace"]
+
+  filter {
+    name   = "name"
+    values = ["Avi*Controller-*"]
+  }
+
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+}
+
 data "aws_iam_instance_profile" "avi_controller_iam" {
   name = var.avi_controller_iam
 }
@@ -12,7 +27,7 @@ resource "aws_eip_association" "ctrl_eip_assoc" {
 }
 
 resource "aws_instance" "avi_controller" {
-  ami                  = var.avi_controller_ami
+  ami                  = data.aws_ami.latest-avi_controller.id
   count                = var.controller_counts
   instance_type        = "c4.2xlarge"
   subnet_id            = aws_subnet.terraform-subnet[0].id
@@ -36,4 +51,18 @@ resource "aws_subnet" "terraform-subnet" {
     Name    = "${var.project_name}-terraform-subnet-${count.index}"
     Project = "${var.project_name}-terraform-subnets"
   }
+}
+
+resource "null_resource" "wait_for_controller" {
+  count = length(aws_instance.avi_controller)
+  provisioner "local-exec" {
+    command = "./wait-for-controller.sh"
+    environment = {
+      CONTROLLER_ADDRESS = aws_eip_association.ctrl_eip_assoc.public_ip
+      POLL_INTERVAL      = 45
+    }
+  }
+  depends_on = [
+    aws_instance.avi_controller
+  ]
 }
