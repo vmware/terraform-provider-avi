@@ -18,7 +18,6 @@ variable "aws_availability_zones" {
 }
 
 variable "project_name" {
-  default = "remo-demo"
 }
 
 variable "aws_creds_file" {
@@ -29,7 +28,7 @@ variable "cluster_name" {
   default = "avi-cluster-tf"
 }
 variable "api_version" {
-  default = "21.1.2"
+  default = "21.1.4"
 }
 variable "ntp_servers" {
   type    = list(any)

@@ -346,7 +346,7 @@ resource "aws_launch_configuration" "web_app_launch_conf" {
 }
 
 resource "aws_autoscaling_group" "asg_based_pool" {
-  name = "${var.project_name}-${var.aautoscaling_name}"
+  name = "${var.project_name}-${var.autoscaling_name}"
   #availability_zones   = var.aws_availability_zones
   max_size             = 2
   min_size             = 1

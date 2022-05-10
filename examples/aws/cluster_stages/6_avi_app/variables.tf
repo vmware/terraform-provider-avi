@@ -44,7 +44,7 @@ variable "aws_creds_file" {
   default = "~/.aws/credentials"
 }
 variable "api_version" {
-  default = "21.1.2"
+  default = "21.1.4"
 }
 variable "floating_ip" {
   default     = true
