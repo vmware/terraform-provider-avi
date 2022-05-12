@@ -1333,11 +1333,11 @@ func ResourceApplicationLogSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
-			"client_finger_prints": {
+			"client_fingerprints": {
 				Type:     schema.TypeSet,
 				Optional: true,
 				Computed: true,
-				Elem:     ResourceClientFingerPrintsSchema(),
+				Elem:     ResourceClientFingerprintsSchema(),
 			},
 			"client_insights": {
 				Type:     schema.TypeString,
@@ -2999,7 +2999,7 @@ func ResourceAzureServicePrincipalCredentialsSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
-			"authentication_token": {
+			"client_secret_value": {
 				Type:             schema.TypeString,
 				Optional:         true,
 				Computed:         true,
@@ -4501,7 +4501,7 @@ func ResourceChildProcessInfoSchema() *schema.Resource {
 	}
 }
 
-func ResourceClientFingerPrintsSchema() *schema.Resource {
+func ResourceClientFingerprintsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
 			"tls_client_info": {
@@ -12017,6 +12017,25 @@ func ResourceEventMapSchema() *schema.Resource {
 	}
 }
 
+func ResourceFTPProfileSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"deactivate_active": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
+			"deactivate_passive": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
+		},
+	}
+}
+
 func ResourceFailActionSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -12120,12 +12139,6 @@ func ResourceFalsePositiveDetailsSchema() *schema.Resource {
 func ResourceFalsePositiveResultSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
-			"always_fail": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Computed:     true,
-				ValidateFunc: validateBool,
-			},
 			"attack": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -12144,22 +12157,21 @@ func ResourceFalsePositiveResultSchema() *schema.Resource {
 				Computed:     true,
 				ValidateFunc: validateBool,
 			},
-			"header_info": {
+			"fp_result_header": {
 				Type:     schema.TypeSet,
-				Optional: true,
-				Computed: true,
-				Elem:     ResourceHeaderInfoInURISchema(),
+				Required: true,
+				Elem:     ResourceFalsePositiveResultHeaderSchema(),
 			},
 			"http_method": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
-			"not_sure": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Computed:     true,
-				ValidateFunc: validateBool,
+			"http_request_header_info": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceHeaderInfoInURISchema(),
 			},
 			"params_info": {
 				Type:     schema.TypeSet,
@@ -12173,16 +12185,47 @@ func ResourceFalsePositiveResultSchema() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceRuleInfoSchema(),
 			},
-			"sometimes_fail": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Computed:     true,
-				ValidateFunc: validateBool,
-			},
 			"uri": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+			"uri_result_mode": {
+				Type:     schema.TypeString,
+				Required: true,
+			},
+		},
+	}
+}
+
+func ResourceFalsePositiveResultHeaderSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"end_analysis_time": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"first_data_received_time": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"last_data_received_time": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"start_analysis_time": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"transactions_count": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
 			},
 		},
 	}
@@ -30851,6 +30894,12 @@ func ResourceServiceSchema() *schema.Resource {
 				Default:      "false",
 				ValidateFunc: validateBool,
 			},
+			"is_active_ftp_data_port": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
 			"override_application_profile_ref": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -32034,6 +32083,12 @@ func ResourceSwitchoverFailEventDetailsSchema() *schema.Resource {
 func ResourceTCPApplicationProfileSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"ftp_profile": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceFTPProfileSchema(),
+			},
 			"pki_profile_ref": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -32988,6 +33043,18 @@ func ResourceUserAgentCacheConfigSchema() *schema.Resource {
 				Default:      "300000",
 				ValidateFunc: validateInteger,
 			},
+			"max_age": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "86400",
+				ValidateFunc: validateInteger,
+			},
+			"max_last_hit_time": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "86400",
+				ValidateFunc: validateInteger,
+			},
 			"max_upstream_queries": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -33148,22 +33215,6 @@ func ResourceVHMatchSchema() *schema.Resource {
 	}
 }
 
-func ResourceVIControllerVnicInfoSchema() *schema.Resource {
-	return &schema.Resource{
-		Schema: map[string]*schema.Schema{
-			"portgroup": {
-				Type:     schema.TypeString,
-				Required: true,
-			},
-			"vnic_ip": {
-				Type:     schema.TypeList,
-				Optional: true,
-				Elem:     ResourceVIGuestvNicIPAddrSchema(),
-			},
-		},
-	}
-}
-
 func ResourceVIDCInfoSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -33184,22 +33235,6 @@ func ResourceVIDCInfoSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
-			},
-		},
-	}
-}
-
-func ResourceVIGuestvNicIPAddrSchema() *schema.Resource {
-	return &schema.Resource{
-		Schema: map[string]*schema.Schema{
-			"ip_addr": {
-				Type:     schema.TypeString,
-				Required: true,
-			},
-			"mask": {
-				Type:         schema.TypeString,
-				Required:     true,
-				ValidateFunc: validateInteger,
 			},
 		},
 	}
@@ -33249,127 +33284,6 @@ func ResourceVIMgrClusterRuntimeSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
-			},
-		},
-	}
-}
-
-func ResourceVIMgrControllerRuntimeSchema() *schema.Resource {
-	return &schema.Resource{
-		Schema: map[string]*schema.Schema{
-			"name": {
-				Type:     schema.TypeString,
-				Required: true,
-			},
-			"tenant_ref": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
-			"type": {
-				Type:     schema.TypeString,
-				Required: true,
-			},
-			"uuid": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
-			"vnics": {
-				Type:     schema.TypeList,
-				Optional: true,
-				Elem:     ResourceVIControllerVnicInfoSchema(),
-			},
-		},
-	}
-}
-
-func ResourceVIMgrDCRuntimeSchema() *schema.Resource {
-	return &schema.Resource{
-		Schema: map[string]*schema.Schema{
-			"cloud_ref": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
-			"cluster_refs": {
-				Type:     schema.TypeList,
-				Optional: true,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-			},
-			"host_refs": {
-				Type:     schema.TypeList,
-				Optional: true,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-			},
-			"interested_hosts": {
-				Type:     schema.TypeList,
-				Optional: true,
-				Elem:     ResourceVIMgrInterestedEntitySchema(),
-			},
-			"interested_nws": {
-				Type:     schema.TypeList,
-				Optional: true,
-				Elem:     ResourceVIMgrInterestedEntitySchema(),
-			},
-			"interested_vms": {
-				Type:     schema.TypeList,
-				Optional: true,
-				Elem:     ResourceVIMgrInterestedEntitySchema(),
-			},
-			"inventory_state": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Computed:     true,
-				ValidateFunc: validateInteger,
-			},
-			"managed_object_id": {
-				Type:     schema.TypeString,
-				Required: true,
-			},
-			"name": {
-				Type:     schema.TypeString,
-				Required: true,
-			},
-			"nw_refs": {
-				Type:     schema.TypeList,
-				Optional: true,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-			},
-			"pending_vcenter_reqs": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Computed:     true,
-				ValidateFunc: validateInteger,
-			},
-			"sevm_refs": {
-				Type:     schema.TypeList,
-				Optional: true,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-			},
-			"tenant_ref": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
-			"type": {
-				Type:     schema.TypeString,
-				Required: true,
-			},
-			"uuid": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
-			"vcenter_uuid": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
-			"vm_refs": {
-				Type:     schema.TypeList,
-				Optional: true,
-				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
 		},
 	}
@@ -33640,17 +33554,6 @@ func ResourceVIMgrIPSubnetRuntimeSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
-			},
-		},
-	}
-}
-
-func ResourceVIMgrInterestedEntitySchema() *schema.Resource {
-	return &schema.Resource{
-		Schema: map[string]*schema.Schema{
-			"interested_uuid": {
-				Type:     schema.TypeString,
-				Required: true,
 			},
 		},
 	}
