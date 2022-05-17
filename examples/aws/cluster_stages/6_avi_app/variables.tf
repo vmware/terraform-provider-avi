@@ -72,3 +72,9 @@ variable "domain_name" {
 variable "autoscaling_name" {
   default = "pool3_autoscaling"
 }
+variable "shutdown_policy" {
+  default = "noshut"
+}
+variable "department" {
+  default = "Team SA"
+}

@@ -37,8 +37,10 @@ resource "aws_instance" "avi_controller" {
   ]
   key_name = aws_key_pair.generated.key_name
 
-  tags = {
-    Name = "${var.project_name}-terraform-controller-${count.index + 1}"
+  tags              = {
+    Name            = "${var.project_name}-terraform-controller-${count.index + 1}"
+    shutdown_policy = var.shutdown_policy
+    department      = var.department
   }
 }
 resource "aws_subnet" "terraform-subnet" {

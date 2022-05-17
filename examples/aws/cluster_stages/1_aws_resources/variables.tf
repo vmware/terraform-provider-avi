@@ -57,3 +57,9 @@ variable "avi_sg_name" {
 variable "trusted_cidr" {
   description = "cidr block of addresses trusted for access to the kubernetes API server"
 }
+variable "shutdown_policy" {
+  default = "noshut"
+}
+variable "department" {
+  default = "Team SA"
+}

@@ -18,13 +18,15 @@ data "aws_instance" "avi_controller" {
   }
 }
 resource "aws_instance" "terraform-webserver" {
-  count         = var.webserver_count
-  ami           = var.webserver_ami
-  instance_type = var.webserver_instance_type
-  subnet_id     = data.aws_subnet.terraform-subnets-0.id
-  tags = {
-    Name    = "${var.project_name}-terraform-webserver-${count.index}"
-    Project = "${var.project_name}-terraform-webservers"
+  count             = var.webserver_count
+  ami               = var.webserver_ami
+  instance_type     = var.webserver_instance_type
+  subnet_id         = data.aws_subnet.terraform-subnets-0.id
+  tags              = {
+    Name            = "${var.project_name}-terraform-webserver-${count.index}"
+    Project         = "${var.project_name}-terraform-webservers"
+    shutdown_policy = var.shutdown_policy
+    department      = var.department
   }
 }
 data "aws_subnet" "terraform-subnets-0" {
@@ -358,6 +360,17 @@ resource "aws_autoscaling_group" "asg_based_pool" {
     data.aws_subnet.terraform-subnets-1.id,
     data.aws_subnet.terraform-subnets-2.id
   ]
+  tag {
+    key                 = "owner"
+    value               = "Remo Mattei"
+    propagate_at_launch = true
+  }
+
+  tag {
+    key                 = "shutdown_policy"
+    value               = "noshut"
+    propagate_at_launch = true
+  }
 }
 
 
