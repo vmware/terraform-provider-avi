@@ -61,6 +61,10 @@ func dataSourceAviSSLKeyAndCertificate() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"import_key_to_hsm": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"key": {
 				Type:     schema.TypeString,
 				Computed: true,

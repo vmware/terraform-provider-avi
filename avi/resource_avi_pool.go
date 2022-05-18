@@ -289,6 +289,11 @@ func ResourcePoolSchema() map[string]*schema.Schema {
 			Optional: true,
 			Elem:     ResourcePlacementNetworkSchema(),
 		},
+		"pool_type": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Default:  "POOL_TYPE_GENERIC_APP",
+		},
 		"request_queue_depth": {
 			Type:         schema.TypeString,
 			Optional:     true,
