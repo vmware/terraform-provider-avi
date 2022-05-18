@@ -169,6 +169,12 @@ func ResourceCloudSchema() map[string]*schema.Schema {
 			Computed: true,
 			Elem:     ResourceNsxtConfigurationSchema(),
 		},
+		"ntp_configuration": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceNTPConfigurationSchema(),
+		},
 		"obj_name_prefix": {
 			Type:     schema.TypeString,
 			Optional: true,

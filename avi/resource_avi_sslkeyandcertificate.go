@@ -76,6 +76,12 @@ func ResourceSSLKeyAndCertificateSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"import_key_to_hsm": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
+		},
 		"key": {
 			Type:             schema.TypeString,
 			Optional:         true,

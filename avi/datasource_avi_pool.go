@@ -227,6 +227,10 @@ func dataSourceAviPool() *schema.Resource {
 				Computed: true,
 				Elem:     ResourcePlacementNetworkSchema(),
 			},
+			"pool_type": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"request_queue_depth": {
 				Type:     schema.TypeString,
 				Computed: true,

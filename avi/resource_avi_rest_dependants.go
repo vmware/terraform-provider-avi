@@ -4504,16 +4504,21 @@ func ResourceChildProcessInfoSchema() *schema.Resource {
 func ResourceClientFingerprintsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"filtered_tls_fingerprint": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"full_tls_fingerprint": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"tls_client_info": {
 				Type:     schema.TypeSet,
 				Optional: true,
 				Computed: true,
 				Elem:     ResourceTlsClientInfoSchema(),
-			},
-			"tls_fingerprint": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
 			},
 		},
 	}
@@ -11514,6 +11519,12 @@ func ResourceEventDetailsSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 				Elem:     ResourceSeMemoryLimitEventDetailsSchema(),
+			},
+			"se_ntp_synchronization_failed": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceSeNtpSynchronizationFailedSchema(),
 			},
 			"se_persistence_details": {
 				Type:     schema.TypeSet,
@@ -28893,6 +28904,28 @@ func ResourceSeMigrateEventDetailsSchema() *schema.Resource {
 	}
 }
 
+func ResourceSeNtpSynchronizationFailedSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"ntp_servers": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"se_name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"se_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
 func ResourceSePersistenceEventDetailsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -32494,6 +32527,12 @@ func ResourceTlsClientInfoSchema() *schema.Resource {
 				Optional: true,
 				Elem:     &schema.Schema{Type: schema.TypeInt},
 			},
+			"client_hello_tls_version": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
 			"point_formats": {
 				Type:     schema.TypeList,
 				Optional: true,
@@ -32514,12 +32553,6 @@ func ResourceTlsClientInfoSchema() *schema.Resource {
 				Optional:     true,
 				Computed:     true,
 				ValidateFunc: validateBool,
-			},
-			"version": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Computed:     true,
-				ValidateFunc: validateInteger,
 			},
 		},
 	}
