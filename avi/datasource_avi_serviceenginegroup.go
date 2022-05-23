@@ -249,6 +249,10 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"dpdk_gro_timeout_interval": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"enable_gratarp_permanent": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -882,6 +886,11 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 			"se_thread_multiplier": {
 				Type:     schema.TypeString,
 				Computed: true,
+			},
+			"se_time_tracker_props": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceSETimeTrackerPropertiesSchema(),
 			},
 			"se_tracert_port_range": {
 				Type:     schema.TypeSet,

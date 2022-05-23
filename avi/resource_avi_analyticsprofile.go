@@ -514,6 +514,12 @@ func ResourceAnalyticsProfileSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"time_tracker_props": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceTimeTrackerPropertiesSchema(),
+		},
 		"uuid": {
 			Type:     schema.TypeString,
 			Optional: true,

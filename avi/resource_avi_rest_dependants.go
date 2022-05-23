@@ -2999,7 +2999,7 @@ func ResourceAzureServicePrincipalCredentialsSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
-			"client_secret_value": {
+			"authentication_token": {
 				Type:             schema.TypeString,
 				Optional:         true,
 				Computed:         true,
@@ -11454,6 +11454,12 @@ func ResourceEventDetailsSchema() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceSeHbRecoveredEventDetailsSchema(),
 			},
+			"se_high_egress_proc_latency_event_details": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceSeHighEgressProcLatencyEventDetailsSchema(),
+			},
 			"se_high_ingress_proc_latency_event_details": {
 				Type:     schema.TypeSet,
 				Optional: true,
@@ -15528,6 +15534,12 @@ func ResourceHTTPHdrActionSchema() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceHTTPHdrDataSchema(),
 			},
+			"index": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
 		},
 	}
 }
@@ -15553,6 +15565,12 @@ func ResourceHTTPHdrDataSchema() *schema.Resource {
 func ResourceHTTPHdrValueSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"is_sensitive": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
 			"val": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -26097,6 +26115,41 @@ func ResourceSEBandwidthLimitSchema() *schema.Resource {
 	}
 }
 
+func ResourceSETimeTrackerPropertiesSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"egress_audit_mode": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"egress_threshold": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"event_gen_window": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"ingress_audit_mode": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"ingress_threshold": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+		},
+	}
+}
+
 func ResourceSSHSeDeploymentSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{},
@@ -27989,7 +28042,7 @@ func ResourceSeHbRecoveredEventDetailsSchema() *schema.Resource {
 	}
 }
 
-func ResourceSeHighIngressProcLatencyEventDetailsSchema() *schema.Resource {
+func ResourceSeHighEgressProcLatencyEventDetailsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
 			"dispatcher_core": {
@@ -27998,11 +28051,44 @@ func ResourceSeHighIngressProcLatencyEventDetailsSchema() *schema.Resource {
 				Computed:     true,
 				ValidateFunc: validateInteger,
 			},
-			"dispatcher_latency_ingress": {
+			"event_count": {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Computed:     true,
 				ValidateFunc: validateInteger,
+			},
+			"flow_core": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeInt},
+			},
+			"max_proxy_to_disp_queing_delay": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"se_name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"se_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceSeHighIngressProcLatencyEventDetailsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"dispatcher_core": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeInt},
 			},
 			"event_count": {
 				Type:         schema.TypeString,
@@ -28016,7 +28102,13 @@ func ResourceSeHighIngressProcLatencyEventDetailsSchema() *schema.Resource {
 				Computed:     true,
 				ValidateFunc: validateInteger,
 			},
-			"proxy_latency_ingress": {
+			"max_disp_to_proxy_queing_delay": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"max_dispatcher_proc_time": {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Computed:     true,
@@ -32514,6 +32606,41 @@ func ResourceTimeStampSchema() *schema.Resource {
 				Type:         schema.TypeString,
 				Required:     true,
 				ValidateFunc: validateInteger,
+			},
+		},
+	}
+}
+
+func ResourceTimeTrackerPropertiesSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"be_conn_est_audit_mode": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"be_conn_est_threshold": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"fe_conn_est_audit_mode": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"fe_conn_est_threshold": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"ingress_sig_log": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateBool,
 			},
 		},
 	}

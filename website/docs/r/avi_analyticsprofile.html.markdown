@@ -104,7 +104,7 @@ The following arguments are supported:
 * `hs_security_tls12_score` - (Optional) Score assigned when supporting tls1.2 encryption protocol. Allowed values are 0-5. Allowed in enterprise edition with any value, essentials edition(allowed values- 5.0), basic edition(allowed values- 5.0), enterprise with cloud services edition.
 * `hs_security_tls13_score` - (Optional) Score assigned when supporting tls1.3 encryption protocol. Allowed values are 0-5. Field introduced in 18.2.6. Allowed in enterprise edition with any value, essentials edition(allowed values- 5.0), basic edition(allowed values- 5.0), enterprise with cloud services edition.
 * `hs_security_weak_signature_algo_penalty` - (Optional) Penalty for allowing weak signature algorithm(s). Allowed values are 0-5. Allowed in enterprise edition with any value, essentials edition(allowed values- 1.0), basic edition(allowed values- 1.0), enterprise with cloud services edition.
-* `latency_audit_props` - (Optional) Influence the audit of ingress latency and connection establishement time. Field introduced in 21.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `latency_audit_props` - (Optional) Deprecated in 22.1.1. Field introduced in 21.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 * `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services edition.
 * `ondemand_metrics_idle_timeout` - (Optional) This flag sets the time duration of no live data traffic after which virtual service metrics processing is suspended. It is applicable only when enable_ondemand_metrics is set to false. Field introduced in 18.1.1. Unit is seconds. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 * `ranges` - (Optional) List of http status code ranges to be excluded from being classified as an error. Allowed in enterprise edition with any value, enterprise with cloud services edition.
@@ -112,6 +112,7 @@ The following arguments are supported:
 * `sensitive_log_profile` - (Optional) Rules applied to the http application log for filtering sensitive information. Field introduced in 17.2.10, 18.1.2. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 * `sip_log_depth` - (Optional) Maximum number of sip messages added in logs for a sip transaction. By default, this value is 20. Allowed values are 1-1000. Field introduced in 17.2.13, 18.1.5, 18.2.1. Allowed in enterprise edition with any value, essentials edition(allowed values- 20), basic edition(allowed values- 20), enterprise with cloud services edition.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `time_tracker_props` - (Optional) Protobuf versioning for config pbs. Field introduced in 22.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 
 
 ### Timeouts
