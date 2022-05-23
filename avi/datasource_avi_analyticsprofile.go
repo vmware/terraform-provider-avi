@@ -361,6 +361,11 @@ func dataSourceAviAnalyticsProfile() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"time_tracker_props": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceTimeTrackerPropertiesSchema(),
+			},
 			"uuid": {
 				Type:     schema.TypeString,
 				Optional: true,

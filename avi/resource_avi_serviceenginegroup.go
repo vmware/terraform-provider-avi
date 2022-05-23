@@ -353,6 +353,12 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Default:      "10",
 			ValidateFunc: validateInteger,
 		},
+		"dpdk_gro_timeout_interval": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "50",
+			ValidateFunc: validateInteger,
+		},
 		"enable_gratarp_permanent": {
 			Type:         schema.TypeString,
 			Optional:     true,
@@ -1257,6 +1263,12 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional:     true,
 			Default:      "1",
 			ValidateFunc: validateInteger,
+		},
+		"se_time_tracker_props": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceSETimeTrackerPropertiesSchema(),
 		},
 		"se_tracert_port_range": {
 			Type:     schema.TypeSet,
