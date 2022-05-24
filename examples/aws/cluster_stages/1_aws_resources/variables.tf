@@ -47,20 +47,19 @@ variable "aws_subnets" {
 variable "avi_controller_iam" {
   default = "remo-avi-controller"
 }
-variable "avi_controller_ami" {
-  default = "ami-06da24088ea4fcc85"
-  #ami-007edf6b2b302cce5"
-  #default = "ami-0451e26f70764fc9e"
-}
-
 variable "aws_availability_zones" {
   type    = list(string)
   default = ["us-west-2a", "us-west-2b", "us-west-2c"]
 }
-
 variable "avi_sg_name" {
   description = "Name of the Sec Groups"
 }
 variable "trusted_cidr" {
   description = "cidr block of addresses trusted for access to the kubernetes API server"
+}
+variable "shutdown_policy" {
+  default = "noshut"
+}
+variable "department" {
+  default = "Team SA"
 }

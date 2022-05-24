@@ -31,7 +31,7 @@ variable "project_name" {
   default = "awesome-avi"
 }
 variable "api_version" {
-  default = "21.1.2"
+  default = "21.1.4"
 }
 variable "connection_mem_percentage" {
   default     = 50
@@ -73,4 +73,22 @@ variable "se_prefix" {
 }
 variable "enable_route53" {
   default = true
+}
+variable "owner_key" {
+  default = "Owner"
+}
+variable "owner_value" {
+  default = "Your Name"
+}
+variable "policy_key" {
+  default = "shutdown_policy"
+}
+variable "policy_value" {
+  default = "noshut"
+}
+variable "dept_key" {
+  default = "Dept"
+}
+variable "dept_value" {
+  default = "My TEAM"
 }

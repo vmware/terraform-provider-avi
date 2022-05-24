@@ -148,4 +148,16 @@ resource "avi_serviceenginegroup" "waf_cloud_group" {
   se_name_prefix          = var.se_prefix
   use_hyperthreaded_cores = var.hyperthreaded_cores
   se_dp_max_hb_version    = 2
+    custom_tag {
+    tag_key = var.owner_key
+    tag_val = var.owner_value
+  }
+  custom_tag {
+    tag_key = var.policy_key
+    tag_val = var.policy_value
+  }
+  custom_tag {
+    tag_key = var.dept_key
+    tag_val = var.dept_value
+  }
 }

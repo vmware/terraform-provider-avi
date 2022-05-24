@@ -102,6 +102,19 @@ resource "avi_serviceenginegroup" "aws_se_group" {
     duration = 0
     enabled  = true
   }
+  custom_tag {
+    tag_key = var.owner_key
+    tag_val = var.owner_value
+}
+  custom_tag {
+    tag_key = var.policy_key
+    tag_val = var.policy_value
+}
+  custom_tag {
+    tag_key = var.dept_key
+    tag_val = var.dept_value
+}
+
   vcpus_per_se         = var.vcpus_per_se      # default 2
   se_deprovision_delay = var.deprovision_delay # default 5
   se_name_prefix       = var.se_prefix
@@ -119,4 +132,3 @@ resource "avi_backupconfiguration" "backup_config" {
     version = 1
   }
 }
-

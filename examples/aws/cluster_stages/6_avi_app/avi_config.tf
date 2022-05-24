@@ -18,13 +18,15 @@ data "aws_instance" "avi_controller" {
   }
 }
 resource "aws_instance" "terraform-webserver" {
-  count         = var.webserver_count
-  ami           = var.webserver_ami
-  instance_type = var.webserver_instance_type
-  subnet_id     = data.aws_subnet.terraform-subnets-0.id
-  tags = {
-    Name    = "${var.project_name}-terraform-webserver-${count.index}"
-    Project = "${var.project_name}-terraform-webservers"
+  count             = var.webserver_count
+  ami               = var.webserver_ami
+  instance_type     = var.webserver_instance_type
+  subnet_id         = data.aws_subnet.terraform-subnets-0.id
+  tags              = {
+    Name            = "${var.project_name}-terraform-webserver-${count.index}"
+    Project         = "${var.project_name}-terraform-webservers"
+    shutdown_policy = var.shutdown_policy
+    department      = var.department
   }
 }
 data "aws_subnet" "terraform-subnets-0" {
@@ -86,7 +88,7 @@ data "avi_sslprofile" "system_standard_sslprofile" {
 }
 
 data "avi_serviceenginegroup" "se_group" {
-  name      = "Default-Group"
+  name      = "SE_Group_One"
   cloud_ref = data.avi_cloud.aws_cloud_cfg.id
 }
 
@@ -340,13 +342,13 @@ resource "avi_virtualservice" "terraform-virtualservice" {
 }
 
 resource "aws_launch_configuration" "web_app_launch_conf" {
-  name          = "${var.project_name}-app-launch-config"
+  name          = "${var.project_name}-${var.autoscaling_name}"
   image_id      = var.webserver_ami
   instance_type = var.webserver_instance_type
 }
 
 resource "aws_autoscaling_group" "asg_based_pool" {
-  name = "${var.project_name}-aws-vs-pool3-asg"
+  name = "${var.project_name}-${var.autoscaling_name}"
   #availability_zones   = var.aws_availability_zones
   max_size             = 2
   min_size             = 1
@@ -358,6 +360,17 @@ resource "aws_autoscaling_group" "asg_based_pool" {
     data.aws_subnet.terraform-subnets-1.id,
     data.aws_subnet.terraform-subnets-2.id
   ]
+  tag {
+    key                 = "owner"
+    value               = "Remo Mattei"
+    propagate_at_launch = true
+  }
+
+  tag {
+    key                 = "shutdown_policy"
+    value               = "noshut"
+    propagate_at_launch = true
+  }
 }
 
 
@@ -380,4 +393,3 @@ resource "avi_errorpageprofile" "demo_errorpage" {
     }
   }
 }
-

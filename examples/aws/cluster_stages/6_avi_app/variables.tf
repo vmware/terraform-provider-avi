@@ -44,7 +44,7 @@ variable "aws_creds_file" {
   default = "~/.aws/credentials"
 }
 variable "api_version" {
-  default = "21.1.2"
+  default = "21.1.4"
 }
 variable "floating_ip" {
   default     = true
@@ -64,8 +64,17 @@ variable "avi_vip" {
   default = "aws_vip"
 }
 variable "vs_hostname" {
-  default = "demoavi"
+  default = "myavidemo"
 }
 variable "domain_name" {
   default = "remo.demoavi.us"
+}
+variable "autoscaling_name" {
+  default = "pool3_autoscaling"
+}
+variable "shutdown_policy" {
+  default = "noshut"
+}
+variable "department" {
+  default = "Team SA"
 }
