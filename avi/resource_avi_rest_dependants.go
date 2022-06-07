@@ -22771,6 +22771,25 @@ func ResourceObjSyncConfigSchema() *schema.Resource {
 	}
 }
 
+func ResourceOmittedWafLogStatsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"match_elements": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "0",
+				ValidateFunc: validateInteger,
+			},
+			"rules": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "0",
+				ValidateFunc: validateInteger,
+			},
+		},
+	}
+}
+
 func ResourceOpaqueTokenValidationParamsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -38386,6 +38405,18 @@ func ResourceWafLogSchema() *schema.Resource {
 				Computed:     true,
 				ValidateFunc: validateInteger,
 			},
+			"omitted_app_rule_stats": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceOmittedWafLogStatsSchema(),
+			},
+			"omitted_signature_stats": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceOmittedWafLogStatsSchema(),
+			},
 			"psm_configured": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -38850,6 +38881,12 @@ func ResourceWafRuleLogSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+			"omitted_match_elements": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "0",
+				ValidateFunc: validateInteger,
 			},
 			"phase": {
 				Type:     schema.TypeString,
