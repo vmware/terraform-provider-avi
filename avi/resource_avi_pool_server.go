@@ -90,6 +90,12 @@ func ResourceAviPoolServerSchema() map[string]*schema.Schema {
 			Computed:     true,
 			ValidateFunc: validateInteger,
 		},
+		"preference_order": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Computed:     true,
+			ValidateFunc: validateInteger,
+		},
 		"prst_hdr_val": {
 			Type:     schema.TypeString,
 			Optional: true,

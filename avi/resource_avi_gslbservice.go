@@ -127,6 +127,12 @@ func ResourceGslbServiceSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"topology_policy_enabled": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Computed:     true,
+			ValidateFunc: validateBool,
+		},
 		"ttl": {
 			Type:         schema.TypeString,
 			Optional:     true,
