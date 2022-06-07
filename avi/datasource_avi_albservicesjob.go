@@ -28,7 +28,20 @@ func dataSourceAviALBServicesJob() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"params": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceALBServicesJobParamSchema(),
+			},
 			"pulse_job_id": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"pulse_sync_status": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"result": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
@@ -44,6 +57,10 @@ func dataSourceAviALBServicesJob() *schema.Resource {
 			"tenant_ref": {
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
+			},
+			"token": {
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"uuid": {

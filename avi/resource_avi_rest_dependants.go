@@ -235,6 +235,23 @@ func ResourceALBServicesCaseAttachmentSchema() *schema.Resource {
 	}
 }
 
+func ResourceALBServicesJobParamSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"key": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"value": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
 func ResourceALBServicesStatusDetailsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -9751,6 +9768,12 @@ func ResourceDnsRuleActionSchema() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceDnsRateLimiterSchema(),
 			},
+			"gs_group_selection": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceDnsRuleActionGsGroupSelectionSchema(),
+			},
 			"gslb_site_selection": {
 				Type:     schema.TypeSet,
 				Optional: true,
@@ -9787,6 +9810,17 @@ func ResourceDnsRuleActionAllowDropSchema() *schema.Resource {
 				Optional:     true,
 				Default:      "true",
 				ValidateFunc: validateBool,
+			},
+		},
+	}
+}
+
+func ResourceDnsRuleActionGsGroupSelectionSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"group_name": {
+				Type:     schema.TypeString,
+				Required: true,
 			},
 		},
 	}
@@ -13506,6 +13540,12 @@ func ResourceGslbPoolMemberSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 				Elem:     ResourceGslbGeoLocationSchema(),
+			},
+			"preference_order": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "1",
+				ValidateFunc: validateInteger,
 			},
 			"public_ip": {
 				Type:     schema.TypeSet,
@@ -26140,29 +26180,29 @@ func ResourceSETimeTrackerPropertiesSchema() *schema.Resource {
 			"egress_audit_mode": {
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
+				Default:  "SE_TT_AUDIT_OFF",
 			},
 			"egress_threshold": {
 				Type:         schema.TypeString,
 				Optional:     true,
-				Computed:     true,
+				Default:      "20",
 				ValidateFunc: validateInteger,
 			},
 			"event_gen_window": {
 				Type:         schema.TypeString,
 				Optional:     true,
-				Computed:     true,
+				Default:      "300",
 				ValidateFunc: validateInteger,
 			},
 			"ingress_audit_mode": {
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
+				Default:  "SE_TT_AUDIT_OFF",
 			},
 			"ingress_threshold": {
 				Type:         schema.TypeString,
 				Optional:     true,
-				Computed:     true,
+				Default:      "20",
 				ValidateFunc: validateInteger,
 			},
 		},
@@ -30661,6 +30701,12 @@ func ResourceServerSchema() *schema.Resource {
 				Computed: true,
 			},
 			"port": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"preference_order": {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Computed:     true,

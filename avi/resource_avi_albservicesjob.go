@@ -33,7 +33,23 @@ func ResourceALBServicesJobSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Required: true,
 		},
+		"params": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceALBServicesJobParamSchema(),
+		},
 		"pulse_job_id": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
+		"pulse_sync_status": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Computed:     true,
+			ValidateFunc: validateBool,
+		},
+		"result": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
@@ -50,6 +66,11 @@ func ResourceALBServicesJobSchema() map[string]*schema.Schema {
 			Default:  "PENDING",
 		},
 		"tenant_ref": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
+		"token": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,

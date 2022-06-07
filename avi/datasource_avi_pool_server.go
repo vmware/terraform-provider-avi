@@ -71,6 +71,10 @@ func dataSourceAviServer() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"preference_order": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"prst_hdr_val": {
 				Type:     schema.TypeString,
 				Computed: true,
