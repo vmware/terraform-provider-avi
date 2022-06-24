@@ -363,7 +363,7 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 		"se_upgrade_flow_cleanup_timeout": {
 			Type:         schema.TypeString,
 			Optional:     true,
-			Default:      "30",
+			Default:      "90",
 			ValidateFunc: validateInteger,
 		},
 		"se_vnic_cooldown": {
