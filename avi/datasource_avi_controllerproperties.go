@@ -146,6 +146,11 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"false_positive_learning_config": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceFalsePositiveLearningConfigSchema(),
+			},
 			"fatal_error_lease_time": {
 				Type:     schema.TypeString,
 				Computed: true,
