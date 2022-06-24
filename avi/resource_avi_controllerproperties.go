@@ -217,6 +217,12 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Default:      "false",
 			ValidateFunc: validateBool,
 		},
+		"false_positive_learning_config": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceFalsePositiveLearningConfigSchema(),
+		},
 		"fatal_error_lease_time": {
 			Type:         schema.TypeString,
 			Optional:     true,
@@ -369,7 +375,7 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 		"se_upgrade_flow_cleanup_timeout": {
 			Type:         schema.TypeString,
 			Optional:     true,
-			Default:      "30",
+			Default:      "90",
 			ValidateFunc: validateInteger,
 		},
 		"se_vnic_cooldown": {
