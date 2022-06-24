@@ -10537,6 +10537,11 @@ func ResourceEmailConfigurationSchema() *schema.Resource {
 				Optional: true,
 				Default:  "admin@avicontroller.net",
 			},
+			"from_name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"mail_server_name": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -12182,6 +12187,37 @@ func ResourceFalsePositiveDetailsSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceFalsePositiveLearningConfigSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"max_apps_supported": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "5",
+				ValidateFunc: validateInteger,
+			},
+			"min_monitor_time": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "10080",
+				ValidateFunc: validateInteger,
+			},
+			"min_trans_per_application": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "5000000",
+				ValidateFunc: validateInteger,
+			},
+			"min_trans_per_uri": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "10000",
+				ValidateFunc: validateInteger,
 			},
 		},
 	}
@@ -15574,7 +15610,7 @@ func ResourceHTTPHdrActionSchema() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceHTTPHdrDataSchema(),
 			},
-			"index": {
+			"hdr_index": {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Computed:     true,
@@ -39151,7 +39187,7 @@ func ResourcevCenterConfigurationSchema() *schema.Resource {
 			"use_content_lib": {
 				Type:         schema.TypeString,
 				Optional:     true,
-				Default:      "false",
+				Default:      "true",
 				ValidateFunc: validateBool,
 			},
 			"username": {

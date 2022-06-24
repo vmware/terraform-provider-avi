@@ -306,6 +306,10 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"grpc_channel_connect_timeout": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"ha_mode": {
 				Type:     schema.TypeString,
 				Computed: true,
