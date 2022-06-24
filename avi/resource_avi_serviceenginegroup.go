@@ -260,7 +260,7 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 		"disable_gro": {
 			Type:         schema.TypeString,
 			Optional:     true,
-			Default:      "true",
+			Computed:     true,
 			ValidateFunc: validateBool,
 		},
 		"disable_se_memory_check": {
@@ -435,6 +435,12 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Type:         schema.TypeString,
 			Optional:     true,
 			Default:      "10",
+			ValidateFunc: validateInteger,
+		},
+		"grpc_channel_connect_timeout": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "15",
 			ValidateFunc: validateInteger,
 		},
 		"ha_mode": {
