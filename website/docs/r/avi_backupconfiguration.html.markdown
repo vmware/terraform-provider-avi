@@ -30,6 +30,7 @@ The following arguments are supported:
 * `name` - (Required) Name of backup configuration. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 * `aws_access_key` - (Optional) Aws access key id. Field introduced in 18.2.3. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 * `aws_bucket_id` - (Optional) Aws bucket. Field introduced in 18.2.3. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `aws_bucket_region` - (Optional) The name of the aws region associated with the bucket. Field introduced in 21.1.5, 22.1.1, 22.1.3. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 * `aws_secret_access` - (Optional) Aws secret access key. Field introduced in 18.2.3. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 * `backup_file_prefix` - (Optional) Prefix of the exported configuration file. Field introduced in 17.1.1. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 * `backup_passphrase` - (Optional) Default passphrase for configuration export and periodic backup. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
