@@ -17,6 +17,10 @@ func dataSourceAviBackupConfiguration() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"aws_bucket_region": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"aws_secret_access": {
 				Type:     schema.TypeString,
 				Computed: true,
