@@ -25,6 +25,11 @@ func ResourceBackupConfigurationSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"aws_bucket_region": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
 		"aws_secret_access": {
 			Type:             schema.TypeString,
 			Optional:         true,
