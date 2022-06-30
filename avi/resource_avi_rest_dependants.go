@@ -22146,7 +22146,7 @@ func ResourceOAuthProfileSchema() *schema.Resource {
 			"jwks_timeout": {
 				Type:         schema.TypeString,
 				Optional:     true,
-				Computed:     true,
+				Default:      "0",
 				ValidateFunc: validateInteger,
 			},
 			"jwks_uri": {
