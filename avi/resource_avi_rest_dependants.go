@@ -18159,6 +18159,114 @@ func ResourceKniPortRangeSchema() *schema.Resource {
 	}
 }
 
+func ResourceL1FMandatoryTestCaseSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"mandatory_message": {
+				Type:     schema.TypeSet,
+				Required: true,
+				Elem:     ResourceL2FMandatoryTestCaseSchema(),
+			},
+			"mandatory_messages": {
+				Type:     schema.TypeList,
+				Required: true,
+				Elem:     ResourceL2FMandatoryTestCaseSchema(),
+			},
+			"mandatory_string": {
+				Type:     schema.TypeString,
+				Required: true,
+			},
+			"mandatory_strings": {
+				Type:     schema.TypeList,
+				Required: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
+		},
+	}
+}
+
+func ResourceL1StringLengthTestCaseSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"string_length_message": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceL2StringLengthTestCaseSchema(),
+			},
+			"string_length_messages": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceL2StringLengthTestCaseSchema(),
+			},
+			"test_string": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"test_strings": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
+		},
+	}
+}
+
+func ResourceL2FMandatoryTestCaseSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"mandatory_message": {
+				Type:     schema.TypeSet,
+				Required: true,
+				Elem:     ResourceSingleOptionalFieldMessageSchema(),
+			},
+			"mandatory_messages": {
+				Type:     schema.TypeList,
+				Required: true,
+				Elem:     ResourceSingleOptionalFieldMessageSchema(),
+			},
+			"mandatory_string": {
+				Type:     schema.TypeString,
+				Required: true,
+			},
+			"mandatory_strings": {
+				Type:     schema.TypeList,
+				Required: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
+		},
+	}
+}
+
+func ResourceL2StringLengthTestCaseSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"string_length_message": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceSingleOptionalStringFieldSchema(),
+			},
+			"string_length_messages": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceSingleOptionalStringFieldSchema(),
+			},
+			"test_string": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"test_strings": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
+		},
+	}
+}
+
 func ResourceL4ConnectionPolicySchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -30918,6 +31026,30 @@ func ResourceSingleLicenseSchema() *schema.Resource {
 				Required: true,
 			},
 			"version": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceSingleOptionalFieldMessageSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"optional_string": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceSingleOptionalStringFieldSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"test_string": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
