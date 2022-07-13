@@ -8574,10 +8574,59 @@ func ResourceDebugServiceEngineSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"trace_memory": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceDebugTraceMemorySchema(),
+			},
 			"uuid": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceDebugTraceMallocTypesSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"malloc_type_index": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+		},
+	}
+}
+
+func ResourceDebugTraceMemorySchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"trace_malloc_types": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceDebugTraceMallocTypesSchema(),
+			},
+			"trace_shm_malloc_types": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceDebugTraceShmMallocTypesSchema(),
+			},
+		},
+	}
+}
+
+func ResourceDebugTraceShmMallocTypesSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"shm_malloc_type_index": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
 			},
 		},
 	}
