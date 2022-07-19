@@ -36868,6 +36868,12 @@ func ResourceVserverL4MetricsObjSchema() *schema.Resource {
 				Computed:     true,
 				ValidateFunc: validateFloat,
 			},
+			"max_connection_estb_time_fe": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateFloat,
+			},
 			"max_num_active_se": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -36962,6 +36968,12 @@ func ResourceVserverL4MetricsObjSchema() *schema.Resource {
 				Computed:     true,
 				ValidateFunc: validateFloat,
 			},
+			"sum_conn_est_time_exceeded_flows_fe": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateFloat,
+			},
 			"sum_connection_dropped_user_limit": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -37005,6 +37017,12 @@ func ResourceVserverL4MetricsObjSchema() *schema.Resource {
 				ValidateFunc: validateFloat,
 			},
 			"sum_finished_conns": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateFloat,
+			},
+			"sum_ingress_latency_exceeded_flows": {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Computed:     true,
