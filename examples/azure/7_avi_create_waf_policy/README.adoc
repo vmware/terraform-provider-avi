@@ -1,0 +1,11 @@
+= WAF Rule testing
+
+----
+/?id=1+union+select+1,2,3/*
+----
+
+Or
+
+----
+/?id=1/*union*/union/*select*/select+1,2,3/*
+----

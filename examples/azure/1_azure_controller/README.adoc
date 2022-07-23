@@ -1,0 +1,15 @@
+= Build Azure Controller
+This part is replicating what has been done with AWS. Therefore, we are going to build either a cluster or stand alone controller.
+
+There are a few variables to change and make sure you update to make it work in your env.
+
+== Access Azure
+
+.Make sure you do have the following to build your infrastructure. 
+----
+subscription_id = ""
+client_id       = ""
+client_secret   = ""
+tenant_id       = ""
+----
+

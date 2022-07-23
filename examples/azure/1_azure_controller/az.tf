@@ -1,0 +1,3 @@
+locals {
+  azs = var.azs
+}

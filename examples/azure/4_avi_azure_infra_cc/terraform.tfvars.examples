@@ -1,0 +1,8 @@
+# az ad sp create-for-rbac --name SA_Remo --role Contributor just in case your wonder how to make a role
+subscription_id        = "12345678999999999999999999999999999"
+client_id              = "12345678999999999999999999999999999"
+client_secret          = "12345678999999999999999999999999999"
+tenant_id              = "12345678999999999999999999999999999"
+avi_password           = "youravipasswordgoeshere"
+application_azure_id   = "12345678999999999999999999999999999"
+auth_token             = "12345678999999999999999999999999999"
