@@ -1,6 +1,5 @@
 locals {
   range_allowed_mgmt   = [var.allowed_ip]
-  #range_allowed_mgmt   = [var.allowed_ip, var.virtual_network_cidr]
   public_avi_ips       = [for nic in azurerm_network_interface.terraform_network_interface : format("%s/32", nic.private_ip_address)]
 }
 resource "azurerm_network_security_group" "avinetworks_secgroup" {

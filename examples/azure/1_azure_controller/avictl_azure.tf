@@ -6,22 +6,6 @@ resource "azurerm_resource_group" "terraform_resource_group" {
   }
 }
 
-#data "template_file" "userdata" {
-#  count                     = var.controllers == 3 ? var.controllers : 1 
-#  #var.controller_ha != 3 ? var.controller_ha : 1
-#  template                  = file("files/userdata.json")
-#  vars                      = {
-#    avi_controller_password = var.admin_password
-#    dns                     = var.dns_ip[0]
-#    dns1                    = var.dns_ip[1]
-#    search_domain           = var.search_default_domain
-#    welcome_banner          = var.welcome_banner
-#    ntp_server1             = var.ntp_servers[0]
-#    ntp_server2             = var.ntp_servers[1]
-#    ntp_server3             = var.ntp_servers[2]
-#    ntp_server4             = var.ntp_servers[3]
-#  }
-#}
 resource "random_pet" "avi_ctl_name" {
   count  = var.controllers
   length = 1
@@ -38,11 +22,8 @@ resource "azurerm_linux_virtual_machine" "virtualmachine" {
   resource_group_name             = azurerm_resource_group.terraform_resource_group.name
   size                            = var.controller_size #"Standard_D8s_v3"
   zone                            = element(local.azs, count.index % length(local.azs))
-  #custom_data                     = (count.index % var.controllers) == 1 ? base64encode(data.template_file.userdata[0].rendered) : ""
-  #custom_data                     = (count.index % var.controllers) == 0 ? base64encode(data.template_file.userdata.rendered) : ""
   disable_password_authentication = false
-  network_interface_ids           = [
-  azurerm_network_interface.terraform_network_interface[floor(count.index)].id]
+  network_interface_ids           = [azurerm_network_interface.terraform_network_interface[floor(count.index)].id]
 
   source_image_reference {
     publisher = var.avi_publisher
