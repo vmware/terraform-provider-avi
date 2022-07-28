@@ -22738,6 +22738,18 @@ func ResourceOpenStackConfigurationSchema() *schema.Resource {
 				Optional: true,
 				Elem:     ResourcePropertySchema(),
 			},
+			"enable_os_object_caching": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
+			"enable_tagging": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
 			"external_networks": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -22873,6 +22885,12 @@ func ResourceOpenStackConfigurationSchema() *schema.Resource {
 			"username": {
 				Type:     schema.TypeString,
 				Required: true,
+			},
+			"vip_port_in_admin_tenant": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
 			},
 		},
 	}
