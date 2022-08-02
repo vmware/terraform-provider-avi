@@ -5,7 +5,11 @@ jobs:
   golangci:
     name: lint
     runs-on: ubuntu-latest
+
     steps:
+      - uses: actions/setup-go@v3
+        with:
+          go-version: 1.17
       - uses: actions/checkout@v2
       - name: golangci-lint
         uses: golangci/golangci-lint-action@v2
@@ -15,4 +19,3 @@ jobs:
           only-new-issues: true
           skip-pkg-cache: true
           skip-build-cache: true
-          skip-cache: true
