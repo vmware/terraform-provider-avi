@@ -1,6 +1,6 @@
 module github.com/vmware/terraform-provider-avi
 
-go 1.17
+go 1.16
 
 require (
 	github.com/hashicorp/terraform-plugin-sdk/v2 v2.20.0
