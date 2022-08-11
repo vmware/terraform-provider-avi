@@ -8542,6 +8542,12 @@ func ResourceDebugServiceEngineSchema() *schema.Resource {
 				Default:      "false",
 				ValidateFunc: validateBool,
 			},
+			"enable_rpc_timing_profiler": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
 			"fault": {
 				Type:     schema.TypeSet,
 				Optional: true,
