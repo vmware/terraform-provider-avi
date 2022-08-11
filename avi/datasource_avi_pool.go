@@ -157,6 +157,10 @@ func dataSourceAviPool() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"lb_algo_rr_per_se": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"lb_algorithm": {
 				Type:     schema.TypeString,
 				Computed: true,
