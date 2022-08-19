@@ -864,6 +864,18 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Default:      "20",
 			ValidateFunc: validateInteger,
 		},
+		"ntp_sync_fail_event": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
+		},
+		"ntp_sync_status_interval": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "0",
+			ValidateFunc: validateInteger,
+		},
 		"num_dispatcher_cores": {
 			Type:         schema.TypeString,
 			Optional:     true,
