@@ -5,61 +5,46 @@ package avi
 
 import "github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 
-func dataSourceAviALBServicesJob() *schema.Resource {
+func dataSourceAviWebappUT() *schema.Resource {
 	return &schema.Resource{
-		Read: ResourceAviALBServicesJobRead,
+		Read: ResourceAviWebappUTRead,
 		Schema: map[string]*schema.Schema{
-			"command": {
-				Type:     schema.TypeString,
-				Computed: true,
-			},
 			"configpb_attributes": {
 				Type:     schema.TypeSet,
 				Computed: true,
 				Elem:     ResourceConfigPbAttributesSchema(),
 			},
-			"end_time": {
+			"mandatory_test": {
 				Type:     schema.TypeSet,
 				Computed: true,
-				Elem:     ResourceTimeStampSchema(),
+				Elem:     ResourceL1FMandatoryTestCaseSchema(),
+			},
+			"mandatory_tests": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceL1FMandatoryTestCaseSchema(),
 			},
 			"name": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
-			"params": {
-				Type:     schema.TypeList,
-				Computed: true,
-				Elem:     ResourceALBServicesJobParamSchema(),
-			},
-			"pulse_job_id": {
-				Type:     schema.TypeString,
-				Computed: true,
-			},
-			"pulse_sync_status": {
-				Type:     schema.TypeString,
-				Computed: true,
-			},
-			"result": {
-				Type:     schema.TypeString,
-				Computed: true,
-			},
-			"start_time": {
+			"string_length_test": {
 				Type:     schema.TypeSet,
 				Computed: true,
-				Elem:     ResourceTimeStampSchema(),
+				Elem:     ResourceL1StringLengthTestCaseSchema(),
 			},
-			"status": {
-				Type:     schema.TypeString,
+			"string_length_tests": {
+				Type:     schema.TypeList,
 				Computed: true,
+				Elem:     ResourceL1StringLengthTestCaseSchema(),
 			},
 			"tenant_ref": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
-			"token": {
+			"test_string": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},

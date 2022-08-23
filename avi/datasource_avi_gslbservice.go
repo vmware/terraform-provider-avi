@@ -101,6 +101,10 @@ func dataSourceAviGslbService() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"topology_policy_enabled": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"ttl": {
 				Type:     schema.TypeString,
 				Computed: true,
