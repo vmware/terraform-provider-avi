@@ -7,3 +7,4 @@
 * Step 6 will configure Virtual Service and dependent resources in Azure environment. [Click here](https://avinetworks.com/docs/21.1/configuration-guide/applications/virtual-services/) for detailed guide to configure virtual service. 
 * Each step contains the provider file to set the version need for the AVI terraform provider.
 * Use the terraform.tfvars.examples on each folder to set sensetive values. Default .gitignore automatically will not push that file into git.
+* avi_saml_auth, is from the old example, I personally have not tested.
