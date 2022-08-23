@@ -105,9 +105,6 @@ variable "controller_size" {
 variable "allowed_ip" {
   default = "172.10.163.251/32"
 }
-variable "private_gen_key_pem" {
-  default = "ctl-key"
-}
 variable "dns_ip" {
   type    = list(string)
   default = ["8.8.8.8", "8.8.4.4"]
