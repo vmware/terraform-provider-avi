@@ -29,7 +29,7 @@ variable "avi_password" {
 }
 
 variable "avi_version" {
-  default = "21.1.1"
+  default = "21.1.4"
 }
 
 variable "project_name" {
@@ -40,15 +40,12 @@ variable "pip_name" {
 }
 variable "csr_version" {
   #default  = "CRS-2021-2" # 21.1.4
-  default  = "CRS-2021-1" # 21.1.3
+  default  = "CRS-2021-2" # 21.1.3
   #default = "CRS-2020-3" #20.1.6
 }
-
 variable "waf_name" {
   default = "System-WAF-Policy"
 }
 variable "cloud_name" {
   default = "Default-Cloud"
 }
-# variable "avi_controller" {
-# }

@@ -48,7 +48,7 @@ variable "avi_password" {
 }
 
 variable "avi_version" {
-  default = "21.1.1"
+  default = "21.1.5"
 }
 
 variable "project_name" {

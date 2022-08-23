@@ -53,9 +53,9 @@ resource "azurerm_linux_virtual_machine_scale_set" "terraform_scale_set_v1" {
     public_key = file("~/.ssh/id_rsa.pub")
   }
   source_image_reference {
-    offer     = "0001-com-ubuntu-server-focal"
     publisher = "Canonical"
-    sku       = "20_04-lts-gen2"
+    offer     = "UbuntuServer"
+    sku       = "16.04-LTS"
     version   = "latest"
   }
 
@@ -109,13 +109,13 @@ resource "azurerm_linux_virtual_machine_scale_set" "terraform_scale_set_v2" {
     public_key = file("~/.ssh/id_rsa.pub")
 
   }
-
   source_image_reference {
-    offer     = "0001-com-ubuntu-server-focal"
     publisher = "Canonical"
-    sku       = "20_04-lts-gen2"
+    offer     = "UbuntuServer"
+    sku       = "16.04-LTS"
     version   = "latest"
   }
+
   extension {
     name                 = "vmssextension"
     publisher            = "Microsoft.OSTCExtensions"
