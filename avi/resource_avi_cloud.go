@@ -307,8 +307,8 @@ func waitForCloudState(cloudUUID string, expectedCloudState string, client *clie
 	return err
 }
 
-//Setup management network for vcenter cloud
 func setupVcenterMgmtNetwork(d *schema.ResourceData, meta interface{}) error {
+	// Setup management network for vcenter cloud
 	s := ResourceCloudSchema()
 	var maxRetry int
 	if retryCount, isRetry := os.LookupEnv("cloud_state_max_retry"); !isRetry {
