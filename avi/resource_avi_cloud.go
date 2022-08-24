@@ -273,8 +273,8 @@ func isCloudReady(cloudState string) bool {
 	return false
 }
 
-//wait until vcenter inventory gets completed to configure mgmt IP
 func waitForVcenterState(cloudUUID string, client *clients.AviClient, maxRetry int) error {
+	// wait until vcenter inventory gets completed to configure mgmt IP
 	var robj interface{}
 	var err error
 	var inventoryState string
