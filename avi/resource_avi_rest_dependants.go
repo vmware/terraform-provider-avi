@@ -11682,6 +11682,12 @@ func ResourceEventDetailsSchema() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceVinfraVcenterDiscoveryFailureSchema(),
 			},
+			"vcenter_img_details": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceVcenterImageDetailsSchema(),
+			},
 			"vcenter_network_limit": {
 				Type:     schema.TypeSet,
 				Optional: true,
@@ -25778,6 +25784,17 @@ func ResourceRuleInfoSchema() *schema.Resource {
 func ResourceSAMLSPConfigSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"acs_index": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "0",
+				ValidateFunc: validateInteger,
+			},
+			"authn_req_acs_type": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "SAML_AUTHN_REQ_ACS_TYPE_NONE",
+			},
 			"cookie_name": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -32994,22 +33011,6 @@ func ResourceVHMatchSchema() *schema.Resource {
 	}
 }
 
-func ResourceVIControllerVnicInfoSchema() *schema.Resource {
-	return &schema.Resource{
-		Schema: map[string]*schema.Schema{
-			"portgroup": {
-				Type:     schema.TypeString,
-				Required: true,
-			},
-			"vnic_ip": {
-				Type:     schema.TypeList,
-				Optional: true,
-				Elem:     ResourceVIGuestvNicIPAddrSchema(),
-			},
-		},
-	}
-}
-
 func ResourceVIDCInfoSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -33030,22 +33031,6 @@ func ResourceVIDCInfoSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
-			},
-		},
-	}
-}
-
-func ResourceVIGuestvNicIPAddrSchema() *schema.Resource {
-	return &schema.Resource{
-		Schema: map[string]*schema.Schema{
-			"ip_addr": {
-				Type:     schema.TypeString,
-				Required: true,
-			},
-			"mask": {
-				Type:         schema.TypeString,
-				Required:     true,
-				ValidateFunc: validateInteger,
 			},
 		},
 	}
@@ -33095,127 +33080,6 @@ func ResourceVIMgrClusterRuntimeSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
-			},
-		},
-	}
-}
-
-func ResourceVIMgrControllerRuntimeSchema() *schema.Resource {
-	return &schema.Resource{
-		Schema: map[string]*schema.Schema{
-			"name": {
-				Type:     schema.TypeString,
-				Required: true,
-			},
-			"tenant_ref": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
-			"type": {
-				Type:     schema.TypeString,
-				Required: true,
-			},
-			"uuid": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
-			"vnics": {
-				Type:     schema.TypeList,
-				Optional: true,
-				Elem:     ResourceVIControllerVnicInfoSchema(),
-			},
-		},
-	}
-}
-
-func ResourceVIMgrDCRuntimeSchema() *schema.Resource {
-	return &schema.Resource{
-		Schema: map[string]*schema.Schema{
-			"cloud_ref": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
-			"cluster_refs": {
-				Type:     schema.TypeList,
-				Optional: true,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-			},
-			"host_refs": {
-				Type:     schema.TypeList,
-				Optional: true,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-			},
-			"interested_hosts": {
-				Type:     schema.TypeList,
-				Optional: true,
-				Elem:     ResourceVIMgrInterestedEntitySchema(),
-			},
-			"interested_nws": {
-				Type:     schema.TypeList,
-				Optional: true,
-				Elem:     ResourceVIMgrInterestedEntitySchema(),
-			},
-			"interested_vms": {
-				Type:     schema.TypeList,
-				Optional: true,
-				Elem:     ResourceVIMgrInterestedEntitySchema(),
-			},
-			"inventory_state": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Computed:     true,
-				ValidateFunc: validateInteger,
-			},
-			"managed_object_id": {
-				Type:     schema.TypeString,
-				Required: true,
-			},
-			"name": {
-				Type:     schema.TypeString,
-				Required: true,
-			},
-			"nw_refs": {
-				Type:     schema.TypeList,
-				Optional: true,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-			},
-			"pending_vcenter_reqs": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Computed:     true,
-				ValidateFunc: validateInteger,
-			},
-			"sevm_refs": {
-				Type:     schema.TypeList,
-				Optional: true,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-			},
-			"tenant_ref": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
-			"type": {
-				Type:     schema.TypeString,
-				Required: true,
-			},
-			"uuid": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
-			"vcenter_uuid": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
-			"vm_refs": {
-				Type:     schema.TypeList,
-				Optional: true,
-				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
 		},
 	}
@@ -33486,17 +33350,6 @@ func ResourceVIMgrIPSubnetRuntimeSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
-			},
-		},
-	}
-}
-
-func ResourceVIMgrInterestedEntitySchema() *schema.Resource {
-	return &schema.Resource{
-		Schema: map[string]*schema.Schema{
-			"interested_uuid": {
-				Type:     schema.TypeString,
-				Required: true,
 			},
 		},
 	}
@@ -34060,153 +33913,6 @@ func ResourceVIMgrVMRuntimeSchema() *schema.Resource {
 	}
 }
 
-func ResourceVIMgrVcenterRuntimeSchema() *schema.Resource {
-	return &schema.Resource{
-		Schema: map[string]*schema.Schema{
-			"api_version": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
-			"cloud_ref": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
-			"datacenter_refs": {
-				Type:     schema.TypeList,
-				Optional: true,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-			},
-			"disc_end_time": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
-			"disc_start_time": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
-			"discovered_datacenter": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
-			"inventory_progress": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
-			"inventory_state": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
-			"management_network": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
-			"name": {
-				Type:     schema.TypeString,
-				Required: true,
-			},
-			"num_clusters": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Computed:     true,
-				ValidateFunc: validateInteger,
-			},
-			"num_dcs": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Computed:     true,
-				ValidateFunc: validateInteger,
-			},
-			"num_hosts": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Computed:     true,
-				ValidateFunc: validateInteger,
-			},
-			"num_nws": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Computed:     true,
-				ValidateFunc: validateInteger,
-			},
-			"num_vcenter_req_pending": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Computed:     true,
-				ValidateFunc: validateInteger,
-			},
-			"num_vms": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Computed:     true,
-				ValidateFunc: validateInteger,
-			},
-			"password": {
-				Type:             schema.TypeString,
-				Required:         true,
-				Sensitive:        true,
-				DiffSuppressFunc: suppressSensitiveFieldDiffs,
-			},
-			"privilege": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
-			"progress": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Computed:     true,
-				ValidateFunc: validateInteger,
-			},
-			"tenant_ref": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
-			"type": {
-				Type:     schema.TypeString,
-				Required: true,
-			},
-			"username": {
-				Type:     schema.TypeString,
-				Required: true,
-			},
-			"uuid": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
-			"vcenter_connected": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Default:      "false",
-				ValidateFunc: validateBool,
-			},
-			"vcenter_fullname": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
-			"vcenter_template_se_location": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
-			"vcenter_url": {
-				Type:     schema.TypeString,
-				Required: true,
-			},
-		},
-	}
-}
-
 func ResourceVIPGNameInfoSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -34337,6 +34043,33 @@ func ResourceVcenterHostsSchema() *schema.Resource {
 				Optional:     true,
 				Default:      "false",
 				ValidateFunc: validateBool,
+			},
+		},
+	}
+}
+
+func ResourceVcenterImageDetailsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"cc_id": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"error_string": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"image_version": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"vc_url": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 		},
 	}
@@ -38874,6 +38607,12 @@ func ResourcepresnapshotSchema() *schema.Resource {
 func ResourcevCenterConfigurationSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"content_lib": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceContentLibConfigSchema(),
+			},
 			"datacenter": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -38906,6 +38645,12 @@ func ResourcevCenterConfigurationSchema() *schema.Resource {
 			"privilege": {
 				Type:     schema.TypeString,
 				Required: true,
+			},
+			"use_content_lib": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
 			},
 			"username": {
 				Type:     schema.TypeString,
