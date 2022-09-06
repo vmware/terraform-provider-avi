@@ -18724,6 +18724,19 @@ func ResourceL4RuleProtocolMatchSchema() *schema.Resource {
 	}
 }
 
+func ResourceL4SSLApplicationProfileSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"ssl_stream_idle_timeout": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "3600",
+				ValidateFunc: validateInteger,
+			},
+		},
+	}
+}
+
 func ResourceL7limitsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
