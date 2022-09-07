@@ -1,0 +1,5 @@
+= Create a role for your Azure Cloud
+
+----
+az ad sp create-for-rbac --name SA_Remo --role Contributor
+----

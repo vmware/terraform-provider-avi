@@ -1,0 +1,37 @@
+= Build Azure Controller
+This part is replicating what has been done with AWS. Therefore, we are going to build either a cluster or stand alone controller. This section is reference to the Cluster version, consequently, we will deploy 3 Avi Controllers.
+
+NOTE: There are a few variables to change and make sure you update them to make it work in your env.
+
+== Access Azure
+On the remote box I normally run az login to get granted access. You could use your laptop, (demo only), as I would not execute your deployment from the laptop in a production env. Use a Jumpbox etc for production.
+
+.Make sure you do have the following to build your infrastructure. 
+----
+subscription_id = ""
+client_id       = ""
+client_secret   = ""
+tenant_id       = ""
+----
+
+== Infrastructure 
+We deploy 1 controller per AZ.  THe variable azs works the as follow:
+
+If the region does have 3 AZ you could set 1,2,3 for controller on each zone, if you set 1,2 then the first controller will go on az 1, the second controller will go to az 2 and the third controller will go back to az 1.  If you set the azs variable to 1, all three controllers will go on az 1, or whatever az was chosen.
+
+
+IMPORTANT: PIP
+The variable pip_name is used for every other steps, as we pull that IP address to get data to set up other configuration. 
+
+== Security 
+The allowed_ip variable is used to allow your IP to connect to the Avi Controller Mgmt.
+
+== Username
+The variable vm_username can be set to anything but admin, as Azure does not allow the account to be used. 
+
+== Controllers
+The variable controllers is used to spin up a # of Controllers, 1, or 3 is normally what we do. This cluster is suggested to use 3, for a single controller we do have the other repo, which will be similar to what is on AWS example folder. 
+
+== Version
+By default the code pulls the latest available controller, if you want to use a diff version you will have to set it in the variable as an example already there. 
+
