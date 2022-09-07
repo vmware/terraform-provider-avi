@@ -39070,6 +39070,23 @@ func ResourceWafPolicyAllowlistRuleSchema() *schema.Resource {
 	}
 }
 
+func ResourceWafPolicyRequiredDataFileSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"type": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
 func ResourceWafPolicyWhitelistSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{},
