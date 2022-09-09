@@ -290,8 +290,8 @@ func isCloudReady(cloudState string) bool {
 	return false
 }
 
-//wait until vcenter inventory gets completed to configure mgmt IP
 func waitForVcenterState(cloudUUID string, client *clients.AviClient, maxRetry int) error {
+	//wait until vcenter inventory gets completed to configure mgmt IP
 	var robj interface{}
 	var err error
 	var inventoryState string
@@ -320,8 +320,8 @@ func waitForVcenterState(cloudUUID string, client *clients.AviClient, maxRetry i
 	return err
 }
 
-// Wait until cloud is ready for the placement
 func waitForCloudReady(cloudUUID string, client *clients.AviClient, maxRetry int) error {
+	// Wait until cloud is ready for the placement
 	var robj interface{}
 	var err error
 	var cloudState string
@@ -349,8 +349,8 @@ func waitForCloudReady(cloudUUID string, client *clients.AviClient, maxRetry int
 	return err
 }
 
-//Setup management network for vcenter cloud
 func setupVcenterMgmtNetwork(d *schema.ResourceData, meta interface{}) error {
+	//Setup management network for vcenter cloud
 	s := ResourceCloudSchema()
 	var maxRetry int
 	if retryCount, isRetry := os.LookupEnv("cloud_state_max_retry"); !isRetry {

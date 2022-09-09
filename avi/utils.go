@@ -537,8 +537,8 @@ func APIDeleteSystemDefaultCheck(d *schema.ResourceData) bool {
 	return false
 }
 
-//Open given file as a file pointer
 func mustOpen(f string) *os.File {
+	//Open given file as a file pointer
 	r, err := os.Open(f)
 	if err != nil {
 		log.Printf("[ERROR] mustOpen Error while opening file %v", f)
@@ -566,8 +566,8 @@ func createFilePointer(path string) (*os.File, error) {
 	}
 }
 
-//Function to make REST API call for upload and download.
 func MultipartUploadOrDownload(d *schema.ResourceData, meta interface{}, s map[string]*schema.Schema) error {
+	//Function to make REST API call for upload and download.
 	client := meta.(*clients.AviClient)
 	uri := d.Get("uri").(string)
 	localFile := d.Get("local_file").(string)
