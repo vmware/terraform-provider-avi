@@ -112,6 +112,11 @@ func dataSourceAviWafPolicy() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceWafRuleGroupSchema(),
 			},
+			"required_data_files": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceWafPolicyRequiredDataFileSchema(),
+			},
 			"tenant_ref": {
 				Type:     schema.TypeString,
 				Optional: true,
