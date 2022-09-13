@@ -3842,6 +3842,30 @@ func ResourceCC_AgentPropertiesSchema() *schema.Resource {
 				Default:      "240",
 				ValidateFunc: validateInteger,
 			},
+			"vcenter_host_ping_interval": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "300",
+				ValidateFunc: validateInteger,
+			},
+			"vcenter_inventory_max_object_updates": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "100",
+				ValidateFunc: validateInteger,
+			},
+			"vcenter_max_datastore_go_routines": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "20",
+				ValidateFunc: validateInteger,
+			},
+			"vcenter_reconcile_interval": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "3600",
+				ValidateFunc: validateInteger,
+			},
 			"vnic_retries": {
 				Type:         schema.TypeString,
 				Optional:     true,
