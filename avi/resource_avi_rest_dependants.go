@@ -18724,6 +18724,19 @@ func ResourceL4RuleProtocolMatchSchema() *schema.Resource {
 	}
 }
 
+func ResourceL4SSLApplicationProfileSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"ssl_stream_idle_timeout": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "3600",
+				ValidateFunc: validateInteger,
+			},
+		},
+	}
+}
+
 func ResourceL7limitsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -23101,6 +23114,18 @@ func ResourceOpenStackConfigurationSchema() *schema.Resource {
 				Optional: true,
 				Elem:     ResourcePropertySchema(),
 			},
+			"enable_os_object_caching": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
+			"enable_tagging": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
 			"external_networks": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -23236,6 +23261,12 @@ func ResourceOpenStackConfigurationSchema() *schema.Resource {
 			"username": {
 				Type:     schema.TypeString,
 				Required: true,
+			},
+			"vip_port_in_admin_tenant": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
 			},
 		},
 	}

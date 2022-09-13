@@ -209,6 +209,12 @@ func ResourcePoolSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"lb_algo_rr_per_se": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
+		},
 		"lb_algorithm": {
 			Type:     schema.TypeString,
 			Optional: true,

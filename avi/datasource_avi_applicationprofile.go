@@ -45,6 +45,11 @@ func dataSourceAviApplicationProfile() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceHTTPApplicationProfileSchema(),
 			},
+			"l4_ssl_profile": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceL4SSLApplicationProfileSchema(),
+			},
 			"markers": {
 				Type:     schema.TypeList,
 				Computed: true,
