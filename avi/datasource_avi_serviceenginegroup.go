@@ -609,6 +609,14 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"ntp_sync_fail_event": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"ntp_sync_status_interval": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"num_dispatcher_cores": {
 				Type:     schema.TypeString,
 				Computed: true,

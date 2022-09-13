@@ -40,6 +40,7 @@ In addition to all arguments above, the following attributes are exported:
 * `dns_service_profile` - Specifies various dns service related controls for virtual service. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 * `dos_rl_profile` - Specifies various security related controls for virtual service. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 * `http_profile` - Specifies the http application proxy profile parameters. Allowed in enterprise edition with any value, basic, enterprise with cloud services edition.
+* `l4_ssl_profile` - Specifies various l4 ssl service related controls for virtual service. Field introduced in 22.1.2. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 * `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services edition.
 * `name` - The name of the application profile. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 * `preserve_client_ip` - Specifies if client ip needs to be preserved for backend connection. Not compatible with connection multiplexing. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.

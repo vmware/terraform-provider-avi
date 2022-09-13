@@ -138,6 +138,11 @@ func ResourceWafPolicySchema() map[string]*schema.Schema {
 			Optional: true,
 			Elem:     ResourceWafRuleGroupSchema(),
 		},
+		"required_data_files": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceWafPolicyRequiredDataFileSchema(),
+		},
 		"tenant_ref": {
 			Type:     schema.TypeString,
 			Optional: true,

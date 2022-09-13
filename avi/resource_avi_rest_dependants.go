@@ -3914,6 +3914,30 @@ func ResourceCC_AgentPropertiesSchema() *schema.Resource {
 				Default:      "240",
 				ValidateFunc: validateInteger,
 			},
+			"vcenter_host_ping_interval": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "300",
+				ValidateFunc: validateInteger,
+			},
+			"vcenter_inventory_max_object_updates": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "100",
+				ValidateFunc: validateInteger,
+			},
+			"vcenter_max_datastore_go_routines": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "20",
+				ValidateFunc: validateInteger,
+			},
+			"vcenter_reconcile_interval": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "3600",
+				ValidateFunc: validateInteger,
+			},
 			"vnic_retries": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -8537,6 +8561,12 @@ func ResourceDebugServiceEngineSchema() *schema.Resource {
 				Elem:     ResourceDebugIpAddrSchema(),
 			},
 			"enable_kdump": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
+			"enable_rpc_timing_profiler": {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Default:      "false",
@@ -15591,6 +15621,11 @@ func ResourceHTTPApplicationProfileSchema() *schema.Resource {
 				Default:      "true",
 				ValidateFunc: validateBool,
 			},
+			"xff_update": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "REPLACE_XFF_HEADERS",
+			},
 		},
 	}
 }
@@ -18773,6 +18808,19 @@ func ResourceL4RuleProtocolMatchSchema() *schema.Resource {
 			"protocol": {
 				Type:     schema.TypeString,
 				Required: true,
+			},
+		},
+	}
+}
+
+func ResourceL4SSLApplicationProfileSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"ssl_stream_idle_timeout": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "3600",
+				ValidateFunc: validateInteger,
 			},
 		},
 	}
@@ -23155,6 +23203,18 @@ func ResourceOpenStackConfigurationSchema() *schema.Resource {
 				Optional: true,
 				Elem:     ResourcePropertySchema(),
 			},
+			"enable_os_object_caching": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
+			"enable_tagging": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
 			"external_networks": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -23290,6 +23350,12 @@ func ResourceOpenStackConfigurationSchema() *schema.Resource {
 			"username": {
 				Type:     schema.TypeString,
 				Required: true,
+			},
+			"vip_port_in_admin_tenant": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
 			},
 		},
 	}
@@ -38999,6 +39065,23 @@ func ResourceWafPolicyAllowlistRuleSchema() *schema.Resource {
 				Optional:     true,
 				Default:      "100",
 				ValidateFunc: validateInteger,
+			},
+		},
+	}
+}
+
+func ResourceWafPolicyRequiredDataFileSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"type": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 		},
 	}
