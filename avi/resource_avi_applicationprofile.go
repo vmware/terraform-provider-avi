@@ -57,6 +57,12 @@ func ResourceApplicationProfileSchema() map[string]*schema.Schema {
 			Computed: true,
 			Elem:     ResourceHTTPApplicationProfileSchema(),
 		},
+		"l4_ssl_profile": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceL4SSLApplicationProfileSchema(),
+		},
 		"markers": {
 			Type:     schema.TypeList,
 			Optional: true,
