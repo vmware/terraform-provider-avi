@@ -278,6 +278,7 @@ The following arguments are supported:
 * `vcenter_datastores_include` - (Optional) Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 * `vcenter_folder` - (Optional) Folder to place all the service engine virtual machines in vcenter. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 * `vcenter_hosts` - (Optional) Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `vcenter_parking_vnic_pg` - (Optional) Parking port group to be used by 9 vnics at the time of se creation. Field introduced in 21.1.6. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 * `vcenters` - (Optional) Vcenter information for scoping at host/cluster level. Field introduced in 20.1.1. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 * `vcpus_per_se` - (Optional) Number of vcpus for each of the service engine virtual machines. Changes to this setting do not affect existing ses. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 * `vip_asg` - (Optional) When vip_asg is set, vip configuration will be managed by avi.user will be able to configure vip_asg or vips individually at the time of create. Field introduced in 17.2.12, 18.1.2. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.

@@ -12,7 +12,6 @@
 package avi
 
 import (
-	"fmt"
 	"os"
 	"strconv"
 	"testing"
@@ -138,6 +137,6 @@ func testAccPreCheck(t *testing.T) {
 		session.SetInsecure, session.SetTimeout(config.Timeout))
 
 	if err != nil {
-		t.Fatal(fmt.Sprintf("%+v", err))
+		t.Fatalf("%+v", err)
 	}
 }

@@ -106,6 +106,15 @@ func dataSourceAviCloud() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"markers": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceRoleFilterMatchLabelSchema(),
+			},
+			"metrics_polling_interval": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"mtu": {
 				Type:     schema.TypeString,
 				Computed: true,
