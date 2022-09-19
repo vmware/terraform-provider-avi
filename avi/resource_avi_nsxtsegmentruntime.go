@@ -54,6 +54,17 @@ func ResourceNsxtSegmentRuntimeSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"origin_id": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
+		"security_only_nsxt": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
+		},
 		"segment_gw": {
 			Type:     schema.TypeString,
 			Optional: true,
