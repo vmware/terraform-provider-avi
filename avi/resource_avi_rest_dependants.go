@@ -23763,6 +23763,11 @@ func ResourceOverallInfoSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"mount_path": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"path": {
 				Type:     schema.TypeString,
 				Required: true,
