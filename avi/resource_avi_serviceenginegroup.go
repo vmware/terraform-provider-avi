@@ -231,7 +231,7 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 		"dedicated_dispatcher_core": {
 			Type:         schema.TypeString,
 			Optional:     true,
-			Default:      "false",
+			Computed:     true,
 			ValidateFunc: validateBool,
 		},
 		"description": {
