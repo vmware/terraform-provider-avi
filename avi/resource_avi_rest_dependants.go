@@ -39151,6 +39151,11 @@ func ResourceWafRuleSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"paranoia_level": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"phase": {
 				Type:     schema.TypeString,
 				Optional: true,
