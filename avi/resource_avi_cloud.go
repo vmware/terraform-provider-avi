@@ -290,18 +290,21 @@ func waitForCloudState(cloudUUID string, expectedCloudState string, client *clie
 		if err = client.AviSession.Get(path, &robj); err == nil {
 			if objCount := robj.(map[string]interface{})["count"].(float64); objCount == float64(1) {
 				var resp *models.CloudInventory
-				jsonString, marshal_err := json.Marshal(robj.(map[string]interface{})["results"].([]interface{})[0])
-
-				if marshal_err == nil {
-					json.Unmarshal([]byte(jsonString), &resp)
-					if cloudState = *((*resp).Status.State); cloudState == expectedCloudState {
-						log.Printf("Got expected cloud state %s", cloudState)
-						break
-					} else {
-						log.Printf("Didn't get expected cloud state. Current cloud state is %s", cloudState)
-					}
+				jsonString, marshalErr := json.Marshal(robj.(map[string]interface{})["results"].([]interface{})[0])
+				if marshalErr != nil {
+					log.Printf("[Error] Got error while marshaling the response from the cloud-inventory api. %s", marshalErr.Error())
 				} else {
-					log.Printf("[Error] Got error while marshaling the response from the cloud-inventory api. %s", marshal_err.Error())
+					unmarshalErr := json.Unmarshal(jsonString, &resp)
+					if unmarshalErr != nil {
+						log.Printf("[Error] Got error while unmarshaling the response from the cloud-inventory api. %s", unmarshalErr.Error())
+					} else {
+						if cloudState = *((*resp).Status.State); cloudState == expectedCloudState {
+							log.Printf("Got expected cloud state %s", cloudState)
+							break
+						} else {
+							log.Printf("Didn't get expected cloud state. Current cloud state is %s", cloudState)
+						}
+					}
 				}
 			} else {
 				log.Printf("Didn't get inventory for cloud")

@@ -16667,6 +16667,23 @@ func ResourceHealthMonitorSSLAttributesSchema() *schema.Resource {
 	}
 }
 
+func ResourceHealthMonitorSctpSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"sctp_request": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"sctp_response": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
 func ResourceHealthMonitorSmtpSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -21601,6 +21618,18 @@ func ResourceNetworkFilterSchema() *schema.Resource {
 func ResourceNetworkProfileUnionSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"sctp_fast_path_profile": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceSCTPFastPathProfileSchema(),
+			},
+			"sctp_proxy_profile": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceSCTPProxyProfileSchema(),
+			},
 			"tcp_fast_path_profile": {
 				Type:     schema.TypeSet,
 				Optional: true,
@@ -22338,6 +22367,11 @@ func ResourceOAuthProfileSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Required: true,
 			},
+			"end_session_endpoint": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"introspection_endpoint": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -22448,10 +22482,20 @@ func ResourceOAuthVSConfigSchema() *schema.Resource {
 				Optional: true,
 				Elem:     ResourceHttpCookiePersistenceKeySchema(),
 			},
+			"logout_uri": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"oauth_settings": {
 				Type:     schema.TypeList,
 				Optional: true,
 				Elem:     ResourceOAuthSettingsSchema(),
+			},
+			"post_logout_redirect_uri": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 			"redirect_uri": {
 				Type:     schema.TypeString,
@@ -26381,6 +26425,38 @@ func ResourceSCServerStateInfoSchema() *schema.Resource {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+		},
+	}
+}
+
+func ResourceSCTPFastPathProfileSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"enable_syn_protection": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
+			"session_idle_timeout": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "300",
+				ValidateFunc: validateInteger,
+			},
+		},
+	}
+}
+
+func ResourceSCTPProxyProfileSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"number_of_streams": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "2",
 				ValidateFunc: validateInteger,
 			},
 		},

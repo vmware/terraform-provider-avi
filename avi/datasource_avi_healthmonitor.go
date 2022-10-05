@@ -122,6 +122,11 @@ func dataSourceAviHealthMonitor() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"sctp_monitor": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceHealthMonitorSctpSchema(),
+			},
 			"send_interval": {
 				Type:     schema.TypeString,
 				Computed: true,
