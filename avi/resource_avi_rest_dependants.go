@@ -21442,6 +21442,49 @@ func ResourceMicroServiceMatchSchema() *schema.Resource {
 	}
 }
 
+func ResourceMustChecksInfoSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"check_code": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"description": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"details": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
+			"duration": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"end_time": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"start_time": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"state": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
 func ResourceNTPAuthenticationKeySchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -22423,6 +22466,12 @@ func ResourceOAuthResourceServerSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Default:  "ACCESS_TOKEN_TYPE_JWT",
+			},
+			"introspection_data_timeout": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "0",
+				ValidateFunc: validateInteger,
 			},
 			"jwt_params": {
 				Type:     schema.TypeSet,
@@ -33486,6 +33535,71 @@ func ResourceUpgradeParamsSchema() *schema.Resource {
 				Optional:     true,
 				Default:      "false",
 				ValidateFunc: validateBool,
+			},
+		},
+	}
+}
+
+func ResourceUpgradeReadinessCheckObjSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"checks": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceMustChecksInfoSchema(),
+			},
+			"checks_completed": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"duration": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"end_time": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"image_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"patch_image_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"reason": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"start_time": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"state": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"total_checks": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"upgrade_ops": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 		},
 	}
