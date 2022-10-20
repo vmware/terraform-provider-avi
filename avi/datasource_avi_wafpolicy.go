@@ -23,6 +23,10 @@ func dataSourceAviWafPolicy() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceWafApplicationSignaturesSchema(),
 			},
+			"auto_update_crs": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"bypass_static_extensions": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -120,6 +124,10 @@ func dataSourceAviWafPolicy() *schema.Resource {
 			"tenant_ref": {
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
+			},
+			"updated_crs_rules_in_detection_mode": {
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"uuid": {

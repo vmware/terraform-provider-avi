@@ -18870,6 +18870,12 @@ func ResourceL7limitsSchema() *schema.Resource {
 				Computed:     true,
 				ValidateFunc: validateInteger,
 			},
+			"num_rules_per_evh_host": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
 			"num_rules_per_http_policy": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -24279,6 +24285,12 @@ func ResourcePathMatchSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Required: true,
 			},
+			"match_decoded_string": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "true",
+				ValidateFunc: validateBool,
+			},
 			"match_str": {
 				Type:     schema.TypeList,
 				Optional: true,
@@ -24961,6 +24973,12 @@ func ResourceQueryMatchSchema() *schema.Resource {
 			"match_criteria": {
 				Type:     schema.TypeString,
 				Required: true,
+			},
+			"match_decoded_string": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "true",
+				ValidateFunc: validateBool,
 			},
 			"match_str": {
 				Type:     schema.TypeList,
@@ -26483,16 +26501,16 @@ func ResourceSCServerStateInfoSchema() *schema.Resource {
 func ResourceSCTPFastPathProfileSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
-			"enable_syn_protection": {
+			"enable_init_chunk_protection": {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Default:      "false",
 				ValidateFunc: validateBool,
 			},
-			"session_idle_timeout": {
+			"idle_timeout": {
 				Type:         schema.TypeString,
 				Optional:     true,
-				Default:      "300",
+				Default:      "0",
 				ValidateFunc: validateInteger,
 			},
 		},
@@ -26502,10 +26520,52 @@ func ResourceSCTPFastPathProfileSchema() *schema.Resource {
 func ResourceSCTPProxyProfileSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"cookie_expiration_timeout": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "60",
+				ValidateFunc: validateInteger,
+			},
+			"heartbeat_interval": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "30",
+				ValidateFunc: validateInteger,
+			},
+			"idle_timeout": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "0",
+				ValidateFunc: validateInteger,
+			},
+			"max_retransmissions_association": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "10",
+				ValidateFunc: validateInteger,
+			},
+			"max_retransmissions_init_chunks": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "8",
+				ValidateFunc: validateInteger,
+			},
 			"number_of_streams": {
 				Type:         schema.TypeString,
 				Optional:     true,
-				Default:      "2",
+				Default:      "10",
+				ValidateFunc: validateInteger,
+			},
+			"receive_window": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "256",
+				ValidateFunc: validateInteger,
+			},
+			"reset_timeout": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "0",
 				ValidateFunc: validateInteger,
 			},
 		},
@@ -33909,10 +33969,26 @@ func ResourceVHMatchSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Required: true,
 			},
-			"path": {
+			"rules": {
 				Type:     schema.TypeList,
 				Required: true,
-				Elem:     ResourcePathMatchSchema(),
+				Elem:     ResourceVHMatchRuleSchema(),
+			},
+		},
+	}
+}
+
+func ResourceVHMatchRuleSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"matches": {
+				Type:     schema.TypeSet,
+				Required: true,
+				Elem:     ResourceMatchTargetSchema(),
+			},
+			"name": {
+				Type:     schema.TypeString,
+				Required: true,
 			},
 		},
 	}

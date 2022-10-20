@@ -35,6 +35,8 @@ The following arguments are supported:
 * `nw_name` - (Optional) Network name. Field introduced in 20.1.1. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 * `nw_ref` - (Optional) Corresponding network object in avi. It is a reference to an object of type network. Field introduced in 20.1.1. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 * `opaque_network_id` - (Optional) Opaque network id. Field introduced in 20.1.1. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `origin_id` - (Optional) Origin id applicable to security only cloud. Field introduced in 22.1.2. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `security_only_nsxt` - (Optional) Nsxt segment belongs to security only cloud. Field introduced in 22.1.2. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 * `segment_gw` - (Optional) Segment gateway. Field introduced in 20.1.1. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 * `segment_gw6` - (Optional) V6 segment gateway. Field introduced in 20.1.1. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 * `segment_id` - (Optional) Segment id. Field introduced in 20.1.1. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
