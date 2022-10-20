@@ -45,6 +45,14 @@ func dataSourceAviNsxtSegmentRuntime() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"origin_id": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"security_only_nsxt": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"segment_gw": {
 				Type:     schema.TypeString,
 				Computed: true,
