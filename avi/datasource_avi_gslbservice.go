@@ -84,6 +84,10 @@ func dataSourceAviGslbService() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"pki_profile_ref": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"pool_algorithm": {
 				Type:     schema.TypeString,
 				Computed: true,

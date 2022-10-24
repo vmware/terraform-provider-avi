@@ -66,6 +66,12 @@ func ResourceSSLProfileSchema() map[string]*schema.Schema {
 			Default:      "true",
 			ValidateFunc: validateBool,
 		},
+		"is_federated": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
+		},
 		"markers": {
 			Type:     schema.TypeList,
 			Optional: true,

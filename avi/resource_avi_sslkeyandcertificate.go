@@ -82,6 +82,12 @@ func ResourceSSLKeyAndCertificateSchema() map[string]*schema.Schema {
 			Default:      "false",
 			ValidateFunc: validateBool,
 		},
+		"is_federated": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
+		},
 		"key": {
 			Type:             schema.TypeString,
 			Optional:         true,
