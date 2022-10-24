@@ -105,6 +105,11 @@ func ResourceGslbServiceSchema() map[string]*schema.Schema {
 			Computed:     true,
 			ValidateFunc: validateInteger,
 		},
+		"pki_profile_ref": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
 		"pool_algorithm": {
 			Type:     schema.TypeString,
 			Optional: true,

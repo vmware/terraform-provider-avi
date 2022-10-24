@@ -65,6 +65,10 @@ func dataSourceAviSSLKeyAndCertificate() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"is_federated": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"key": {
 				Type:     schema.TypeString,
 				Computed: true,

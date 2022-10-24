@@ -14813,6 +14813,42 @@ func ResourceGslbSiteRuntimeStatsSchema() *schema.Resource {
 				Computed:     true,
 				ValidateFunc: validateInteger,
 			},
+			"num_gssl_cert_cr_rxed": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"num_gssl_cert_del_rxed": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"num_gssl_cert_upd_rxed": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"num_gssl_cr_rxed": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"num_gssl_del_rxed": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"num_gssl_upd_rxed": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
 			"num_health_msgs_rxed": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -33635,20 +33671,16 @@ func ResourceUpgradeReadinessCheckObjSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
-			"reason": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
 			"start_time": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
 			"state": {
-				Type:     schema.TypeString,
+				Type:     schema.TypeSet,
 				Optional: true,
 				Computed: true,
+				Elem:     ResourceUpgradeOpsStateSchema(),
 			},
 			"total_checks": {
 				Type:         schema.TypeString,
