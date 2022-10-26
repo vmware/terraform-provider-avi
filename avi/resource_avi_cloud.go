@@ -281,6 +281,7 @@ func ResourceAviCloudRead(d *schema.ResourceData, meta interface{}) error {
 
 // Wait until cloud is ready for the placement
 func waitForCloudState(cloudUUID string, expectedCloudState string, client *clients.AviClient, maxRetry int) error {
+
 	var robj interface{}
 	var err error
 	var cloudState string
