@@ -3914,6 +3914,30 @@ func ResourceCC_AgentPropertiesSchema() *schema.Resource {
 				Default:      "240",
 				ValidateFunc: validateInteger,
 			},
+			"vcenter_host_ping_interval": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "300",
+				ValidateFunc: validateInteger,
+			},
+			"vcenter_inventory_max_object_updates": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "100",
+				ValidateFunc: validateInteger,
+			},
+			"vcenter_max_datastore_go_routines": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "20",
+				ValidateFunc: validateInteger,
+			},
+			"vcenter_reconcile_interval": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "3600",
+				ValidateFunc: validateInteger,
+			},
 			"vnic_retries": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -8542,6 +8566,12 @@ func ResourceDebugServiceEngineSchema() *schema.Resource {
 				Default:      "false",
 				ValidateFunc: validateBool,
 			},
+			"enable_rpc_timing_profiler": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
 			"fault": {
 				Type:     schema.TypeSet,
 				Optional: true,
@@ -8574,10 +8604,59 @@ func ResourceDebugServiceEngineSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"trace_memory": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceDebugTraceMemorySchema(),
+			},
 			"uuid": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceDebugTraceMallocTypesSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"malloc_type_index": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+		},
+	}
+}
+
+func ResourceDebugTraceMemorySchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"trace_malloc_types": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceDebugTraceMallocTypesSchema(),
+			},
+			"trace_shm_malloc_types": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceDebugTraceShmMallocTypesSchema(),
+			},
+		},
+	}
+}
+
+func ResourceDebugTraceShmMallocTypesSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"shm_malloc_type_index": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
 			},
 		},
 	}
@@ -10536,6 +10615,11 @@ func ResourceEmailConfigurationSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Default:  "admin@avicontroller.net",
+			},
+			"from_name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 			"mail_server_name": {
 				Type:     schema.TypeString,
@@ -14729,6 +14813,42 @@ func ResourceGslbSiteRuntimeStatsSchema() *schema.Resource {
 				Computed:     true,
 				ValidateFunc: validateInteger,
 			},
+			"num_gssl_cert_cr_rxed": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"num_gssl_cert_del_rxed": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"num_gssl_cert_upd_rxed": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"num_gssl_cr_rxed": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"num_gssl_del_rxed": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"num_gssl_upd_rxed": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
 			"num_health_msgs_rxed": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -15536,6 +15656,11 @@ func ResourceHTTPApplicationProfileSchema() *schema.Resource {
 				Optional:     true,
 				Default:      "true",
 				ValidateFunc: validateBool,
+			},
+			"xff_update": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "REPLACE_XFF_HEADERS",
 			},
 		},
 	}
@@ -16573,6 +16698,23 @@ func ResourceHealthMonitorSSLAttributesSchema() *schema.Resource {
 			"ssl_profile_ref": {
 				Type:     schema.TypeString,
 				Required: true,
+			},
+		},
+	}
+}
+
+func ResourceHealthMonitorSctpSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"sctp_request": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"sctp_response": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 		},
 	}
@@ -18759,6 +18901,12 @@ func ResourceL7limitsSchema() *schema.Resource {
 				ValidateFunc: validateInteger,
 			},
 			"num_matches_per_rule": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"num_rules_per_evh_host": {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Computed:     true,
@@ -21336,6 +21484,49 @@ func ResourceMicroServiceMatchSchema() *schema.Resource {
 	}
 }
 
+func ResourceMustChecksInfoSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"check_code": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"description": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"details": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
+			"duration": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"end_time": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"start_time": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"state": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
 func ResourceNTPAuthenticationKeySchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -21512,6 +21703,18 @@ func ResourceNetworkFilterSchema() *schema.Resource {
 func ResourceNetworkProfileUnionSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"sctp_fast_path_profile": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceSCTPFastPathProfileSchema(),
+			},
+			"sctp_proxy_profile": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceSCTPProxyProfileSchema(),
+			},
 			"tcp_fast_path_profile": {
 				Type:     schema.TypeSet,
 				Optional: true,
@@ -22249,6 +22452,11 @@ func ResourceOAuthProfileSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Required: true,
 			},
+			"end_session_endpoint": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"introspection_endpoint": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -22262,7 +22470,7 @@ func ResourceOAuthProfileSchema() *schema.Resource {
 			"jwks_timeout": {
 				Type:         schema.TypeString,
 				Optional:     true,
-				Computed:     true,
+				Default:      "0",
 				ValidateFunc: validateInteger,
 			},
 			"jwks_uri": {
@@ -22300,6 +22508,12 @@ func ResourceOAuthResourceServerSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Default:  "ACCESS_TOKEN_TYPE_JWT",
+			},
+			"introspection_data_timeout": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "0",
+				ValidateFunc: validateInteger,
 			},
 			"jwt_params": {
 				Type:     schema.TypeSet,
@@ -22359,10 +22573,20 @@ func ResourceOAuthVSConfigSchema() *schema.Resource {
 				Optional: true,
 				Elem:     ResourceHttpCookiePersistenceKeySchema(),
 			},
+			"logout_uri": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"oauth_settings": {
 				Type:     schema.TypeList,
 				Optional: true,
 				Elem:     ResourceOAuthSettingsSchema(),
+			},
+			"post_logout_redirect_uri": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 			"redirect_uri": {
 				Type:     schema.TypeString,
@@ -23674,6 +23898,11 @@ func ResourceOverallInfoSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"mount_path": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"path": {
 				Type:     schema.TypeString,
 				Required: true,
@@ -24091,6 +24320,12 @@ func ResourcePathMatchSchema() *schema.Resource {
 			"match_criteria": {
 				Type:     schema.TypeString,
 				Required: true,
+			},
+			"match_decoded_string": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "true",
+				ValidateFunc: validateBool,
 			},
 			"match_str": {
 				Type:     schema.TypeList,
@@ -24774,6 +25009,12 @@ func ResourceQueryMatchSchema() *schema.Resource {
 			"match_criteria": {
 				Type:     schema.TypeString,
 				Required: true,
+			},
+			"match_decoded_string": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "true",
+				ValidateFunc: validateBool,
 			},
 			"match_str": {
 				Type:     schema.TypeList,
@@ -26287,6 +26528,80 @@ func ResourceSCServerStateInfoSchema() *schema.Resource {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+		},
+	}
+}
+
+func ResourceSCTPFastPathProfileSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"enable_init_chunk_protection": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
+			"idle_timeout": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "0",
+				ValidateFunc: validateInteger,
+			},
+		},
+	}
+}
+
+func ResourceSCTPProxyProfileSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"cookie_expiration_timeout": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "60",
+				ValidateFunc: validateInteger,
+			},
+			"heartbeat_interval": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "30",
+				ValidateFunc: validateInteger,
+			},
+			"idle_timeout": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "0",
+				ValidateFunc: validateInteger,
+			},
+			"max_retransmissions_association": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "10",
+				ValidateFunc: validateInteger,
+			},
+			"max_retransmissions_init_chunks": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "8",
+				ValidateFunc: validateInteger,
+			},
+			"number_of_streams": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "10",
+				ValidateFunc: validateInteger,
+			},
+			"receive_window": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "256",
+				ValidateFunc: validateInteger,
+			},
+			"reset_timeout": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "0",
 				ValidateFunc: validateInteger,
 			},
 		},
@@ -33321,6 +33636,67 @@ func ResourceUpgradeParamsSchema() *schema.Resource {
 	}
 }
 
+func ResourceUpgradeReadinessCheckObjSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"checks": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceMustChecksInfoSchema(),
+			},
+			"checks_completed": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"duration": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"end_time": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"image_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"patch_image_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"start_time": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"state": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceUpgradeOpsStateSchema(),
+			},
+			"total_checks": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"upgrade_ops": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
 func ResourceUpgradeSeGroupParamsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -33625,10 +34001,26 @@ func ResourceVHMatchSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Required: true,
 			},
-			"path": {
+			"rules": {
 				Type:     schema.TypeList,
 				Required: true,
-				Elem:     ResourcePathMatchSchema(),
+				Elem:     ResourceVHMatchRuleSchema(),
+			},
+		},
+	}
+}
+
+func ResourceVHMatchRuleSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"matches": {
+				Type:     schema.TypeSet,
+				Required: true,
+				Elem:     ResourceMatchTargetSchema(),
+			},
+			"name": {
+				Type:     schema.TypeString,
+				Required: true,
 			},
 		},
 	}
@@ -36845,6 +37237,12 @@ func ResourceVserverL4MetricsObjSchema() *schema.Resource {
 				Computed:     true,
 				ValidateFunc: validateFloat,
 			},
+			"max_connection_estb_time_fe": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateFloat,
+			},
 			"max_num_active_se": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -36939,6 +37337,12 @@ func ResourceVserverL4MetricsObjSchema() *schema.Resource {
 				Computed:     true,
 				ValidateFunc: validateFloat,
 			},
+			"sum_conn_est_time_exceeded_flows_fe": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateFloat,
+			},
 			"sum_connection_dropped_user_limit": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -36982,6 +37386,12 @@ func ResourceVserverL4MetricsObjSchema() *schema.Resource {
 				ValidateFunc: validateFloat,
 			},
 			"sum_finished_conns": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateFloat,
+			},
+			"sum_ingress_latency_exceeded_flows": {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Computed:     true,
@@ -38963,6 +39373,23 @@ func ResourceWafPolicyAllowlistRuleSchema() *schema.Resource {
 	}
 }
 
+func ResourceWafPolicyRequiredDataFileSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"type": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
 func ResourceWafPolicyWhitelistSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{},
@@ -39018,6 +39445,11 @@ func ResourceWafRuleSchema() *schema.Resource {
 				Computed: true,
 			},
 			"name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"paranoia_level": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,

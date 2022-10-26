@@ -31,6 +31,12 @@ func ResourceWafPolicySchema() map[string]*schema.Schema {
 			Computed: true,
 			Elem:     ResourceWafApplicationSignaturesSchema(),
 		},
+		"auto_update_crs": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
+		},
 		"bypass_static_extensions": {
 			Type:         schema.TypeString,
 			Optional:     true,
@@ -138,10 +144,21 @@ func ResourceWafPolicySchema() map[string]*schema.Schema {
 			Optional: true,
 			Elem:     ResourceWafRuleGroupSchema(),
 		},
+		"required_data_files": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceWafPolicyRequiredDataFileSchema(),
+		},
 		"tenant_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
+		},
+		"updated_crs_rules_in_detection_mode": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "true",
+			ValidateFunc: validateBool,
 		},
 		"uuid": {
 			Type:     schema.TypeString,

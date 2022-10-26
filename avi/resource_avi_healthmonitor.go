@@ -153,6 +153,12 @@ func ResourceHealthMonitorSchema() map[string]*schema.Schema {
 			Default:      "4",
 			ValidateFunc: validateInteger,
 		},
+		"sctp_monitor": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceHealthMonitorSctpSchema(),
+		},
 		"send_interval": {
 			Type:         schema.TypeString,
 			Optional:     true,

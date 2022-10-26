@@ -32,13 +32,13 @@ data "avi_webapput" "foo_webapput" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 22.1.1. Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services edition.
-* `mandatory_test` - Optional message for nested f_mandatory test cases defined at level0. Field introduced in 22.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
-* `mandatory_tests` - Repeated message for nested f_mandatory test cases-level1. Field introduced in 22.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
-* `name` - Name of the webapput object-level0. Field introduced in 22.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
-* `string_length_test` - Optional message for nested  max string length test cases. Field introduced in 22.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
-* `string_length_tests` - Repeated message for nested  max string length test cases. Field introduced in 22.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
-* `tenant_ref` - Tenant of the webapput object-level0. It is a reference to an object of type tenant. Field introduced in 22.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
-* `test_string` - The maximum string length. Field introduced in 22.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
-* `uuid` - Uuid of the webapput object-level0. Field introduced in 22.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.5, 22.1.1. Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services edition.
+* `mandatory_test` - Optional message for nested f_mandatory test cases defined at level0. Field introduced in 21.1.5, 22.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `mandatory_tests` - Repeated message for nested f_mandatory test cases-level1. Field introduced in 21.1.5, 22.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `name` - Name of the webapput object-level0. Field introduced in 21.1.5, 22.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `string_length_test` - Optional message for nested  max string length test cases. Field introduced in 21.1.5, 22.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `string_length_tests` - Repeated message for nested  max string length test cases. Field introduced in 21.1.5, 22.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `tenant_ref` - Tenant of the webapput object-level0. It is a reference to an object of type tenant. Field introduced in 21.1.5, 22.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `test_string` - The maximum string length. Field introduced in 21.1.5, 22.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `uuid` - Uuid of the webapput object-level0. Field introduced in 21.1.5, 22.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 

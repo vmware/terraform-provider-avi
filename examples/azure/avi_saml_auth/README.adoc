@@ -1,0 +1,2 @@
+= SAML
+This is a sample on how to use SAML with Avi Controller. It comes from old codes and I havae not tested as I do not have a SAML box. Therefore, if you are trying and find some issues, please open a git issue and we will try to help.

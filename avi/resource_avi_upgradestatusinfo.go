@@ -166,6 +166,11 @@ func ResourceUpgradeStatusInfoSchema() map[string]*schema.Schema {
 			Default:      "0",
 			ValidateFunc: validateInteger,
 		},
+		"reason": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
 		"se_patch_image_path": {
 			Type:     schema.TypeString,
 			Optional: true,
@@ -241,6 +246,12 @@ func ResourceUpgradeStatusInfoSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
+		},
+		"upgrade_readiness": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceUpgradeReadinessCheckObjSchema(),
 		},
 		"uuid": {
 			Type:     schema.TypeString,

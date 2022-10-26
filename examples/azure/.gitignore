@@ -1,0 +1,7 @@
+*.tfvars
+*.bk
+*.hcl
+*.org
+*.old
+*.tfstate*
+*/files/*

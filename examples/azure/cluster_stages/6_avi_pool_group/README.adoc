@@ -1,0 +1,3 @@
+= Pool Groups
+
+It creates two pool groups with 1 member of each from the Scalability Set.

@@ -130,6 +130,10 @@ func dataSourceAviUpgradeStatusInfo() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"reason": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"se_patch_image_path": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -191,6 +195,11 @@ func dataSourceAviUpgradeStatusInfo() *schema.Resource {
 			"upgrade_ops": {
 				Type:     schema.TypeString,
 				Computed: true,
+			},
+			"upgrade_readiness": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceUpgradeReadinessCheckObjSchema(),
 			},
 			"uuid": {
 				Type:     schema.TypeString,

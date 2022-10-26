@@ -52,6 +52,10 @@ func dataSourceAviSSLProfile() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"is_federated": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"markers": {
 				Type:     schema.TypeList,
 				Computed: true,
