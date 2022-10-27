@@ -7258,12 +7258,24 @@ func ResourceControllerInterfaceSchema() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceIpAddrSchema(),
 			},
+			"gateway6": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceIpAddrSchema(),
+			},
 			"if_name": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
 			"ip": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceIpAddrPrefixSchema(),
+			},
+			"ip6": {
 				Type:     schema.TypeSet,
 				Optional: true,
 				Computed: true,
@@ -7280,6 +7292,11 @@ func ResourceControllerInterfaceSchema() *schema.Resource {
 				Computed: true,
 			},
 			"mode": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"mode6": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
