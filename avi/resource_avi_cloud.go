@@ -4,6 +4,7 @@
 package avi
 
 import (
+	"encoding/json"
 	"errors"
 	"log"
 	"os"
@@ -14,6 +15,7 @@ import (
 
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"github.com/vmware/alb-sdk/go/clients"
+	"github.com/vmware/alb-sdk/go/models"
 )
 
 func ResourceCloudSchema() map[string]*schema.Schema {
@@ -277,51 +279,8 @@ func ResourceAviCloudRead(d *schema.ResourceData, meta interface{}) error {
 	return err
 }
 
-// Verify cloudState is ready to configure mgmt IP
-func isCloudReady(cloudState string) bool {
-	switch cloudState {
-	case
-		"VCENTER_DISCOVERY_COMPLETE_NO_MGMT_NW",
-		"VCENTER_DISCOVERY_COMPLETE",
-		"VCENTER_DISCOVERY_WAITING_DC",
-		"VCENTER_DISCOVERY_ONGOING":
-		return true
-	}
-	return false
-}
-
-func waitForVcenterState(cloudUUID string, client *clients.AviClient, maxRetry int) error {
-	//wait until vcenter inventory gets completed to configure mgmt IP
-	var robj interface{}
-	var err error
-	var inventoryState string
-	path := "api/vimgrvcenterruntime?cloud_uuid=" + cloudUUID
-	i := 0
-	for ; i < maxRetry; i++ {
-		if err = client.AviSession.Get(path, &robj); err == nil {
-			if objCount := robj.(map[string]interface{})["count"].(float64); objCount == float64(1) {
-				if inventoryState = robj.(map[string]interface{})["results"].([]interface{})[0].(map[string]interface{})["inventory_state"].(string); isCloudReady(inventoryState) {
-					log.Printf("Got expected inventory state %s", inventoryState)
-					break
-				} else {
-					log.Printf("Didn't get expected inventory state. Current state is %s", inventoryState)
-				}
-			} else {
-				log.Printf("Inventory is not completed")
-			}
-		} else {
-			log.Printf("[Error] Got error while retrieving vimgrvcenterruntime %s", err.Error())
-		}
-		time.Sleep(10 * time.Second)
-	}
-	if i == maxRetry && err == nil {
-		err = errors.New("didn't get expected vcenter(vimgrvcenterruntime) inventory state . Current State: " + inventoryState)
-	}
-	return err
-}
-
-func waitForCloudReady(cloudUUID string, client *clients.AviClient, maxRetry int) error {
-	// Wait until cloud is ready for the placement
+// Wait until cloud is ready for the placement
+func waitForCloudState(cloudUUID string, expectedCloudState string, client *clients.AviClient, maxRetry int) error {
 	var robj interface{}
 	var err error
 	var cloudState string
@@ -330,10 +289,22 @@ func waitForCloudReady(cloudUUID string, client *clients.AviClient, maxRetry int
 	for ; i < maxRetry; i++ {
 		if err = client.AviSession.Get(path, &robj); err == nil {
 			if objCount := robj.(map[string]interface{})["count"].(float64); objCount == float64(1) {
-				if cloudState = robj.(map[string]interface{})["results"].([]interface{})[0].(map[string]interface{})["status"].(map[string]interface{})["state"].(string); cloudState == "CLOUD_STATE_PLACEMENT_READY" {
-					break
+				var resp *models.CloudInventory
+				jsonString, marshalErr := json.Marshal(robj.(map[string]interface{})["results"].([]interface{})[0])
+				if marshalErr != nil {
+					log.Printf("[Error] Got error while marshaling the response from the cloud-inventory api. %s", marshalErr.Error())
 				} else {
-					log.Printf("Didn't get expected cloud state. Current cloud state is %s", cloudState)
+					unmarshalErr := json.Unmarshal(jsonString, &resp)
+					if unmarshalErr != nil {
+						log.Printf("[Error] Got error while unmarshaling the response from the cloud-inventory api. %s", unmarshalErr.Error())
+					} else {
+						if cloudState = *((*resp).Status.State); cloudState == expectedCloudState {
+							log.Printf("Got expected cloud state %s", cloudState)
+							break
+						} else {
+							log.Printf("Didn't get expected cloud state. Current cloud state is %s", cloudState)
+						}
+					}
 				}
 			} else {
 				log.Printf("Didn't get inventory for cloud")
@@ -372,7 +343,7 @@ func setupVcenterMgmtNetwork(d *schema.ResourceData, meta interface{}) error {
 		return err
 	}
 	uuid := d.Get("uuid").(string)
-	if err := waitForVcenterState(uuid, client, maxRetry); err != nil {
+	if err := waitForCloudState(uuid, "CLOUD_STATE_FAILED", client, maxRetry); err != nil {
 		return err
 	}
 	vcenterConfig.(*schema.Set).List()[0].(map[string]interface{})["management_network"] = mgmtNetwork
@@ -382,7 +353,7 @@ func setupVcenterMgmtNetwork(d *schema.ResourceData, meta interface{}) error {
 	if err := APICreateOrUpdate(d, meta, "cloud", s); err != nil {
 		return err
 	}
-	if err := waitForCloudReady(uuid, client, maxRetry); err != nil {
+	if err := waitForCloudState(uuid, "CLOUD_STATE_PLACEMENT_READY", client, maxRetry); err != nil {
 		return err
 	}
 	return nil
