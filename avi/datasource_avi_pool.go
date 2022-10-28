@@ -289,6 +289,11 @@ func dataSourceAviPool() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"sp_gs_info": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceSpGslbServiceInfoSchema(),
+			},
 			"ssl_key_and_certificate_ref": {
 				Type:     schema.TypeString,
 				Computed: true,
