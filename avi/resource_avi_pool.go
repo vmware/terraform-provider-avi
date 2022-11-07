@@ -374,6 +374,12 @@ func ResourcePoolSchema() map[string]*schema.Schema {
 			Default:      "true",
 			ValidateFunc: validateBool,
 		},
+		"sp_gs_info": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceSpGslbServiceInfoSchema(),
+		},
 		"ssl_key_and_certificate_ref": {
 			Type:     schema.TypeString,
 			Optional: true,

@@ -83,6 +83,16 @@ func ResourceSystemConfigurationSchema() map[string]*schema.Schema {
 			Computed: true,
 			Elem:     ResourceTenantConfigurationSchema(),
 		},
+		"host_key_algorithm_exclude": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
+		"kex_algorithm_exclude": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
 		"linux_configuration": {
 			Type:     schema.TypeSet,
 			Optional: true,

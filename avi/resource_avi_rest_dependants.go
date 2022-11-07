@@ -7258,12 +7258,24 @@ func ResourceControllerInterfaceSchema() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceIpAddrSchema(),
 			},
+			"gateway6": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceIpAddrSchema(),
+			},
 			"if_name": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
 			"ip": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceIpAddrPrefixSchema(),
+			},
+			"ip6": {
 				Type:     schema.TypeSet,
 				Optional: true,
 				Computed: true,
@@ -7280,6 +7292,11 @@ func ResourceControllerInterfaceSchema() *schema.Resource {
 				Computed: true,
 			},
 			"mode": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"mode6": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -13584,6 +13601,12 @@ func ResourceGslbPoolSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+			"manual_resume": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
 			},
 			"members": {
 				Type:     schema.TypeList,
@@ -32159,6 +32182,23 @@ func ResourceSnmpV3UserParamsSchema() *schema.Resource {
 				Default:  "SNMP_V3_PRIV_DES",
 			},
 			"username": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceSpGslbServiceInfoSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"fqdns": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
+			"gs_ref": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
