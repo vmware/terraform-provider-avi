@@ -13602,6 +13602,12 @@ func ResourceGslbPoolSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"manual_resume": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
 			"members": {
 				Type:     schema.TypeList,
 				Required: true,
