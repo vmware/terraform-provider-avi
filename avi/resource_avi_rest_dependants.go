@@ -11943,6 +11943,12 @@ func ResourceEventDetailsSchema() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceVinfraVcenterObjDeleteDetailsSchema(),
 			},
+			"vcenter_tag_event_details": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceVcenterTagEventDetailsSchema(),
+			},
 			"vip_autoscale": {
 				Type:     schema.TypeSet,
 				Optional: true,
@@ -34456,6 +34462,11 @@ func ResourceVIMgrNWRuntimeSchema() *schema.Resource {
 				Optional: true,
 				Elem:     ResourceVIMgrIPSubnetRuntimeSchema(),
 			},
+			"logical_switch_id": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"managed_object_id": {
 				Type:     schema.TypeString,
 				Required: true,
@@ -35079,7 +35090,13 @@ func ResourceVcenterDatastoreSchema() *schema.Resource {
 		Schema: map[string]*schema.Schema{
 			"datastore_name": {
 				Type:     schema.TypeString,
-				Required: true,
+				Optional: true,
+				Computed: true,
+			},
+			"managed_object_id": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 		},
 	}
@@ -35122,6 +35139,28 @@ func ResourceVcenterImageDetailsSchema() *schema.Resource {
 				Computed: true,
 			},
 			"vc_url": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceVcenterTagEventDetailsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"cc_id": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"error_string": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"vm_id": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -39787,6 +39826,12 @@ func ResourcevCenterConfigurationSchema() *schema.Resource {
 				Computed: true,
 			},
 			"deactivate_vm_discovery": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
+			"is_nsx_environment": {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Default:      "false",
