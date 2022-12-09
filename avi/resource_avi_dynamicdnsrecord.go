@@ -11,7 +11,7 @@ import (
 	"github.com/vmware/alb-sdk/go/clients"
 )
 
-//nolint
+// nolint
 func ResourceDynamicDnsRecordSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"algorithm": {
@@ -122,7 +122,7 @@ func ResourceDynamicDnsRecordSchema() map[string]*schema.Schema {
 	}
 }
 
-//nolint
+// nolint
 func resourceAviDynamicDnsRecord() *schema.Resource {
 	return &schema.Resource{
 		Create: resourceAviDynamicDnsRecordCreate,
@@ -136,13 +136,13 @@ func resourceAviDynamicDnsRecord() *schema.Resource {
 	}
 }
 
-//nolint
+// nolint
 func ResourceDynamicDnsRecordImporter(d *schema.ResourceData, m interface{}) ([]*schema.ResourceData, error) {
 	s := ResourceDynamicDnsRecordSchema()
 	return ResourceImporter(d, m, "dynamicdnsrecord", s)
 }
 
-//nolint
+// nolint
 func ResourceAviDynamicDnsRecordRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceDynamicDnsRecordSchema()
 	err := APIRead(d, meta, "dynamicdnsrecord", s)
@@ -152,7 +152,7 @@ func ResourceAviDynamicDnsRecordRead(d *schema.ResourceData, meta interface{}) e
 	return err
 }
 
-//nolint
+// nolint
 func resourceAviDynamicDnsRecordCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceDynamicDnsRecordSchema()
 	err := APICreateOrUpdate(d, meta, "dynamicdnsrecord", s)
@@ -162,7 +162,7 @@ func resourceAviDynamicDnsRecordCreate(d *schema.ResourceData, meta interface{})
 	return err
 }
 
-//nolint
+// nolint
 func resourceAviDynamicDnsRecordUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceDynamicDnsRecordSchema()
 	var err error
@@ -173,7 +173,7 @@ func resourceAviDynamicDnsRecordUpdate(d *schema.ResourceData, meta interface{})
 	return err
 }
 
-//nolint
+// nolint
 func resourceAviDynamicDnsRecordDelete(d *schema.ResourceData, meta interface{}) error {
 	objType := "dynamicdnsrecord"
 	client := meta.(*clients.AviClient)
