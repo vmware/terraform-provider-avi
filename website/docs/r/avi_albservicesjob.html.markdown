@@ -36,7 +36,7 @@ The following arguments are supported:
 * `pulse_sync_status` - (Optional) Status of sync to pulse(result uploads/state updates). Field introduced in 22.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 * `result` - (Optional) Job result. Field introduced in 22.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 * `start_time` - (Optional) The time at which the albservicesjob is started. Field introduced in 21.1.3. Allowed in enterprise edition with any value, enterprise with cloud services edition.
-* `status` - (Optional) The status of the albservicesjob. Enum options - UNDETERMINED, PENDING, IN_PROGRESS, COMPLETED, FAILED. Field introduced in 21.1.3. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `status` - (Optional) The status of the albservicesjob. Enum options - UNDETERMINED, PENDING, IN_PROGRESS, COMPLETED, FAILED, NOT_ENABLED. Field introduced in 21.1.3. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 * `tenant_ref` - (Optional) The unique identifier of the tenant to which this albservicesjob belongs. It is a reference to an object of type tenant. Field introduced in 21.1.3. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 * `token` - (Optional) Job token. Field introduced in 22.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 

@@ -50,6 +50,11 @@ func ResourceALBServicesConfigSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  "MYVMWARE",
 		},
+		"operations_config": {
+			Type:     schema.TypeSet,
+			Required: true,
+			Elem:     ResourceOperationsConfigSchema(),
+		},
 		"polling_interval": {
 			Type:         schema.TypeString,
 			Optional:     true,

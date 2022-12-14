@@ -4697,6 +4697,11 @@ func ResourceClientLogStreamingConfigSchema() *schema.Resource {
 				Optional: true,
 				Default:  "LOGS_ALL",
 			},
+			"marker_keys": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceRoleFilterMatchLabelSchema(),
+			},
 			"max_logs_per_second": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -17751,6 +17756,19 @@ func ResourceInternalGatewayMonitorSchema() *schema.Resource {
 	}
 }
 
+func ResourceInventoryConfigSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"enable": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "true",
+				ValidateFunc: validateBool,
+			},
+		},
+	}
+}
+
 func ResourceIpAddrSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -23790,6 +23808,19 @@ func ResourceOperationalStatusSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Default:  "OPER_UNAVAIL",
+			},
+		},
+	}
+}
+
+func ResourceOperationsConfigSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"inventory_config": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceInventoryConfigSchema(),
 			},
 		},
 	}
