@@ -1950,6 +1950,11 @@ func ResourceApplicationLogSchema() *schema.Resource {
 				Required:     true,
 				ValidateFunc: validateInteger,
 			},
+			"vh_match_rule": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"virtualservice": {
 				Type:     schema.TypeString,
 				Required: true,
@@ -4555,6 +4560,11 @@ func ResourceClientFingerprintsSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"normalized_tls_fingerprint": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"tls_client_info": {
 				Type:     schema.TypeSet,
 				Optional: true,
@@ -4686,6 +4696,11 @@ func ResourceClientLogStreamingConfigSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Default:  "LOGS_ALL",
+			},
+			"marker_keys": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceRoleFilterMatchLabelSchema(),
 			},
 			"max_logs_per_second": {
 				Type:         schema.TypeString,
@@ -15548,7 +15563,7 @@ func ResourceHTTPApplicationProfileSchema() *schema.Resource {
 			"max_header_count": {
 				Type:         schema.TypeString,
 				Optional:     true,
-				Default:      "64",
+				Default:      "256",
 				ValidateFunc: validateInteger,
 			},
 			"max_keepalive_requests": {
@@ -17736,6 +17751,19 @@ func ResourceInternalGatewayMonitorSchema() *schema.Resource {
 				Optional:     true,
 				Default:      "15",
 				ValidateFunc: validateInteger,
+			},
+		},
+	}
+}
+
+func ResourceInventoryConfigSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"enable": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "true",
+				ValidateFunc: validateBool,
 			},
 		},
 	}
@@ -19996,6 +20024,12 @@ func ResourceMatchTargetSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 				Elem:     ResourceIpAddrMatchSchema(),
+			},
+			"tls_fingerprint_match": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceTlsFingerprintMatchSchema(),
 			},
 			"version": {
 				Type:     schema.TypeSet,
@@ -23774,6 +23808,19 @@ func ResourceOperationalStatusSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Default:  "OPER_UNAVAIL",
+			},
+		},
+	}
+}
+
+func ResourceOperationsConfigSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"inventory_config": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceInventoryConfigSchema(),
 			},
 		},
 	}
@@ -33305,6 +33352,27 @@ func ResourceTlsClientInfoSchema() *schema.Resource {
 	}
 }
 
+func ResourceTlsFingerprintMatchSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"fingerprints": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
+			"match_operation": {
+				Type:     schema.TypeString,
+				Required: true,
+			},
+			"string_group_refs": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
+		},
+	}
+}
+
 func ResourceTrueClientIPConfigSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -38956,6 +39024,11 @@ func ResourceWafContentTypeMappingSchema() *schema.Resource {
 			"content_type": {
 				Type:     schema.TypeString,
 				Required: true,
+			},
+			"match_op": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "EQUALS",
 			},
 			"request_body_parser": {
 				Type:     schema.TypeString,
