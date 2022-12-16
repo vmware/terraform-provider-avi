@@ -18684,6 +18684,31 @@ func ResourceL1FMandatoryTestCaseSchema() *schema.Resource {
 	}
 }
 
+func ResourceL1FSensitiveTestCaseSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"sensitive_message": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceL2FSensitiveTestCaseSchema(),
+			},
+			"sensitive_messages": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceL2FSensitiveTestCaseSchema(),
+			},
+			"sensitive_string": {
+				Type:             schema.TypeString,
+				Optional:         true,
+				Computed:         true,
+				Sensitive:        true,
+				DiffSuppressFunc: suppressSensitiveFieldDiffs,
+			},
+		},
+	}
+}
+
 func ResourceL1StringLengthTestCaseSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -18733,6 +18758,31 @@ func ResourceL2FMandatoryTestCaseSchema() *schema.Resource {
 				Type:     schema.TypeList,
 				Required: true,
 				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
+		},
+	}
+}
+
+func ResourceL2FSensitiveTestCaseSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"sensitive_message": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceSingleOptionalSensitiveFieldMessageSchema(),
+			},
+			"sensitive_messages": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceSingleOptionalSensitiveFieldMessageSchema(),
+			},
+			"sensitive_string": {
+				Type:             schema.TypeString,
+				Optional:         true,
+				Computed:         true,
+				Sensitive:        true,
+				DiffSuppressFunc: suppressSensitiveFieldDiffs,
 			},
 		},
 	}
@@ -31993,6 +32043,20 @@ func ResourceSingleOptionalFieldMessageSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceSingleOptionalSensitiveFieldMessageSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"optional_sensitive_string": {
+				Type:             schema.TypeString,
+				Optional:         true,
+				Computed:         true,
+				Sensitive:        true,
+				DiffSuppressFunc: suppressSensitiveFieldDiffs,
 			},
 		},
 	}
