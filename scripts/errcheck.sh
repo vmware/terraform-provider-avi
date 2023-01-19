@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 ############################################################################
 # ========================================================================
-# Copyright 2022 VMware, Inc.  All rights reserved. VMware Confidential
+# Copyright 2023 VMware, Inc. All rights reserved. VMware Confidential
 # ========================================================================
 ###
 

@@ -967,6 +967,12 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Default:      "true",
 			ValidateFunc: validateBool,
 		},
+		"replay_vrf_routes_interval": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "1000",
+			ValidateFunc: validateInteger,
+		},
 		"resync_time_interval": {
 			Type:         schema.TypeString,
 			Optional:     true,
@@ -1166,7 +1172,7 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 		"se_lro": {
 			Type:         schema.TypeString,
 			Optional:     true,
-			Default:      "true",
+			Computed:     true,
 			ValidateFunc: validateBool,
 		},
 		"se_mp_ring_retry_count": {
@@ -1440,6 +1446,12 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional:     true,
 			Default:      "3600000",
 			ValidateFunc: validateInteger,
+		},
+		"use_dp_util_for_scaleout": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
 		},
 		"use_hyperthreaded_cores": {
 			Type:         schema.TypeString,
