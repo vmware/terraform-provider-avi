@@ -167,10 +167,6 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"gslb_purge_rpc_batch_size": {
-				Type:     schema.TypeString,
-				Computed: true,
-			},
 			"gslb_purge_sleep_time_ms": {
 				Type:     schema.TypeString,
 				Computed: true,

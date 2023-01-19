@@ -244,19 +244,13 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 		"gslb_purge_batch_size": {
 			Type:         schema.TypeString,
 			Optional:     true,
-			Default:      "50",
-			ValidateFunc: validateInteger,
-		},
-		"gslb_purge_rpc_batch_size": {
-			Type:         schema.TypeString,
-			Optional:     true,
 			Default:      "1000",
 			ValidateFunc: validateInteger,
 		},
 		"gslb_purge_sleep_time_ms": {
 			Type:         schema.TypeString,
 			Optional:     true,
-			Default:      "100",
+			Default:      "50",
 			ValidateFunc: validateInteger,
 		},
 		"max_dead_se_in_grp": {
