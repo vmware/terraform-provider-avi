@@ -2859,6 +2859,11 @@ func ResourceAzureConfigurationSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"se_storage_account": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"subscription_id": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -11411,6 +11416,12 @@ func ResourceEventDetailsSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 				Elem:     ResourceNsxtSIServiceDetailsSchema(),
+			},
+			"nsxt_t1_seg_details": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceNsxtT1SegDetailsSchema(),
 			},
 			"nw_subnet_clash_details": {
 				Type:     schema.TypeSet,
@@ -22383,6 +22394,45 @@ func ResourceNsxtSetupSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceNsxtT1SegSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"segment": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"tier1": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceNsxtT1SegDetailsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"cc_id": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"error_string": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"t1seg": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceNsxtT1SegSchema(),
 			},
 		},
 	}
