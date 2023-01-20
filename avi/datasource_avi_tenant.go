@@ -9,6 +9,11 @@ func dataSourceAviTenant() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviTenantRead,
 		Schema: map[string]*schema.Schema{
+			"attrs": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceKeyValueSchema(),
+			},
 			"config_settings": {
 				Type:     schema.TypeSet,
 				Computed: true,

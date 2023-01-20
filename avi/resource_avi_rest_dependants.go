@@ -22111,7 +22111,8 @@ func ResourceNsxtConfigurationSchema() *schema.Resource {
 			},
 			"data_network_config": {
 				Type:     schema.TypeSet,
-				Required: true,
+				Optional: true,
+				Computed: true,
 				Elem:     ResourceDataNetworkConfigSchema(),
 			},
 			"domain_id": {
@@ -22137,10 +22138,21 @@ func ResourceNsxtConfigurationSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Required: true,
 			},
+			"org_path": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "/orgs/default",
+			},
 			"site_id": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Default:  "default",
+			},
+			"vpc_mode": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateBool,
 			},
 		},
 	}
