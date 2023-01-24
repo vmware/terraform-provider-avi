@@ -22138,11 +22138,6 @@ func ResourceNsxtConfigurationSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Required: true,
 			},
-			"org_path": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Default:  "/orgs/default",
-			},
 			"site_id": {
 				Type:     schema.TypeString,
 				Optional: true,
