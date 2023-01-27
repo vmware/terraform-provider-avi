@@ -19765,6 +19765,12 @@ func ResourceLogAgentEventDetailSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Required: true,
 			},
+			"rapid_connection": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceLogAgentTCPConnEstRateExcdEventSchema(),
+			},
 			"tcp_detail": {
 				Type:     schema.TypeSet,
 				Optional: true,
@@ -19780,6 +19786,33 @@ func ResourceLogAgentEventDetailSchema() *schema.Resource {
 }
 
 func ResourceLogAgentTCPClientEventDetailSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"error_code": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"error_reason": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"host": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"port": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceLogAgentTCPConnEstRateExcdEventSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
 			"error_code": {
