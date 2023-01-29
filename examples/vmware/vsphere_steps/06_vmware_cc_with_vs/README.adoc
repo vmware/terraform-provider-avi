@@ -1,0 +1,13 @@
+== Configuring CC and a VS with SSL
+This configures the Cloud Connector for vsphere and setups up a Virtual Service without SSL. It however creates a new custom error page.
+
+=== Variables
+Once you checked and update the variables you can execute the terraform command
+
+=== Instruction to use the controller.json
+----
+terraform init
+terraform validate
+terraform plan
+terraform apply -auto-approve -var-file=../controllers.json
+----
