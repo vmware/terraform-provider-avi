@@ -229,7 +229,16 @@ provider "avi" {
   avi_version = "21.1.1"
 } 
 ```
-
+```hcl
+// Configure the AVI provider is csp authentication is needed
+provider "avi" {
+  avi_csp_host = "csp_host"
+  avi_tenant = "admin"
+  avi_csp_token = "csp_token"
+  avi_controller = "x.x.x.x"
+  avi_version = "21.1.1"
+} 
+```
 ### Environment variables
 
 You can provide your credentials via the `AVI_USERNAME`, `AVI_PASSWORD`, `AVI_CONTROLLER` , `AVI_VERSION` and `AVI_TENANT`
