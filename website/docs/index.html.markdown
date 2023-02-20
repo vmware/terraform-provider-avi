@@ -229,8 +229,10 @@ provider "avi" {
   avi_version = "21.1.1"
 } 
 ```
+If a Saas controller is used , then csp authentication is done by adding an `avi_csp_host` and `avi_csp_token` in-line in the
+AVI provider block:
 ```hcl
-// Configure the AVI provider is csp authentication is needed
+// Configure the AVI provider if csp authentication is needed
 provider "avi" {
   avi_csp_host = "csp_host"
   avi_tenant = "admin"
@@ -255,6 +257,8 @@ $ export AVI_PASSWORD = password
 $ export AVI_CONTROLLER = x.x.x.x
 $ export AVI_TENANT = foo
 $ export AVI_VERSION=21.1.1
+$ export CSP_HOST = host
+$ export CSP_TOKEN = token
 $ terraform init
 $ terraform plan
 ```
