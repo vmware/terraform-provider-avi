@@ -22160,21 +22160,30 @@ func ResourceNsxtConfigurationSchema() *schema.Resource {
 			},
 			"management_network_config": {
 				Type:     schema.TypeSet,
-				Required: true,
+				Optional: true,
+				Computed: true,
 				Elem:     ResourceManagementNetworkConfigSchema(),
 			},
 			"nsxt_credentials_ref": {
 				Type:     schema.TypeString,
-				Required: true,
+				Optional: true,
+				Computed: true,
 			},
 			"nsxt_url": {
 				Type:     schema.TypeString,
-				Required: true,
+				Optional: true,
+				Computed: true,
 			},
 			"site_id": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Default:  "default",
+			},
+			"vmc_mode": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
 			},
 			"vpc_mode": {
 				Type:         schema.TypeString,
@@ -22660,6 +22669,11 @@ func ResourceOAuthProfileSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"instance_id": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"introspection_endpoint": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -22681,15 +22695,52 @@ func ResourceOAuthProfileSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"oauth_controller_settings": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceOAuthAppSettingsSchema(),
+			},
+			"oauth_profile_type": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "CLIENT_OAUTH",
+			},
+			"oauth_provider": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"oauth_resp_buffer_sz": {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Default:      "102400",
 				ValidateFunc: validateInteger,
 			},
+			"org_id": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"pool_ref": {
 				Type:     schema.TypeString,
-				Required: true,
+				Optional: true,
+				Computed: true,
+			},
+			"redirect_uri": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"service_id": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"service_name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 			"token_endpoint": {
 				Type:     schema.TypeString,

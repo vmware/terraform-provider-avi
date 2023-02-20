@@ -14,6 +14,14 @@ func dataSourceAviUser() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceUserRoleSchema(),
 			},
+			"anonymous_user": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"date_joined": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"default_tenant_ref": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -26,11 +34,27 @@ func dataSourceAviUser() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"is_active": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"is_internal_user": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"is_staff": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"is_superuser": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"local": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"logged_in": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
@@ -40,6 +64,30 @@ func dataSourceAviUser() *schema.Resource {
 				Computed: true,
 			},
 			"password": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"passwordless": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"recovery_token": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"token_expiration_date": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"ui_property": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"uid": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"unix_crypt_password": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
