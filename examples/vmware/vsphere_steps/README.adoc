@@ -1,0 +1,8 @@
+== vSphere Controller deployment and AVI Configuration Examples
+
+- These examples deploy AVI controller on VMware vSphere, configures AVI controller cluster, and configures the cloud type as vSphere, Virtual Services and its dependent resources and data sources.
+- [Click here] https://avinetworks.com/docs/22.1/installing-avi-vantage-for-vmware-vcenter/ to deploy AVI controller on VMware vSphere using the ova image.
+- To configure Virtual Service and dependent resources in AWS environment. [Click here]( https://avinetworks.com/docs/20.1/configuration-guide/applications/virtual-services/) for detailed guide to configure virtual service.
+- Update required AVI terraform provider version in versions.tf file.
+- Update required variables in variables.tf file or you can set those variables individually while running your terraform plan using -var or define those in .tfvars files.
+- Each step will have a detail README

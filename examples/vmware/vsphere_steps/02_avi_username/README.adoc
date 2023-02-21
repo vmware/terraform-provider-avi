@@ -1,0 +1,38 @@
+= Be Aware
+Make sure to use the controller.json file that gets generated from the 1st step. 
+Once you verified the info in the main folder controller.json then get ready for a new password. Set the new password in the terraform.tfvars file. Use the example from the terraform.tfvars.examples. To retrieve the old password go to our VMware Portal where you get your license.
+
+=== Instruction to use the controller.json
+----
+terraform init
+terraform validate
+terraform plan
+terraform apply -auto-approve -var-file=../controllers.json
+----
+
+
+=== Redeploy Avi Controller if needed 
+
+NOTE: If you forget to do a terraform destroy on this folder, and redeploy it, it will fail. You must remove the terraform state files.
+
+----
+terraform.tfstate.backup
+terraform.tfstate 
+----
+
+=== Password
+
+*** The passwords are marked as sensitive therefore will not display the data.
+
+----
+  # avi_useraccount.avi_user will be created
+  + resource "avi_useraccount" "avi_user" {
+      + id           = (known after apply)
+      + old_password = (sensitive)
+      + password     = (sensitive)
+      + username     = "admin"
+    }
+----
+
+IMPORANT: If you run this as soon as the Controllers is deployed it will take extra time, about 7min and 30 sec. If you wait 8  mins then the task will be done quickly. 
+

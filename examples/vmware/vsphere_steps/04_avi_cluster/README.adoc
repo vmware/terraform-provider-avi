@@ -1,0 +1,12 @@
+== Variables
+Once you checked and update the variables you can execute the terraform command
+
+=== Instruction to use the controller.json
+----
+terraform init
+terraform validate
+terraform plan
+terraform apply -auto-approve -var-file=../controllers.json
+----
+
+NOTE: This will take a few min to set the Avi Cluster.

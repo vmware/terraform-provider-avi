@@ -1,0 +1,14 @@
+== Deployment of Avi Controller
+
+Once you set your variable and use the tfvars.example to set the password vars, you are ready to deploy the controller. 
+
+Steps are: +
+======
+** **terraform init** +
+** **terraform validate** +
+** **terraform plan** +
+        Verify that everything looks good +
+** **terraform apply -auto-approve ** 
+======
+
+NOTE: depending on your connection to the internet it make take longer to deploy the Avi Controller. Suggestions are to download the Avi Binary and create a local repo and use that to deploy the Avi Controller.
