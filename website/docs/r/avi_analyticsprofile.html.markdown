@@ -112,7 +112,7 @@ The following arguments are supported:
 * `sensitive_log_profile` - (Optional) Rules applied to the http application log for filtering sensitive information. Field introduced in 17.2.10, 18.1.2. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 * `sip_log_depth` - (Optional) Maximum number of sip messages added in logs for a sip transaction. By default, this value is 20. Allowed values are 1-1000. Field introduced in 17.2.13, 18.1.5, 18.2.1. Allowed in enterprise edition with any value, essentials edition(allowed values- 20), basic edition(allowed values- 20), enterprise with cloud services edition.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-* `time_tracker_props` - (Optional) Protobuf versioning for config pbs. Field introduced in 22.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `time_tracker_props` - (Optional) Time tracker properties for connection establishment audit. Field introduced in 22.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 
 
 ### Timeouts
