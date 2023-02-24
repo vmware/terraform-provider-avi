@@ -163,6 +163,14 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"gslb_purge_batch_size": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"gslb_purge_sleep_time_ms": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"max_dead_se_in_grp": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -204,6 +212,10 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Computed: true,
 			},
 			"portal_token": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"postgres_vacuum_period": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},

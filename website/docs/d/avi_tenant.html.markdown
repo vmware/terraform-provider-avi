@@ -32,6 +32,7 @@ data "avi_tenant" "foo_tenant" {
 
 In addition to all arguments above, the following attributes are exported:
 
+* `attrs` - Key/value tenant attributes. Field introduced in 23.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 * `config_settings` - Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 * `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services edition.
 * `created_by` - Creator of this tenant. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.

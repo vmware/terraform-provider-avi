@@ -34,6 +34,17 @@ func ResourceWebappUTSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Required: true,
 		},
+		"sensitive_test": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceL1FSensitiveTestCaseSchema(),
+		},
+		"sensitive_tests": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceL1FSensitiveTestCaseSchema(),
+		},
 		"string_length_test": {
 			Type:     schema.TypeSet,
 			Optional: true,
@@ -49,6 +60,13 @@ func ResourceWebappUTSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
+		},
+		"test_sensitive_string": {
+			Type:             schema.TypeString,
+			Optional:         true,
+			Computed:         true,
+			Sensitive:        true,
+			DiffSuppressFunc: suppressSensitiveFieldDiffs,
 		},
 		"test_string": {
 			Type:     schema.TypeString,

@@ -13,6 +13,11 @@ import (
 
 func ResourceTenantSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
+		"attrs": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceKeyValueSchema(),
+		},
 		"config_settings": {
 			Type:     schema.TypeSet,
 			Optional: true,
