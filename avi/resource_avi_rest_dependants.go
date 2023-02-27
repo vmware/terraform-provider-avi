@@ -8195,11 +8195,13 @@ func ResourceDataNetworkConfigSchema() *schema.Resource {
 			},
 			"transport_zone": {
 				Type:     schema.TypeString,
-				Required: true,
+				Optional: true,
+				Computed: true,
 			},
 			"tz_type": {
 				Type:     schema.TypeString,
-				Required: true,
+				Optional: true,
+				Computed: true,
 			},
 			"vlan_segments": {
 				Type:     schema.TypeList,
