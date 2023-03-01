@@ -226,6 +226,8 @@ github.com/vmihailenco/tagparser v0.1.1 h1:quXMXlA39OCbd2wAdTsGDlK9RkOk6Wuw+x37w
 github.com/vmihailenco/tagparser v0.1.1/go.mod h1:OeAg3pn3UbLjkWt+rN9oFYB6u/cQgqMEUPoW2WPyhdI=
 github.com/vmware/alb-sdk v0.0.0-20221110085512-5847c544b57a h1:AiiCsJTAlDvA5gzkOPmx2AAiTEeR14QNN3IbuM07AsA=
 github.com/vmware/alb-sdk v0.0.0-20221110085512-5847c544b57a/go.mod h1:fuRb4saDY/xy/UMeMvyKYmcplNknEL9ysaqYSw7reNE=
+github.com/vmware/alb-sdk v0.0.0-20221201080259-3690ca311162 h1:Y0xodMS3U/vEEap6wTK+DLVRcP3pTuDuco3lj5YjObk=
+github.com/vmware/alb-sdk v0.0.0-20221201080259-3690ca311162/go.mod h1:fuRb4saDY/xy/UMeMvyKYmcplNknEL9ysaqYSw7reNE=
 github.com/xanzy/ssh-agent v0.3.0 h1:wUMzuKtKilRgBAD1sUb8gOwwRr2FGoBVumcjoOACClI=
 github.com/xanzy/ssh-agent v0.3.0/go.mod h1:3s9xbODqPuuhK9JV1R321M/FlMZSBvE5aY6eAcqrDh0=
 github.com/yuin/goldmark v1.1.32/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
