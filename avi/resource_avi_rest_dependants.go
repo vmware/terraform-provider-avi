@@ -18168,7 +18168,7 @@ func ResourceIpamDnsInfobloxProfileSchema() *schema.Resource {
 			"dns_view": {
 				Type:     schema.TypeString,
 				Optional: true,
-				Default:  "default",
+				Computed: true,
 			},
 			"extensible_attributes": {
 				Type:     schema.TypeList,
@@ -18183,7 +18183,7 @@ func ResourceIpamDnsInfobloxProfileSchema() *schema.Resource {
 			"network_view": {
 				Type:     schema.TypeString,
 				Optional: true,
-				Default:  "default",
+				Computed: true,
 			},
 			"password": {
 				Type:             schema.TypeString,
