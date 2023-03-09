@@ -18,6 +18,17 @@ func ResourceUserSchema() map[string]*schema.Schema {
 			Optional: true,
 			Elem:     ResourceUserRoleSchema(),
 		},
+		"anonymous_user": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
+		},
+		"date_joined": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
 		"default_tenant_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
@@ -33,6 +44,24 @@ func ResourceUserSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"is_active": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "true",
+			ValidateFunc: validateBool,
+		},
+		"is_internal_user": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
+		},
+		"is_staff": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
+		},
 		"is_superuser": {
 			Type:         schema.TypeString,
 			Optional:     true,
@@ -45,16 +74,52 @@ func ResourceUserSchema() map[string]*schema.Schema {
 			Computed:     true,
 			ValidateFunc: validateBool,
 		},
+		"logged_in": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Computed:     true,
+			ValidateFunc: validateBool,
+		},
 		"name": {
 			Type:     schema.TypeString,
 			Required: true,
 		},
 		"password": {
-			Type:             schema.TypeString,
-			Optional:         true,
-			Computed:         true,
-			Sensitive:        true,
-			DiffSuppressFunc: suppressSensitiveFieldDiffs,
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
+		"passwordless": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
+		},
+		"recovery_token": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
+		"token_expiration_date": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
+		"ui_property": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
+		"uid": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Computed:     true,
+			ValidateFunc: validateInteger,
+		},
+		"unix_crypt_password": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
 		},
 		"user_profile_ref": {
 			Type:     schema.TypeString,
