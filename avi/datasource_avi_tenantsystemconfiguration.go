@@ -5,47 +5,26 @@ package avi
 
 import "github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 
-func dataSourceAviTenant() *schema.Resource {
+func dataSourceAviTenantSystemConfiguration() *schema.Resource {
 	return &schema.Resource{
-		Read: ResourceAviTenantRead,
+		Read: ResourceAviTenantSystemConfigurationRead,
 		Schema: map[string]*schema.Schema{
-			"attrs": {
-				Type:     schema.TypeList,
-				Computed: true,
-				Elem:     ResourceKeyValueSchema(),
-			},
-			"config_settings": {
-				Type:     schema.TypeSet,
-				Computed: true,
-				Elem:     ResourceTenantConfigurationSchema(),
-			},
 			"configpb_attributes": {
 				Type:     schema.TypeSet,
 				Computed: true,
 				Elem:     ResourceConfigPbAttributesSchema(),
 			},
-			"created_by": {
-				Type:     schema.TypeString,
-				Computed: true,
-			},
-			"description": {
-				Type:     schema.TypeString,
-				Computed: true,
-			},
-			"enforce_label_group": {
-				Type:     schema.TypeString,
-				Computed: true,
-			},
-			"label_group_refs": {
+			"dns_virtualservice_refs": {
 				Type:     schema.TypeList,
 				Computed: true,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
-			"local": {
+			"name": {
 				Type:     schema.TypeString,
+				Optional: true,
 				Computed: true,
 			},
-			"name": {
+			"tenant_ref": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
