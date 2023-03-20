@@ -40105,12 +40105,6 @@ func ResourcevCenterConfigurationSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
-			"deactivate_vm_discovery": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Default:      "false",
-				ValidateFunc: validateBool,
-			},
 			"is_nsx_environment": {
 				Type:         schema.TypeString,
 				Optional:     true,

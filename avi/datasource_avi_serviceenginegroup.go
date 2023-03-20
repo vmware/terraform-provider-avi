@@ -1135,6 +1135,14 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"vs_se_primary_switchover_additional_wait_time": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"vs_se_scalein_additional_wait_time": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"vs_se_scaleout_additional_wait_time": {
 				Type:     schema.TypeString,
 				Computed: true,

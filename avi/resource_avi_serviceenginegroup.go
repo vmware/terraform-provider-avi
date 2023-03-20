@@ -1609,6 +1609,18 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Default:      "600",
 			ValidateFunc: validateInteger,
 		},
+		"vs_se_primary_switchover_additional_wait_time": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "0",
+			ValidateFunc: validateInteger,
+		},
+		"vs_se_scalein_additional_wait_time": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "0",
+			ValidateFunc: validateInteger,
+		},
 		"vs_se_scaleout_additional_wait_time": {
 			Type:         schema.TypeString,
 			Optional:     true,
