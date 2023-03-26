@@ -19,6 +19,7 @@ jobs:
           only-new-issues: true
           skip-pkg-cache: true
           skip-build-cache: true
+          verbose: true
         output:
           format: json
           print-issued-lines: true
