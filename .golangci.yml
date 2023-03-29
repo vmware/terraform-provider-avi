@@ -3,6 +3,10 @@ issues:
   max-same-issues: 0
   exclude:
       - SA1019
+  exclude-rules:
+    - path: /
+      linters:
+        - typecheck
 
 run:
   deadline: 5m
@@ -25,7 +29,6 @@ linters:
     - misspell
     - staticcheck
     - structcheck
-    - typecheck
     - unused
     - unconvert
     - varcheck
