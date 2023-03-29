@@ -26,7 +26,8 @@ func ResourceVCenterServerSchema() map[string]*schema.Schema {
 		},
 		"content_lib": {
 			Type:     schema.TypeSet,
-			Required: true,
+			Optional: true,
+			Computed: true,
 			Elem:     ResourceContentLibConfigSchema(),
 		},
 		"name": {
@@ -45,11 +46,13 @@ func ResourceVCenterServerSchema() map[string]*schema.Schema {
 		},
 		"vcenter_credentials_ref": {
 			Type:     schema.TypeString,
-			Required: true,
+			Optional: true,
+			Computed: true,
 		},
 		"vcenter_url": {
 			Type:     schema.TypeString,
-			Required: true,
+			Optional: true,
+			Computed: true,
 		},
 	}
 }

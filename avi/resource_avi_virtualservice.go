@@ -51,6 +51,18 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"bgp_local_preference": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Computed:     true,
+			ValidateFunc: validateInteger,
+		},
+		"bgp_num_as_path_prepend": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Computed:     true,
+			ValidateFunc: validateInteger,
+		},
 		"bgp_peer_labels": {
 			Type:     schema.TypeList,
 			Optional: true,

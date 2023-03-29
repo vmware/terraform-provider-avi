@@ -13,6 +13,18 @@ import (
 
 func ResourceVsVipSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
+		"bgp_local_preference": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Computed:     true,
+			ValidateFunc: validateInteger,
+		},
+		"bgp_num_as_path_prepend": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Computed:     true,
+			ValidateFunc: validateInteger,
+		},
 		"bgp_peer_labels": {
 			Type:     schema.TypeList,
 			Optional: true,

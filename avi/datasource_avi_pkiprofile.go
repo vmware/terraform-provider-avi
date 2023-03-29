@@ -9,6 +9,11 @@ func dataSourceAviPKIProfile() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviPKIProfileRead,
 		Schema: map[string]*schema.Schema{
+			"allow_pki_errors": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
 			"ca_certs": {
 				Type:     schema.TypeList,
 				Computed: true,

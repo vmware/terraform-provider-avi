@@ -28,6 +28,8 @@ resource "avi_vsvip" "foo" {
 The following arguments are supported:
 
 * `name` - (Required) Name for the vsvip object. Field introduced in 17.1.1. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `bgp_local_preference` - (Optional) Local_pref to be used for vsvip advertised. Applicable only over ibgp. Field introduced in 30.2.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `bgp_num_as_path_prepend` - (Optional) Number of times the local as should be prepended additionally to vsvip. Applicable only over ebgp. Allowed values are 1-10. Field introduced in 30.2.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 * `bgp_peer_labels` - (Optional) Select bgp peers, using peer label, for vsvip advertisement. Field introduced in 20.1.5. Maximum of 128 items allowed. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 * `cloud_ref` - (Optional) It is a reference to an object of type cloud. Field introduced in 17.1.1. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 * `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services edition.
