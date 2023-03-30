@@ -19200,7 +19200,7 @@ func ResourceLdapAuthSettingsSchema() *schema.Resource {
 			"security_mode": {
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
+				Default:  "AUTH_LDAP_SECURE_USE_LDAPS",
 			},
 			"server": {
 				Type:     schema.TypeList,
