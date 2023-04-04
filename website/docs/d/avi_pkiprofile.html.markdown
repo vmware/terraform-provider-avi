@@ -32,7 +32,7 @@ data "avi_pkiprofile" "foo_pkiprofile" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `allow_pki_errors` - Exempt errors during certificate verification. Enum options - ALLOW_EXPIRED_CRL, ALLOW_ALL_ERRORS. Field introduced in 22.1.4. Maximum of 1 items allowed. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `allow_pki_errors` - Exempt errors during certificate verification. Enum options - ALLOW_EXPIRED_CRL, ALLOW_ALL_ERRORS. Field introduced in 30.1.1. Maximum of 1 items allowed. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 * `ca_certs` - List of certificate authorities (root and intermediate) trusted that is used for certificate validation. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 * `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services edition.
 * `created_by` - Creator name. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
