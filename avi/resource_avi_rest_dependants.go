@@ -19228,8 +19228,7 @@ func ResourceLdapDirectorySettingsSchema() *schema.Resource {
 		Schema: map[string]*schema.Schema{
 			"admin_bind_dn": {
 				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
+				Required: true,
 			},
 			"group_filter": {
 				Type:     schema.TypeString,
@@ -19265,8 +19264,7 @@ func ResourceLdapDirectorySettingsSchema() *schema.Resource {
 			},
 			"password": {
 				Type:             schema.TypeString,
-				Optional:         true,
-				Computed:         true,
+				Required:         true,
 				Sensitive:        true,
 				DiffSuppressFunc: suppressSensitiveFieldDiffs,
 			},
@@ -19277,8 +19275,7 @@ func ResourceLdapDirectorySettingsSchema() *schema.Resource {
 			},
 			"user_id_attribute": {
 				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
+				Required: true,
 			},
 			"user_search_dn": {
 				Type:     schema.TypeString,
@@ -19299,8 +19296,7 @@ func ResourceLdapUserBindSettingsSchema() *schema.Resource {
 		Schema: map[string]*schema.Schema{
 			"dn_template": {
 				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
+				Required: true,
 			},
 			"token": {
 				Type:     schema.TypeString,
@@ -19314,8 +19310,7 @@ func ResourceLdapUserBindSettingsSchema() *schema.Resource {
 			},
 			"user_id_attribute": {
 				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
+				Required: true,
 			},
 		},
 	}
