@@ -27618,8 +27618,7 @@ func ResourceSamlSettingsSchema() *schema.Resource {
 		Schema: map[string]*schema.Schema{
 			"idp": {
 				Type:     schema.TypeSet,
-				Optional: true,
-				Computed: true,
+				Required: true,
 				Elem:     ResourceSamlIdentityProviderSettingsSchema(),
 			},
 			"sp": {
