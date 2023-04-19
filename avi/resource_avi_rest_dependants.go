@@ -8025,6 +8025,12 @@ func ResourceDNSRegisterInfoSchema() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceIpAddrSchema(),
 			},
+			"fip6": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceIpAddrSchema(),
+			},
 			"total_records": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -8032,6 +8038,12 @@ func ResourceDNSRegisterInfoSchema() *schema.Resource {
 				ValidateFunc: validateInteger,
 			},
 			"vip": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceIpAddrSchema(),
+			},
+			"vip6": {
 				Type:     schema.TypeSet,
 				Optional: true,
 				Computed: true,
