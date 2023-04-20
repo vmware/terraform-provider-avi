@@ -1588,6 +1588,11 @@ func ResourceApplicationLogSchema() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceOutOfBandRequestLogSchema(),
 			},
+			"orig_uri": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"paa_log": {
 				Type:     schema.TypeSet,
 				Optional: true,
