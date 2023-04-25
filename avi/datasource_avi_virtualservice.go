@@ -129,6 +129,10 @@ func dataSourceAviVirtualService() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"enable_session": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"enabled": {
 				Type:     schema.TypeString,
 				Computed: true,

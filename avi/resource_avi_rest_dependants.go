@@ -15679,6 +15679,12 @@ func ResourceHTTPApplicationProfileSchema() *schema.Resource {
 				Default:      "false",
 				ValidateFunc: validateBool,
 			},
+			"session_config": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceHTTPSessionConfigSchema(),
+			},
 			"ssl_client_certificate_action": {
 				Type:     schema.TypeSet,
 				Optional: true,
@@ -16300,6 +16306,35 @@ func ResourceHTTPServerReselectSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 				Elem:     ResourceHTTPReselectRespCodeSchema(),
+			},
+		},
+	}
+}
+
+func ResourceHTTPSessionConfigSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"session_cookie_httponly": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "true",
+				ValidateFunc: validateBool,
+			},
+			"session_cookie_name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "albsessid",
+			},
+			"session_cookie_samesite": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "SAMESITE_LAX",
+			},
+			"session_cookie_secure": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "true",
+				ValidateFunc: validateBool,
 			},
 		},
 	}

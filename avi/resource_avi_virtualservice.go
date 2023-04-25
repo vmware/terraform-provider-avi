@@ -168,6 +168,12 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 			Computed:     true,
 			ValidateFunc: validateBool,
 		},
+		"enable_session": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
+		},
 		"enabled": {
 			Type:         schema.TypeString,
 			Optional:     true,
