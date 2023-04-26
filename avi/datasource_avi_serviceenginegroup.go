@@ -684,6 +684,10 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"replay_vrf_routes_interval": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"resync_time_interval": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -1012,6 +1016,10 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"use_dp_util_for_scaleout": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"use_hyperthreaded_cores": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -1124,6 +1132,14 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Computed: true,
 			},
 			"vs_scaleout_timeout": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"vs_se_primary_switchover_additional_wait_time": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"vs_se_scalein_additional_wait_time": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},

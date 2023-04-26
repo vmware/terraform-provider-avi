@@ -29,6 +29,16 @@ func dataSourceAviWebappUT() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"sensitive_test": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceL1FSensitiveTestCaseSchema(),
+			},
+			"sensitive_tests": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceL1FSensitiveTestCaseSchema(),
+			},
 			"string_length_test": {
 				Type:     schema.TypeSet,
 				Computed: true,
@@ -42,6 +52,10 @@ func dataSourceAviWebappUT() *schema.Resource {
 			"tenant_ref": {
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
+			},
+			"test_sensitive_string": {
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"test_string": {

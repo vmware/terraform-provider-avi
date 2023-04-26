@@ -38,6 +38,14 @@ func dataSourceAviVirtualService() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"bgp_local_preference": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"bgp_num_as_path_prepend": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"bgp_peer_labels": {
 				Type:     schema.TypeList,
 				Computed: true,
@@ -118,6 +126,10 @@ func dataSourceAviVirtualService() *schema.Resource {
 				Computed: true,
 			},
 			"enable_rhi_snat": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"enable_session": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},

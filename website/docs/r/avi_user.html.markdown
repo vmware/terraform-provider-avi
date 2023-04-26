@@ -29,12 +29,24 @@ The following arguments are supported:
 
 * `name` - (Required) Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 * `access` - (Optional) Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `anonymous_user` - (Optional) Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `date_joined` - (Optional) Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 * `default_tenant_ref` - (Optional) It is a reference to an object of type tenant. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 * `email` - (Optional) Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 * `full_name` - (Optional) Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `is_active` - (Optional) Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `is_internal_user` - (Optional) Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `is_staff` - (Optional) Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 * `is_superuser` - (Optional) Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 * `local` - (Optional) Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `logged_in` - (Optional) Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 * `password` - (Optional) Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `passwordless` - (Optional) Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `recovery_token` - (Optional) Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services edition.
+* `token_expiration_date` - (Optional) Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services edition.
+* `ui_property` - (Optional) Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `uid` - (Optional) Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services edition.
+* `unix_crypt_password` - (Optional) Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 * `user_profile_ref` - (Optional) It is a reference to an object of type useraccountprofile. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 * `username` - (Optional) Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 

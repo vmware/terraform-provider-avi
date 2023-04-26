@@ -34,6 +34,8 @@ data "avi_vsvip" "foo_vsvip" {
 
 In addition to all arguments above, the following attributes are exported:
 
+* `bgp_local_preference` - Local_pref to be used for vsvip advertised. Applicable only over ibgp. Field introduced in 30.2.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `bgp_num_as_path_prepend` - Number of times the local as should be prepended additionally to vsvip. Applicable only over ebgp. Allowed values are 1-10. Field introduced in 30.2.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 * `bgp_peer_labels` - Select bgp peers, using peer label, for vsvip advertisement. Field introduced in 20.1.5. Maximum of 128 items allowed. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 * `cloud_ref` - It is a reference to an object of type cloud. Field introduced in 17.1.1. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 * `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services edition.
