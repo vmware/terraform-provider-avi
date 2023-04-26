@@ -28,6 +28,7 @@ resource "avi_pkiprofile" "foo" {
 The following arguments are supported:
 
 * `name` - (Required) Name of the pki profile. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `allow_pki_errors` - (Optional) Exempt errors during certificate verification. Enum options - ALLOW_EXPIRED_CRL, ALLOW_ALL_ERRORS. Field introduced in 30.1.1. Maximum of 1 items allowed. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 * `ca_certs` - (Optional) List of certificate authorities (root and intermediate) trusted that is used for certificate validation. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 * `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services edition.
 * `created_by` - (Optional) Creator name. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
