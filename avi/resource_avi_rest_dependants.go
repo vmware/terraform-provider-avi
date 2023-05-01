@@ -1143,6 +1143,12 @@ func ResourceAppLearningParamsSchema() *schema.Resource {
 				Default:      "false",
 				ValidateFunc: validateBool,
 			},
+			"learn_from_bots": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceBotDetectionMatchSchema(),
+			},
 			"max_params": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -39465,6 +39471,11 @@ func ResourceWafLogSchema() *schema.Resource {
 				Optional:     true,
 				Computed:     true,
 				ValidateFunc: validateInteger,
+			},
+			"learning_status": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "NOT_ACTIVE",
 			},
 			"memory_allocated": {
 				Type:         schema.TypeString,
