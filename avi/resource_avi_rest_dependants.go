@@ -6669,6 +6669,12 @@ func ResourceConnectionLogSchema() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceDnsResponseSchema(),
 			},
+			"dns_tcp_conn_close_from_se": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateBool,
+			},
 			"ds_log": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -10115,6 +10121,12 @@ func ResourceDnsServiceApplicationProfileSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Default:  "hostmaster",
+			},
+			"close_tcp_connection_post_response": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
 			},
 			"dns_over_tcp_enabled": {
 				Type:         schema.TypeString,
