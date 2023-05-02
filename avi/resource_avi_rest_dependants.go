@@ -40037,6 +40037,12 @@ func ResourceWafRuleMatchDataSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"match_value_offset": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "0",
+				ValidateFunc: validateInteger,
+			},
 		},
 	}
 }
