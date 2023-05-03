@@ -24,6 +24,10 @@ func dataSourceAviLicenseStatus() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceLicenseServiceUpdateSchema(),
 			},
+			"tenant_uuid": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"uuid": {
 				Type:     schema.TypeString,
 				Optional: true,

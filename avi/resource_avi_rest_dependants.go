@@ -197,6 +197,11 @@ func ResourceALBServicesCaseSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"tenant_uuid": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"time": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -4461,6 +4466,11 @@ func ResourceCentralLicenseRefreshDetailsSchema() *schema.Resource {
 				Computed:     true,
 				ValidateFunc: validateFloat,
 			},
+			"tenant_uuid": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 		},
 	}
 }
@@ -7377,7 +7387,8 @@ func ResourceControllerLicenseSchema() *schema.Resource {
 			},
 			"customer_name": {
 				Type:     schema.TypeString,
-				Required: true,
+				Optional: true,
+				Computed: true,
 			},
 			"disable_enforcement": {
 				Type:         schema.TypeString,
@@ -7449,6 +7460,11 @@ func ResourceControllerLicenseSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"tenant_uuid": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"uuid": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -7456,7 +7472,8 @@ func ResourceControllerLicenseSchema() *schema.Resource {
 			},
 			"valid_until": {
 				Type:     schema.TypeString,
-				Required: true,
+				Optional: true,
+				Computed: true,
 			},
 		},
 	}
@@ -7691,6 +7708,11 @@ func ResourceControllerPortalAuthSchema() *schema.Resource {
 				Computed:         true,
 				Sensitive:        true,
 				DiffSuppressFunc: suppressSensitiveFieldDiffs,
+			},
+			"tenant": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 		},
 	}
@@ -32181,6 +32203,11 @@ func ResourceSingleLicenseSchema() *schema.Resource {
 				ValidateFunc: validateInteger,
 			},
 			"start_on": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"tenant_uuid": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
