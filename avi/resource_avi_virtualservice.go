@@ -123,6 +123,11 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"csrf_policy_ref": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
 		"delay_fairness": {
 			Type:         schema.TypeString,
 			Optional:     true,

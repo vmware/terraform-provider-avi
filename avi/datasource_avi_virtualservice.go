@@ -95,6 +95,10 @@ func dataSourceAviVirtualService() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"csrf_policy_ref": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"delay_fairness": {
 				Type:     schema.TypeString,
 				Computed: true,
