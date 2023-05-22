@@ -4215,6 +4215,39 @@ func ResourceCRSUpdateDetailsSchema() *schema.Resource {
 	}
 }
 
+func ResourceCSRFRuleSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"action": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "VERIFY_CSRF_TOKEN",
+			},
+			"enable": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "true",
+				ValidateFunc: validateBool,
+			},
+			"index": {
+				Type:         schema.TypeString,
+				Required:     true,
+				ValidateFunc: validateInteger,
+			},
+			"match": {
+				Type:     schema.TypeSet,
+				Required: true,
+				Elem:     ResourceMatchTargetSchema(),
+			},
+			"name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
 func ResourceCaptureFileSizeSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
