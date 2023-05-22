@@ -48,11 +48,6 @@ func dataSourceAviALBServicesConfig() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
-			"operations_config": {
-				Type:     schema.TypeSet,
-				Computed: true,
-				Elem:     ResourceOperationsConfigSchema(),
-			},
 			"polling_interval": {
 				Type:     schema.TypeString,
 				Computed: true,

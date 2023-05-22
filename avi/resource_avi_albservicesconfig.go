@@ -55,11 +55,6 @@ func ResourceALBServicesConfigSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
-		"operations_config": {
-			Type:     schema.TypeSet,
-			Required: true,
-			Elem:     ResourceOperationsConfigSchema(),
-		},
 		"polling_interval": {
 			Type:         schema.TypeString,
 			Optional:     true,

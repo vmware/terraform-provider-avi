@@ -17827,7 +17827,7 @@ func ResourceInventoryConfigSchema() *schema.Resource {
 			"enable": {
 				Type:         schema.TypeString,
 				Optional:     true,
-				Default:      "true",
+				Computed:     true,
 				ValidateFunc: validateBool,
 			},
 		},
@@ -25154,6 +25154,12 @@ func ResourcePortalFeatureOptInSchema() *schema.Resource {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Default:      "true",
+				ValidateFunc: validateBool,
+			},
+			"enable_pulse_inventory": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
 				ValidateFunc: validateBool,
 			},
 			"enable_pulse_waf_management": {
