@@ -197,6 +197,11 @@ func ResourceALBServicesCaseSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"tenant_uuid": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"time": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -4499,6 +4504,11 @@ func ResourceCentralLicenseRefreshDetailsSchema() *schema.Resource {
 				Computed:     true,
 				ValidateFunc: validateFloat,
 			},
+			"tenant_uuid": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 		},
 	}
 }
@@ -7415,7 +7425,8 @@ func ResourceControllerLicenseSchema() *schema.Resource {
 			},
 			"customer_name": {
 				Type:     schema.TypeString,
-				Required: true,
+				Optional: true,
+				Computed: true,
 			},
 			"disable_enforcement": {
 				Type:         schema.TypeString,
@@ -7487,6 +7498,11 @@ func ResourceControllerLicenseSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"tenant_uuid": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"uuid": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -7494,7 +7510,8 @@ func ResourceControllerLicenseSchema() *schema.Resource {
 			},
 			"valid_until": {
 				Type:     schema.TypeString,
-				Required: true,
+				Optional: true,
+				Computed: true,
 			},
 		},
 	}
@@ -7729,6 +7746,11 @@ func ResourceControllerPortalAuthSchema() *schema.Resource {
 				Computed:         true,
 				Sensitive:        true,
 				DiffSuppressFunc: suppressSensitiveFieldDiffs,
+			},
+			"tenant": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 		},
 	}
@@ -17878,7 +17900,7 @@ func ResourceInventoryConfigSchema() *schema.Resource {
 			"enable": {
 				Type:         schema.TypeString,
 				Optional:     true,
-				Default:      "true",
+				Computed:     true,
 				ValidateFunc: validateBool,
 			},
 		},
@@ -25202,6 +25224,12 @@ func ResourcePortalFeatureOptInSchema() *schema.Resource {
 				Default:      "true",
 				ValidateFunc: validateBool,
 			},
+			"enable_pulse_inventory": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
 			"enable_pulse_waf_management": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -32249,6 +32277,11 @@ func ResourceSingleLicenseSchema() *schema.Resource {
 				ValidateFunc: validateInteger,
 			},
 			"start_on": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"tenant_uuid": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,

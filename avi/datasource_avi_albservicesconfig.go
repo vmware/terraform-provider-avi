@@ -43,10 +43,10 @@ func dataSourceAviALBServicesConfig() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"operations_config": {
-				Type:     schema.TypeSet,
+			"name": {
+				Type:     schema.TypeString,
+				Optional: true,
 				Computed: true,
-				Elem:     ResourceOperationsConfigSchema(),
 			},
 			"polling_interval": {
 				Type:     schema.TypeString,
@@ -65,6 +65,11 @@ func dataSourceAviALBServicesConfig() *schema.Resource {
 				Type:     schema.TypeSet,
 				Computed: true,
 				Elem:     ResourceProxyConfigurationSchema(),
+			},
+			"tenant_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 			"use_split_proxy": {
 				Type:     schema.TypeString,

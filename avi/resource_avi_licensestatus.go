@@ -31,6 +31,11 @@ func ResourceLicenseStatusSchema() map[string]*schema.Schema {
 			Computed: true,
 			Elem:     ResourceLicenseServiceUpdateSchema(),
 		},
+		"tenant_uuid": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
 		"uuid": {
 			Type:     schema.TypeString,
 			Optional: true,
