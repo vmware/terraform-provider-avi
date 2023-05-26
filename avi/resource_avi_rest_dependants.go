@@ -20917,6 +20917,11 @@ func ResourceMetricThresoldUpDetailsSchema() *schema.Resource {
 				Computed:     true,
 				ValidateFunc: validateFloat,
 			},
+			"vm_type": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 		},
 	}
 }
@@ -27617,6 +27622,11 @@ func ResourceSamlIdentityProviderSettingsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
 			"metadata": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"metadata_url": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
