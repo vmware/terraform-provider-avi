@@ -291,6 +291,10 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"seupgrade_copy_buffer_size": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"seupgrade_copy_pool_size": {
 				Type:     schema.TypeString,
 				Computed: true,

@@ -432,6 +432,12 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Default:      "60",
 			ValidateFunc: validateInteger,
 		},
+		"seupgrade_copy_buffer_size": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "128",
+			ValidateFunc: validateInteger,
+		},
 		"seupgrade_copy_pool_size": {
 			Type:         schema.TypeString,
 			Optional:     true,
