@@ -16464,6 +16464,12 @@ func ResourceHTTPSwitchingActionSchema() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceHTTPLocalFileSchema(),
 			},
+			"other_status_code": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
 			"pool_group_ref": {
 				Type:     schema.TypeString,
 				Optional: true,
