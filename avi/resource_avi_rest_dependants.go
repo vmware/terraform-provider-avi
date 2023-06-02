@@ -81,6 +81,11 @@ func ResourceALBServicesAccountUserSchema() *schema.Resource {
 func ResourceALBServicesCaseSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"additional_emails": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
 			"asset_id": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -4431,6 +4436,11 @@ func ResourceCaptureIPCSchema() *schema.Resource {
 func ResourceCaseConfigSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"additional_emails": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
 			"enable_auto_case_creation_on_controller_failure": {
 				Type:         schema.TypeString,
 				Optional:     true,
