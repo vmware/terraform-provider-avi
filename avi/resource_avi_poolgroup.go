@@ -50,12 +50,6 @@ func ResourcePoolGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
-		"enable_http2": {
-			Type:         schema.TypeString,
-			Optional:     true,
-			Default:      "false",
-			ValidateFunc: validateBool,
-		},
 		"fail_action": {
 			Type:     schema.TypeSet,
 			Optional: true,

@@ -39,10 +39,6 @@ func dataSourceAviPoolGroup() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"enable_http2": {
-				Type:     schema.TypeString,
-				Computed: true,
-			},
 			"fail_action": {
 				Type:     schema.TypeSet,
 				Computed: true,
