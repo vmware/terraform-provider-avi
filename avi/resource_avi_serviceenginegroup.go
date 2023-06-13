@@ -927,6 +927,18 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Default:      "0",
 			ValidateFunc: validateInteger,
 		},
+		"path_mtu_discovery_v4": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "true",
+			ValidateFunc: validateBool,
+		},
+		"path_mtu_discovery_v6": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "true",
+			ValidateFunc: validateBool,
+		},
 		"pcap_tx_mode": {
 			Type:     schema.TypeString,
 			Optional: true,

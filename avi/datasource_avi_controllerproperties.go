@@ -378,6 +378,10 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"vs_se_bootup_fail_patch": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"vs_se_create_fail": {
 				Type:     schema.TypeString,
 				Computed: true,

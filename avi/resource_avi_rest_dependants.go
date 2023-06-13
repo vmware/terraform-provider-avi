@@ -22887,7 +22887,8 @@ func ResourceOAuthProfileSchema() *schema.Resource {
 			},
 			"token_endpoint": {
 				Type:     schema.TypeString,
-				Required: true,
+				Optional: true,
+				Computed: true,
 			},
 			"userinfo_endpoint": {
 				Type:     schema.TypeString,

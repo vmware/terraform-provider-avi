@@ -655,6 +655,14 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"path_mtu_discovery_v4": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"path_mtu_discovery_v6": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"pcap_tx_mode": {
 				Type:     schema.TypeString,
 				Computed: true,
