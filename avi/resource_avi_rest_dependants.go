@@ -801,6 +801,12 @@ func ResourceAlertSyslogServerSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"strict_cert_verify": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
 			"syslog_server": {
 				Type:     schema.TypeString,
 				Required: true,
