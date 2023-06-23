@@ -4483,6 +4483,11 @@ func ResourceCentralLicenseSubscriptionDetailsSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"tenant_uuid": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 		},
 	}
 }
@@ -20849,6 +20854,11 @@ func ResourceMetricThresoldUpDetailsSchema() *schema.Resource {
 				Computed:     true,
 				ValidateFunc: validateFloat,
 			},
+			"vm_type": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 		},
 	}
 }
@@ -22798,7 +22808,8 @@ func ResourceOAuthProfileSchema() *schema.Resource {
 			},
 			"token_endpoint": {
 				Type:     schema.TypeString,
-				Required: true,
+				Optional: true,
+				Computed: true,
 			},
 			"userinfo_endpoint": {
 				Type:     schema.TypeString,
@@ -27549,6 +27560,11 @@ func ResourceSamlIdentityProviderSettingsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
 			"metadata": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"metadata_url": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,

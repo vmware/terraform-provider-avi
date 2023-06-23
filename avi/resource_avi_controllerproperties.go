@@ -130,7 +130,7 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 		"controller_resource_info_collection_period": {
 			Type:         schema.TypeString,
 			Optional:     true,
-			Default:      "30",
+			Default:      "525600",
 			ValidateFunc: validateInteger,
 		},
 		"crashed_se_reboot": {
@@ -430,6 +430,12 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Type:         schema.TypeString,
 			Optional:     true,
 			Default:      "60",
+			ValidateFunc: validateInteger,
+		},
+		"seupgrade_copy_buffer_size": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "512",
 			ValidateFunc: validateInteger,
 		},
 		"seupgrade_copy_pool_size": {
