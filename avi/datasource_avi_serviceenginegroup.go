@@ -555,6 +555,10 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"metrics_collection_mode": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"mgmt_network_ref": {
 				Type:     schema.TypeString,
 				Computed: true,

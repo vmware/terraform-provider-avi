@@ -789,6 +789,12 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Default:      "2048",
 			ValidateFunc: validateInteger,
 		},
+		"metrics_collection_mode": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "1",
+			ValidateFunc: validateInteger,
+		},
 		"mgmt_network_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
