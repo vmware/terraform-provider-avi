@@ -113,7 +113,7 @@ func resourceAviUserCreate(d *schema.ResourceData, meta interface{}) error {
 func resourceAviUserUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceUserSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "user", s)
+	err = APICreateOrUpdate(d, meta, "user", s, false)
 	if err == nil {
 		err = ResourceAviUserRead(d, meta)
 	}

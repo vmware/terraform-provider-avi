@@ -276,6 +276,17 @@ func SetIDFromObj(d *schema.ResourceData, robj interface{}) {
 	}
 }
 
+func GetDiff(d *schema.ResourceData, obj1 interface{}) interface{} {
+	diff := make(map[string]interface{})
+	valA := obj1.(map[string]interface{})
+	for k, v := range valA {
+		if d.HasChange(k) {
+			diff[k] = v
+		}
+	}
+	return diff
+}
+
 // It is generic API to create and update any Avi REST resource. It handles special situations with cloud
 // and tenant filters as objects may already be present. If the resource does not exist it will try to
 // create it. In case, it is present then automatically converts to PUT semantics.
@@ -284,8 +295,7 @@ func APICreateOrUpdate(d *schema.ResourceData, meta interface{}, objType string,
 	client := meta.(*clients.AviClient)
 	var robj interface{}
 	obj := d
-
-	usePatchForUpdate := false
+	usePatchForUpdate := true
 	if len(opts) > 0 {
 		usePatchForUpdate = opts[0]
 	}
@@ -304,10 +314,11 @@ func APICreateOrUpdate(d *schema.ResourceData, meta interface{}, objType string,
 			}
 		} else if uuid, ok := d.GetOk("uuid"); ok {
 			path = path + "/" + uuid.(string) + "?skip_default=true"
+			payload := GetDiff(d, data)
 			if !usePatchForUpdate {
 				err = client.AviSession.Put(path, data, &robj)
 			} else {
-				err = client.AviSession.Patch(path, data, "replace", &robj)
+				err = client.AviSession.Patch(path, payload, "replace", &robj)
 			}
 			if err != nil {
 				log.Printf("[ERROR] APICreateOrUpdate: PUT Error %v path %v id %v\n", err, path, d.Id())
