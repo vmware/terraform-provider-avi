@@ -6658,6 +6658,12 @@ func ResourceConnectionLogSchema() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceDnsResponseSchema(),
 			},
+			"dns_tcp_conn_close_from_se": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateBool,
+			},
 			"ds_log": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -10090,6 +10096,12 @@ func ResourceDnsServiceApplicationProfileSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Default:  "hostmaster",
+			},
+			"close_tcp_connection_post_response": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
 			},
 			"dns_over_tcp_enabled": {
 				Type:         schema.TypeString,
@@ -18161,7 +18173,7 @@ func ResourceIpamDnsInfobloxProfileSchema() *schema.Resource {
 			"dns_view": {
 				Type:     schema.TypeString,
 				Optional: true,
-				Default:  "default",
+				Computed: true,
 			},
 			"extensible_attributes": {
 				Type:     schema.TypeList,
@@ -18176,7 +18188,7 @@ func ResourceIpamDnsInfobloxProfileSchema() *schema.Resource {
 			"network_view": {
 				Type:     schema.TypeString,
 				Optional: true,
-				Default:  "default",
+				Computed: true,
 			},
 			"password": {
 				Type:             schema.TypeString,
@@ -40006,12 +40018,6 @@ func ResourcevCenterConfigurationSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
-			},
-			"deactivate_vm_discovery": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Default:      "false",
-				ValidateFunc: validateBool,
 			},
 			"is_nsx_environment": {
 				Type:         schema.TypeString,
