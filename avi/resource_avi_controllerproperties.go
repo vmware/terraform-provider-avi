@@ -130,7 +130,7 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 		"controller_resource_info_collection_period": {
 			Type:         schema.TypeString,
 			Optional:     true,
-			Default:      "30",
+			Default:      "525600",
 			ValidateFunc: validateInteger,
 		},
 		"crashed_se_reboot": {
@@ -241,6 +241,24 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Default:      "1440",
 			ValidateFunc: validateInteger,
 		},
+		"gslb_purge_batch_size": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "1000",
+			ValidateFunc: validateInteger,
+		},
+		"gslb_purge_sleep_time_ms": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "50",
+			ValidateFunc: validateInteger,
+		},
+		"ignore_vrf_in_networksubnetlist": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
+		},
 		"max_dead_se_in_grp": {
 			Type:         schema.TypeString,
 			Optional:     true,
@@ -307,6 +325,12 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Computed:         true,
 			Sensitive:        true,
 			DiffSuppressFunc: suppressSensitiveFieldDiffs,
+		},
+		"postgres_vacuum_period": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "20160",
+			ValidateFunc: validateInteger,
 		},
 		"process_locked_useraccounts_timeout_period": {
 			Type:         schema.TypeString,
@@ -406,6 +430,12 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Type:         schema.TypeString,
 			Optional:     true,
 			Default:      "60",
+			ValidateFunc: validateInteger,
+		},
+		"seupgrade_copy_buffer_size": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "512",
 			ValidateFunc: validateInteger,
 		},
 		"seupgrade_copy_pool_size": {
