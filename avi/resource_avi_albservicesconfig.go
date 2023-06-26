@@ -50,6 +50,11 @@ func ResourceALBServicesConfigSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  "MYVMWARE",
 		},
+		"name": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
 		"polling_interval": {
 			Type:         schema.TypeString,
 			Optional:     true,
@@ -70,6 +75,11 @@ func ResourceALBServicesConfigSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 			Elem:     ResourceProxyConfigurationSchema(),
+		},
+		"tenant_ref": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
 		},
 		"use_split_proxy": {
 			Type:         schema.TypeString,

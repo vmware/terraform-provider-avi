@@ -789,6 +789,12 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Default:      "2048",
 			ValidateFunc: validateInteger,
 		},
+		"metrics_collection_mode": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "1",
+			ValidateFunc: validateInteger,
+		},
 		"mgmt_network_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
@@ -927,6 +933,18 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Default:      "0",
 			ValidateFunc: validateInteger,
 		},
+		"path_mtu_discovery_v4": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "true",
+			ValidateFunc: validateBool,
+		},
+		"path_mtu_discovery_v6": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "true",
+			ValidateFunc: validateBool,
+		},
 		"pcap_tx_mode": {
 			Type:     schema.TypeString,
 			Optional: true,
@@ -966,6 +984,12 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional:     true,
 			Default:      "true",
 			ValidateFunc: validateBool,
+		},
+		"replay_vrf_routes_interval": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "1000",
+			ValidateFunc: validateInteger,
 		},
 		"resync_time_interval": {
 			Type:         schema.TypeString,
@@ -1166,7 +1190,7 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 		"se_lro": {
 			Type:         schema.TypeString,
 			Optional:     true,
-			Default:      "true",
+			Computed:     true,
 			ValidateFunc: validateBool,
 		},
 		"se_mp_ring_retry_count": {
@@ -1441,6 +1465,12 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Default:      "3600000",
 			ValidateFunc: validateInteger,
 		},
+		"use_dp_util_for_scaleout": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
+		},
 		"use_hyperthreaded_cores": {
 			Type:         schema.TypeString,
 			Optional:     true,
@@ -1595,6 +1625,18 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Type:         schema.TypeString,
 			Optional:     true,
 			Default:      "600",
+			ValidateFunc: validateInteger,
+		},
+		"vs_se_primary_switchover_additional_wait_time": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "0",
+			ValidateFunc: validateInteger,
+		},
+		"vs_se_scalein_additional_wait_time": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "0",
 			ValidateFunc: validateInteger,
 		},
 		"vs_se_scaleout_additional_wait_time": {

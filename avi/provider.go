@@ -57,6 +57,18 @@ func Provider() *schema.Provider {
 				DefaultFunc: schema.EnvDefaultFunc("AVI_API_TIMEOUT", nil),
 				Description: "Session timeout for Avi Controller.",
 			},
+			"avi_csp_token": {
+				Type:        schema.TypeString,
+				Optional:    true,
+				DefaultFunc: schema.EnvDefaultFunc("AVI_CSP_TOKEN", nil),
+				Description: "Csp token for Avi Controller.",
+			},
+			"avi_csp_host": {
+				Type:        schema.TypeString,
+				Optional:    true,
+				DefaultFunc: schema.EnvDefaultFunc("AVI_CSP_HOST", "console.cloud.vmware.com"),
+				Description: "Csp host for Avi Controller.",
+			},
 		},
 		DataSourcesMap: map[string]*schema.Resource{
 			"avi_rmcloudopsproto":                 dataSourceAviRmCloudOpsProto(),
@@ -73,6 +85,7 @@ func Provider() *schema.Provider {
 			"avi_securitypolicy":                  dataSourceAviSecurityPolicy(),
 			"avi_statediffoperation":              dataSourceAviStatediffOperation(),
 			"avi_statediffsnapshot":               dataSourceAviStatediffSnapshot(),
+			"avi_csrfpolicy":                      dataSourceAviCSRFPolicy(),
 			"avi_vsvip":                           dataSourceAviVsVip(),
 			"avi_virtualservice":                  dataSourceAviVirtualService(),
 			"avi_serviceenginegroup":              dataSourceAviServiceEngineGroup(),
@@ -170,6 +183,7 @@ func Provider() *schema.Provider {
 			"avi_backup":                          dataSourceAviBackup(),
 			"avi_securitymanagerdata":             dataSourceAviSecurityManagerData(),
 			"avi_pingaccessagent":                 dataSourceAviPingAccessAgent(),
+			"avi_tenantsystemconfiguration":       dataSourceAviTenantSystemConfiguration(),
 			"avi_fileservice":                     dataSourceAviFileService(),
 			"avi_server":                          dataSourceAviServer(),
 		},
@@ -188,6 +202,7 @@ func Provider() *schema.Provider {
 			"avi_securitypolicy":                  resourceAviSecurityPolicy(),
 			"avi_statediffoperation":              resourceAviStatediffOperation(),
 			"avi_statediffsnapshot":               resourceAviStatediffSnapshot(),
+			"avi_csrfpolicy":                      resourceAviCSRFPolicy(),
 			"avi_vsvip":                           resourceAviVsVip(),
 			"avi_virtualservice":                  resourceAviVirtualService(),
 			"avi_serviceenginegroup":              resourceAviServiceEngineGroup(),
@@ -285,6 +300,7 @@ func Provider() *schema.Provider {
 			"avi_backup":                          resourceAviBackup(),
 			"avi_securitymanagerdata":             resourceAviSecurityManagerData(),
 			"avi_pingaccessagent":                 resourceAviPingAccessAgent(),
+			"avi_tenantsystemconfiguration":       resourceAviTenantSystemConfiguration(),
 			"avi_useraccount":                     resourceAviUserAccount(),
 			"avi_fileservice":                     resourceAviFileService(),
 			"avi_server":                          resourceAviServer(),
@@ -301,6 +317,8 @@ func providerConfigure(d *schema.ResourceData) (interface{}, error) {
 		Tenant:     "admin",
 		Version:    "18.2.8",
 		AuthToken:  d.Get("avi_authtoken").(string),
+		CSP_TOKEN:  d.Get("avi_csp_token").(string),
+		CSP_HOST:   d.Get("avi_csp_host").(string),
 		Timeout:    time.Duration(d.Get("avi_api_timeout").(int)) * time.Second,
 	}
 	if username, ok := d.GetOk("avi_username"); ok {
@@ -313,9 +331,14 @@ func providerConfigure(d *schema.ResourceData) (interface{}, error) {
 	if tenant, ok := d.GetOk("avi_tenant"); ok {
 		config.Tenant = tenant.(string)
 	}
-
 	if timeout, ok := d.GetOk("avi_api_timeout"); ok {
 		config.Timeout = time.Duration(timeout.(int)) * time.Second
+	}
+	if Csp_token, ok := d.GetOk("avi_csp_token"); ok {
+		config.CSP_TOKEN = Csp_token.(string)
+	}
+	if Csp_host, ok := d.GetOk("avi_csp_host"); ok {
+		config.CSP_HOST = Csp_host.(string)
 	}
 
 	aviClient, err := clients.NewAviClient(
@@ -325,6 +348,8 @@ func providerConfigure(d *schema.ResourceData) (interface{}, error) {
 		session.SetVersion(config.Version),
 		session.SetAuthToken(config.AuthToken),
 		session.SetInsecure, session.SetTimeout(config.Timeout),
+		session.SetCSPHost(config.CSP_HOST),
+		session.SetCSPToken(config.CSP_TOKEN),
 		session.SetLazyAuthentication(true))
 
 	log.Printf("Avi Client created for user %s tenant %s version %s\n",
@@ -340,5 +365,7 @@ type Credentials struct {
 	Tenant     string
 	Version    string
 	AuthToken  string
+	CSP_HOST   string
+	CSP_TOKEN  string
 	Timeout    time.Duration
 }

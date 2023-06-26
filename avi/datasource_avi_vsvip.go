@@ -9,6 +9,14 @@ func dataSourceAviVsVip() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviVsVipRead,
 		Schema: map[string]*schema.Schema{
+			"bgp_local_preference": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"bgp_num_as_path_prepend": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"bgp_peer_labels": {
 				Type:     schema.TypeList,
 				Computed: true,

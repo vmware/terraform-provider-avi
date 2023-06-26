@@ -5,26 +5,39 @@ package avi
 
 import "github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 
-func dataSourceAviLicenseStatus() *schema.Resource {
+func dataSourceAviCSRFPolicy() *schema.Resource {
 	return &schema.Resource{
-		Read: ResourceAviLicenseStatusRead,
+		Read: ResourceAviCSRFPolicyRead,
 		Schema: map[string]*schema.Schema{
 			"configpb_attributes": {
 				Type:     schema.TypeSet,
 				Computed: true,
 				Elem:     ResourceConfigPbAttributesSchema(),
 			},
-			"saas_status": {
-				Type:     schema.TypeSet,
+			"cookie_name": {
+				Type:     schema.TypeString,
 				Computed: true,
-				Elem:     ResourceSaasLicensingStatusSchema(),
 			},
-			"service_update": {
-				Type:     schema.TypeSet,
+			"description": {
+				Type:     schema.TypeString,
 				Computed: true,
-				Elem:     ResourceLicenseServiceUpdateSchema(),
 			},
-			"tenant_uuid": {
+			"name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"rules": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceCSRFRuleSchema(),
+			},
+			"tenant_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"token_validity_time_min": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},

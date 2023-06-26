@@ -163,6 +163,18 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"gslb_purge_batch_size": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"gslb_purge_sleep_time_ms": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"ignore_vrf_in_networksubnetlist": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"max_dead_se_in_grp": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -204,6 +216,10 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Computed: true,
 			},
 			"portal_token": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"postgres_vacuum_period": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
@@ -272,6 +288,10 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Computed: true,
 			},
 			"secure_channel_se_token_timeout": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"seupgrade_copy_buffer_size": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
@@ -355,6 +375,10 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Computed: true,
 			},
 			"vs_se_bootup_fail": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"vs_se_bootup_fail_patch": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
