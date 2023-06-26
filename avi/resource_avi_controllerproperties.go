@@ -253,6 +253,12 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Default:      "50",
 			ValidateFunc: validateInteger,
 		},
+		"ignore_vrf_in_networksubnetlist": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
+		},
 		"max_dead_se_in_grp": {
 			Type:         schema.TypeString,
 			Optional:     true,
@@ -424,6 +430,12 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Type:         schema.TypeString,
 			Optional:     true,
 			Default:      "60",
+			ValidateFunc: validateInteger,
+		},
+		"seupgrade_copy_buffer_size": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "512",
 			ValidateFunc: validateInteger,
 		},
 		"seupgrade_copy_pool_size": {

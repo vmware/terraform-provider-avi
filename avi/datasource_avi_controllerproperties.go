@@ -171,6 +171,10 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"ignore_vrf_in_networksubnetlist": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"max_dead_se_in_grp": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -284,6 +288,10 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Computed: true,
 			},
 			"secure_channel_se_token_timeout": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"seupgrade_copy_buffer_size": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
