@@ -80,6 +80,11 @@ func ResourceBackupConfigurationSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"s3_bucket_folder": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
 		"save_local": {
 			Type:         schema.TypeString,
 			Optional:     true,
