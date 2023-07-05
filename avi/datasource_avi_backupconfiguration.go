@@ -59,6 +59,10 @@ func dataSourceAviBackupConfiguration() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"s3_bucket_folder": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"save_local": {
 				Type:     schema.TypeString,
 				Computed: true,
