@@ -4537,6 +4537,11 @@ func ResourceCentralLicenseSubscriptionDetailsSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"tenant_uuid": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 		},
 	}
 }
