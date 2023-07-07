@@ -315,8 +315,8 @@ func providerConfigure(d *schema.ResourceData) (interface{}, error) {
 		Tenant:     "admin",
 		Version:    "18.2.8",
 		AuthToken:  d.Get("avi_authtoken").(string),
-		CSP_TOKEN:  d.Get("avi_csp_token").(string),
-		CSP_HOST:   d.Get("avi_csp_host").(string),
+		CSPToken:   d.Get("avi_csp_token").(string),
+		CSPHost:    d.Get("avi_csp_host").(string),
 		Timeout:    time.Duration(d.Get("avi_api_timeout").(int)) * time.Second,
 	}
 	if username, ok := d.GetOk("avi_username"); ok {
@@ -332,11 +332,11 @@ func providerConfigure(d *schema.ResourceData) (interface{}, error) {
 	if timeout, ok := d.GetOk("avi_api_timeout"); ok {
 		config.Timeout = time.Duration(timeout.(int)) * time.Second
 	}
-	if Csp_token, ok := d.GetOk("avi_csp_token"); ok {
-		config.CSP_TOKEN = Csp_token.(string)
+	if csptoken, ok := d.GetOk("avi_csp_token"); ok {
+		config.CSPToken = csptoken.(string)
 	}
-	if Csp_host, ok := d.GetOk("avi_csp_host"); ok {
-		config.CSP_HOST = Csp_host.(string)
+	if csphost, ok := d.GetOk("avi_csp_host"); ok {
+		config.CSPHost = csphost.(string)
 	}
 
 	aviClient, err := clients.NewAviClient(
@@ -346,8 +346,8 @@ func providerConfigure(d *schema.ResourceData) (interface{}, error) {
 		session.SetVersion(config.Version),
 		session.SetAuthToken(config.AuthToken),
 		session.SetInsecure, session.SetTimeout(config.Timeout),
-		session.SetCSPHost(config.CSP_HOST),
-		session.SetCSPToken(config.CSP_TOKEN),
+		session.SetCSPHost(config.CSPHost),
+		session.SetCSPToken(config.CSPToken),
 		session.SetLazyAuthentication(true))
 
 	log.Printf("Avi Client created for user %s tenant %s version %s\n",
@@ -363,7 +363,7 @@ type Credentials struct {
 	Tenant     string
 	Version    string
 	AuthToken  string
-	CSP_HOST   string
-	CSP_TOKEN  string
+	CSPHost    string
+	CSPToken   string
 	Timeout    time.Duration
 }
