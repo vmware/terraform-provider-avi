@@ -157,6 +157,10 @@ func dataSourceAviCloud() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceRancherConfigurationSchema(),
 			},
+			"resolve_fqdn_to_ipv6": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"se_group_template_ref": {
 				Type:     schema.TypeString,
 				Computed: true,
