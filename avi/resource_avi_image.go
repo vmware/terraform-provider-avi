@@ -50,6 +50,12 @@ func ResourceImageSchema() map[string]*schema.Schema {
 			Optional: true,
 			Elem:     ResourceImageEventMapSchema(),
 		},
+		"fips_mode_transition_applicable": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "true",
+			ValidateFunc: validateBool,
+		},
 		"img_state": {
 			Type:     schema.TypeSet,
 			Optional: true,
