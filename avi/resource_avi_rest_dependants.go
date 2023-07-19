@@ -3812,6 +3812,11 @@ func ResourceBuildInfoSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"remote_image_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"tag": {
 				Type:     schema.TypeString,
 				Optional: true,
