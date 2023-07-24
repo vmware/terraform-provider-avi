@@ -7761,6 +7761,11 @@ func ResourceControllerPortalAuthSchema() *schema.Resource {
 				Sensitive:        true,
 				DiffSuppressFunc: suppressSensitiveFieldDiffs,
 			},
+			"grant_type": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "REFRESH_TOKEN",
+			},
 			"instance_url": {
 				Type:     schema.TypeString,
 				Optional: true,
