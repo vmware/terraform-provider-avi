@@ -15,7 +15,7 @@ jobs:
         uses: golangci/golangci-lint-action@v2
         with:
           version: v1.53.3
-          args: run --issues-exit-code=1
+          args: --issues-exit-code=1
           only-new-issues: true
           skip-pkg-cache: true
           skip-build-cache: true
