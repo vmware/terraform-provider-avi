@@ -44,6 +44,7 @@ In addition to all arguments above, the following attributes are exported:
 * `remote_directory` - Directory at remote destination with write permission for ssh user. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 * `remote_file_transfer_protocol` - Remote file transfer protocol type. Enum options - SCP, SFTP. Field introduced in 22.1.1. Allowed in enterprise edition with any value, basic edition(allowed values- scp,sftp), enterprise with cloud services edition.
 * `remote_hostname` - Remote destination. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `s3_bucket_folder` - The folder name in s3 bucket where backup will be stored. Field introduced in 30.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 * `save_local` - Local backup. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 * `ssh_user_ref` - Access credentials for remote destination. It is a reference to an object of type cloudconnectoruser. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 * `tenant_ref` - It is a reference to an object of type tenant. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
