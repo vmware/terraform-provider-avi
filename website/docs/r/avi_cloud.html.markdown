@@ -61,6 +61,7 @@ The following arguments are supported:
 * `prefer_static_routes` - (Optional) Prefer static routes over interface routes during virtualservice placement. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 * `proxy_configuration` - (Optional) Allowed in enterprise edition with any value, enterprise with cloud services edition.
 * `rancher_configuration` - (Optional) Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `resolve_fqdn_to_ipv6` - (Optional) Resolve ipv6 address for pool member fqdns. Field introduced in 30.2.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 * `se_group_template_ref` - (Optional) The service engine group to use as template. It is a reference to an object of type serviceenginegroup. Field introduced in 18.2.5. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 * `state_based_dns_registration` - (Optional) Dns records for vips are added/deleted based on the operational state of the vips. Field introduced in 17.1.12. Allowed in enterprise edition with any value, essentials edition(allowed values- true), basic edition(allowed values- true), enterprise with cloud services edition.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.

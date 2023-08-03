@@ -39,6 +39,7 @@ In addition to all arguments above, the following attributes are exported:
 * `duration` - Time taken to upload the image in seconds. Field introduced in 21.1.3. Unit is sec. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 * `end_time` - Image upload end time. Field introduced in 21.1.3. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 * `events` - Image events for image upload operation. Field introduced in 21.1.3. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `fips_mode_transition_applicable` - Specifies whether fips mode can be enabled on this image. Field introduced in 30.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 * `img_state` - Status of the image. Field introduced in 21.1.3. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 * `migrations` - This field describes the api migration related information. Field introduced in 18.2.6. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 * `name` - Name of the image. Field introduced in 18.2.6. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.

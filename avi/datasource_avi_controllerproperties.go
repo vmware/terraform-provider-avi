@@ -311,6 +311,14 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"skopeo_retry_interval": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"skopeo_retry_limit": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"ssl_certificate_expiry_warning_days": {
 				Type:     schema.TypeList,
 				Computed: true,

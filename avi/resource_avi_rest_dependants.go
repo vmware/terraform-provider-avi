@@ -483,8 +483,13 @@ func ResourceAdminAuthConfigurationSchema() *schema.Resource {
 			},
 			"remote_auth_configurations": {
 				Type:     schema.TypeList,
-				Required: true,
+				Optional: true,
 				Elem:     ResourceRemoteAuthConfigurationSchema(),
+			},
+			"service_auth_configurations": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceServiceAuthConfigurationSchema(),
 			},
 		},
 	}
@@ -3812,6 +3817,11 @@ func ResourceBuildInfoSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"remote_image_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"tag": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -4533,6 +4543,11 @@ func ResourceCentralLicenseSubscriptionDetailsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
 			"message": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"tenant_uuid": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -7750,6 +7765,11 @@ func ResourceControllerPortalAuthSchema() *schema.Resource {
 				Computed:         true,
 				Sensitive:        true,
 				DiffSuppressFunc: suppressSensitiveFieldDiffs,
+			},
+			"grant_type": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "REFRESH_TOKEN",
 			},
 			"instance_url": {
 				Type:     schema.TypeString,
@@ -13915,6 +13935,11 @@ func ResourceGslbPoolMemberRuntimeInfoSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"health_monitor_info": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
 			"ip": {
 				Type:     schema.TypeSet,
 				Optional: true,
@@ -14106,6 +14131,11 @@ func ResourceGslbRuntimeSchema() *schema.Resource {
 func ResourceGslbServiceDownResponseSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"fallback_cname": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"fallback_ip": {
 				Type:     schema.TypeSet,
 				Optional: true,
@@ -14487,6 +14517,11 @@ func ResourceGslbSiteRuntimeSchema() *schema.Resource {
 				ValidateFunc: validateInteger,
 			},
 			"glb_uuid": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"health_monitor_info": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -15162,6 +15197,11 @@ func ResourceGslbThirdPartySiteSchema() *schema.Resource {
 func ResourceGslbThirdPartySiteRuntimeSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"health_monitor_info": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"site_info": {
 				Type:     schema.TypeSet,
 				Optional: true,
@@ -32027,6 +32067,26 @@ func ResourceServiceSchema() *schema.Resource {
 	}
 }
 
+func ResourceServiceAuthConfigurationSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"index": {
+				Type:         schema.TypeString,
+				Required:     true,
+				ValidateFunc: validateInteger,
+			},
+			"service_auth_mapping_profile_ref": {
+				Type:     schema.TypeString,
+				Required: true,
+			},
+			"service_auth_profile_ref": {
+				Type:     schema.TypeString,
+				Required: true,
+			},
+		},
+	}
+}
+
 func ResourceServiceEngineCloudLimitsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -32125,6 +32185,36 @@ func ResourceServiceMatchSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 				Elem:     ResourcePortMatchSchema(),
+			},
+		},
+	}
+}
+
+func ResourceServiceOAuthSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"authorization_endpoint": {
+				Type:     schema.TypeString,
+				Required: true,
+			},
+			"client_id": {
+				Type:     schema.TypeString,
+				Required: true,
+			},
+			"org_id": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"service_id": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"service_name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 		},
 	}

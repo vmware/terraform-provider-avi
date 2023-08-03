@@ -43,6 +43,7 @@ The following arguments are supported:
 * `password` - (Optional) Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 * `passwordless` - (Optional) Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 * `recovery_token` - (Optional) Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services edition.
+* `service_user` - (Optional) Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 * `token_expiration_date` - (Optional) Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services edition.
 * `ui_property` - (Optional) Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 * `uid` - (Optional) Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services edition.

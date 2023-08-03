@@ -100,6 +100,12 @@ func ResourceUserSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"service_user": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
+		},
 		"token_expiration_date": {
 			Type:     schema.TypeString,
 			Optional: true,

@@ -206,6 +206,12 @@ func ResourceCloudSchema() map[string]*schema.Schema {
 			Computed: true,
 			Elem:     ResourceRancherConfigurationSchema(),
 		},
+		"resolve_fqdn_to_ipv6": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
+		},
 		"se_group_template_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
