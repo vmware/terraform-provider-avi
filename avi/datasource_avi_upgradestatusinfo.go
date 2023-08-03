@@ -105,6 +105,10 @@ func dataSourceAviUpgradeStatusInfo() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"prev_remote_image_ref": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"previous_image_ref": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -131,6 +135,10 @@ func dataSourceAviUpgradeStatusInfo() *schema.Resource {
 				Computed: true,
 			},
 			"reason": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"remote_image_ref": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},

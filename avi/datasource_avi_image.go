@@ -40,6 +40,10 @@ func dataSourceAviImage() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceImageEventMapSchema(),
 			},
+			"fips_mode_transition_applicable": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"img_state": {
 				Type:     schema.TypeSet,
 				Computed: true,
