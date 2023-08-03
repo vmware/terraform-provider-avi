@@ -13814,6 +13814,11 @@ func ResourceGslbPoolMemberRuntimeInfoSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"health_monitor_info": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
 			"ip": {
 				Type:     schema.TypeSet,
 				Optional: true,
@@ -14386,6 +14391,11 @@ func ResourceGslbSiteRuntimeSchema() *schema.Resource {
 				ValidateFunc: validateInteger,
 			},
 			"glb_uuid": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"health_monitor_info": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -15061,6 +15071,11 @@ func ResourceGslbThirdPartySiteSchema() *schema.Resource {
 func ResourceGslbThirdPartySiteRuntimeSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"health_monitor_info": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"site_info": {
 				Type:     schema.TypeSet,
 				Optional: true,
