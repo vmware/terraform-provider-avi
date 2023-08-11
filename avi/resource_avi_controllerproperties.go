@@ -241,6 +241,11 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Default:      "1440",
 			ValidateFunc: validateInteger,
 		},
+		"file_reference_mappings": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceFileReferenceMappingSchema(),
+		},
 		"gslb_purge_batch_size": {
 			Type:         schema.TypeString,
 			Optional:     true,

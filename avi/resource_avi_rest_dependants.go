@@ -12601,6 +12601,21 @@ func ResourceFeProxyRoutePublishConfigSchema() *schema.Resource {
 	}
 }
 
+func ResourceFileReferenceMappingSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"file_path": {
+				Type:     schema.TypeString,
+				Required: true,
+			},
+			"reference": {
+				Type:     schema.TypeString,
+				Required: true,
+			},
+		},
+	}
+}
+
 func ResourceFloatingIpSubnetSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
