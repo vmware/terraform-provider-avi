@@ -12655,6 +12655,21 @@ func ResourceFeProxyRoutePublishConfigSchema() *schema.Resource {
 	}
 }
 
+func ResourceFileReferenceMappingSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"file_path": {
+				Type:     schema.TypeString,
+				Required: true,
+			},
+			"reference": {
+				Type:     schema.TypeString,
+				Required: true,
+			},
+		},
+	}
+}
+
 func ResourceFloatingIpSubnetSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -29728,6 +29743,12 @@ func ResourceSeListSchema() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceIpAddrSchema(),
 			},
+			"snat_ip6_address": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceIpAddrSchema(),
+			},
 			"vcpus": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -36507,6 +36528,12 @@ func ResourceVipSeAssignedSchema() *schema.Resource {
 				ValidateFunc: validateBool,
 			},
 			"snat_ip": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceIpAddrSchema(),
+			},
+			"snat_ip6_address": {
 				Type:     schema.TypeSet,
 				Optional: true,
 				Computed: true,

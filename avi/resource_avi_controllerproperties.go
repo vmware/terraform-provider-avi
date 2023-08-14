@@ -241,6 +241,11 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Default:      "1440",
 			ValidateFunc: validateInteger,
 		},
+		"file_reference_mappings": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceFileReferenceMappingSchema(),
+		},
 		"gslb_purge_batch_size": {
 			Type:         schema.TypeString,
 			Optional:     true,
@@ -472,6 +477,12 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Type:         schema.TypeString,
 			Optional:     true,
 			Default:      "3",
+			ValidateFunc: validateInteger,
+		},
+		"soft_min_mem_per_se_limit": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "1900",
 			ValidateFunc: validateInteger,
 		},
 		"ssl_certificate_expiry_warning_days": {
