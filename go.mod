@@ -4,6 +4,6 @@ go 1.16
 
 require (
 	github.com/hashicorp/terraform-plugin-sdk/v2 v2.20.0
-	github.com/vmware/alb-sdk v0.0.0-20230803045529-534fd3cf7cdc
+	github.com/vmware/alb-sdk v0.0.0-20230814100824-f2386af42908
 	golang.org/x/net v0.7.0 // indirect
 )
