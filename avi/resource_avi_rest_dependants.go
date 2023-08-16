@@ -12400,7 +12400,7 @@ func ResourceFalsePositiveLearningConfigSchema() *schema.Resource {
 			"max_apps_supported": {
 				Type:         schema.TypeString,
 				Optional:     true,
-				Default:      "5",
+				Default:      "2",
 				ValidateFunc: validateInteger,
 			},
 			"min_monitor_time": {
@@ -12412,7 +12412,7 @@ func ResourceFalsePositiveLearningConfigSchema() *schema.Resource {
 			"min_trans_per_application": {
 				Type:         schema.TypeString,
 				Optional:     true,
-				Default:      "5000000",
+				Default:      "1000000",
 				ValidateFunc: validateInteger,
 			},
 			"min_trans_per_uri": {

@@ -55,7 +55,7 @@ In addition to all arguments above, the following attributes are exported:
 * `linuxserver_configuration` - Allowed in enterprise edition with any value, enterprise with cloud services edition.
 * `maintenance_mode` - Cloud is in maintenance mode. Field introduced in 20.1.7,21.1.3. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 * `markers` - List of labels to be used for granular rbac. Field introduced in 22.1.1. Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services edition.
-* `metrics_polling_interval` - Cloud metrics collector polling interval in seconds. Field introduced in 22.1.1. Unit is seconds. Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services edition.
+* `metrics_polling_interval` - Cloud metrics collector polling interval in seconds. Field introduced in 21.1.6. Unit is seconds. Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services edition.
 * `mtu` - Mtu setting for the cloud. Unit is bytes. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 * `name` - Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 * `nsxt_configuration` - Nsx-t cloud platform configuration. Field introduced in 20.1.1. Allowed in enterprise edition with any value, basic, enterprise with cloud services edition.
