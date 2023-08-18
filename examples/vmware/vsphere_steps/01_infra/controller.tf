@@ -24,6 +24,12 @@ resource "vsphere_virtual_machine" "controller_dhcp_cluster" {
     template_uuid = vsphere_content_library_item.file.id
   }
 }
+resource "vsphere_compute_cluster_vm_anti_affinity_rule" "vm_anti_affinity_rule_dhcp" {
+   count            = (var.dhcp == true && var.avi_cluster == true ? 1 : 0)
+   name                = "nic-controller-anti-affinity-rule-dhcp"
+   compute_cluster_id  = data.vsphere_compute_cluster.cluster.id
+   virtual_machine_ids = [for k, v in vsphere_virtual_machine.controller_dhcp_cluster : v.id]
+ }
 
 resource "vsphere_virtual_machine" "controller_dhcp_standalone" {
   count            = (var.dhcp == true && var.avi_cluster== false ? 1 : 0)
@@ -86,6 +92,12 @@ resource "vsphere_virtual_machine" "controller_static_cluster" {
     }
   }
 }
+resource "vsphere_compute_cluster_vm_anti_affinity_rule" "vm_anti_affinity_rule_static" {
+   count            = (var.dhcp == false && var.avi_cluster== true ? 3 : 0)
+   name                = "nic-controller-anti-affinity-rule-static"
+   compute_cluster_id  = data.vsphere_compute_cluster.cluster.id
+   virtual_machine_ids = [for k, v in vsphere_virtual_machine.controller_static_cluster : v.id]
+ }
 
 resource "vsphere_virtual_machine" "controller_static_standalone" {
   count            = (var.dhcp == false && var.avi_cluster== false ? 1 : 0)
