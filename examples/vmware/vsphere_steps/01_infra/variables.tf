@@ -56,7 +56,7 @@ variable "gateway4" {
 }
 
 variable "avi_version" {
-  default = "22.1.2"
+  default = "22.1.4"
 }
 
 variable "avi_cluster" {

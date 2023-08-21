@@ -30,7 +30,7 @@ default = "10.10.12.11"
 }
 
 variable "avi_version" {
-  default = "22.1.2"
+  default = "22.1.4"
 }
 
 variable "vcenter_url" {
