@@ -48,6 +48,7 @@ In addition to all arguments above, the following attributes are exported:
 * `password` - Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 * `passwordless` - Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 * `recovery_token` - Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services edition.
+* `service_user` - Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 * `token_expiration_date` - Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services edition.
 * `ui_property` - Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 * `uid` - Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services edition.

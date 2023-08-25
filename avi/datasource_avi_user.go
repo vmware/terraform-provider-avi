@@ -75,6 +75,10 @@ func dataSourceAviUser() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"service_user": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"token_expiration_date": {
 				Type:     schema.TypeString,
 				Computed: true,

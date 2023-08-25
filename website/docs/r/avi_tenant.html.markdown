@@ -28,7 +28,7 @@ resource "avi_tenant" "foo" {
 The following arguments are supported:
 
 * `name` - (Required) Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-* `attrs` - (Optional) Key/value tenant attributes. Field introduced in 23.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `attrs` - (Optional) Key/value tenant attributes. Field introduced in 30.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 * `config_settings` - (Optional) Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 * `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services edition.
 * `created_by` - (Optional) Creator of this tenant. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.

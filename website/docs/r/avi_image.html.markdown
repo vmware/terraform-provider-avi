@@ -35,6 +35,7 @@ The following arguments are supported:
 * `duration` - (Optional) Time taken to upload the image in seconds. Field introduced in 21.1.3. Unit is sec. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 * `end_time` - (Optional) Image upload end time. Field introduced in 21.1.3. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 * `events` - (Optional) Image events for image upload operation. Field introduced in 21.1.3. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `fips_mode_transition_applicable` - (Optional) Specifies whether fips mode can be enabled on this image. Field introduced in 30.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 * `img_state` - (Optional) Status of the image. Field introduced in 21.1.3. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 * `migrations` - (Optional) This field describes the api migration related information. Field introduced in 18.2.6. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 * `progress` - (Optional) Image upload progress which holds value between 0-100. Allowed values are 0-100. Field introduced in 21.1.3. Unit is percent. Allowed in enterprise edition with any value, enterprise with cloud services edition.
