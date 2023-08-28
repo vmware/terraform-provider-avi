@@ -24,6 +24,12 @@ func ResourceWafApplicationSignatureProviderSchema() map[string]*schema.Schema {
 			Computed: true,
 			Elem:     ResourceConfigPbAttributesSchema(),
 		},
+		"filter_rules_on_import": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "true",
+			ValidateFunc: validateBool,
+		},
 		"name": {
 			Type:     schema.TypeString,
 			Optional: true,
