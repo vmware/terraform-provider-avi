@@ -909,7 +909,7 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 		"objsync_port": {
 			Type:         schema.TypeString,
 			Optional:     true,
-			Computed:     true,
+			Default:      "9001",
 			ValidateFunc: validateInteger,
 		},
 		"openstack_availability_zones": {
