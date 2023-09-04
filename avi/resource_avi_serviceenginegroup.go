@@ -4,13 +4,11 @@
 package avi
 
 import (
-	"log"
-	"strings"
-
-	"time"
-
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"github.com/vmware/alb-sdk/go/clients"
+	"log"
+	"strings"
+	"time"
 )
 
 func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
@@ -1701,9 +1699,8 @@ func resourceAviServiceEngineGroupUpdate(d *schema.ResourceData, meta interface{
 }
 
 func resourceAviServiceEngineGroupDelete(d *schema.ResourceData, meta interface{}) error {
-	objType := "serviceenginegroup"
-	client := meta.(*clients.AviClient)
 	seDeprovisionExtraDelay := 2
+	client := meta.(*clients.AviClient)
 	if cloudRef, ok := d.GetOk("cloud_ref"); ok && strings.Contains(cloudRef.(string), "api/cloud/") {
 		cloudUUID := strings.SplitN(cloudRef.(string), "api/cloud/", 2)[1]
 		cloudPath := "api/cloud/" + cloudUUID
@@ -1720,18 +1717,13 @@ func resourceAviServiceEngineGroupDelete(d *schema.ResourceData, meta interface{
 			}
 		}
 	}
+	var err error
 	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
-	uuid := d.Get("uuid").(string)
-	if uuid != "" {
-		path := "api/" + objType + "/" + uuid
-		err := client.AviSession.Delete(path)
-		if err != nil && !(strings.Contains(err.Error(), "404") || strings.Contains(err.Error(), "204") || strings.Contains(err.Error(), "403")) {
-			log.Println("[INFO] resourceAviServiceEngineGroupDelete not found")
-			return err
-		}
-		d.SetId("")
+	err = APIDelete(d, meta, "serviceenginegroup")
+	if err != nil {
+		log.Printf("[ERROR] in deleting object %v\n", err)
 	}
-	return nil
+	return err
 }
