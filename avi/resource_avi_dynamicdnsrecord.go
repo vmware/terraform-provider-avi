@@ -5,13 +5,11 @@ package avi
 
 import (
 	"log"
-	"strings"
 
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
-	"github.com/vmware/alb-sdk/go/clients"
 )
 
-//nolint
+// nolint
 func ResourceDynamicDnsRecordSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"algorithm": {
@@ -122,7 +120,7 @@ func ResourceDynamicDnsRecordSchema() map[string]*schema.Schema {
 	}
 }
 
-//nolint
+// nolint
 func resourceAviDynamicDnsRecord() *schema.Resource {
 	return &schema.Resource{
 		Create: resourceAviDynamicDnsRecordCreate,
@@ -136,13 +134,13 @@ func resourceAviDynamicDnsRecord() *schema.Resource {
 	}
 }
 
-//nolint
+// nolint
 func ResourceDynamicDnsRecordImporter(d *schema.ResourceData, m interface{}) ([]*schema.ResourceData, error) {
 	s := ResourceDynamicDnsRecordSchema()
 	return ResourceImporter(d, m, "dynamicdnsrecord", s)
 }
 
-//nolint
+// nolint
 func ResourceAviDynamicDnsRecordRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceDynamicDnsRecordSchema()
 	err := APIRead(d, meta, "dynamicdnsrecord", s)
@@ -152,7 +150,7 @@ func ResourceAviDynamicDnsRecordRead(d *schema.ResourceData, meta interface{}) e
 	return err
 }
 
-//nolint
+// nolint
 func resourceAviDynamicDnsRecordCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceDynamicDnsRecordSchema()
 	err := APICreateOrUpdate(d, meta, "dynamicdnsrecord", s)
@@ -162,7 +160,7 @@ func resourceAviDynamicDnsRecordCreate(d *schema.ResourceData, meta interface{})
 	return err
 }
 
-//nolint
+// nolint
 func resourceAviDynamicDnsRecordUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceDynamicDnsRecordSchema()
 	var err error
@@ -173,22 +171,15 @@ func resourceAviDynamicDnsRecordUpdate(d *schema.ResourceData, meta interface{})
 	return err
 }
 
-//nolint
+// nolint
 func resourceAviDynamicDnsRecordDelete(d *schema.ResourceData, meta interface{}) error {
-	objType := "dynamicdnsrecord"
-	client := meta.(*clients.AviClient)
+	var err error
 	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
-	uuid := d.Get("uuid").(string)
-	if uuid != "" {
-		path := "api/" + objType + "/" + uuid
-		err := client.AviSession.Delete(path)
-		if err != nil && !(strings.Contains(err.Error(), "404") || strings.Contains(err.Error(), "204") || strings.Contains(err.Error(), "403")) {
-			log.Println("[INFO] resourceAviDynamicDnsRecordDelete not found")
-			return err
-		}
-		d.SetId("")
+	err = APIDelete(d, meta, "dynamicdnsrecord")
+	if err != nil {
+		log.Printf("[ERROR] in deleting object %v\n", err)
 	}
-	return nil
+	return err
 }

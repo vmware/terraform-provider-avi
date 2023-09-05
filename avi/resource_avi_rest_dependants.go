@@ -14010,6 +14010,11 @@ func ResourceGslbRuntimeSchema() *schema.Resource {
 func ResourceGslbServiceDownResponseSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"fallback_cname": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"fallback_ip": {
 				Type:     schema.TypeSet,
 				Optional: true,

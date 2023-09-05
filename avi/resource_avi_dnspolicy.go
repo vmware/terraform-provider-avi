@@ -5,13 +5,11 @@ package avi
 
 import (
 	"log"
-	"strings"
 
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
-	"github.com/vmware/alb-sdk/go/clients"
 )
 
-//nolint
+// nolint
 func ResourceDnsPolicySchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"configpb_attributes": {
@@ -63,7 +61,7 @@ func ResourceDnsPolicySchema() map[string]*schema.Schema {
 	}
 }
 
-//nolint
+// nolint
 func resourceAviDnsPolicy() *schema.Resource {
 	return &schema.Resource{
 		Create: resourceAviDnsPolicyCreate,
@@ -77,13 +75,13 @@ func resourceAviDnsPolicy() *schema.Resource {
 	}
 }
 
-//nolint
+// nolint
 func ResourceDnsPolicyImporter(d *schema.ResourceData, m interface{}) ([]*schema.ResourceData, error) {
 	s := ResourceDnsPolicySchema()
 	return ResourceImporter(d, m, "dnspolicy", s)
 }
 
-//nolint
+// nolint
 func ResourceAviDnsPolicyRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceDnsPolicySchema()
 	err := APIRead(d, meta, "dnspolicy", s)
@@ -93,7 +91,7 @@ func ResourceAviDnsPolicyRead(d *schema.ResourceData, meta interface{}) error {
 	return err
 }
 
-//nolint
+// nolint
 func resourceAviDnsPolicyCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceDnsPolicySchema()
 	err := APICreateOrUpdate(d, meta, "dnspolicy", s)
@@ -103,7 +101,7 @@ func resourceAviDnsPolicyCreate(d *schema.ResourceData, meta interface{}) error 
 	return err
 }
 
-//nolint
+// nolint
 func resourceAviDnsPolicyUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceDnsPolicySchema()
 	var err error
@@ -114,22 +112,15 @@ func resourceAviDnsPolicyUpdate(d *schema.ResourceData, meta interface{}) error 
 	return err
 }
 
-//nolint
+// nolint
 func resourceAviDnsPolicyDelete(d *schema.ResourceData, meta interface{}) error {
-	objType := "dnspolicy"
-	client := meta.(*clients.AviClient)
+	var err error
 	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
-	uuid := d.Get("uuid").(string)
-	if uuid != "" {
-		path := "api/" + objType + "/" + uuid
-		err := client.AviSession.Delete(path)
-		if err != nil && !(strings.Contains(err.Error(), "404") || strings.Contains(err.Error(), "204") || strings.Contains(err.Error(), "403")) {
-			log.Println("[INFO] resourceAviDnsPolicyDelete not found")
-			return err
-		}
-		d.SetId("")
+	err = APIDelete(d, meta, "dnspolicy")
+	if err != nil {
+		log.Printf("[ERROR] in deleting object %v\n", err)
 	}
-	return nil
+	return err
 }

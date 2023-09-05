@@ -5,13 +5,11 @@ package avi
 
 import (
 	"log"
-	"strings"
 
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
-	"github.com/vmware/alb-sdk/go/clients"
 )
 
-//nolint
+// nolint
 func ResourceIpAddrGroupSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"addrs": {
@@ -83,7 +81,7 @@ func ResourceIpAddrGroupSchema() map[string]*schema.Schema {
 	}
 }
 
-//nolint
+// nolint
 func resourceAviIpAddrGroup() *schema.Resource {
 	return &schema.Resource{
 		Create: resourceAviIpAddrGroupCreate,
@@ -97,13 +95,13 @@ func resourceAviIpAddrGroup() *schema.Resource {
 	}
 }
 
-//nolint
+// nolint
 func ResourceIpAddrGroupImporter(d *schema.ResourceData, m interface{}) ([]*schema.ResourceData, error) {
 	s := ResourceIpAddrGroupSchema()
 	return ResourceImporter(d, m, "ipaddrgroup", s)
 }
 
-//nolint
+// nolint
 func ResourceAviIpAddrGroupRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceIpAddrGroupSchema()
 	err := APIRead(d, meta, "ipaddrgroup", s)
@@ -113,7 +111,7 @@ func ResourceAviIpAddrGroupRead(d *schema.ResourceData, meta interface{}) error 
 	return err
 }
 
-//nolint
+// nolint
 func resourceAviIpAddrGroupCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceIpAddrGroupSchema()
 	err := APICreateOrUpdate(d, meta, "ipaddrgroup", s)
@@ -123,7 +121,7 @@ func resourceAviIpAddrGroupCreate(d *schema.ResourceData, meta interface{}) erro
 	return err
 }
 
-//nolint
+// nolint
 func resourceAviIpAddrGroupUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceIpAddrGroupSchema()
 	var err error
@@ -134,22 +132,15 @@ func resourceAviIpAddrGroupUpdate(d *schema.ResourceData, meta interface{}) erro
 	return err
 }
 
-//nolint
+// nolint
 func resourceAviIpAddrGroupDelete(d *schema.ResourceData, meta interface{}) error {
-	objType := "ipaddrgroup"
-	client := meta.(*clients.AviClient)
+	var err error
 	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
-	uuid := d.Get("uuid").(string)
-	if uuid != "" {
-		path := "api/" + objType + "/" + uuid
-		err := client.AviSession.Delete(path)
-		if err != nil && !(strings.Contains(err.Error(), "404") || strings.Contains(err.Error(), "204") || strings.Contains(err.Error(), "403")) {
-			log.Println("[INFO] resourceAviIpAddrGroupDelete not found")
-			return err
-		}
-		d.SetId("")
+	err = APIDelete(d, meta, "ipaddrgroup")
+	if err != nil {
+		log.Printf("[ERROR] in deleting object %v\n", err)
 	}
-	return nil
+	return err
 }
