@@ -4133,6 +4133,11 @@ func ResourceCRLSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"file_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"fingerprint": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -15596,6 +15601,12 @@ func ResourceHTTPApplicationProfileSchema() *schema.Resource {
 				Default:      "48",
 				ValidateFunc: validateInteger,
 			},
+			"close_server_side_connection_on_error": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
 			"collect_client_tls_fingerprint": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -26803,6 +26814,16 @@ func ResourceRoutingServiceSchema() *schema.Resource {
 				ValidateFunc: validateBool,
 			},
 			"floating_intf_ip": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceIpAddrSchema(),
+			},
+			"floating_intf_ip6_addresses": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceIpAddrSchema(),
+			},
+			"floating_intf_ip6_se_2_addresses": {
 				Type:     schema.TypeList,
 				Optional: true,
 				Elem:     ResourceIpAddrSchema(),

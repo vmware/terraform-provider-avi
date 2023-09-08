@@ -28,7 +28,7 @@ resource "avi_fileobject" "foo" {
 The following arguments are supported:
 
 * `name` - (Required) Name of the file object. Field introduced in 20.1.1. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-* `type` - (Required) Type of the file. Enum options - OTHER_FILE_TYPES, IP_REPUTATION, GEO_DB, TECH_SUPPORT, HSMPACKAGES, IPAMDNSSCRIPTS, CONTROLLER_IMAGE. Field introduced in 20.1.1. Allowed in enterprise edition with any value, essentials edition(allowed values- other_file_types), basic edition(allowed values- other_file_types), enterprise with cloud services edition.
+* `type` - (Required) Type of the file. Enum options - OTHER_FILE_TYPES, IP_REPUTATION, GEO_DB, TECH_SUPPORT, HSMPACKAGES, IPAMDNSSCRIPTS, CONTROLLER_IMAGE, CRL_DATA. Field introduced in 20.1.1. Allowed in enterprise edition with any value, essentials edition(allowed values- other_file_types), basic edition(allowed values- other_file_types), enterprise with cloud services edition.
 * `checksum` - (Optional) Sha1 checksum of the file. Field introduced in 20.1.1. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 * `compressed` - (Optional) This field indicates whether the file is gzip-compressed. Field introduced in 20.1.1. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 * `created` - (Optional) Timestamp of creation for the file. Field introduced in 20.1.1. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
