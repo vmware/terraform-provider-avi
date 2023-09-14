@@ -26532,6 +26532,16 @@ func ResourceRoutingServiceSchema() *schema.Resource {
 				Optional: true,
 				Elem:     ResourceIpAddrSchema(),
 			},
+			"floating_intf_ip6_addresses": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceIpAddrSchema(),
+			},
+			"floating_intf_ip6_se_2_addresses": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceIpAddrSchema(),
+			},
 			"floating_intf_ip_se_2": {
 				Type:     schema.TypeList,
 				Optional: true,
