@@ -12060,6 +12060,12 @@ func ResourceEventDetailsSchema() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceVCASetupSchema(),
 			},
+			"vcenter_cloud_delete_details": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceVcenterCloudDeleteDetailsSchema(),
+			},
 			"vcenter_cluster_details": {
 				Type:     schema.TypeSet,
 				Optional: true,
@@ -35600,6 +35606,23 @@ func ResourceVSDataScriptsSchema() *schema.Resource {
 			"vs_datascript_set_ref": {
 				Type:     schema.TypeString,
 				Required: true,
+			},
+		},
+	}
+}
+
+func ResourceVcenterCloudDeleteDetailsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"cc_id": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"objects": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 		},
 	}
