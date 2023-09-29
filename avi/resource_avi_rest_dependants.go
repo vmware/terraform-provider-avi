@@ -10097,6 +10097,12 @@ func ResourceDnsServiceApplicationProfileSchema() *schema.Resource {
 				Optional: true,
 				Default:  "hostmaster",
 			},
+			"client_dns_tcp_request_timeout": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "10000",
+				ValidateFunc: validateInteger,
+			},
 			"close_tcp_connection_post_response": {
 				Type:         schema.TypeString,
 				Optional:     true,

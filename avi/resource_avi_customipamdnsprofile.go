@@ -4,12 +4,11 @@
 package avi
 
 import (
-	"log"
-
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"log"
 )
 
-// nolint
+//nolint
 func ResourceCustomIpamDnsProfileSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"configpb_attributes": {
@@ -44,7 +43,7 @@ func ResourceCustomIpamDnsProfileSchema() map[string]*schema.Schema {
 	}
 }
 
-// nolint
+//nolint
 func resourceAviCustomIpamDnsProfile() *schema.Resource {
 	return &schema.Resource{
 		Create: resourceAviCustomIpamDnsProfileCreate,
@@ -58,13 +57,13 @@ func resourceAviCustomIpamDnsProfile() *schema.Resource {
 	}
 }
 
-// nolint
+//nolint
 func ResourceCustomIpamDnsProfileImporter(d *schema.ResourceData, m interface{}) ([]*schema.ResourceData, error) {
 	s := ResourceCustomIpamDnsProfileSchema()
 	return ResourceImporter(d, m, "customipamdnsprofile", s)
 }
 
-// nolint
+//nolint
 func ResourceAviCustomIpamDnsProfileRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceCustomIpamDnsProfileSchema()
 	err := APIRead(d, meta, "customipamdnsprofile", s)
@@ -74,7 +73,7 @@ func ResourceAviCustomIpamDnsProfileRead(d *schema.ResourceData, meta interface{
 	return err
 }
 
-// nolint
+//nolint
 func resourceAviCustomIpamDnsProfileCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceCustomIpamDnsProfileSchema()
 	err := APICreateOrUpdate(d, meta, "customipamdnsprofile", s)
@@ -84,7 +83,7 @@ func resourceAviCustomIpamDnsProfileCreate(d *schema.ResourceData, meta interfac
 	return err
 }
 
-// nolint
+//nolint
 func resourceAviCustomIpamDnsProfileUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceCustomIpamDnsProfileSchema()
 	var err error
@@ -95,7 +94,7 @@ func resourceAviCustomIpamDnsProfileUpdate(d *schema.ResourceData, meta interfac
 	return err
 }
 
-// nolint
+//nolint
 func resourceAviCustomIpamDnsProfileDelete(d *schema.ResourceData, meta interface{}) error {
 	var err error
 	if APIDeleteSystemDefaultCheck(d) {
