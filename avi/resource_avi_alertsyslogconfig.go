@@ -28,6 +28,11 @@ func ResourceAlertSyslogConfigSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Required: true,
 		},
+		"sender_hostname": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
 		"syslog_servers": {
 			Type:     schema.TypeList,
 			Optional: true,
