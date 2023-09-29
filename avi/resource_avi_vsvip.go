@@ -4,9 +4,10 @@
 package avi
 
 import (
+	"log"
+
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"github.com/vmware/alb-sdk/go/clients"
-	"log"
 )
 
 func ResourceVsVipSchema() map[string]*schema.Schema {
