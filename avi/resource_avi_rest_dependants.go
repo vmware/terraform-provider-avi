@@ -32948,11 +32948,21 @@ func ResourceStreamingSyslogConfigSchema() *schema.Resource {
 				Optional: true,
 				Default:  "AviVantage",
 			},
+			"msg_id": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "NILVALUE",
+			},
 			"non_significant_log_severity": {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Default:      "6",
 				ValidateFunc: validateInteger,
+			},
+			"proc_id": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "NILVALUE",
 			},
 			"significant_log_severity": {
 				Type:         schema.TypeString,
