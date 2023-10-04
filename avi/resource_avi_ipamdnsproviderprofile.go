@@ -4,11 +4,12 @@
 package avi
 
 import (
-	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"log"
+
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
-//nolint
+// nolint
 func ResourceIpamDnsProviderProfileSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"allocate_ip_in_vrf": {
@@ -109,7 +110,7 @@ func ResourceIpamDnsProviderProfileSchema() map[string]*schema.Schema {
 	}
 }
 
-//nolint
+// nolint
 func resourceAviIpamDnsProviderProfile() *schema.Resource {
 	return &schema.Resource{
 		Create: resourceAviIpamDnsProviderProfileCreate,
@@ -123,13 +124,13 @@ func resourceAviIpamDnsProviderProfile() *schema.Resource {
 	}
 }
 
-//nolint
+// nolint
 func ResourceIpamDnsProviderProfileImporter(d *schema.ResourceData, m interface{}) ([]*schema.ResourceData, error) {
 	s := ResourceIpamDnsProviderProfileSchema()
 	return ResourceImporter(d, m, "ipamdnsproviderprofile", s)
 }
 
-//nolint
+// nolint
 func ResourceAviIpamDnsProviderProfileRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceIpamDnsProviderProfileSchema()
 	err := APIRead(d, meta, "ipamdnsproviderprofile", s)
@@ -139,7 +140,7 @@ func ResourceAviIpamDnsProviderProfileRead(d *schema.ResourceData, meta interfac
 	return err
 }
 
-//nolint
+// nolint
 func resourceAviIpamDnsProviderProfileCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceIpamDnsProviderProfileSchema()
 	err := APICreateOrUpdate(d, meta, "ipamdnsproviderprofile", s)
@@ -149,7 +150,7 @@ func resourceAviIpamDnsProviderProfileCreate(d *schema.ResourceData, meta interf
 	return err
 }
 
-//nolint
+// nolint
 func resourceAviIpamDnsProviderProfileUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceIpamDnsProviderProfileSchema()
 	var err error
@@ -160,7 +161,7 @@ func resourceAviIpamDnsProviderProfileUpdate(d *schema.ResourceData, meta interf
 	return err
 }
 
-//nolint
+// nolint
 func resourceAviIpamDnsProviderProfileDelete(d *schema.ResourceData, meta interface{}) error {
 	var err error
 	if APIDeleteSystemDefaultCheck(d) {

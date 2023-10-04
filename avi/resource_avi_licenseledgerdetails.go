@@ -4,8 +4,9 @@
 package avi
 
 import (
-	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"log"
+
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourceLicenseLedgerDetailsSchema() map[string]*schema.Schema {

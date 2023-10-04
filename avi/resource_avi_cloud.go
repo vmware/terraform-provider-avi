@@ -6,13 +6,14 @@ package avi
 import (
 	"encoding/json"
 	"errors"
-	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
-	"github.com/vmware/alb-sdk/go/clients"
-	"github.com/vmware/alb-sdk/go/models"
 	"log"
 	"os"
 	"strconv"
 	"time"
+
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"github.com/vmware/alb-sdk/go/clients"
+	"github.com/vmware/alb-sdk/go/models"
 )
 
 func ResourceCloudSchema() map[string]*schema.Schema {

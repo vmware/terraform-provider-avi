@@ -4,8 +4,9 @@
 package avi
 
 import (
-	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"log"
+
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourceServerAutoScalePolicySchema() map[string]*schema.Schema {
