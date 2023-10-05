@@ -69,7 +69,15 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"cloud_discovery_interval": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"cloud_reconcile": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"cloud_reconcile_interval": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},

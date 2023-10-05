@@ -43,7 +43,7 @@ func TestAVIDnsPolicyBasic(t *testing.T) {
 
 }
 
-// nolint
+//nolint
 func testAccCheckAVIDnsPolicyExists(resourcename string) resource.TestCheckFunc {
 	return func(s *terraform.State) error {
 		conn := testAccProvider.Meta().(*clients.AviClient).AviSession
@@ -67,7 +67,7 @@ func testAccCheckAVIDnsPolicyExists(resourcename string) resource.TestCheckFunc 
 
 }
 
-// nolint
+//nolint
 func testAccCheckAVIDnsPolicyDestroy(s *terraform.State) error {
 	conn := testAccProvider.Meta().(*clients.AviClient).AviSession
 	var obj interface{}
@@ -92,7 +92,7 @@ func testAccCheckAVIDnsPolicyDestroy(s *terraform.State) error {
 	return nil
 }
 
-// nolint
+//nolint
 const testAccAVIDnsPolicyConfig = `
 data "avi_tenant" "default_tenant"{
     name= "admin"
@@ -104,7 +104,7 @@ resource "avi_dnspolicy" "testDnsPolicy" {
 }
 `
 
-// nolint
+//nolint
 const testAccAVIDnsPolicyupdatedConfig = `
 data "avi_tenant" "default_tenant"{
     name= "admin"
