@@ -10223,6 +10223,12 @@ func ResourceDnsServiceApplicationProfileSchema() *schema.Resource {
 				Optional: true,
 				Default:  "hostmaster",
 			},
+			"client_dns_tcp_request_timeout": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "10000",
+				ValidateFunc: validateInteger,
+			},
 			"close_tcp_connection_post_response": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -25493,6 +25499,43 @@ func ResourcePsmProgramDetailsSchema() *schema.Resource {
 	}
 }
 
+func ResourcePulseServicesSessionConfigSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"session_headers": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceSessionHeadersSchema(),
+			},
+		},
+	}
+}
+
+func ResourcePulseServicesTenantConfigSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"heartbeat_interval": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"license_escrow_interval": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"token_refresh_interval": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+		},
+	}
+}
+
 func ResourceQueryMatchSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -32309,6 +32352,23 @@ func ResourceServiceengineFaultsSchema() *schema.Resource {
 				Optional:     true,
 				Default:      "true",
 				ValidateFunc: validateBool,
+			},
+		},
+	}
+}
+
+func ResourceSessionHeadersSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"value": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 		},
 	}

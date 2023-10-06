@@ -70,11 +70,23 @@ func ResourceALBServicesConfigSchema() map[string]*schema.Schema {
 			Required: true,
 			Elem:     ResourceSaasLicensingInfoSchema(),
 		},
+		"session_config": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourcePulseServicesSessionConfigSchema(),
+		},
 		"split_proxy_configuration": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Computed: true,
 			Elem:     ResourceProxyConfigurationSchema(),
+		},
+		"tenant_config": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourcePulseServicesTenantConfigSchema(),
 		},
 		"tenant_ref": {
 			Type:     schema.TypeString,
