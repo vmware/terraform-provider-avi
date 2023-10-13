@@ -7273,6 +7273,12 @@ func ResourceControllerCloudLimitsSchema() *schema.Resource {
 				Computed:     true,
 				ValidateFunc: validateInteger,
 			},
+			"t1_lrs_per_cloud": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
 			"type": {
 				Type:     schema.TypeString,
 				Optional: true,
