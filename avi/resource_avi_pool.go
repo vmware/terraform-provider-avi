@@ -5,9 +5,8 @@ package avi
 
 import (
 	"errors"
-	"log"
-
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"log"
 )
 
 func ResourcePoolSchema() map[string]*schema.Schema {

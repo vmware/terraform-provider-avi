@@ -4,12 +4,11 @@
 package avi
 
 import (
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"github.com/vmware/alb-sdk/go/clients"
 	"log"
 	"strings"
 	"time"
-
-	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
-	"github.com/vmware/alb-sdk/go/clients"
 )
 
 func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
