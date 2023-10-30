@@ -110,7 +110,7 @@ data "avi_useraccountprofile" "default-user-account-profile" {
 }
 resource "avi_user" "testUser" {
 	access {
-	role_ref = data.avi_role.default-system-admin-role.id
+	role_ref = "${data.avi_tenant.default_tenant.id}/role/${element(split("/", data.avi_role.default-system-admin-role.id),5)}"
 	tenant_ref = data.avi_tenant.default_tenant.id
 	all_tenants = false
 }
@@ -138,7 +138,7 @@ data "avi_useraccountprofile" "default-user-account-profile" {
 }
 resource "avi_user" "testUser" {
 	access {
-	role_ref = data.avi_role.default-system-admin-role.id
+	role_ref = "${data.avi_tenant.default_tenant.id}/role/${element(split("/", data.avi_role.default-system-admin-role.id),5)}"
 	tenant_ref = data.avi_tenant.default_tenant.id
 	all_tenants = false
 }
