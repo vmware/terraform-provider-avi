@@ -5,7 +5,7 @@ package avi
 
 import "github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 
-//nolint
+// nolint
 func dataSourceAviIpamDnsProviderProfile() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviIpamDnsProviderProfileRead,
