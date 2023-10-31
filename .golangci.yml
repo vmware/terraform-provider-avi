@@ -2,11 +2,7 @@ issues:
   max-per-linter: 0
   max-same-issues: 0
   exclude:
-      - SA1019
-  exclude-rules:
-    - path: /
-      linters:
-        - typecheck
+    - SA1019
 
 run:
   deadline: 5m
@@ -16,22 +12,18 @@ run:
 linters:
   disable-all: true
   enable:
-    - deadcode
     - errcheck
     - gofmt
     - goimports
-    - golint
     - gosimple
     - govet
     - ineffassign
-    - interfacer
     - nakedret
     - misspell
     - staticcheck
-    - structcheck
+    - typecheck
     - unused
     - unconvert
-    - varcheck
     - vet
     - vetshadow
 
