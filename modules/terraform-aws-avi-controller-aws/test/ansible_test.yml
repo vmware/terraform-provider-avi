@@ -1,0 +1,185 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: no
+  collections:
+    - vmware.alb
+  vars:
+    avi_credentials:
+        controller: "{{ controller_ip }}"
+        username: "admin"
+        password: "{{ password }}"
+        api_version: "{{ avi_version }}"
+    cloud_name: "Default-Cloud"
+    controller_ha: false
+    se_name_prefix: "{{ name_prefix }}"
+    verify_gslb: false
+  tasks:
+    - name: Verify Cluster HA Status
+      block:
+        - name: Pause for Avi Controller to build Cluster
+          pause:
+            minutes: 10
+          when: verify_gslb == false
+          
+
+        - name: Verify connection to the Avi Controller is ready
+          uri:
+            url: "https://{{ controller_ip }}/api/cloud?name=Default-Cloud"
+            validate_certs: no
+            status_code: 401
+          register: _result
+          until: _result.status == 401
+          retries: 600
+          delay: 10
+
+        - name: Get Controller Cluster State
+          avi_api_session:
+            avi_credentials: "{{ avi_credentials }}"
+            http_method: get
+            path: "cluster/runtime"
+          until: cluster_runtime.obj.cluster_state.progress == 100 and cluster_runtime.obj.cluster_state.state == "CLUSTER_UP_HA_ACTIVE"
+          retries: 200
+          delay: 30
+          register: cluster_runtime
+        
+        - name: Display Cluster Runtime State - /api/cluster/runtime
+          ansible.builtin.debug:
+            var: cluster_runtime.obj.cluster_state
+            verbosity: 1
+      when: controller_ha | bool
+
+    - name: Get Cloud Info
+      avi_api_session:
+        avi_credentials: "{{ avi_credentials }}"
+        http_method: get
+        path: "cloud?name=Default-Cloud"
+      retries: 10
+      delay: 10
+      register: avi_cloud
+
+    - name: Display Cloud Config - /api/cloud?name=Default-Cloud
+      ansible.builtin.debug:
+        var: avi_cloud
+        verbosity: 1
+        
+
+    - name: Wait for Cloud status to be ready
+      avi_api_session:
+        avi_credentials: "{{ avi_credentials }}"
+        http_method: get
+        path: "cloud/{{ avi_cloud.obj.results.0.uuid }}/status"
+      until: cloudstatus.obj.state == "CLOUD_STATE_PLACEMENT_READY"
+      retries: 30
+      delay: 30
+      register: cloudstatus
+    
+    - name: Display Cloud Status - /api/cloud/cloud-uuid/status
+      ansible.builtin.debug:
+        var: cloudstatus
+        verbosity: 1
+
+    - name: Get System Config Status
+      avi_api_session:
+        avi_credentials: "{{ avi_credentials }}"
+        http_method: get
+        path: "systemconfiguration"
+      retries: 5
+      delay: 10
+      register: system_config
+
+    - name: Test System Config
+      fail:
+        msg: The welcome workflow has not been completed successfully
+      when: system_config.obj.welcome_workflow_complete != true
+
+    - name: Display System Config - /api/systemconfiguration
+      ansible.builtin.debug:
+        var: system_config
+        verbosity: 1
+    
+    - name: Get SE Group Config
+      avi_api_session:
+        avi_credentials: "{{ avi_credentials }}"
+        http_method: get
+        path: "serviceenginegroup?name=Default-Group"
+      retries: 5
+      delay: 10
+      register: se_group_config
+
+    - name: Test SE Group Config
+      fail:
+        msg: The SE Group configuration was not updated
+      when: se_group_config.obj.results.0.ha_mode != "HA_MODE_SHARED_PAIR" or se_group_config.obj.results.0.se_name_prefix != se_name_prefix
+
+    - name: Display SE Group Config - /api/serviceenginegroup?name=Default-Group
+      ansible.builtin.debug:
+        var: se_group_config
+        verbosity: 1
+
+    - name: Verify DNS profile is created
+      avi_api_session:
+        avi_credentials: "{{ avi_credentials }}"
+        http_method: get
+        path: "ipamdnsproviderprofile"
+      until: dns_ipam_profiles.obj.count == 1
+      retries: 5
+      delay: 10
+      register: dns_ipam_profiles
+
+    - name: Display DNS and IPAM Profiles - /api/ipamdnsproviderprofile
+      ansible.builtin.debug:
+        var: dns_ipam_profiles
+        verbosity: 1
+
+    - name: Pause for DNS VS to create
+      pause:
+        minutes: 2
+    
+    - name: Wait for DNS VS to be ready
+      avi_api_session:
+        avi_credentials: "{{ avi_credentials }}"
+        http_method: get
+        path: "virtualservice-inventory?name=DNS-VS"
+      until: dns_vs_status.obj.results.0.runtime.oper_status.state == "OPER_UP"
+      retries: 100
+      delay: 30
+      register: dns_vs_status
+
+    - name: Display DNS VS Details - /api/virtualservice-inventory?name=DNS-VS
+      ansible.builtin.debug:
+        var: dns_vs_status
+        verbosity: 1
+
+    - name: Verify GSLB Status
+      block:
+        - name: Get GSLB Info
+          avi_api_session:
+            avi_credentials: "{{ avi_credentials }}"
+            http_method: get
+            path: "gslb"
+          retries: 10
+          delay: 10
+          register: gslb_config
+
+        - name: Display GSLB Config - /api/gslb
+          ansible.builtin.debug:
+            var: gslb_config
+            verbosity: 1
+
+        - name: Wait for GSLB Site status to be ready
+          avi_api_session:
+            avi_credentials: "{{ avi_credentials }}"
+            http_method: get
+            path: "gslb/{{ gslb_config.obj.results.0.uuid }}/runtime"
+          until: gslbstatus.obj.info.site.0.site_info.oper_status.state == "OPER_UP" and gslbstatus.obj.info.site.1.site_info.oper_status.state == "OPER_UP"
+          retries: 20
+          delay: 30
+          register: gslbstatus
+        
+        - name: Display GSLB Status - /api/gslb/gslb-uuid/runtime
+          ansible.builtin.debug:
+            var: gslbstatus
+            verbosity: 1
+      when: verify_gslb
+
