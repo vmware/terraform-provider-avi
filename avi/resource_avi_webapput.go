@@ -45,6 +45,12 @@ func ResourceWebappUTSchema() map[string]*schema.Schema {
 			Optional: true,
 			Elem:     ResourceL1FSensitiveTestCaseSchema(),
 		},
+		"skip_optional_check_tests": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Computed:     true,
+			ValidateFunc: validateBool,
+		},
 		"string_length_test": {
 			Type:     schema.TypeSet,
 			Optional: true,

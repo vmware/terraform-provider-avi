@@ -28,6 +28,10 @@ func dataSourceAviAlertScriptConfig() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"timeout": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"uuid": {
 				Type:     schema.TypeString,
 				Optional: true,

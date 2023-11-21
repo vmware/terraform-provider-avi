@@ -30,6 +30,7 @@ The following arguments are supported:
 * `name` - (Required) A user-friendly name of the syslog notification. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 * `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services edition.
 * `description` - (Optional) User defined description for alert syslog config. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `sender_hostname` - (Optional) User defined sender hostname in syslog message. Field introduced in 30.2.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 * `syslog_servers` - (Optional) The list of syslog servers. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 

@@ -13,6 +13,11 @@ import (
 
 func ResourceWafCRSSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
+		"allowed_request_content_type_charsets": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     &schema.Schema{Type: schema.TypeString},
+		},
 		"configpb_attributes": {
 			Type:     schema.TypeSet,
 			Optional: true,
@@ -23,6 +28,11 @@ func ResourceWafCRSSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Required: true,
 		},
+		"files": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceWafDataFileSchema(),
+		},
 		"groups": {
 			Type:     schema.TypeList,
 			Optional: true,
@@ -31,6 +41,11 @@ func ResourceWafCRSSchema() map[string]*schema.Schema {
 		"integrity": {
 			Type:     schema.TypeString,
 			Required: true,
+		},
+		"integrity_values": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     &schema.Schema{Type: schema.TypeString},
 		},
 		"markers": {
 			Type:     schema.TypeList,
@@ -44,6 +59,16 @@ func ResourceWafCRSSchema() map[string]*schema.Schema {
 		"release_date": {
 			Type:     schema.TypeString,
 			Required: true,
+		},
+		"restricted_extensions": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     &schema.Schema{Type: schema.TypeString},
+		},
+		"restricted_headers": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     &schema.Schema{Type: schema.TypeString},
 		},
 		"tenant_ref": {
 			Type:     schema.TypeString,

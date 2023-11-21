@@ -33,6 +33,12 @@ func ResourceAlertScriptConfigSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"timeout": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Computed:     true,
+			ValidateFunc: validateInteger,
+		},
 		"uuid": {
 			Type:     schema.TypeString,
 			Optional: true,

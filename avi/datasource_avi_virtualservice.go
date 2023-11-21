@@ -301,6 +301,11 @@ func dataSourceAviVirtualService() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceIpAddrSchema(),
 			},
+			"snat_ip6_addresses": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceIpAddrSchema(),
+			},
 			"sp_pool_refs": {
 				Type:     schema.TypeList,
 				Computed: true,

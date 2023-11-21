@@ -4133,6 +4133,11 @@ func ResourceCRLSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"file_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"fingerprint": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -4267,8 +4272,7 @@ func ResourceCSRFRuleSchema() *schema.Resource {
 			},
 			"name": {
 				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
+				Required: true,
 			},
 		},
 	}
@@ -7268,6 +7272,12 @@ func ResourceControllerCloudLimitsSchema() *schema.Resource {
 				Computed:     true,
 				ValidateFunc: validateInteger,
 			},
+			"t1_lrs_per_cloud": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
 			"type": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -10218,6 +10228,12 @@ func ResourceDnsServiceApplicationProfileSchema() *schema.Resource {
 				Optional: true,
 				Default:  "hostmaster",
 			},
+			"client_dns_tcp_request_timeout": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "10000",
+				ValidateFunc: validateInteger,
+			},
 			"close_tcp_connection_post_response": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -11677,6 +11693,12 @@ func ResourceEventDetailsSchema() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceRmRebootSeEventDetailsSchema(),
 			},
+			"saml_metadata_failed_events": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceSamlMetadataUpdateFailedDetailsSchema(),
+			},
 			"scheduler_action_info": {
 				Type:     schema.TypeSet,
 				Optional: true,
@@ -12054,6 +12076,12 @@ func ResourceEventDetailsSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 				Elem:     ResourceVCASetupSchema(),
+			},
+			"vcenter_cloud_delete_details": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceVcenterCloudDeleteDetailsSchema(),
 			},
 			"vcenter_cluster_details": {
 				Type:     schema.TypeSet,
@@ -12454,7 +12482,7 @@ func ResourceFalsePositiveLearningConfigSchema() *schema.Resource {
 			"max_apps_supported": {
 				Type:         schema.TypeString,
 				Optional:     true,
-				Default:      "5",
+				Default:      "2",
 				ValidateFunc: validateInteger,
 			},
 			"min_monitor_time": {
@@ -12466,7 +12494,7 @@ func ResourceFalsePositiveLearningConfigSchema() *schema.Resource {
 			"min_trans_per_application": {
 				Type:         schema.TypeString,
 				Optional:     true,
-				Default:      "5000000",
+				Default:      "1000000",
 				ValidateFunc: validateInteger,
 			},
 			"min_trans_per_uri": {
@@ -12650,6 +12678,21 @@ func ResourceFeProxyRoutePublishConfigSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceFileReferenceMappingSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"file_path": {
+				Type:     schema.TypeString,
+				Required: true,
+			},
+			"reference": {
+				Type:     schema.TypeString,
+				Required: true,
 			},
 		},
 	}
@@ -15581,6 +15624,12 @@ func ResourceHTTPApplicationProfileSchema() *schema.Resource {
 				Default:      "48",
 				ValidateFunc: validateInteger,
 			},
+			"close_server_side_connection_on_error": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
 			"collect_client_tls_fingerprint": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -18362,9 +18411,16 @@ func ResourceIpamDnsInfobloxProfileSchema() *schema.Resource {
 				Optional: true,
 				Elem:     ResourceCustomParamsSchema(),
 			},
+			"ip6_address": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceIpAddrSchema(),
+			},
 			"ip_address": {
 				Type:     schema.TypeSet,
-				Required: true,
+				Optional: true,
+				Computed: true,
 				Elem:     ResourceIpAddrSchema(),
 			},
 			"network_view": {
@@ -18377,6 +18433,11 @@ func ResourceIpamDnsInfobloxProfileSchema() *schema.Resource {
 				Required:         true,
 				Sensitive:        true,
 				DiffSuppressFunc: suppressSensitiveFieldDiffs,
+			},
+			"profile_url": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 			"usable_alloc_subnets": {
 				Type:     schema.TypeList,
@@ -22325,6 +22386,12 @@ func ResourceNsxtClustersSchema() *schema.Resource {
 func ResourceNsxtConfigurationSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"automate_dfw_objects": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "true",
+				ValidateFunc: validateBool,
+			},
 			"automate_dfw_rules": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -25461,6 +25528,43 @@ func ResourcePsmProgramDetailsSchema() *schema.Resource {
 	}
 }
 
+func ResourcePulseServicesSessionConfigSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"session_headers": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceSessionHeadersSchema(),
+			},
+		},
+	}
+}
+
+func ResourcePulseServicesTenantConfigSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"heartbeat_interval": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"license_escrow_interval": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"token_refresh_interval": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+		},
+	}
+}
+
 func ResourceQueryMatchSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -26792,6 +26896,16 @@ func ResourceRoutingServiceSchema() *schema.Resource {
 				Optional: true,
 				Elem:     ResourceIpAddrSchema(),
 			},
+			"floating_intf_ip6_addresses": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceIpAddrSchema(),
+			},
+			"floating_intf_ip6_se_2_addresses": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceIpAddrSchema(),
+			},
 			"floating_intf_ip_se_2": {
 				Type:     schema.TypeList,
 				Optional: true,
@@ -27684,6 +27798,12 @@ func ResourceSamlAuthzRuleMatchSchema() *schema.Resource {
 func ResourceSamlIdentityProviderSettingsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"meta_data_download_interval": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "60",
+				ValidateFunc: validateInteger,
+			},
 			"metadata": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -27693,6 +27813,12 @@ func ResourceSamlIdentityProviderSettingsSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+			"periodic_download": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
 			},
 		},
 	}
@@ -27736,6 +27862,23 @@ func ResourceSamlLogSchema() *schema.Resource {
 				ValidateFunc: validateBool,
 			},
 			"userid": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceSamlMetadataUpdateFailedDetailsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"reason": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -29653,6 +29796,11 @@ func ResourceSeListSchema() *schema.Resource {
 				Optional: true,
 				Elem:     ResourceIpAddrSchema(),
 			},
+			"floating_intf_ip6_addresses": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceIpAddrSchema(),
+			},
 			"incarnation": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -29723,6 +29871,12 @@ func ResourceSeListSchema() *schema.Resource {
 				ValidateFunc: validateInteger,
 			},
 			"snat_ip": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceIpAddrSchema(),
+			},
+			"snat_ip6_address": {
 				Type:     schema.TypeSet,
 				Optional: true,
 				Computed: true,
@@ -32266,6 +32420,23 @@ func ResourceServiceengineFaultsSchema() *schema.Resource {
 	}
 }
 
+func ResourceSessionHeadersSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"value": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
 func ResourceSidebandProfileSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -32900,11 +33071,21 @@ func ResourceStreamingSyslogConfigSchema() *schema.Resource {
 				Optional: true,
 				Default:  "AviVantage",
 			},
+			"msg_id": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "NILVALUE",
+			},
 			"non_significant_log_severity": {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Default:      "6",
 				ValidateFunc: validateInteger,
+			},
+			"proc_id": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "NILVALUE",
 			},
 			"significant_log_severity": {
 				Type:         schema.TypeString,
@@ -35563,6 +35744,23 @@ func ResourceVSDataScriptsSchema() *schema.Resource {
 	}
 }
 
+func ResourceVcenterCloudDeleteDetailsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"cc_id": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"objects": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
 func ResourceVcenterClusterDetailsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -36507,6 +36705,12 @@ func ResourceVipSeAssignedSchema() *schema.Resource {
 				ValidateFunc: validateBool,
 			},
 			"snat_ip": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceIpAddrSchema(),
+			},
+			"snat_ip6_address": {
 				Type:     schema.TypeSet,
 				Optional: true,
 				Computed: true,
@@ -40365,6 +40569,11 @@ func ResourcevCenterConfigurationSchema() *schema.Resource {
 				Elem:     ResourceContentLibConfigSchema(),
 			},
 			"datacenter": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"datacenter_managed_object_id": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,

@@ -377,6 +377,11 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 			Optional: true,
 			Elem:     ResourceIpAddrSchema(),
 		},
+		"snat_ip6_addresses": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceIpAddrSchema(),
+		},
 		"sp_pool_refs": {
 			Type:     schema.TypeList,
 			Optional: true,
