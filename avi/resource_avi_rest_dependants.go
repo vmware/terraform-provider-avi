@@ -10097,6 +10097,12 @@ func ResourceDnsServiceApplicationProfileSchema() *schema.Resource {
 				Optional: true,
 				Default:  "hostmaster",
 			},
+			"client_dns_tcp_request_timeout": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "10000",
+				ValidateFunc: validateInteger,
+			},
 			"close_tcp_connection_post_response": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -26532,6 +26538,16 @@ func ResourceRoutingServiceSchema() *schema.Resource {
 				Optional: true,
 				Elem:     ResourceIpAddrSchema(),
 			},
+			"floating_intf_ip6_addresses": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceIpAddrSchema(),
+			},
+			"floating_intf_ip6_se_2_addresses": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceIpAddrSchema(),
+			},
 			"floating_intf_ip_se_2": {
 				Type:     schema.TypeList,
 				Optional: true,
@@ -32581,11 +32597,21 @@ func ResourceStreamingSyslogConfigSchema() *schema.Resource {
 				Optional: true,
 				Default:  "AviVantage",
 			},
+			"msg_id": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "NILVALUE",
+			},
 			"non_significant_log_severity": {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Default:      "6",
 				ValidateFunc: validateInteger,
+			},
+			"proc_id": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "NILVALUE",
 			},
 			"significant_log_severity": {
 				Type:         schema.TypeString,

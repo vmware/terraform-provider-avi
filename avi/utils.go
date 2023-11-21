@@ -307,7 +307,6 @@ func APICreateOrUpdate(d *schema.ResourceData, meta interface{}, objType string,
 			log.Printf("[INFO] APICreateOrUpdate Tenant ref found %v", tenantName)
 		}
 		if specialobj {
-			path = path + "?skip_default=true"
 			err = client.AviSession.Put(path, data, &robj)
 			if err != nil {
 				log.Printf("[ERROR] APICreateOrUpdate: PUT on %v Error %v path %v id %v\n", objType, err, path,
@@ -316,7 +315,7 @@ func APICreateOrUpdate(d *schema.ResourceData, meta interface{}, objType string,
 				SetIDFromObj(d, robj)
 			}
 		} else if uuid, ok := d.GetOk("uuid"); ok {
-			path = path + "/" + uuid.(string) + "?skip_default=true"
+			path = path + "/" + uuid.(string)
 			if !usePatchForUpdate {
 				err = client.AviSession.Put(path, data, &robj, session.SetOptTenant(tenantName))
 			} else {
@@ -366,7 +365,7 @@ func APICreateOrUpdate(d *schema.ResourceData, meta interface{}, objType string,
 					// found existing object.
 					SetIDFromObj(d, existingObj)
 					uuid = existingObj.(map[string]interface{})["uuid"].(string)
-					path = path + "/" + uuid.(string) + "?skip_default=true"
+					path = path + "/" + uuid.(string)
 					if !usePatchForUpdate {
 						err = client.AviSession.Put(path, data, &robj)
 					} else {
@@ -428,7 +427,7 @@ func APIRead(d *schema.ResourceData, meta interface{}, objType string, s map[str
 		if specialobj {
 			path = "api/" + objType
 		} else {
-			path = "api/" + objType + "/" + uuid + "?skip_default=true"
+			path = "api/" + objType + "/" + uuid
 		}
 		log.Printf("[DEBUG] APIRead reading object with id %v path %v\n", uuid, path)
 		err := client.AviSession.Get(path, &obj, session.SetOptTenant(tenantName))
@@ -470,15 +469,7 @@ func APIRead(d *schema.ResourceData, meta interface{}, objType string, s map[str
 		log.Printf("[ERROR] APIRead not found %v\n", d.Get("uuid"))
 		return nil
 	}
-	if localData, err := SchemaToAviData(d, s); err == nil {
-		modAPIRes, err := SetDefaultsInAPIRes(obj, localData, s)
-		if err != nil {
-			log.Printf("[ERROR] APIRead in modifying api response object %v\n", err)
-		}
-		modAPIRes, err = PreprocessAPIRes(modAPIRes, s)
-		if err != nil {
-			log.Printf("[ERROR] APIRead in modifying api response object for conversion %v\n", err)
-		}
+	if modAPIRes, err := PreprocessAPIRes(obj, s); err == nil {
 		if _, err := APIDataToSchema(modAPIRes, d, s); err == nil {
 			if modAPIRes.(map[string]interface{})["uuid"] != nil {
 				uuid = modAPIRes.(map[string]interface{})["uuid"].(string)
@@ -497,10 +488,40 @@ func APIRead(d *schema.ResourceData, meta interface{}, objType string, s map[str
 		} else {
 			log.Printf("[ERROR] APIRead in setting read object %v\n", err)
 		}
-		log.Printf("[DEBUG] type: %v localData : %v", objType, localData)
 		log.Printf("[DEBUG] type: %v modAPIRes: %v", objType, modAPIRes)
+	} else {
+		log.Printf("[ERROR] APIRead in modifying api response object for conversion %v\n", err)
 	}
-
+	// if localData, err := SchemaToAviData(d, s); err == nil {
+	// 	// modAPIRes, err := SetDefaultsInAPIRes(obj, localData, s)
+	// 	if err != nil {
+	// 		log.Printf("[ERROR] APIRead in modifying api response object %v\n", err)
+	// 	}
+	// 	modAPIRes, err := PreprocessAPIRes(obj, s)
+	// 	if err != nil {
+	// 		log.Printf("[ERROR] APIRead in modifying api response object for conversion %v\n", err)
+	// 	}
+	// 	if _, err := APIDataToSchema(modAPIRes, d, s); err == nil {
+	// 		if modAPIRes.(map[string]interface{})["uuid"] != nil {
+	// 			uuid = modAPIRes.(map[string]interface{})["uuid"].(string)
+	// 		}
+	// 		if modAPIRes.(map[string]interface{})["url"] != nil {
+	// 			url = modAPIRes.(map[string]interface{})["url"].(string)
+	// 		}
+	// 		//url = strings.SplitN(url, "#", 2)[0]
+	// 		if url != "" {
+	// 			d.SetId(url)
+	// 			log.Printf("[DEBUG] APIRead read object with id %v\n", url)
+	// 		} else {
+	// 			d.SetId(uuid)
+	// 			log.Printf("[DEBUG] APIRead read object with id %v\n", uuid)
+	// 		}
+	// 	} else {
+	// 		log.Printf("[ERROR] APIRead in setting read object %v\n", err)
+	// 	}
+	// 	log.Printf("[DEBUG] type: %v localData : %v", objType, localData)
+	// 	log.Printf("[DEBUG] type: %v modAPIRes: %v", objType, modAPIRes)
+	// }
 	return nil
 }
 
@@ -540,7 +561,7 @@ func ResourceImporter(d *schema.ResourceData, meta interface{}, objType string, 
 	}
 	var data interface{}
 	client := meta.(*clients.AviClient)
-	path := "api/" + objType + "?skip_default=true"
+	path := "api/" + objType
 	err := client.AviSession.Get(path, &data)
 	if err != nil {
 		log.Printf("[ERROR] ResourceImporter %v in GET of path %v\n", err, path)
