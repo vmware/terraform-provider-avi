@@ -12467,6 +12467,11 @@ func ResourceFalsePositiveDetailsSchema() *schema.Resource {
 				Optional: true,
 				Elem:     ResourceFalsePositiveResultSchema(),
 			},
+			"vs_name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"vs_uuid": {
 				Type:     schema.TypeString,
 				Optional: true,

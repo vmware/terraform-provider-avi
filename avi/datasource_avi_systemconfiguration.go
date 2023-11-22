@@ -97,6 +97,14 @@ func dataSourceAviSystemConfiguration() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceProxyConfigurationSchema(),
 			},
+			"rekey_time_limit": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"rekey_volume_limit": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"secure_channel_configuration": {
 				Type:     schema.TypeSet,
 				Computed: true,

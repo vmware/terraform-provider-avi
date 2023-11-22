@@ -123,6 +123,16 @@ func ResourceSystemConfigurationSchema() map[string]*schema.Schema {
 			Computed: true,
 			Elem:     ResourceProxyConfigurationSchema(),
 		},
+		"rekey_time_limit": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Default:  "none",
+		},
+		"rekey_volume_limit": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Default:  "default",
+		},
 		"secure_channel_configuration": {
 			Type:     schema.TypeSet,
 			Optional: true,
