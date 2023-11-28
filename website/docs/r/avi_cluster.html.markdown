@@ -31,7 +31,8 @@ The following arguments are supported:
 * `nodes` - (Required) Minimum of 1 items required. Maximum of 7 items allowed. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 * `rejoin_nodes_automatically` - (Optional) Re-join cluster nodes automatically in the event one of the node is reset to factory. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-* `virtual_ip` - (Optional) A virtual ip address. This ip address will be dynamically reconfigured so that it always is the ip of the cluster leader. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `virtual_ip` - (Optional) A v4 virtual ip address. This v4 ip address will be dynamically reconfigured so that it always is the ip of the cluster leader. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `virtual_ip6` - (Optional) A v6 virtual ip address. This v6 ip address will be dynamically reconfigured so that it always is the ip of the cluster leader. Field introduced in 30.2.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 
 
 ### Timeouts

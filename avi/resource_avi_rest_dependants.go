@@ -5672,7 +5672,14 @@ func ResourceClusterNodeSchema() *schema.Resource {
 			},
 			"ip": {
 				Type:     schema.TypeSet,
-				Required: true,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceIpAddrSchema(),
+			},
+			"ip6": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
 				Elem:     ResourceIpAddrSchema(),
 			},
 			"name": {
@@ -7427,6 +7434,18 @@ func ResourceControllerInterfaceSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 				Elem:     ResourceIpAddrSchema(),
+			},
+			"v4_enabled": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateBool,
+			},
+			"v6_enabled": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateBool,
 			},
 		},
 	}

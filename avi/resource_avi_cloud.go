@@ -155,6 +155,18 @@ func ResourceCloudSchema() map[string]*schema.Schema {
 			Default:      "300",
 			ValidateFunc: validateInteger,
 		},
+		"mgmt_ip_v4_enabled": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "true",
+			ValidateFunc: validateBool,
+		},
+		"mgmt_ip_v6_enabled": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "true",
+			ValidateFunc: validateBool,
+		},
 		"mtu": {
 			Type:         schema.TypeString,
 			Optional:     true,
