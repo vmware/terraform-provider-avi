@@ -221,6 +221,8 @@ github.com/vmware/alb-sdk v0.0.0-20230801062313-1e6e1dda20db h1:DGu3zNJjx4mV7c64
 github.com/vmware/alb-sdk v0.0.0-20230801062313-1e6e1dda20db/go.mod h1:fuRb4saDY/xy/UMeMvyKYmcplNknEL9ysaqYSw7reNE=
 github.com/vmware/alb-sdk v0.0.0-20231120054810-3beec98f4e2b h1:bAs4rqAm4LfSN1IVOe7DlJkDNK1HX9hTtdP60K7sZi0=
 github.com/vmware/alb-sdk v0.0.0-20231120054810-3beec98f4e2b/go.mod h1:fuRb4saDY/xy/UMeMvyKYmcplNknEL9ysaqYSw7reNE=
+github.com/vmware/alb-sdk v0.0.0-20231129074055-00c5b9e6ac86 h1:qzf6ZPaJvlkoVSRmzvj38zLkz7oEwdRGbUI4r+dVQvU=
+github.com/vmware/alb-sdk v0.0.0-20231129074055-00c5b9e6ac86/go.mod h1:fuRb4saDY/xy/UMeMvyKYmcplNknEL9ysaqYSw7reNE=
 github.com/xanzy/ssh-agent v0.3.0 h1:wUMzuKtKilRgBAD1sUb8gOwwRr2FGoBVumcjoOACClI=
 github.com/xanzy/ssh-agent v0.3.0/go.mod h1:3s9xbODqPuuhK9JV1R321M/FlMZSBvE5aY6eAcqrDh0=
 github.com/yuin/goldmark v1.1.32/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=

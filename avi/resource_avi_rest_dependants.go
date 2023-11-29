@@ -11652,6 +11652,12 @@ func ResourceEventDetailsSchema() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceOpenStackVnicChangeSchema(),
 			},
+			"pkiprofile_details": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourcePKIProfileDetailsSchema(),
+			},
 			"pool_deployment_failure_info": {
 				Type:     schema.TypeSet,
 				Optional: true,
@@ -21452,6 +21458,11 @@ func ResourceMetricsDbQueueHealthyEventDetailsSchema() *schema.Resource {
 func ResourceMetricsDbRuntimeSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"db_client_name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"db_num_client_queries": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -24511,6 +24522,23 @@ func ResourcePGDeploymentRuleResultSchema() *schema.Resource {
 				Type:     schema.TypeSet,
 				Required: true,
 				Elem:     ResourcePGDeploymentRuleSchema(),
+			},
+		},
+	}
+}
+
+func ResourcePKIProfileDetailsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"crls": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 		},
 	}
