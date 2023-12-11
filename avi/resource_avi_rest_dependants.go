@@ -3672,10 +3672,33 @@ func ResourceBotManagementLogSchema() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceBotClassificationSchema(),
 			},
+			"mapping_decision": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceBotMappingDecisionSchema(),
+			},
 			"results": {
 				Type:     schema.TypeList,
 				Optional: true,
 				Elem:     ResourceBotEvaluationResultSchema(),
+			},
+		},
+	}
+}
+
+func ResourceBotMappingDecisionSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"mapping_name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"mapping_rule_name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 		},
 	}
@@ -11867,6 +11890,12 @@ func ResourceEventDetailsSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 				Elem:     ResourceSeNtpSynchronizationFailedSchema(),
+			},
+			"se_objsync_peer_down_details": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceSeObjsyncPeerDownDetailsSchema(),
 			},
 			"se_persistence_details": {
 				Type:     schema.TypeSet,
@@ -30254,6 +30283,17 @@ func ResourceSeNtpSynchronizationFailedSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceSeObjsyncPeerDownDetailsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"peer_se_uuids": {
+				Type:     schema.TypeString,
+				Required: true,
 			},
 		},
 	}

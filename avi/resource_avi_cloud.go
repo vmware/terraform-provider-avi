@@ -6,16 +6,14 @@ package avi
 import (
 	"encoding/json"
 	"errors"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"github.com/vmware/alb-sdk/go/clients"
+	"github.com/vmware/alb-sdk/go/models"
 	"log"
 	"os"
 	"strconv"
 	"strings"
-
 	"time"
-
-	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
-	"github.com/vmware/alb-sdk/go/clients"
-	"github.com/vmware/alb-sdk/go/models"
 )
 
 func ResourceCloudSchema() map[string]*schema.Schema {
@@ -355,21 +353,24 @@ func setupVcenterMgmtNetwork(d *schema.ResourceData, meta interface{}) error {
 	client := meta.(*clients.AviClient)
 	vcenterConfig, _ := d.GetOk("vcenter_configuration")
 	mgmtNetwork := vcenterConfig.(*schema.Set).List()[0].(map[string]interface{})["management_network"].(string)
-	mgmtNetwork = "vimgrruntime?name=" + mgmtNetwork
 	if err := APICreateOrUpdate(d, meta, "cloud", s); err != nil {
 		log.Printf("[Error] Got error for cloud create/update. Error: %s", err.Error())
 		return err
 	}
 	uuid := d.Get("uuid").(string)
-	if err := waitForCloudState(uuid, "CLOUD_STATE_FAILED", client, maxRetry); err != nil {
-		return err
-	}
-	vcenterConfig.(*schema.Set).List()[0].(map[string]interface{})["management_network"] = mgmtNetwork
-	if err := d.Set("vcenter_configuration", vcenterConfig); err != nil {
-		return err
-	}
-	if err := APICreateOrUpdate(d, meta, "cloud", s); err != nil {
-		return err
+	if ok := strings.Contains(mgmtNetwork, "api/"); !ok {
+		mgmtNetwork = "vimgrruntime?name=" + mgmtNetwork
+		vcenterConfig.(*schema.Set).List()[0].(map[string]interface{})["management_network"] = mgmtNetwork
+		if err := d.Set("vcenter_configuration", vcenterConfig); err != nil {
+			return err
+		}
+		if err := waitForCloudState(uuid, "CLOUD_STATE_FAILED", client, maxRetry); err != nil {
+			return err
+		}
+		if err := APICreateOrUpdate(d, meta, "cloud", s); err != nil {
+			log.Printf("[Error] Got error for cloud create/update. Error: %s", err.Error())
+			return err
+		}
 	}
 	if err := waitForCloudState(uuid, "CLOUD_STATE_PLACEMENT_READY", client, maxRetry); err != nil {
 		return err
@@ -404,20 +405,13 @@ func resourceAviCloudUpdate(d *schema.ResourceData, meta interface{}) error {
 }
 
 func resourceAviCloudDelete(d *schema.ResourceData, meta interface{}) error {
-	objType := "cloud"
-	client := meta.(*clients.AviClient)
+	var err error
 	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
-	uuid := d.Get("uuid").(string)
-	if uuid != "" {
-		path := "api/" + objType + "/" + uuid
-		err := client.AviSession.Delete(path)
-		if err != nil && !(strings.Contains(err.Error(), "404") || strings.Contains(err.Error(), "204") || strings.Contains(err.Error(), "403")) {
-			log.Println("[INFO] resourceAviCloudDelete not found")
-			return err
-		}
-		d.SetId("")
+	err = APIDelete(d, meta, "cloud")
+	if err != nil {
+		log.Printf("[ERROR] in deleting object %v\n", err)
 	}
-	return nil
+	return err
 }

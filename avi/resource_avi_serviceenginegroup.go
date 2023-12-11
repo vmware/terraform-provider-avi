@@ -4,13 +4,12 @@
 package avi
 
 import (
-	"log"
-	"strings"
-
-	"time"
-
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"github.com/vmware/alb-sdk/go/clients"
+	"log"
+	"strconv"
+	"strings"
+	"time"
 )
 
 func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
@@ -1731,9 +1730,8 @@ func resourceAviServiceEngineGroupUpdate(d *schema.ResourceData, meta interface{
 }
 
 func resourceAviServiceEngineGroupDelete(d *schema.ResourceData, meta interface{}) error {
-	objType := "serviceenginegroup"
-	client := meta.(*clients.AviClient)
 	seDeprovisionExtraDelay := 2
+	client := meta.(*clients.AviClient)
 	if cloudRef, ok := d.GetOk("cloud_ref"); ok && strings.Contains(cloudRef.(string), "api/cloud/") {
 		cloudUUID := strings.SplitN(cloudRef.(string), "api/cloud/", 2)[1]
 		cloudPath := "api/cloud/" + cloudUUID
@@ -1743,25 +1741,21 @@ func resourceAviServiceEngineGroupDelete(d *schema.ResourceData, meta interface{
 				if privilege := vcenterConfig.(map[string]interface{})["privilege"].(string); privilege == "WRITE_ACCESS" {
 					seGroupName := d.Get("name").(string)
 					cloudName := robj.(map[string]interface{})["name"].(string)
-					seDeprovisionDelay := d.Get("se_deprovision_delay").(int) + seDeprovisionExtraDelay
+					seDeprovisionDelayInt, _ := strconv.Atoi(d.Get("se_deprovision_delay").(string))
+					seDeprovisionDelay := seDeprovisionDelayInt + seDeprovisionExtraDelay
 					log.Printf("Waiting for %v minutes to delete SE from SE Group %v of cloud %v", seDeprovisionDelay, seGroupName, cloudName)
 					time.Sleep(time.Duration(seDeprovisionDelay) * time.Minute)
 				}
 			}
 		}
 	}
+	var err error
 	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
-	uuid := d.Get("uuid").(string)
-	if uuid != "" {
-		path := "api/" + objType + "/" + uuid
-		err := client.AviSession.Delete(path)
-		if err != nil && !(strings.Contains(err.Error(), "404") || strings.Contains(err.Error(), "204") || strings.Contains(err.Error(), "403")) {
-			log.Println("[INFO] resourceAviServiceEngineGroupDelete not found")
-			return err
-		}
-		d.SetId("")
+	err = APIDelete(d, meta, "serviceenginegroup")
+	if err != nil {
+		log.Printf("[ERROR] in deleting object %v\n", err)
 	}
-	return nil
+	return err
 }

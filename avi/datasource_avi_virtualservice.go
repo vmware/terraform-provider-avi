@@ -256,6 +256,10 @@ func dataSourceAviVirtualService() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceRateProfileSchema(),
 			},
+			"revoke_vip_route": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"saml_sp_config": {
 				Type:     schema.TypeSet,
 				Computed: true,

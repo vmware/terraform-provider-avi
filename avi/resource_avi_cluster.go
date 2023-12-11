@@ -4,12 +4,10 @@
 package avi
 
 import (
-	"log"
-
-	"time"
-
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"github.com/vmware/alb-sdk/go/clients"
+	"log"
+	"time"
 )
 
 func ResourceClusterSchema() map[string]*schema.Schema {
@@ -139,7 +137,15 @@ func resourceAviClusterUpdate(d *schema.ResourceData, meta interface{}) error {
 
 func resourceAviClusterDelete(d *schema.ResourceData, meta interface{}) error {
 	log.Printf("[WARNING] WE can not delete cluster.")
-	return nil
+	var err error
+	if APIDeleteSystemDefaultCheck(d) {
+		return nil
+	}
+	err = APIDelete(d, meta, "cluster")
+	if err != nil {
+		log.Printf("[ERROR] in deleting object %v\n", err)
+	}
+	return err
 }
 
 // Function to get the cluster state and update the exact cluster state into d

@@ -293,6 +293,19 @@ func APICreateOrUpdate(d *schema.ResourceData, meta interface{}, objType string,
 	if data, err := SchemaToAviData(obj, s); err == nil {
 		path := "api/" + objType
 		specialobj := IsPostNotAllowed(objType)
+		var obj interface{}
+		tenantName := ""
+		if tenantRef, ok := d.GetOk("tenant_ref"); ok && strings.Contains(tenantRef.(string),
+			"api/tenant/") {
+			tenantUUID := strings.SplitN(tenantRef.(string), "/", 4)[3]
+			err := client.AviSession.Get(tenantUUID, &obj)
+			if err != nil {
+				log.Printf("[ERROR] APICreateOrUpdate tenant with uuid %v not found err %v\n", tenantUUID, err)
+				return err
+			}
+			tenantName = obj.(map[string]interface{})["name"].(string)
+			log.Printf("[INFO] APICreateOrUpdate Tenant ref found %v", tenantName)
+		}
 		if specialobj {
 			path = path + "?skip_default=true"
 			err = client.AviSession.Put(path, data, &robj)
@@ -305,9 +318,9 @@ func APICreateOrUpdate(d *schema.ResourceData, meta interface{}, objType string,
 		} else if uuid, ok := d.GetOk("uuid"); ok {
 			path = path + "/" + uuid.(string) + "?skip_default=true"
 			if !usePatchForUpdate {
-				err = client.AviSession.Put(path, data, &robj)
+				err = client.AviSession.Put(path, data, &robj, session.SetOptTenant(tenantName))
 			} else {
-				err = client.AviSession.Patch(path, data, "replace", &robj)
+				err = client.AviSession.Patch(path, data, "replace", &robj, session.SetOptTenant(tenantName))
 			}
 			if err != nil {
 				log.Printf("[ERROR] APICreateOrUpdate: PUT Error %v path %v id %v\n", err, path, d.Id())
@@ -324,7 +337,7 @@ func APICreateOrUpdate(d *schema.ResourceData, meta interface{}, objType string,
 						cloudUUID, objType, name)
 					err = client.AviSession.GetObject(objType, session.SetName(name.(string)),
 						session.SetResult(&existingObj), session.SetCloudUUID(cloudUUID),
-						session.SetSkipDefault(true))
+						session.SetSkipDefault(true), session.SetOptTenant(tenantName))
 					if err != nil {
 						log.Printf("[ERROR] APICreateOrUpdate: GET Error %v path %v id %v\n", err, path, d.Id())
 					}
@@ -332,7 +345,7 @@ func APICreateOrUpdate(d *schema.ResourceData, meta interface{}, objType string,
 					log.Printf("[INFO] APICreateOrUpdate: reading obj %v name %s \n",
 						objType, name)
 					err = client.AviSession.GetObject(objType, session.SetName(name.(string)),
-						session.SetResult(&existingObj), session.SetSkipDefault(true))
+						session.SetResult(&existingObj), session.SetSkipDefault(true), session.SetOptTenant(tenantName))
 					if err != nil {
 						log.Printf("[ERROR] APICreateOrUpdate: GET Error %v path %v id %v\n", err, path, d.Id())
 					}
@@ -342,7 +355,7 @@ func APICreateOrUpdate(d *schema.ResourceData, meta interface{}, objType string,
 					// object not found
 					log.Printf("[INFO] APICreateOrUpdate: Creating obj type %v schema %v data %v\n", objType, d,
 						data)
-					err = client.AviSession.Post(path, data, &robj)
+					err = client.AviSession.Post(path, data, &robj, session.SetOptTenant(tenantName))
 					if err == nil && robj != nil {
 						SetIDFromObj(d, robj)
 					} else {
@@ -357,7 +370,7 @@ func APICreateOrUpdate(d *schema.ResourceData, meta interface{}, objType string,
 					if !usePatchForUpdate {
 						err = client.AviSession.Put(path, data, &robj)
 					} else {
-						err = client.AviSession.Patch(path, data, "replace", &robj)
+						err = client.AviSession.Patch(path, data, "replace", &robj, session.SetOptTenant(tenantName))
 					}
 					if err != nil {
 						log.Printf("[ERROR] APICreateOrUpdate: PUT Error %v path %v id %v\n", err, path, d.Id())
@@ -365,7 +378,7 @@ func APICreateOrUpdate(d *schema.ResourceData, meta interface{}, objType string,
 				}
 			} else {
 				log.Printf("[INFO] APICreateOrUpdate: Creating obj %v schema %v data %v\n", objType, d, data)
-				err = client.AviSession.Post(path, data, &robj)
+				err = client.AviSession.Post(path, data, &robj, session.SetOptTenant(tenantName))
 				if err != nil {
 					log.Printf("[ERROR] APICreateOrUpdate creation failed %v\n", err)
 				} else {
@@ -386,6 +399,18 @@ func APIRead(d *schema.ResourceData, meta interface{}, objType string, s map[str
 	var path string
 	uuid := ""
 	url := ""
+	tenantName := ""
+	if tenantRef, ok := d.GetOk("tenant_ref"); ok && strings.Contains(tenantRef.(string),
+		"api/tenant/") {
+		tenantUUID := strings.SplitN(tenantRef.(string), "/", 4)[3]
+		err := client.AviSession.Get(tenantUUID, &obj)
+		if err != nil {
+			log.Printf("[ERROR] APIRead tenant with uuid %v not found err %v\n", tenantUUID, err)
+			return err
+		}
+		tenantName = obj.(map[string]interface{})["name"].(string)
+		log.Printf("[INFO] APIRead Found Tenant Ref %v ", tenantName)
+	}
 	specialobj := IsPostNotAllowed(objType)
 	log.Printf("[DEBUG] APIRead reading object with objType %v id %v\n", objType, d.Id())
 	if d.Id() != "" {
@@ -406,11 +431,11 @@ func APIRead(d *schema.ResourceData, meta interface{}, objType string, s map[str
 			path = "api/" + objType + "/" + uuid + "?skip_default=true"
 		}
 		log.Printf("[DEBUG] APIRead reading object with id %v path %v\n", uuid, path)
-		err := client.AviSession.Get(path, &obj)
+		err := client.AviSession.Get(path, &obj, session.SetOptTenant(tenantName))
 		if err != nil {
 			d.SetId("")
 			log.Printf("[ERROR] APIRead object with uuid %v not found err %v\n", uuid, err)
-			return nil
+			return err
 		}
 	} else if name, ok := d.GetOk("name"); ok {
 		var err error
@@ -420,25 +445,25 @@ func APIRead(d *schema.ResourceData, meta interface{}, objType string, s map[str
 			log.Printf("[DEBUG] APIRead using cloud %v obj %v name %v\n", cloudUUID,
 				objType, name)
 			err = client.AviSession.GetObject(objType, session.SetName(name.(string)),
-				session.SetResult(&obj), session.SetCloudUUID(cloudUUID), session.SetSkipDefault(true))
+				session.SetResult(&obj), session.SetCloudUUID(cloudUUID), session.SetSkipDefault(true), session.SetOptTenant(tenantName))
 		} else {
 			log.Printf("[DEBUG] APIRead using name %v \n", name)
 			err = client.AviSession.GetObject(objType, session.SetName(name.(string)),
-				session.SetResult(&obj), session.SetSkipDefault(true))
+				session.SetResult(&obj), session.SetSkipDefault(true), session.SetOptTenant(tenantName))
 		}
 		if err != nil {
 			d.SetId("")
 			log.Printf("[ERROR] APIRead object with name %v:%v not found err %v\n", objType, name, err)
-			return nil
+			return err
 		}
 	} else if specialobj {
 		path := "api/" + objType
 		log.Printf("[DEBUG] APIRead reading special object with path %v\n", path)
-		err := client.AviSession.Get(path, &obj)
+		err := client.AviSession.Get(path, &obj, session.SetOptTenant(tenantName))
 		if err != nil {
 			d.SetId("")
 			log.Printf("[ERROR] APIRead special object with path %v not found err %v\n", path, err)
-			return nil
+			return err
 		}
 	} else {
 		d.SetId("")
@@ -476,6 +501,34 @@ func APIRead(d *schema.ResourceData, meta interface{}, objType string, s map[str
 		log.Printf("[DEBUG] type: %v modAPIRes: %v", objType, modAPIRes)
 	}
 
+	return nil
+}
+
+func APIDelete(d *schema.ResourceData, meta interface{}, objType string) error {
+	client := meta.(*clients.AviClient)
+	var obj interface{}
+	tenantName := ""
+	uuid := d.Get("uuid").(string)
+	if uuid != "" {
+		path := "api/" + objType + "/" + uuid
+		if tenantRef, ok := d.GetOk("tenant_ref"); ok && strings.Contains(tenantRef.(string),
+			"api/tenant/") {
+			tenantUUID := strings.SplitN(tenantRef.(string), "/", 4)[3]
+			err := client.AviSession.Get(tenantUUID, &obj)
+			if err != nil {
+				log.Printf("[ERROR] APIRead tenant with uuid %v not found err %v\n", tenantUUID, err)
+				return err
+			}
+			tenantName = obj.(map[string]interface{})["name"].(string)
+			log.Printf("[INFO] APIDelete Found Tenant Ref %v ", tenantName)
+		}
+		err := client.AviSession.DeleteObject(path, session.SetOptTenant(tenantName))
+		if err != nil && !(strings.Contains(err.Error(), "404") || strings.Contains(err.Error(), "204") || strings.Contains(err.Error(), "403")) {
+			log.Println("[INFO] resourceAviHealthMonitorDelete not found")
+			return err
+		}
+		d.SetId("")
+	}
 	return nil
 }
 

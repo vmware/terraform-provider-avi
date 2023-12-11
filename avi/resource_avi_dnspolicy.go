@@ -4,11 +4,8 @@
 package avi
 
 import (
-	"log"
-	"strings"
-
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
-	"github.com/vmware/alb-sdk/go/clients"
+	"log"
 )
 
 //nolint
@@ -116,20 +113,13 @@ func resourceAviDnsPolicyUpdate(d *schema.ResourceData, meta interface{}) error 
 
 //nolint
 func resourceAviDnsPolicyDelete(d *schema.ResourceData, meta interface{}) error {
-	objType := "dnspolicy"
-	client := meta.(*clients.AviClient)
+	var err error
 	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
-	uuid := d.Get("uuid").(string)
-	if uuid != "" {
-		path := "api/" + objType + "/" + uuid
-		err := client.AviSession.Delete(path)
-		if err != nil && !(strings.Contains(err.Error(), "404") || strings.Contains(err.Error(), "204") || strings.Contains(err.Error(), "403")) {
-			log.Println("[INFO] resourceAviDnsPolicyDelete not found")
-			return err
-		}
-		d.SetId("")
+	err = APIDelete(d, meta, "dnspolicy")
+	if err != nil {
+		log.Printf("[ERROR] in deleting object %v\n", err)
 	}
-	return nil
+	return err
 }
