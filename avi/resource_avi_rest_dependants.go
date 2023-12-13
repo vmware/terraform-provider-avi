@@ -245,6 +245,43 @@ func ResourceALBServicesCaseAttachmentSchema() *schema.Resource {
 	}
 }
 
+func ResourceALBServicesFileDownloadMetadataSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"checksum": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"checksum_type": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"chunk_size": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"is_multi_part_download": {
+				Type:         schema.TypeString,
+				Required:     true,
+				ValidateFunc: validateBool,
+			},
+			"signed_url": {
+				Type:     schema.TypeString,
+				Required: true,
+			},
+			"total_size": {
+				Type:         schema.TypeString,
+				Required:     true,
+				ValidateFunc: validateInteger,
+			},
+		},
+	}
+}
+
 func ResourceALBServicesJobParamSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -10948,6 +10985,12 @@ func ResourceEventDetailsSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 				Elem:     ResourceALBServicesCaseSchema(),
+			},
+			"albservices_file_download_details": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceALBServicesFileDownloadSchema(),
 			},
 			"albservices_file_upload_details": {
 				Type:     schema.TypeSet,
@@ -39525,7 +39568,19 @@ func ResourceWAFLimitsSchema() *schema.Resource {
 				Computed:     true,
 				ValidateFunc: validateInteger,
 			},
+			"num_content_type_mappings": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
 			"num_data_files": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"num_exclude_list_per_rule_group": {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Computed:     true,
