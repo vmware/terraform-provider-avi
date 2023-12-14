@@ -6110,6 +6110,11 @@ func ResourceConfigActionDetailsSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"client_ip": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"error_message": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -6145,6 +6150,11 @@ func ResourceConfigActionDetailsSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"user_agent": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 		},
 	}
 }
@@ -6152,6 +6162,11 @@ func ResourceConfigActionDetailsSchema() *schema.Resource {
 func ResourceConfigCreateDetailsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"client_ip": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"error_message": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -6192,6 +6207,11 @@ func ResourceConfigCreateDetailsSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"user_agent": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 		},
 	}
 }
@@ -6199,6 +6219,11 @@ func ResourceConfigCreateDetailsSchema() *schema.Resource {
 func ResourceConfigDeleteDetailsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"client_ip": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"error_message": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -6230,6 +6255,11 @@ func ResourceConfigDeleteDetailsSchema() *schema.Resource {
 				Computed: true,
 			},
 			"user": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"user_agent": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
