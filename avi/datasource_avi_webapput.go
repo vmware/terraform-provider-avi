@@ -39,6 +39,10 @@ func dataSourceAviWebappUT() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceL1FSensitiveTestCaseSchema(),
 			},
+			"skip_optional_check_tests": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"string_length_test": {
 				Type:     schema.TypeSet,
 				Computed: true,

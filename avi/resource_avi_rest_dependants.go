@@ -10164,6 +10164,12 @@ func ResourceDnsServiceApplicationProfileSchema() *schema.Resource {
 				Optional: true,
 				Default:  "hostmaster",
 			},
+			"client_dns_tcp_request_timeout": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "10000",
+				ValidateFunc: validateInteger,
+			},
 			"close_tcp_connection_post_response": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -14092,6 +14098,11 @@ func ResourceGslbRuntimeSchema() *schema.Resource {
 func ResourceGslbServiceDownResponseSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"fallback_cname": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"fallback_ip": {
 				Type:     schema.TypeSet,
 				Optional: true,
@@ -22747,7 +22758,8 @@ func ResourceOAuthAppSettingsSchema() *schema.Resource {
 			},
 			"client_secret": {
 				Type:             schema.TypeString,
-				Required:         true,
+				Optional:         true,
+				Computed:         true,
 				Sensitive:        true,
 				DiffSuppressFunc: suppressSensitiveFieldDiffs,
 			},
@@ -25164,6 +25176,11 @@ func ResourcePortalConfigurationSchema() *schema.Resource {
 				Optional:     true,
 				Default:      "false",
 				ValidateFunc: validateBool,
+			},
+			"pkiprofile_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 			"redirect_to_https": {
 				Type:         schema.TypeString,

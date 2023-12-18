@@ -103,11 +103,23 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Default:      "60",
 			ValidateFunc: validateInteger,
 		},
+		"cloud_discovery_interval": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "5",
+			ValidateFunc: validateInteger,
+		},
 		"cloud_reconcile": {
 			Type:         schema.TypeString,
 			Optional:     true,
 			Default:      "true",
 			ValidateFunc: validateBool,
+		},
+		"cloud_reconcile_interval": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "5",
+			ValidateFunc: validateInteger,
 		},
 		"cluster_ip_gratuitous_arp_period": {
 			Type:         schema.TypeString,
