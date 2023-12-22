@@ -4513,6 +4513,102 @@ func ResourceCaptureIPCSchema() *schema.Resource {
 	}
 }
 
+func ResourceCapturePacketFilterSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"capture_tcp_filters": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceCaptureTCPFilterSchema(),
+			},
+		},
+	}
+}
+
+func ResourceCaptureTCPSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"tcpflag": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceCaptureTCPFlagsSchema(),
+			},
+		},
+	}
+}
+
+func ResourceCaptureTCPFilterSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"dst_port_range": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceDestinationPortAddrSchema(),
+			},
+			"eth_proto": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "ETH_TYPE_IPV4",
+			},
+			"host_ip": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceDebugIpAddrSchema(),
+			},
+			"src_port_range": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceSourcePortAddrSchema(),
+			},
+			"tcpflags": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceCaptureTCPSchema(),
+			},
+		},
+	}
+}
+
+func ResourceCaptureTCPFlagsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"match_operation": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "IS_IN",
+			},
+			"tcp_ack": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateBool,
+			},
+			"tcp_fin": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateBool,
+			},
+			"tcp_push": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateBool,
+			},
+			"tcp_syn": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateBool,
+			},
+		},
+	}
+}
+
 func ResourceCaseConfigSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -8665,6 +8761,11 @@ func ResourceDebugIpAddrSchema() *schema.Resource {
 				Optional: true,
 				Elem:     ResourceIpAddrSchema(),
 			},
+			"match_operation": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "IS_IN",
+			},
 			"prefixes": {
 				Type:     schema.TypeList,
 				Optional: true,
@@ -8827,6 +8928,12 @@ func ResourceDebugServiceEngineSchema() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceDebugVirtualServiceCaptureSchema(),
 			},
+			"capture_pkt_filter": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceCapturePacketFilterSchema(),
+			},
 			"cpu_shares": {
 				Type:     schema.TypeList,
 				Optional: true,
@@ -8960,6 +9067,12 @@ func ResourceDebugVirtualServiceSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 				Elem:     ResourceDebugVirtualServiceCaptureSchema(),
+			},
+			"capture_pkt_filter": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceCapturePacketFilterSchema(),
 			},
 			"cloud_ref": {
 				Type:     schema.TypeString,
@@ -9145,6 +9258,30 @@ func ResourceDebugVsDataplaneSchema() *schema.Resource {
 			"flag": {
 				Type:     schema.TypeString,
 				Required: true,
+			},
+		},
+	}
+}
+
+func ResourceDestinationPortAddrSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"dst_port_end": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"dst_port_start": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"match_operation": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "IS_IN",
 			},
 		},
 	}
@@ -11837,6 +11974,12 @@ func ResourceEventDetailsSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 				Elem:     ResourceSeBgpPeerStateChangeDetailsSchema(),
+			},
+			"se_debug_mode_event_detail": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceSeDebugModeEventDetailSchema(),
 			},
 			"se_details": {
 				Type:     schema.TypeSet,
@@ -28818,6 +28961,28 @@ func ResourceSeBootupPropertiesSchema() *schema.Resource {
 	}
 }
 
+func ResourceSeDebugModeEventDetailSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"description": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"se_name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"se_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
 func ResourceSeDiscontinuousTimeChangeEventDetailsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -33058,6 +33223,30 @@ func ResourceSnmpV3UserParamsSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceSourcePortAddrSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"match_operation": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "IS_IN",
+			},
+			"src_port_end": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"src_port_start": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
 			},
 		},
 	}
