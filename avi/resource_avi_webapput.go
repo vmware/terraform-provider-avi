@@ -16,6 +16,29 @@ func ResourceWebappUTSchema() map[string]*schema.Schema {
 			Computed: true,
 			Elem:     ResourceConfigPbAttributesSchema(),
 		},
+		"default_first_int": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "1",
+			ValidateFunc: validateInteger,
+		},
+		"default_second_int": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "2",
+			ValidateFunc: validateInteger,
+		},
+		"default_string": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Default:  "default string",
+		},
+		"default_third_int": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "3",
+			ValidateFunc: validateInteger,
+		},
 		"mandatory_test": {
 			Type:     schema.TypeSet,
 			Optional: true,

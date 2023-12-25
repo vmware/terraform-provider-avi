@@ -23174,7 +23174,8 @@ func ResourceOAuthAppSettingsSchema() *schema.Resource {
 			},
 			"client_secret": {
 				Type:             schema.TypeString,
-				Required:         true,
+				Optional:         true,
+				Computed:         true,
 				Sensitive:        true,
 				DiffSuppressFunc: suppressSensitiveFieldDiffs,
 			},
@@ -25608,6 +25609,11 @@ func ResourcePortalConfigurationSchema() *schema.Resource {
 				Optional:     true,
 				Default:      "false",
 				ValidateFunc: validateBool,
+			},
+			"pkiprofile_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 			"redirect_to_https": {
 				Type:         schema.TypeString,
