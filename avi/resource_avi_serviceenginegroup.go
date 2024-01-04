@@ -7,6 +7,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"github.com/vmware/alb-sdk/go/clients"
 	"log"
+	"strconv"
 	"strings"
 	"time"
 )
@@ -1466,7 +1467,7 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 		"use_objsync": {
 			Type:         schema.TypeString,
 			Optional:     true,
-			Default:      "true",
+			Default:      "false",
 			ValidateFunc: validateBool,
 		},
 		"use_standard_alb": {
@@ -1710,7 +1711,8 @@ func resourceAviServiceEngineGroupDelete(d *schema.ResourceData, meta interface{
 				if privilege := vcenterConfig.(map[string]interface{})["privilege"].(string); privilege == "WRITE_ACCESS" {
 					seGroupName := d.Get("name").(string)
 					cloudName := robj.(map[string]interface{})["name"].(string)
-					seDeprovisionDelay := d.Get("se_deprovision_delay").(int) + seDeprovisionExtraDelay
+					seDeprovisionDelayInt, _ := strconv.Atoi(d.Get("se_deprovision_delay").(string))
+					seDeprovisionDelay := seDeprovisionDelayInt + seDeprovisionExtraDelay
 					log.Printf("Waiting for %v minutes to delete SE from SE Group %v of cloud %v", seDeprovisionDelay, seGroupName, cloudName)
 					time.Sleep(time.Duration(seDeprovisionDelay) * time.Minute)
 				}

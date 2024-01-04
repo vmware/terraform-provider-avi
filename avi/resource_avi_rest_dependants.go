@@ -11580,6 +11580,12 @@ func ResourceEventDetailsSchema() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceSeBgpPeerStateChangeDetailsSchema(),
 			},
+			"se_debug_mode_event_detail": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceSeDebugModeEventDetailSchema(),
+			},
 			"se_details": {
 				Type:     schema.TypeSet,
 				Optional: true,
@@ -17809,6 +17815,12 @@ func ResourceInventoryConfigSchema() *schema.Resource {
 				Default:      "true",
 				ValidateFunc: validateBool,
 			},
+			"enable_search_info": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
 		},
 	}
 }
@@ -21178,6 +21190,11 @@ func ResourceMetricsDbQueueHealthyEventDetailsSchema() *schema.Resource {
 func ResourceMetricsDbRuntimeSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"db_client_name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"db_num_client_queries": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -28244,6 +28261,28 @@ func ResourceSeBootupPropertiesSchema() *schema.Resource {
 				Optional:     true,
 				Default:      "8192",
 				ValidateFunc: validateInteger,
+			},
+		},
+	}
+}
+
+func ResourceSeDebugModeEventDetailSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"description": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"se_name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"se_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 		},
 	}

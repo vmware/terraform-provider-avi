@@ -62,6 +62,12 @@ func ResourceALBServicesJobSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  "PENDING",
 		},
+		"status_update_time": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceTimeStampSchema(),
+		},
 		"tenant_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
