@@ -13449,6 +13449,11 @@ func ResourceGslbGeoDbFileSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"file_id_checksum": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"filename": {
 				Type:     schema.TypeString,
 				Optional: true,
