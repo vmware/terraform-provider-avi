@@ -9,7 +9,7 @@ build: fmtcheck
 
 build13: GOOS=$(shell go env GOOS)
 build13: GOARCH=$(shell go env GOARCH)
-build13: DESTINATION=$(HOME)/.terraform.d/plugins/$(AVI_PROVIDER_NAMESPACE)/22.1.5/$(GOOS)_$(GOARCH)
+build13: DESTINATION=$(HOME)/.terraform.d/plugins/$(AVI_PROVIDER_NAMESPACE)/22.1.6/$(GOOS)_$(GOARCH)
 build13: fmtcheck
 	@echo "==> Installing plugin to $(DESTINATION)"
 	@mkdir -p $(DESTINATION)
