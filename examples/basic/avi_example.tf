@@ -1,10 +1,10 @@
 provider "avi" {
-  avi_username   = "admin"
-  avi_tenant     = "admin"
-  avi_password   = var.avi_password
-  avi_controller = var.avi_controller
-  avi_version    = "18.2.5"
-  avi_api_timeout    = 50
+  avi_username    = "admin"
+  avi_tenant      = "admin"
+  avi_password    = var.avi_password
+  avi_controller  = var.avi_controller
+  avi_version     = "30.1.2"
+  avi_api_timeout = 50
 }
 
 data "avi_applicationprofile" "system_http_profile" {
@@ -54,6 +54,7 @@ resource "avi_networkprofile" "test_networkprofile" {
   tenant_ref = data.avi_tenant.default_tenant.id
   profile {
     type = "PROTOCOL_TYPE_TCP_PROXY"
+    tcp_proxy_profile {}
   }
 }
 
@@ -76,7 +77,7 @@ resource "avi_vsvip" "test_vsvip" {
 }
 
 resource "avi_virtualservice" "test_vs" {
-  name     = "terraform-vs"
+  name           = "terraform-vs"
   pool_group_ref = avi_poolgroup.terraform-pg-1.id
 
   #pool_ref= "${avi_pool.testpool.id}"
@@ -88,7 +89,7 @@ resource "avi_virtualservice" "test_vs" {
     enable_ssl     = true
     port_range_end = 80
   }
-  cloud_type                   = "CLOUD_VCENTER"
+  cloud_type                   = "CLOUD_NONE"
   ssl_key_and_certificate_refs = [avi_sslkeyandcertificate.terraform_vs_cert.id]
   ssl_profile_ref              = data.avi_sslprofile.system_standard_sslprofile.id
 }
@@ -118,7 +119,7 @@ resource "avi_pool" "terraform-pool-1" {
 }
 
 resource "avi_pool" "terraform-pool-2" {
-  name = "terraform-pool-2"
+  name                                = "terraform-pool-2"
   tenant_ref                          = data.avi_tenant.default_tenant.id
   cloud_ref                           = data.avi_cloud.default_cloud.id
   application_persistence_profile_ref = avi_applicationpersistenceprofile.test_applicationpersistenceprofile.id
@@ -130,17 +131,17 @@ resource "avi_pool" "terraform-pool-2" {
 
 
 resource "avi_poolgroup" "terraform-pg-1" {
-  name = "terraform-pg-1"
-  tenant_ref                          = data.avi_tenant.default_tenant.id
-  cloud_ref                           = data.avi_cloud.default_cloud.id
+  name       = "terraform-pg-1"
+  tenant_ref = data.avi_tenant.default_tenant.id
+  cloud_ref  = data.avi_cloud.default_cloud.id
   members {
-    pool_ref = avi_pool.terraform-pool-1.id
-    ratio = 100
+    pool_ref         = avi_pool.terraform-pool-1.id
+    ratio            = 100
     deployment_state = "IN_SERVICE"
   }
   members {
-    pool_ref = avi_pool.terraform-pool-2.id
-    ratio = 0
+    pool_ref         = avi_pool.terraform-pool-2.id
+    ratio            = 0
     deployment_state = "OUT_OF_SERVICE"
   }
 }
@@ -175,10 +176,10 @@ resource "avi_server" "test_server" {
 
 resource "avi_sslkeyandcertificate" "terraform_vs_cert" {
   name = "terraform_vs_cert"
-  key = file("${path.module}/app_cert.key")
+  key  = file("${path.module}/app_cert.key")
   certificate {
     self_signed = true
     certificate = file("${path.module}/app_cert.crt")
   }
-  type= "SSL_CERTIFICATE_TYPE_VIRTUALSERVICE"
+  type = "SSL_CERTIFICATE_TYPE_VIRTUALSERVICE"
 }
