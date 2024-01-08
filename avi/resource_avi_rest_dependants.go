@@ -8110,6 +8110,12 @@ func ResourceControllerSizingLimitsSchema() *schema.Resource {
 				Computed:     true,
 				ValidateFunc: validateInteger,
 			},
+			"num_waf_virtualservices": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
 		},
 	}
 }
