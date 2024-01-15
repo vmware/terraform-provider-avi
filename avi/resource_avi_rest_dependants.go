@@ -3564,6 +3564,37 @@ func ResourceBotClassificationSchema() *schema.Resource {
 	}
 }
 
+func ResourceBotConfigClientBehaviorSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"bad_request_percent": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "20",
+				ValidateFunc: validateInteger,
+			},
+			"enabled": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "true",
+				ValidateFunc: validateBool,
+			},
+			"minimum_requests": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "3",
+				ValidateFunc: validateInteger,
+			},
+			"minimum_requests_with_referer": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "1",
+				ValidateFunc: validateInteger,
+			},
+		},
+	}
+}
+
 func ResourceBotConfigIPLocationSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{

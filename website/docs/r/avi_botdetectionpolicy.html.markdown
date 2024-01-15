@@ -27,6 +27,7 @@ resource "avi_botdetectionpolicy" "foo" {
 
 The following arguments are supported:
 
+* `client_behavior_detector` - (Required) The client behavior configuration used in this policy. Field introduced in 30.2.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 * `ip_location_detector` - (Required) The ip location configuration used in this policy. Field introduced in 21.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 * `ip_reputation_detector` - (Required) The ip reputation configuration used in this policy. Field introduced in 21.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 * `name` - (Required) The name of this bot detection policy. Field introduced in 21.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.

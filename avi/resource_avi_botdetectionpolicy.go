@@ -16,6 +16,11 @@ func ResourceBotDetectionPolicySchema() map[string]*schema.Schema {
 			Computed: true,
 			Elem:     ResourceBotAllowListSchema(),
 		},
+		"client_behavior_detector": {
+			Type:     schema.TypeSet,
+			Required: true,
+			Elem:     ResourceBotConfigClientBehaviorSchema(),
+		},
 		"description": {
 			Type:     schema.TypeString,
 			Optional: true,

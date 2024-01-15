@@ -33,6 +33,7 @@ data "avi_botdetectionpolicy" "foo_botdetectionpolicy" {
 In addition to all arguments above, the following attributes are exported:
 
 * `allow_list` - Allow the user to skip botmanagement for selected requests. Field introduced in 21.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `client_behavior_detector` - The client behavior configuration used in this policy. Field introduced in 30.2.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 * `description` - Human-readable description of this bot detection policy. Field introduced in 21.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 * `ip_location_detector` - The ip location configuration used in this policy. Field introduced in 21.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 * `ip_reputation_detector` - The ip reputation configuration used in this policy. Field introduced in 21.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
