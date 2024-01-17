@@ -29449,6 +29449,11 @@ func ResourceSeListSchema() *schema.Resource {
 				Optional: true,
 				Elem:     ResourceIpAddrSchema(),
 			},
+			"floating_intf_ip6_addresses": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceIpAddrSchema(),
+			},
 			"incarnation": {
 				Type:     schema.TypeString,
 				Optional: true,
