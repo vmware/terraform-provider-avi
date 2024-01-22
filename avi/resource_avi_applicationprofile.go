@@ -78,7 +78,7 @@ func ResourceApplicationProfileSchema() map[string]*schema.Schema {
 		"preserve_client_port": {
 			Type:         schema.TypeString,
 			Optional:     true,
-			Default:      "false",
+			Computed:     true,
 			ValidateFunc: validateBool,
 		},
 		"preserve_dest_ip_port": {
