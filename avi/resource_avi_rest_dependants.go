@@ -2959,7 +2959,7 @@ func ResourceAzureConfigurationSchema() *schema.Resource {
 			"use_standard_alb": {
 				Type:         schema.TypeString,
 				Optional:     true,
-				Default:      "false",
+				Default:      "true",
 				ValidateFunc: validateBool,
 			},
 		},
@@ -35809,6 +35809,12 @@ func ResourceVIMgrSEVMRuntimeSchema() *schema.Resource {
 			"name": {
 				Type:     schema.TypeString,
 				Required: true,
+			},
+			"nsxt_no_hotplug": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateBool,
 			},
 			"powerstate": {
 				Type:     schema.TypeString,

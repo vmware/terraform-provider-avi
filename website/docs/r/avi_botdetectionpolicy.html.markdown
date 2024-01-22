@@ -27,12 +27,12 @@ resource "avi_botdetectionpolicy" "foo" {
 
 The following arguments are supported:
 
-* `client_behavior_detector` - (Required) The client behavior configuration used in this policy. Field introduced in 30.2.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 * `ip_location_detector` - (Required) The ip location configuration used in this policy. Field introduced in 21.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 * `ip_reputation_detector` - (Required) The ip reputation configuration used in this policy. Field introduced in 21.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 * `name` - (Required) The name of this bot detection policy. Field introduced in 21.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 * `user_agent_detector` - (Required) The user-agent configuration used in this policy. Field introduced in 21.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 * `allow_list` - (Optional) Allow the user to skip botmanagement for selected requests. Field introduced in 21.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `client_behavior_detector` - (Optional) The client behavior configuration used in this policy. Field introduced in 30.2.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 * `description` - (Optional) Human-readable description of this bot detection policy. Field introduced in 21.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 * `system_bot_mapping_ref` - (Optional) System-defined rules for classification. It is a reference to an object of type botmapping. Field introduced in 21.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 * `system_consolidator_ref` - (Optional) The installation provides an updated ruleset for consolidating the results of different decider phases. It is a reference to an object of type botconfigconsolidator. Field introduced in 21.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.

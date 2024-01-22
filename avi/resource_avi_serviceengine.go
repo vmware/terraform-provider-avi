@@ -78,6 +78,12 @@ func ResourceServiceEngineSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  "VM name unknown",
 		},
+		"nsxt_no_hotplug": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Computed:     true,
+			ValidateFunc: validateBool,
+		},
 		"resources": {
 			Type:     schema.TypeSet,
 			Optional: true,

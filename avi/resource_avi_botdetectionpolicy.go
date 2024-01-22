@@ -18,7 +18,8 @@ func ResourceBotDetectionPolicySchema() map[string]*schema.Schema {
 		},
 		"client_behavior_detector": {
 			Type:     schema.TypeSet,
-			Required: true,
+			Optional: true,
+			Computed: true,
 			Elem:     ResourceBotConfigClientBehaviorSchema(),
 		},
 		"description": {
