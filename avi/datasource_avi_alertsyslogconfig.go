@@ -23,6 +23,10 @@ func dataSourceAviAlertSyslogConfig() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"sender_hostname": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"syslog_servers": {
 				Type:     schema.TypeList,
 				Computed: true,

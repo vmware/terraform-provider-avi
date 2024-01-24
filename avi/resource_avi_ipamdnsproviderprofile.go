@@ -4,14 +4,11 @@
 package avi
 
 import (
-	"log"
-	"strings"
-
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
-	"github.com/vmware/alb-sdk/go/clients"
+	"log"
 )
 
-// nolint
+//nolint
 func ResourceIpamDnsProviderProfileSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"allocate_ip_in_vrf": {
@@ -112,7 +109,7 @@ func ResourceIpamDnsProviderProfileSchema() map[string]*schema.Schema {
 	}
 }
 
-// nolint
+//nolint
 func resourceAviIpamDnsProviderProfile() *schema.Resource {
 	return &schema.Resource{
 		Create: resourceAviIpamDnsProviderProfileCreate,
@@ -126,13 +123,13 @@ func resourceAviIpamDnsProviderProfile() *schema.Resource {
 	}
 }
 
-// nolint
+//nolint
 func ResourceIpamDnsProviderProfileImporter(d *schema.ResourceData, m interface{}) ([]*schema.ResourceData, error) {
 	s := ResourceIpamDnsProviderProfileSchema()
 	return ResourceImporter(d, m, "ipamdnsproviderprofile", s)
 }
 
-// nolint
+//nolint
 func ResourceAviIpamDnsProviderProfileRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceIpamDnsProviderProfileSchema()
 	err := APIRead(d, meta, "ipamdnsproviderprofile", s)
@@ -142,7 +139,7 @@ func ResourceAviIpamDnsProviderProfileRead(d *schema.ResourceData, meta interfac
 	return err
 }
 
-// nolint
+//nolint
 func resourceAviIpamDnsProviderProfileCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceIpamDnsProviderProfileSchema()
 	err := APICreateOrUpdate(d, meta, "ipamdnsproviderprofile", s)
@@ -152,7 +149,7 @@ func resourceAviIpamDnsProviderProfileCreate(d *schema.ResourceData, meta interf
 	return err
 }
 
-// nolint
+//nolint
 func resourceAviIpamDnsProviderProfileUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceIpamDnsProviderProfileSchema()
 	var err error
@@ -163,22 +160,15 @@ func resourceAviIpamDnsProviderProfileUpdate(d *schema.ResourceData, meta interf
 	return err
 }
 
-// nolint
+//nolint
 func resourceAviIpamDnsProviderProfileDelete(d *schema.ResourceData, meta interface{}) error {
-	objType := "ipamdnsproviderprofile"
-	client := meta.(*clients.AviClient)
+	var err error
 	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
-	uuid := d.Get("uuid").(string)
-	if uuid != "" {
-		path := "api/" + objType + "/" + uuid
-		err := client.AviSession.Delete(path)
-		if err != nil && !(strings.Contains(err.Error(), "404") || strings.Contains(err.Error(), "204") || strings.Contains(err.Error(), "403")) {
-			log.Println("[INFO] resourceAviIpamDnsProviderProfileDelete not found")
-			return err
-		}
-		d.SetId("")
+	err = APIDelete(d, meta, "ipamdnsproviderprofile")
+	if err != nil {
+		log.Printf("[ERROR] in deleting object %v\n", err)
 	}
-	return nil
+	return err
 }

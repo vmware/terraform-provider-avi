@@ -4,11 +4,8 @@
 package avi
 
 import (
-	"log"
-	"strings"
-
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
-	"github.com/vmware/alb-sdk/go/clients"
+	"log"
 )
 
 func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
@@ -103,11 +100,23 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Default:      "60",
 			ValidateFunc: validateInteger,
 		},
+		"cloud_discovery_interval": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "5",
+			ValidateFunc: validateInteger,
+		},
 		"cloud_reconcile": {
 			Type:         schema.TypeString,
 			Optional:     true,
 			Default:      "true",
 			ValidateFunc: validateBool,
+		},
+		"cloud_reconcile_interval": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "5",
+			ValidateFunc: validateInteger,
 		},
 		"cluster_ip_gratuitous_arp_period": {
 			Type:         schema.TypeString,
@@ -240,6 +249,11 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Optional:     true,
 			Default:      "1440",
 			ValidateFunc: validateInteger,
+		},
+		"file_reference_mappings": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceFileReferenceMappingSchema(),
 		},
 		"gslb_purge_batch_size": {
 			Type:         schema.TypeString,
@@ -474,6 +488,12 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Default:      "3",
 			ValidateFunc: validateInteger,
 		},
+		"soft_min_mem_per_se_limit": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "1900",
+			ValidateFunc: validateInteger,
+		},
 		"ssl_certificate_expiry_warning_days": {
 			Type:     schema.TypeList,
 			Optional: true,
@@ -678,20 +698,13 @@ func resourceAviControllerPropertiesUpdate(d *schema.ResourceData, meta interfac
 }
 
 func resourceAviControllerPropertiesDelete(d *schema.ResourceData, meta interface{}) error {
-	objType := "controllerproperties"
-	client := meta.(*clients.AviClient)
+	var err error
 	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
-	uuid := d.Get("uuid").(string)
-	if uuid != "" {
-		path := "api/" + objType + "/" + uuid
-		err := client.AviSession.Delete(path)
-		if err != nil && !(strings.Contains(err.Error(), "404") || strings.Contains(err.Error(), "204") || strings.Contains(err.Error(), "403")) {
-			log.Println("[INFO] resourceAviControllerPropertiesDelete not found")
-			return err
-		}
-		d.SetId("")
+	err = APIDelete(d, meta, "controllerproperties")
+	if err != nil {
+		log.Printf("[ERROR] in deleting object %v\n", err)
 	}
-	return nil
+	return err
 }

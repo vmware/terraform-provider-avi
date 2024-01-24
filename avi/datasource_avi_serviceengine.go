@@ -65,6 +65,10 @@ func dataSourceAviServiceEngine() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"nsxt_no_hotplug": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"resources": {
 				Type:     schema.TypeSet,
 				Computed: true,

@@ -69,7 +69,15 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"cloud_discovery_interval": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"cloud_reconcile": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"cloud_reconcile_interval": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
@@ -162,6 +170,11 @@ func dataSourceAviControllerProperties() *schema.Resource {
 			"file_object_cleanup_period": {
 				Type:     schema.TypeString,
 				Computed: true,
+			},
+			"file_reference_mappings": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceFileReferenceMappingSchema(),
 			},
 			"gslb_purge_batch_size": {
 				Type:     schema.TypeString,
@@ -316,6 +329,10 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Computed: true,
 			},
 			"skopeo_retry_limit": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"soft_min_mem_per_se_limit": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},

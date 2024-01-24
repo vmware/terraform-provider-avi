@@ -126,6 +126,10 @@ func dataSourceAviPool() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"graceful_hm_down_disable_timeout": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"gslb_sp_enabled": {
 				Type:     schema.TypeString,
 				Computed: true,

@@ -91,11 +91,11 @@ func testAccCheckAVIVirtualServiceValuesUpdated(vs *models.VirtualService, key s
 		if key == "vip.0.vip_id" && *vs.Vip[0].VipID != val {
 			return fmt.Errorf("bad vip_id, expected \"%v\", got: %#v", val, *vs.Vip[0].VipID)
 		}
-		if key == "min_pools_up" && int(*vs.MinPoolsUp) != val {
-			return fmt.Errorf("bad min_pools_up, expected \"%v\", got: %v", val, *vs.MinPoolsUp)
+		if key == "min_pools_up" && int(vs.MinPoolsUp) != val {
+			return fmt.Errorf("bad min_pools_up, expected \"%v\", got: %v", val, vs.MinPoolsUp)
 		}
-		if key == "max_cps_per_client" && int(*vs.MaxCpsPerClient) != val {
-			return fmt.Errorf("bad max_cps_per_client, expected \"%v\", got: %v", val, *vs.MaxCpsPerClient)
+		if key == "max_cps_per_client" && int(vs.MaxCpsPerClient) != val {
+			return fmt.Errorf("bad max_cps_per_client, expected \"%v\", got: %v", val, vs.MaxCpsPerClient)
 		}
 		return nil
 	}

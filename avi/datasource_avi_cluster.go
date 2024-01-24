@@ -38,6 +38,11 @@ func dataSourceAviCluster() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceIpAddrSchema(),
 			},
+			"virtual_ip6": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceIpAddrSchema(),
+			},
 			"cluster_state": {
 				Type:     schema.TypeSet,
 				Optional: true,

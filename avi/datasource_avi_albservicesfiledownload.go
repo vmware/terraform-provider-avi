@@ -5,42 +5,44 @@ package avi
 
 import "github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 
-//nolint
-func dataSourceAviDnsPolicy() *schema.Resource {
+func dataSourceAviALBServicesFileDownload() *schema.Resource {
 	return &schema.Resource{
-		Read: ResourceAviDnsPolicyRead,
+		Read: ResourceAviALBServicesFileDownloadRead,
 		Schema: map[string]*schema.Schema{
 			"configpb_attributes": {
 				Type:     schema.TypeSet,
 				Computed: true,
 				Elem:     ResourceConfigPbAttributesSchema(),
 			},
-			"created_by": {
+			"destination_dir": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"description": {
+			"file_type": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"internal": {
+			"file_uri": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"markers": {
-				Type:     schema.TypeList,
+			"message": {
+				Type:     schema.TypeString,
 				Computed: true,
-				Elem:     ResourceRoleFilterMatchLabelSchema(),
+			},
+			"metadata": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceALBServicesFileDownloadMetadataSchema(),
 			},
 			"name": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
-			"rule": {
-				Type:     schema.TypeList,
+			"status": {
+				Type:     schema.TypeString,
 				Computed: true,
-				Elem:     ResourceDnsRuleSchema(),
 			},
 			"tenant_ref": {
 				Type:     schema.TypeString,
