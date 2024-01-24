@@ -476,6 +476,12 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Optional: true,
 			Elem:     &schema.Schema{Type: schema.TypeInt},
 		},
+		"system_report_limit": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "10",
+			ValidateFunc: validateInteger,
+		},
 		"unresponsive_se_reboot": {
 			Type:         schema.TypeString,
 			Optional:     true,

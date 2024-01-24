@@ -5,42 +5,54 @@ package avi
 
 import "github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 
-//nolint
-func dataSourceAviDnsPolicy() *schema.Resource {
+func dataSourceAviSystemReport() *schema.Resource {
 	return &schema.Resource{
-		Read: ResourceAviDnsPolicyRead,
+		Read: ResourceAviSystemReportRead,
 		Schema: map[string]*schema.Schema{
-			"configpb_attributes": {
-				Type:     schema.TypeSet,
-				Computed: true,
-				Elem:     ResourceConfigPbAttributesSchema(),
-			},
-			"created_by": {
+			"archive_ref": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"description": {
+			"controller_patch_image_ref": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"internal": {
+			"downloadable": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"markers": {
+			"events": {
 				Type:     schema.TypeList,
 				Computed: true,
-				Elem:     ResourceRoleFilterMatchLabelSchema(),
+				Elem:     ResourceReportEventSchema(),
+			},
+			"image_ref": {
+				Type:     schema.TypeString,
+				Computed: true,
 			},
 			"name": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
-			"rule": {
+			"readiness_reports": {
 				Type:     schema.TypeList,
 				Computed: true,
-				Elem:     ResourceDnsRuleSchema(),
+				Elem:     ResourceReportDetailSchema(),
+			},
+			"se_patch_image_ref": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"state": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceReportOpsStateSchema(),
+			},
+			"summary": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceReportSummarySchema(),
 			},
 			"tenant_ref": {
 				Type:     schema.TypeString,
