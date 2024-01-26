@@ -6084,6 +6084,18 @@ func ResourceClusterWarmRebootEventSchema() *schema.Resource {
 	}
 }
 
+func ResourceClustifyCheckEventSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"reason": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
 func ResourceCompressionFilterSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -11465,6 +11477,12 @@ func ResourceEventDetailsSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 				Elem:     ResourceClusterWarmRebootEventSchema(),
+			},
+			"clustify_check_details": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceClustifyCheckEventSchema(),
 			},
 			"cntlr_host_list_details": {
 				Type:     schema.TypeSet,
@@ -25716,6 +25734,12 @@ func ResourcePortalFeatureOptInSchema() *schema.Resource {
 				Default:      "true",
 				ValidateFunc: validateBool,
 			},
+			"enable_search_info": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
 			"enable_user_agent_db_sync": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -26544,6 +26568,35 @@ func ResourceResponseMatchTargetSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 				Elem:     ResourcePortMatchSchema(),
+			},
+		},
+	}
+}
+
+func ResourceRestoreParamsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"file": {
+				Type:     schema.TypeString,
+				Required: true,
+			},
+			"passphrase": {
+				Type:             schema.TypeString,
+				Optional:         true,
+				Computed:         true,
+				Sensitive:        true,
+				DiffSuppressFunc: suppressSensitiveFieldDiffs,
+			},
+			"skip_warnings": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
+			"type": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "JSON",
 			},
 		},
 	}
