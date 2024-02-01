@@ -227,6 +227,11 @@ func ResourceUpgradeStatusInfoSchema() map[string]*schema.Schema {
 			Computed:     true,
 			ValidateFunc: validateBool,
 		},
+		"system_report_refs": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     &schema.Schema{Type: schema.TypeString},
+		},
 		"tasks_completed": {
 			Type:         schema.TypeString,
 			Optional:     true,

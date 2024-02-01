@@ -25080,6 +25080,12 @@ func ResourcePatchControllerParamsSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Required: true,
 			},
+			"prechecks_only": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
 			"skip_warnings": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -25138,6 +25144,12 @@ func ResourcePatchInfoSchema() *schema.Resource {
 func ResourcePatchSeGroupParamsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"prechecks_only": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
 			"se_group_options": {
 				Type:     schema.TypeSet,
 				Optional: true,
@@ -25170,6 +25182,12 @@ func ResourcePatchSystemParamsSchema() *schema.Resource {
 			"controller_patch_ref": {
 				Type:     schema.TypeString,
 				Required: true,
+			},
+			"prechecks_only": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
 			},
 			"se_group_options": {
 				Type:     schema.TypeSet,
@@ -26484,6 +26502,122 @@ func ResourceReplicationPolicySchema() *schema.Resource {
 	}
 }
 
+func ResourceReportDetailSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"node_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"node_type": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"obj_cloud_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"system_readiness": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceUpgradeReadinessCheckObjSchema(),
+			},
+		},
+	}
+}
+
+func ResourceReportEventSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"duration": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"end_time": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"event_name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"messages": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
+			"start_time": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"status": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceReportOpsStateSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"last_changed_time": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceTimeStampSchema(),
+			},
+			"reason": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"state": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceReportSummarySchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"description": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"previews": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
+			"title": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
 func ResourceResponseMatchTargetSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -26587,6 +26721,12 @@ func ResourceRestoreParamsSchema() *schema.Resource {
 				Sensitive:        true,
 				DiffSuppressFunc: suppressSensitiveFieldDiffs,
 			},
+			"prechecks_only": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
 			"skip_warnings": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -26605,6 +26745,12 @@ func ResourceRestoreParamsSchema() *schema.Resource {
 func ResourceResumeSeGroupParamsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"prechecks_only": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
 			"se_group_options": {
 				Type:     schema.TypeSet,
 				Optional: true,
@@ -27143,6 +27289,12 @@ func ResourceRoleMatchOperationMatchLabelSchema() *schema.Resource {
 func ResourceRollbackControllerParamsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"prechecks_only": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
 			"skip_warnings": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -27156,6 +27308,12 @@ func ResourceRollbackControllerParamsSchema() *schema.Resource {
 func ResourceRollbackPatchControllerParamsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"prechecks_only": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
 			"skip_warnings": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -27169,6 +27327,12 @@ func ResourceRollbackPatchControllerParamsSchema() *schema.Resource {
 func ResourceRollbackPatchSeGroupParamsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"prechecks_only": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
 			"se_group_options": {
 				Type:     schema.TypeSet,
 				Optional: true,
@@ -27193,6 +27357,12 @@ func ResourceRollbackPatchSeGroupParamsSchema() *schema.Resource {
 func ResourceRollbackPatchSystemParamsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"prechecks_only": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
 			"se_group_options": {
 				Type:     schema.TypeSet,
 				Optional: true,
@@ -27212,6 +27382,12 @@ func ResourceRollbackPatchSystemParamsSchema() *schema.Resource {
 func ResourceRollbackSeGroupParamsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"prechecks_only": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
 			"se_group_options": {
 				Type:     schema.TypeSet,
 				Optional: true,
@@ -27236,6 +27412,12 @@ func ResourceRollbackSeGroupParamsSchema() *schema.Resource {
 func ResourceRollbackSystemParamsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"prechecks_only": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
 			"se_group_options": {
 				Type:     schema.TypeSet,
 				Optional: true,
@@ -34663,6 +34845,12 @@ func ResourceUpgradeControllerParamsSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Required: true,
 			},
+			"prechecks_only": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
 			"skip_warnings": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -34838,6 +35026,12 @@ func ResourceUpgradeParamsSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"prechecks_only": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
 			"se_group_options": {
 				Type:     schema.TypeSet,
 				Optional: true,
@@ -34938,6 +35132,12 @@ func ResourceUpgradeSeGroupParamsSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Required: true,
 			},
+			"prechecks_only": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
 			"se_group_options": {
 				Type:     schema.TypeSet,
 				Optional: true,
@@ -34975,6 +35175,12 @@ func ResourceUpgradeSystemParamsSchema() *schema.Resource {
 			"image_ref": {
 				Type:     schema.TypeString,
 				Required: true,
+			},
+			"prechecks_only": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
 			},
 			"se_group_options": {
 				Type:     schema.TypeSet,
