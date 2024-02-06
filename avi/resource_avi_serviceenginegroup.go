@@ -1485,7 +1485,7 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 		"use_objsync": {
 			Type:         schema.TypeString,
 			Optional:     true,
-			Default:      "true",
+			Default:      "false",
 			ValidateFunc: validateBool,
 		},
 		"use_standard_alb": {

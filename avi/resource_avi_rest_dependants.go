@@ -41508,6 +41508,18 @@ func ResourcevNICSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"num_rx_descriptors": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"num_tx_descriptors": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
 			"pci_id": {
 				Type:     schema.TypeString,
 				Optional: true,
