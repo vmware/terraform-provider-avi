@@ -21692,6 +21692,11 @@ func ResourceMustChecksInfoSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"error_details": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
 			"start_time": {
 				Type:     schema.TypeString,
 				Optional: true,
