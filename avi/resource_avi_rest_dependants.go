@@ -11646,6 +11646,12 @@ func ResourceEventDetailsSchema() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceVinfraDiscSummaryDetailsSchema(),
 			},
+			"disk_cleanup_event_details": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceLogMgrCleanupEventDetailsSchema(),
+			},
 			"dns_query_error": {
 				Type:     schema.TypeSet,
 				Optional: true,
@@ -20478,6 +20484,41 @@ func ResourceLogManagerDebugFilterSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceLogMgrCleanupEventDetailsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"cleanup_count": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"controller": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"curr_size": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"from_time": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"size_limit": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
 			},
 		},
 	}
