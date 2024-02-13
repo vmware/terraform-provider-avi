@@ -53,11 +53,6 @@ func ResourceAuthProfileSchema() map[string]*schema.Schema {
 			Computed: true,
 			Elem:     ResourceOAuthProfileSchema(),
 		},
-		"pa_agent_ref": {
-			Type:     schema.TypeString,
-			Optional: true,
-			Computed: true,
-		},
 		"saml": {
 			Type:     schema.TypeSet,
 			Optional: true,

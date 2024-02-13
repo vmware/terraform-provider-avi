@@ -32330,6 +32330,12 @@ func ResourceSecurityMgrDebugFilterSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"psm_rule_id_multiplier": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
 		},
 	}
 }
