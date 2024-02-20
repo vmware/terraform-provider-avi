@@ -4,9 +4,8 @@
 package avi
 
 import (
-	"log"
-
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"log"
 )
 
 func ResourceSePropertiesSchema() map[string]*schema.Schema {
@@ -72,7 +71,7 @@ func ResourceAviSePropertiesRead(d *schema.ResourceData, meta interface{}) error
 
 func resourceAviSePropertiesCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceSePropertiesSchema()
-	err := APICreateOrUpdate(d, meta, "seproperties", s)
+	err := APICreate(d, meta, "seproperties", s)
 	if err == nil {
 		err = ResourceAviSePropertiesRead(d, meta)
 	}
@@ -82,7 +81,7 @@ func resourceAviSePropertiesCreate(d *schema.ResourceData, meta interface{}) err
 func resourceAviSePropertiesUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceSePropertiesSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "seproperties", s)
+	err = APIUpdate(d, meta, "seproperties", s)
 	if err == nil {
 		err = ResourceAviSePropertiesRead(d, meta)
 	}

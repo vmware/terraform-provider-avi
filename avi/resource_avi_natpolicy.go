@@ -4,9 +4,8 @@
 package avi
 
 import (
-	"log"
-
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"log"
 )
 
 func ResourceNatPolicySchema() map[string]*schema.Schema {
@@ -84,7 +83,7 @@ func ResourceAviNatPolicyRead(d *schema.ResourceData, meta interface{}) error {
 
 func resourceAviNatPolicyCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceNatPolicySchema()
-	err := APICreateOrUpdate(d, meta, "natpolicy", s)
+	err := APICreate(d, meta, "natpolicy", s)
 	if err == nil {
 		err = ResourceAviNatPolicyRead(d, meta)
 	}
@@ -94,7 +93,7 @@ func resourceAviNatPolicyCreate(d *schema.ResourceData, meta interface{}) error 
 func resourceAviNatPolicyUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceNatPolicySchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "natpolicy", s)
+	err = APIUpdate(d, meta, "natpolicy", s)
 	if err == nil {
 		err = ResourceAviNatPolicyRead(d, meta)
 	}

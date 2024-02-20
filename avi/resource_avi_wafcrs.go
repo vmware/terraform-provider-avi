@@ -4,9 +4,8 @@
 package avi
 
 import (
-	"log"
-
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"log"
 )
 
 func ResourceWafCRSSchema() map[string]*schema.Schema {
@@ -89,7 +88,7 @@ func ResourceAviWafCRSRead(d *schema.ResourceData, meta interface{}) error {
 
 func resourceAviWafCRSCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceWafCRSSchema()
-	err := APICreateOrUpdate(d, meta, "wafcrs", s)
+	err := APICreate(d, meta, "wafcrs", s)
 	if err == nil {
 		err = ResourceAviWafCRSRead(d, meta)
 	}
@@ -99,7 +98,7 @@ func resourceAviWafCRSCreate(d *schema.ResourceData, meta interface{}) error {
 func resourceAviWafCRSUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceWafCRSSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "wafcrs", s)
+	err = APIUpdate(d, meta, "wafcrs", s)
 	if err == nil {
 		err = ResourceAviWafCRSRead(d, meta)
 	}

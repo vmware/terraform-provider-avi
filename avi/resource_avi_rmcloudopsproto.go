@@ -4,9 +4,8 @@
 package avi
 
 import (
-	"log"
-
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"log"
 )
 
 func ResourceRmCloudOpsProtoSchema() map[string]*schema.Schema {
@@ -71,7 +70,7 @@ func ResourceAviRmCloudOpsProtoRead(d *schema.ResourceData, meta interface{}) er
 
 func resourceAviRmCloudOpsProtoCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceRmCloudOpsProtoSchema()
-	err := APICreateOrUpdate(d, meta, "rmcloudopsproto", s)
+	err := APICreate(d, meta, "rmcloudopsproto", s)
 	if err == nil {
 		err = ResourceAviRmCloudOpsProtoRead(d, meta)
 	}
@@ -81,7 +80,7 @@ func resourceAviRmCloudOpsProtoCreate(d *schema.ResourceData, meta interface{}) 
 func resourceAviRmCloudOpsProtoUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceRmCloudOpsProtoSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "rmcloudopsproto", s)
+	err = APIUpdate(d, meta, "rmcloudopsproto", s)
 	if err == nil {
 		err = ResourceAviRmCloudOpsProtoRead(d, meta)
 	}

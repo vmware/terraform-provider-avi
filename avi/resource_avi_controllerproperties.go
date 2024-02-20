@@ -4,9 +4,8 @@
 package avi
 
 import (
-	"log"
-
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"log"
 )
 
 func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
@@ -101,11 +100,23 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Default:      "60",
 			ValidateFunc: validateInteger,
 		},
+		"cloud_discovery_interval": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "5",
+			ValidateFunc: validateInteger,
+		},
 		"cloud_reconcile": {
 			Type:         schema.TypeString,
 			Optional:     true,
 			Default:      "true",
 			ValidateFunc: validateBool,
+		},
+		"cloud_reconcile_interval": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "5",
+			ValidateFunc: validateInteger,
 		},
 		"cluster_ip_gratuitous_arp_period": {
 			Type:         schema.TypeString,
@@ -465,6 +476,12 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Optional: true,
 			Elem:     &schema.Schema{Type: schema.TypeInt},
 		},
+		"system_report_limit": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "10",
+			ValidateFunc: validateInteger,
+		},
 		"unresponsive_se_reboot": {
 			Type:         schema.TypeString,
 			Optional:     true,
@@ -640,7 +657,7 @@ func ResourceAviControllerPropertiesRead(d *schema.ResourceData, meta interface{
 
 func resourceAviControllerPropertiesCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceControllerPropertiesSchema()
-	err := APICreateOrUpdate(d, meta, "controllerproperties", s)
+	err := APICreate(d, meta, "controllerproperties", s)
 	if err == nil {
 		err = ResourceAviControllerPropertiesRead(d, meta)
 	}
@@ -650,7 +667,7 @@ func resourceAviControllerPropertiesCreate(d *schema.ResourceData, meta interfac
 func resourceAviControllerPropertiesUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceControllerPropertiesSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "controllerproperties", s)
+	err = APIUpdate(d, meta, "controllerproperties", s)
 	if err == nil {
 		err = ResourceAviControllerPropertiesRead(d, meta)
 	}

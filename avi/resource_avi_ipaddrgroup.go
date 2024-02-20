@@ -4,12 +4,11 @@
 package avi
 
 import (
-	"log"
-
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"log"
 )
 
-// nolint
+//nolint
 func ResourceIpAddrGroupSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"addrs": {
@@ -81,7 +80,7 @@ func ResourceIpAddrGroupSchema() map[string]*schema.Schema {
 	}
 }
 
-// nolint
+//nolint
 func resourceAviIpAddrGroup() *schema.Resource {
 	return &schema.Resource{
 		Create: resourceAviIpAddrGroupCreate,
@@ -95,13 +94,13 @@ func resourceAviIpAddrGroup() *schema.Resource {
 	}
 }
 
-// nolint
+//nolint
 func ResourceIpAddrGroupImporter(d *schema.ResourceData, m interface{}) ([]*schema.ResourceData, error) {
 	s := ResourceIpAddrGroupSchema()
 	return ResourceImporter(d, m, "ipaddrgroup", s)
 }
 
-// nolint
+//nolint
 func ResourceAviIpAddrGroupRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceIpAddrGroupSchema()
 	err := APIRead(d, meta, "ipaddrgroup", s)
@@ -111,28 +110,28 @@ func ResourceAviIpAddrGroupRead(d *schema.ResourceData, meta interface{}) error 
 	return err
 }
 
-// nolint
+//nolint
 func resourceAviIpAddrGroupCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceIpAddrGroupSchema()
-	err := APICreateOrUpdate(d, meta, "ipaddrgroup", s)
+	err := APICreate(d, meta, "ipaddrgroup", s)
 	if err == nil {
 		err = ResourceAviIpAddrGroupRead(d, meta)
 	}
 	return err
 }
 
-// nolint
+//nolint
 func resourceAviIpAddrGroupUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceIpAddrGroupSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "ipaddrgroup", s)
+	err = APIUpdate(d, meta, "ipaddrgroup", s)
 	if err == nil {
 		err = ResourceAviIpAddrGroupRead(d, meta)
 	}
 	return err
 }
 
-// nolint
+//nolint
 func resourceAviIpAddrGroupDelete(d *schema.ResourceData, meta interface{}) error {
 	var err error
 	if APIDeleteSystemDefaultCheck(d) {

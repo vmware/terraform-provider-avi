@@ -4,9 +4,8 @@
 package avi
 
 import (
-	"log"
-
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"log"
 )
 
 func ResourceVirtualServiceSchema() map[string]*schema.Schema {
@@ -524,7 +523,7 @@ func ResourceAviVirtualServiceRead(d *schema.ResourceData, meta interface{}) err
 
 func resourceAviVirtualServiceCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceVirtualServiceSchema()
-	err := APICreateOrUpdate(d, meta, "virtualservice", s)
+	err := APICreate(d, meta, "virtualservice", s)
 	if err == nil {
 		err = ResourceAviVirtualServiceRead(d, meta)
 	}
@@ -534,7 +533,7 @@ func resourceAviVirtualServiceCreate(d *schema.ResourceData, meta interface{}) e
 func resourceAviVirtualServiceUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceVirtualServiceSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "virtualservice", s)
+	err = APIUpdate(d, meta, "virtualservice", s)
 	if err == nil {
 		err = ResourceAviVirtualServiceRead(d, meta)
 	}

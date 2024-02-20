@@ -4,9 +4,8 @@
 package avi
 
 import (
-	"log"
-
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"log"
 )
 
 func ResourceRoleSchema() map[string]*schema.Schema {
@@ -79,7 +78,7 @@ func ResourceAviRoleRead(d *schema.ResourceData, meta interface{}) error {
 
 func resourceAviRoleCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceRoleSchema()
-	err := APICreateOrUpdate(d, meta, "role", s)
+	err := APICreate(d, meta, "role", s)
 	if err == nil {
 		err = ResourceAviRoleRead(d, meta)
 	}
@@ -89,7 +88,7 @@ func resourceAviRoleCreate(d *schema.ResourceData, meta interface{}) error {
 func resourceAviRoleUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceRoleSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "role", s)
+	err = APIUpdate(d, meta, "role", s)
 	if err == nil {
 		err = ResourceAviRoleRead(d, meta)
 	}

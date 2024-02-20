@@ -4,9 +4,8 @@
 package avi
 
 import (
-	"log"
-
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"log"
 )
 
 func ResourcePoolGroupDeploymentPolicySchema() map[string]*schema.Schema {
@@ -112,7 +111,7 @@ func ResourceAviPoolGroupDeploymentPolicyRead(d *schema.ResourceData, meta inter
 
 func resourceAviPoolGroupDeploymentPolicyCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourcePoolGroupDeploymentPolicySchema()
-	err := APICreateOrUpdate(d, meta, "poolgroupdeploymentpolicy", s)
+	err := APICreate(d, meta, "poolgroupdeploymentpolicy", s)
 	if err == nil {
 		err = ResourceAviPoolGroupDeploymentPolicyRead(d, meta)
 	}
@@ -122,7 +121,7 @@ func resourceAviPoolGroupDeploymentPolicyCreate(d *schema.ResourceData, meta int
 func resourceAviPoolGroupDeploymentPolicyUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourcePoolGroupDeploymentPolicySchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "poolgroupdeploymentpolicy", s)
+	err = APIUpdate(d, meta, "poolgroupdeploymentpolicy", s)
 	if err == nil {
 		err = ResourceAviPoolGroupDeploymentPolicyRead(d, meta)
 	}

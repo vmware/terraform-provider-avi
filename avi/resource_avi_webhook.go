@@ -4,9 +4,8 @@
 package avi
 
 import (
-	"log"
-
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"log"
 )
 
 func ResourceWebhookSchema() map[string]*schema.Schema {
@@ -83,7 +82,7 @@ func ResourceAviWebhookRead(d *schema.ResourceData, meta interface{}) error {
 
 func resourceAviWebhookCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceWebhookSchema()
-	err := APICreateOrUpdate(d, meta, "webhook", s)
+	err := APICreate(d, meta, "webhook", s)
 	if err == nil {
 		err = ResourceAviWebhookRead(d, meta)
 	}
@@ -93,7 +92,7 @@ func resourceAviWebhookCreate(d *schema.ResourceData, meta interface{}) error {
 func resourceAviWebhookUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceWebhookSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "webhook", s)
+	err = APIUpdate(d, meta, "webhook", s)
 	if err == nil {
 		err = ResourceAviWebhookRead(d, meta)
 	}

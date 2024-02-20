@@ -4,9 +4,8 @@
 package avi
 
 import (
-	"log"
-
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"log"
 )
 
 func ResourceALBServicesJobSchema() map[string]*schema.Schema {
@@ -63,6 +62,12 @@ func ResourceALBServicesJobSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  "PENDING",
 		},
+		"status_update_time": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceTimeStampSchema(),
+		},
 		"tenant_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
@@ -110,7 +115,7 @@ func ResourceAviALBServicesJobRead(d *schema.ResourceData, meta interface{}) err
 
 func resourceAviALBServicesJobCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceALBServicesJobSchema()
-	err := APICreateOrUpdate(d, meta, "albservicesjob", s)
+	err := APICreate(d, meta, "albservicesjob", s)
 	if err == nil {
 		err = ResourceAviALBServicesJobRead(d, meta)
 	}
@@ -120,7 +125,7 @@ func resourceAviALBServicesJobCreate(d *schema.ResourceData, meta interface{}) e
 func resourceAviALBServicesJobUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceALBServicesJobSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "albservicesjob", s)
+	err = APIUpdate(d, meta, "albservicesjob", s)
 	if err == nil {
 		err = ResourceAviALBServicesJobRead(d, meta)
 	}

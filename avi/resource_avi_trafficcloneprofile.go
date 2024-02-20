@@ -4,9 +4,8 @@
 package avi
 
 import (
-	"log"
-
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"log"
 )
 
 func ResourceTrafficCloneProfileSchema() map[string]*schema.Schema {
@@ -84,7 +83,7 @@ func ResourceAviTrafficCloneProfileRead(d *schema.ResourceData, meta interface{}
 
 func resourceAviTrafficCloneProfileCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceTrafficCloneProfileSchema()
-	err := APICreateOrUpdate(d, meta, "trafficcloneprofile", s)
+	err := APICreate(d, meta, "trafficcloneprofile", s)
 	if err == nil {
 		err = ResourceAviTrafficCloneProfileRead(d, meta)
 	}
@@ -94,7 +93,7 @@ func resourceAviTrafficCloneProfileCreate(d *schema.ResourceData, meta interface
 func resourceAviTrafficCloneProfileUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceTrafficCloneProfileSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "trafficcloneprofile", s)
+	err = APIUpdate(d, meta, "trafficcloneprofile", s)
 	if err == nil {
 		err = ResourceAviTrafficCloneProfileRead(d, meta)
 	}

@@ -69,7 +69,15 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"cloud_discovery_interval": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"cloud_reconcile": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"cloud_reconcile_interval": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
@@ -315,6 +323,10 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Type:     schema.TypeList,
 				Computed: true,
 				Elem:     &schema.Schema{Type: schema.TypeInt},
+			},
+			"system_report_limit": {
+				Type:     schema.TypeString,
+				Computed: true,
 			},
 			"unresponsive_se_reboot": {
 				Type:     schema.TypeString,

@@ -4,9 +4,8 @@
 package avi
 
 import (
-	"log"
-
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"log"
 )
 
 func ResourceSiteVersionSchema() map[string]*schema.Schema {
@@ -105,7 +104,7 @@ func ResourceAviSiteVersionRead(d *schema.ResourceData, meta interface{}) error 
 
 func resourceAviSiteVersionCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceSiteVersionSchema()
-	err := APICreateOrUpdate(d, meta, "siteversion", s)
+	err := APICreate(d, meta, "siteversion", s)
 	if err == nil {
 		err = ResourceAviSiteVersionRead(d, meta)
 	}
@@ -115,7 +114,7 @@ func resourceAviSiteVersionCreate(d *schema.ResourceData, meta interface{}) erro
 func resourceAviSiteVersionUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceSiteVersionSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "siteversion", s)
+	err = APIUpdate(d, meta, "siteversion", s)
 	if err == nil {
 		err = ResourceAviSiteVersionRead(d, meta)
 	}

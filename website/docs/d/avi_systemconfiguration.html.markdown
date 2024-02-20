@@ -51,6 +51,7 @@ In addition to all arguments above, the following attributes are exported:
 * `ntp_configuration` - Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 * `portal_configuration` - Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 * `proxy_configuration` - Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `sddcmanager_fqdn` - Fqdn of sddc manager in vcf responsible for management of this alb controller cluster. Field introduced in 22.1.6. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 * `secure_channel_configuration` - Configure secure channel properties. Field introduced in 18.1.4, 18.2.1. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 * `snmp_configuration` - Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 * `ssh_ciphers` - Allowed ciphers list for ssh to the management interface on the controller and service engines. If this is not specified, all the default ciphers are allowed. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.

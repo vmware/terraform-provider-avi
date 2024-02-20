@@ -4,9 +4,8 @@
 package avi
 
 import (
-	"log"
-
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"log"
 )
 
 func ResourceVSDataScriptSetSchema() map[string]*schema.Schema {
@@ -138,7 +137,7 @@ func ResourceAviVSDataScriptSetRead(d *schema.ResourceData, meta interface{}) er
 
 func resourceAviVSDataScriptSetCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceVSDataScriptSetSchema()
-	err := APICreateOrUpdate(d, meta, "vsdatascriptset", s)
+	err := APICreate(d, meta, "vsdatascriptset", s)
 	if err == nil {
 		err = ResourceAviVSDataScriptSetRead(d, meta)
 	}
@@ -148,7 +147,7 @@ func resourceAviVSDataScriptSetCreate(d *schema.ResourceData, meta interface{}) 
 func resourceAviVSDataScriptSetUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceVSDataScriptSetSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "vsdatascriptset", s)
+	err = APIUpdate(d, meta, "vsdatascriptset", s)
 	if err == nil {
 		err = ResourceAviVSDataScriptSetRead(d, meta)
 	}

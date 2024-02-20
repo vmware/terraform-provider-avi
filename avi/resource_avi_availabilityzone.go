@@ -4,9 +4,8 @@
 package avi
 
 import (
-	"log"
-
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"log"
 )
 
 func ResourceAvailabilityZoneSchema() map[string]*schema.Schema {
@@ -73,7 +72,7 @@ func ResourceAviAvailabilityZoneRead(d *schema.ResourceData, meta interface{}) e
 
 func resourceAviAvailabilityZoneCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceAvailabilityZoneSchema()
-	err := APICreateOrUpdate(d, meta, "availabilityzone", s)
+	err := APICreate(d, meta, "availabilityzone", s)
 	if err == nil {
 		err = ResourceAviAvailabilityZoneRead(d, meta)
 	}
@@ -83,7 +82,7 @@ func resourceAviAvailabilityZoneCreate(d *schema.ResourceData, meta interface{})
 func resourceAviAvailabilityZoneUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceAvailabilityZoneSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "availabilityzone", s)
+	err = APIUpdate(d, meta, "availabilityzone", s)
 	if err == nil {
 		err = ResourceAviAvailabilityZoneRead(d, meta)
 	}

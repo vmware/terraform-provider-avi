@@ -4,9 +4,8 @@
 package avi
 
 import (
-	"log"
-
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"log"
 )
 
 func ResourceMemoryBalancerRequestSchema() map[string]*schema.Schema {
@@ -90,7 +89,7 @@ func ResourceAviMemoryBalancerRequestRead(d *schema.ResourceData, meta interface
 
 func resourceAviMemoryBalancerRequestCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceMemoryBalancerRequestSchema()
-	err := APICreateOrUpdate(d, meta, "memorybalancerrequest", s)
+	err := APICreate(d, meta, "memorybalancerrequest", s)
 	if err == nil {
 		err = ResourceAviMemoryBalancerRequestRead(d, meta)
 	}
@@ -100,7 +99,7 @@ func resourceAviMemoryBalancerRequestCreate(d *schema.ResourceData, meta interfa
 func resourceAviMemoryBalancerRequestUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceMemoryBalancerRequestSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "memorybalancerrequest", s)
+	err = APIUpdate(d, meta, "memorybalancerrequest", s)
 	if err == nil {
 		err = ResourceAviMemoryBalancerRequestRead(d, meta)
 	}

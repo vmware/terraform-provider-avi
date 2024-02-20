@@ -4,9 +4,8 @@
 package avi
 
 import (
-	"log"
-
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"log"
 )
 
 func ResourceUpgradeStatusInfoSchema() map[string]*schema.Schema {
@@ -218,6 +217,11 @@ func ResourceUpgradeStatusInfoSchema() map[string]*schema.Schema {
 			Computed:     true,
 			ValidateFunc: validateBool,
 		},
+		"system_report_refs": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     &schema.Schema{Type: schema.TypeString},
+		},
 		"tasks_completed": {
 			Type:         schema.TypeString,
 			Optional:     true,
@@ -293,7 +297,7 @@ func ResourceAviUpgradeStatusInfoRead(d *schema.ResourceData, meta interface{}) 
 
 func resourceAviUpgradeStatusInfoCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceUpgradeStatusInfoSchema()
-	err := APICreateOrUpdate(d, meta, "upgradestatusinfo", s)
+	err := APICreate(d, meta, "upgradestatusinfo", s)
 	if err == nil {
 		err = ResourceAviUpgradeStatusInfoRead(d, meta)
 	}
@@ -303,7 +307,7 @@ func resourceAviUpgradeStatusInfoCreate(d *schema.ResourceData, meta interface{}
 func resourceAviUpgradeStatusInfoUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceUpgradeStatusInfoSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "upgradestatusinfo", s)
+	err = APIUpdate(d, meta, "upgradestatusinfo", s)
 	if err == nil {
 		err = ResourceAviUpgradeStatusInfoRead(d, meta)
 	}

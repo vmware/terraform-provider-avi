@@ -4,9 +4,8 @@
 package avi
 
 import (
-	"log"
-
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"log"
 )
 
 func ResourceLabelGroupSchema() map[string]*schema.Schema {
@@ -63,7 +62,7 @@ func ResourceAviLabelGroupRead(d *schema.ResourceData, meta interface{}) error {
 
 func resourceAviLabelGroupCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceLabelGroupSchema()
-	err := APICreateOrUpdate(d, meta, "labelgroup", s)
+	err := APICreate(d, meta, "labelgroup", s)
 	if err == nil {
 		err = ResourceAviLabelGroupRead(d, meta)
 	}
@@ -73,7 +72,7 @@ func resourceAviLabelGroupCreate(d *schema.ResourceData, meta interface{}) error
 func resourceAviLabelGroupUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceLabelGroupSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "labelgroup", s)
+	err = APIUpdate(d, meta, "labelgroup", s)
 	if err == nil {
 		err = ResourceAviLabelGroupRead(d, meta)
 	}

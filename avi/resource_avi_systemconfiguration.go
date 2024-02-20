@@ -4,9 +4,8 @@
 package avi
 
 import (
-	"log"
-
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"log"
 )
 
 func ResourceSystemConfigurationSchema() map[string]*schema.Schema {
@@ -121,6 +120,11 @@ func ResourceSystemConfigurationSchema() map[string]*schema.Schema {
 			Computed: true,
 			Elem:     ResourceProxyConfigurationSchema(),
 		},
+		"sddcmanager_fqdn": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
 		"secure_channel_configuration": {
 			Type:     schema.TypeSet,
 			Optional: true,
@@ -186,7 +190,7 @@ func ResourceAviSystemConfigurationRead(d *schema.ResourceData, meta interface{}
 
 func resourceAviSystemConfigurationCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceSystemConfigurationSchema()
-	err := APICreateOrUpdate(d, meta, "systemconfiguration", s)
+	err := APICreate(d, meta, "systemconfiguration", s)
 	if err == nil {
 		err = ResourceAviSystemConfigurationRead(d, meta)
 	}
@@ -196,7 +200,7 @@ func resourceAviSystemConfigurationCreate(d *schema.ResourceData, meta interface
 func resourceAviSystemConfigurationUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceSystemConfigurationSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "systemconfiguration", s)
+	err = APIUpdate(d, meta, "systemconfiguration", s)
 	if err == nil {
 		err = ResourceAviSystemConfigurationRead(d, meta)
 	}

@@ -4,9 +4,8 @@
 package avi
 
 import (
-	"log"
-
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"log"
 )
 
 func ResourceBotConfigConsolidatorSchema() map[string]*schema.Schema {
@@ -67,7 +66,7 @@ func ResourceAviBotConfigConsolidatorRead(d *schema.ResourceData, meta interface
 
 func resourceAviBotConfigConsolidatorCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceBotConfigConsolidatorSchema()
-	err := APICreateOrUpdate(d, meta, "botconfigconsolidator", s)
+	err := APICreate(d, meta, "botconfigconsolidator", s)
 	if err == nil {
 		err = ResourceAviBotConfigConsolidatorRead(d, meta)
 	}
@@ -77,7 +76,7 @@ func resourceAviBotConfigConsolidatorCreate(d *schema.ResourceData, meta interfa
 func resourceAviBotConfigConsolidatorUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceBotConfigConsolidatorSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "botconfigconsolidator", s)
+	err = APIUpdate(d, meta, "botconfigconsolidator", s)
 	if err == nil {
 		err = ResourceAviBotConfigConsolidatorRead(d, meta)
 	}

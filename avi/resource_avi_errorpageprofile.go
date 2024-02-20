@@ -4,9 +4,8 @@
 package avi
 
 import (
-	"log"
-
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"log"
 )
 
 func ResourceErrorPageProfileSchema() map[string]*schema.Schema {
@@ -73,7 +72,7 @@ func ResourceAviErrorPageProfileRead(d *schema.ResourceData, meta interface{}) e
 
 func resourceAviErrorPageProfileCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceErrorPageProfileSchema()
-	err := APICreateOrUpdate(d, meta, "errorpageprofile", s)
+	err := APICreate(d, meta, "errorpageprofile", s)
 	if err == nil {
 		err = ResourceAviErrorPageProfileRead(d, meta)
 	}
@@ -83,7 +82,7 @@ func resourceAviErrorPageProfileCreate(d *schema.ResourceData, meta interface{})
 func resourceAviErrorPageProfileUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceErrorPageProfileSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "errorpageprofile", s)
+	err = APIUpdate(d, meta, "errorpageprofile", s)
 	if err == nil {
 		err = ResourceAviErrorPageProfileRead(d, meta)
 	}

@@ -4,9 +4,8 @@
 package avi
 
 import (
-	"log"
-
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"log"
 )
 
 func ResourceStatediffOperationSchema() map[string]*schema.Schema {
@@ -83,7 +82,7 @@ func ResourceAviStatediffOperationRead(d *schema.ResourceData, meta interface{})
 
 func resourceAviStatediffOperationCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceStatediffOperationSchema()
-	err := APICreateOrUpdate(d, meta, "statediffoperation", s)
+	err := APICreate(d, meta, "statediffoperation", s)
 	if err == nil {
 		err = ResourceAviStatediffOperationRead(d, meta)
 	}
@@ -93,7 +92,7 @@ func resourceAviStatediffOperationCreate(d *schema.ResourceData, meta interface{
 func resourceAviStatediffOperationUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceStatediffOperationSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "statediffoperation", s)
+	err = APIUpdate(d, meta, "statediffoperation", s)
 	if err == nil {
 		err = ResourceAviStatediffOperationRead(d, meta)
 	}

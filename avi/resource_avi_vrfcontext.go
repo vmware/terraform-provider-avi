@@ -4,9 +4,8 @@
 package avi
 
 import (
-	"log"
-
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"log"
 )
 
 func ResourceVrfContextSchema() map[string]*schema.Schema {
@@ -129,7 +128,7 @@ func ResourceAviVrfContextRead(d *schema.ResourceData, meta interface{}) error {
 
 func resourceAviVrfContextCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceVrfContextSchema()
-	err := APICreateOrUpdate(d, meta, "vrfcontext", s)
+	err := APICreate(d, meta, "vrfcontext", s)
 	if err == nil {
 		err = ResourceAviVrfContextRead(d, meta)
 	}
@@ -139,7 +138,7 @@ func resourceAviVrfContextCreate(d *schema.ResourceData, meta interface{}) error
 func resourceAviVrfContextUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceVrfContextSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "vrfcontext", s)
+	err = APIUpdate(d, meta, "vrfcontext", s)
 	if err == nil {
 		err = ResourceAviVrfContextRead(d, meta)
 	}
