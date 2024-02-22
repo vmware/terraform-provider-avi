@@ -1189,6 +1189,12 @@ func ResourceAppLearningConfidenceOverrideSchema() *schema.Resource {
 func ResourceAppLearningParamsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"enable_learn_from_bots": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "true",
+				ValidateFunc: validateBool,
+			},
 			"enable_per_uri_learning": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -4343,7 +4349,7 @@ func ResourceCSRFRuleSchema() *schema.Resource {
 			"action": {
 				Type:     schema.TypeString,
 				Optional: true,
-				Default:  "VERIFY_CSRF_TOKEN",
+				Default:  "VERIFY_ORIGIN_AND_CSRF_TOKEN",
 			},
 			"enable": {
 				Type:         schema.TypeString,
@@ -21696,12 +21702,12 @@ func ResourceMetricsDbDiskEventDetailsSchema() *schema.Resource {
 			"metrics_free_sz": {
 				Type:         schema.TypeString,
 				Required:     true,
-				ValidateFunc: validateInteger,
+				ValidateFunc: validateFloat,
 			},
 			"metrics_quota": {
 				Type:         schema.TypeString,
 				Required:     true,
-				ValidateFunc: validateInteger,
+				ValidateFunc: validateFloat,
 			},
 		},
 	}
