@@ -324,6 +324,10 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Computed: true,
 				Elem:     &schema.Schema{Type: schema.TypeInt},
 			},
+			"system_report_cleanup_interval": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"system_report_limit": {
 				Type:     schema.TypeString,
 				Computed: true,

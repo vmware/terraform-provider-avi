@@ -11986,6 +11986,12 @@ func ResourceEventDetailsSchema() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceCloudSyncServicesSchema(),
 			},
+			"system_report_event_details": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceSystemReportSchema(),
+			},
 			"tencent_info": {
 				Type:     schema.TypeSet,
 				Optional: true,
@@ -21157,12 +21163,12 @@ func ResourceMetricsDbDiskEventDetailsSchema() *schema.Resource {
 			"metrics_free_sz": {
 				Type:         schema.TypeString,
 				Required:     true,
-				ValidateFunc: validateInteger,
+				ValidateFunc: validateFloat,
 			},
 			"metrics_quota": {
 				Type:         schema.TypeString,
 				Required:     true,
-				ValidateFunc: validateInteger,
+				ValidateFunc: validateFloat,
 			},
 		},
 	}
