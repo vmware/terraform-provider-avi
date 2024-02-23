@@ -720,6 +720,10 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"se_debug_trace_sz": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"se_delayed_flow_delete": {
 				Type:     schema.TypeString,
 				Computed: true,

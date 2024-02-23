@@ -1019,6 +1019,12 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"se_debug_trace_sz": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "8",
+			ValidateFunc: validateInteger,
+		},
 		"se_delayed_flow_delete": {
 			Type:         schema.TypeString,
 			Optional:     true,
