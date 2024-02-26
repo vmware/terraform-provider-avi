@@ -829,6 +829,12 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Default:      "20",
 			ValidateFunc: validateInteger,
 		},
+		"multicast_enable": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "true",
+			ValidateFunc: validateBool,
+		},
 		"n_log_streaming_threads": {
 			Type:         schema.TypeString,
 			Optional:     true,

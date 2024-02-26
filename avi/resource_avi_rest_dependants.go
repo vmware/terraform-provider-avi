@@ -4562,19 +4562,6 @@ func ResourceCapturePacketFilterSchema() *schema.Resource {
 	}
 }
 
-func ResourceCaptureTCPSchema() *schema.Resource {
-	return &schema.Resource{
-		Schema: map[string]*schema.Schema{
-			"tcpflag": {
-				Type:     schema.TypeSet,
-				Optional: true,
-				Computed: true,
-				Elem:     ResourceCaptureTCPFlagsSchema(),
-			},
-		},
-	}
-}
-
 func ResourceCaptureTCPFilterSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -4601,10 +4588,11 @@ func ResourceCaptureTCPFilterSchema() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceSourcePortAddrSchema(),
 			},
-			"tcpflags": {
-				Type:     schema.TypeList,
+			"tcpflag": {
+				Type:     schema.TypeSet,
 				Optional: true,
-				Elem:     ResourceCaptureTCPSchema(),
+				Computed: true,
+				Elem:     ResourceCaptureTCPFlagsSchema(),
 			},
 		},
 	}
@@ -4613,6 +4601,11 @@ func ResourceCaptureTCPFilterSchema() *schema.Resource {
 func ResourceCaptureTCPFlagsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"filter_op": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "OR",
+			},
 			"match_operation": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -4631,6 +4624,12 @@ func ResourceCaptureTCPFlagsSchema() *schema.Resource {
 				ValidateFunc: validateBool,
 			},
 			"tcp_push": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateBool,
+			},
+			"tcp_rst": {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Computed:     true,
