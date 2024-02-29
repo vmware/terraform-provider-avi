@@ -5,67 +5,58 @@ package avi
 
 import "github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 
-func dataSourceAviALBServicesJob() *schema.Resource {
+func dataSourceAviSystemReport() *schema.Resource {
 	return &schema.Resource{
-		Read: ResourceAviALBServicesJobRead,
+		Read: ResourceAviSystemReportRead,
 		Schema: map[string]*schema.Schema{
-			"command": {
+			"archive_ref": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"configpb_attributes": {
-				Type:     schema.TypeSet,
+			"controller_patch_image_ref": {
+				Type:     schema.TypeString,
 				Computed: true,
-				Elem:     ResourceConfigPbAttributesSchema(),
 			},
-			"end_time": {
-				Type:     schema.TypeSet,
+			"downloadable": {
+				Type:     schema.TypeString,
 				Computed: true,
-				Elem:     ResourceTimeStampSchema(),
+			},
+			"events": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceReportEventSchema(),
+			},
+			"image_ref": {
+				Type:     schema.TypeString,
+				Computed: true,
 			},
 			"name": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
-			"params": {
+			"readiness_reports": {
 				Type:     schema.TypeList,
 				Computed: true,
-				Elem:     ResourceALBServicesJobParamSchema(),
+				Elem:     ResourceReportDetailSchema(),
 			},
-			"pulse_job_id": {
+			"se_patch_image_ref": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"pulse_sync_status": {
-				Type:     schema.TypeString,
-				Computed: true,
-			},
-			"result": {
-				Type:     schema.TypeString,
-				Computed: true,
-			},
-			"start_time": {
+			"state": {
 				Type:     schema.TypeSet,
 				Computed: true,
-				Elem:     ResourceTimeStampSchema(),
+				Elem:     ResourceReportOpsStateSchema(),
 			},
-			"status": {
-				Type:     schema.TypeString,
-				Computed: true,
-			},
-			"status_update_time": {
+			"summary": {
 				Type:     schema.TypeSet,
 				Computed: true,
-				Elem:     ResourceTimeStampSchema(),
+				Elem:     ResourceReportSummarySchema(),
 			},
 			"tenant_ref": {
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
-			},
-			"token": {
-				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"uuid": {

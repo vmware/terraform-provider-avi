@@ -4,9 +4,8 @@
 package avi
 
 import (
-	"log"
-
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"log"
 )
 
 func ResourceControllerPortalRegistrationSchema() map[string]*schema.Schema {
@@ -69,7 +68,7 @@ func ResourceAviControllerPortalRegistrationRead(d *schema.ResourceData, meta in
 
 func resourceAviControllerPortalRegistrationCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceControllerPortalRegistrationSchema()
-	err := APICreateOrUpdate(d, meta, "controllerportalregistration", s)
+	err := APICreate(d, meta, "controllerportalregistration", s)
 	if err == nil {
 		err = ResourceAviControllerPortalRegistrationRead(d, meta)
 	}
@@ -79,7 +78,7 @@ func resourceAviControllerPortalRegistrationCreate(d *schema.ResourceData, meta 
 func resourceAviControllerPortalRegistrationUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceControllerPortalRegistrationSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "controllerportalregistration", s)
+	err = APIUpdate(d, meta, "controllerportalregistration", s)
 	if err == nil {
 		err = ResourceAviControllerPortalRegistrationRead(d, meta)
 	}

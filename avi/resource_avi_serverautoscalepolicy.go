@@ -4,9 +4,8 @@
 package avi
 
 import (
-	"log"
-
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"log"
 )
 
 func ResourceServerAutoScalePolicySchema() map[string]*schema.Schema {
@@ -154,7 +153,7 @@ func ResourceAviServerAutoScalePolicyRead(d *schema.ResourceData, meta interface
 
 func resourceAviServerAutoScalePolicyCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceServerAutoScalePolicySchema()
-	err := APICreateOrUpdate(d, meta, "serverautoscalepolicy", s)
+	err := APICreate(d, meta, "serverautoscalepolicy", s)
 	if err == nil {
 		err = ResourceAviServerAutoScalePolicyRead(d, meta)
 	}
@@ -164,7 +163,7 @@ func resourceAviServerAutoScalePolicyCreate(d *schema.ResourceData, meta interfa
 func resourceAviServerAutoScalePolicyUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceServerAutoScalePolicySchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "serverautoscalepolicy", s)
+	err = APIUpdate(d, meta, "serverautoscalepolicy", s)
 	if err == nil {
 		err = ResourceAviServerAutoScalePolicyRead(d, meta)
 	}

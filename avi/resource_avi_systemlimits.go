@@ -4,9 +4,8 @@
 package avi
 
 import (
-	"log"
-
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"log"
 )
 
 func ResourceSystemLimitsSchema() map[string]*schema.Schema {
@@ -71,7 +70,7 @@ func ResourceAviSystemLimitsRead(d *schema.ResourceData, meta interface{}) error
 
 func resourceAviSystemLimitsCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceSystemLimitsSchema()
-	err := APICreateOrUpdate(d, meta, "systemlimits", s)
+	err := APICreate(d, meta, "systemlimits", s)
 	if err == nil {
 		err = ResourceAviSystemLimitsRead(d, meta)
 	}
@@ -81,7 +80,7 @@ func resourceAviSystemLimitsCreate(d *schema.ResourceData, meta interface{}) err
 func resourceAviSystemLimitsUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceSystemLimitsSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "systemlimits", s)
+	err = APIUpdate(d, meta, "systemlimits", s)
 	if err == nil {
 		err = ResourceAviSystemLimitsRead(d, meta)
 	}

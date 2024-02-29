@@ -4,9 +4,8 @@
 package avi
 
 import (
-	"log"
-
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"log"
 )
 
 func ResourceApplicationProfileSchema() map[string]*schema.Schema {
@@ -79,7 +78,7 @@ func ResourceApplicationProfileSchema() map[string]*schema.Schema {
 		"preserve_client_port": {
 			Type:         schema.TypeString,
 			Optional:     true,
-			Default:      "false",
+			Computed:     true,
 			ValidateFunc: validateBool,
 		},
 		"preserve_dest_ip_port": {
@@ -146,7 +145,7 @@ func ResourceAviApplicationProfileRead(d *schema.ResourceData, meta interface{})
 
 func resourceAviApplicationProfileCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceApplicationProfileSchema()
-	err := APICreateOrUpdate(d, meta, "applicationprofile", s)
+	err := APICreate(d, meta, "applicationprofile", s)
 	if err == nil {
 		err = ResourceAviApplicationProfileRead(d, meta)
 	}
@@ -156,7 +155,7 @@ func resourceAviApplicationProfileCreate(d *schema.ResourceData, meta interface{
 func resourceAviApplicationProfileUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceApplicationProfileSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "applicationprofile", s)
+	err = APIUpdate(d, meta, "applicationprofile", s)
 	if err == nil {
 		err = ResourceAviApplicationProfileRead(d, meta)
 	}

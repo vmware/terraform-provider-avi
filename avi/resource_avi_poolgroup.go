@@ -4,9 +4,8 @@
 package avi
 
 import (
-	"log"
-
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"log"
 )
 
 func ResourcePoolGroupSchema() map[string]*schema.Schema {
@@ -138,7 +137,7 @@ func ResourceAviPoolGroupRead(d *schema.ResourceData, meta interface{}) error {
 
 func resourceAviPoolGroupCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourcePoolGroupSchema()
-	err := APICreateOrUpdate(d, meta, "poolgroup", s)
+	err := APICreate(d, meta, "poolgroup", s)
 	if err == nil {
 		err = ResourceAviPoolGroupRead(d, meta)
 	}
@@ -148,7 +147,7 @@ func resourceAviPoolGroupCreate(d *schema.ResourceData, meta interface{}) error 
 func resourceAviPoolGroupUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourcePoolGroupSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "poolgroup", s)
+	err = APIUpdate(d, meta, "poolgroup", s)
 	if err == nil {
 		err = ResourceAviPoolGroupRead(d, meta)
 	}

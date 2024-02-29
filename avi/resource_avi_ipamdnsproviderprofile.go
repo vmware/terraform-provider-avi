@@ -4,9 +4,8 @@
 package avi
 
 import (
-	"log"
-
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"log"
 )
 
 // nolint
@@ -143,7 +142,7 @@ func ResourceAviIpamDnsProviderProfileRead(d *schema.ResourceData, meta interfac
 // nolint
 func resourceAviIpamDnsProviderProfileCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceIpamDnsProviderProfileSchema()
-	err := APICreateOrUpdate(d, meta, "ipamdnsproviderprofile", s)
+	err := APICreate(d, meta, "ipamdnsproviderprofile", s)
 	if err == nil {
 		err = ResourceAviIpamDnsProviderProfileRead(d, meta)
 	}
@@ -154,7 +153,7 @@ func resourceAviIpamDnsProviderProfileCreate(d *schema.ResourceData, meta interf
 func resourceAviIpamDnsProviderProfileUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceIpamDnsProviderProfileSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "ipamdnsproviderprofile", s)
+	err = APIUpdate(d, meta, "ipamdnsproviderprofile", s)
 	if err == nil {
 		err = ResourceAviIpamDnsProviderProfileRead(d, meta)
 	}

@@ -4,9 +4,8 @@
 package avi
 
 import (
-	"log"
-
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"log"
 )
 
 func ResourceIPReputationDBSchema() map[string]*schema.Schema {
@@ -98,7 +97,7 @@ func ResourceAviIPReputationDBRead(d *schema.ResourceData, meta interface{}) err
 
 func resourceAviIPReputationDBCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceIPReputationDBSchema()
-	err := APICreateOrUpdate(d, meta, "ipreputationdb", s)
+	err := APICreate(d, meta, "ipreputationdb", s)
 	if err == nil {
 		err = ResourceAviIPReputationDBRead(d, meta)
 	}
@@ -108,7 +107,7 @@ func resourceAviIPReputationDBCreate(d *schema.ResourceData, meta interface{}) e
 func resourceAviIPReputationDBUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceIPReputationDBSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "ipreputationdb", s)
+	err = APIUpdate(d, meta, "ipreputationdb", s)
 	if err == nil {
 		err = ResourceAviIPReputationDBRead(d, meta)
 	}

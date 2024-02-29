@@ -13,7 +13,7 @@ build13: DESTINATION=$(HOME)/.terraform.d/plugins/$(AVI_PROVIDER_NAMESPACE)/22.1
 build13: fmtcheck
 	@echo "==> Installing plugin to $(DESTINATION)"
 	@mkdir -p $(DESTINATION)
-	go build -o $(DESTINATION)/terraform-provider-avi_v22.1.5
+	go build -o $(DESTINATION)/terraform-provider-avi_v22.1.6
 
 test: fmtcheck
 	go test -i $(TEST) || exit 1

@@ -4,9 +4,8 @@
 package avi
 
 import (
-	"log"
-
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"log"
 )
 
 func ResourceALBServicesFileUploadSchema() map[string]*schema.Schema {
@@ -81,7 +80,7 @@ func ResourceAviALBServicesFileUploadRead(d *schema.ResourceData, meta interface
 
 func resourceAviALBServicesFileUploadCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceALBServicesFileUploadSchema()
-	err := APICreateOrUpdate(d, meta, "albservicesfileupload", s)
+	err := APICreate(d, meta, "albservicesfileupload", s)
 	if err == nil {
 		err = ResourceAviALBServicesFileUploadRead(d, meta)
 	}
@@ -91,7 +90,7 @@ func resourceAviALBServicesFileUploadCreate(d *schema.ResourceData, meta interfa
 func resourceAviALBServicesFileUploadUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceALBServicesFileUploadSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "albservicesfileupload", s)
+	err = APIUpdate(d, meta, "albservicesfileupload", s)
 	if err == nil {
 		err = ResourceAviALBServicesFileUploadRead(d, meta)
 	}

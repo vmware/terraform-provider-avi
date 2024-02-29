@@ -4,9 +4,8 @@
 package avi
 
 import (
-	"log"
-
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"log"
 )
 
 func ResourceAuthProfileSchema() map[string]*schema.Schema {
@@ -117,7 +116,7 @@ func ResourceAviAuthProfileRead(d *schema.ResourceData, meta interface{}) error 
 
 func resourceAviAuthProfileCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceAuthProfileSchema()
-	err := APICreateOrUpdate(d, meta, "authprofile", s)
+	err := APICreate(d, meta, "authprofile", s)
 	if err == nil {
 		err = ResourceAviAuthProfileRead(d, meta)
 	}
@@ -127,7 +126,7 @@ func resourceAviAuthProfileCreate(d *schema.ResourceData, meta interface{}) erro
 func resourceAviAuthProfileUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceAuthProfileSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "authprofile", s)
+	err = APIUpdate(d, meta, "authprofile", s)
 	if err == nil {
 		err = ResourceAviAuthProfileRead(d, meta)
 	}

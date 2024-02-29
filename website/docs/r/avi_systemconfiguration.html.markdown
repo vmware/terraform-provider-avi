@@ -45,6 +45,7 @@ The following arguments are supported:
 * `ntp_configuration` - (Optional) Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 * `portal_configuration` - (Optional) Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 * `proxy_configuration` - (Optional) Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `sddcmanager_fqdn` - (Optional) Fqdn of sddc manager in vcf responsible for management of this alb controller cluster. Field introduced in 22.1.6. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 * `secure_channel_configuration` - (Optional) Configure secure channel properties. Field introduced in 18.1.4, 18.2.1. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 * `snmp_configuration` - (Optional) Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 * `ssh_ciphers` - (Optional) Allowed ciphers list for ssh to the management interface on the controller and service engines. If this is not specified, all the default ciphers are allowed. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.

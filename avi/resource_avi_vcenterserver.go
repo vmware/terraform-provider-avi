@@ -4,9 +4,8 @@
 package avi
 
 import (
-	"log"
-
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"log"
 )
 
 func ResourceVCenterServerSchema() map[string]*schema.Schema {
@@ -81,7 +80,7 @@ func ResourceAviVCenterServerRead(d *schema.ResourceData, meta interface{}) erro
 
 func resourceAviVCenterServerCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceVCenterServerSchema()
-	err := APICreateOrUpdate(d, meta, "vcenterserver", s)
+	err := APICreate(d, meta, "vcenterserver", s)
 	if err == nil {
 		err = ResourceAviVCenterServerRead(d, meta)
 	}
@@ -91,7 +90,7 @@ func resourceAviVCenterServerCreate(d *schema.ResourceData, meta interface{}) er
 func resourceAviVCenterServerUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceVCenterServerSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "vcenterserver", s)
+	err = APIUpdate(d, meta, "vcenterserver", s)
 	if err == nil {
 		err = ResourceAviVCenterServerRead(d, meta)
 	}

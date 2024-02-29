@@ -172,8 +172,13 @@ resource "avi_applicationprofile" "testApplicationProfile" {
 		allow_dots_in_header_name = false
 		max_bad_rps_uri = "0"
 		use_app_keepalive_timeout = false
+		http2_profile {
+		}
 	}
 	preserve_client_port = false
+	l4_ssl_profile {
+		ssl_stream_idle_timeout = "3600"
+	}
 }
 `
 
@@ -251,7 +256,12 @@ resource "avi_applicationprofile" "testApplicationProfile" {
 		allow_dots_in_header_name = false
 		max_bad_rps_uri = "0"
 		use_app_keepalive_timeout = false
+		http2_profile {
+		}
 	}
 	preserve_client_port = false
+	l4_ssl_profile {
+		ssl_stream_idle_timeout = "3600"
+	}
 }
 `

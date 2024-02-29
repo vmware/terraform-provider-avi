@@ -4,11 +4,10 @@
 package avi
 
 import (
-	"log"
-	"time"
-
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"github.com/vmware/alb-sdk/go/clients"
+	"log"
+	"time"
 )
 
 func ResourceClusterSchema() map[string]*schema.Schema {
@@ -107,7 +106,7 @@ func ResourceAviClusterRead(d *schema.ResourceData, meta interface{}) error {
 
 func resourceAviClusterCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceClusterSchema()
-	err := APICreateOrUpdate(d, meta, "cluster", s)
+	err := APICreate(d, meta, "cluster", s)
 	// Added wait for cluster initialization process as cluster initialization starts after few seconds.
 	// This is necessary to store correct state of initialized cluster.
 	time.Sleep(90 * time.Second)
@@ -120,7 +119,7 @@ func resourceAviClusterCreate(d *schema.ResourceData, meta interface{}) error {
 func resourceAviClusterUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceClusterSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "cluster", s)
+	err = APIUpdate(d, meta, "cluster", s)
 	// Added wait for cluster initialization process as cluster initialization starts after few seconds.
 	// This is necessary to store correct state of initialized cluster.
 	time.Sleep(90 * time.Second)

@@ -4,9 +4,8 @@
 package avi
 
 import (
-	"log"
-
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"log"
 )
 
 func ResourceLicenseStatusSchema() map[string]*schema.Schema {
@@ -66,7 +65,7 @@ func ResourceAviLicenseStatusRead(d *schema.ResourceData, meta interface{}) erro
 
 func resourceAviLicenseStatusCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceLicenseStatusSchema()
-	err := APICreateOrUpdate(d, meta, "licensestatus", s)
+	err := APICreate(d, meta, "licensestatus", s)
 	if err == nil {
 		err = ResourceAviLicenseStatusRead(d, meta)
 	}
@@ -76,7 +75,7 @@ func resourceAviLicenseStatusCreate(d *schema.ResourceData, meta interface{}) er
 func resourceAviLicenseStatusUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceLicenseStatusSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "licensestatus", s)
+	err = APIUpdate(d, meta, "licensestatus", s)
 	if err == nil {
 		err = ResourceAviLicenseStatusRead(d, meta)
 	}

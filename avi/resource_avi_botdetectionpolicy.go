@@ -4,9 +4,8 @@
 package avi
 
 import (
-	"log"
-
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"log"
 )
 
 func ResourceBotDetectionPolicySchema() map[string]*schema.Schema {
@@ -103,7 +102,7 @@ func ResourceAviBotDetectionPolicyRead(d *schema.ResourceData, meta interface{})
 
 func resourceAviBotDetectionPolicyCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceBotDetectionPolicySchema()
-	err := APICreateOrUpdate(d, meta, "botdetectionpolicy", s)
+	err := APICreate(d, meta, "botdetectionpolicy", s)
 	if err == nil {
 		err = ResourceAviBotDetectionPolicyRead(d, meta)
 	}
@@ -113,7 +112,7 @@ func resourceAviBotDetectionPolicyCreate(d *schema.ResourceData, meta interface{
 func resourceAviBotDetectionPolicyUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceBotDetectionPolicySchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "botdetectionpolicy", s)
+	err = APIUpdate(d, meta, "botdetectionpolicy", s)
 	if err == nil {
 		err = ResourceAviBotDetectionPolicyRead(d, meta)
 	}

@@ -4,9 +4,8 @@
 package avi
 
 import (
-	"log"
-
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"log"
 )
 
 func ResourceSchedulerSchema() map[string]*schema.Schema {
@@ -110,7 +109,7 @@ func ResourceAviSchedulerRead(d *schema.ResourceData, meta interface{}) error {
 
 func resourceAviSchedulerCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceSchedulerSchema()
-	err := APICreateOrUpdate(d, meta, "scheduler", s)
+	err := APICreate(d, meta, "scheduler", s)
 	if err == nil {
 		err = ResourceAviSchedulerRead(d, meta)
 	}
@@ -120,7 +119,7 @@ func resourceAviSchedulerCreate(d *schema.ResourceData, meta interface{}) error 
 func resourceAviSchedulerUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceSchedulerSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "scheduler", s)
+	err = APIUpdate(d, meta, "scheduler", s)
 	if err == nil {
 		err = ResourceAviSchedulerRead(d, meta)
 	}

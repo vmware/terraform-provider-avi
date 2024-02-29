@@ -4,9 +4,8 @@
 package avi
 
 import (
-	"log"
-
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"log"
 )
 
 func ResourceAutoScaleLaunchConfigSchema() map[string]*schema.Schema {
@@ -96,7 +95,7 @@ func ResourceAviAutoScaleLaunchConfigRead(d *schema.ResourceData, meta interface
 
 func resourceAviAutoScaleLaunchConfigCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceAutoScaleLaunchConfigSchema()
-	err := APICreateOrUpdate(d, meta, "autoscalelaunchconfig", s)
+	err := APICreate(d, meta, "autoscalelaunchconfig", s)
 	if err == nil {
 		err = ResourceAviAutoScaleLaunchConfigRead(d, meta)
 	}
@@ -106,7 +105,7 @@ func resourceAviAutoScaleLaunchConfigCreate(d *schema.ResourceData, meta interfa
 func resourceAviAutoScaleLaunchConfigUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceAutoScaleLaunchConfigSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "autoscalelaunchconfig", s)
+	err = APIUpdate(d, meta, "autoscalelaunchconfig", s)
 	if err == nil {
 		err = ResourceAviAutoScaleLaunchConfigRead(d, meta)
 	}

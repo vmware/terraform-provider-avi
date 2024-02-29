@@ -4,9 +4,8 @@
 package avi
 
 import (
-	"log"
-
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"log"
 )
 
 func ResourceNetworkServiceSchema() map[string]*schema.Schema {
@@ -91,7 +90,7 @@ func ResourceAviNetworkServiceRead(d *schema.ResourceData, meta interface{}) err
 
 func resourceAviNetworkServiceCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceNetworkServiceSchema()
-	err := APICreateOrUpdate(d, meta, "networkservice", s)
+	err := APICreate(d, meta, "networkservice", s)
 	if err == nil {
 		err = ResourceAviNetworkServiceRead(d, meta)
 	}
@@ -101,7 +100,7 @@ func resourceAviNetworkServiceCreate(d *schema.ResourceData, meta interface{}) e
 func resourceAviNetworkServiceUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceNetworkServiceSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "networkservice", s)
+	err = APIUpdate(d, meta, "networkservice", s)
 	if err == nil {
 		err = ResourceAviNetworkServiceRead(d, meta)
 	}

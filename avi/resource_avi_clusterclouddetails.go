@@ -4,9 +4,8 @@
 package avi
 
 import (
-	"log"
-
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"log"
 )
 
 func ResourceClusterCloudDetailsSchema() map[string]*schema.Schema {
@@ -69,7 +68,7 @@ func ResourceAviClusterCloudDetailsRead(d *schema.ResourceData, meta interface{}
 
 func resourceAviClusterCloudDetailsCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceClusterCloudDetailsSchema()
-	err := APICreateOrUpdate(d, meta, "clusterclouddetails", s)
+	err := APICreate(d, meta, "clusterclouddetails", s)
 	if err == nil {
 		err = ResourceAviClusterCloudDetailsRead(d, meta)
 	}
@@ -79,7 +78,7 @@ func resourceAviClusterCloudDetailsCreate(d *schema.ResourceData, meta interface
 func resourceAviClusterCloudDetailsUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceClusterCloudDetailsSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "clusterclouddetails", s)
+	err = APIUpdate(d, meta, "clusterclouddetails", s)
 	if err == nil {
 		err = ResourceAviClusterCloudDetailsRead(d, meta)
 	}

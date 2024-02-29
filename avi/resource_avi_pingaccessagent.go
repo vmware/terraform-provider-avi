@@ -4,9 +4,8 @@
 package avi
 
 import (
-	"log"
-
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"log"
 )
 
 func ResourcePingAccessAgentSchema() map[string]*schema.Schema {
@@ -86,7 +85,7 @@ func ResourceAviPingAccessAgentRead(d *schema.ResourceData, meta interface{}) er
 
 func resourceAviPingAccessAgentCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourcePingAccessAgentSchema()
-	err := APICreateOrUpdate(d, meta, "pingaccessagent", s)
+	err := APICreate(d, meta, "pingaccessagent", s)
 	if err == nil {
 		err = ResourceAviPingAccessAgentRead(d, meta)
 	}
@@ -96,7 +95,7 @@ func resourceAviPingAccessAgentCreate(d *schema.ResourceData, meta interface{}) 
 func resourceAviPingAccessAgentUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourcePingAccessAgentSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "pingaccessagent", s)
+	err = APIUpdate(d, meta, "pingaccessagent", s)
 	if err == nil {
 		err = ResourceAviPingAccessAgentRead(d, meta)
 	}

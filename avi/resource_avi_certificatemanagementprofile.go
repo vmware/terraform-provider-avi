@@ -4,9 +4,8 @@
 package avi
 
 import (
-	"log"
-
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"log"
 )
 
 func ResourceCertificateManagementProfileSchema() map[string]*schema.Schema {
@@ -77,7 +76,7 @@ func ResourceAviCertificateManagementProfileRead(d *schema.ResourceData, meta in
 
 func resourceAviCertificateManagementProfileCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceCertificateManagementProfileSchema()
-	err := APICreateOrUpdate(d, meta, "certificatemanagementprofile", s)
+	err := APICreate(d, meta, "certificatemanagementprofile", s)
 	if err == nil {
 		err = ResourceAviCertificateManagementProfileRead(d, meta)
 	}
@@ -87,7 +86,7 @@ func resourceAviCertificateManagementProfileCreate(d *schema.ResourceData, meta 
 func resourceAviCertificateManagementProfileUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceCertificateManagementProfileSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "certificatemanagementprofile", s)
+	err = APIUpdate(d, meta, "certificatemanagementprofile", s)
 	if err == nil {
 		err = ResourceAviCertificateManagementProfileRead(d, meta)
 	}

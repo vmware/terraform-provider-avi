@@ -4,9 +4,8 @@
 package avi
 
 import (
-	"log"
-
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"log"
 )
 
 func ResourcePKIProfileSchema() map[string]*schema.Schema {
@@ -107,7 +106,7 @@ func ResourceAviPKIProfileRead(d *schema.ResourceData, meta interface{}) error {
 
 func resourceAviPKIProfileCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourcePKIProfileSchema()
-	err := APICreateOrUpdate(d, meta, "pkiprofile", s)
+	err := APICreate(d, meta, "pkiprofile", s)
 	if err == nil {
 		err = ResourceAviPKIProfileRead(d, meta)
 	}
@@ -117,7 +116,7 @@ func resourceAviPKIProfileCreate(d *schema.ResourceData, meta interface{}) error
 func resourceAviPKIProfileUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourcePKIProfileSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "pkiprofile", s)
+	err = APIUpdate(d, meta, "pkiprofile", s)
 	if err == nil {
 		err = ResourceAviPKIProfileRead(d, meta)
 	}

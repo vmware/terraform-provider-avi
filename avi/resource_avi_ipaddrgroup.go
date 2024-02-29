@@ -4,9 +4,8 @@
 package avi
 
 import (
-	"log"
-
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"log"
 )
 
 // nolint
@@ -114,7 +113,7 @@ func ResourceAviIpAddrGroupRead(d *schema.ResourceData, meta interface{}) error 
 // nolint
 func resourceAviIpAddrGroupCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceIpAddrGroupSchema()
-	err := APICreateOrUpdate(d, meta, "ipaddrgroup", s)
+	err := APICreate(d, meta, "ipaddrgroup", s)
 	if err == nil {
 		err = ResourceAviIpAddrGroupRead(d, meta)
 	}
@@ -125,7 +124,7 @@ func resourceAviIpAddrGroupCreate(d *schema.ResourceData, meta interface{}) erro
 func resourceAviIpAddrGroupUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceIpAddrGroupSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "ipaddrgroup", s)
+	err = APIUpdate(d, meta, "ipaddrgroup", s)
 	if err == nil {
 		err = ResourceAviIpAddrGroupRead(d, meta)
 	}

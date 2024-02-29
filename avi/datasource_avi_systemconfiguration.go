@@ -97,6 +97,10 @@ func dataSourceAviSystemConfiguration() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceProxyConfigurationSchema(),
 			},
+			"sddcmanager_fqdn": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"secure_channel_configuration": {
 				Type:     schema.TypeSet,
 				Computed: true,

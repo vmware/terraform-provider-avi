@@ -4,9 +4,8 @@
 package avi
 
 import (
-	"log"
-
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"log"
 )
 
 func ResourceApplicationPersistenceProfileSchema() map[string]*schema.Schema {
@@ -112,7 +111,7 @@ func ResourceAviApplicationPersistenceProfileRead(d *schema.ResourceData, meta i
 
 func resourceAviApplicationPersistenceProfileCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceApplicationPersistenceProfileSchema()
-	err := APICreateOrUpdate(d, meta, "applicationpersistenceprofile", s)
+	err := APICreate(d, meta, "applicationpersistenceprofile", s)
 	if err == nil {
 		err = ResourceAviApplicationPersistenceProfileRead(d, meta)
 	}
@@ -122,7 +121,7 @@ func resourceAviApplicationPersistenceProfileCreate(d *schema.ResourceData, meta
 func resourceAviApplicationPersistenceProfileUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceApplicationPersistenceProfileSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "applicationpersistenceprofile", s)
+	err = APIUpdate(d, meta, "applicationpersistenceprofile", s)
 	if err == nil {
 		err = ResourceAviApplicationPersistenceProfileRead(d, meta)
 	}

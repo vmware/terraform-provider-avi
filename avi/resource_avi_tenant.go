@@ -4,9 +4,8 @@
 package avi
 
 import (
-	"log"
-
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"log"
 )
 
 func ResourceTenantSchema() map[string]*schema.Schema {
@@ -91,7 +90,7 @@ func ResourceAviTenantRead(d *schema.ResourceData, meta interface{}) error {
 
 func resourceAviTenantCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceTenantSchema()
-	err := APICreateOrUpdate(d, meta, "tenant", s)
+	err := APICreate(d, meta, "tenant", s)
 	if err == nil {
 		err = ResourceAviTenantRead(d, meta)
 	}
@@ -101,7 +100,7 @@ func resourceAviTenantCreate(d *schema.ResourceData, meta interface{}) error {
 func resourceAviTenantUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceTenantSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "tenant", s)
+	err = APIUpdate(d, meta, "tenant", s)
 	if err == nil {
 		err = ResourceAviTenantRead(d, meta)
 	}

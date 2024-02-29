@@ -4,9 +4,8 @@
 package avi
 
 import (
-	"log"
-
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"log"
 )
 
 func ResourceALBServicesConfigSchema() map[string]*schema.Schema {
@@ -133,7 +132,7 @@ func ResourceAviALBServicesConfigRead(d *schema.ResourceData, meta interface{}) 
 
 func resourceAviALBServicesConfigCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceALBServicesConfigSchema()
-	err := APICreateOrUpdate(d, meta, "albservicesconfig", s)
+	err := APICreate(d, meta, "albservicesconfig", s)
 	if err == nil {
 		err = ResourceAviALBServicesConfigRead(d, meta)
 	}
@@ -143,7 +142,7 @@ func resourceAviALBServicesConfigCreate(d *schema.ResourceData, meta interface{}
 func resourceAviALBServicesConfigUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceALBServicesConfigSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "albservicesconfig", s)
+	err = APIUpdate(d, meta, "albservicesconfig", s)
 	if err == nil {
 		err = ResourceAviALBServicesConfigRead(d, meta)
 	}

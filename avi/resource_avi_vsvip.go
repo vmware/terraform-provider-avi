@@ -4,10 +4,9 @@
 package avi
 
 import (
-	"log"
-
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"github.com/vmware/alb-sdk/go/clients"
+	"log"
 )
 
 func ResourceVsVipSchema() map[string]*schema.Schema {
@@ -122,7 +121,7 @@ func ResourceAviVsVipRead(d *schema.ResourceData, meta interface{}) error {
 
 func resourceAviVsVipCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceVsVipSchema()
-	err := APICreateOrUpdate(d, meta, "vsvip", s)
+	err := APICreate(d, meta, "vsvip", s)
 	if err == nil {
 		err = ResourceAviVsVipRead(d, meta)
 	}
@@ -173,7 +172,7 @@ func resourceAviVsVipUpdate(d *schema.ResourceData, meta interface{}) error {
 	} else {
 		log.Printf("[ERROR] resourceAviVsVipUpdate in GET: %v\n", err)
 	}
-	err = APICreateOrUpdate(d, meta, "vsvip", s)
+	err = APIUpdate(d, meta, "vsvip", s)
 	if err == nil {
 		err = ResourceAviVsVipRead(d, meta)
 	}

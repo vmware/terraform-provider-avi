@@ -4,9 +4,8 @@
 package avi
 
 import (
-	"log"
-
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"log"
 )
 
 func ResourceHTTPPolicySetSchema() map[string]*schema.Schema {
@@ -117,7 +116,7 @@ func ResourceAviHTTPPolicySetRead(d *schema.ResourceData, meta interface{}) erro
 
 func resourceAviHTTPPolicySetCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceHTTPPolicySetSchema()
-	err := APICreateOrUpdate(d, meta, "httppolicyset", s)
+	err := APICreate(d, meta, "httppolicyset", s)
 	if err == nil {
 		err = ResourceAviHTTPPolicySetRead(d, meta)
 	}
@@ -127,7 +126,7 @@ func resourceAviHTTPPolicySetCreate(d *schema.ResourceData, meta interface{}) er
 func resourceAviHTTPPolicySetUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceHTTPPolicySetSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "httppolicyset", s)
+	err = APIUpdate(d, meta, "httppolicyset", s)
 	if err == nil {
 		err = ResourceAviHTTPPolicySetRead(d, meta)
 	}

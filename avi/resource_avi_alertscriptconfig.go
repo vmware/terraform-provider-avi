@@ -4,9 +4,8 @@
 package avi
 
 import (
-	"log"
-
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"log"
 )
 
 func ResourceAlertScriptConfigSchema() map[string]*schema.Schema {
@@ -30,6 +29,12 @@ func ResourceAlertScriptConfigSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
+		},
+		"timeout": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Computed:     true,
+			ValidateFunc: validateInteger,
 		},
 		"uuid": {
 			Type:     schema.TypeString,
@@ -68,7 +73,7 @@ func ResourceAviAlertScriptConfigRead(d *schema.ResourceData, meta interface{}) 
 
 func resourceAviAlertScriptConfigCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceAlertScriptConfigSchema()
-	err := APICreateOrUpdate(d, meta, "alertscriptconfig", s)
+	err := APICreate(d, meta, "alertscriptconfig", s)
 	if err == nil {
 		err = ResourceAviAlertScriptConfigRead(d, meta)
 	}
@@ -78,7 +83,7 @@ func resourceAviAlertScriptConfigCreate(d *schema.ResourceData, meta interface{}
 func resourceAviAlertScriptConfigUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceAlertScriptConfigSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "alertscriptconfig", s)
+	err = APIUpdate(d, meta, "alertscriptconfig", s)
 	if err == nil {
 		err = ResourceAviAlertScriptConfigRead(d, meta)
 	}

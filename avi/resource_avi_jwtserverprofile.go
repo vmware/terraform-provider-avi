@@ -4,9 +4,8 @@
 package avi
 
 import (
-	"log"
-
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"log"
 )
 
 func ResourceJWTServerProfileSchema() map[string]*schema.Schema {
@@ -90,7 +89,7 @@ func ResourceAviJWTServerProfileRead(d *schema.ResourceData, meta interface{}) e
 
 func resourceAviJWTServerProfileCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceJWTServerProfileSchema()
-	err := APICreateOrUpdate(d, meta, "jwtserverprofile", s)
+	err := APICreate(d, meta, "jwtserverprofile", s)
 	if err == nil {
 		err = ResourceAviJWTServerProfileRead(d, meta)
 	}
@@ -100,7 +99,7 @@ func resourceAviJWTServerProfileCreate(d *schema.ResourceData, meta interface{})
 func resourceAviJWTServerProfileUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceJWTServerProfileSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "jwtserverprofile", s)
+	err = APIUpdate(d, meta, "jwtserverprofile", s)
 	if err == nil {
 		err = ResourceAviJWTServerProfileRead(d, meta)
 	}

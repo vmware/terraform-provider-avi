@@ -4,9 +4,8 @@
 package avi
 
 import (
-	"log"
-
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"log"
 )
 
 func ResourceTestSeDatastoreLevel2Schema() map[string]*schema.Schema {
@@ -68,7 +67,7 @@ func ResourceAviTestSeDatastoreLevel2Read(d *schema.ResourceData, meta interface
 
 func resourceAviTestSeDatastoreLevel2Create(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceTestSeDatastoreLevel2Schema()
-	err := APICreateOrUpdate(d, meta, "testsedatastorelevel2", s)
+	err := APICreate(d, meta, "testsedatastorelevel2", s)
 	if err == nil {
 		err = ResourceAviTestSeDatastoreLevel2Read(d, meta)
 	}
@@ -78,7 +77,7 @@ func resourceAviTestSeDatastoreLevel2Create(d *schema.ResourceData, meta interfa
 func resourceAviTestSeDatastoreLevel2Update(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceTestSeDatastoreLevel2Schema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "testsedatastorelevel2", s)
+	err = APIUpdate(d, meta, "testsedatastorelevel2", s)
 	if err == nil {
 		err = ResourceAviTestSeDatastoreLevel2Read(d, meta)
 	}

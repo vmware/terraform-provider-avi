@@ -4,9 +4,8 @@
 package avi
 
 import (
-	"log"
-
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"log"
 )
 
 func ResourceAlertConfigSchema() map[string]*schema.Schema {
@@ -142,7 +141,7 @@ func ResourceAviAlertConfigRead(d *schema.ResourceData, meta interface{}) error 
 
 func resourceAviAlertConfigCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceAlertConfigSchema()
-	err := APICreateOrUpdate(d, meta, "alertconfig", s)
+	err := APICreate(d, meta, "alertconfig", s)
 	if err == nil {
 		err = ResourceAviAlertConfigRead(d, meta)
 	}
@@ -152,7 +151,7 @@ func resourceAviAlertConfigCreate(d *schema.ResourceData, meta interface{}) erro
 func resourceAviAlertConfigUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceAlertConfigSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "alertconfig", s)
+	err = APIUpdate(d, meta, "alertconfig", s)
 	if err == nil {
 		err = ResourceAviAlertConfigRead(d, meta)
 	}

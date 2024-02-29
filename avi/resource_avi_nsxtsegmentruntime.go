@@ -4,9 +4,8 @@
 package avi
 
 import (
-	"log"
-
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"log"
 )
 
 func ResourceNsxtSegmentRuntimeSchema() map[string]*schema.Schema {
@@ -150,7 +149,7 @@ func ResourceAviNsxtSegmentRuntimeRead(d *schema.ResourceData, meta interface{})
 
 func resourceAviNsxtSegmentRuntimeCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceNsxtSegmentRuntimeSchema()
-	err := APICreateOrUpdate(d, meta, "nsxtsegmentruntime", s)
+	err := APICreate(d, meta, "nsxtsegmentruntime", s)
 	if err == nil {
 		err = ResourceAviNsxtSegmentRuntimeRead(d, meta)
 	}
@@ -160,7 +159,7 @@ func resourceAviNsxtSegmentRuntimeCreate(d *schema.ResourceData, meta interface{
 func resourceAviNsxtSegmentRuntimeUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceNsxtSegmentRuntimeSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "nsxtsegmentruntime", s)
+	err = APIUpdate(d, meta, "nsxtsegmentruntime", s)
 	if err == nil {
 		err = ResourceAviNsxtSegmentRuntimeRead(d, meta)
 	}
