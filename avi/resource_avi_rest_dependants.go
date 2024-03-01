@@ -22025,6 +22025,11 @@ func ResourceMetricsMgrDebugFilterSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"min_db_queries_each_conn": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"obj": {
 				Type:     schema.TypeString,
 				Optional: true,
