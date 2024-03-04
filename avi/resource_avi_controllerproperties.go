@@ -499,6 +499,12 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Optional: true,
 			Elem:     &schema.Schema{Type: schema.TypeInt},
 		},
+		"system_report_cleanup_interval": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "60",
+			ValidateFunc: validateInteger,
+		},
 		"system_report_limit": {
 			Type:         schema.TypeString,
 			Optional:     true,

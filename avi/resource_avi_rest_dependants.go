@@ -12383,6 +12383,12 @@ func ResourceEventDetailsSchema() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceCloudSyncServicesSchema(),
 			},
+			"system_report_event_details": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceSystemReportSchema(),
+			},
 			"tencent_info": {
 				Type:     schema.TypeSet,
 				Optional: true,
