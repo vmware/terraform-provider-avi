@@ -34,6 +34,11 @@ func dataSourceAviALBServicesConfig() *schema.Resource {
 				Computed: true,
 				Elem:     ResourcePortalFeatureOptInSchema(),
 			},
+			"inventory_config": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceInventoryConfigurationSchema(),
+			},
 			"ip_reputation_config": {
 				Type:     schema.TypeSet,
 				Computed: true,

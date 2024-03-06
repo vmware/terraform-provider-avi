@@ -18370,6 +18370,19 @@ func ResourceInventoryConfigSchema() *schema.Resource {
 	}
 }
 
+func ResourceInventoryConfigurationSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"enable_search_info": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
+		},
+	}
+}
+
 func ResourceIpAddrSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -25812,12 +25825,6 @@ func ResourcePortalFeatureOptInSchema() *schema.Resource {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Default:      "true",
-				ValidateFunc: validateBool,
-			},
-			"enable_search_info": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Default:      "false",
 				ValidateFunc: validateBool,
 			},
 			"enable_user_agent_db_sync": {

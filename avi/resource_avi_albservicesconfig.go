@@ -37,6 +37,11 @@ func ResourceALBServicesConfigSchema() map[string]*schema.Schema {
 			Required: true,
 			Elem:     ResourcePortalFeatureOptInSchema(),
 		},
+		"inventory_config": {
+			Type:     schema.TypeSet,
+			Required: true,
+			Elem:     ResourceInventoryConfigurationSchema(),
+		},
 		"ip_reputation_config": {
 			Type:     schema.TypeSet,
 			Required: true,
