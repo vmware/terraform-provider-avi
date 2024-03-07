@@ -10,7 +10,7 @@ jobs:
     steps:
       -
         name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
       -
@@ -24,7 +24,6 @@ jobs:
         with:
           version: v1.54.2
           args: --issues-exit-code=1
-          only-new-issues: true
           skip-pkg-cache: true
           skip-build-cache: true
       -
