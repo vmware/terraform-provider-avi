@@ -37,7 +37,7 @@ In addition to all arguments above, the following attributes are exported:
 * `aws_bucket_region` - The name of the aws region associated with the bucket. Field introduced in 21.1.5, 22.1.1, 22.1.3. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 * `aws_secret_access` - Aws secret access key. Field introduced in 18.2.3. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 * `backup_file_prefix` - Prefix of the exported configuration file. Field introduced in 17.1.1. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-* `backup_passphrase` - Default passphrase for configuration export and periodic backup. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `backup_passphrase` - Default passphrase to encrypt sensitive fields for configuration export and periodic backup. The same passphrase must be provided to import the configuration. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 * `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services edition.
 * `maximum_backups_stored` - Rotate the backup files based on this count. Allowed values are 1-20. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 * `name` - Name of backup configuration. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.

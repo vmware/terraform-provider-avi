@@ -2060,6 +2060,70 @@ func ResourceApplicationLogSchema() *schema.Resource {
 	}
 }
 
+func ResourceAsyncPatchStateSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"error_message": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"error_status_code": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"merged_patch_id": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"patch_ids": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"path": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"request_data": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"resource_data": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"resource_name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"resource_type": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"status": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"user": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
 func ResourceAttachIpStatusEventDetailsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -11249,6 +11313,12 @@ func ResourceEventDetailsSchema() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceAppSignatureEventDataSchema(),
 			},
+			"async_patch_state": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceAsyncPatchStateSchema(),
+			},
 			"attach_ip_status_details": {
 				Type:     schema.TypeSet,
 				Optional: true,
@@ -16865,6 +16935,24 @@ func ResourceHTTPSessionConfigSchema() *schema.Resource {
 				Optional:     true,
 				Default:      "true",
 				ValidateFunc: validateBool,
+			},
+			"session_establishment_timeout": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "300",
+				ValidateFunc: validateInteger,
+			},
+			"session_idle_timeout": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "1800",
+				ValidateFunc: validateInteger,
+			},
+			"session_maximum_timeout": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "28800",
+				ValidateFunc: validateInteger,
 			},
 		},
 	}
