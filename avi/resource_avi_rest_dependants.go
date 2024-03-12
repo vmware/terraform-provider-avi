@@ -5994,6 +5994,12 @@ func ResourceClusterNodeAddEventSchema() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceIpAddrSchema(),
 			},
+			"ip6": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceIpAddrSchema(),
+			},
 			"node_name": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -6023,6 +6029,12 @@ func ResourceClusterNodeDbFailedEventSchema() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceIpAddrSchema(),
 			},
+			"ip6": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceIpAddrSchema(),
+			},
 			"node_name": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -6036,6 +6048,12 @@ func ResourceClusterNodeRemoveEventSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
 			"ip": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceIpAddrSchema(),
+			},
+			"ip6": {
 				Type:     schema.TypeSet,
 				Optional: true,
 				Computed: true,
@@ -6064,6 +6082,12 @@ func ResourceClusterNodeShutdownEventSchema() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceIpAddrSchema(),
 			},
+			"ip6": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceIpAddrSchema(),
+			},
 			"node_name": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -6082,6 +6106,12 @@ func ResourceClusterNodeStartedEventSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
 			"ip": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceIpAddrSchema(),
+			},
+			"ip6": {
 				Type:     schema.TypeSet,
 				Optional: true,
 				Computed: true,
