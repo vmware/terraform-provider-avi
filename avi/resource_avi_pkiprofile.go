@@ -37,10 +37,10 @@ func ResourcePKIProfileSchema() map[string]*schema.Schema {
 			Default:      "true",
 			ValidateFunc: validateBool,
 		},
-		"crls": {
+		"crl_file_refs": {
 			Type:     schema.TypeList,
 			Optional: true,
-			Elem:     ResourceCRLSchema(),
+			Elem:     &schema.Schema{Type: schema.TypeString},
 		},
 		"ignore_peer_chain": {
 			Type:         schema.TypeString,

@@ -56,6 +56,12 @@ func ResourceGslbSchema() map[string]*schema.Schema {
 			Default:      "300",
 			ValidateFunc: validateInteger,
 		},
+		"fileobject_max_file_versions": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "3",
+			ValidateFunc: validateInteger,
+		},
 		"is_federated": {
 			Type:         schema.TypeString,
 			Optional:     true,

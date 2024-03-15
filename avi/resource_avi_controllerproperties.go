@@ -255,6 +255,12 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Optional: true,
 			Elem:     ResourceFileReferenceMappingSchema(),
 		},
+		"fileobject_max_file_versions": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "3",
+			ValidateFunc: validateInteger,
+		},
 		"gslb_purge_batch_size": {
 			Type:         schema.TypeString,
 			Optional:     true,

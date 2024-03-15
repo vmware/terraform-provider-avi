@@ -21,10 +21,22 @@ func ResourceFileObjectSchema() map[string]*schema.Schema {
 			Default:      "false",
 			ValidateFunc: validateBool,
 		},
+		"configpb_attributes": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceConfigPbAttributesSchema(),
+		},
 		"created": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
+		},
+		"crl_info": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceCRLSchema(),
 		},
 		"description": {
 			Type:     schema.TypeString,

@@ -4274,11 +4274,6 @@ func ResourceCPUUsagePerNodeSchema() *schema.Resource {
 func ResourceCRLSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
-			"body": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
 			"common_name": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -4290,11 +4285,6 @@ func ResourceCRLSchema() *schema.Resource {
 				Computed: true,
 			},
 			"etag": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
-			"file_ref": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -4332,7 +4322,7 @@ func ResourceCRLSchema() *schema.Resource {
 			"update_interval": {
 				Type:         schema.TypeString,
 				Optional:     true,
-				Computed:     true,
+				Default:      "1440",
 				ValidateFunc: validateInteger,
 			},
 		},
@@ -11787,6 +11777,12 @@ func ResourceEventDetailsSchema() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceFalsePositiveDetailsSchema(),
 			},
+			"fileobject_details": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceFileObjectDetailsSchema(),
+			},
 			"gcp_cloud_router_info": {
 				Type:     schema.TypeSet,
 				Optional: true,
@@ -13122,6 +13118,23 @@ func ResourceFeProxyRoutePublishConfigSchema() *schema.Resource {
 				ValidateFunc: validateInteger,
 			},
 			"token": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceFileObjectDetailsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"url": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -15321,6 +15334,24 @@ func ResourceGslbSiteRuntimeStatsSchema() *schema.Resource {
 				ValidateFunc: validateInteger,
 			},
 			"num_geo_upd_txed": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"num_gfo_cr_rxed": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"num_gfo_del_rxed": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"num_gfo_upd_rxed": {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Computed:     true,

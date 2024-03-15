@@ -176,6 +176,10 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceFileReferenceMappingSchema(),
 			},
+			"fileobject_max_file_versions": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"gslb_purge_batch_size": {
 				Type:     schema.TypeString,
 				Computed: true,
