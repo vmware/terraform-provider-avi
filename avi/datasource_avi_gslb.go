@@ -44,6 +44,10 @@ func dataSourceAviGslb() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"fileobject_max_file_versions": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"is_federated": {
 				Type:     schema.TypeString,
 				Computed: true,

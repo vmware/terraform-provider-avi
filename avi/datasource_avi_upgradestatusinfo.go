@@ -182,6 +182,11 @@ func dataSourceAviUpgradeStatusInfo() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"system_report_refs": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
 			"tasks_completed": {
 				Type:     schema.TypeString,
 				Computed: true,

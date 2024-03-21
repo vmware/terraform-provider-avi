@@ -69,7 +69,15 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"cloud_discovery_interval": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"cloud_reconcile": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"cloud_reconcile_interval": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
@@ -160,6 +168,15 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Computed: true,
 			},
 			"file_object_cleanup_period": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"file_reference_mappings": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceFileReferenceMappingSchema(),
+			},
+			"fileobject_max_file_versions": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
@@ -319,10 +336,22 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"soft_min_mem_per_se_limit": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"ssl_certificate_expiry_warning_days": {
 				Type:     schema.TypeList,
 				Computed: true,
 				Elem:     &schema.Schema{Type: schema.TypeInt},
+			},
+			"system_report_cleanup_interval": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"system_report_limit": {
+				Type:     schema.TypeString,
+				Computed: true,
 			},
 			"unresponsive_se_reboot": {
 				Type:     schema.TypeString,

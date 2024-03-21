@@ -4,11 +4,8 @@
 package avi
 
 import (
-	"log"
-	"strings"
-
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
-	"github.com/vmware/alb-sdk/go/clients"
+	"log"
 )
 
 func ResourceGslbSchema() map[string]*schema.Schema {
@@ -57,6 +54,12 @@ func ResourceGslbSchema() map[string]*schema.Schema {
 			Type:         schema.TypeString,
 			Optional:     true,
 			Default:      "300",
+			ValidateFunc: validateInteger,
+		},
+		"fileobject_max_file_versions": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "3",
 			ValidateFunc: validateInteger,
 		},
 		"is_federated": {
@@ -179,20 +182,13 @@ func resourceAviGslbUpdate(d *schema.ResourceData, meta interface{}) error {
 }
 
 func resourceAviGslbDelete(d *schema.ResourceData, meta interface{}) error {
-	objType := "gslb"
-	client := meta.(*clients.AviClient)
+	var err error
 	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
-	uuid := d.Get("uuid").(string)
-	if uuid != "" {
-		path := "api/" + objType + "/" + uuid
-		err := client.AviSession.Delete(path)
-		if err != nil && !(strings.Contains(err.Error(), "404") || strings.Contains(err.Error(), "204") || strings.Contains(err.Error(), "403")) {
-			log.Println("[INFO] resourceAviGslbDelete not found")
-			return err
-		}
-		d.SetId("")
+	err = APIDelete(d, meta, "gslb")
+	if err != nil {
+		log.Printf("[ERROR] in deleting object %v\n", err)
 	}
-	return nil
+	return err
 }

@@ -32,9 +32,9 @@ data "avi_tenantsystemconfiguration" "foo_tenantsystemconfiguration" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 23.1.1. Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services edition.
-* `dns_virtualservice_refs` - Dns virtual services hosting fqdn records for applications configured within this tenant. It is a reference to an object of type virtualservice. Field introduced in 23.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
-* `name` - Name of the tenant system configuration object. Field introduced in 23.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
-* `tenant_ref` - Unique identifier of the tenant that this object belongs to. It is a reference to an object of type tenant. Field introduced in 23.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
-* `uuid` - Tenant system configuration uuid. Field introduced in 23.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 30.1.1. Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services edition.
+* `dns_virtualservice_refs` - Dns virtual services hosting fqdn records for applications configured within this tenant. It is a reference to an object of type virtualservice. Field introduced in 30.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `name` - Name of the tenant system configuration object. Field introduced in 30.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `tenant_ref` - Unique identifier of the tenant that this object belongs to. It is a reference to an object of type tenant. Field introduced in 30.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `uuid` - Tenant system configuration uuid. Field introduced in 30.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 

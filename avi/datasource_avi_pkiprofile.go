@@ -32,10 +32,10 @@ func dataSourceAviPKIProfile() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"crls": {
+			"crl_file_refs": {
 				Type:     schema.TypeList,
 				Computed: true,
-				Elem:     ResourceCRLSchema(),
+				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
 			"ignore_peer_chain": {
 				Type:     schema.TypeString,

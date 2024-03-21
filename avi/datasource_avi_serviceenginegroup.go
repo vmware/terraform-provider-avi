@@ -584,6 +584,10 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"multicast_enable": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"n_log_streaming_threads": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -717,6 +721,10 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Computed: true,
 			},
 			"se_bandwidth_type": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"se_debug_trace_sz": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},

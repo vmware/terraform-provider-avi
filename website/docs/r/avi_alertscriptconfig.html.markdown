@@ -31,6 +31,7 @@ The following arguments are supported:
 * `action_script` - (Optional) User defined alert action script. Please refer to kb.avinetworks.com for more information. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 * `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services edition.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `timeout` - (Optional) Controlscript excution timeout. Field introduced in 22.1.6. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 
 
 ### Timeouts

@@ -5,41 +5,54 @@ package avi
 
 import "github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 
-func dataSourceAviPingAccessAgent() *schema.Resource {
+func dataSourceAviSystemReport() *schema.Resource {
 	return &schema.Resource{
-		Read: ResourceAviPingAccessAgentRead,
+		Read: ResourceAviSystemReportRead,
 		Schema: map[string]*schema.Schema{
-			"configpb_attributes": {
-				Type:     schema.TypeSet,
-				Computed: true,
-				Elem:     ResourceConfigPbAttributesSchema(),
-			},
-			"description": {
+			"archive_ref": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"markers": {
+			"controller_patch_image_ref": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"downloadable": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"events": {
 				Type:     schema.TypeList,
 				Computed: true,
-				Elem:     ResourceRoleFilterMatchLabelSchema(),
+				Elem:     ResourceReportEventSchema(),
+			},
+			"image_ref": {
+				Type:     schema.TypeString,
+				Computed: true,
 			},
 			"name": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
-			"pingaccess_pool_ref": {
+			"readiness_reports": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceReportDetailSchema(),
+			},
+			"se_patch_image_ref": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"primary_server": {
+			"state": {
 				Type:     schema.TypeSet,
 				Computed: true,
-				Elem:     ResourcePoolServerSchema(),
+				Elem:     ResourceReportOpsStateSchema(),
 			},
-			"properties_file_data": {
-				Type:     schema.TypeString,
+			"summary": {
+				Type:     schema.TypeSet,
 				Computed: true,
+				Elem:     ResourceReportSummarySchema(),
 			},
 			"tenant_ref": {
 				Type:     schema.TypeString,

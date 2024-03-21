@@ -115,6 +115,14 @@ func dataSourceAviCloud() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"mgmt_ip_v4_enabled": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"mgmt_ip_v6_enabled": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"mtu": {
 				Type:     schema.TypeString,
 				Computed: true,
