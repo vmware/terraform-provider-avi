@@ -941,7 +941,7 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 		"path_mtu_discovery_v4": {
 			Type:         schema.TypeString,
 			Optional:     true,
-			Default:      "true",
+			Default:      "false",
 			ValidateFunc: validateBool,
 		},
 		"path_mtu_discovery_v6": {
