@@ -93,7 +93,7 @@ func ResourceAviDnsPolicyRead(d *schema.ResourceData, meta interface{}) error {
 //nolint
 func resourceAviDnsPolicyCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceDnsPolicySchema()
-	err := APICreateOrUpdate(d, meta, "dnspolicy", s)
+	err := APICreate(d, meta, "dnspolicy", s)
 	if err == nil {
 		err = ResourceAviDnsPolicyRead(d, meta)
 	}
@@ -104,7 +104,7 @@ func resourceAviDnsPolicyCreate(d *schema.ResourceData, meta interface{}) error 
 func resourceAviDnsPolicyUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceDnsPolicySchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "dnspolicy", s)
+	err = APIUpdate(d, meta, "dnspolicy", s)
 	if err == nil {
 		err = ResourceAviDnsPolicyRead(d, meta)
 	}

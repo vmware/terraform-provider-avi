@@ -136,7 +136,7 @@ func ResourceAviWebappUTRead(d *schema.ResourceData, meta interface{}) error {
 
 func resourceAviWebappUTCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceWebappUTSchema()
-	err := APICreateOrUpdate(d, meta, "webapput", s)
+	err := APICreate(d, meta, "webapput", s)
 	if err == nil {
 		err = ResourceAviWebappUTRead(d, meta)
 	}
@@ -146,7 +146,7 @@ func resourceAviWebappUTCreate(d *schema.ResourceData, meta interface{}) error {
 func resourceAviWebappUTUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceWebappUTSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "webapput", s)
+	err = APIUpdate(d, meta, "webapput", s)
 	if err == nil {
 		err = ResourceAviWebappUTRead(d, meta)
 	}

@@ -88,7 +88,7 @@ func ResourceAviVsGsRead(d *schema.ResourceData, meta interface{}) error {
 
 func resourceAviVsGsCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceVsGsSchema()
-	err := APICreateOrUpdate(d, meta, "vsgs", s)
+	err := APICreate(d, meta, "vsgs", s)
 	if err == nil {
 		err = ResourceAviVsGsRead(d, meta)
 	}
@@ -98,7 +98,7 @@ func resourceAviVsGsCreate(d *schema.ResourceData, meta interface{}) error {
 func resourceAviVsGsUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceVsGsSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "vsgs", s)
+	err = APIUpdate(d, meta, "vsgs", s)
 	if err == nil {
 		err = ResourceAviVsGsRead(d, meta)
 	}

@@ -76,7 +76,7 @@ func ResourceAviAlertEmailConfigRead(d *schema.ResourceData, meta interface{}) e
 
 func resourceAviAlertEmailConfigCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceAlertEmailConfigSchema()
-	err := APICreateOrUpdate(d, meta, "alertemailconfig", s)
+	err := APICreate(d, meta, "alertemailconfig", s)
 	if err == nil {
 		err = ResourceAviAlertEmailConfigRead(d, meta)
 	}
@@ -86,7 +86,7 @@ func resourceAviAlertEmailConfigCreate(d *schema.ResourceData, meta interface{})
 func resourceAviAlertEmailConfigUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceAlertEmailConfigSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "alertemailconfig", s)
+	err = APIUpdate(d, meta, "alertemailconfig", s)
 	if err == nil {
 		err = ResourceAviAlertEmailConfigRead(d, meta)
 	}

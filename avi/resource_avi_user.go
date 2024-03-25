@@ -173,7 +173,7 @@ func ResourceAviUserRead(d *schema.ResourceData, meta interface{}) error {
 
 func resourceAviUserCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceUserSchema()
-	err := APICreateOrUpdate(d, meta, "user", s)
+	err := APICreate(d, meta, "user", s)
 	if err == nil {
 		err = ResourceAviUserRead(d, meta)
 	}
@@ -183,7 +183,7 @@ func resourceAviUserCreate(d *schema.ResourceData, meta interface{}) error {
 func resourceAviUserUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceUserSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "user", s)
+	err = APIUpdate(d, meta, "user", s)
 	if err == nil {
 		err = ResourceAviUserRead(d, meta)
 	}

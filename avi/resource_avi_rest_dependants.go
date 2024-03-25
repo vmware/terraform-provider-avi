@@ -26928,6 +26928,12 @@ func ResourceResponseMatchTargetSchema() *schema.Resource {
 func ResourceRestoreParamsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"enable_migration": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
 			"file": {
 				Type:     schema.TypeString,
 				Required: true,

@@ -90,7 +90,7 @@ func ResourceAviWafApplicationSignatureProviderRead(d *schema.ResourceData, meta
 
 func resourceAviWafApplicationSignatureProviderCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceWafApplicationSignatureProviderSchema()
-	err := APICreateOrUpdate(d, meta, "wafapplicationsignatureprovider", s)
+	err := APICreate(d, meta, "wafapplicationsignatureprovider", s)
 	if err == nil {
 		err = ResourceAviWafApplicationSignatureProviderRead(d, meta)
 	}
@@ -100,7 +100,7 @@ func resourceAviWafApplicationSignatureProviderCreate(d *schema.ResourceData, me
 func resourceAviWafApplicationSignatureProviderUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceWafApplicationSignatureProviderSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "wafapplicationsignatureprovider", s)
+	err = APIUpdate(d, meta, "wafapplicationsignatureprovider", s)
 	if err == nil {
 		err = ResourceAviWafApplicationSignatureProviderRead(d, meta)
 	}

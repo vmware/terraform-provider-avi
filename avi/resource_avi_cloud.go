@@ -353,7 +353,7 @@ func setupVcenterMgmtNetwork(d *schema.ResourceData, meta interface{}) error {
 	client := meta.(*clients.AviClient)
 	vcenterConfig, _ := d.GetOk("vcenter_configuration")
 	mgmtNetwork := vcenterConfig.(*schema.Set).List()[0].(map[string]interface{})["management_network"].(string)
-	if err := APICreateOrUpdate(d, meta, "cloud", s); err != nil {
+	if err := APIUpdate(d, meta, "cloud", s); err != nil {
 		log.Printf("[Error] Got error for cloud create/update. Error: %s", err.Error())
 		return err
 	}
@@ -367,7 +367,7 @@ func setupVcenterMgmtNetwork(d *schema.ResourceData, meta interface{}) error {
 		if err := waitForCloudState(uuid, "CLOUD_STATE_FAILED", client, maxRetry); err != nil {
 			return err
 		}
-		if err := APICreateOrUpdate(d, meta, "cloud", s); err != nil {
+		if err := APIUpdate(d, meta, "cloud", s); err != nil {
 			log.Printf("[Error] Got error for cloud create/update. Error: %s", err.Error())
 			return err
 		}
@@ -385,7 +385,7 @@ func resourceAviCloudCreate(d *schema.ResourceData, meta interface{}) error {
 	_, isVcenterConfig := d.GetOk("vcenter_configuration")
 	if cloudType == "CLOUD_VCENTER" && isVcenterConfig {
 		err = setupVcenterMgmtNetwork(d, meta)
-	} else if err = APICreateOrUpdate(d, meta, "cloud", s); err == nil {
+	} else if err = APICreate(d, meta, "cloud", s); err == nil {
 		err = ResourceAviCloudRead(d, meta)
 	}
 	return err
@@ -398,7 +398,7 @@ func resourceAviCloudUpdate(d *schema.ResourceData, meta interface{}) error {
 	_, isVcenterConfig := d.GetOk("vcenter_configuration")
 	if cloudType == "CLOUD_VCENTER" && isVcenterConfig {
 		err = setupVcenterMgmtNetwork(d, meta)
-	} else if err = APICreateOrUpdate(d, meta, "cloud", s); err == nil {
+	} else if err = APIUpdate(d, meta, "cloud", s); err == nil {
 		err = ResourceAviCloudRead(d, meta)
 	}
 	return err

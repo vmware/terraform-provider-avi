@@ -127,7 +127,7 @@ func ResourceAviUpgradeStatusSummaryRead(d *schema.ResourceData, meta interface{
 
 func resourceAviUpgradeStatusSummaryCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceUpgradeStatusSummarySchema()
-	err := APICreateOrUpdate(d, meta, "upgradestatussummary", s)
+	err := APICreate(d, meta, "upgradestatussummary", s)
 	if err == nil {
 		err = ResourceAviUpgradeStatusSummaryRead(d, meta)
 	}
@@ -137,7 +137,7 @@ func resourceAviUpgradeStatusSummaryCreate(d *schema.ResourceData, meta interfac
 func resourceAviUpgradeStatusSummaryUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceUpgradeStatusSummarySchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "upgradestatussummary", s)
+	err = APIUpdate(d, meta, "upgradestatussummary", s)
 	if err == nil {
 		err = ResourceAviUpgradeStatusSummaryRead(d, meta)
 	}

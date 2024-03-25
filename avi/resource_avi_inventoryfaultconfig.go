@@ -81,7 +81,7 @@ func ResourceAviInventoryFaultConfigRead(d *schema.ResourceData, meta interface{
 
 func resourceAviInventoryFaultConfigCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceInventoryFaultConfigSchema()
-	err := APICreateOrUpdate(d, meta, "inventoryfaultconfig", s)
+	err := APICreate(d, meta, "inventoryfaultconfig", s)
 	if err == nil {
 		err = ResourceAviInventoryFaultConfigRead(d, meta)
 	}
@@ -91,7 +91,7 @@ func resourceAviInventoryFaultConfigCreate(d *schema.ResourceData, meta interfac
 func resourceAviInventoryFaultConfigUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceInventoryFaultConfigSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "inventoryfaultconfig", s)
+	err = APIUpdate(d, meta, "inventoryfaultconfig", s)
 	if err == nil {
 		err = ResourceAviInventoryFaultConfigRead(d, meta)
 	}

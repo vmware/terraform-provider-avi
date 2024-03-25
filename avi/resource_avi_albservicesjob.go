@@ -115,7 +115,7 @@ func ResourceAviALBServicesJobRead(d *schema.ResourceData, meta interface{}) err
 
 func resourceAviALBServicesJobCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceALBServicesJobSchema()
-	err := APICreateOrUpdate(d, meta, "albservicesjob", s)
+	err := APICreate(d, meta, "albservicesjob", s)
 	if err == nil {
 		err = ResourceAviALBServicesJobRead(d, meta)
 	}
@@ -125,7 +125,7 @@ func resourceAviALBServicesJobCreate(d *schema.ResourceData, meta interface{}) e
 func resourceAviALBServicesJobUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceALBServicesJobSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "albservicesjob", s)
+	err = APIUpdate(d, meta, "albservicesjob", s)
 	if err == nil {
 		err = ResourceAviALBServicesJobRead(d, meta)
 	}

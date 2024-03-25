@@ -76,7 +76,7 @@ func ResourceAviProtocolParserRead(d *schema.ResourceData, meta interface{}) err
 
 func resourceAviProtocolParserCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceProtocolParserSchema()
-	err := APICreateOrUpdate(d, meta, "protocolparser", s)
+	err := APICreate(d, meta, "protocolparser", s)
 	if err == nil {
 		err = ResourceAviProtocolParserRead(d, meta)
 	}
@@ -86,7 +86,7 @@ func resourceAviProtocolParserCreate(d *schema.ResourceData, meta interface{}) e
 func resourceAviProtocolParserUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceProtocolParserSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "protocolparser", s)
+	err = APIUpdate(d, meta, "protocolparser", s)
 	if err == nil {
 		err = ResourceAviProtocolParserRead(d, meta)
 	}

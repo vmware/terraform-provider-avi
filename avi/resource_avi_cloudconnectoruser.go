@@ -123,7 +123,7 @@ func ResourceAviCloudConnectorUserRead(d *schema.ResourceData, meta interface{})
 
 func resourceAviCloudConnectorUserCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceCloudConnectorUserSchema()
-	err := APICreateOrUpdate(d, meta, "cloudconnectoruser", s)
+	err := APICreate(d, meta, "cloudconnectoruser", s)
 	if err == nil {
 		err = ResourceAviCloudConnectorUserRead(d, meta)
 	}
@@ -133,7 +133,7 @@ func resourceAviCloudConnectorUserCreate(d *schema.ResourceData, meta interface{
 func resourceAviCloudConnectorUserUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceCloudConnectorUserSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "cloudconnectoruser", s)
+	err = APIUpdate(d, meta, "cloudconnectoruser", s)
 	if err == nil {
 		err = ResourceAviCloudConnectorUserRead(d, meta)
 	}

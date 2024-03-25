@@ -89,7 +89,7 @@ func ResourceAviL4PolicySetRead(d *schema.ResourceData, meta interface{}) error 
 
 func resourceAviL4PolicySetCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceL4PolicySetSchema()
-	err := APICreateOrUpdate(d, meta, "l4policyset", s)
+	err := APICreate(d, meta, "l4policyset", s)
 	if err == nil {
 		err = ResourceAviL4PolicySetRead(d, meta)
 	}
@@ -99,7 +99,7 @@ func resourceAviL4PolicySetCreate(d *schema.ResourceData, meta interface{}) erro
 func resourceAviL4PolicySetUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceL4PolicySetSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "l4policyset", s)
+	err = APIUpdate(d, meta, "l4policyset", s)
 	if err == nil {
 		err = ResourceAviL4PolicySetRead(d, meta)
 	}

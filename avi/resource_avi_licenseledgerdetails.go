@@ -62,7 +62,7 @@ func ResourceAviLicenseLedgerDetailsRead(d *schema.ResourceData, meta interface{
 
 func resourceAviLicenseLedgerDetailsCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceLicenseLedgerDetailsSchema()
-	err := APICreateOrUpdate(d, meta, "licenseledgerdetails", s)
+	err := APICreate(d, meta, "licenseledgerdetails", s)
 	if err == nil {
 		err = ResourceAviLicenseLedgerDetailsRead(d, meta)
 	}
@@ -72,7 +72,7 @@ func resourceAviLicenseLedgerDetailsCreate(d *schema.ResourceData, meta interfac
 func resourceAviLicenseLedgerDetailsUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceLicenseLedgerDetailsSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "licenseledgerdetails", s)
+	err = APIUpdate(d, meta, "licenseledgerdetails", s)
 	if err == nil {
 		err = ResourceAviLicenseLedgerDetailsRead(d, meta)
 	}

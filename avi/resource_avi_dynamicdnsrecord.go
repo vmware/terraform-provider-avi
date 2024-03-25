@@ -152,7 +152,7 @@ func ResourceAviDynamicDnsRecordRead(d *schema.ResourceData, meta interface{}) e
 //nolint
 func resourceAviDynamicDnsRecordCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceDynamicDnsRecordSchema()
-	err := APICreateOrUpdate(d, meta, "dynamicdnsrecord", s)
+	err := APICreate(d, meta, "dynamicdnsrecord", s)
 	if err == nil {
 		err = ResourceAviDynamicDnsRecordRead(d, meta)
 	}
@@ -163,7 +163,7 @@ func resourceAviDynamicDnsRecordCreate(d *schema.ResourceData, meta interface{})
 func resourceAviDynamicDnsRecordUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceDynamicDnsRecordSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "dynamicdnsrecord", s)
+	err = APIUpdate(d, meta, "dynamicdnsrecord", s)
 	if err == nil {
 		err = ResourceAviDynamicDnsRecordRead(d, meta)
 	}

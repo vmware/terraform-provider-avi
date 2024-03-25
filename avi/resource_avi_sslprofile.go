@@ -159,7 +159,7 @@ func ResourceAviSSLProfileRead(d *schema.ResourceData, meta interface{}) error {
 
 func resourceAviSSLProfileCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceSSLProfileSchema()
-	err := APICreateOrUpdate(d, meta, "sslprofile", s)
+	err := APICreate(d, meta, "sslprofile", s)
 	if err == nil {
 		err = ResourceAviSSLProfileRead(d, meta)
 	}
@@ -169,7 +169,7 @@ func resourceAviSSLProfileCreate(d *schema.ResourceData, meta interface{}) error
 func resourceAviSSLProfileUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceSSLProfileSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "sslprofile", s)
+	err = APIUpdate(d, meta, "sslprofile", s)
 	if err == nil {
 		err = ResourceAviSSLProfileRead(d, meta)
 	}

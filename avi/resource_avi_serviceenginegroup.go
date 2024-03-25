@@ -1724,7 +1724,7 @@ func ResourceAviServiceEngineGroupRead(d *schema.ResourceData, meta interface{})
 
 func resourceAviServiceEngineGroupCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceServiceEngineGroupSchema()
-	err := APICreateOrUpdate(d, meta, "serviceenginegroup", s)
+	err := APICreate(d, meta, "serviceenginegroup", s)
 	if err == nil {
 		err = ResourceAviServiceEngineGroupRead(d, meta)
 	}
@@ -1734,7 +1734,7 @@ func resourceAviServiceEngineGroupCreate(d *schema.ResourceData, meta interface{
 func resourceAviServiceEngineGroupUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceServiceEngineGroupSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "serviceenginegroup", s)
+	err = APIUpdate(d, meta, "serviceenginegroup", s)
 	if err == nil {
 		err = ResourceAviServiceEngineGroupRead(d, meta)
 	}

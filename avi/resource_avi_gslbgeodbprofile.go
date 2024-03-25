@@ -83,7 +83,7 @@ func ResourceAviGslbGeoDbProfileRead(d *schema.ResourceData, meta interface{}) e
 
 func resourceAviGslbGeoDbProfileCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceGslbGeoDbProfileSchema()
-	err := APICreateOrUpdate(d, meta, "gslbgeodbprofile", s)
+	err := APICreate(d, meta, "gslbgeodbprofile", s)
 	if err == nil {
 		err = ResourceAviGslbGeoDbProfileRead(d, meta)
 	}
@@ -93,7 +93,7 @@ func resourceAviGslbGeoDbProfileCreate(d *schema.ResourceData, meta interface{})
 func resourceAviGslbGeoDbProfileUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceGslbGeoDbProfileSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "gslbgeodbprofile", s)
+	err = APIUpdate(d, meta, "gslbgeodbprofile", s)
 	if err == nil {
 		err = ResourceAviGslbGeoDbProfileRead(d, meta)
 	}

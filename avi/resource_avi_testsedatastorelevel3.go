@@ -62,7 +62,7 @@ func ResourceAviTestSeDatastoreLevel3Read(d *schema.ResourceData, meta interface
 
 func resourceAviTestSeDatastoreLevel3Create(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceTestSeDatastoreLevel3Schema()
-	err := APICreateOrUpdate(d, meta, "testsedatastorelevel3", s)
+	err := APICreate(d, meta, "testsedatastorelevel3", s)
 	if err == nil {
 		err = ResourceAviTestSeDatastoreLevel3Read(d, meta)
 	}
@@ -72,7 +72,7 @@ func resourceAviTestSeDatastoreLevel3Create(d *schema.ResourceData, meta interfa
 func resourceAviTestSeDatastoreLevel3Update(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceTestSeDatastoreLevel3Schema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "testsedatastorelevel3", s)
+	err = APIUpdate(d, meta, "testsedatastorelevel3", s)
 	if err == nil {
 		err = ResourceAviTestSeDatastoreLevel3Read(d, meta)
 	}

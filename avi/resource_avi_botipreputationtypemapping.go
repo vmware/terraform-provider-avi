@@ -61,7 +61,7 @@ func ResourceAviBotIPReputationTypeMappingRead(d *schema.ResourceData, meta inte
 
 func resourceAviBotIPReputationTypeMappingCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceBotIPReputationTypeMappingSchema()
-	err := APICreateOrUpdate(d, meta, "botipreputationtypemapping", s)
+	err := APICreate(d, meta, "botipreputationtypemapping", s)
 	if err == nil {
 		err = ResourceAviBotIPReputationTypeMappingRead(d, meta)
 	}
@@ -71,7 +71,7 @@ func resourceAviBotIPReputationTypeMappingCreate(d *schema.ResourceData, meta in
 func resourceAviBotIPReputationTypeMappingUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceBotIPReputationTypeMappingSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "botipreputationtypemapping", s)
+	err = APIUpdate(d, meta, "botipreputationtypemapping", s)
 	if err == nil {
 		err = ResourceAviBotIPReputationTypeMappingRead(d, meta)
 	}
