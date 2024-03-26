@@ -89,7 +89,7 @@ func ResourceAviMemoryBalancerRequestRead(d *schema.ResourceData, meta interface
 
 func resourceAviMemoryBalancerRequestCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceMemoryBalancerRequestSchema()
-	err := APICreateOrUpdate(d, meta, "memorybalancerrequest", s)
+	err := APICreate(d, meta, "memorybalancerrequest", s)
 	if err == nil {
 		err = ResourceAviMemoryBalancerRequestRead(d, meta)
 	}
@@ -99,7 +99,7 @@ func resourceAviMemoryBalancerRequestCreate(d *schema.ResourceData, meta interfa
 func resourceAviMemoryBalancerRequestUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceMemoryBalancerRequestSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "memorybalancerrequest", s)
+	err = APIUpdate(d, meta, "memorybalancerrequest", s)
 	if err == nil {
 		err = ResourceAviMemoryBalancerRequestRead(d, meta)
 	}

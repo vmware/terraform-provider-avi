@@ -61,7 +61,7 @@ func ResourceAviBotMappingRead(d *schema.ResourceData, meta interface{}) error {
 
 func resourceAviBotMappingCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceBotMappingSchema()
-	err := APICreateOrUpdate(d, meta, "botmapping", s)
+	err := APICreate(d, meta, "botmapping", s)
 	if err == nil {
 		err = ResourceAviBotMappingRead(d, meta)
 	}
@@ -71,7 +71,7 @@ func resourceAviBotMappingCreate(d *schema.ResourceData, meta interface{}) error
 func resourceAviBotMappingUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceBotMappingSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "botmapping", s)
+	err = APIUpdate(d, meta, "botmapping", s)
 	if err == nil {
 		err = ResourceAviBotMappingRead(d, meta)
 	}

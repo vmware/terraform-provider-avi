@@ -72,7 +72,7 @@ func ResourceAviControllerSiteRead(d *schema.ResourceData, meta interface{}) err
 
 func resourceAviControllerSiteCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceControllerSiteSchema()
-	err := APICreateOrUpdate(d, meta, "controllersite", s)
+	err := APICreate(d, meta, "controllersite", s)
 	if err == nil {
 		err = ResourceAviControllerSiteRead(d, meta)
 	}
@@ -82,7 +82,7 @@ func resourceAviControllerSiteCreate(d *schema.ResourceData, meta interface{}) e
 func resourceAviControllerSiteUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceControllerSiteSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "controllersite", s)
+	err = APIUpdate(d, meta, "controllersite", s)
 	if err == nil {
 		err = ResourceAviControllerSiteRead(d, meta)
 	}

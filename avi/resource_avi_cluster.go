@@ -112,7 +112,7 @@ func ResourceAviClusterRead(d *schema.ResourceData, meta interface{}) error {
 
 func resourceAviClusterCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceClusterSchema()
-	err := APICreateOrUpdate(d, meta, "cluster", s)
+	err := APICreate(d, meta, "cluster", s)
 	// Added wait for cluster initialization process as cluster initialization starts after few seconds.
 	// This is necessary to store correct state of initialized cluster.
 	time.Sleep(90 * time.Second)
@@ -125,7 +125,7 @@ func resourceAviClusterCreate(d *schema.ResourceData, meta interface{}) error {
 func resourceAviClusterUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceClusterSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "cluster", s)
+	err = APIUpdate(d, meta, "cluster", s)
 	// Added wait for cluster initialization process as cluster initialization starts after few seconds.
 	// This is necessary to store correct state of initialized cluster.
 	time.Sleep(90 * time.Second)

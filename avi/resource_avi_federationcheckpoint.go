@@ -78,7 +78,7 @@ func ResourceAviFederationCheckpointRead(d *schema.ResourceData, meta interface{
 
 func resourceAviFederationCheckpointCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceFederationCheckpointSchema()
-	err := APICreateOrUpdate(d, meta, "federationcheckpoint", s)
+	err := APICreate(d, meta, "federationcheckpoint", s)
 	if err == nil {
 		err = ResourceAviFederationCheckpointRead(d, meta)
 	}
@@ -88,7 +88,7 @@ func resourceAviFederationCheckpointCreate(d *schema.ResourceData, meta interfac
 func resourceAviFederationCheckpointUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceFederationCheckpointSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "federationcheckpoint", s)
+	err = APIUpdate(d, meta, "federationcheckpoint", s)
 	if err == nil {
 		err = ResourceAviFederationCheckpointRead(d, meta)
 	}

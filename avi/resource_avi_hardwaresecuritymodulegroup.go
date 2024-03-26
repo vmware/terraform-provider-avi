@@ -72,7 +72,7 @@ func ResourceAviHardwareSecurityModuleGroupRead(d *schema.ResourceData, meta int
 
 func resourceAviHardwareSecurityModuleGroupCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceHardwareSecurityModuleGroupSchema()
-	err := APICreateOrUpdate(d, meta, "hardwaresecuritymodulegroup", s)
+	err := APICreate(d, meta, "hardwaresecuritymodulegroup", s)
 	if err == nil {
 		err = ResourceAviHardwareSecurityModuleGroupRead(d, meta)
 	}
@@ -82,7 +82,7 @@ func resourceAviHardwareSecurityModuleGroupCreate(d *schema.ResourceData, meta i
 func resourceAviHardwareSecurityModuleGroupUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceHardwareSecurityModuleGroupSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "hardwaresecuritymodulegroup", s)
+	err = APIUpdate(d, meta, "hardwaresecuritymodulegroup", s)
 	if err == nil {
 		err = ResourceAviHardwareSecurityModuleGroupRead(d, meta)
 	}

@@ -26,7 +26,7 @@ func TestAVIDataSourceDnsPolicyBasic(t *testing.T) {
 
 }
 
-//nolint
+// nolint
 const testAccAVIDSDnsPolicyConfig = `
 data "avi_tenant" "default_tenant"{
     name= "admin"

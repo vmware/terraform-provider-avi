@@ -83,7 +83,7 @@ func ResourceAviCSRFPolicyRead(d *schema.ResourceData, meta interface{}) error {
 
 func resourceAviCSRFPolicyCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceCSRFPolicySchema()
-	err := APICreateOrUpdate(d, meta, "csrfpolicy", s)
+	err := APICreate(d, meta, "csrfpolicy", s)
 	if err == nil {
 		err = ResourceAviCSRFPolicyRead(d, meta)
 	}
@@ -93,7 +93,7 @@ func resourceAviCSRFPolicyCreate(d *schema.ResourceData, meta interface{}) error
 func resourceAviCSRFPolicyUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceCSRFPolicySchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "csrfpolicy", s)
+	err = APIUpdate(d, meta, "csrfpolicy", s)
 	if err == nil {
 		err = ResourceAviCSRFPolicyRead(d, meta)
 	}

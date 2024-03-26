@@ -77,7 +77,7 @@ func ResourceAviServiceAuthProfileRead(d *schema.ResourceData, meta interface{})
 
 func resourceAviServiceAuthProfileCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceServiceAuthProfileSchema()
-	err := APICreateOrUpdate(d, meta, "serviceauthprofile", s)
+	err := APICreate(d, meta, "serviceauthprofile", s)
 	if err == nil {
 		err = ResourceAviServiceAuthProfileRead(d, meta)
 	}
@@ -87,7 +87,7 @@ func resourceAviServiceAuthProfileCreate(d *schema.ResourceData, meta interface{
 func resourceAviServiceAuthProfileUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceServiceAuthProfileSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "serviceauthprofile", s)
+	err = APIUpdate(d, meta, "serviceauthprofile", s)
 	if err == nil {
 		err = ResourceAviServiceAuthProfileRead(d, meta)
 	}

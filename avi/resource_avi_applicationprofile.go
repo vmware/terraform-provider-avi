@@ -145,7 +145,7 @@ func ResourceAviApplicationProfileRead(d *schema.ResourceData, meta interface{})
 
 func resourceAviApplicationProfileCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceApplicationProfileSchema()
-	err := APICreateOrUpdate(d, meta, "applicationprofile", s)
+	err := APICreate(d, meta, "applicationprofile", s)
 	if err == nil {
 		err = ResourceAviApplicationProfileRead(d, meta)
 	}
@@ -155,7 +155,7 @@ func resourceAviApplicationProfileCreate(d *schema.ResourceData, meta interface{
 func resourceAviApplicationProfileUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceApplicationProfileSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "applicationprofile", s)
+	err = APIUpdate(d, meta, "applicationprofile", s)
 	if err == nil {
 		err = ResourceAviApplicationProfileRead(d, meta)
 	}

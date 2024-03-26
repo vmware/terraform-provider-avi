@@ -108,7 +108,7 @@ func ResourceAviBotDetectionPolicyRead(d *schema.ResourceData, meta interface{})
 
 func resourceAviBotDetectionPolicyCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceBotDetectionPolicySchema()
-	err := APICreateOrUpdate(d, meta, "botdetectionpolicy", s)
+	err := APICreate(d, meta, "botdetectionpolicy", s)
 	if err == nil {
 		err = ResourceAviBotDetectionPolicyRead(d, meta)
 	}
@@ -118,7 +118,7 @@ func resourceAviBotDetectionPolicyCreate(d *schema.ResourceData, meta interface{
 func resourceAviBotDetectionPolicyUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceBotDetectionPolicySchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "botdetectionpolicy", s)
+	err = APIUpdate(d, meta, "botdetectionpolicy", s)
 	if err == nil {
 		err = ResourceAviBotDetectionPolicyRead(d, meta)
 	}

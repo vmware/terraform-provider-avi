@@ -194,7 +194,7 @@ func ResourceAviSSLKeyAndCertificateRead(d *schema.ResourceData, meta interface{
 
 func resourceAviSSLKeyAndCertificateCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceSSLKeyAndCertificateSchema()
-	err := APICreateOrUpdate(d, meta, "sslkeyandcertificate", s)
+	err := APICreate(d, meta, "sslkeyandcertificate", s)
 	if err == nil {
 		err = ResourceAviSSLKeyAndCertificateRead(d, meta)
 	}
@@ -204,7 +204,7 @@ func resourceAviSSLKeyAndCertificateCreate(d *schema.ResourceData, meta interfac
 func resourceAviSSLKeyAndCertificateUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceSSLKeyAndCertificateSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "sslkeyandcertificate", s)
+	err = APIUpdate(d, meta, "sslkeyandcertificate", s)
 	if err == nil {
 		err = ResourceAviSSLKeyAndCertificateRead(d, meta)
 	}

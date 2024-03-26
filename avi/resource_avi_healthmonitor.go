@@ -244,7 +244,7 @@ func ResourceAviHealthMonitorRead(d *schema.ResourceData, meta interface{}) erro
 
 func resourceAviHealthMonitorCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceHealthMonitorSchema()
-	err := APICreateOrUpdate(d, meta, "healthmonitor", s)
+	err := APICreate(d, meta, "healthmonitor", s)
 	if err == nil {
 		err = ResourceAviHealthMonitorRead(d, meta)
 	}
@@ -254,7 +254,7 @@ func resourceAviHealthMonitorCreate(d *schema.ResourceData, meta interface{}) er
 func resourceAviHealthMonitorUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceHealthMonitorSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "healthmonitor", s)
+	err = APIUpdate(d, meta, "healthmonitor", s)
 	if err == nil {
 		err = ResourceAviHealthMonitorRead(d, meta)
 	}

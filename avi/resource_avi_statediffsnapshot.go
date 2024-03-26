@@ -129,7 +129,7 @@ func ResourceAviStatediffSnapshotRead(d *schema.ResourceData, meta interface{}) 
 
 func resourceAviStatediffSnapshotCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceStatediffSnapshotSchema()
-	err := APICreateOrUpdate(d, meta, "statediffsnapshot", s)
+	err := APICreate(d, meta, "statediffsnapshot", s)
 	if err == nil {
 		err = ResourceAviStatediffSnapshotRead(d, meta)
 	}
@@ -139,7 +139,7 @@ func resourceAviStatediffSnapshotCreate(d *schema.ResourceData, meta interface{}
 func resourceAviStatediffSnapshotUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceStatediffSnapshotSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "statediffsnapshot", s)
+	err = APIUpdate(d, meta, "statediffsnapshot", s)
 	if err == nil {
 		err = ResourceAviStatediffSnapshotRead(d, meta)
 	}

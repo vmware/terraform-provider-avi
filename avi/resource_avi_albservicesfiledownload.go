@@ -90,7 +90,7 @@ func ResourceAviALBServicesFileDownloadRead(d *schema.ResourceData, meta interfa
 
 func resourceAviALBServicesFileDownloadCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceALBServicesFileDownloadSchema()
-	err := APICreateOrUpdate(d, meta, "albservicesfiledownload", s)
+	err := APICreate(d, meta, "albservicesfiledownload", s)
 	if err == nil {
 		err = ResourceAviALBServicesFileDownloadRead(d, meta)
 	}
@@ -100,7 +100,7 @@ func resourceAviALBServicesFileDownloadCreate(d *schema.ResourceData, meta inter
 func resourceAviALBServicesFileDownloadUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceALBServicesFileDownloadSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "albservicesfiledownload", s)
+	err = APIUpdate(d, meta, "albservicesfiledownload", s)
 	if err == nil {
 		err = ResourceAviALBServicesFileDownloadRead(d, meta)
 	}

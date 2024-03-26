@@ -137,7 +137,7 @@ func ResourceAviIcapProfileRead(d *schema.ResourceData, meta interface{}) error 
 
 func resourceAviIcapProfileCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceIcapProfileSchema()
-	err := APICreateOrUpdate(d, meta, "icapprofile", s)
+	err := APICreate(d, meta, "icapprofile", s)
 	if err == nil {
 		err = ResourceAviIcapProfileRead(d, meta)
 	}
@@ -147,7 +147,7 @@ func resourceAviIcapProfileCreate(d *schema.ResourceData, meta interface{}) erro
 func resourceAviIcapProfileUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceIcapProfileSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "icapprofile", s)
+	err = APIUpdate(d, meta, "icapprofile", s)
 	if err == nil {
 		err = ResourceAviIcapProfileRead(d, meta)
 	}

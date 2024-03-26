@@ -105,7 +105,7 @@ func ResourceAviSystemReportRead(d *schema.ResourceData, meta interface{}) error
 
 func resourceAviSystemReportCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceSystemReportSchema()
-	err := APICreateOrUpdate(d, meta, "systemreport", s)
+	err := APICreate(d, meta, "systemreport", s)
 	if err == nil {
 		err = ResourceAviSystemReportRead(d, meta)
 	}
@@ -115,7 +115,7 @@ func resourceAviSystemReportCreate(d *schema.ResourceData, meta interface{}) err
 func resourceAviSystemReportUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceSystemReportSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "systemreport", s)
+	err = APIUpdate(d, meta, "systemreport", s)
 	if err == nil {
 		err = ResourceAviSystemReportRead(d, meta)
 	}

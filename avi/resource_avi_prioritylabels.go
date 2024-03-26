@@ -82,7 +82,7 @@ func ResourceAviPriorityLabelsRead(d *schema.ResourceData, meta interface{}) err
 
 func resourceAviPriorityLabelsCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourcePriorityLabelsSchema()
-	err := APICreateOrUpdate(d, meta, "prioritylabels", s)
+	err := APICreate(d, meta, "prioritylabels", s)
 	if err == nil {
 		err = ResourceAviPriorityLabelsRead(d, meta)
 	}
@@ -92,7 +92,7 @@ func resourceAviPriorityLabelsCreate(d *schema.ResourceData, meta interface{}) e
 func resourceAviPriorityLabelsUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourcePriorityLabelsSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "prioritylabels", s)
+	err = APIUpdate(d, meta, "prioritylabels", s)
 	if err == nil {
 		err = ResourceAviPriorityLabelsRead(d, meta)
 	}

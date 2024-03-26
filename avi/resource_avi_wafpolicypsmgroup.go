@@ -99,7 +99,7 @@ func ResourceAviWafPolicyPSMGroupRead(d *schema.ResourceData, meta interface{}) 
 
 func resourceAviWafPolicyPSMGroupCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceWafPolicyPSMGroupSchema()
-	err := APICreateOrUpdate(d, meta, "wafpolicypsmgroup", s)
+	err := APICreate(d, meta, "wafpolicypsmgroup", s)
 	if err == nil {
 		err = ResourceAviWafPolicyPSMGroupRead(d, meta)
 	}
@@ -109,7 +109,7 @@ func resourceAviWafPolicyPSMGroupCreate(d *schema.ResourceData, meta interface{}
 func resourceAviWafPolicyPSMGroupUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceWafPolicyPSMGroupSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "wafpolicypsmgroup", s)
+	err = APIUpdate(d, meta, "wafpolicypsmgroup", s)
 	if err == nil {
 		err = ResourceAviWafPolicyPSMGroupRead(d, meta)
 	}

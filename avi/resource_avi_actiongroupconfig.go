@@ -102,7 +102,7 @@ func ResourceAviActionGroupConfigRead(d *schema.ResourceData, meta interface{}) 
 
 func resourceAviActionGroupConfigCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceActionGroupConfigSchema()
-	err := APICreateOrUpdate(d, meta, "actiongroupconfig", s)
+	err := APICreate(d, meta, "actiongroupconfig", s)
 	if err == nil {
 		err = ResourceAviActionGroupConfigRead(d, meta)
 	}
@@ -112,7 +112,7 @@ func resourceAviActionGroupConfigCreate(d *schema.ResourceData, meta interface{}
 func resourceAviActionGroupConfigUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceActionGroupConfigSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "actiongroupconfig", s)
+	err = APIUpdate(d, meta, "actiongroupconfig", s)
 	if err == nil {
 		err = ResourceAviActionGroupConfigRead(d, meta)
 	}

@@ -83,7 +83,7 @@ func ResourceAviNetworkProfileRead(d *schema.ResourceData, meta interface{}) err
 
 func resourceAviNetworkProfileCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceNetworkProfileSchema()
-	err := APICreateOrUpdate(d, meta, "networkprofile", s)
+	err := APICreate(d, meta, "networkprofile", s)
 	if err == nil {
 		err = ResourceAviNetworkProfileRead(d, meta)
 	}
@@ -93,7 +93,7 @@ func resourceAviNetworkProfileCreate(d *schema.ResourceData, meta interface{}) e
 func resourceAviNetworkProfileUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceNetworkProfileSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "networkprofile", s)
+	err = APIUpdate(d, meta, "networkprofile", s)
 	if err == nil {
 		err = ResourceAviNetworkProfileRead(d, meta)
 	}

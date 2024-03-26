@@ -161,7 +161,7 @@ func ResourceAviImageRead(d *schema.ResourceData, meta interface{}) error {
 
 func resourceAviImageCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceImageSchema()
-	err := APICreateOrUpdate(d, meta, "image", s)
+	err := APICreate(d, meta, "image", s)
 	if err == nil {
 		err = ResourceAviImageRead(d, meta)
 	}
@@ -171,7 +171,7 @@ func resourceAviImageCreate(d *schema.ResourceData, meta interface{}) error {
 func resourceAviImageUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceImageSchema()
 	var err error
-	err = APICreateOrUpdate(d, meta, "image", s)
+	err = APIUpdate(d, meta, "image", s)
 	if err == nil {
 		err = ResourceAviImageRead(d, meta)
 	}
