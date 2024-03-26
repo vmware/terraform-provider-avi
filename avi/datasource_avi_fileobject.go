@@ -17,9 +17,19 @@ func dataSourceAviFileObject() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"configpb_attributes": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceConfigPbAttributesSchema(),
+			},
 			"created": {
 				Type:     schema.TypeString,
 				Computed: true,
+			},
+			"crl_info": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceCRLSchema(),
 			},
 			"description": {
 				Type:     schema.TypeString,

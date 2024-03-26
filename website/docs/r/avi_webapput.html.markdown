@@ -29,10 +29,15 @@ The following arguments are supported:
 
 * `name` - (Required) Name of the webapput object-level0. Field introduced in 21.1.5, 22.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 * `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.5, 22.1.1. Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services edition.
+* `default_first_int` - (Optional) Default uint64 field. Field introduced in 30.1.2. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `default_second_int` - (Optional) Default int64 field. Field introduced in 30.1.2. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `default_string` - (Optional) Default string field. Field introduced in 30.1.2. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `default_third_int` - (Optional) Default int32 field. Field introduced in 30.1.2. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 * `mandatory_test` - (Optional) Optional message for nested f_mandatory test cases defined at level1. Field introduced in 21.1.5, 22.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 * `mandatory_tests` - (Optional) Repeated message for nested f_mandatory test cases-level1. Field introduced in 21.1.5, 22.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 * `sensitive_test` - (Optional) Optional message for nested f_sensitive test cases defined at level1. Field introduced in 22.1.3. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 * `sensitive_tests` - (Optional) Repeated message for nested f_sensitive test cases-level1. Field introduced in 22.1.3. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `skip_optional_check_tests` - (Optional) Optional bool for nested skip_optional_check test cases-level1. Field introduced in 22.1.3. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 * `string_length_test` - (Optional) Optional message for nested  max string length test cases. Field introduced in 21.1.5, 22.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 * `string_length_tests` - (Optional) Repeated message for nested  max string length test cases. Field introduced in 21.1.5, 22.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 * `tenant_ref` - (Optional) Tenant of the webapput object-level0. It is a reference to an object of type tenant. Field introduced in 21.1.5, 22.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.

@@ -9,6 +9,11 @@ func dataSourceAviWafCRS() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviWafCRSRead,
 		Schema: map[string]*schema.Schema{
+			"allowed_request_content_type_charsets": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
 			"configpb_attributes": {
 				Type:     schema.TypeSet,
 				Computed: true,
@@ -18,6 +23,11 @@ func dataSourceAviWafCRS() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"files": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceWafDataFileSchema(),
+			},
 			"groups": {
 				Type:     schema.TypeList,
 				Computed: true,
@@ -26,6 +36,11 @@ func dataSourceAviWafCRS() *schema.Resource {
 			"integrity": {
 				Type:     schema.TypeString,
 				Computed: true,
+			},
+			"integrity_values": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
 			"markers": {
 				Type:     schema.TypeList,
@@ -40,6 +55,16 @@ func dataSourceAviWafCRS() *schema.Resource {
 			"release_date": {
 				Type:     schema.TypeString,
 				Computed: true,
+			},
+			"restricted_extensions": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
+			"restricted_headers": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
 			"tenant_ref": {
 				Type:     schema.TypeString,

@@ -34,6 +34,11 @@ func dataSourceAviALBServicesConfig() *schema.Resource {
 				Computed: true,
 				Elem:     ResourcePortalFeatureOptInSchema(),
 			},
+			"inventory_config": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceInventoryConfigurationSchema(),
+			},
 			"ip_reputation_config": {
 				Type:     schema.TypeSet,
 				Computed: true,
@@ -61,10 +66,20 @@ func dataSourceAviALBServicesConfig() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceSaasLicensingInfoSchema(),
 			},
+			"session_config": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourcePulseServicesSessionConfigSchema(),
+			},
 			"split_proxy_configuration": {
 				Type:     schema.TypeSet,
 				Computed: true,
 				Elem:     ResourceProxyConfigurationSchema(),
+			},
+			"tenant_config": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourcePulseServicesTenantConfigSchema(),
 			},
 			"tenant_ref": {
 				Type:     schema.TypeString,
