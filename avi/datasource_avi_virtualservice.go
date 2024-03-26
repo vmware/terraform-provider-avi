@@ -256,6 +256,10 @@ func dataSourceAviVirtualService() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceRateProfileSchema(),
 			},
+			"revoke_vip_route": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"saml_sp_config": {
 				Type:     schema.TypeSet,
 				Computed: true,
@@ -297,6 +301,11 @@ func dataSourceAviVirtualService() *schema.Resource {
 				Elem:     ResourceSidebandProfileSchema(),
 			},
 			"snat_ip": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceIpAddrSchema(),
+			},
+			"snat_ip6_addresses": {
 				Type:     schema.TypeList,
 				Computed: true,
 				Elem:     ResourceIpAddrSchema(),

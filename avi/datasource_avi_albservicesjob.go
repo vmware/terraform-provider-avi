@@ -54,6 +54,11 @@ func dataSourceAviALBServicesJob() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"status_update_time": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceTimeStampSchema(),
+			},
 			"tenant_ref": {
 				Type:     schema.TypeString,
 				Optional: true,

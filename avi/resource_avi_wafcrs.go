@@ -4,15 +4,17 @@
 package avi
 
 import (
-	"log"
-	"strings"
-
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
-	"github.com/vmware/alb-sdk/go/clients"
+	"log"
 )
 
 func ResourceWafCRSSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
+		"allowed_request_content_type_charsets": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     &schema.Schema{Type: schema.TypeString},
+		},
 		"configpb_attributes": {
 			Type:     schema.TypeSet,
 			Optional: true,
@@ -23,6 +25,11 @@ func ResourceWafCRSSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Required: true,
 		},
+		"files": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceWafDataFileSchema(),
+		},
 		"groups": {
 			Type:     schema.TypeList,
 			Optional: true,
@@ -31,6 +38,11 @@ func ResourceWafCRSSchema() map[string]*schema.Schema {
 		"integrity": {
 			Type:     schema.TypeString,
 			Required: true,
+		},
+		"integrity_values": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     &schema.Schema{Type: schema.TypeString},
 		},
 		"markers": {
 			Type:     schema.TypeList,
@@ -44,6 +56,16 @@ func ResourceWafCRSSchema() map[string]*schema.Schema {
 		"release_date": {
 			Type:     schema.TypeString,
 			Required: true,
+		},
+		"restricted_extensions": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     &schema.Schema{Type: schema.TypeString},
+		},
+		"restricted_headers": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     &schema.Schema{Type: schema.TypeString},
 		},
 		"tenant_ref": {
 			Type:     schema.TypeString,
@@ -109,20 +131,13 @@ func resourceAviWafCRSUpdate(d *schema.ResourceData, meta interface{}) error {
 }
 
 func resourceAviWafCRSDelete(d *schema.ResourceData, meta interface{}) error {
-	objType := "wafcrs"
-	client := meta.(*clients.AviClient)
+	var err error
 	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
-	uuid := d.Get("uuid").(string)
-	if uuid != "" {
-		path := "api/" + objType + "/" + uuid
-		err := client.AviSession.Delete(path)
-		if err != nil && !(strings.Contains(err.Error(), "404") || strings.Contains(err.Error(), "204") || strings.Contains(err.Error(), "403")) {
-			log.Println("[INFO] resourceAviWafCRSDelete not found")
-			return err
-		}
-		d.SetId("")
+	err = APIDelete(d, meta, "wafcrs")
+	if err != nil {
+		log.Printf("[ERROR] in deleting object %v\n", err)
 	}
-	return nil
+	return err
 }

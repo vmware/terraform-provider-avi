@@ -4,11 +4,8 @@
 package avi
 
 import (
-	"log"
-	"strings"
-
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
-	"github.com/vmware/alb-sdk/go/clients"
+	"log"
 )
 
 func ResourceBotDetectionPolicySchema() map[string]*schema.Schema {
@@ -18,6 +15,12 @@ func ResourceBotDetectionPolicySchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 			Elem:     ResourceBotAllowListSchema(),
+		},
+		"client_behavior_detector": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceBotConfigClientBehaviorSchema(),
 		},
 		"description": {
 			Type:     schema.TypeString,
@@ -123,20 +126,13 @@ func resourceAviBotDetectionPolicyUpdate(d *schema.ResourceData, meta interface{
 }
 
 func resourceAviBotDetectionPolicyDelete(d *schema.ResourceData, meta interface{}) error {
-	objType := "botdetectionpolicy"
-	client := meta.(*clients.AviClient)
+	var err error
 	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
-	uuid := d.Get("uuid").(string)
-	if uuid != "" {
-		path := "api/" + objType + "/" + uuid
-		err := client.AviSession.Delete(path)
-		if err != nil && !(strings.Contains(err.Error(), "404") || strings.Contains(err.Error(), "204") || strings.Contains(err.Error(), "403")) {
-			log.Println("[INFO] resourceAviBotDetectionPolicyDelete not found")
-			return err
-		}
-		d.SetId("")
+	err = APIDelete(d, meta, "botdetectionpolicy")
+	if err != nil {
+		log.Printf("[ERROR] in deleting object %v\n", err)
 	}
-	return nil
+	return err
 }

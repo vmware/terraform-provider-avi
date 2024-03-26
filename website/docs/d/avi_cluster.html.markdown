@@ -37,5 +37,6 @@ In addition to all arguments above, the following attributes are exported:
 * `rejoin_nodes_automatically` - Re-join cluster nodes automatically in the event one of the node is reset to factory. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 * `tenant_ref` - It is a reference to an object of type tenant. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 * `uuid` - Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-* `virtual_ip` - A virtual ip address. This ip address will be dynamically reconfigured so that it always is the ip of the cluster leader. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `virtual_ip` - A v4 virtual ip address. This v4 ip address will be dynamically reconfigured so that it always is the ip of the cluster leader. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `virtual_ip6` - A v6 virtual ip address. This v6 ip address will be dynamically reconfigured so that it always is the ip of the cluster leader. Field introduced in 30.2.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 

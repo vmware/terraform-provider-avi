@@ -19,6 +19,10 @@ func dataSourceAviWafApplicationSignatureProvider() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceConfigPbAttributesSchema(),
 			},
+			"filter_rules_on_import": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"name": {
 				Type:     schema.TypeString,
 				Optional: true,

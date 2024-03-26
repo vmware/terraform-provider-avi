@@ -4,11 +4,8 @@
 package avi
 
 import (
-	"log"
-	"strings"
-
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
-	"github.com/vmware/alb-sdk/go/clients"
+	"log"
 )
 
 func ResourcePKIProfileSchema() map[string]*schema.Schema {
@@ -40,10 +37,10 @@ func ResourcePKIProfileSchema() map[string]*schema.Schema {
 			Default:      "true",
 			ValidateFunc: validateBool,
 		},
-		"crls": {
+		"crl_file_refs": {
 			Type:     schema.TypeList,
 			Optional: true,
-			Elem:     ResourceCRLSchema(),
+			Elem:     &schema.Schema{Type: schema.TypeString},
 		},
 		"ignore_peer_chain": {
 			Type:         schema.TypeString,
@@ -132,20 +129,13 @@ func resourceAviPKIProfileUpdate(d *schema.ResourceData, meta interface{}) error
 }
 
 func resourceAviPKIProfileDelete(d *schema.ResourceData, meta interface{}) error {
-	objType := "pkiprofile"
-	client := meta.(*clients.AviClient)
+	var err error
 	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
-	uuid := d.Get("uuid").(string)
-	if uuid != "" {
-		path := "api/" + objType + "/" + uuid
-		err := client.AviSession.Delete(path)
-		if err != nil && !(strings.Contains(err.Error(), "404") || strings.Contains(err.Error(), "204") || strings.Contains(err.Error(), "403")) {
-			log.Println("[INFO] resourceAviPKIProfileDelete not found")
-			return err
-		}
-		d.SetId("")
+	err = APIDelete(d, meta, "pkiprofile")
+	if err != nil {
+		log.Printf("[ERROR] in deleting object %v\n", err)
 	}
-	return nil
+	return err
 }

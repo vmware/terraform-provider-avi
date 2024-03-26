@@ -4,11 +4,8 @@
 package avi
 
 import (
-	"log"
-	"strings"
-
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
-	"github.com/vmware/alb-sdk/go/clients"
+	"log"
 )
 
 func ResourceWebappUTSchema() map[string]*schema.Schema {
@@ -18,6 +15,29 @@ func ResourceWebappUTSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 			Elem:     ResourceConfigPbAttributesSchema(),
+		},
+		"default_first_int": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "1",
+			ValidateFunc: validateInteger,
+		},
+		"default_second_int": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "2",
+			ValidateFunc: validateInteger,
+		},
+		"default_string": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Default:  "default string",
+		},
+		"default_third_int": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "3",
+			ValidateFunc: validateInteger,
 		},
 		"mandatory_test": {
 			Type:     schema.TypeSet,
@@ -44,6 +64,12 @@ func ResourceWebappUTSchema() map[string]*schema.Schema {
 			Type:     schema.TypeList,
 			Optional: true,
 			Elem:     ResourceL1FSensitiveTestCaseSchema(),
+		},
+		"skip_optional_check_tests": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Computed:     true,
+			ValidateFunc: validateBool,
 		},
 		"string_length_test": {
 			Type:     schema.TypeSet,
@@ -128,20 +154,13 @@ func resourceAviWebappUTUpdate(d *schema.ResourceData, meta interface{}) error {
 }
 
 func resourceAviWebappUTDelete(d *schema.ResourceData, meta interface{}) error {
-	objType := "webapput"
-	client := meta.(*clients.AviClient)
+	var err error
 	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
-	uuid := d.Get("uuid").(string)
-	if uuid != "" {
-		path := "api/" + objType + "/" + uuid
-		err := client.AviSession.Delete(path)
-		if err != nil && !(strings.Contains(err.Error(), "404") || strings.Contains(err.Error(), "204") || strings.Contains(err.Error(), "403")) {
-			log.Println("[INFO] resourceAviWebappUTDelete not found")
-			return err
-		}
-		d.SetId("")
+	err = APIDelete(d, meta, "webapput")
+	if err != nil {
+		log.Printf("[ERROR] in deleting object %v\n", err)
 	}
-	return nil
+	return err
 }

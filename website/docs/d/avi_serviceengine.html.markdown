@@ -47,6 +47,7 @@ In addition to all arguments above, the following attributes are exported:
 * `hypervisor` - Enum options - default, vmware_esx, kvm, vmware_vsan, xen. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 * `mgmt_vnic` - Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 * `name` - Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `nsxt_no_hotplug` - If set to true, controller does not hotplugg the vnics. Field introduced in 30.2.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 * `resources` - Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 * `se_group_ref` - It is a reference to an object of type serviceenginegroup. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
 * `tenant_ref` - It is a reference to an object of type tenant. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.

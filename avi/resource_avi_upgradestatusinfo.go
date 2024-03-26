@@ -4,11 +4,8 @@
 package avi
 
 import (
-	"log"
-	"strings"
-
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
-	"github.com/vmware/alb-sdk/go/clients"
+	"log"
 )
 
 func ResourceUpgradeStatusInfoSchema() map[string]*schema.Schema {
@@ -230,6 +227,11 @@ func ResourceUpgradeStatusInfoSchema() map[string]*schema.Schema {
 			Computed:     true,
 			ValidateFunc: validateBool,
 		},
+		"system_report_refs": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     &schema.Schema{Type: schema.TypeString},
+		},
 		"tasks_completed": {
 			Type:         schema.TypeString,
 			Optional:     true,
@@ -323,20 +325,13 @@ func resourceAviUpgradeStatusInfoUpdate(d *schema.ResourceData, meta interface{}
 }
 
 func resourceAviUpgradeStatusInfoDelete(d *schema.ResourceData, meta interface{}) error {
-	objType := "upgradestatusinfo"
-	client := meta.(*clients.AviClient)
+	var err error
 	if APIDeleteSystemDefaultCheck(d) {
 		return nil
 	}
-	uuid := d.Get("uuid").(string)
-	if uuid != "" {
-		path := "api/" + objType + "/" + uuid
-		err := client.AviSession.Delete(path)
-		if err != nil && !(strings.Contains(err.Error(), "404") || strings.Contains(err.Error(), "204") || strings.Contains(err.Error(), "403")) {
-			log.Println("[INFO] resourceAviUpgradeStatusInfoDelete not found")
-			return err
-		}
-		d.SetId("")
+	err = APIDelete(d, meta, "upgradestatusinfo")
+	if err != nil {
+		log.Printf("[ERROR] in deleting object %v\n", err)
 	}
-	return nil
+	return err
 }
