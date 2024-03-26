@@ -3646,7 +3646,7 @@ func ResourceBotConfigClientBehaviorSchema() *schema.Resource {
 			"enabled": {
 				Type:         schema.TypeString,
 				Optional:     true,
-				Default:      "true",
+				Default:      "false",
 				ValidateFunc: validateBool,
 			},
 			"minimum_requests": {
