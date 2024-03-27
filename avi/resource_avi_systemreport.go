@@ -63,6 +63,11 @@ func ResourceSystemReportSchema() map[string]*schema.Schema {
 			Computed: true,
 			Elem:     ResourceReportSummarySchema(),
 		},
+		"tasks": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceReportTaskSchema(),
+		},
 		"tenant_ref": {
 			Type:     schema.TypeString,
 			Optional: true,

@@ -42,6 +42,7 @@ In addition to all arguments above, the following attributes are exported:
 * `se_patch_image_ref` - Se patch image associated with the report. It is a reference to an object of type image. Field introduced in 22.1.6, 30.2.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 * `state` - Report state combines all applicable states. Ex  readiness_reports.system_readiness.state. Field introduced in 22.1.6, 30.2.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 * `summary` - Summary of the report. Field introduced in 22.1.6, 30.2.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `tasks` - List of tasks associated with the report. Field introduced in 30.2.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 * `tenant_ref` - Tenant uuid associated with the object. It is a reference to an object of type tenant. Field introduced in 22.1.6, 30.2.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 * `uuid` - Uuid identifier for the report. Field introduced in 22.1.6, 30.2.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
 

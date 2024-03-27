@@ -54,6 +54,11 @@ func dataSourceAviSystemReport() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceReportSummarySchema(),
 			},
+			"tasks": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceReportTaskSchema(),
+			},
 			"tenant_ref": {
 				Type:     schema.TypeString,
 				Optional: true,
