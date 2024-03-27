@@ -250,11 +250,6 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Default:      "1440",
 			ValidateFunc: validateInteger,
 		},
-		"file_reference_mappings": {
-			Type:     schema.TypeList,
-			Optional: true,
-			Elem:     ResourceFileReferenceMappingSchema(),
-		},
 		"fileobject_max_file_versions": {
 			Type:         schema.TypeString,
 			Optional:     true,
