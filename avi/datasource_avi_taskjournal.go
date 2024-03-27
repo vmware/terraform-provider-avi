@@ -5,59 +5,45 @@ package avi
 
 import "github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 
-func dataSourceAviSystemReport() *schema.Resource {
+func dataSourceAviTaskJournal() *schema.Resource {
 	return &schema.Resource{
-		Read: ResourceAviSystemReportRead,
+		Read: ResourceAviTaskJournalRead,
 		Schema: map[string]*schema.Schema{
-			"archive_ref": {
-				Type:     schema.TypeString,
-				Computed: true,
-			},
-			"controller_patch_image_ref": {
-				Type:     schema.TypeString,
-				Computed: true,
-			},
-			"downloadable": {
-				Type:     schema.TypeString,
-				Computed: true,
-			},
-			"events": {
+			"errors": {
 				Type:     schema.TypeList,
 				Computed: true,
-				Elem:     ResourceReportEventSchema(),
+				Elem:     ResourceJournalErrorSchema(),
 			},
 			"image_ref": {
 				Type:     schema.TypeString,
 				Computed: true,
+			},
+			"info": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceJournalInfoSchema(),
 			},
 			"name": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
-			"readiness_reports": {
-				Type:     schema.TypeList,
-				Computed: true,
-				Elem:     ResourceReportDetailSchema(),
-			},
-			"se_patch_image_ref": {
+			"obj_cloud_ref": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"state": {
-				Type:     schema.TypeSet,
+			"operation": {
+				Type:     schema.TypeString,
 				Computed: true,
-				Elem:     ResourceReportOpsStateSchema(),
+			},
+			"patch_image_ref": {
+				Type:     schema.TypeString,
+				Computed: true,
 			},
 			"summary": {
 				Type:     schema.TypeSet,
 				Computed: true,
-				Elem:     ResourceReportSummarySchema(),
-			},
-			"tasks": {
-				Type:     schema.TypeList,
-				Computed: true,
-				Elem:     ResourceReportTaskSchema(),
+				Elem:     ResourceJournalSummarySchema(),
 			},
 			"tenant_ref": {
 				Type:     schema.TypeString,

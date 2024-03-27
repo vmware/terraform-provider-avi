@@ -171,11 +171,6 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"file_reference_mappings": {
-				Type:     schema.TypeList,
-				Computed: true,
-				Elem:     ResourceFileReferenceMappingSchema(),
-			},
 			"fileobject_max_file_versions": {
 				Type:     schema.TypeString,
 				Computed: true,
