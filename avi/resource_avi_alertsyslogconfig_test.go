@@ -98,6 +98,11 @@ resource "avi_alertsyslogconfig" "testalertsyslogconfig" {
 	name = "asyc-test"
 	description= "test alert syslog"
 	tenant_ref= "${data.avi_tenant.default_tenant.id}"
+	syslog_servers {
+		udp = "true"
+        syslog_server_port = "443"
+        syslog_server = "10.10.3.10"
+	}
 }
 `
 
@@ -110,5 +115,10 @@ resource "avi_alertsyslogconfig" "testalertsyslogconfig" {
 	name = "asyc-abc"
 	description= "test alert syslog"
 	tenant_ref= "${data.avi_tenant.default_tenant.id}"
+	syslog_servers {
+		udp = "true"
+        syslog_server_port = "443"
+        syslog_server = "10.10.3.10"
+	}
 }
 `
