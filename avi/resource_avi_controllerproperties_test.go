@@ -50,6 +50,10 @@ func TestAVIControllerPropertiesBasic(t *testing.T) {
 					resource.TestCheckResourceAttr(
 						"avi_controllerproperties.testControllerProperties", "vs_key_rotate_period", "60"),
 					resource.TestCheckResourceAttr(
+						"avi_controllerproperties.testControllerProperties", "seupgrade_segroup_min_dead_timeout", "360"),
+					resource.TestCheckResourceAttr(
+						"avi_controllerproperties.testControllerProperties", "upgrade_lease_time", "360"),
+					resource.TestCheckResourceAttr(
 						"avi_controllerproperties.testControllerProperties", "se_create_timeout", "900"),
 					resource.TestCheckResourceAttr(
 						"avi_controllerproperties.testControllerProperties", "query_host_fail", "180"),
@@ -135,6 +139,10 @@ func TestAVIControllerPropertiesBasic(t *testing.T) {
 						"avi_controllerproperties.testControllerProperties", "seupgrade_fabric_pool_size", "20"),
 					resource.TestCheckResourceAttr(
 						"avi_controllerproperties.testControllerProperties", "vs_key_rotate_period", "60"),
+					resource.TestCheckResourceAttr(
+						"avi_controllerproperties.testControllerProperties", "seupgrade_segroup_min_dead_timeout", "360"),
+					resource.TestCheckResourceAttr(
+						"avi_controllerproperties.testControllerProperties", "upgrade_lease_time", "360"),
 					resource.TestCheckResourceAttr(
 						"avi_controllerproperties.testControllerProperties", "se_create_timeout", "900"),
 					resource.TestCheckResourceAttr(
@@ -238,6 +246,8 @@ resource "avi_controllerproperties" "testControllerProperties" {
 	max_dead_se_in_grp = "1"
 	seupgrade_fabric_pool_size = "20"
 	vs_key_rotate_period = "60"
+	seupgrade_segroup_min_dead_timeout = "360"
+	upgrade_lease_time = "360"
 	se_create_timeout = "900"
 	query_host_fail = "180"
 	bm_use_ansible = true
@@ -284,6 +294,8 @@ resource "avi_controllerproperties" "testControllerProperties" {
 	max_dead_se_in_grp = "1"
 	seupgrade_fabric_pool_size = "20"
 	vs_key_rotate_period = "60"
+	seupgrade_segroup_min_dead_timeout = "360"
+	upgrade_lease_time = "360"
 	se_create_timeout = "900"
 	query_host_fail = "180"
 	bm_use_ansible = true
