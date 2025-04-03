@@ -8,7 +8,7 @@ import (
 	"log"
 )
 
-// nolint
+//nolint
 func ResourceDnsPolicySchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"configpb_attributes": {
@@ -60,7 +60,7 @@ func ResourceDnsPolicySchema() map[string]*schema.Schema {
 	}
 }
 
-// nolint
+//nolint
 func resourceAviDnsPolicy() *schema.Resource {
 	return &schema.Resource{
 		Create: resourceAviDnsPolicyCreate,
@@ -74,13 +74,13 @@ func resourceAviDnsPolicy() *schema.Resource {
 	}
 }
 
-// nolint
+//nolint
 func ResourceDnsPolicyImporter(d *schema.ResourceData, m interface{}) ([]*schema.ResourceData, error) {
 	s := ResourceDnsPolicySchema()
 	return ResourceImporter(d, m, "dnspolicy", s)
 }
 
-// nolint
+//nolint
 func ResourceAviDnsPolicyRead(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceDnsPolicySchema()
 	err := APIRead(d, meta, "dnspolicy", s)
@@ -90,7 +90,7 @@ func ResourceAviDnsPolicyRead(d *schema.ResourceData, meta interface{}) error {
 	return err
 }
 
-// nolint
+//nolint
 func resourceAviDnsPolicyCreate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceDnsPolicySchema()
 	err := APICreate(d, meta, "dnspolicy", s)
@@ -100,7 +100,7 @@ func resourceAviDnsPolicyCreate(d *schema.ResourceData, meta interface{}) error 
 	return err
 }
 
-// nolint
+//nolint
 func resourceAviDnsPolicyUpdate(d *schema.ResourceData, meta interface{}) error {
 	s := ResourceDnsPolicySchema()
 	var err error
@@ -111,7 +111,7 @@ func resourceAviDnsPolicyUpdate(d *schema.ResourceData, meta interface{}) error 
 	return err
 }
 
-// nolint
+//nolint
 func resourceAviDnsPolicyDelete(d *schema.ResourceData, meta interface{}) error {
 	var err error
 	if APIDeleteSystemDefaultCheck(d) {
