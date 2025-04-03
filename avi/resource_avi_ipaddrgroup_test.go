@@ -43,7 +43,7 @@ func TestAVIIpAddrGroupBasic(t *testing.T) {
 
 }
 
-//nolint
+// nolint
 func testAccCheckAVIIpAddrGroupExists(resourcename string) resource.TestCheckFunc {
 	return func(s *terraform.State) error {
 		conn := testAccProvider.Meta().(*clients.AviClient).AviSession
@@ -67,7 +67,7 @@ func testAccCheckAVIIpAddrGroupExists(resourcename string) resource.TestCheckFun
 
 }
 
-//nolint
+// nolint
 func testAccCheckAVIIpAddrGroupDestroy(s *terraform.State) error {
 	conn := testAccProvider.Meta().(*clients.AviClient).AviSession
 	var obj interface{}
@@ -92,7 +92,7 @@ func testAccCheckAVIIpAddrGroupDestroy(s *terraform.State) error {
 	return nil
 }
 
-//nolint
+// nolint
 const testAccAVIIpAddrGroupConfig = `
 data "avi_tenant" "default_tenant"{
     name= "admin"
@@ -124,7 +124,7 @@ prefixes {
 }
 `
 
-//nolint
+// nolint
 const testAccAVIIpAddrGroupupdatedConfig = `
 data "avi_tenant" "default_tenant"{
     name= "admin"
