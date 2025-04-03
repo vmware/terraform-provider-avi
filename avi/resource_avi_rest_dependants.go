@@ -23170,7 +23170,7 @@ func ResourceNsxtConfigurationSchema() *schema.Resource {
 			"automate_dfw_objects": {
 				Type:         schema.TypeString,
 				Optional:     true,
-				Default:      "true",
+				Default:      "false",
 				ValidateFunc: validateBool,
 			},
 			"automate_dfw_rules": {
@@ -34744,6 +34744,12 @@ func ResourceTCPProxyProfileSchema() *schema.Resource {
 				Optional:     true,
 				Default:      "2",
 				ValidateFunc: validateInteger,
+			},
+			"delayed_ack_mode": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateBool,
 			},
 			"idle_connection_timeout": {
 				Type:         schema.TypeString,
