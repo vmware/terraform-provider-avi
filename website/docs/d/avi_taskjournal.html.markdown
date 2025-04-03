@@ -32,14 +32,15 @@ data "avi_taskjournal" "foo_taskjournal" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `errors` - List of errors in the process. Field introduced in 30.2.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
-* `image_ref` - Image uuid for identifying the current base image. It is a reference to an object of type image. Field introduced in 30.2.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
-* `info` - Detailed information of journal. Field introduced in 30.2.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
-* `name` - Name for the task journal. Field introduced in 30.2.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
-* `obj_cloud_ref` - Cloud that this object belongs to. It is a reference to an object of type cloud. Field introduced in 30.2.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
-* `operation` - Operation for which the task journal created. Field introduced in 30.2.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
-* `patch_image_ref` - Image uuid for identifying the current patch. It is a reference to an object of type image. Field introduced in 30.2.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
-* `summary` - Summary of journal. Field introduced in 30.2.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
-* `tenant_ref` - Tenant uuid associated with the object. It is a reference to an object of type tenant. Field introduced in 30.2.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
-* `uuid` - Uuid identifier for the task journal. Field introduced in 30.2.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `errors` - List of errors in the process. Field introduced in 30.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `image_ref` - Image uuid for identifying the current base image. It is a reference to an object of type image. Field introduced in 30.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `info` - Detailed information of journal. Field introduced in 30.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `name` - Name for the task journal. Field introduced in 30.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `obj_cloud_ref` - Cloud that this object belongs to. It is a reference to an object of type cloud. Field introduced in 30.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `operation` - Operation for which the task journal created. Field introduced in 30.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `patch_image_ref` - Image uuid for identifying the current patch. It is a reference to an object of type image. Field introduced in 30.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `summary` - Summary of journal. Field introduced in 30.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `tasks` - List of all the tasks executed with details. For example, details of tasks to be executed for upgrade filecopy. Field introduced in 31.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `tenant_ref` - Tenant uuid associated with the object. It is a reference to an object of type tenant. Field introduced in 30.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `uuid` - Uuid identifier for the task journal. Field introduced in 30.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
 

@@ -16,6 +16,13 @@ func ResourceSystemConfigurationSchema() map[string]*schema.Schema {
 			Computed: true,
 			Elem:     ResourceAdminAuthConfigurationSchema(),
 		},
+		"avi_email_login_password": {
+			Type:             schema.TypeString,
+			Optional:         true,
+			Computed:         true,
+			Sensitive:        true,
+			DiffSuppressFunc: suppressSensitiveFieldDiffs,
+		},
 		"common_criteria_mode": {
 			Type:         schema.TypeString,
 			Optional:     true,
@@ -74,12 +81,6 @@ func ResourceSystemConfigurationSchema() map[string]*schema.Schema {
 			Default:      "false",
 			ValidateFunc: validateBool,
 		},
-		"enable_telemetry": {
-			Type:         schema.TypeString,
-			Optional:     true,
-			Default:      "true",
-			ValidateFunc: validateBool,
-		},
 		"fips_mode": {
 			Type:         schema.TypeString,
 			Optional:     true,
@@ -101,6 +102,12 @@ func ResourceSystemConfigurationSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
+		},
+		"legacy_ssl_support": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
 		},
 		"linux_configuration": {
 			Type:     schema.TypeSet,
@@ -142,6 +149,11 @@ func ResourceSystemConfigurationSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  "default",
 		},
+		"sddcmanager_fqdn": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
 		"secure_channel_configuration": {
 			Type:     schema.TypeSet,
 			Optional: true,
@@ -164,10 +176,21 @@ func ResourceSystemConfigurationSchema() map[string]*schema.Schema {
 			Optional: true,
 			Elem:     &schema.Schema{Type: schema.TypeString},
 		},
+		"telemetry_configuration": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceTelemetryConfigurationSchema(),
+		},
 		"trusted_host_profiles_refs": {
 			Type:     schema.TypeList,
 			Optional: true,
 			Elem:     &schema.Schema{Type: schema.TypeString},
+		},
+		"truststore_pkiprofile_ref": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
 		},
 		"uuid": {
 			Type:     schema.TypeString,

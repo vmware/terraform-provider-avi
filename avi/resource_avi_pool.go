@@ -160,6 +160,12 @@ func ResourcePoolSchema() map[string]*schema.Schema {
 			Default:      "1",
 			ValidateFunc: validateInteger,
 		},
+		"graceful_disable_timeout_sec": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "60",
+			ValidateFunc: validateInteger,
+		},
 		"graceful_hm_down_disable_timeout": {
 			Type:         schema.TypeString,
 			Optional:     true,

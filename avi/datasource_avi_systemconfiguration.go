@@ -14,6 +14,10 @@ func dataSourceAviSystemConfiguration() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceAdminAuthConfigurationSchema(),
 			},
+			"avi_email_login_password": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"common_criteria_mode": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -59,10 +63,6 @@ func dataSourceAviSystemConfiguration() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"enable_telemetry": {
-				Type:     schema.TypeString,
-				Computed: true,
-			},
 			"fips_mode": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -77,6 +77,10 @@ func dataSourceAviSystemConfiguration() *schema.Resource {
 				Computed: true,
 			},
 			"kex_algorithm_exclude": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"legacy_ssl_support": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
@@ -113,6 +117,10 @@ func dataSourceAviSystemConfiguration() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"sddcmanager_fqdn": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"secure_channel_configuration": {
 				Type:     schema.TypeSet,
 				Computed: true,
@@ -133,10 +141,19 @@ func dataSourceAviSystemConfiguration() *schema.Resource {
 				Computed: true,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
+			"telemetry_configuration": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceTelemetryConfigurationSchema(),
+			},
 			"trusted_host_profiles_refs": {
 				Type:     schema.TypeList,
 				Computed: true,
 				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
+			"truststore_pkiprofile_ref": {
+				Type:     schema.TypeString,
+				Computed: true,
 			},
 			"uuid": {
 				Type:     schema.TypeString,

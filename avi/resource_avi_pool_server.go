@@ -63,6 +63,11 @@ func ResourceAviPoolServerSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"health_monitor_refs": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     &schema.Schema{Type: schema.TypeString},
+		},
 		"hostname": {
 			Type:     schema.TypeString,
 			Optional: true,
@@ -123,6 +128,12 @@ func ResourceAviPoolServerSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
+		},
+		"srv_rdata": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceGslbServiceSrvRdataSchema(),
 		},
 		"static": {
 			Type:         schema.TypeString,

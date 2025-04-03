@@ -9,6 +9,11 @@ func dataSourceAviBotIPReputationTypeMapping() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviBotIPReputationTypeMappingRead,
 		Schema: map[string]*schema.Schema{
+			"configpb_attributes": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceConfigPbAttributesSchema(),
+			},
 			"ip_reputation_mappings": {
 				Type:     schema.TypeList,
 				Computed: true,

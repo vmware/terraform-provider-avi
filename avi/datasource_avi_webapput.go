@@ -9,6 +9,11 @@ func dataSourceAviWebappUT() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviWebappUTRead,
 		Schema: map[string]*schema.Schema{
+			"cloud_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"configpb_attributes": {
 				Type:     schema.TypeSet,
 				Computed: true,

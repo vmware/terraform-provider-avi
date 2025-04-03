@@ -20,33 +20,36 @@ This data source is used to to get avi_webapput objects.
 data "avi_webapput" "foo_webapput" {
     uuid = "webapput-f9cf6b3e-a411-436f-95e2-2982ba2b217b"
     name = "foo"
-}
+    cloud_ref = "/api/cloud/?tenant=admin&name=Default-Cloud"
+  }
 ```
 
 ## Argument Reference
 
 * `name` - (Optional) Search WebappUT by name.
 * `uuid` - (Optional) Search WebappUT by uuid.
-
+* `cloud_ref` - (Optional) Search WebappUT by cloud_ref.
+  
 ## Attributes Reference
 
 In addition to all arguments above, the following attributes are exported:
 
-* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.5, 22.1.1. Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services edition.
-* `default_first_int` - Default uint64 field. Field introduced in 30.1.2. Allowed in enterprise edition with any value, enterprise with cloud services edition.
-* `default_second_int` - Default int64 field. Field introduced in 30.1.2. Allowed in enterprise edition with any value, enterprise with cloud services edition.
-* `default_string` - Default string field. Field introduced in 30.1.2. Allowed in enterprise edition with any value, enterprise with cloud services edition.
-* `default_third_int` - Default int32 field. Field introduced in 30.1.2. Allowed in enterprise edition with any value, enterprise with cloud services edition.
-* `mandatory_test` - Optional message for nested f_mandatory test cases defined at level1. Field introduced in 21.1.5, 22.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
-* `mandatory_tests` - Repeated message for nested f_mandatory test cases-level1. Field introduced in 21.1.5, 22.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
-* `name` - Name of the webapput object-level0. Field introduced in 21.1.5, 22.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
-* `sensitive_test` - Optional message for nested f_sensitive test cases defined at level1. Field introduced in 22.1.3. Allowed in enterprise edition with any value, enterprise with cloud services edition.
-* `sensitive_tests` - Repeated message for nested f_sensitive test cases-level1. Field introduced in 22.1.3. Allowed in enterprise edition with any value, enterprise with cloud services edition.
-* `skip_optional_check_tests` - Optional bool for nested skip_optional_check test cases-level1. Field introduced in 22.1.3. Allowed in enterprise edition with any value, enterprise with cloud services edition.
-* `string_length_test` - Optional message for nested  max string length test cases. Field introduced in 21.1.5, 22.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
-* `string_length_tests` - Repeated message for nested  max string length test cases. Field introduced in 21.1.5, 22.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
-* `tenant_ref` - Tenant of the webapput object-level0. It is a reference to an object of type tenant. Field introduced in 21.1.5, 22.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
-* `test_sensitive_string` - The string for sensitive (secret) field. Object-level0. Field introduced in 22.1.3. Allowed in enterprise edition with any value, enterprise with cloud services edition.
-* `test_string` - The maximum string length. Field introduced in 21.1.5, 22.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
-* `uuid` - Uuid of the webapput object-level0. Field introduced in 21.1.5, 22.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `cloud_ref` - Cloud of the webapput object-level0. It is a reference to an object of type cloud. Field introduced in 30.2.2. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.5, 22.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `default_first_int` - Default uint64 field. Field introduced in 30.1.2. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `default_second_int` - Default int64 field. Field introduced in 30.1.2. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `default_string` - Default string field. Field introduced in 30.1.2. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `default_third_int` - Default int32 field. Field introduced in 30.1.2. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `mandatory_test` - Optional message for nested f_mandatory test cases defined at level1. Field introduced in 21.1.5, 22.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `mandatory_tests` - Repeated message for nested f_mandatory test cases-level1. Field introduced in 21.1.5, 22.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `name` - Name of the webapput object-level0. Field introduced in 21.1.5, 22.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `sensitive_test` - Optional message for nested f_sensitive test cases defined at level1. Field introduced in 22.1.3. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `sensitive_tests` - Repeated message for nested f_sensitive test cases-level1. Field introduced in 22.1.3. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `skip_optional_check_tests` - Optional bool for nested skip_optional_check test cases-level1. Field introduced in 22.1.3. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `string_length_test` - Optional message for nested  max string length test cases. Field introduced in 21.1.5, 22.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `string_length_tests` - Repeated message for nested  max string length test cases. Field introduced in 21.1.5, 22.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `tenant_ref` - Tenant of the webapput object-level0. It is a reference to an object of type tenant. Field introduced in 21.1.5, 22.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `test_sensitive_string` - The string for sensitive (secret) field. Object-level0. Field introduced in 22.1.3. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `test_string` - The maximum string length. Field introduced in 21.1.5, 22.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `uuid` - Uuid of the webapput object-level0. Field introduced in 21.1.5, 22.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
 

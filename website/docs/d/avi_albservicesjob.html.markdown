@@ -32,18 +32,18 @@ data "avi_albservicesjob" "foo_albservicesjob" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `command` - The command to be triggered by the albservicesjob. Field introduced in 21.1.3. Allowed in enterprise edition with any value, enterprise with cloud services edition.
-* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.3. Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services edition.
-* `end_time` - Time at which the albservicesjob ended. Field introduced in 21.1.3. Allowed in enterprise edition with any value, enterprise with cloud services edition.
-* `name` - The name of the albservicesjob. Field introduced in 21.1.3. Allowed in enterprise edition with any value, enterprise with cloud services edition.
-* `params` - Job params. Field introduced in 22.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
-* `pulse_job_id` - A unique identifier for this job entry on the pulse cloud services. Field introduced in 21.1.3. Allowed in enterprise edition with any value, enterprise with cloud services edition.
-* `pulse_sync_status` - Status of sync to pulse cloud services(result uploads/state updates). Field introduced in 22.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
-* `result` - Job result. Field introduced in 22.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
-* `start_time` - Time at which the albservicesjob started. Field introduced in 21.1.3. Allowed in enterprise edition with any value, enterprise with cloud services edition.
-* `status` - The status of the albservicesjob. Enum options - UNDETERMINED, PENDING, IN_PROGRESS, COMPLETED, FAILED, NOT_ENABLED. Field introduced in 21.1.3. Allowed in enterprise edition with any value, enterprise with cloud services edition.
-* `status_update_time` - Time at which the status of albservicesjob updated. Field introduced in 22.1.6. Allowed in enterprise edition with any value, enterprise with cloud services edition.
-* `tenant_ref` - The unique identifier of the tenant to which this albservicesjob belongs. It is a reference to an object of type tenant. Field introduced in 21.1.3. Allowed in enterprise edition with any value, enterprise with cloud services edition.
-* `token` - Job token. Field introduced in 22.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
-* `uuid` - A unique identifier for this albservicesjob entry. Field introduced in 21.1.3. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `command` - The command to be triggered by the albservicesjob. Field introduced in 21.1.3. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.3. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `end_time` - Time at which the albservicesjob ended. Field introduced in 21.1.3. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `name` - The name of the albservicesjob. Field introduced in 21.1.3. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `params` - Job params. Field introduced in 22.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `pulse_job_id` - A unique identifier for this job entry on the pulse cloud services. Field introduced in 21.1.3. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `pulse_sync_status` - Status of sync to pulse cloud services(result uploads/state updates). Field introduced in 22.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `result` - Job result. Field introduced in 22.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `start_time` - Time at which the albservicesjob started. Field introduced in 21.1.3. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `status` - The status of the albservicesjob. Enum options - UNDETERMINED, PENDING, IN_PROGRESS, COMPLETED, FAILED, NOT_ENABLED. Field introduced in 21.1.3. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `status_update_time` - Time at which the status of albservicesjob updated. Field introduced in 22.1.6. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `tenant_ref` - The unique identifier of the tenant to which this albservicesjob belongs. It is a reference to an object of type tenant. Field introduced in 21.1.3. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `token` - Job token. Field introduced in 22.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `uuid` - A unique identifier for this albservicesjob entry. Field introduced in 21.1.3. Allowed with any value in enterprise, enterprise with cloud services edition.
 

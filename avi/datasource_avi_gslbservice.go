@@ -62,6 +62,10 @@ func dataSourceAviGslbService() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"include_additional_records": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"is_federated": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -89,6 +93,10 @@ func dataSourceAviGslbService() *schema.Resource {
 				Computed: true,
 			},
 			"pool_algorithm": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"record_type": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
@@ -120,6 +128,10 @@ func dataSourceAviGslbService() *schema.Resource {
 			"uuid": {
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
+			},
+			"vrf_uuid_for_gs": {
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"wildcard_match": {

@@ -32,10 +32,10 @@ data "avi_alertscriptconfig" "foo_alertscriptconfig" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `action_script` - User defined alert action script. Please refer to kb.avinetworks.com for more information. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services edition.
-* `name` - A user-friendly name of the script. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-* `tenant_ref` - It is a reference to an object of type tenant. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-* `timeout` - Controlscript excution timeout. Field introduced in 22.1.6. Allowed in enterprise edition with any value, enterprise with cloud services edition.
-* `uuid` - Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `action_script` - User defined alert action script. Please refer to kb.avinetworks.com for more information. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `name` - A user-friendly name of the script. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `tenant_ref` - It is a reference to an object of type tenant. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `timeout` - Controlscript excution timeout. Field introduced in 22.1.6. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `uuid` - Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 

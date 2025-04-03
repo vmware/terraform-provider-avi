@@ -10,6 +10,11 @@ import (
 
 func ResourceWebappUTSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
+		"cloud_ref": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
 		"configpb_attributes": {
 			Type:     schema.TypeSet,
 			Optional: true,

@@ -48,6 +48,10 @@ func dataSourceAviGslb() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"gs_member_fqdn_resolution_on_se": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"is_federated": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -75,6 +79,10 @@ func dataSourceAviGslb() *schema.Resource {
 				Computed: true,
 			},
 			"send_interval_prior_to_maintenance_mode": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"short_probe_interval": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},

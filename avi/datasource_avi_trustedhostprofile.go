@@ -17,7 +17,7 @@ func dataSourceAviTrustedHostProfile() *schema.Resource {
 			"hosts": {
 				Type:     schema.TypeList,
 				Computed: true,
-				Elem:     &schema.Schema{Type: schema.TypeString},
+				Elem:     ResourceTrustedHostSchema(),
 			},
 			"name": {
 				Type:     schema.TypeString,

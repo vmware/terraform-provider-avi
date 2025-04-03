@@ -45,6 +45,10 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"arp_cache_timeout": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"async_ssl": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -273,6 +277,10 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"enable_qat": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"ephemeral_portrange_end": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -396,6 +404,10 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeList,
 				Computed: true,
 				Elem:     ResourceKniPortRangeSchema(),
+			},
+			"kv_val_max_len": {
+				Type:     schema.TypeString,
+				Computed: true,
 			},
 			"l7_conns_per_core": {
 				Type:     schema.TypeString,
@@ -605,6 +617,10 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"nd6_cache_timeout": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"netlink_poller_threads": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -696,6 +712,10 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Computed: true,
 			},
 			"placement_mode": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"pre_upgrade_se_available_mem_threshold": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
@@ -1197,6 +1217,10 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Computed: true,
 			},
 			"waf_mempool_size": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"waf_use_jit_for_pcre": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},

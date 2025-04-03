@@ -36,6 +36,12 @@ func ResourceApplicationProfileSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"diameter_service_profile": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceDiameterServiceApplicationProfileSchema(),
+		},
 		"dns_service_profile": {
 			Type:     schema.TypeSet,
 			Optional: true,

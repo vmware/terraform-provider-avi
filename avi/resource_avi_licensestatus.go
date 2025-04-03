@@ -16,11 +16,6 @@ func ResourceLicenseStatusSchema() map[string]*schema.Schema {
 			Computed: true,
 			Elem:     ResourceConfigPbAttributesSchema(),
 		},
-		"essentials_enforced_at": {
-			Type:     schema.TypeString,
-			Optional: true,
-			Computed: true,
-		},
 		"saas_status": {
 			Type:     schema.TypeSet,
 			Optional: true,

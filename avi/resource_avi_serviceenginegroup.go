@@ -67,6 +67,12 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Default:      "8",
 			ValidateFunc: validateInteger,
 		},
+		"arp_cache_timeout": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "1200",
+			ValidateFunc: validateInteger,
+		},
 		"async_ssl": {
 			Type:         schema.TypeString,
 			Optional:     true,
@@ -388,6 +394,12 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Computed:     true,
 			ValidateFunc: validateBool,
 		},
+		"enable_qat": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
+		},
 		"ephemeral_portrange_end": {
 			Type:         schema.TypeString,
 			Optional:     true,
@@ -557,6 +569,12 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Type:     schema.TypeList,
 			Optional: true,
 			Elem:     ResourceKniPortRangeSchema(),
+		},
+		"kv_val_max_len": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "4096",
+			ValidateFunc: validateInteger,
 		},
 		"l7_conns_per_core": {
 			Type:         schema.TypeString,
@@ -857,6 +875,12 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Required: true,
 		},
+		"nd6_cache_timeout": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "86400",
+			ValidateFunc: validateInteger,
+		},
 		"netlink_poller_threads": {
 			Type:         schema.TypeString,
 			Optional:     true,
@@ -989,6 +1013,12 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 			Default:  "PLACEMENT_MODE_AUTO",
+		},
+		"pre_upgrade_se_available_mem_threshold": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "0",
+			ValidateFunc: validateInteger,
 		},
 		"realtime_se_metrics": {
 			Type:     schema.TypeSet,
@@ -1509,13 +1539,13 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 		"use_objsync": {
 			Type:         schema.TypeString,
 			Optional:     true,
-			Default:      "false",
+			Default:      "true",
 			ValidateFunc: validateBool,
 		},
 		"use_standard_alb": {
 			Type:         schema.TypeString,
 			Optional:     true,
-			Computed:     true,
+			Default:      "true",
 			ValidateFunc: validateBool,
 		},
 		"user_agent_cache_config": {
@@ -1703,6 +1733,12 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional:     true,
 			Default:      "64",
 			ValidateFunc: validateInteger,
+		},
+		"waf_use_jit_for_pcre": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "true",
+			ValidateFunc: validateBool,
 		},
 	}
 }

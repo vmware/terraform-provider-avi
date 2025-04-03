@@ -9,6 +9,11 @@ func dataSourceAviBotConfigConsolidator() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviBotConfigConsolidatorRead,
 		Schema: map[string]*schema.Schema{
+			"configpb_attributes": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceConfigPbAttributesSchema(),
+			},
 			"description": {
 				Type:     schema.TypeString,
 				Computed: true,

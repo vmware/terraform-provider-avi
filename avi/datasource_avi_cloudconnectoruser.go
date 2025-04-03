@@ -39,11 +39,6 @@ func dataSourceAviCloudConnectorUser() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceNsxtCredentialsSchema(),
 			},
-			"oci_credentials": {
-				Type:     schema.TypeSet,
-				Computed: true,
-				Elem:     ResourceOCICredentialsSchema(),
-			},
 			"password": {
 				Type:     schema.TypeString,
 				Computed: true,

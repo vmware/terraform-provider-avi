@@ -13,6 +13,11 @@ func dataSourceAviFileObject() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"child_refs": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
 			"compressed": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -35,7 +40,20 @@ func dataSourceAviFileObject() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"events": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceFileObjectEventMapSchema(),
+			},
 			"expires_at": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"gslb_geodb_format": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"has_parent": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},

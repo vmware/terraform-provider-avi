@@ -33,6 +33,12 @@ func ResourceRmCloudOpsProtoSchema() map[string]*schema.Schema {
 			Computed:     true,
 			ValidateFunc: validateInteger,
 		},
+		"se_create_limit_reached": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
+		},
 		"uuid": {
 			Type:     schema.TypeString,
 			Optional: true,

@@ -27,12 +27,12 @@ resource "avi_serviceauthprofile" "foo" {
 
 The following arguments are supported:
 
-* `name` - (Required) Name of the service auth profile. Field introduced in 30.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
-* `type` - (Required) Type of the service auth profile. Enum options - SERVICE_AUTH_OAUTH. Field introduced in 30.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
-* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 30.1.1. Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services edition.
-* `description` - (Optional) Description for the service auth profile. Field introduced in 30.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
-* `service_oauth_profile` - (Optional) Oauth profile - common endpoint information for service authentication. Field introduced in 30.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
-* `tenant_ref` - (Optional) Tenant ref for the service auth profile. It is a reference to an object of type tenant. Field introduced in 30.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `name` - (Required) Name of the service auth profile. Field introduced in 30.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `type` - (Required) Type of the service auth profile. Enum options - SERVICE_AUTH_OAUTH. Field introduced in 30.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 30.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `description` - (Optional) Description for the service auth profile. Field introduced in 30.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `service_oauth_profile` - (Optional) Oauth profile - common endpoint information for service authentication. Field introduced in 30.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `tenant_ref` - (Optional) Tenant ref for the service auth profile. It is a reference to an object of type tenant. Field introduced in 30.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
 
 
 ### Timeouts
@@ -47,5 +47,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-* `uuid` -  Uuid of the service auth profile. Field introduced in 30.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `uuid` -  Uuid of the service auth profile. Field introduced in 30.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
 

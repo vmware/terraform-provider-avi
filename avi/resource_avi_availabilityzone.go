@@ -10,6 +10,17 @@ import (
 
 func ResourceAvailabilityZoneSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
+		"az_clusters": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceAZClusterSchema(),
+		},
+		"az_datastore": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceAZDatastoreSchema(),
+		},
 		"cloud_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
@@ -34,11 +45,6 @@ func ResourceAvailabilityZoneSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
-		},
-		"vcenter_refs": {
-			Type:     schema.TypeList,
-			Required: true,
-			Elem:     &schema.Schema{Type: schema.TypeString},
 		},
 	}
 }

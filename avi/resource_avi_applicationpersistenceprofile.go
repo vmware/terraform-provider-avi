@@ -27,6 +27,12 @@ func ResourceApplicationPersistenceProfileSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"diameter_app_persistence_profile": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceDiameterAVPPersistenceProfileSchema(),
+		},
 		"hdr_persistence_profile": {
 			Type:     schema.TypeSet,
 			Optional: true,

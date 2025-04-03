@@ -41,6 +41,10 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"archive_retention_framework_period": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"async_patch_merge_period": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -150,6 +154,10 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"enable_nsx_streaming_agent": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"enable_per_process_stop": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -188,6 +196,10 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Computed: true,
 			},
 			"fileobject_max_file_versions": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"gslb_fileobject_max_version_count": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
@@ -319,23 +331,11 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"seupgrade_copy_buffer_size": {
-				Type:     schema.TypeString,
-				Computed: true,
-			},
-			"seupgrade_copy_pool_size": {
-				Type:     schema.TypeString,
-				Computed: true,
-			},
-			"seupgrade_fabric_pool_size": {
-				Type:     schema.TypeString,
-				Computed: true,
-			},
-			"seupgrade_segroup_min_dead_timeout": {
-				Type:     schema.TypeString,
-				Computed: true,
-			},
 			"shared_ssl_certificates": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"skip_beego_perf_collection": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
@@ -348,13 +348,10 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Computed: true,
 				Elem:     &schema.Schema{Type: schema.TypeInt},
 			},
-			"system_report_cleanup_interval": {
-				Type:     schema.TypeString,
+			"statecache_properties": {
+				Type:     schema.TypeSet,
 				Computed: true,
-			},
-			"system_report_limit": {
-				Type:     schema.TypeString,
-				Computed: true,
+				Elem:     ResourceSCPropertiesSchema(),
 			},
 			"unresponsive_se_reboot": {
 				Type:     schema.TypeString,
@@ -369,14 +366,6 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Computed: true,
 			},
 			"upgrade_dns_ttl": {
-				Type:     schema.TypeString,
-				Computed: true,
-			},
-			"upgrade_fat_se_lease_time": {
-				Type:     schema.TypeString,
-				Computed: true,
-			},
-			"upgrade_lease_time": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},

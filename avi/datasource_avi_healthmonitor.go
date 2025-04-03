@@ -55,6 +55,16 @@ func dataSourceAviHealthMonitor() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceHealthMonitorFtpSchema(),
 			},
+			"http2_monitor": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceHealthMonitorHttpSchema(),
+			},
+			"http2s_monitor": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceHealthMonitorHttpSchema(),
+			},
 			"http_monitor": {
 				Type:     schema.TypeSet,
 				Computed: true,

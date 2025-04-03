@@ -46,6 +46,12 @@ func ResourceBackupConfigurationSchema() map[string]*schema.Schema {
 			Sensitive:        true,
 			DiffSuppressFunc: suppressSensitiveFieldDiffs,
 		},
+		"bundle_mode": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
+		},
 		"configpb_attributes": {
 			Type:     schema.TypeSet,
 			Optional: true,

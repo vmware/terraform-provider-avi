@@ -32,9 +32,10 @@ data "avi_botconfigconsolidator" "foo_botconfigconsolidator" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `description` - Human-readable description of this consolidator. Field introduced in 21.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
-* `name` - The name of this consolidator. Field introduced in 21.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
-* `script` - Script that consolidates results from all bot decision components. Field introduced in 21.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
-* `tenant_ref` - The unique identifier of the tenant to which this consolidator belongs. It is a reference to an object of type tenant. Field introduced in 21.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
-* `uuid` - A unique identifier for this consolidator. Field introduced in 21.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 31.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `description` - Human-readable description of this consolidator. Field introduced in 21.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `name` - The name of this consolidator. Field introduced in 21.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `script` - Script that consolidates results from all bot decision components. Field introduced in 21.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `tenant_ref` - The unique identifier of the tenant to which this consolidator belongs. It is a reference to an object of type tenant. Field introduced in 21.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `uuid` - A unique identifier for this consolidator. Field introduced in 21.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
 
