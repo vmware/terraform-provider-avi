@@ -43,7 +43,7 @@ func TestAVICustomIpamDnsProfileBasic(t *testing.T) {
 
 }
 
-// nolint
+//nolint
 func testAccCheckAVICustomIpamDnsProfileExists(resourcename string) resource.TestCheckFunc {
 	return func(s *terraform.State) error {
 		conn := testAccProvider.Meta().(*clients.AviClient).AviSession
@@ -67,7 +67,7 @@ func testAccCheckAVICustomIpamDnsProfileExists(resourcename string) resource.Tes
 
 }
 
-// nolint
+//nolint
 func testAccCheckAVICustomIpamDnsProfileDestroy(s *terraform.State) error {
 	conn := testAccProvider.Meta().(*clients.AviClient).AviSession
 	var obj interface{}
@@ -92,7 +92,7 @@ func testAccCheckAVICustomIpamDnsProfileDestroy(s *terraform.State) error {
 	return nil
 }
 
-// nolint
+//nolint
 const testAccAVICustomIpamDnsProfileConfig = `
 data "avi_tenant" "default_tenant"{
     name= "admin"
@@ -104,7 +104,7 @@ resource "avi_customipamdnsprofile" "testCustomIpamDnsProfile" {
 }
 `
 
-// nolint
+//nolint
 const testAccAVICustomIpamDnsProfileupdatedConfig = `
 data "avi_tenant" "default_tenant"{
     name= "admin"

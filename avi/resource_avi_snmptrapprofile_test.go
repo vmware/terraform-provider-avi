@@ -97,15 +97,6 @@ data "avi_tenant" "default_tenant"{
 resource "avi_snmptrapprofile" "testSnmpTrapProfile" {
 	name = "test-snmp-test-abc"
 	tenant_ref = data.avi_tenant.default_tenant.id
-	trap_servers {
-	community = "abc"
-	ip_addr {
-		addr = "10.10.10.2"
-		type = "V4"
-	}
-	port = "162"
-	version = "SNMP_VER2"
-}
 }
 `
 
@@ -116,14 +107,5 @@ data "avi_tenant" "default_tenant"{
 resource "avi_snmptrapprofile" "testSnmpTrapProfile" {
 	name = "test-snmp-updated"
 	tenant_ref = data.avi_tenant.default_tenant.id
-	trap_servers {
-	community = "abc"
-	ip_addr {
-		addr = "10.10.10.2"
-		type = "V4"
-	}
-	port = "162"
-	version = "SNMP_VER2"
-}
 }
 `

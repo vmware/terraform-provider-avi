@@ -26,7 +26,7 @@ func TestAVIDataSourceCustomIpamDnsProfileBasic(t *testing.T) {
 
 }
 
-// nolint
+//nolint
 const testAccAVIDSCustomIpamDnsProfileConfig = `
 data "avi_tenant" "default_tenant"{
     name= "admin"

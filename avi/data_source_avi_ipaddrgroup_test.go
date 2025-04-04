@@ -26,7 +26,7 @@ func TestAVIDataSourceIpAddrGroupBasic(t *testing.T) {
 
 }
 
-// nolint
+//nolint
 const testAccAVIDSIpAddrGroupConfig = `
 data "avi_tenant" "default_tenant"{
     name= "admin"
