@@ -19,7 +19,7 @@ The User resource allows the creation and management of Avi User
 ```hcl
 resource "avi_user" "foo" {
     name = "terraform-example-foo"
-    tenant_ref = "/api/tenant/?name=admin"
+    default_tenant_ref = "/api/tenant/?name=admin"
 }
 ```
 
