@@ -1020,6 +1020,12 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Default:      "100",
 			ValidateFunc: validateInteger,
 		},
+		"sdb_key_timeout": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "60",
+			ValidateFunc: validateInteger,
+		},
 		"sdb_pipeline_size": {
 			Type:         schema.TypeString,
 			Optional:     true,
