@@ -49,6 +49,7 @@ The following arguments are supported:
 * `ldap_monitor` - (Optional) Health monitor for ldap. Field introduced in 21.1.3. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `ldaps_monitor` - (Optional) Health monitor for ldaps. Field introduced in 21.1.3. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `monitor_ip` - (Optional) Destination ip address to be monitored instead of the pool member ip. Field introduced in 31.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `monitor_port` - (Optional) Use this port instead of the port defined for the server in the pool. If the monitor succeeds to this port, the load balanced traffic will still be sent to the port of the server defined within the pool. Allowed values are 1-65535. Special values are 0 - use server port. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `pop3_monitor` - (Optional) Health monitor for pop3. Field introduced in 21.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `pop3s_monitor` - (Optional) Health monitor for pop3s. Field introduced in 21.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.

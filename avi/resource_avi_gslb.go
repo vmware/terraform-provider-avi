@@ -88,12 +88,6 @@ func ResourceGslbSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Required: true,
 		},
-		"replication_policy": {
-			Type:     schema.TypeSet,
-			Optional: true,
-			Computed: true,
-			Elem:     ResourceReplicationPolicySchema(),
-		},
 		"send_interval": {
 			Type:         schema.TypeString,
 			Optional:     true,

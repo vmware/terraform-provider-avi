@@ -43,4 +43,5 @@ In addition to all arguments above, the following attributes are exported:
 * `tasks` - List of all the tasks executed with details. For example, details of tasks to be executed for upgrade filecopy. Field introduced in 31.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `tenant_ref` - Tenant uuid associated with the object. It is a reference to an object of type tenant. Field introduced in 30.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `uuid` - Uuid identifier for the task journal. Field introduced in 30.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `warnings` - List of warnings in the process. Field introduced in 31.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
 

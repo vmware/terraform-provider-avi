@@ -282,11 +282,6 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
-		"nsx_securitygroup": {
-			Type:     schema.TypeList,
-			Optional: true,
-			Elem:     &schema.Schema{Type: schema.TypeString},
-		},
 		"oauth_vs_config": {
 			Type:     schema.TypeSet,
 			Optional: true,

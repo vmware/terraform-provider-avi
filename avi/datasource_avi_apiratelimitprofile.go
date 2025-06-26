@@ -5,9 +5,9 @@ package avi
 
 import "github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 
-func dataSourceAviWafPolicyPSMGroup() *schema.Resource {
+func dataSourceAviApiRateLimitProfile() *schema.Resource {
 	return &schema.Resource{
-		Read: ResourceAviWafPolicyPSMGroupRead,
+		Read: ResourceAviApiRateLimitProfileRead,
 		Schema: map[string]*schema.Schema{
 			"configpb_attributes": {
 				Type:     schema.TypeSet,
@@ -18,33 +18,7 @@ func dataSourceAviWafPolicyPSMGroup() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"enable": {
-				Type:     schema.TypeString,
-				Computed: true,
-			},
-			"hit_action": {
-				Type:     schema.TypeString,
-				Computed: true,
-			},
-			"is_learning_group": {
-				Type:     schema.TypeString,
-				Computed: true,
-			},
-			"location_match_miss_action": {
-				Type:     schema.TypeString,
-				Computed: true,
-			},
-			"locations": {
-				Type:     schema.TypeList,
-				Computed: true,
-				Elem:     ResourceWafPSMLocationSchema(),
-			},
-			"markers": {
-				Type:     schema.TypeList,
-				Computed: true,
-				Elem:     ResourceRoleFilterMatchLabelSchema(),
-			},
-			"miss_action": {
+			"enabled": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
@@ -52,6 +26,11 @@ func dataSourceAviWafPolicyPSMGroup() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+			"rate_limit_configuration_refs": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
 			"tenant_ref": {
 				Type:     schema.TypeString,

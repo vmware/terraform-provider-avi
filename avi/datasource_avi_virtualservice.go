@@ -224,11 +224,6 @@ func dataSourceAviVirtualService() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"nsx_securitygroup": {
-				Type:     schema.TypeList,
-				Computed: true,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-			},
 			"oauth_vs_config": {
 				Type:     schema.TypeSet,
 				Computed: true,

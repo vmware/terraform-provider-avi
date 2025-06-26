@@ -126,7 +126,7 @@ func dataSourceAviWafPolicy() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
-			"updated_crs_rules_in_detection_mode": {
+			"use_evaluation_mode_on_crs_update": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},

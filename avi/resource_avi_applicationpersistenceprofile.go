@@ -70,6 +70,12 @@ func ResourceApplicationPersistenceProfileSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Required: true,
 		},
+		"persistence_update_interval": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Computed:     true,
+			ValidateFunc: validateInteger,
+		},
 		"server_hm_down_recovery": {
 			Type:     schema.TypeString,
 			Optional: true,

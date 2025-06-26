@@ -66,6 +66,11 @@ func ResourceTaskJournalSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"warnings": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceJournalErrorSchema(),
+		},
 	}
 }
 

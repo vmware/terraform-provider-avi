@@ -32,6 +32,7 @@ The following arguments are supported:
 * `controller_info` - (Optional) Controller package details. Field introduced in 18.2.6. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `controller_patch_name` - (Optional) Mandatory controller patch name that is applied along with this base image. Field introduced in 18.2.10, 20.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `controller_patch_ref` - (Optional) It references the controller-patch associated with the uber image. It is a reference to an object of type image. Field introduced in 18.2.8, 20.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `dryrun_info` - (Optional) Dry-run package details. Field introduced in 31.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `duration` - (Optional) Time taken to upload the image in seconds. Field introduced in 21.1.3. Unit is sec. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `end_time` - (Optional) Image upload end time. Field introduced in 21.1.3. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `events` - (Optional) Image events for image upload operation. Field introduced in 21.1.3. Allowed with any value in enterprise, enterprise with cloud services edition.

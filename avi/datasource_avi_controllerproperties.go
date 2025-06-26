@@ -45,6 +45,10 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"async_cert_chaining_interval": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"async_patch_merge_period": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -215,6 +219,14 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"log_records_additional_buffer_space": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"log_records_purge_interval": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"max_dead_se_in_grp": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -352,6 +364,10 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Type:     schema.TypeSet,
 				Computed: true,
 				Elem:     ResourceSCPropertiesSchema(),
+			},
+			"telemetry_interval": {
+				Type:     schema.TypeString,
+				Computed: true,
 			},
 			"unresponsive_se_reboot": {
 				Type:     schema.TypeString,

@@ -666,6 +666,10 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceObjSyncConfigSchema(),
 			},
+			"objsync_mode": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"objsync_port": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -732,11 +736,20 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"reserved_configuration": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceReservedConfigurationSchema(),
+			},
 			"resync_time_interval": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"sdb_flush_interval": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"sdb_key_timeout": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
@@ -1076,10 +1089,6 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"use_objsync": {
-				Type:     schema.TypeString,
-				Computed: true,
-			},
 			"use_standard_alb": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -1202,6 +1211,11 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 			"vs_switchover_timeout": {
 				Type:     schema.TypeString,
 				Computed: true,
+			},
+			"vsphere_storage_policies": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceVsphereStoragePolicySchema(),
 			},
 			"vss_placement": {
 				Type:     schema.TypeSet,

@@ -151,7 +151,7 @@ func ResourceWafPolicySchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
-		"updated_crs_rules_in_detection_mode": {
+		"use_evaluation_mode_on_crs_update": {
 			Type:         schema.TypeString,
 			Optional:     true,
 			Default:      "true",

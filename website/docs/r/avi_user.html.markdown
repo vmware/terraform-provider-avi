@@ -33,6 +33,7 @@ The following arguments are supported:
 * `date_joined` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `default_tenant_ref` - (Optional) It is a reference to an object of type tenant. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `email` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `enable_config_warnings` - (Optional) Flag to enable or disable config warnings. Field introduced in 31.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `full_name` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `is_active` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `is_internal_user` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.

@@ -58,7 +58,7 @@ The following arguments are supported:
 * `mtu` - (Optional) Mtu setting for the cloud. Unit is bytes. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `nsxt_configuration` - (Optional) Nsx-t cloud platform configuration. Field introduced in 20.1.1. Allowed with any value in enterprise, basic, enterprise with cloud services edition.
 * `ntp_configuration` - (Optional) Ntp configuration for the cloud. Field introduced in 22.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `obj_name_prefix` - (Optional) Default prefix for all automatically created objects in this cloud. This prefix can be overridden by the se-group template. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `obj_name_prefix` - (Optional) Default prefix for all automatically created objects in this cloud. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `prefer_static_routes` - (Optional) Prefer static routes over interface routes during virtualservice placement. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `proxy_configuration` - (Optional) Allowed with any value in enterprise, enterprise with cloud services edition.
 * `rancher_configuration` - (Optional) Allowed with any value in enterprise, enterprise with cloud services edition.

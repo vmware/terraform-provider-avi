@@ -104,6 +104,11 @@ func dataSourceAviHealthMonitor() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceRoleFilterMatchLabelSchema(),
 			},
+			"monitor_ip": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceIpAddrSchema(),
+			},
 			"monitor_port": {
 				Type:     schema.TypeString,
 				Computed: true,

@@ -62,7 +62,7 @@ In addition to all arguments above, the following attributes are exported:
 * `name` - Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `nsxt_configuration` - Nsx-t cloud platform configuration. Field introduced in 20.1.1. Allowed with any value in enterprise, basic, enterprise with cloud services edition.
 * `ntp_configuration` - Ntp configuration for the cloud. Field introduced in 22.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `obj_name_prefix` - Default prefix for all automatically created objects in this cloud. This prefix can be overridden by the se-group template. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `obj_name_prefix` - Default prefix for all automatically created objects in this cloud. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `prefer_static_routes` - Prefer static routes over interface routes during virtualservice placement. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `proxy_configuration` - Allowed with any value in enterprise, enterprise with cloud services edition.
 * `rancher_configuration` - Allowed with any value in enterprise, enterprise with cloud services edition.

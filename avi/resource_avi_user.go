@@ -36,6 +36,12 @@ func ResourceUserSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"enable_config_warnings": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "true",
+			ValidateFunc: validateBool,
+		},
 		"full_name": {
 			Type:     schema.TypeString,
 			Optional: true,

@@ -947,6 +947,11 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Computed: true,
 			Elem:     ResourceObjSyncConfigSchema(),
 		},
+		"objsync_mode": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Default:  "OBJSYNC_ENABLED",
+		},
 		"objsync_port": {
 			Type:         schema.TypeString,
 			Optional:     true,
@@ -1038,6 +1043,12 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Default:      "1000",
 			ValidateFunc: validateInteger,
 		},
+		"reserved_configuration": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceReservedConfigurationSchema(),
+		},
 		"resync_time_interval": {
 			Type:         schema.TypeString,
 			Optional:     true,
@@ -1048,6 +1059,12 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Type:         schema.TypeString,
 			Optional:     true,
 			Default:      "100",
+			ValidateFunc: validateInteger,
+		},
+		"sdb_key_timeout": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "60",
 			ValidateFunc: validateInteger,
 		},
 		"sdb_pipeline_size": {
@@ -1536,12 +1553,6 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Default:      "false",
 			ValidateFunc: validateBool,
 		},
-		"use_objsync": {
-			Type:         schema.TypeString,
-			Optional:     true,
-			Default:      "true",
-			ValidateFunc: validateBool,
-		},
 		"use_standard_alb": {
 			Type:         schema.TypeString,
 			Optional:     true,
@@ -1709,6 +1720,11 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional:     true,
 			Default:      "300",
 			ValidateFunc: validateInteger,
+		},
+		"vsphere_storage_policies": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceVsphereStoragePolicySchema(),
 		},
 		"vss_placement": {
 			Type:     schema.TypeSet,

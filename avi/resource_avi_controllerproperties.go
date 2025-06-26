@@ -64,6 +64,12 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Default:      "60",
 			ValidateFunc: validateInteger,
 		},
+		"async_cert_chaining_interval": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "0",
+			ValidateFunc: validateInteger,
+		},
 		"async_patch_merge_period": {
 			Type:         schema.TypeString,
 			Optional:     true,
@@ -316,6 +322,18 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Default:      "false",
 			ValidateFunc: validateBool,
 		},
+		"log_records_additional_buffer_space": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "0",
+			ValidateFunc: validateInteger,
+		},
+		"log_records_purge_interval": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "600",
+			ValidateFunc: validateInteger,
+		},
 		"max_dead_se_in_grp": {
 			Type:         schema.TypeString,
 			Optional:     true,
@@ -517,6 +535,12 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 			Elem:     ResourceSCPropertiesSchema(),
+		},
+		"telemetry_interval": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "1440",
+			ValidateFunc: validateInteger,
 		},
 		"unresponsive_se_reboot": {
 			Type:         schema.TypeString,

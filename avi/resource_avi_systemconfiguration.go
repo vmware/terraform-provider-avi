@@ -176,6 +176,29 @@ func ResourceSystemConfigurationSchema() map[string]*schema.Schema {
 			Optional: true,
 			Elem:     &schema.Schema{Type: schema.TypeString},
 		},
+		"sync_dns_to_se": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
+		},
+		"sync_kex_host_to_se": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
+		},
+		"sync_syslog_to_se": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
+		},
+		"syslog_servers": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceIpAddrSchema(),
+		},
 		"telemetry_configuration": {
 			Type:     schema.TypeSet,
 			Optional: true,

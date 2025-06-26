@@ -37,6 +37,7 @@ The following arguments are supported:
 * `patch_image_ref` - (Optional) Image uuid for identifying the current patch. It is a reference to an object of type image. Field introduced in 30.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `tasks` - (Optional) List of all the tasks executed with details. For example, details of tasks to be executed for upgrade filecopy. Field introduced in 31.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `tenant_ref` - (Optional) Tenant uuid associated with the object. It is a reference to an object of type tenant. Field introduced in 30.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `warnings` - (Optional) List of warnings in the process. Field introduced in 31.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
 
 
 ### Timeouts

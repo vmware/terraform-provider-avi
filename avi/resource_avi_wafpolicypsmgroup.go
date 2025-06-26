@@ -38,6 +38,11 @@ func ResourceWafPolicyPSMGroupSchema() map[string]*schema.Schema {
 			Default:      "false",
 			ValidateFunc: validateBool,
 		},
+		"location_match_miss_action": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Default:  "WAF_ACTION_NO_OP",
+		},
 		"locations": {
 			Type:     schema.TypeList,
 			Optional: true,

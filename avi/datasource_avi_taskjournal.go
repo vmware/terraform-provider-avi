@@ -60,6 +60,11 @@ func dataSourceAviTaskJournal() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"warnings": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceJournalErrorSchema(),
+			},
 		},
 	}
 }

@@ -36,6 +36,7 @@ In addition to all arguments above, the following attributes are exported:
 * `controller_info` - Controller package details. Field introduced in 18.2.6. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `controller_patch_name` - Mandatory controller patch name that is applied along with this base image. Field introduced in 18.2.10, 20.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `controller_patch_ref` - It references the controller-patch associated with the uber image. It is a reference to an object of type image. Field introduced in 18.2.8, 20.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `dryrun_info` - Dry-run package details. Field introduced in 31.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `duration` - Time taken to upload the image in seconds. Field introduced in 21.1.3. Unit is sec. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `end_time` - Image upload end time. Field introduced in 21.1.3. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `events` - Image events for image upload operation. Field introduced in 21.1.3. Allowed with any value in enterprise, enterprise with cloud services edition.

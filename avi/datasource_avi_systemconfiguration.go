@@ -141,6 +141,23 @@ func dataSourceAviSystemConfiguration() *schema.Resource {
 				Computed: true,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
+			"sync_dns_to_se": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"sync_kex_host_to_se": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"sync_syslog_to_se": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"syslog_servers": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceIpAddrSchema(),
+			},
 			"telemetry_configuration": {
 				Type:     schema.TypeSet,
 				Computed: true,

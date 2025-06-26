@@ -69,11 +69,6 @@ func dataSourceAviGslb() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
-			"replication_policy": {
-				Type:     schema.TypeSet,
-				Computed: true,
-				Elem:     ResourceReplicationPolicySchema(),
-			},
 			"send_interval": {
 				Type:     schema.TypeString,
 				Computed: true,
