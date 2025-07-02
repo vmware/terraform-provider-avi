@@ -9231,6 +9231,12 @@ func ResourceDebugServiceEngineSchema() *schema.Resource {
 				Optional: true,
 				Elem:     ResourceDebugSeDataplaneSchema(),
 			},
+			"high_cpu_script_config": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceDebugServiceEngineSustainedCpuSpikeSchema(),
+			},
 			"mock_dl_fail_obj": {
 				Type:     schema.TypeSet,
 				Optional: true,
@@ -9310,6 +9316,64 @@ func ResourceDebugServiceEngineSeDataStoreMockDlFailSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceDebugServiceEngineSustainedCpuSpikeSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"cpu_filter": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"cpu_spike_percent": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"dis_enable": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
+			"manual_start": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateBool,
+			},
+			"pids": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeInt},
+			},
+			"process_names": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
+			"sample_cooldown": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"sample_duration": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"spike_duration": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
 			},
 		},
 	}

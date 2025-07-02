@@ -80,6 +80,16 @@ func ResourceVSDataScriptSetSchema() map[string]*schema.Schema {
 			Optional: true,
 			Elem:     ResourceRateLimiterSchema(),
 		},
+		"snat_ip6s": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceIpAddrSchema(),
+		},
+		"snat_ips": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceIpAddrSchema(),
+		},
 		"ssl_key_certificate_refs": {
 			Type:     schema.TypeList,
 			Optional: true,
