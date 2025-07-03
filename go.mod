@@ -6,7 +6,7 @@ toolchain go1.23.4
 
 require (
 	github.com/hashicorp/terraform-plugin-sdk/v2 v2.20.0
-	github.com/vmware/alb-sdk v0.0.0-20250630043128-ae67d3974134
+	github.com/vmware/alb-sdk v0.0.0-20250702093026-64bb6749ea42
 )
 
 require (
