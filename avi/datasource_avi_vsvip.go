@@ -65,10 +65,6 @@ func dataSourceAviVsVip() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"use_standard_alb": {
-				Type:     schema.TypeString,
-				Computed: true,
-			},
 			"uuid": {
 				Type:     schema.TypeString,
 				Optional: true,

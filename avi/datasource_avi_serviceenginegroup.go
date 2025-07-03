@@ -310,6 +310,10 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"gve_enabled": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"ha_mode": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -713,6 +717,10 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Computed: true,
 			},
 			"sdb_flush_interval": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"sdb_key_timeout": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},

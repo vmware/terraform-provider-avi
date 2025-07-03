@@ -442,6 +442,12 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Default:      "15",
 			ValidateFunc: validateInteger,
 		},
+		"gve_enabled": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
+		},
 		"ha_mode": {
 			Type:     schema.TypeString,
 			Optional: true,
@@ -1012,6 +1018,12 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Type:         schema.TypeString,
 			Optional:     true,
 			Default:      "100",
+			ValidateFunc: validateInteger,
+		},
+		"sdb_key_timeout": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "60",
 			ValidateFunc: validateInteger,
 		},
 		"sdb_pipeline_size": {
