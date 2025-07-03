@@ -83,8 +83,7 @@ func ResourceUserSchema() map[string]*schema.Schema {
 		},
 		"password": {
 			Type:             schema.TypeString,
-			Optional:         true,
-			Computed:         true,
+			Required:         true,
 			Sensitive:        true,
 			DiffSuppressFunc: suppressSensitiveFieldDiffs,
 		},

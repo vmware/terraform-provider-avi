@@ -61,6 +61,10 @@ func dataSourceAviApplicationPersistenceProfile() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"persistence_update_interval": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"server_hm_down_recovery": {
 				Type:     schema.TypeString,
 				Computed: true,

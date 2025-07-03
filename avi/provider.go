@@ -335,7 +335,7 @@ func providerConfigure(d *schema.ResourceData) (interface{}, error) {
 		Password:   d.Get("avi_password").(string),
 		Controller: d.Get("avi_controller").(string),
 		Tenant:     "admin",
-		Version:    "18.2.8",
+		Version:    "31.1.2",
 		AuthToken:  d.Get("avi_authtoken").(string),
 		CSPToken:   d.Get("avi_csp_token").(string),
 		CSPHost:    d.Get("avi_csp_host").(string),

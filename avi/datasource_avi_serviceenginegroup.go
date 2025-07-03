@@ -732,6 +732,10 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"sdb_key_timeout": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"sdb_pipeline_size": {
 				Type:     schema.TypeString,
 				Computed: true,

@@ -36127,6 +36127,12 @@ func ResourceTCPProxyProfileSchema() *schema.Resource {
 				Default:      "2",
 				ValidateFunc: validateInteger,
 			},
+			"delayed_ack_mode": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateBool,
+			},
 			"delayed_ack_timer_delay": {
 				Type:         schema.TypeString,
 				Optional:     true,
