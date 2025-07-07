@@ -281,6 +281,10 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"enable_quantum_entropy": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"ephemeral_portrange_end": {
 				Type:     schema.TypeString,
 				Computed: true,

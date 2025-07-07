@@ -32,6 +32,10 @@ func dataSourceAviAlertScriptConfig() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"user_ref": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"uuid": {
 				Type:     schema.TypeString,
 				Optional: true,
