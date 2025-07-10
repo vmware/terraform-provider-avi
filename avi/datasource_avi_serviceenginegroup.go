@@ -523,6 +523,10 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"max_cpu_load_adaptive_sampling": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"max_cpu_usage": {
 				Type:     schema.TypeString,
 				Computed: true,

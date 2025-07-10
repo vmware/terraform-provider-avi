@@ -20,6 +20,12 @@ func ResourceSSLProfileSchema() map[string]*schema.Schema {
 			Required: true,
 			Elem:     ResourceSSLVersionSchema(),
 		},
+		"allow_legacy_renegotiation": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
+		},
 		"cipher_enums": {
 			Type:     schema.TypeList,
 			Optional: true,

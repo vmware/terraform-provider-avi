@@ -54,6 +54,10 @@ func dataSourceAviWafPolicy() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"enable_adaptive_sampling": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"enable_app_learning": {
 				Type:     schema.TypeString,
 				Computed: true,

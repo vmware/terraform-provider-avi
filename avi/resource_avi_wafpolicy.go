@@ -67,6 +67,12 @@ func ResourceWafPolicySchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"enable_adaptive_sampling": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
+		},
 		"enable_app_learning": {
 			Type:         schema.TypeString,
 			Optional:     true,

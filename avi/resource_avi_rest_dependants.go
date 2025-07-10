@@ -7119,6 +7119,16 @@ func ResourceConnectionLogSchema() *schema.Resource {
 				Optional: true,
 				Elem:     &schema.Schema{Type: schema.TypeInt},
 			},
+			"dns_policy": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"dns_policy_rule_name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"dns_qtype": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -7425,6 +7435,11 @@ func ResourceConnectionLogSchema() *schema.Resource {
 				Type:         schema.TypeString,
 				Required:     true,
 				ValidateFunc: validateInteger,
+			},
+			"topology_policy_rule_name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 			"total_bytes": {
 				Type:         schema.TypeString,
