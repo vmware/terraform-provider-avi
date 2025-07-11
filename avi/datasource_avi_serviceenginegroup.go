@@ -193,6 +193,10 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"disable_qat_bulk_crypto": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"disable_se_memory_check": {
 				Type:     schema.TypeString,
 				Computed: true,

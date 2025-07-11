@@ -268,6 +268,12 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Computed:     true,
 			ValidateFunc: validateBool,
 		},
+		"disable_qat_bulk_crypto": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
+		},
 		"disable_se_memory_check": {
 			Type:         schema.TypeString,
 			Optional:     true,
