@@ -96,16 +96,34 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Elem:     &schema.Schema{Type: schema.TypeInt},
 		},
+		"auto_rebalance_cool_down_time": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "15",
+			ValidateFunc: validateInteger,
+		},
 		"auto_rebalance_criteria": {
 			Type:     schema.TypeList,
 			Optional: true,
 			Elem:     &schema.Schema{Type: schema.TypeString},
+		},
+		"auto_rebalance_dry_run_enabled": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
 		},
 		"auto_rebalance_interval": {
 			Type:         schema.TypeString,
 			Optional:     true,
 			Default:      "300",
 			ValidateFunc: validateInteger,
+		},
+		"auto_rebalance_raise_events_for_actions": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
 		},
 		"auto_redistribute_active_standby_load": {
 			Type:         schema.TypeString,

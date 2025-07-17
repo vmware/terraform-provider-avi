@@ -66,12 +66,24 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Computed: true,
 				Elem:     &schema.Schema{Type: schema.TypeInt},
 			},
+			"auto_rebalance_cool_down_time": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"auto_rebalance_criteria": {
 				Type:     schema.TypeList,
 				Computed: true,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
+			"auto_rebalance_dry_run_enabled": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"auto_rebalance_interval": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"auto_rebalance_raise_events_for_actions": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
