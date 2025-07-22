@@ -36,10 +36,10 @@ In addition to all arguments above, the following attributes are exported:
 
 * `cloud_ref` - Cloud of the webapput object-level0. It is a reference to an object of type cloud. Field introduced in 30.2.2. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.5, 22.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `default_fifth_int` - Default int32 field. Field introduced in 31.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `default_first_int` - Default uint64 field. Field introduced in 30.1.2. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `default_second_int` - Default int64 field. Field introduced in 30.1.2. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `default_fourth_int` - Default int32 field. Field introduced in 31.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `default_string` - Default string field. Field introduced in 30.1.2. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `default_third_int` - Default int32 field. Field introduced in 30.1.2. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `mandatory_test` - Optional message for nested f_mandatory test cases defined at level1. Field introduced in 21.1.5, 22.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `mandatory_tests` - Repeated message for nested f_mandatory test cases-level1. Field introduced in 21.1.5, 22.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `name` - Name of the webapput object-level0. Field introduced in 21.1.5, 22.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.

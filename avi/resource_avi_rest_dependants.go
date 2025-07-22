@@ -2120,7 +2120,7 @@ func ResourceApplicationLogSchema() *schema.Resource {
 func ResourceArchivePolicySchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
-			"source": {
+			"file_path": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -2128,7 +2128,7 @@ func ResourceArchivePolicySchema() *schema.Resource {
 			"threshold": {
 				Type:         schema.TypeString,
 				Optional:     true,
-				Computed:     true,
+				Default:      "128",
 				ValidateFunc: validateInteger,
 			},
 		},

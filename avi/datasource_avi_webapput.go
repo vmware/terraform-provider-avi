@@ -19,19 +19,19 @@ func dataSourceAviWebappUT() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceConfigPbAttributesSchema(),
 			},
+			"default_fifth_int": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"default_first_int": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"default_second_int": {
+			"default_fourth_int": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"default_string": {
-				Type:     schema.TypeString,
-				Computed: true,
-			},
-			"default_third_int": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},

@@ -49,7 +49,7 @@ func ResourceTechSupportProfileSchema() map[string]*schema.Schema {
 		"no_of_techsupport_retentions": {
 			Type:         schema.TypeString,
 			Optional:     true,
-			Default:      "1",
+			Default:      "4",
 			ValidateFunc: validateInteger,
 		},
 		"simultaneous_invocations": {
