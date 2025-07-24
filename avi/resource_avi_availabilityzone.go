@@ -15,11 +15,15 @@ func ResourceAvailabilityZoneSchema() map[string]*schema.Schema {
 			Optional: true,
 			Elem:     ResourceAZClusterSchema(),
 		},
-		"az_datastore": {
-			Type:     schema.TypeSet,
+		"az_datastores": {
+			Type:     schema.TypeList,
 			Optional: true,
-			Computed: true,
 			Elem:     ResourceAZDatastoreSchema(),
+		},
+		"az_hosts": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceAZHostSchema(),
 		},
 		"cloud_ref": {
 			Type:     schema.TypeString,

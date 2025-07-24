@@ -63,6 +63,10 @@ func dataSourceAviSystemConfiguration() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"enable_license_quota": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"fips_mode": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -83,6 +87,11 @@ func dataSourceAviSystemConfiguration() *schema.Resource {
 			"legacy_ssl_support": {
 				Type:     schema.TypeString,
 				Computed: true,
+			},
+			"license_quota": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceQuotaConfigSchema(),
 			},
 			"linux_configuration": {
 				Type:     schema.TypeSet,

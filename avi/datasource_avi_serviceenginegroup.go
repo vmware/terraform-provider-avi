@@ -297,10 +297,6 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"enable_quantum_entropy": {
-				Type:     schema.TypeString,
-				Computed: true,
-			},
 			"ephemeral_portrange_end": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -453,6 +449,11 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 			"least_load_core_selection": {
 				Type:     schema.TypeString,
 				Computed: true,
+			},
+			"license_quota": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceQuotaConfigSchema(),
 			},
 			"license_tier": {
 				Type:     schema.TypeString,

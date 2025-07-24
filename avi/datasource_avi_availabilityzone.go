@@ -14,10 +14,15 @@ func dataSourceAviAvailabilityZone() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceAZClusterSchema(),
 			},
-			"az_datastore": {
-				Type:     schema.TypeSet,
+			"az_datastores": {
+				Type:     schema.TypeList,
 				Computed: true,
 				Elem:     ResourceAZDatastoreSchema(),
+			},
+			"az_hosts": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceAZHostSchema(),
 			},
 			"cloud_ref": {
 				Type:     schema.TypeString,

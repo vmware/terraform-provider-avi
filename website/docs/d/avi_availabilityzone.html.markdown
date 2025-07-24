@@ -35,7 +35,8 @@ data "avi_availabilityzone" "foo_availabilityzone" {
 In addition to all arguments above, the following attributes are exported:
 
 * `az_clusters` - Group of clusters belongs to the az. Field introduced in 31.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `az_datastore` - Datastores associated with the az. Field introduced in 31.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `az_datastores` - Group of datastores associated with the az. Field introduced in 31.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `az_hosts` - Group of hosts associated with the az. Field introduced in 31.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `cloud_ref` - Availability zone belongs to cloud. It is a reference to an object of type cloud. Field introduced in 20.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `name` - Availabilty zone where vcenter list belongs to. Field introduced in 20.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.

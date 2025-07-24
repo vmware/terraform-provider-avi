@@ -500,6 +500,28 @@ func ResourceAZDatastoreSchema() *schema.Resource {
 				Default:      "false",
 				ValidateFunc: validateBool,
 			},
+			"vcenter_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceAZHostSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"host_ids": {
+				Type:     schema.TypeList,
+				Required: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
+			"vcenter_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 		},
 	}
 }
@@ -21446,6 +21468,24 @@ func ResourceLicenseInfoSchema() *schema.Resource {
 	}
 }
 
+func ResourceLicenseReservationInfoSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"reserved": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"uuid": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
 func ResourceLicenseServiceUpdateSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -27829,6 +27869,25 @@ func ResourceQueryMatchSchema() *schema.Resource {
 	}
 }
 
+func ResourceQuotaConfigSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"limit": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "-1",
+				ValidateFunc: validateInteger,
+			},
+			"reservation": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "0",
+				ValidateFunc: validateInteger,
+			},
+		},
+	}
+}
+
 func ResourceRancherConfigurationSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -30437,18 +30496,6 @@ func ResourceSaasLicensingInfoSchema() *schema.Resource {
 				Default:      "true",
 				ValidateFunc: validateBool,
 			},
-			"max_service_units": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Default:      "0",
-				ValidateFunc: validateFloat,
-			},
-			"reserve_service_units": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Default:      "0",
-				ValidateFunc: validateFloat,
-			},
 		},
 	}
 }
@@ -31648,6 +31695,30 @@ func ResourceSeGroupAnalyticsPolicySchema() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				Elem:     ResourceMetricsEventThresholdSchema(),
+			},
+		},
+	}
+}
+
+func ResourceSeGroupInfoSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"consumed": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateFloat,
+			},
+			"escrow": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateFloat,
+			},
+			"uuid": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 		},
 	}
@@ -37201,6 +37272,12 @@ func ResourceTelemetryConfigurationSchema() *schema.Resource {
 func ResourceTenantConfigurationSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"license_quota": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceQuotaConfigSchema(),
+			},
 			"se_in_provider_context": {
 				Type:         schema.TypeString,
 				Optional:     true,

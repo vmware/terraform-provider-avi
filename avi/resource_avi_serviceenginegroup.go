@@ -424,12 +424,6 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Default:      "false",
 			ValidateFunc: validateBool,
 		},
-		"enable_quantum_entropy": {
-			Type:         schema.TypeString,
-			Optional:     true,
-			Default:      "false",
-			ValidateFunc: validateBool,
-		},
 		"ephemeral_portrange_end": {
 			Type:         schema.TypeString,
 			Optional:     true,
@@ -640,6 +634,12 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional:     true,
 			Default:      "true",
 			ValidateFunc: validateBool,
+		},
+		"license_quota": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceQuotaConfigSchema(),
 		},
 		"license_tier": {
 			Type:     schema.TypeString,

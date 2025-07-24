@@ -44,11 +44,13 @@ In addition to all arguments above, the following attributes are exported:
 * `email_configuration` - Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `enable_cors` - Enable cors header. Field introduced in 20.1.3. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `enable_host_header_check` - Validates the host header against a list of trusted domains. Field introduced in 31.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `enable_license_quota` - Enable license quota for the system. Field introduced in 31.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `fips_mode` - Fips mode current state. Field introduced in 20.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `global_tenant_config` - Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `host_key_algorithm_exclude` - Users can specify comma separated list of deprecated host key algorithm.if nothing is specified, all known algorithms provided by openssh will be supported.this change could only apply on the controller node. Field introduced in 22.1.3. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `kex_algorithm_exclude` - Users can specify comma separated list of deprecated key exchange algorithm.if nothing is specified, all known algorithms provided by openssh will be supported.this change could only apply on the controller node. Field introduced in 22.1.3. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `legacy_ssl_support` - Allow outgoing connections from controller to servers using tls 1.0/1.1. Field introduced in 31.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `license_quota` - License quota for the system. Field introduced in 31.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `linux_configuration` - Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `mgmt_ip_access_control` - Configure ip access control for controller to restrict open access. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `ntp_configuration` - Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
