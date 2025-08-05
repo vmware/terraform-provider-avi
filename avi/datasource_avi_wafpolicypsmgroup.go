@@ -9,6 +9,11 @@ func dataSourceAviWafPolicyPSMGroup() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviWafPolicyPSMGroupRead,
 		Schema: map[string]*schema.Schema{
+			"completely_described_match_elements": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
 			"configpb_attributes": {
 				Type:     schema.TypeSet,
 				Computed: true,

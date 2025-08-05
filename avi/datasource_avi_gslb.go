@@ -13,6 +13,11 @@ func dataSourceAviGslb() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"auto_tune_send_interval": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceAutoTuneSendIntervalSchema(),
+			},
 			"clear_on_max_retries": {
 				Type:     schema.TypeString,
 				Computed: true,

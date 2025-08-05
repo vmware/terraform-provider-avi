@@ -16,12 +16,6 @@ func ResourceTechSupportProfileSchema() map[string]*schema.Schema {
 			Computed: true,
 			Elem:     ResourceArchiveRulesSchema(),
 		},
-		"collect_customer_files": {
-			Type:     schema.TypeSet,
-			Optional: true,
-			Computed: true,
-			Elem:     ResourceCollectCustomerFilesSchema(),
-		},
 		"event_params": {
 			Type:     schema.TypeSet,
 			Optional: true,

@@ -888,6 +888,10 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"se_kernel_rss": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"se_kni_burst_factor": {
 				Type:     schema.TypeString,
 				Computed: true,

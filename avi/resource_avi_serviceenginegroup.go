@@ -289,7 +289,7 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 		"disable_qat_bulk_crypto": {
 			Type:         schema.TypeString,
 			Optional:     true,
-			Default:      "false",
+			Default:      "true",
 			ValidateFunc: validateBool,
 		},
 		"disable_se_memory_check": {
@@ -1262,6 +1262,12 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional:     true,
 			Default:      "0",
 			ValidateFunc: validateInteger,
+		},
+		"se_kernel_rss": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Computed:     true,
+			ValidateFunc: validateBool,
 		},
 		"se_kni_burst_factor": {
 			Type:         schema.TypeString,

@@ -14,11 +14,6 @@ func dataSourceAviTechSupportProfile() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceArchiveRulesSchema(),
 			},
-			"collect_customer_files": {
-				Type:     schema.TypeSet,
-				Computed: true,
-				Elem:     ResourceCollectCustomerFilesSchema(),
-			},
 			"event_params": {
 				Type:     schema.TypeSet,
 				Computed: true,

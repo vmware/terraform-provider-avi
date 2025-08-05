@@ -67,12 +67,6 @@ func ResourceWafPolicySchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
-		"enable_adaptive_sampling": {
-			Type:         schema.TypeString,
-			Optional:     true,
-			Default:      "false",
-			ValidateFunc: validateBool,
-		},
 		"enable_app_learning": {
 			Type:         schema.TypeString,
 			Optional:     true,
@@ -91,10 +85,22 @@ func ResourceWafPolicySchema() map[string]*schema.Schema {
 			Default:      "false",
 			ValidateFunc: validateBool,
 		},
+		"enable_streaming": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
+		},
 		"failure_mode": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Default:  "WAF_FAILURE_MODE_OPEN",
+		},
+		"fixed_sampling_rate": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "1",
+			ValidateFunc: validateInteger,
 		},
 		"geo_db_ref": {
 			Type:     schema.TypeString,
@@ -151,6 +157,11 @@ func ResourceWafPolicySchema() map[string]*schema.Schema {
 			Type:     schema.TypeList,
 			Optional: true,
 			Elem:     ResourceWafPolicyRequiredDataFileSchema(),
+		},
+		"sampling_mode": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Default:  "WAF_SAMPLING_MODE_NO_SAMPLING",
 		},
 		"tenant_ref": {
 			Type:     schema.TypeString,

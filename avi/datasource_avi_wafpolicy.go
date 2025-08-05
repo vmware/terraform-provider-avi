@@ -54,10 +54,6 @@ func dataSourceAviWafPolicy() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"enable_adaptive_sampling": {
-				Type:     schema.TypeString,
-				Computed: true,
-			},
 			"enable_app_learning": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -70,7 +66,15 @@ func dataSourceAviWafPolicy() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"enable_streaming": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"failure_mode": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"fixed_sampling_rate": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
@@ -124,6 +128,10 @@ func dataSourceAviWafPolicy() *schema.Resource {
 				Type:     schema.TypeList,
 				Computed: true,
 				Elem:     ResourceWafPolicyRequiredDataFileSchema(),
+			},
+			"sampling_mode": {
+				Type:     schema.TypeString,
+				Computed: true,
 			},
 			"tenant_ref": {
 				Type:     schema.TypeString,

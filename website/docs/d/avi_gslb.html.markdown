@@ -33,6 +33,7 @@ data "avi_gslb" "foo_gslb" {
 In addition to all arguments above, the following attributes are exported:
 
 * `async_interval` - Frequency with which messages are propagated to vs mgr. Value of 0 disables async behavior and rpc are sent inline. Allowed values are 0-5. Field introduced in 18.2.3. Unit is sec. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `auto_tune_send_interval` - Automatically set the send interval value based on the load. Field introduced in 30.2.5, 31.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `clear_on_max_retries` - Max retries after which the remote site is treated as a fresh start. In fresh start all the configs are downloaded. Allowed values are 1-1024. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `client_ip_addr_group` - Group to specify if the client ip addresses are public or private. Field introduced in 17.1.2. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.

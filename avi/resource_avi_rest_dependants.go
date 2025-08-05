@@ -1287,6 +1287,12 @@ func ResourceAppLearningParamsSchema() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceBotDetectionMatchSchema(),
 			},
+			"learn_from_urls_without_args": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
 			"max_params": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -2862,6 +2868,25 @@ func ResourceAutoScaleOpenStackSettingsSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceAutoTuneSendIntervalSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"auto_tune_send_interval_timeout": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "300",
+				ValidateFunc: validateInteger,
+			},
+			"enabled": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "true",
+				ValidateFunc: validateBool,
 			},
 		},
 	}
@@ -6290,18 +6315,6 @@ func ResourceClustifyCheckEventSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
-			},
-		},
-	}
-}
-
-func ResourceCollectCustomerFilesSchema() *schema.Resource {
-	return &schema.Resource{
-		Schema: map[string]*schema.Schema{
-			"files": {
-				Type:     schema.TypeList,
-				Optional: true,
-				Elem:     ResourceArchivePolicySchema(),
 			},
 		},
 	}

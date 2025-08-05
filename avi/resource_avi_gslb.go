@@ -16,6 +16,12 @@ func ResourceGslbSchema() map[string]*schema.Schema {
 			Default:      "0",
 			ValidateFunc: validateInteger,
 		},
+		"auto_tune_send_interval": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceAutoTuneSendIntervalSchema(),
+		},
 		"clear_on_max_retries": {
 			Type:         schema.TypeString,
 			Optional:     true,
