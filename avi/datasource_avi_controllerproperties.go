@@ -219,7 +219,19 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"log_records_additional_buffer_space": {
+			"log_records_allocated_size": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"log_records_allocation_percentage_for_events": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"log_records_cleanup_target_percentage": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"log_records_frequent_cleanup_event_generation_threshold": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},

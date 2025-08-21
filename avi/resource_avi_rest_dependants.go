@@ -1709,6 +1709,11 @@ func ResourceApplicationLogSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"named_group": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"network_security_policy_rule_name": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -2019,6 +2024,11 @@ func ResourceApplicationLogSchema() *schema.Resource {
 				Required: true,
 			},
 			"session_id": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"signature_algorithm": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -7286,6 +7296,11 @@ func ResourceConnectionLogSchema() *schema.Resource {
 				Required:     true,
 				ValidateFunc: validateInteger,
 			},
+			"named_group": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"network_security_policy_rule_name": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -7463,6 +7478,11 @@ func ResourceConnectionLogSchema() *schema.Resource {
 				ValidateFunc: validateInteger,
 			},
 			"service_engine": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"signature_algorithm": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -15862,6 +15882,12 @@ func ResourceGslbSiteHealthStatusSchema() *schema.Resource {
 				Optional: true,
 				Elem:     ResourceGslbPoolMemberRuntimeInfoSchema(),
 			},
+			"controller_size": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceControllerSizeSchema(),
+			},
 			"datapath_gsinfo": {
 				Type:     schema.TypeList,
 				Optional: true,
@@ -15872,6 +15898,11 @@ func ResourceGslbSiteHealthStatusSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 				Elem:     ResourceGslbDnsInfoSchema(),
+			},
+			"edges": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceSiteLinkSchema(),
 			},
 			"gap_table": {
 				Type:     schema.TypeList,
@@ -16745,6 +16776,12 @@ func ResourceHSMSafenetLunaSchema() *schema.Resource {
 				Computed: true,
 			},
 			"use_dedicated_network": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
+			"use_legacy_engine": {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Default:      "false",
@@ -21307,6 +21344,35 @@ func ResourceLdapUserBindSettingsSchema() *schema.Resource {
 	}
 }
 
+func ResourceLeaderChangeInfoSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"enabled": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "true",
+				ValidateFunc: validateBool,
+			},
+			"leader_candidates": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceSiteInfoSchema(),
+			},
+			"leader_change_mode": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "GSLB_LC_MODE_MANUAL",
+			},
+			"max_unsuccessful_probes": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "15",
+				ValidateFunc: validateInteger,
+			},
+		},
+	}
+}
+
 func ResourceLearningLogPolicySchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -22386,6 +22452,12 @@ func ResourceMemoryUsageSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
 			"available": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"effective_ctlr_mem_used_percent": {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Computed:     true,
@@ -30364,6 +30436,18 @@ func ResourceSSLKeyECParamsSchema() *schema.Resource {
 	}
 }
 
+func ResourceSSLKeyMldsaParamsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"algorithm": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "SSL_KEY_MLDSA44",
+			},
+		},
+	}
+}
+
 func ResourceSSLKeyParamsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -30376,6 +30460,12 @@ func ResourceSSLKeyParamsSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 				Elem:     ResourceSSLKeyECParamsSchema(),
+			},
+			"mldsa_params": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceSSLKeyMldsaParamsSchema(),
 			},
 			"rsa_params": {
 				Type:     schema.TypeSet,
@@ -35909,6 +35999,42 @@ func ResourceSipServiceApplicationProfileSchema() *schema.Resource {
 	}
 }
 
+func ResourceSiteInfoSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"cluster_id": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"site_name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceSiteLinkSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"destination": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceSiteInfoSchema(),
+			},
+			"source": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceSiteInfoSchema(),
+			},
+		},
+	}
+}
+
 func ResourceSnmpConfigurationSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -37629,10 +37755,20 @@ func ResourceUDPProxyProfileSchema() *schema.Resource {
 func ResourceURIInfoSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"method": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"param_info": {
 				Type:     schema.TypeList,
 				Optional: true,
 				Elem:     ResourceParamInfoSchema(),
+			},
+			"parser": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 			"uri_hits": {
 				Type:         schema.TypeString,
@@ -42678,6 +42814,12 @@ func ResourceVserverL7MetricsObjSchema() *schema.Resource {
 				Computed:     true,
 				ValidateFunc: validateFloat,
 			},
+			"effective_sampling_rate": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateFloat,
+			},
 			"max_concurrent_sessions": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -42880,6 +43022,18 @@ func ResourceVserverL7MetricsObjSchema() *schema.Resource {
 				Computed:     true,
 				ValidateFunc: validateFloat,
 			},
+			"sum_num_optional_processing_admitted": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateFloat,
+			},
+			"sum_num_optional_processing_refused": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateFloat,
+			},
 			"sum_num_page_load_time_bucket1": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -42893,6 +43047,12 @@ func ResourceVserverL7MetricsObjSchema() *schema.Resource {
 				ValidateFunc: validateFloat,
 			},
 			"sum_num_rum_samples": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateFloat,
+			},
+			"sum_optional_cpu_usage": {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Computed:     true,
@@ -44028,6 +44188,12 @@ func ResourceWafPSMRuleSchema() *schema.Resource {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Default:      "true",
+				ValidateFunc: validateBool,
+			},
+			"ignore_hit_action": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
 				ValidateFunc: validateBool,
 			},
 			"index": {

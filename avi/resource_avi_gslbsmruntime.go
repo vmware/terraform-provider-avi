@@ -20,6 +20,12 @@ func ResourceGslbSMRuntimeSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"controller_size": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceControllerSizeSchema(),
+		},
 		"dns_configs": {
 			Type:     schema.TypeList,
 			Optional: true,

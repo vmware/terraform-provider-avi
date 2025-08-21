@@ -34,6 +34,7 @@ In addition to all arguments above, the following attributes are exported:
 
 * `cluster_leader` - The controller cluster leader node uuid. Field introduced in 31.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `cluster_uuid` - The site controller cluster uuid. Field introduced in 31.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `controller_size` - Possible controller size of peer controller. Field introduced in 31.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `dns_configs` - Sub domain configuration for the gslb. Gslb service's fqdn must be a match one of these subdomains. Field introduced in 31.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `dns_info` - Dns info at the site. Field introduced in 31.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `enabled` - Activate/de-activate state retrieved from the cfg. Field introduced in 31.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.

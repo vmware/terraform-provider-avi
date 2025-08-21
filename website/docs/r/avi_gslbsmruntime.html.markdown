@@ -30,6 +30,7 @@ The following arguments are supported:
 * `leader_cluster_uuid` - (Required) Mark this site as leader of gslb configuration. This site is the one among the avi sites. Field introduced in 31.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `cluster_leader` - (Optional) The controller cluster leader node uuid. Field introduced in 31.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `cluster_uuid` - (Optional) The site controller cluster uuid. Field introduced in 31.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `controller_size` - (Optional) Possible controller size of peer controller. Field introduced in 31.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `dns_configs` - (Optional) Sub domain configuration for the gslb. Gslb service's fqdn must be a match one of these subdomains. Field introduced in 31.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `dns_info` - (Optional) Dns info at the site. Field introduced in 31.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `enabled` - (Optional) Activate/de-activate state retrieved from the cfg. Field introduced in 31.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.

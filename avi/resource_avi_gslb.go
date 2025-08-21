@@ -80,6 +80,12 @@ func ResourceGslbSchema() map[string]*schema.Schema {
 			Default:      "true",
 			ValidateFunc: validateBool,
 		},
+		"leader_change_info": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceLeaderChangeInfoSchema(),
+		},
 		"leader_cluster_uuid": {
 			Type:     schema.TypeString,
 			Required: true,

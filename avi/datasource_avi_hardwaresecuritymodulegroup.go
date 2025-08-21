@@ -9,6 +9,11 @@ func dataSourceAviHardwareSecurityModuleGroup() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviHardwareSecurityModuleGroupRead,
 		Schema: map[string]*schema.Schema{
+			"ca_certs": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceSSLCertificateSchema(),
+			},
 			"configpb_attributes": {
 				Type:     schema.TypeSet,
 				Computed: true,

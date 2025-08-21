@@ -322,16 +322,34 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Default:      "false",
 			ValidateFunc: validateBool,
 		},
-		"log_records_additional_buffer_space": {
+		"log_records_allocated_size": {
 			Type:         schema.TypeString,
 			Optional:     true,
-			Default:      "0",
+			Computed:     true,
+			ValidateFunc: validateInteger,
+		},
+		"log_records_allocation_percentage_for_events": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "20",
+			ValidateFunc: validateInteger,
+		},
+		"log_records_cleanup_target_percentage": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "90",
+			ValidateFunc: validateInteger,
+		},
+		"log_records_frequent_cleanup_event_generation_threshold": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "2",
 			ValidateFunc: validateInteger,
 		},
 		"log_records_purge_interval": {
 			Type:         schema.TypeString,
 			Optional:     true,
-			Default:      "600",
+			Default:      "300",
 			ValidateFunc: validateInteger,
 		},
 		"max_dead_se_in_grp": {

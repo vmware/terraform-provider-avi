@@ -32,6 +32,7 @@ data "avi_hardwaresecuritymodulegroup" "foo_hardwaresecuritymodulegroup" {
 
 In addition to all arguments above, the following attributes are exported:
 
+* `ca_certs` - List of certificates present in the ca chain that were used to sign custom client certificate. Field introduced in 31.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `hsm` - Hardware security module configuration. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.

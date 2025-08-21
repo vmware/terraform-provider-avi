@@ -17,6 +17,11 @@ func dataSourceAviGslbSMRuntime() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"controller_size": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceControllerSizeSchema(),
+			},
 			"dns_configs": {
 				Type:     schema.TypeList,
 				Computed: true,

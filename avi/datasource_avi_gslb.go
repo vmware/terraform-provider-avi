@@ -61,6 +61,11 @@ func dataSourceAviGslb() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"leader_change_info": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceLeaderChangeInfoSchema(),
+			},
 			"leader_cluster_uuid": {
 				Type:     schema.TypeString,
 				Computed: true,
