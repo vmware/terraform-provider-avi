@@ -386,6 +386,10 @@ func resourceAviServerReadAPI(d *schema.ResourceData, meta interface{}) (string,
 	ip := d.Get("ip").(string)
 	port := d.Get("port")
 
+	if port == "" {
+		port = nil
+	}
+
 	// find the server in the pool object.
 	var matchedServer *models.Server = nil
 	for i := 0; i < len(poolObj.Servers); i++ {

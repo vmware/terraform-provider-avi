@@ -19977,7 +19977,8 @@ func ResourceJWTValidationParamsSchema() *schema.Resource {
 		Schema: map[string]*schema.Schema{
 			"audience": {
 				Type:     schema.TypeString,
-				Required: true,
+				Optional: true,
+				Computed: true,
 			},
 		},
 	}
