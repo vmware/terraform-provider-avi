@@ -38,6 +38,11 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"application_insights_ref": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
 		"application_profile_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
@@ -300,6 +305,11 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 			Computed: true,
 		},
 		"pool_ref": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
+		"positive_security_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,

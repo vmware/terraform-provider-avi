@@ -36,7 +36,7 @@ func ResourceAlertScriptConfigSchema() map[string]*schema.Schema {
 			Computed:     true,
 			ValidateFunc: validateInteger,
 		},
-		"user_ref": {
+		"user_id": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,

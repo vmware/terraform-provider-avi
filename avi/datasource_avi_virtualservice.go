@@ -30,6 +30,10 @@ func dataSourceAviVirtualService() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"application_insights_ref": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"application_profile_ref": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -239,6 +243,10 @@ func dataSourceAviVirtualService() *schema.Resource {
 				Computed: true,
 			},
 			"pool_ref": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"positive_security_ref": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},

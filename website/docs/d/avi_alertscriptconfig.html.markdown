@@ -37,6 +37,6 @@ In addition to all arguments above, the following attributes are exported:
 * `name` - A user-friendly name of the script. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `tenant_ref` - It is a reference to an object of type tenant. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `timeout` - Controlscript excution timeout. Field introduced in 22.1.6. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `user_ref` - Uuid of last editor user. It is a reference to an object of type user. Field introduced in 31.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `user_id` - Uuid of last editor user. Field introduced in 31.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `uuid` - Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 

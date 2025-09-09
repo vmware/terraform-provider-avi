@@ -31,11 +31,6 @@ func dataSourceAviWafPolicy() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"confidence_override": {
-				Type:     schema.TypeSet,
-				Computed: true,
-				Elem:     ResourceAppLearningConfidenceOverrideSchema(),
-			},
 			"configpb_attributes": {
 				Type:     schema.TypeSet,
 				Computed: true,
@@ -51,18 +46,6 @@ func dataSourceAviWafPolicy() *schema.Resource {
 				Elem:     ResourceWafRuleGroupOverridesSchema(),
 			},
 			"description": {
-				Type:     schema.TypeString,
-				Computed: true,
-			},
-			"enable_app_learning": {
-				Type:     schema.TypeString,
-				Computed: true,
-			},
-			"enable_auto_rule_updates": {
-				Type:     schema.TypeString,
-				Computed: true,
-			},
-			"enable_regex_learning": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
@@ -82,19 +65,10 @@ func dataSourceAviWafPolicy() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"learning_params": {
-				Type:     schema.TypeSet,
-				Computed: true,
-				Elem:     ResourceAppLearningParamsSchema(),
-			},
 			"markers": {
 				Type:     schema.TypeList,
 				Computed: true,
 				Elem:     ResourceRoleFilterMatchLabelSchema(),
-			},
-			"min_confidence": {
-				Type:     schema.TypeString,
-				Computed: true,
 			},
 			"mode": {
 				Type:     schema.TypeString,

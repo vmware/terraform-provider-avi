@@ -5,18 +5,36 @@ package avi
 
 import "github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 
-func dataSourceAviAlertScriptConfig() *schema.Resource {
+func dataSourceAviApplicationInsightsPolicy() *schema.Resource {
 	return &schema.Resource{
-		Read: ResourceAviAlertScriptConfigRead,
+		Read: ResourceAviApplicationInsightsPolicyRead,
 		Schema: map[string]*schema.Schema{
-			"action_script": {
-				Type:     schema.TypeString,
+			"application_insights_params": {
+				Type:     schema.TypeSet,
 				Computed: true,
+				Elem:     ResourceApplicationInsightsParamsSchema(),
+			},
+			"application_sampling_config": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceApplicationSamplingConfigSchema(),
 			},
 			"configpb_attributes": {
 				Type:     schema.TypeSet,
 				Computed: true,
 				Elem:     ResourceConfigPbAttributesSchema(),
+			},
+			"description": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"enable_application_insights": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"enable_application_sampling": {
+				Type:     schema.TypeString,
+				Computed: true,
 			},
 			"name": {
 				Type:     schema.TypeString,
@@ -26,14 +44,6 @@ func dataSourceAviAlertScriptConfig() *schema.Resource {
 			"tenant_ref": {
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
-			},
-			"timeout": {
-				Type:     schema.TypeString,
-				Computed: true,
-			},
-			"user_id": {
-				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"uuid": {

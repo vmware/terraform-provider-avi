@@ -5,35 +5,40 @@ package avi
 
 import "github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 
-func dataSourceAviAlertScriptConfig() *schema.Resource {
+func dataSourceAviPositiveSecurityPolicy() *schema.Resource {
 	return &schema.Resource{
-		Read: ResourceAviAlertScriptConfigRead,
+		Read: ResourceAviPositiveSecurityPolicyRead,
 		Schema: map[string]*schema.Schema{
-			"action_script": {
-				Type:     schema.TypeString,
-				Computed: true,
-			},
 			"configpb_attributes": {
 				Type:     schema.TypeSet,
 				Computed: true,
 				Elem:     ResourceConfigPbAttributesSchema(),
+			},
+			"description": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"enable_positive_security_rule_updates": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"enable_regex_programming": {
+				Type:     schema.TypeString,
+				Computed: true,
 			},
 			"name": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
+			"positive_security_params": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourcePositiveSecurityParamsSchema(),
+			},
 			"tenant_ref": {
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
-			},
-			"timeout": {
-				Type:     schema.TypeString,
-				Computed: true,
-			},
-			"user_id": {
-				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"uuid": {

@@ -1266,7 +1266,7 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 		"se_kernel_rss": {
 			Type:         schema.TypeString,
 			Optional:     true,
-			Computed:     true,
+			Default:      "false",
 			ValidateFunc: validateBool,
 		},
 		"se_kni_burst_factor": {

@@ -67,7 +67,7 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 		"async_cert_chaining_interval": {
 			Type:         schema.TypeString,
 			Optional:     true,
-			Default:      "0",
+			Default:      "2",
 			ValidateFunc: validateInteger,
 		},
 		"async_patch_merge_period": {

@@ -40,12 +40,6 @@ func ResourceWafPolicySchema() map[string]*schema.Schema {
 			Default:      "true",
 			ValidateFunc: validateBool,
 		},
-		"confidence_override": {
-			Type:     schema.TypeSet,
-			Optional: true,
-			Computed: true,
-			Elem:     ResourceAppLearningConfidenceOverrideSchema(),
-		},
 		"configpb_attributes": {
 			Type:     schema.TypeSet,
 			Optional: true,
@@ -66,24 +60,6 @@ func ResourceWafPolicySchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
-		},
-		"enable_app_learning": {
-			Type:         schema.TypeString,
-			Optional:     true,
-			Default:      "false",
-			ValidateFunc: validateBool,
-		},
-		"enable_auto_rule_updates": {
-			Type:         schema.TypeString,
-			Optional:     true,
-			Default:      "true",
-			ValidateFunc: validateBool,
-		},
-		"enable_regex_learning": {
-			Type:         schema.TypeString,
-			Optional:     true,
-			Default:      "false",
-			ValidateFunc: validateBool,
 		},
 		"enable_streaming": {
 			Type:         schema.TypeString,
@@ -107,21 +83,10 @@ func ResourceWafPolicySchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
-		"learning_params": {
-			Type:     schema.TypeSet,
-			Optional: true,
-			Computed: true,
-			Elem:     ResourceAppLearningParamsSchema(),
-		},
 		"markers": {
 			Type:     schema.TypeList,
 			Optional: true,
 			Elem:     ResourceRoleFilterMatchLabelSchema(),
-		},
-		"min_confidence": {
-			Type:     schema.TypeString,
-			Optional: true,
-			Default:  "CONFIDENCE_VERY_HIGH",
 		},
 		"mode": {
 			Type:     schema.TypeString,
