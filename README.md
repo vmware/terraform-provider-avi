@@ -166,3 +166,23 @@ Running the tests for a provider requires version 0.12.26 or higher of the Terra
 ```sh
 $ make testacc
 ```
+
+Note
+-----------------
+From version 22.1.6, updating system default configurations now requires first importing the existing configuration into the Terraform state.
+
+#### Here are the steps to update the system default configurations
+Lets consider you have to update the backupconfiguration object
+
+```
+resource "avi_backupconfiguration" "abc" {
+  name                   = "Backup-Configuration"
+  save_local             = true
+  maximum_backups_stored = 4
+  backup_passphrase      = var.password
+}
+```
+Follow these steps
+1. Obtain the UUID of the object via the Controller CLI (`show backupconfiguration`) or by logging in to the Controller UI and browsing to `https://<controller>/api/backupconfiguration`
+2. After obtaining the UUID, import the existing resource into the Terraform state file using `terraform import avi_backupconfiguration.abc <uuid>`
+3. Apply the desired changes to the resource by executing `terraform apply`.
