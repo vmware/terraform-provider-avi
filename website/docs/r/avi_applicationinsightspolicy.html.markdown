@@ -33,7 +33,6 @@ The following arguments are supported:
 * `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 31.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `description` - (Optional) Details of the application insights configuration. Field introduced in 31.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `enable_application_insights` - (Optional) Enable application insights, formerly called learning for this virtual service. Field introduced in 31.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `enable_application_sampling` - (Optional) Enable application sampling. Field introduced in 31.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `tenant_ref` - (Optional) Details of the tenant for the application insights configuration. It is a reference to an object of type tenant. Field introduced in 31.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
 
 

@@ -108,6 +108,10 @@ func dataSourceAviSystemConfiguration() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceNTPConfigurationSchema(),
 			},
+			"password_policy_ref": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"portal_configuration": {
 				Type:     schema.TypeSet,
 				Computed: true,
@@ -149,10 +153,6 @@ func dataSourceAviSystemConfiguration() *schema.Resource {
 				Type:     schema.TypeList,
 				Computed: true,
 				Elem:     &schema.Schema{Type: schema.TypeString},
-			},
-			"sync_dns_to_se": {
-				Type:     schema.TypeString,
-				Computed: true,
 			},
 			"sync_kex_host_to_se": {
 				Type:     schema.TypeString,

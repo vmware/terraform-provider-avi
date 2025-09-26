@@ -50,6 +50,11 @@ func ResourceAvailabilityZoneSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"vsphere_zones": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceVSphereZoneSchema(),
+		},
 	}
 }
 

@@ -1229,6 +1229,23 @@ func ResourceAppInfoSchema() *schema.Resource {
 	}
 }
 
+func ResourceAppInsightsDetailsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"error": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
 func ResourceAppLearningConfidenceOverrideSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -1263,6 +1280,19 @@ func ResourceAppLearningConfidenceOverrideSchema() *schema.Resource {
 func ResourceAppLearningParamsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{},
+	}
+}
+
+func ResourceAppQuotaConfigSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"vs_limit": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "-1",
+				ValidateFunc: validateInteger,
+			},
+		},
 	}
 }
 
@@ -1370,6 +1400,18 @@ func ResourceApplicationInsightsParamsSchema() *schema.Resource {
 				Optional:     true,
 				Default:      "false",
 				ValidateFunc: validateBool,
+			},
+			"max_params": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "100",
+				ValidateFunc: validateInteger,
+			},
+			"max_uris": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "500",
+				ValidateFunc: validateInteger,
 			},
 			"trusted_ipgroup_ref": {
 				Type:     schema.TypeString,
@@ -6717,6 +6759,11 @@ func ResourceConfigInfoSchema() *schema.Resource {
 func ResourceConfigPbAttributesSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"created_by": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"version": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -8439,12 +8486,6 @@ func ResourceControllerSizingLimitsSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
-			"num_application_insights_virtualservices": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Computed:     true,
-				ValidateFunc: validateInteger,
-			},
 			"num_clouds": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -8458,12 +8499,6 @@ func ResourceControllerSizingLimitsSchema() *schema.Resource {
 				ValidateFunc: validateInteger,
 			},
 			"num_pool_rt_metrics": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Computed:     true,
-				ValidateFunc: validateInteger,
-			},
-			"num_positive_security_virtualservices": {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Computed:     true,
@@ -8494,6 +8529,18 @@ func ResourceControllerSizingLimitsSchema() *schema.Resource {
 				ValidateFunc: validateInteger,
 			},
 			"num_virtualservices": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"num_virtualservices_application_insights": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"num_virtualservices_positive_security": {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Computed:     true,
@@ -12006,6 +12053,12 @@ func ResourceEventDetailsSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 				Elem:     ResourceRequestLimiterEventInfoSchema(),
+			},
+			"app_insights_details": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceAppInsightsDetailsSchema(),
 			},
 			"app_signature_event_data": {
 				Type:     schema.TypeSet,
@@ -16855,12 +16908,6 @@ func ResourceHSMSafenetLunaSchema() *schema.Resource {
 				Default:      "false",
 				ValidateFunc: validateBool,
 			},
-			"use_legacy_engine": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Default:      "false",
-				ValidateFunc: validateBool,
-			},
 		},
 	}
 }
@@ -21621,6 +21668,48 @@ func ResourceLicenseInfoSchema() *schema.Resource {
 	}
 }
 
+func ResourceLicenseQuotaUsageDetailsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"tenant_quota_usage_infos": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceTenantQuotaUsageInfoSchema(),
+			},
+		},
+	}
+}
+
+func ResourceLicenseQuotaUsageInfoSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"consumed": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateFloat,
+			},
+			"limit": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"reserved": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateFloat,
+			},
+			"uuid": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
 func ResourceLicenseReservationInfoSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -22071,15 +22160,286 @@ func ResourceLogControllerMappingSchema() *schema.Resource {
 func ResourceLogManagerDebugFilterSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"adf_protection_time_minutes": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "1380",
+				ValidateFunc: validateInteger,
+			},
+			"batch_queue_buffer_size": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "100",
+				ValidateFunc: validateInteger,
+			},
+			"batch_worker_count": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "8",
+				ValidateFunc: validateInteger,
+			},
+			"bulk_payload_string_size": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "11000000",
+				ValidateFunc: validateInteger,
+			},
+			"cache_cleanup_delay_ms": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "300000",
+				ValidateFunc: validateInteger,
+			},
+			"client_index_op_timeout_seconds": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "2",
+				ValidateFunc: validateInteger,
+			},
+			"db_notifn_chan_capacity": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "1000",
+				ValidateFunc: validateInteger,
+			},
 			"entity_ref": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
+			"go_gc_percent": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "50",
+				ValidateFunc: validateInteger,
+			},
+			"incremental_timeout_buffer_ms": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "1000",
+				ValidateFunc: validateInteger,
+			},
+			"index_cleaner_interval_minutes": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "30",
+				ValidateFunc: validateInteger,
+			},
+			"index_config_path": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "/var/lib/avi/indexer_configs",
+			},
+			"index_retention_period_minutes": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "1440",
+				ValidateFunc: validateInteger,
+			},
+			"index_status_queue_buffer_size": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "100",
+				ValidateFunc: validateInteger,
+			},
+			"json_all_str_builder_size": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "2048",
+				ValidateFunc: validateInteger,
+			},
+			"json_everything_str_builder_size": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "512",
+				ValidateFunc: validateInteger,
+			},
+			"json_str_builder_size": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "16384",
+				ValidateFunc: validateInteger,
+			},
+			"log_indexer_task_timeout_ms": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "60000",
+				ValidateFunc: validateInteger,
+			},
+			"log_records_incremental_timeout_ms": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "2000",
+				ValidateFunc: validateInteger,
+			},
+			"log_records_task_timeout_ms": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "1000",
+				ValidateFunc: validateInteger,
+			},
+			"max_batch_duration_ms": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "500",
+				ValidateFunc: validateInteger,
+			},
+			"max_batch_size": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "10",
+				ValidateFunc: validateInteger,
+			},
+			"max_files_per_index": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "2000",
+				ValidateFunc: validateInteger,
+			},
+			"max_indices_events": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "8",
+				ValidateFunc: validateInteger,
+			},
+			"max_indices_per_vs": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "5",
+				ValidateFunc: validateInteger,
+			},
+			"max_indices_system": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "20",
+				ValidateFunc: validateInteger,
+			},
+			"max_logs_per_index": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "2000000",
+				ValidateFunc: validateInteger,
+			},
+			"max_num_workers": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "10",
+				ValidateFunc: validateInteger,
+			},
+			"max_queue_size": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "20",
+				ValidateFunc: validateInteger,
+			},
+			"max_size_per_index_mb": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "400",
+				ValidateFunc: validateInteger,
+			},
+			"nf_protection_time_minutes": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "30",
+				ValidateFunc: validateInteger,
+			},
+			"opensearch_host": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "localhost",
+			},
+			"opensearch_num_replicas": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "0",
+				ValidateFunc: validateInteger,
+			},
+			"opensearch_num_shards": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "1",
+				ValidateFunc: validateInteger,
+			},
+			"opensearch_port": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "9200",
+			},
+			"query_queue_buffer_size": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "100",
+				ValidateFunc: validateInteger,
+			},
+			"query_worker_count": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "8",
+				ValidateFunc: validateInteger,
+			},
+			"records_status_queue_buffer_size": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "100",
+				ValidateFunc: validateInteger,
+			},
+			"records_status_worker_count": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "8",
+				ValidateFunc: validateInteger,
+			},
+			"reserved_1": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"reserved_2": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"reserved_3": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"reserved_4": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"search_query_timeout_ms": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "15000",
+				ValidateFunc: validateInteger,
+			},
+			"task_re_enqueue_wait_time_seconds": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "1",
+				ValidateFunc: validateInteger,
+			},
 			"telemetry_trace_log_level": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+			"telemetry_trace_percentage": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "100",
+				ValidateFunc: validateInteger,
+			},
+			"udf_protection_time_minutes": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "60",
+				ValidateFunc: validateInteger,
 			},
 		},
 	}
@@ -24442,6 +24802,12 @@ func ResourceNsxtClustersSchema() *schema.Resource {
 func ResourceNsxtConfigurationSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"auto_import_nsx_projects": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "true",
+				ValidateFunc: validateBool,
+			},
 			"automate_dfw_objects": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -24485,6 +24851,12 @@ func ResourceNsxtConfigurationSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+			"onboard_avi_into_nsx": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
 			},
 			"site_id": {
 				Type:     schema.TypeString,
@@ -37734,6 +38106,18 @@ func ResourceTelemetryConfigurationSchema() *schema.Resource {
 func ResourceTenantConfigurationSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"app_quota": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceAppQuotaConfigSchema(),
+			},
+			"enable_tenant_binding": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
 			"license_quota": {
 				Type:     schema.TypeSet,
 				Optional: true,
@@ -37773,6 +38157,24 @@ func ResourceTenantLabelSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceTenantQuotaUsageInfoSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"se_group_infos": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceLicenseQuotaUsageInfoSchema(),
+			},
+			"tenant_info": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceLicenseQuotaUsageInfoSchema(),
 			},
 		},
 	}
@@ -39894,6 +40296,23 @@ func ResourceVSDataScriptsSchema() *schema.Resource {
 			"vs_datascript_set_ref": {
 				Type:     schema.TypeString,
 				Required: true,
+			},
+		},
+	}
+}
+
+func ResourceVSphereZoneSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"vcenter_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"zone_name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 		},
 	}

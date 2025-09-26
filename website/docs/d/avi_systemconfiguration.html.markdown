@@ -54,6 +54,7 @@ In addition to all arguments above, the following attributes are exported:
 * `linux_configuration` - Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `mgmt_ip_access_control` - Configure ip access control for controller to restrict open access. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `ntp_configuration` - Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `password_policy_ref` - Reference to uniform password policy. When not set, legacy password settings are used. It is a reference to an object of type passwordpolicy. Field introduced in 31.3.1. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `portal_configuration` - Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `proxy_configuration` - Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `rekey_time_limit` - Users can specify and update the time limit of rekeylimit in sshd_config.if nothing is specified, the default setting will be none. Field introduced in 30.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
@@ -63,7 +64,6 @@ In addition to all arguments above, the following attributes are exported:
 * `snmp_configuration` - Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `ssh_ciphers` - Allowed ciphers list for ssh to the management interface on the controller and service engines. If this is not specified, all the default ciphers are allowed. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `ssh_hmacs` - Allowed hmac list for ssh to the management interface on the controller and service engines. If this is not specified, all the default hmacs are allowed. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `sync_dns_to_se` - Ability to sync the dns to ses. Field introduced in 31.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `sync_kex_host_to_se` - Ability to sync the kexalgorithms & hostkeyalgorithms to ses. Field introduced in 31.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `sync_syslog_to_se` - Ability to sync the syslog server config to ses. Field introduced in 31.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `syslog_servers` - The destination syslog server ip(v4/v6) address or fqdn. Field introduced in 31.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.

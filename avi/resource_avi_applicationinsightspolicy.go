@@ -39,12 +39,6 @@ func ResourceApplicationInsightsPolicySchema() map[string]*schema.Schema {
 			Default:      "false",
 			ValidateFunc: validateBool,
 		},
-		"enable_application_sampling": {
-			Type:         schema.TypeString,
-			Optional:     true,
-			Default:      "false",
-			ValidateFunc: validateBool,
-		},
 		"name": {
 			Type:     schema.TypeString,
 			Required: true,

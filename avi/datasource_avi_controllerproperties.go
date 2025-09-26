@@ -170,6 +170,10 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"event_manager_file_modified_ts_filter": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"event_manager_max_goroutines": {
 				Type:     schema.TypeString,
 				Computed: true,

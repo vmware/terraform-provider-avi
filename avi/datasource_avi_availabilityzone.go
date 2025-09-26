@@ -49,6 +49,11 @@ func dataSourceAviAvailabilityZone() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"vsphere_zones": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceVSphereZoneSchema(),
+			},
 		},
 	}
 }

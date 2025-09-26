@@ -77,8 +77,7 @@ func ResourceFileObjectSchema() map[string]*schema.Schema {
 		},
 		"name": {
 			Type:     schema.TypeString,
-			Optional: true,
-			Computed: true,
+			Required: true,
 		},
 		"path": {
 			Type:     schema.TypeString,
@@ -110,8 +109,7 @@ func ResourceFileObjectSchema() map[string]*schema.Schema {
 		},
 		"type": {
 			Type:     schema.TypeString,
-			Optional: true,
-			Computed: true,
+			Required: true,
 		},
 		"uuid": {
 			Type:     schema.TypeString,

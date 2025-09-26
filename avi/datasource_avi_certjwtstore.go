@@ -5,41 +5,30 @@ package avi
 
 import "github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 
-func dataSourceAviApplicationInsightsPolicy() *schema.Resource {
+func dataSourceAviCertJwtStore() *schema.Resource {
 	return &schema.Resource{
-		Read: ResourceAviApplicationInsightsPolicyRead,
+		Read: ResourceAviCertJwtStoreRead,
 		Schema: map[string]*schema.Schema{
-			"application_insights_params": {
-				Type:     schema.TypeSet,
-				Computed: true,
-				Elem:     ResourceApplicationInsightsParamsSchema(),
-			},
-			"application_sampling_config": {
-				Type:     schema.TypeSet,
-				Computed: true,
-				Elem:     ResourceApplicationSamplingConfigSchema(),
-			},
 			"configpb_attributes": {
 				Type:     schema.TypeSet,
 				Computed: true,
 				Elem:     ResourceConfigPbAttributesSchema(),
 			},
-			"description": {
+			"jwt": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"enable_application_insights": {
+			"kid": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"name": {
-				Type:     schema.TypeString,
-				Optional: true,
+			"last_rotated_at": {
+				Type:     schema.TypeSet,
 				Computed: true,
+				Elem:     ResourceTimeStampSchema(),
 			},
-			"tenant_ref": {
+			"public_key_algorithm": {
 				Type:     schema.TypeString,
-				Optional: true,
 				Computed: true,
 			},
 			"uuid": {
