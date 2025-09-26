@@ -67,6 +67,12 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Default:      "8",
 			ValidateFunc: validateInteger,
 		},
+		"arp_cache_timeout": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "1200",
+			ValidateFunc: validateInteger,
+		},
 		"async_ssl": {
 			Type:         schema.TypeString,
 			Optional:     true,
@@ -90,16 +96,34 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Elem:     &schema.Schema{Type: schema.TypeInt},
 		},
+		"auto_rebalance_cool_down_time": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "15",
+			ValidateFunc: validateInteger,
+		},
 		"auto_rebalance_criteria": {
 			Type:     schema.TypeList,
 			Optional: true,
 			Elem:     &schema.Schema{Type: schema.TypeString},
+		},
+		"auto_rebalance_dry_run_enabled": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
 		},
 		"auto_rebalance_interval": {
 			Type:         schema.TypeString,
 			Optional:     true,
 			Default:      "300",
 			ValidateFunc: validateInteger,
+		},
+		"auto_rebalance_raise_events_for_actions": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
 		},
 		"auto_redistribute_active_standby_load": {
 			Type:         schema.TypeString,
@@ -262,6 +286,12 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Computed:     true,
 			ValidateFunc: validateBool,
 		},
+		"disable_qat_bulk_crypto": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "true",
+			ValidateFunc: validateBool,
+		},
 		"disable_se_memory_check": {
 			Type:         schema.TypeString,
 			Optional:     true,
@@ -386,6 +416,12 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Type:         schema.TypeString,
 			Optional:     true,
 			Computed:     true,
+			ValidateFunc: validateBool,
+		},
+		"enable_qat": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
 			ValidateFunc: validateBool,
 		},
 		"ephemeral_portrange_end": {
@@ -558,6 +594,12 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Elem:     ResourceKniPortRangeSchema(),
 		},
+		"kv_val_max_len": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "4096",
+			ValidateFunc: validateInteger,
+		},
 		"l7_conns_per_core": {
 			Type:         schema.TypeString,
 			Optional:     true,
@@ -592,6 +634,12 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional:     true,
 			Default:      "true",
 			ValidateFunc: validateBool,
+		},
+		"license_quota": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceQuotaConfigSchema(),
 		},
 		"license_tier": {
 			Type:     schema.TypeString,
@@ -716,6 +764,12 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Computed:     true,
 			ValidateFunc: validateInteger,
 		},
+		"max_cpu_load_adaptive_sampling": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "80",
+			ValidateFunc: validateInteger,
+		},
 		"max_cpu_usage": {
 			Type:         schema.TypeString,
 			Optional:     true,
@@ -803,7 +857,7 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 		"metrics_collection_mode": {
 			Type:         schema.TypeString,
 			Optional:     true,
-			Default:      "1",
+			Default:      "0",
 			ValidateFunc: validateInteger,
 		},
 		"mgmt_network_ref": {
@@ -856,6 +910,12 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 		"name": {
 			Type:     schema.TypeString,
 			Required: true,
+		},
+		"nd6_cache_timeout": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "86400",
+			ValidateFunc: validateInteger,
 		},
 		"netlink_poller_threads": {
 			Type:         schema.TypeString,
@@ -922,6 +982,11 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 			Elem:     ResourceObjSyncConfigSchema(),
+		},
+		"objsync_mode": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Default:  "OBJSYNC_ENABLED",
 		},
 		"objsync_port": {
 			Type:         schema.TypeString,
@@ -990,6 +1055,12 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  "PLACEMENT_MODE_AUTO",
 		},
+		"pre_upgrade_se_available_mem_threshold": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "0",
+			ValidateFunc: validateInteger,
+		},
 		"realtime_se_metrics": {
 			Type:     schema.TypeSet,
 			Optional: true,
@@ -1008,6 +1079,12 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Default:      "1000",
 			ValidateFunc: validateInteger,
 		},
+		"reserved_configuration": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceReservedConfigurationSchema(),
+		},
 		"resync_time_interval": {
 			Type:         schema.TypeString,
 			Optional:     true,
@@ -1018,6 +1095,12 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Type:         schema.TypeString,
 			Optional:     true,
 			Default:      "100",
+			ValidateFunc: validateInteger,
+		},
+		"sdb_key_timeout": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "60",
 			ValidateFunc: validateInteger,
 		},
 		"sdb_pipeline_size": {
@@ -1179,6 +1262,12 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional:     true,
 			Default:      "0",
 			ValidateFunc: validateInteger,
+		},
+		"se_kernel_rss": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
 		},
 		"se_kni_burst_factor": {
 			Type:         schema.TypeString,
@@ -1506,16 +1595,10 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Default:      "false",
 			ValidateFunc: validateBool,
 		},
-		"use_objsync": {
-			Type:         schema.TypeString,
-			Optional:     true,
-			Default:      "false",
-			ValidateFunc: validateBool,
-		},
 		"use_standard_alb": {
 			Type:         schema.TypeString,
 			Optional:     true,
-			Computed:     true,
+			Default:      "true",
 			ValidateFunc: validateBool,
 		},
 		"user_agent_cache_config": {
@@ -1680,6 +1763,11 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Default:      "300",
 			ValidateFunc: validateInteger,
 		},
+		"vsphere_storage_policies": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceVsphereStoragePolicySchema(),
+		},
 		"vss_placement": {
 			Type:     schema.TypeSet,
 			Optional: true,
@@ -1703,6 +1791,12 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional:     true,
 			Default:      "64",
 			ValidateFunc: validateInteger,
+		},
+		"waf_use_jit_for_pcre": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "true",
+			ValidateFunc: validateBool,
 		},
 	}
 }

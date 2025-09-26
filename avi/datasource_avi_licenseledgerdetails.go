@@ -14,15 +14,29 @@ func dataSourceAviLicenseLedgerDetails() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceLicenseInfoSchema(),
 			},
+			"se_group_infos": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceSeGroupInfoSchema(),
+			},
 			"se_infos": {
 				Type:     schema.TypeList,
 				Computed: true,
 				Elem:     ResourceLicenseInfoSchema(),
 			},
+			"tenant_infos": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceLicenseReservationInfoSchema(),
+			},
 			"tier_usages": {
 				Type:     schema.TypeList,
 				Computed: true,
 				Elem:     ResourceLicenseTierUsageSchema(),
+			},
+			"total_licenses_reserved": {
+				Type:     schema.TypeString,
+				Computed: true,
 			},
 			"uuid": {
 				Type:     schema.TypeString,

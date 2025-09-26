@@ -22,6 +22,12 @@ func ResourceBotDetectionPolicySchema() map[string]*schema.Schema {
 			Computed: true,
 			Elem:     ResourceBotConfigClientBehaviorSchema(),
 		},
+		"configpb_attributes": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceConfigPbAttributesSchema(),
+		},
 		"description": {
 			Type:     schema.TypeString,
 			Optional: true,

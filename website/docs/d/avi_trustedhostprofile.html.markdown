@@ -32,9 +32,9 @@ data "avi_trustedhostprofile" "foo_trustedhostprofile" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 22.1.7, 30.2.2, 31.1.1. Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services edition.
-* `hosts` - List of host ip(v4/v6) addresses or fqdns. Field introduced in 22.1.7, 30.2.2, 31.1.1. Minimum of 1 items required. Maximum of 20 items allowed. Allowed in enterprise edition with any value, enterprise with cloud services edition.
-* `name` - Trustedhostprofile name. Field introduced in 22.1.7, 30.2.2, 31.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
-* `tenant_ref` - Tenant ref for trusted host profile. It is a reference to an object of type tenant. Field introduced in 22.1.7, 30.2.2, 31.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
-* `uuid` - Trustedhostprofile uuid. Field introduced in 22.1.7, 30.2.2, 31.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 31.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `hosts` - List of host ip(v4/v6) addresses or fqdns. Field introduced in 31.1.1. Minimum of 1 items required. Maximum of 20 items allowed. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `name` - Trustedhostprofile name. Field introduced in 31.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `tenant_ref` - Tenant ref for trusted host profile. It is a reference to an object of type tenant. Field introduced in 31.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `uuid` - Trustedhostprofile uuid. Field introduced in 31.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
 

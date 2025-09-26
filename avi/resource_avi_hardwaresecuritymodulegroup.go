@@ -10,6 +10,11 @@ import (
 
 func ResourceHardwareSecurityModuleGroupSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
+		"ca_certs": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceSSLCertificateSchema(),
+		},
 		"configpb_attributes": {
 			Type:     schema.TypeSet,
 			Optional: true,

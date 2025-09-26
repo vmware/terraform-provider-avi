@@ -31,11 +31,6 @@ func dataSourceAviWafPolicy() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"confidence_override": {
-				Type:     schema.TypeSet,
-				Computed: true,
-				Elem:     ResourceAppLearningConfidenceOverrideSchema(),
-			},
 			"configpb_attributes": {
 				Type:     schema.TypeSet,
 				Computed: true,
@@ -54,15 +49,7 @@ func dataSourceAviWafPolicy() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"enable_app_learning": {
-				Type:     schema.TypeString,
-				Computed: true,
-			},
-			"enable_auto_rule_updates": {
-				Type:     schema.TypeString,
-				Computed: true,
-			},
-			"enable_regex_learning": {
+			"enable_streaming": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
@@ -70,23 +57,18 @@ func dataSourceAviWafPolicy() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"geo_db_ref": {
+			"fixed_sampling_rate": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"learning_params": {
-				Type:     schema.TypeSet,
+			"geo_db_ref": {
+				Type:     schema.TypeString,
 				Computed: true,
-				Elem:     ResourceAppLearningParamsSchema(),
 			},
 			"markers": {
 				Type:     schema.TypeList,
 				Computed: true,
 				Elem:     ResourceRoleFilterMatchLabelSchema(),
-			},
-			"min_confidence": {
-				Type:     schema.TypeString,
-				Computed: true,
 			},
 			"mode": {
 				Type:     schema.TypeString,
@@ -121,12 +103,16 @@ func dataSourceAviWafPolicy() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceWafPolicyRequiredDataFileSchema(),
 			},
+			"sampling_mode": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"tenant_ref": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
-			"updated_crs_rules_in_detection_mode": {
+			"use_evaluation_mode_on_crs_update": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},

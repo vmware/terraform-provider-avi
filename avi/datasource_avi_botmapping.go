@@ -9,6 +9,11 @@ func dataSourceAviBotMapping() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviBotMappingRead,
 		Schema: map[string]*schema.Schema{
+			"configpb_attributes": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceConfigPbAttributesSchema(),
+			},
 			"mapping_rules": {
 				Type:     schema.TypeList,
 				Computed: true,

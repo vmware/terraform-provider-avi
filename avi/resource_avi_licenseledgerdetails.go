@@ -15,15 +15,31 @@ func ResourceLicenseLedgerDetailsSchema() map[string]*schema.Schema {
 			Optional: true,
 			Elem:     ResourceLicenseInfoSchema(),
 		},
+		"se_group_infos": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceSeGroupInfoSchema(),
+		},
 		"se_infos": {
 			Type:     schema.TypeList,
 			Optional: true,
 			Elem:     ResourceLicenseInfoSchema(),
 		},
+		"tenant_infos": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceLicenseReservationInfoSchema(),
+		},
 		"tier_usages": {
 			Type:     schema.TypeList,
 			Optional: true,
 			Elem:     ResourceLicenseTierUsageSchema(),
+		},
+		"total_licenses_reserved": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Computed:     true,
+			ValidateFunc: validateInteger,
 		},
 		"uuid": {
 			Type:     schema.TypeString,

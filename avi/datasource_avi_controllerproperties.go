@@ -41,6 +41,14 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"archive_retention_framework_period": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"async_cert_chaining_interval": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"async_patch_merge_period": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -150,11 +158,19 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"enable_nsx_streaming_agent": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"enable_per_process_stop": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"enable_resmgr_log_cache_print": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"event_manager_file_modified_ts_filter": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
@@ -191,6 +207,10 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"gslb_fileobject_max_version_count": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"gslb_purge_batch_size": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -200,6 +220,26 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Computed: true,
 			},
 			"ignore_vrf_in_networksubnetlist": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"log_records_allocated_size": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"log_records_allocation_percentage_for_events": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"log_records_cleanup_target_percentage": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"log_records_frequent_cleanup_event_generation_threshold": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"log_records_purge_interval": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
@@ -319,23 +359,11 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"seupgrade_copy_buffer_size": {
-				Type:     schema.TypeString,
-				Computed: true,
-			},
-			"seupgrade_copy_pool_size": {
-				Type:     schema.TypeString,
-				Computed: true,
-			},
-			"seupgrade_fabric_pool_size": {
-				Type:     schema.TypeString,
-				Computed: true,
-			},
-			"seupgrade_segroup_min_dead_timeout": {
-				Type:     schema.TypeString,
-				Computed: true,
-			},
 			"shared_ssl_certificates": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"skip_beego_perf_collection": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
@@ -348,11 +376,12 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Computed: true,
 				Elem:     &schema.Schema{Type: schema.TypeInt},
 			},
-			"system_report_cleanup_interval": {
-				Type:     schema.TypeString,
+			"statecache_properties": {
+				Type:     schema.TypeSet,
 				Computed: true,
+				Elem:     ResourceSCPropertiesSchema(),
 			},
-			"system_report_limit": {
+			"telemetry_interval": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
@@ -369,14 +398,6 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Computed: true,
 			},
 			"upgrade_dns_ttl": {
-				Type:     schema.TypeString,
-				Computed: true,
-			},
-			"upgrade_fat_se_lease_time": {
-				Type:     schema.TypeString,
-				Computed: true,
-			},
-			"upgrade_lease_time": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},

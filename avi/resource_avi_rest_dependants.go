@@ -469,6 +469,63 @@ func ResourceAWSSetupSchema() *schema.Resource {
 	}
 }
 
+func ResourceAZClusterSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"cluster_ids": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
+			"vcenter_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceAZDatastoreSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"ds_ids": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
+			"include": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
+			"vcenter_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceAZHostSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"host_ids": {
+				Type:     schema.TypeList,
+				Required: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
+			"vcenter_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
 func ResourceAbPoolSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -481,6 +538,23 @@ func ResourceAbPoolSchema() *schema.Resource {
 				Optional:     true,
 				Default:      "0",
 				ValidateFunc: validateInteger,
+			},
+		},
+	}
+}
+
+func ResourceActionArgsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"value": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 		},
 	}
@@ -1155,6 +1229,23 @@ func ResourceAppInfoSchema() *schema.Resource {
 	}
 }
 
+func ResourceAppInsightsDetailsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"error": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
 func ResourceAppLearningConfidenceOverrideSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -1188,67 +1279,7 @@ func ResourceAppLearningConfidenceOverrideSchema() *schema.Resource {
 
 func ResourceAppLearningParamsSchema() *schema.Resource {
 	return &schema.Resource{
-		Schema: map[string]*schema.Schema{
-			"enable_learn_from_bots": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Default:      "true",
-				ValidateFunc: validateBool,
-			},
-			"enable_per_uri_learning": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Default:      "true",
-				ValidateFunc: validateBool,
-			},
-			"learn_from_authenticated_clients_only": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Default:      "false",
-				ValidateFunc: validateBool,
-			},
-			"learn_from_bots": {
-				Type:     schema.TypeSet,
-				Optional: true,
-				Computed: true,
-				Elem:     ResourceBotDetectionMatchSchema(),
-			},
-			"max_params": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Default:      "100",
-				ValidateFunc: validateInteger,
-			},
-			"max_uris": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Default:      "500",
-				ValidateFunc: validateInteger,
-			},
-			"min_hits_to_learn": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Default:      "10000",
-				ValidateFunc: validateInteger,
-			},
-			"sampling_percent": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Default:      "1",
-				ValidateFunc: validateInteger,
-			},
-			"trusted_ipgroup_ref": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
-			"update_interval": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Default:      "30",
-				ValidateFunc: validateInteger,
-			},
-		},
+		Schema: map[string]*schema.Schema{},
 	}
 }
 
@@ -1319,6 +1350,60 @@ func ResourceApplicationSchema() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
+		},
+	}
+}
+
+func ResourceApplicationInsightsParamsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"enable_learn_from_bots": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
+			"enable_per_uri_learning": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "true",
+				ValidateFunc: validateBool,
+			},
+			"learn_from_authenticated_clients_only": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
+			"learn_from_bots": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceBotDetectionMatchSchema(),
+			},
+			"learn_from_urls_without_args": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
+			"max_params": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "100",
+				ValidateFunc: validateInteger,
+			},
+			"max_uris": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "500",
+				ValidateFunc: validateInteger,
+			},
+			"trusted_ipgroup_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 		},
 	}
@@ -1597,6 +1682,11 @@ func ResourceApplicationLogSchema() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceJwtLogSchema(),
 			},
+			"learning_status": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "NOT_ACTIVE",
+			},
 			"log_id": {
 				Type:         schema.TypeString,
 				Required:     true,
@@ -1705,6 +1795,11 @@ func ResourceApplicationLogSchema() *schema.Resource {
 				Type:         schema.TypeString,
 				Required:     true,
 				ValidateFunc: validateInteger,
+			},
+			"request_body_updated": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "REQ_BODY_NOT_UPDATED",
 			},
 			"request_content_type": {
 				Type:     schema.TypeString,
@@ -1979,7 +2074,17 @@ func ResourceApplicationLogSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"ssl_named_group": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"ssl_session_id": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"ssl_signature_algorithm": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -2055,6 +2160,74 @@ func ResourceApplicationLogSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceApplicationSamplingConfigSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"max_sampling_percent": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "1",
+				ValidateFunc: validateInteger,
+			},
+			"min_update_interval": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "30",
+				ValidateFunc: validateInteger,
+			},
+		},
+	}
+}
+
+func ResourceApplicationSamplingRuntimeSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"current_sampling_percent": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"current_update_interval": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+		},
+	}
+}
+
+func ResourceArchivePolicySchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"file_path": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"threshold": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "128",
+				ValidateFunc: validateInteger,
+			},
+		},
+	}
+}
+
+func ResourceArchiveRulesSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"rules": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceArchivePolicySchema(),
 			},
 		},
 	}
@@ -2753,6 +2926,25 @@ func ResourceAutoScaleOpenStackSettingsSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceAutoTuneSendIntervalSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"auto_tune_send_interval_timeout": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "300",
+				ValidateFunc: validateInteger,
+			},
+			"enabled": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "true",
+				ValidateFunc: validateBool,
 			},
 		},
 	}
@@ -4839,6 +5031,12 @@ func ResourceCfgStateSchema() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceTimeStampSchema(),
 			},
+			"local_config": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceLocalConfigSchema(),
+			},
 			"reason": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -6180,6 +6378,31 @@ func ResourceClustifyCheckEventSchema() *schema.Resource {
 	}
 }
 
+func ResourceCollectionRulesSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"max_concurrent_workers": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "1",
+				ValidateFunc: validateInteger,
+			},
+			"min_free_disk_required": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "0.5",
+				ValidateFunc: validateFloat,
+			},
+			"timeout": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "1800",
+				ValidateFunc: validateInteger,
+			},
+		},
+	}
+}
+
 func ResourceCompressionFilterSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -7040,6 +7263,12 @@ func ResourceConnectionLogSchema() *schema.Resource {
 				Required:     true,
 				ValidateFunc: validateBool,
 			},
+			"diameter_log": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceDiameterLogSchema(),
+			},
 			"dns_etype": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -7054,6 +7283,16 @@ func ResourceConnectionLogSchema() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				Elem:     &schema.Schema{Type: schema.TypeInt},
+			},
+			"dns_policy": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"dns_policy_rule_name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 			"dns_qtype": {
 				Type:     schema.TypeString,
@@ -7342,7 +7581,17 @@ func ResourceConnectionLogSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"ssl_named_group": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"ssl_session_id": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"ssl_signature_algorithm": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -7361,6 +7610,11 @@ func ResourceConnectionLogSchema() *schema.Resource {
 				Type:         schema.TypeString,
 				Required:     true,
 				ValidateFunc: validateInteger,
+			},
+			"topology_policy_rule_name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 			"total_bytes": {
 				Type:         schema.TypeString,
@@ -7557,10 +7811,10 @@ func ResourceContentLibConfigSchema() *schema.Resource {
 func ResourceContentRewriteProfileSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
-			"rewritable_content_ref": {
-				Type:     schema.TypeString,
+			"req_rewrite_rules": {
+				Type:     schema.TypeList,
 				Optional: true,
-				Computed: true,
+				Elem:     ResourceReqContentRewriteRuleSchema(),
 			},
 			"rsp_rewrite_rules": {
 				Type:     schema.TypeList,
@@ -7668,6 +7922,12 @@ func ResourceControllerFaultsSchema() *schema.Resource {
 				ValidateFunc: validateBool,
 			},
 			"sslprofile_faults": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "true",
+				ValidateFunc: validateBool,
+			},
+			"system_limits_faults": {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Default:      "true",
@@ -8082,6 +8342,25 @@ func ResourceControllerLimitsSchema() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceWAFLimitsSchema(),
 			},
+			"waf_rule_metrics_enabled_vs": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+		},
+	}
+}
+
+func ResourceControllerParamsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"task_base_timeout": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "300",
+				ValidateFunc: validateInteger,
+			},
 		},
 	}
 }
@@ -8237,7 +8516,25 @@ func ResourceControllerSizingLimitsSchema() *schema.Resource {
 				Computed:     true,
 				ValidateFunc: validateInteger,
 			},
+			"num_virtualservices_application_insights": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"num_virtualservices_positive_security": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
 			"num_virtualservices_rt_metrics": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"num_virtualservices_rtmetrics_waf": {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Computed:     true,
@@ -8280,6 +8577,29 @@ func ResourceControllerVersionSchema() *schema.Resource {
 			"version": {
 				Type:     schema.TypeString,
 				Required: true,
+			},
+		},
+	}
+}
+
+func ResourceControlscriptDetailsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"exitcode": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"stderr": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"stdout": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 		},
 	}
@@ -9113,10 +9433,28 @@ func ResourceDebugServiceEngineSchema() *schema.Resource {
 				Optional: true,
 				Elem:     ResourceDebugSeDataplaneSchema(),
 			},
+			"high_cpu_script_config": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceDebugServiceEngineSustainedCpuSpikeSchema(),
+			},
+			"mock_dl_fail_obj": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceDebugServiceEngineSeDataStoreMockDlFailSchema(),
+			},
 			"name": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Default:  "VM name unknown",
+			},
+			"objsync": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceDebugServiceEngineObjSyncSchema(),
 			},
 			"seagent_debug": {
 				Type:     schema.TypeList,
@@ -9144,6 +9482,100 @@ func ResourceDebugServiceEngineSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceDebugServiceEngineObjSyncSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"log_level": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "LOG_LVL_INFO",
+			},
+			"publish_packet_drops": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+		},
+	}
+}
+
+func ResourceDebugServiceEngineSeDataStoreMockDlFailSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"is_sedatastore_update_rpc": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateBool,
+			},
+			"object_type": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceDebugServiceEngineSustainedCpuSpikeSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"cpu_filter": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"cpu_spike_percent": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"dis_enable": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
+			"manual_start": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateBool,
+			},
+			"pids": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeInt},
+			},
+			"process_names": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
+			"sample_cooldown": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"sample_duration": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"spike_duration": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
 			},
 		},
 	}
@@ -9459,6 +9891,125 @@ func ResourceDetachIpStatusEventDetailsSchema() *schema.Resource {
 	}
 }
 
+func ResourceDiameterAVPPersistenceProfileSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"avp_key_type": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "SESSION_ID",
+			},
+			"timeout": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+		},
+	}
+}
+
+func ResourceDiameterLogSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"application_id": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"avp_key_type": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"command_code": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"destination_host": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"destination_realm": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"end_to_end_identifier": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"hop_by_hop_identifier": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"origin_host": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"origin_realm": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceDiameterServiceApplicationProfileSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"client_origin_host": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"client_origin_realm": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"host_ip_addr_rewrite": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
+			"max_outstanding_req": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "4096",
+				ValidateFunc: validateInteger,
+			},
+			"req_timeout": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "60",
+				ValidateFunc: validateInteger,
+			},
+			"server_origin_host": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"server_origin_realm": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
 func ResourceDisableSeMigrateEventDetailsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -9492,6 +10043,41 @@ func ResourceDiscoveredNetworkSchema() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				Elem:     ResourceIpAddrPrefixSchema(),
+			},
+		},
+	}
+}
+
+func ResourceDiskThresholdSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"action": {
+				Type:     schema.TypeSet,
+				Required: true,
+				Elem:     ResourceRetentionActionSchema(),
+			},
+			"filepath": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"max_disk_percent": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"min_free_disk_percent": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"retain": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
 			},
 		},
 	}
@@ -11140,6 +11726,104 @@ func ResourceDosThresholdProfileSchema() *schema.Resource {
 	}
 }
 
+func ResourceDryRunParamsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"allow_single_node": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
+			"memory": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "6",
+				ValidateFunc: validateFloat,
+			},
+			"num_cpu": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "2",
+				ValidateFunc: validateInteger,
+			},
+			"preferred_worker": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceDryrunInfoSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"duration": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"end_time": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"operation": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"params": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceUpgradeParamsSchema(),
+			},
+			"progress": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "0",
+				ValidateFunc: validateInteger,
+			},
+			"start_time": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"state": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceUpgradeOpsStateSchema(),
+			},
+			"tasks_completed": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"total_tasks": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"upgrade_events": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceEventMapSchema(),
+			},
+			"worker": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
 func ResourceDsrProfileSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -11333,6 +12017,30 @@ func ResourceEventDetailsSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 				Elem:     ResourceApiVersionDeprecatedSchema(),
+			},
+			"apiserver_request_queue_full_event_info": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceRequestLimiterEventInfoSchema(),
+			},
+			"apiserver_request_queue_recovery_event_info": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceRequestLimiterEventInfoSchema(),
+			},
+			"apiserver_request_ratelimit_event_info": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceRequestLimiterEventInfoSchema(),
+			},
+			"app_insights_details": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceAppInsightsDetailsSchema(),
 			},
 			"app_signature_event_data": {
 				Type:     schema.TypeSet,
@@ -11688,6 +12396,12 @@ func ResourceEventDetailsSchema() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceControllerLicenseReconcileDetailsSchema(),
 			},
+			"controlscript_details": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceControlscriptDetailsSchema(),
+			},
 			"crs_deployment_failure": {
 				Type:     schema.TypeSet,
 				Optional: true,
@@ -11946,6 +12660,30 @@ func ResourceEventDetailsSchema() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceNetworkSubnetInfoSchema(),
 			},
+			"nsxt_dfw_group_details": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceNsxtDFWGroupDetailsSchema(),
+			},
+			"nsxt_dfw_service_details": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceNsxtDFWServiceDetailsSchema(),
+			},
+			"nsxt_dfw_tag_segment_port": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceNsxtDFWTagSegmentPortSchema(),
+			},
+			"nsxt_dfw_tag_vm_details": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceNsxtDFWTagVMSchema(),
+			},
 			"nsxt_endpoint_details": {
 				Type:     schema.TypeSet,
 				Optional: true,
@@ -12084,6 +12822,12 @@ func ResourceEventDetailsSchema() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceVinfraPoolServerDeleteDetailsSchema(),
 			},
+			"postgres_event_details": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourcePostgresEventInfoSchema(),
+			},
 			"psm_program_details": {
 				Type:     schema.TypeSet,
 				Optional: true,
@@ -12132,6 +12876,12 @@ func ResourceEventDetailsSchema() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceSchedulerActionDetailsSchema(),
 			},
+			"se_autoscaler_event_details": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceSeAutoScalerEventDetailsSchema(),
+			},
 			"se_bgp_peer_down_details": {
 				Type:     schema.TypeSet,
 				Optional: true,
@@ -12143,6 +12893,12 @@ func ResourceEventDetailsSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 				Elem:     ResourceSeBgpPeerStateChangeDetailsSchema(),
+			},
+			"se_config_sedatastore_dl_fail": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceSeVsConfigSeDatastoreDownloadFailedSchema(),
 			},
 			"se_debug_mode_event_detail": {
 				Type:     schema.TypeSet,
@@ -12293,6 +13049,18 @@ func ResourceEventDetailsSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 				Elem:     ResourceSePoolLbEventDetailsSchema(),
+			},
+			"se_process_crashed_details": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceSeProcessCrashedDetailsSchema(),
+			},
+			"se_rate_limiter_drop_details": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceSeRateLimiterDropDetailsSchema(),
 			},
 			"se_reconcile_details": {
 				Type:     schema.TypeSet,
@@ -12486,17 +13254,35 @@ func ResourceEventDetailsSchema() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceCloudSyncServicesSchema(),
 			},
+			"system_limit_object_counts": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceSystemLimitObjectCountsSchema(),
+			},
 			"system_report_event_details": {
 				Type:     schema.TypeSet,
 				Optional: true,
 				Computed: true,
 				Elem:     ResourceSystemReportSchema(),
 			},
+			"task_journal_event_details": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceTaskJournalSchema(),
+			},
 			"tech_support_event": {
 				Type:     schema.TypeSet,
 				Optional: true,
 				Computed: true,
 				Elem:     ResourceTechSupportEventSchema(),
+			},
+			"tech_support_event_details": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceTechSupportSchema(),
 			},
 			"tencent_info": {
 				Type:     schema.TypeSet,
@@ -12527,6 +13313,12 @@ func ResourceEventDetailsSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 				Elem:     ResourceUpgradeStatusInfoSchema(),
+			},
+			"usage_metering_event_details": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceUsageMeteringEventDetailsSchema(),
 			},
 			"vca_infra_details": {
 				Type:     schema.TypeSet,
@@ -12576,6 +13368,12 @@ func ResourceEventDetailsSchema() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceVinfraVcenterNetworkLimitSchema(),
 			},
+			"vcenter_non_drs_cluster_details": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceVcenterNonDrsClusterDetailsSchema(),
+			},
 			"vcenter_obj_delete_details": {
 				Type:     schema.TypeSet,
 				Optional: true,
@@ -12617,6 +13415,12 @@ func ResourceEventDetailsSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 				Elem:     ResourceVsAwaitingSeEventDetailsSchema(),
+			},
+			"vs_config_sedatastore_dl_fail": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceSeVsConfigSeDatastoreDownloadFailedSchema(),
 			},
 			"vs_error_details": {
 				Type:     schema.TypeSet,
@@ -12666,6 +13470,18 @@ func ResourceEventDetailsSchema() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceVsSwitchoverEventDetailsSchema(),
 			},
+			"vsgs_info": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceVsGsStatusSchema(),
+			},
+			"warning_event_details": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceWarningEventDetailsSchema(),
+			},
 		},
 	}
 }
@@ -12684,6 +13500,40 @@ func ResourceEventDetailsFilterSchema() *schema.Resource {
 			"event_details_value": {
 				Type:     schema.TypeString,
 				Required: true,
+			},
+		},
+	}
+}
+
+func ResourceEventInfoSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"agent_id": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"msg": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
+			"name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"timestamp": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceTimeStampSchema(),
+			},
+			"uuid": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 		},
 	}
@@ -12754,11 +13604,6 @@ func ResourceEventLogSchema() *schema.Resource {
 				Computed: true,
 			},
 			"obj_uuid": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
-			"reason_code": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -13116,6 +13961,23 @@ func ResourceFbVsInfoSchema() *schema.Resource {
 	}
 }
 
+func ResourceFdsInfoSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"objects": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
+			"timeline": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
 func ResourceFeProxyRoutePublishConfigSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -13154,6 +14016,56 @@ func ResourceFileObjectDetailsSchema() *schema.Resource {
 				Computed: true,
 			},
 			"url": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceFileObjectEventSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"duration": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"end_time": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"message": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"start_time": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"status": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceFileObjectEventMapSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"task_event": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceFileObjectEventSchema(),
+			},
+			"task_name": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -13960,22 +14872,16 @@ func ResourceGslbDnsInfoSchema() *schema.Resource {
 				Computed:     true,
 				ValidateFunc: validateBool,
 			},
+			"dns_se_resource": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceSeResourcesSchema(),
+			},
 			"dns_vs_states": {
 				Type:     schema.TypeList,
 				Optional: true,
 				Elem:     ResourceGslbPerDnsStateSchema(),
-			},
-			"gs_status": {
-				Type:     schema.TypeSet,
-				Optional: true,
-				Computed: true,
-				Elem:     ResourceGslbDnsGsStatusSchema(),
-			},
-			"retry_count": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Computed:     true,
-				ValidateFunc: validateInteger,
 			},
 		},
 	}
@@ -14052,10 +14958,10 @@ func ResourceGslbDownloadStatusSchema() *schema.Resource {
 func ResourceGslbGeoDbEntrySchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
-			"file": {
-				Type:     schema.TypeSet,
-				Required: true,
-				Elem:     ResourceGslbGeoDbFileSchema(),
+			"file_obj_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 			"priority": {
 				Type:         schema.TypeString,
@@ -14169,6 +15075,19 @@ func ResourceGslbObjSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceGslbObjInfoSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"repl_state": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceCfgStateSchema(),
 			},
 		},
 	}
@@ -14289,6 +15208,11 @@ func ResourceGslbPoolSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"gslb_pool_type": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "GSLB_POOL_TYPE_GENERIC",
+			},
 			"manual_resume": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -14389,6 +15313,12 @@ func ResourceGslbPoolMemberSchema() *schema.Resource {
 				Optional:     true,
 				Default:      "false",
 				ValidateFunc: validateBool,
+			},
+			"srv_rdata": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceGslbServiceSrvRdataSchema(),
 			},
 			"vs_uuid": {
 				Type:     schema.TypeString,
@@ -14620,6 +15550,21 @@ func ResourceGslbRuntimeSchema() *schema.Resource {
 				Optional: true,
 				Elem:     ResourceCfgStateSchema(),
 			},
+			"gslb_crm_runtime": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceGslbCRMRuntimeSchema(),
+			},
+			"gslb_hsm_runtime": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceGslbHSMRuntimeSchema(),
+			},
+			"gslb_sm_runtime": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceGslbSMRuntimeSchema(),
+			},
 			"ldr_state": {
 				Type:     schema.TypeSet,
 				Optional: true,
@@ -14675,6 +15620,18 @@ func ResourceGslbServiceDownResponseSchema() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceIpAddrSchema(),
 			},
+			"public_fallback_ip": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceIpAddrSchema(),
+			},
+			"public_fallback_ip6": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceIpAddrSchema(),
+			},
 			"type": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -14687,7 +15644,7 @@ func ResourceGslbServiceDownResponseSchema() *schema.Resource {
 func ResourceGslbServiceRuntimeSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
-			"checksum": {
+			"cluster_uuid": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -14697,23 +15654,17 @@ func ResourceGslbServiceRuntimeSchema() *schema.Resource {
 				Optional: true,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
-			"flr_state": {
-				Type:     schema.TypeList,
-				Optional: true,
-				Elem:     ResourceCfgStateSchema(),
-			},
 			"groups": {
 				Type:     schema.TypeList,
 				Optional: true,
 				Elem:     ResourceGslbPoolRuntimeSchema(),
 			},
-			"ldr_state": {
-				Type:     schema.TypeSet,
+			"name": {
+				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
-				Elem:     ResourceCfgStateSchema(),
 			},
-			"name": {
+			"obj_uuid": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -14723,6 +15674,12 @@ func ResourceGslbServiceRuntimeSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 				Elem:     ResourceOperationalStatusSchema(),
+			},
+			"repl_state": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceCfgStateSchema(),
 			},
 			"send_event": {
 				Type:         schema.TypeString,
@@ -14748,6 +15705,11 @@ func ResourceGslbServiceRuntimeSchema() *schema.Resource {
 				Elem:     ResourceOperationalStatusSchema(),
 			},
 			"tenant_name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"tenant_ref": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -14787,15 +15749,37 @@ func ResourceGslbServiceSitePersistencePoolSchema() *schema.Resource {
 				Computed:     true,
 				ValidateFunc: validateInteger,
 			},
-			"servers": {
+			"server_info": {
 				Type:     schema.TypeList,
 				Optional: true,
-				Elem:     ResourceServerConfigSchema(),
+				Elem:     ResourceServerRuntimeSummarySchema(),
 			},
 			"uuid": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceGslbServiceSrvRdataSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"port": {
+				Type:         schema.TypeString,
+				Required:     true,
+				ValidateFunc: validateInteger,
+			},
+			"priority": {
+				Type:         schema.TypeString,
+				Required:     true,
+				ValidateFunc: validateInteger,
+			},
+			"weight": {
+				Type:         schema.TypeString,
+				Required:     true,
+				ValidateFunc: validateInteger,
 			},
 		},
 	}
@@ -14901,6 +15885,12 @@ func ResourceGslbSiteSchema() *schema.Resource {
 				Computed:     true,
 				ValidateFunc: validateInteger,
 			},
+			"replication_policy": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceReplicationPolicySchema(),
+			},
 			"suspend_mode": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -14940,6 +15930,12 @@ func ResourceGslbSiteCfgSyncInfoSchema() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceConfigVersionStatusSchema(),
 			},
+			"prev_target_version": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
 			"reason": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -14950,10 +15946,22 @@ func ResourceGslbSiteCfgSyncInfoSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"site_version": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
 			"sync_state": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+			"target_version": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
 			},
 		},
 	}
@@ -14983,6 +15991,12 @@ func ResourceGslbSiteHealthStatusSchema() *schema.Resource {
 				Optional: true,
 				Elem:     ResourceGslbPoolMemberRuntimeInfoSchema(),
 			},
+			"controller_size": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceControllerSizeSchema(),
+			},
 			"datapath_gsinfo": {
 				Type:     schema.TypeList,
 				Optional: true,
@@ -14993,6 +16007,11 @@ func ResourceGslbSiteHealthStatusSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 				Elem:     ResourceGslbDnsInfoSchema(),
+			},
+			"edges": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceSiteLinkSchema(),
 			},
 			"gap_table": {
 				Type:     schema.TypeList,
@@ -17186,6 +18205,11 @@ func ResourceHdrMatchSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Required: true,
 			},
+			"string_group_refs": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
 			"value": {
 				Type:     schema.TypeList,
 				Optional: true,
@@ -17336,12 +18360,27 @@ func ResourceHealthMonitorHttpSchema() *schema.Resource {
 				Default:      "false",
 				ValidateFunc: validateBool,
 			},
+			"http_headers": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
+			"http_method": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"http_request": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Default:  "GET / HTTP/1.0",
 			},
 			"http_request_body": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"http_request_header_path": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -17511,6 +18550,12 @@ func ResourceHealthMonitorSSLAttributesSchema() *schema.Resource {
 			"ssl_profile_ref": {
 				Type:     schema.TypeString,
 				Required: true,
+			},
+			"use_pool_sni_server_name": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateBool,
 			},
 		},
 	}
@@ -18447,6 +19492,25 @@ func ResourceImageEventMapSchema() *schema.Resource {
 	}
 }
 
+func ResourceImageParamsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"image_replication_timeout": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "600",
+				ValidateFunc: validateInteger,
+			},
+			"max_image_size": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "10",
+				ValidateFunc: validateInteger,
+			},
+		},
+	}
+}
+
 func ResourceImageUploadOpsStatusSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -18991,11 +20055,6 @@ func ResourceIpamDnsInfobloxProfileSchema() *schema.Resource {
 				Sensitive:        true,
 				DiffSuppressFunc: suppressSensitiveFieldDiffs,
 			},
-			"profile_url": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
 			"usable_alloc_subnets": {
 				Type:     schema.TypeList,
 				Optional: true,
@@ -19337,7 +20396,8 @@ func ResourceJWTValidationParamsSchema() *schema.Resource {
 		Schema: map[string]*schema.Schema{
 			"audience": {
 				Type:     schema.TypeString,
-				Required: true,
+				Optional: true,
+				Computed: true,
 			},
 		},
 	}
@@ -19539,6 +20599,11 @@ func ResourceJournalSummarySchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"state": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"status": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -19547,6 +20612,97 @@ func ResourceJournalSummarySchema() *schema.Resource {
 			"type": {
 				Type:     schema.TypeString,
 				Required: true,
+			},
+			"warning_count": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+		},
+	}
+}
+
+func ResourceJournalTaskSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"duration": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"end_time": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"messages": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
+			"reason": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"start_time": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"state": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"status": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateBool,
+			},
+			"task_description": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"task_name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceJsonParsingLimitsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"max_nesting_level": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "0",
+				ValidateFunc: validateInteger,
+			},
+			"max_subelements": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "0",
+				ValidateFunc: validateInteger,
+			},
+			"max_total_elements": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "0",
+				ValidateFunc: validateInteger,
+			},
+			"max_value_length": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "0",
+				ValidateFunc: validateInteger,
 			},
 		},
 	}
@@ -19593,6 +20749,22 @@ func ResourceKeyValueSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceKeyValueConfigurationSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"key": {
+				Type:     schema.TypeString,
+				Required: true,
+			},
+			"value": {
+				Type:         schema.TypeString,
+				Required:     true,
+				ValidateFunc: validateInteger,
 			},
 		},
 	}
@@ -20275,6 +21447,35 @@ func ResourceLdapUserBindSettingsSchema() *schema.Resource {
 	}
 }
 
+func ResourceLeaderChangeInfoSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"enabled": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "true",
+				ValidateFunc: validateBool,
+			},
+			"leader_candidates": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceSiteInfoSchema(),
+			},
+			"leader_change_mode": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "GSLB_LC_MODE_MANUAL",
+			},
+			"max_unsuccessful_probes": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "15",
+				ValidateFunc: validateInteger,
+			},
+		},
+	}
+}
+
 func ResourceLearningLogPolicySchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -20439,6 +21640,24 @@ func ResourceLicenseInfoSchema() *schema.Resource {
 			"tier": {
 				Type:     schema.TypeString,
 				Required: true,
+			},
+			"uuid": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceLicenseReservationInfoSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"reserved": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
 			},
 			"uuid": {
 				Type:     schema.TypeString,
@@ -20693,6 +21912,37 @@ func ResourceLinuxServerHostSchema() *schema.Resource {
 	}
 }
 
+func ResourceLocalConfigSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"vsgs_info": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceVsgsOpsInfoSchema(),
+			},
+		},
+	}
+}
+
+func ResourceLocalInfoSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"gs_status": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceGslbDnsGsStatusSchema(),
+			},
+			"gslb_info": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceGslbObjInfoSchema(),
+			},
+		},
+	}
+}
+
 func ResourceLocationHdrMatchSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -20850,10 +22100,286 @@ func ResourceLogControllerMappingSchema() *schema.Resource {
 func ResourceLogManagerDebugFilterSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"adf_protection_time_minutes": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "1380",
+				ValidateFunc: validateInteger,
+			},
+			"batch_queue_buffer_size": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "100",
+				ValidateFunc: validateInteger,
+			},
+			"batch_worker_count": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "8",
+				ValidateFunc: validateInteger,
+			},
+			"bulk_payload_string_size": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "11000000",
+				ValidateFunc: validateInteger,
+			},
+			"cache_cleanup_delay_ms": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "300000",
+				ValidateFunc: validateInteger,
+			},
+			"client_index_op_timeout_seconds": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "2",
+				ValidateFunc: validateInteger,
+			},
+			"db_notifn_chan_capacity": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "1000",
+				ValidateFunc: validateInteger,
+			},
 			"entity_ref": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+			"go_gc_percent": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "50",
+				ValidateFunc: validateInteger,
+			},
+			"incremental_timeout_buffer_ms": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "1000",
+				ValidateFunc: validateInteger,
+			},
+			"index_cleaner_interval_minutes": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "30",
+				ValidateFunc: validateInteger,
+			},
+			"index_config_path": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "/var/lib/avi/indexer_configs",
+			},
+			"index_retention_period_minutes": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "1440",
+				ValidateFunc: validateInteger,
+			},
+			"index_status_queue_buffer_size": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "100",
+				ValidateFunc: validateInteger,
+			},
+			"json_all_str_builder_size": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "2048",
+				ValidateFunc: validateInteger,
+			},
+			"json_everything_str_builder_size": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "512",
+				ValidateFunc: validateInteger,
+			},
+			"json_str_builder_size": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "16384",
+				ValidateFunc: validateInteger,
+			},
+			"log_indexer_task_timeout_ms": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "60000",
+				ValidateFunc: validateInteger,
+			},
+			"log_records_incremental_timeout_ms": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "2000",
+				ValidateFunc: validateInteger,
+			},
+			"log_records_task_timeout_ms": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "1000",
+				ValidateFunc: validateInteger,
+			},
+			"max_batch_duration_ms": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "500",
+				ValidateFunc: validateInteger,
+			},
+			"max_batch_size": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "10",
+				ValidateFunc: validateInteger,
+			},
+			"max_files_per_index": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "2000",
+				ValidateFunc: validateInteger,
+			},
+			"max_indices_events": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "8",
+				ValidateFunc: validateInteger,
+			},
+			"max_indices_per_vs": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "5",
+				ValidateFunc: validateInteger,
+			},
+			"max_indices_system": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "20",
+				ValidateFunc: validateInteger,
+			},
+			"max_logs_per_index": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "2000000",
+				ValidateFunc: validateInteger,
+			},
+			"max_num_workers": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "10",
+				ValidateFunc: validateInteger,
+			},
+			"max_queue_size": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "20",
+				ValidateFunc: validateInteger,
+			},
+			"max_size_per_index_mb": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "400",
+				ValidateFunc: validateInteger,
+			},
+			"nf_protection_time_minutes": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "30",
+				ValidateFunc: validateInteger,
+			},
+			"opensearch_host": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "localhost",
+			},
+			"opensearch_num_replicas": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "0",
+				ValidateFunc: validateInteger,
+			},
+			"opensearch_num_shards": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "1",
+				ValidateFunc: validateInteger,
+			},
+			"opensearch_port": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "9200",
+			},
+			"query_queue_buffer_size": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "100",
+				ValidateFunc: validateInteger,
+			},
+			"query_worker_count": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "8",
+				ValidateFunc: validateInteger,
+			},
+			"records_status_queue_buffer_size": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "100",
+				ValidateFunc: validateInteger,
+			},
+			"records_status_worker_count": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "8",
+				ValidateFunc: validateInteger,
+			},
+			"reserved_1": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"reserved_2": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"reserved_3": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"reserved_4": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"search_query_timeout_ms": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "15000",
+				ValidateFunc: validateInteger,
+			},
+			"task_re_enqueue_wait_time_seconds": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "1",
+				ValidateFunc: validateInteger,
+			},
+			"telemetry_trace_log_level": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"telemetry_trace_percentage": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "100",
+				ValidateFunc: validateInteger,
+			},
+			"udf_protection_time_minutes": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "60",
+				ValidateFunc: validateInteger,
 			},
 		},
 	}
@@ -21299,6 +22825,18 @@ func ResourceMemoryBalancerInfoSchema() *schema.Resource {
 func ResourceMemoryUsageSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"available": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"effective_ctlr_mem_used_percent": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
 			"free": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -23253,6 +24791,18 @@ func ResourceNsxtConfigurationSchema() *schema.Resource {
 				Optional: true,
 				Default:  "default",
 			},
+			"streamline_dfw_objects": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateBool,
+			},
+			"verify_certificate": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
 			"vmc_mode": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -23280,6 +24830,79 @@ func ResourceNsxtCredentialsSchema() *schema.Resource {
 				DiffSuppressFunc: suppressSensitiveFieldDiffs,
 			},
 			"username": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceNsxtDFWGroupDetailsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"error_string": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"group": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceNsxtDFWServiceDetailsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"error_string": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"service": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceNsxtDFWTagSegmentPortSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"error_string": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"path": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"vsuuids": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
+		},
+	}
+}
+
+func ResourceNsxtDFWTagVMSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"error_string": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"name": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -23473,6 +25096,11 @@ func ResourceNsxtSIRuleDetailsSchema() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
+			"vs": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 		},
 	}
@@ -24092,6 +25720,11 @@ func ResourceOIDCConfigSchema() *schema.Resource {
 				Default:      "true",
 				ValidateFunc: validateBool,
 			},
+			"userid_claim_name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"userinfo": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -24498,7 +26131,7 @@ func ResourceObjSyncConfigSchema() *schema.Resource {
 			"objsync_cpu_limit": {
 				Type:         schema.TypeString,
 				Optional:     true,
-				Default:      "30",
+				Default:      "0",
 				ValidateFunc: validateInteger,
 			},
 			"objsync_hub_elect_interval": {
@@ -24512,6 +26145,29 @@ func ResourceObjSyncConfigSchema() *schema.Resource {
 				Optional:     true,
 				Default:      "10",
 				ValidateFunc: validateInteger,
+			},
+		},
+	}
+}
+
+func ResourceObjectRuleSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"action": {
+				Type:     schema.TypeSet,
+				Required: true,
+				Elem:     ResourceRetentionActionSchema(),
+			},
+			"limit": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"model_name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 		},
 	}
@@ -25055,6 +26711,24 @@ func ResourceOperationalStatusSchema() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceTimeStampSchema(),
 			},
+			"num_vs_completed": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"num_vs_failed": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"num_vs_total": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
 			"reason": {
 				Type:     schema.TypeList,
 				Optional: true,
@@ -25112,6 +26786,12 @@ func ResourceOpsHistorySchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"params": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceUpgradeOpsParamSchema(),
+			},
 			"patch_version": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -25153,6 +26833,18 @@ func ResourceOpsHistorySchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceOpsInfoSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"rrtoken": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
 		},
 	}
@@ -25495,11 +27187,6 @@ func ResourceParamSizeClassSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
-			"timestamps": {
-				Type:     schema.TypeList,
-				Optional: true,
-				Elem:     &schema.Schema{Type: schema.TypeInt},
-			},
 		},
 	}
 }
@@ -25512,11 +27199,6 @@ func ResourceParamTypeClassSchema() *schema.Resource {
 				Optional:     true,
 				Computed:     true,
 				ValidateFunc: validateInteger,
-			},
-			"timestamps": {
-				Type:     schema.TypeList,
-				Optional: true,
-				Elem:     &schema.Schema{Type: schema.TypeInt},
 			},
 			"type": {
 				Type:     schema.TypeString,
@@ -25567,6 +27249,12 @@ func ResourcePatchControllerParamsSchema() *schema.Resource {
 			"controller_patch_ref": {
 				Type:     schema.TypeString,
 				Required: true,
+			},
+			"dryrun": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
 			},
 			"prechecks_only": {
 				Type:         schema.TypeString,
@@ -25671,6 +27359,12 @@ func ResourcePatchSystemParamsSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Required: true,
 			},
+			"dryrun": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
 			"prechecks_only": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -25739,6 +27433,24 @@ func ResourcePerformanceLimitsSchema() *schema.Resource {
 				ValidateFunc: validateInteger,
 			},
 			"max_throughput": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+		},
+	}
+}
+
+func ResourcePeriodicitySchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"action": {
+				Type:     schema.TypeSet,
+				Required: true,
+				Elem:     ResourceRetentionActionSchema(),
+			},
+			"interval": {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Computed:     true,
@@ -25852,6 +27564,31 @@ func ResourcePodTolerationSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourcePolicySpecSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"disk": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceDiskThresholdSchema(),
+			},
+			"object": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceObjectRuleSchema(),
+			},
+			"periodic": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourcePeriodicitySchema(),
 			},
 		},
 	}
@@ -26152,6 +27889,12 @@ func ResourcePortalConfigurationSchema() *schema.Resource {
 				Default:      "true",
 				ValidateFunc: validateBool,
 			},
+			"enable_rate_limiter": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
 			"http_port": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -26163,6 +27906,12 @@ func ResourcePortalConfigurationSchema() *schema.Resource {
 				Optional:     true,
 				Computed:     true,
 				ValidateFunc: validateInteger,
+			},
+			"legacy_ssl_support": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
 			},
 			"minimum_password_length": {
 				Type:         schema.TypeString,
@@ -26245,6 +27994,154 @@ func ResourcePortalFeatureOptInSchema() *schema.Resource {
 				Optional:     true,
 				Default:      "false",
 				ValidateFunc: validateBool,
+			},
+		},
+	}
+}
+
+func ResourcePositiveSecurityParamsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"confidence_override": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceAppLearningConfidenceOverrideSchema(),
+			},
+			"max_params": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "100",
+				ValidateFunc: validateInteger,
+			},
+			"max_uris": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "500",
+				ValidateFunc: validateInteger,
+			},
+			"min_confidence": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "CONFIDENCE_VERY_HIGH",
+			},
+			"min_hits_to_program": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "10000",
+				ValidateFunc: validateInteger,
+			},
+		},
+	}
+}
+
+func ResourcePostgresEventInfoSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"db_name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"event_desc": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"timestamp": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourcePreCheckOpsStateSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"last_changed_time": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceTimeStampSchema(),
+			},
+			"reason": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"state": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourcePreChecksInfoSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"check_code": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"description": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"details": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
+			"duration": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"end_time": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"error_details": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
+			"start_time": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"state": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourcePreChecksParamsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"export_config_timeout": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "3600",
+				ValidateFunc: validateInteger,
+			},
+			"max_alerts": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "200",
+				ValidateFunc: validateInteger,
 			},
 		},
 	}
@@ -26485,6 +28382,25 @@ func ResourceQueryMatchSchema() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
+		},
+	}
+}
+
+func ResourceQuotaConfigSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"limit": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "-1",
+				ValidateFunc: validateInteger,
+			},
+			"reservation": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "0",
+				ValidateFunc: validateInteger,
 			},
 		},
 	}
@@ -26861,6 +28777,58 @@ func ResourceRateProfileSchema() *schema.Resource {
 	}
 }
 
+func ResourceReadinessCheckObjSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"checks": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourcePreChecksInfoSchema(),
+			},
+			"checks_completed": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"duration": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"end_time": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"progress": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "0",
+				ValidateFunc: validateInteger,
+			},
+			"start_time": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"state": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourcePreCheckOpsStateSchema(),
+			},
+			"total_checks": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+		},
+	}
+}
+
 func ResourceRebalanceMigrateEventDetailsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -26950,6 +28918,37 @@ func ResourceRemoteAuthConfigurationSchema() *schema.Resource {
 	}
 }
 
+func ResourceRemoteInfoSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"gslb_info": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceGslbObjInfoSchema(),
+			},
+			"ops_info": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceOpsInfoSchema(),
+			},
+			"sync_info": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceGslbSiteCfgSyncInfoSchema(),
+			},
+			"sync_stats": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceGslbReplicationStatsSchema(),
+			},
+		},
+	}
+}
+
 func ResourceReplaceStringVarSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -26970,11 +28969,6 @@ func ResourceReplaceStringVarSchema() *schema.Resource {
 func ResourceReplicationPolicySchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
-			"checkpoint_ref": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
 			"replication_mode": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -27012,6 +29006,30 @@ func ResourceReportDetailSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 				Elem:     ResourceUpgradeReadinessCheckObjSchema(),
+			},
+		},
+	}
+}
+
+func ResourceReportDurationSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"end_time": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceTimeStampSchema(),
+			},
+			"period": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"start_time": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceTimeStampSchema(),
 			},
 		},
 	}
@@ -27055,6 +29073,61 @@ func ResourceReportEventSchema() *schema.Resource {
 	}
 }
 
+func ResourceReportGenStateSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"last_changed_time": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceTimeStampSchema(),
+			},
+			"reason": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"state": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceReportGenerationRequestSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"duration": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceReportDurationSchema(),
+			},
+			"name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"parameters": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceReportParameterSchema(),
+			},
+			"report": {
+				Type:     schema.TypeString,
+				Required: true,
+			},
+			"sections": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceReportSectionSchema(),
+			},
+		},
+	}
+}
+
 func ResourceReportOpsStateSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -27073,6 +29146,50 @@ func ResourceReportOpsStateSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceReportParameterSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"value": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceReportSectionSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"id": {
+				Type:     schema.TypeString,
+				Required: true,
+			},
+			"sub_sections": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceReportSubSectionSchema(),
+			},
+		},
+	}
+}
+
+func ResourceReportSubSectionSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"id": {
+				Type:     schema.TypeString,
+				Required: true,
 			},
 		},
 	}
@@ -27122,6 +29239,93 @@ func ResourceReportTaskSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceReqContentRewriteRuleSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"enable": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateBool,
+			},
+			"index": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"pairs": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceSearchReplacePairSchema(),
+			},
+			"rewritable_content_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceRequestLimiterEventInfoSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"client_ip": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"error_status_code": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"message": {
+				Type:     schema.TypeString,
+				Required: true,
+			},
+			"method": {
+				Type:     schema.TypeString,
+				Required: true,
+			},
+			"processed": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
+			"url": {
+				Type:     schema.TypeString,
+				Required: true,
+			},
+			"user_agent": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceReservedConfigurationSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"key_value_configurations": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceKeyValueConfigurationSchema(),
 			},
 		},
 	}
@@ -27282,6 +29486,59 @@ func ResourceResumeSeGroupParamsSchema() *schema.Resource {
 				Optional:     true,
 				Default:      "false",
 				ValidateFunc: validateBool,
+			},
+		},
+	}
+}
+
+func ResourceRetentionActionSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"args": {
+				Type:     schema.TypeList,
+				Required: true,
+				Elem:     ResourceActionArgsSchema(),
+			},
+			"path": {
+				Type:     schema.TypeString,
+				Required: true,
+			},
+			"type": {
+				Type:     schema.TypeString,
+				Required: true,
+			},
+		},
+	}
+}
+
+func ResourceRetentionSummarySchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"duration": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"end_time": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"messages": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
+			"start_time": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"status": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 		},
 	}
@@ -28082,6 +30339,11 @@ func ResourceRspContentRewriteRuleSchema() *schema.Resource {
 				Optional: true,
 				Elem:     ResourceSearchReplacePairSchema(),
 			},
+			"rewritable_content_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 		},
 	}
 }
@@ -28166,6 +30428,51 @@ func ResourceSAMLSPConfigSchema() *schema.Resource {
 	}
 }
 
+func ResourceSCFaultOptionsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"delay_create": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"delay_delete": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"delay_update": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"fault_type": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"obj": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"object_type": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"se": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
 func ResourceSCPoolServerStateInfoSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -28200,6 +30507,18 @@ func ResourceSCPoolServerStateInfoSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceSCPropertiesSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"delay_injections": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceSCFaultOptionsSchema(),
 			},
 		},
 	}
@@ -28385,6 +30704,18 @@ func ResourceSETimeTrackerPropertiesSchema() *schema.Resource {
 				Optional:     true,
 				Default:      "20",
 				ValidateFunc: validateInteger,
+			},
+		},
+	}
+}
+
+func ResourceSHMSummarySchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"health_monitor": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceServerHealthMonitorSchema(),
 			},
 		},
 	}
@@ -28662,6 +30993,18 @@ func ResourceSSLKeyECParamsSchema() *schema.Resource {
 	}
 }
 
+func ResourceSSLKeyMldsaParamsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"algorithm": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "SSL_KEY_MLDSA44",
+			},
+		},
+	}
+}
+
 func ResourceSSLKeyParamsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -28674,6 +31017,12 @@ func ResourceSSLKeyParamsSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 				Elem:     ResourceSSLKeyECParamsSchema(),
+			},
+			"mldsa_params": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceSSLKeyMldsaParamsSchema(),
 			},
 			"rsa_params": {
 				Type:     schema.TypeSet,
@@ -28801,17 +31150,11 @@ func ResourceSSLVersionSchema() *schema.Resource {
 func ResourceSaasLicensingInfoSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
-			"max_service_units": {
+			"enable_notional_reserve": {
 				Type:         schema.TypeString,
 				Optional:     true,
-				Default:      "0",
-				ValidateFunc: validateFloat,
-			},
-			"reserve_service_units": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Default:      "0",
-				ValidateFunc: validateFloat,
+				Default:      "true",
+				ValidateFunc: validateBool,
 			},
 		},
 	}
@@ -28838,6 +31181,11 @@ func ResourceSaasLicensingStatusSchema() *schema.Resource {
 				Computed:     true,
 				ValidateFunc: validateBool,
 			},
+			"last_refreshed_at": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"message": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -28849,6 +31197,17 @@ func ResourceSaasLicensingStatusSchema() *schema.Resource {
 				Computed: true,
 			},
 			"public_key": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"refresh_status": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateBool,
+			},
+			"refreshed_at": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -29547,6 +31906,26 @@ func ResourceSeAgentStateCachePropertiesSchema() *schema.Resource {
 	}
 }
 
+func ResourceSeAutoScalerEventDetailsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"actions": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceVipActionSchema(),
+			},
+			"request_source": {
+				Type:     schema.TypeString,
+				Required: true,
+			},
+			"se_group_uuid": {
+				Type:     schema.TypeString,
+				Required: true,
+			},
+		},
+	}
+}
+
 func ResourceSeBgpPeerDownDetailsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -29976,6 +32355,30 @@ func ResourceSeGroupAnalyticsPolicySchema() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				Elem:     ResourceMetricsEventThresholdSchema(),
+			},
+		},
+	}
+}
+
+func ResourceSeGroupInfoSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"consumed": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateFloat,
+			},
+			"escrow": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateFloat,
+			},
+			"uuid": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 		},
 	}
@@ -31401,6 +33804,47 @@ func ResourceSePoolLbEventDetailsSchema() *schema.Resource {
 	}
 }
 
+func ResourceSeProcessCrashedDetailsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"crash_counter": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"process_name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"se_name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceSeRateLimiterDropDetailsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"num_pkts_dropped": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"se_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
 func ResourceSeRateLimitersSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -31429,6 +33873,12 @@ func ResourceSeRateLimitersSchema() *schema.Resource {
 				ValidateFunc: validateInteger,
 			},
 			"icmp_rsp_rl": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "2000",
+				ValidateFunc: validateInteger,
+			},
+			"nd_rl": {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Default:      "2000",
@@ -31519,6 +33969,11 @@ func ResourceSeResourcesSchema() *schema.Resource {
 				Type:         schema.TypeString,
 				Required:     true,
 				ValidateFunc: validateInteger,
+			},
+			"qat_mode": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "QAT_OFF",
 			},
 			"sockets": {
 				Type:         schema.TypeString,
@@ -32433,6 +34888,43 @@ func ResourceSeVnicUpEventDetailsSchema() *schema.Resource {
 	}
 }
 
+func ResourceSeVsConfigSeDatastoreDownloadFailedSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"fail_obj_name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"fail_obj_uuid": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"fail_reason": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"parent_obj_uuid": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"se_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"vs_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
 func ResourceSeVsDelFlowsDisruptedSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -32949,6 +35441,11 @@ func ResourceServerSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"health_monitor_refs": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
 			"hostname": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -33014,6 +35511,12 @@ func ResourceServerSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+			"srv_rdata": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceGslbServiceSrvRdataSchema(),
 			},
 			"static": {
 				Type:         schema.TypeString,
@@ -33316,6 +35819,43 @@ func ResourceServerConfigSchema() *schema.Resource {
 	}
 }
 
+func ResourceServerHealthMonitorSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"avg_response_time": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"failure_code": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"name": {
+				Type:     schema.TypeString,
+				Required: true,
+			},
+			"reason": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"recent_response_time": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"state": {
+				Type:     schema.TypeString,
+				Required: true,
+			},
+		},
+	}
+}
+
 func ResourceServerIdSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -33333,6 +35873,79 @@ func ResourceServerIdSchema() *schema.Resource {
 				Type:         schema.TypeString,
 				Required:     true,
 				ValidateFunc: validateInteger,
+			},
+		},
+	}
+}
+
+func ResourceServerRuntimeSummarySchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"get_state": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
+			"health_monitor_list": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceSHMSummarySchema(),
+			},
+			"hostname": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"ip_addr": {
+				Type:     schema.TypeSet,
+				Required: true,
+				Elem:     ResourceIpAddrSchema(),
+			},
+			"is_local": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "true",
+				ValidateFunc: validateBool,
+			},
+			"is_standby": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
+			"location": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceGeoLocationSchema(),
+			},
+			"oper_status": {
+				Type:     schema.TypeSet,
+				Required: true,
+				Elem:     ResourceOperationalStatusSchema(),
+			},
+			"port": {
+				Type:         schema.TypeString,
+				Required:     true,
+				ValidateFunc: validateInteger,
+			},
+			"resolve_server_by_dns": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
+			"se_uuid": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"vs_uuid": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 		},
 	}
@@ -33360,6 +35973,12 @@ func ResourceServiceSchema() *schema.Resource {
 				ValidateFunc: validateBool,
 			},
 			"is_active_ftp_data_port": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
+			"is_passive_ftp_data_port": {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Default:      "false",
@@ -33431,24 +36050,6 @@ func ResourceServiceEngineCloudLimitsSchema() *schema.Resource {
 func ResourceServiceEngineLimitsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
-			"all_virtualservices_per_serviceengine": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Computed:     true,
-				ValidateFunc: validateInteger,
-			},
-			"ew_virtualservices_per_serviceengine": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Computed:     true,
-				ValidateFunc: validateInteger,
-			},
-			"ns_virtualservices_per_serviceengine": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Computed:     true,
-				ValidateFunc: validateInteger,
-			},
 			"num_logical_intf_per_se": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -33483,6 +36084,49 @@ func ResourceServiceEngineLimitsSchema() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				Elem:     ResourceServiceEngineCloudLimitsSchema(),
+			},
+		},
+	}
+}
+
+func ResourceServiceEngineParamsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"concurrent_segroup_upgrades": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "8",
+				ValidateFunc: validateInteger,
+			},
+			"image_data_transfer_size": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "512",
+				ValidateFunc: validateInteger,
+			},
+			"large_se_connect_timeout": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "1200",
+				ValidateFunc: validateInteger,
+			},
+			"se_connect_timeout": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "600",
+				ValidateFunc: validateInteger,
+			},
+			"simultaneous_image_downloads": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "5",
+				ValidateFunc: validateInteger,
+			},
+			"task_base_timeout": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "300",
+				ValidateFunc: validateInteger,
 			},
 		},
 	}
@@ -33907,6 +36551,42 @@ func ResourceSipServiceApplicationProfileSchema() *schema.Resource {
 				Optional:     true,
 				Default:      "32",
 				ValidateFunc: validateInteger,
+			},
+		},
+	}
+}
+
+func ResourceSiteInfoSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"cluster_id": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"site_name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceSiteLinkSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"destination": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceSiteInfoSchema(),
+			},
+			"source": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceSiteInfoSchema(),
 			},
 		},
 	}
@@ -34553,6 +37233,30 @@ func ResourceSupportedMigrationsSchema() *schema.Resource {
 				Default:      "128",
 				ValidateFunc: validateInteger,
 			},
+			"dryrun_min_cores": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "1",
+				ValidateFunc: validateInteger,
+			},
+			"dryrun_min_free_disk_size": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "18",
+				ValidateFunc: validateInteger,
+			},
+			"dryrun_min_memory": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "1",
+				ValidateFunc: validateFloat,
+			},
+			"dryrun_total_memory_required": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "12",
+				ValidateFunc: validateFloat,
+			},
 			"max_active_versions": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -34706,6 +37410,62 @@ func ResourceSwitchoverFailEventDetailsSchema() *schema.Resource {
 	}
 }
 
+func ResourceSystemLimitObjectCountSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"current_count": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"limit": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"limit_description": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"limit_name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"recommended_max_limit": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"uuid": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceSystemLimitObjectCountsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"object_counts": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceSystemLimitObjectCountSchema(),
+			},
+		},
+	}
+}
+
 func ResourceTCPApplicationProfileSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -34761,6 +37521,25 @@ func ResourceTCPFastPathProfileSchema() *schema.Resource {
 				Default:      "300",
 				ValidateFunc: validateInteger,
 			},
+			"tcp_fastpath_options": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceTCPOptionsSchema(),
+			},
+		},
+	}
+}
+
+func ResourceTCPOptionsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"strip_sack": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
 		},
 	}
 }
@@ -34768,6 +37547,12 @@ func ResourceTCPFastPathProfileSchema() *schema.Resource {
 func ResourceTCPProxyProfileSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"ack_on_push": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
 			"aggressive_congestion_avoidance": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -34795,6 +37580,18 @@ func ResourceTCPProxyProfileSchema() *schema.Resource {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Default:      "2",
+				ValidateFunc: validateInteger,
+			},
+			"delayed_ack_mode": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateBool,
+			},
+			"delayed_ack_timer_delay": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "100",
 				ValidateFunc: validateInteger,
 			},
 			"idle_connection_timeout": {
@@ -34966,74 +37763,27 @@ func ResourceTagSchema() *schema.Resource {
 	}
 }
 
-func ResourceTcpAttacksSchema() *schema.Resource {
-	return &schema.Resource{
-		Schema: map[string]*schema.Schema{},
-	}
-}
-
-func ResourceTechSupportEventSchema() *schema.Resource {
+func ResourceTaskEventSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
-			"tech_support_status": {
+			"duration": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"end_time": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"ip": {
 				Type:     schema.TypeSet,
 				Optional: true,
 				Computed: true,
-				Elem:     ResourceTechSupportStatusSchema(),
+				Elem:     ResourceIpAddrSchema(),
 			},
-			"tenant": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
-		},
-	}
-}
-
-func ResourceTechSupportStatusSchema() *schema.Resource {
-	return &schema.Resource{
-		Schema: map[string]*schema.Schema{
-			"case_number": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
-			"duration": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
-			"errors": {
-				Type:     schema.TypeList,
-				Optional: true,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-			},
-			"key": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
-			"level": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
-			"name": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
-			"node": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
-			"output": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
-			"size": {
+			"message": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -35048,12 +37798,7 @@ func ResourceTechSupportStatusSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
-			"status_code": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
-			"warnings": {
+			"sub_tasks": {
 				Type:     schema.TypeList,
 				Optional: true,
 				Elem:     &schema.Schema{Type: schema.TypeString},
@@ -35062,9 +37807,239 @@ func ResourceTechSupportStatusSchema() *schema.Resource {
 	}
 }
 
+func ResourceTaskEventMapSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"nodes_events": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceTaskEventSchema(),
+			},
+			"sub_events": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceTaskEventSchema(),
+			},
+			"task_name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceTcpAttacksSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{},
+	}
+}
+
+func ResourceTechSupportEventSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"tech_support": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceTechSupportSchema(),
+			},
+		},
+	}
+}
+
+func ResourceTechSupportEventMapSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"description": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"details": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
+			"duration": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"end_time": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"start_time": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"status": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"sub_events": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceUpgradeEventSchema(),
+			},
+			"task_name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceTechSupportEventParamsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"collect_all_events": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
+			"days": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "2",
+				ValidateFunc: validateInteger,
+			},
+			"files": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "8",
+				ValidateFunc: validateInteger,
+			},
+		},
+	}
+}
+
+func ResourceTechSupportParamsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"case_number": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"description": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"duration": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"event_params": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceTechSupportEventParamsSchema(),
+			},
+			"level": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"pattern": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"skip_warnings": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateBool,
+			},
+			"slug": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"start_timestamp": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"tenant": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"uuid": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceTechSupportStateSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"last_changed_time": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceTimeStampSchema(),
+			},
+			"reason": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"state": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceTelemetryConfigurationSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"enable": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "true",
+				ValidateFunc: validateBool,
+			},
+			"url": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
 func ResourceTenantConfigurationSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"license_quota": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceQuotaConfigSchema(),
+			},
 			"se_in_provider_context": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -35297,6 +38272,24 @@ func ResourceTlsFingerprintMatchSchema() *schema.Resource {
 	}
 }
 
+func ResourceTokenRefillRateSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"interval": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "PER_MINUTE_INTERVAL",
+			},
+			"refill_rate": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "1",
+				ValidateFunc: validateInteger,
+			},
+		},
+	}
+}
+
 func ResourceTrueClientIPConfigSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -35314,6 +38307,24 @@ func ResourceTrueClientIPConfigSchema() *schema.Resource {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Default:      "1",
+				ValidateFunc: validateInteger,
+			},
+		},
+	}
+}
+
+func ResourceTrustedHostSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"host": {
+				Type:     schema.TypeSet,
+				Required: true,
+				Elem:     ResourceIpAddrSchema(),
+			},
+			"port": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
 				ValidateFunc: validateInteger,
 			},
 		},
@@ -35367,10 +38378,20 @@ func ResourceUDPProxyProfileSchema() *schema.Resource {
 func ResourceURIInfoSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"method": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"param_info": {
 				Type:     schema.TypeList,
 				Optional: true,
 				Elem:     ResourceParamInfoSchema(),
+			},
+			"parser": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 			"uri_hits": {
 				Type:         schema.TypeString,
@@ -35504,6 +38525,12 @@ func ResourceUpgradeControllerParamsSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"dryrun": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
 			"image_ref": {
 				Type:     schema.TypeString,
 				Required: true,
@@ -35621,6 +38648,12 @@ func ResourceUpgradeOpsEntrySchema() *schema.Resource {
 func ResourceUpgradeOpsParamSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"controller": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceControllerParamsSchema(),
+			},
 			"image_ref": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -35642,6 +38675,12 @@ func ResourceUpgradeOpsParamSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 				Elem:     ResourceSeGroupResumeOptionsSchema(),
+			},
+			"service_engine": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceServiceEngineParamsSchema(),
 			},
 		},
 	}
@@ -35684,6 +38723,12 @@ func ResourceUpgradeParamsSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"dryrun": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateBool,
+			},
 			"image_ref": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -35692,7 +38737,7 @@ func ResourceUpgradeParamsSchema() *schema.Resource {
 			"prechecks_only": {
 				Type:         schema.TypeString,
 				Optional:     true,
-				Default:      "false",
+				Computed:     true,
 				ValidateFunc: validateBool,
 			},
 			"se_group_options": {
@@ -35714,13 +38759,13 @@ func ResourceUpgradeParamsSchema() *schema.Resource {
 			"skip_warnings": {
 				Type:         schema.TypeString,
 				Optional:     true,
-				Default:      "false",
+				Computed:     true,
 				ValidateFunc: validateBool,
 			},
 			"system": {
 				Type:         schema.TypeString,
 				Optional:     true,
-				Default:      "false",
+				Computed:     true,
 				ValidateFunc: validateBool,
 			},
 		},
@@ -35761,6 +38806,12 @@ func ResourceUpgradeReadinessCheckObjSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+			"progress": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "0",
+				ValidateFunc: validateInteger,
 			},
 			"start_time": {
 				Type:     schema.TypeString,
@@ -35835,6 +38886,12 @@ func ResourceUpgradeSystemParamsSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"dryrun": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
 			"image_ref": {
 				Type:     schema.TypeString,
 				Required: true,
@@ -35861,6 +38918,45 @@ func ResourceUpgradeSystemParamsSchema() *schema.Resource {
 				Optional:     true,
 				Default:      "false",
 				ValidateFunc: validateBool,
+			},
+		},
+	}
+}
+
+func ResourceUsageMeteringCloudSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"status": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceUsageMeteringEventDetailsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"clouds": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceUsageMeteringCloudSchema(),
+			},
+			"message": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"trigger": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 		},
 	}
@@ -36255,6 +39351,11 @@ func ResourceVIMgrGuestNicRuntimeSchema() *schema.Resource {
 				Computed: true,
 			},
 			"os_port_uuid": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"segment_port": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -37227,6 +40328,28 @@ func ResourceVcenterImageDetailsSchema() *schema.Resource {
 	}
 }
 
+func ResourceVcenterNonDrsClusterDetailsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"cc_id": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"non_drs_cluster_ids": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
+			"se_vm_uuid": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
 func ResourceVcenterTagEventDetailsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -37266,6 +40389,17 @@ func ResourceVersionInfoSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+			"reason": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"status": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
 			},
 			"uuid": {
 				Type:     schema.TypeString,
@@ -37630,6 +40764,77 @@ func ResourceVipSchema() *schema.Resource {
 			"vip_id": {
 				Type:     schema.TypeString,
 				Required: true,
+			},
+		},
+	}
+}
+
+func ResourceVipActionSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"action": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"from_se": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"new_vcpus": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"se_list": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
+			"status": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"timestamp": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"to_new_se": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateBool,
+			},
+			"to_se": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"vip_id": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"vip_uuid": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"vs_uuid": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"waiting_for_sibling": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
 			},
 		},
 	}
@@ -38063,6 +41268,12 @@ func ResourceVipSeAssignedSchema() *schema.Resource {
 				Optional:     true,
 				Computed:     true,
 				ValidateFunc: validateBool,
+			},
+			"sec_idx": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "1",
+				ValidateFunc: validateInteger,
 			},
 			"snat_ip": {
 				Type:     schema.TypeSet,
@@ -38644,6 +41855,34 @@ func ResourceVsFsmEventDetailsSchema() *schema.Resource {
 	}
 }
 
+func ResourceVsGsStatusSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"details": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
+			"name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"uuid": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"vsgs_obj": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceVsGsSchema(),
+			},
+		},
+	}
+}
+
 func ResourceVsInitialPlacementEventDetailsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -38749,6 +41988,11 @@ func ResourceVsMigrateParamsSchema() *schema.Resource {
 				Optional:     true,
 				Computed:     true,
 				ValidateFunc: validateInteger,
+			},
+			"source": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 			"to_host_ref": {
 				Type:     schema.TypeString,
@@ -38917,6 +42161,11 @@ func ResourceVsScaleinParamsSchema() *schema.Resource {
 				Computed:     true,
 				ValidateFunc: validateBool,
 			},
+			"source": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"uuid": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -38945,6 +42194,11 @@ func ResourceVsScaleoutParamsSchema() *schema.Resource {
 				Optional:     true,
 				Computed:     true,
 				ValidateFunc: validateInteger,
+			},
+			"source": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 			"to_host_ref": {
 				Type:     schema.TypeString,
@@ -39881,6 +43135,24 @@ func ResourceVserverL7MetricsObjSchema() *schema.Resource {
 				Computed:     true,
 				ValidateFunc: validateFloat,
 			},
+			"avg_ssl_auth_mldsa44": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateFloat,
+			},
+			"avg_ssl_auth_mldsa65": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateFloat,
+			},
+			"avg_ssl_auth_mldsa87": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateFloat,
+			},
 			"avg_ssl_auth_rsa": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -40205,6 +43477,12 @@ func ResourceVserverL7MetricsObjSchema() *schema.Resource {
 				Computed:     true,
 				ValidateFunc: validateFloat,
 			},
+			"effective_sampling_rate": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateFloat,
+			},
 			"max_concurrent_sessions": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -40407,6 +43685,18 @@ func ResourceVserverL7MetricsObjSchema() *schema.Resource {
 				Computed:     true,
 				ValidateFunc: validateFloat,
 			},
+			"sum_num_optional_processing_admitted": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateFloat,
+			},
+			"sum_num_optional_processing_refused": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateFloat,
+			},
 			"sum_num_page_load_time_bucket1": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -40420,6 +43710,12 @@ func ResourceVserverL7MetricsObjSchema() *schema.Resource {
 				ValidateFunc: validateFloat,
 			},
 			"sum_num_rum_samples": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateFloat,
+			},
+			"sum_optional_cpu_usage": {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Computed:     true,
@@ -40723,6 +44019,46 @@ func ResourceVserverL7MetricsObjSchema() *schema.Resource {
 	}
 }
 
+func ResourceVsgsOpsInfoSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"dnsvs_uuid": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"ops": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"timestamp": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceTimeStampSchema(),
+			},
+		},
+	}
+}
+
+func ResourceVsphereStoragePolicySchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"vcenter_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"vsphere_storage_policy_id": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
 func ResourceVssPlacementSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -40963,11 +44299,34 @@ func ResourceWafConfigSchema() *schema.Resource {
 				Default:      "0",
 				ValidateFunc: validateInteger,
 			},
+			"enable_json_parsing_limits": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
+			"enforce_max_body_size": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
 			"ignore_incomplete_request_body_error": {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Default:      "true",
 				ValidateFunc: validateBool,
+			},
+			"json_parsing_limits": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceJsonParsingLimitsSchema(),
+			},
+			"match_element_sub_parsers": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceWafMatchElementSubParserSchema(),
 			},
 			"max_execution_time": {
 				Type:         schema.TypeString,
@@ -41043,6 +44402,11 @@ func ResourceWafConfigSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Default:  "X-WAF-Result",
+			},
+			"xml_collection": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "WAF_XML_COLLECTION_XML",
 			},
 			"xml_xxe_protection": {
 				Type:         schema.TypeString,
@@ -41299,6 +44663,42 @@ func ResourceWafLogSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"used_body_parser": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "WAF_REQUEST_PARSER_DO_NOT_PARSE",
+			},
+		},
+	}
+}
+
+func ResourceWafMatchElementSubParserSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"index": {
+				Type:         schema.TypeString,
+				Required:     true,
+				ValidateFunc: validateInteger,
+			},
+			"match_case": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "SENSITIVE",
+			},
+			"match_element": {
+				Type:     schema.TypeString,
+				Required: true,
+			},
+			"match_op": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "EQUALS",
+			},
+			"sub_parser": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "WAF_REQUEST_PARSER_AUTO_DETECT",
+			},
 		},
 	}
 }
@@ -41451,6 +44851,12 @@ func ResourceWafPSMRuleSchema() *schema.Resource {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Default:      "true",
+				ValidateFunc: validateBool,
+			},
+			"ignore_hit_action": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
 				ValidateFunc: validateBool,
 			},
 			"index": {
@@ -41845,6 +45251,23 @@ func ResourceWafWhitelistLogSchema() *schema.Resource {
 	}
 }
 
+func ResourceWarningEventDetailsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"event_data": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"warning_message": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
 func ResourceWebApplicationSignatureServiceStatusSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -41998,6 +45421,12 @@ func ResourcevCenterConfigurationSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+			"verify_certificate": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
 			},
 		},
 	}

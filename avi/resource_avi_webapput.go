@@ -10,11 +10,22 @@ import (
 
 func ResourceWebappUTSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
+		"cloud_ref": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
 		"configpb_attributes": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Computed: true,
 			Elem:     ResourceConfigPbAttributesSchema(),
+		},
+		"default_fifth_int": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "5",
+			ValidateFunc: validateInteger,
 		},
 		"default_first_int": {
 			Type:         schema.TypeString,
@@ -22,22 +33,16 @@ func ResourceWebappUTSchema() map[string]*schema.Schema {
 			Default:      "1",
 			ValidateFunc: validateInteger,
 		},
-		"default_second_int": {
+		"default_fourth_int": {
 			Type:         schema.TypeString,
 			Optional:     true,
-			Default:      "2",
+			Default:      "4",
 			ValidateFunc: validateInteger,
 		},
 		"default_string": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Default:  "default string",
-		},
-		"default_third_int": {
-			Type:         schema.TypeString,
-			Optional:     true,
-			Default:      "3",
-			ValidateFunc: validateInteger,
 		},
 		"mandatory_test": {
 			Type:     schema.TypeSet,

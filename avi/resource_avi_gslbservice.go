@@ -75,6 +75,12 @@ func ResourceGslbServiceSchema() map[string]*schema.Schema {
 			Computed:     true,
 			ValidateFunc: validateBool,
 		},
+		"include_additional_records": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
+		},
 		"is_federated": {
 			Type:         schema.TypeString,
 			Optional:     true,
@@ -112,6 +118,11 @@ func ResourceGslbServiceSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  "GSLB_SERVICE_ALGORITHM_PRIORITY",
 		},
+		"record_type": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Default:  "GSLB_SERVICE_RECORD_TYPE_A_AAAA_CNAME",
+		},
 		"resolve_cname": {
 			Type:         schema.TypeString,
 			Optional:     true,
@@ -148,6 +159,11 @@ func ResourceGslbServiceSchema() map[string]*schema.Schema {
 			ValidateFunc: validateBool,
 		},
 		"uuid": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
+		"vrf_uuid_for_gs": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,

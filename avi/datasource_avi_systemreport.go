@@ -21,6 +21,11 @@ func dataSourceAviSystemReport() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"dryrun_info": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceDryrunInfoSchema(),
+			},
 			"events": {
 				Type:     schema.TypeList,
 				Computed: true,
@@ -33,6 +38,10 @@ func dataSourceAviSystemReport() *schema.Resource {
 			"name": {
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
+			},
+			"operation": {
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"readiness_reports": {
@@ -62,6 +71,10 @@ func dataSourceAviSystemReport() *schema.Resource {
 			"tenant_ref": {
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
+			},
+			"type": {
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"uuid": {

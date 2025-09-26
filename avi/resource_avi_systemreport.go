@@ -26,6 +26,12 @@ func ResourceSystemReportSchema() map[string]*schema.Schema {
 			Default:      "false",
 			ValidateFunc: validateBool,
 		},
+		"dryrun_info": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceDryrunInfoSchema(),
+		},
 		"events": {
 			Type:     schema.TypeList,
 			Optional: true,
@@ -37,6 +43,11 @@ func ResourceSystemReportSchema() map[string]*schema.Schema {
 			Computed: true,
 		},
 		"name": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
+		"operation": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
@@ -69,6 +80,11 @@ func ResourceSystemReportSchema() map[string]*schema.Schema {
 			Elem:     ResourceReportTaskSchema(),
 		},
 		"tenant_ref": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
+		"type": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,

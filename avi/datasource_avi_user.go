@@ -30,6 +30,10 @@ func dataSourceAviUser() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"enable_config_warnings": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"full_name": {
 				Type:     schema.TypeString,
 				Computed: true,

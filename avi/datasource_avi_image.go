@@ -27,6 +27,11 @@ func dataSourceAviImage() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"dryrun_info": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourcePackageDetailsSchema(),
+			},
 			"duration": {
 				Type:     schema.TypeString,
 				Computed: true,

@@ -14,6 +14,11 @@ func dataSourceAviIPReputationDB() *schema.Resource {
 				Computed: true,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
+			"base_file_v6_refs": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
 			"configpb_attributes": {
 				Type:     schema.TypeSet,
 				Computed: true,
@@ -24,6 +29,11 @@ func dataSourceAviIPReputationDB() *schema.Resource {
 				Computed: true,
 			},
 			"incremental_file_refs": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
+			"incremental_file_v6_refs": {
 				Type:     schema.TypeList,
 				Computed: true,
 				Elem:     &schema.Schema{Type: schema.TypeString},
@@ -51,6 +61,10 @@ func dataSourceAviIPReputationDB() *schema.Resource {
 			"uuid": {
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
+			},
+			"v6_version": {
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"vendor": {

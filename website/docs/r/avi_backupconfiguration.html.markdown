@@ -27,24 +27,25 @@ resource "avi_backupconfiguration" "foo" {
 
 The following arguments are supported:
 
-* `name` - (Required) Name of backup configuration. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-* `aws_access_key` - (Optional) Aws access key id. Field introduced in 18.2.3. Allowed in enterprise edition with any value, enterprise with cloud services edition.
-* `aws_bucket_id` - (Optional) Aws bucket. Field introduced in 18.2.3. Allowed in enterprise edition with any value, enterprise with cloud services edition.
-* `aws_bucket_region` - (Optional) The name of the aws region associated with the bucket. Field introduced in 21.1.5, 22.1.1, 22.1.3. Allowed in enterprise edition with any value, enterprise with cloud services edition.
-* `aws_secret_access` - (Optional) Aws secret access key. Field introduced in 18.2.3. Allowed in enterprise edition with any value, enterprise with cloud services edition.
-* `backup_file_prefix` - (Optional) Prefix of the exported configuration file. Field introduced in 17.1.1. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-* `backup_passphrase` - (Optional) Default passphrase to encrypt sensitive fields for configuration export and periodic backup. The same passphrase must be provided to import the configuration. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services edition.
-* `maximum_backups_stored` - (Optional) Rotate the backup files based on this count. Allowed values are 1-20. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-* `remote_directory` - (Optional) Directory at remote destination with write permission for ssh user. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-* `remote_file_transfer_protocol` - (Optional) Remote file transfer protocol type. Enum options - SCP, SFTP. Field introduced in 22.1.1. Allowed in enterprise edition with any value, basic edition(allowed values- scp,sftp), enterprise with cloud services edition.
-* `remote_hostname` - (Optional) Remote destination. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-* `s3_bucket_folder` - (Optional) The folder name in s3 bucket where backup will be stored. Field introduced in 30.1.1. Allowed in enterprise edition with any value, enterprise with cloud services edition.
-* `save_local` - (Optional) Local backup. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-* `ssh_user_ref` - (Optional) Access credentials for remote destination. It is a reference to an object of type cloudconnectoruser. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-* `tenant_ref` - (Optional) It is a reference to an object of type tenant. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-* `upload_to_remote_host` - (Optional) Remote backup. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-* `upload_to_s3` - (Optional) Cloud backup. Field introduced in 18.2.3. Allowed in enterprise edition with any value, enterprise with cloud services edition.
+* `name` - (Required) Name of backup configuration. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `aws_access_key` - (Optional) Aws access key id. Field introduced in 18.2.3. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `aws_bucket_id` - (Optional) Aws bucket. Field introduced in 18.2.3. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `aws_bucket_region` - (Optional) The name of the aws region associated with the bucket. Field introduced in 21.1.5, 22.1.1, 22.1.3. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `aws_secret_access` - (Optional) Aws secret access key. Field introduced in 18.2.3. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `backup_file_prefix` - (Optional) Prefix of the exported configuration file. Field introduced in 17.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `backup_passphrase` - (Optional) Default passphrase to encrypt sensitive fields for configuration export and periodic backup. The same passphrase must be provided to import the configuration. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `bundle_mode` - (Optional) By default, json backups are generated. When this flag is enabled, bundle backups will be generated. Field introduced in 31.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `maximum_backups_stored` - (Optional) Rotate the backup files based on this count. Allowed values are 1-20. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `remote_directory` - (Optional) Directory at remote destination with write permission for ssh user. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `remote_file_transfer_protocol` - (Optional) Remote file transfer protocol type. Enum options - SCP, SFTP. Field introduced in 22.1.1. Allowed with any value in enterprise, enterprise with cloud services edition. Allowed in basic (allowed values- scp,sftp) edition.
+* `remote_hostname` - (Optional) Remote destination. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `s3_bucket_folder` - (Optional) The folder name in s3 bucket where backup will be stored. Field introduced in 30.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `save_local` - (Optional) Local backup. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `ssh_user_ref` - (Optional) Access credentials for remote destination. It is a reference to an object of type cloudconnectoruser. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `upload_to_remote_host` - (Optional) Remote backup. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `upload_to_s3` - (Optional) Cloud backup. Field introduced in 18.2.3. Allowed with any value in enterprise, enterprise with cloud services edition.
 
 
 ### Timeouts
@@ -59,5 +60,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-* `uuid` -  Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `uuid` -  Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 

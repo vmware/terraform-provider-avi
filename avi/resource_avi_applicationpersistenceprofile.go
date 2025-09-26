@@ -27,6 +27,12 @@ func ResourceApplicationPersistenceProfileSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"diameter_app_persistence_profile": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceDiameterAVPPersistenceProfileSchema(),
+		},
 		"hdr_persistence_profile": {
 			Type:     schema.TypeSet,
 			Optional: true,
@@ -63,6 +69,12 @@ func ResourceApplicationPersistenceProfileSchema() map[string]*schema.Schema {
 		"persistence_type": {
 			Type:     schema.TypeString,
 			Required: true,
+		},
+		"persistence_update_interval": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Computed:     true,
+			ValidateFunc: validateInteger,
 		},
 		"server_hm_down_recovery": {
 			Type:     schema.TypeString,

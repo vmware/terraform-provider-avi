@@ -26,6 +26,10 @@ func dataSourceAviRmCloudOpsProto() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"se_create_limit_reached": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"uuid": {
 				Type:     schema.TypeString,
 				Optional: true,

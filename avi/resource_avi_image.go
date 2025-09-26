@@ -31,6 +31,12 @@ func ResourceImageSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"dryrun_info": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourcePackageDetailsSchema(),
+		},
 		"duration": {
 			Type:         schema.TypeString,
 			Optional:     true,

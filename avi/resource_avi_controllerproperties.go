@@ -58,6 +58,18 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Default:      "false",
 			ValidateFunc: validateBool,
 		},
+		"archive_retention_framework_period": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "60",
+			ValidateFunc: validateInteger,
+		},
+		"async_cert_chaining_interval": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "2",
+			ValidateFunc: validateInteger,
+		},
 		"async_patch_merge_period": {
 			Type:         schema.TypeString,
 			Optional:     true,
@@ -220,6 +232,12 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Default:      "true",
 			ValidateFunc: validateBool,
 		},
+		"enable_nsx_streaming_agent": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "true",
+			ValidateFunc: validateBool,
+		},
 		"enable_per_process_stop": {
 			Type:         schema.TypeString,
 			Optional:     true,
@@ -231,6 +249,12 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Optional:     true,
 			Default:      "false",
 			ValidateFunc: validateBool,
+		},
+		"event_manager_file_modified_ts_filter": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "180",
+			ValidateFunc: validateInteger,
 		},
 		"event_manager_max_goroutines": {
 			Type:         schema.TypeString,
@@ -280,6 +304,12 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Default:      "3",
 			ValidateFunc: validateInteger,
 		},
+		"gslb_fileobject_max_version_count": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "3",
+			ValidateFunc: validateInteger,
+		},
 		"gslb_purge_batch_size": {
 			Type:         schema.TypeString,
 			Optional:     true,
@@ -297,6 +327,36 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Optional:     true,
 			Default:      "false",
 			ValidateFunc: validateBool,
+		},
+		"log_records_allocated_size": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Computed:     true,
+			ValidateFunc: validateInteger,
+		},
+		"log_records_allocation_percentage_for_events": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "20",
+			ValidateFunc: validateInteger,
+		},
+		"log_records_cleanup_target_percentage": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "90",
+			ValidateFunc: validateInteger,
+		},
+		"log_records_frequent_cleanup_event_generation_threshold": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "2",
+			ValidateFunc: validateInteger,
+		},
+		"log_records_purge_interval": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "300",
+			ValidateFunc: validateInteger,
 		},
 		"max_dead_se_in_grp": {
 			Type:         schema.TypeString,
@@ -471,31 +531,13 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Default:      "60",
 			ValidateFunc: validateInteger,
 		},
-		"seupgrade_copy_buffer_size": {
-			Type:         schema.TypeString,
-			Optional:     true,
-			Default:      "512",
-			ValidateFunc: validateInteger,
-		},
-		"seupgrade_copy_pool_size": {
-			Type:         schema.TypeString,
-			Optional:     true,
-			Default:      "5",
-			ValidateFunc: validateInteger,
-		},
-		"seupgrade_fabric_pool_size": {
-			Type:         schema.TypeString,
-			Optional:     true,
-			Default:      "20",
-			ValidateFunc: validateInteger,
-		},
-		"seupgrade_segroup_min_dead_timeout": {
-			Type:         schema.TypeString,
-			Optional:     true,
-			Default:      "360",
-			ValidateFunc: validateInteger,
-		},
 		"shared_ssl_certificates": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
+		},
+		"skip_beego_perf_collection": {
 			Type:         schema.TypeString,
 			Optional:     true,
 			Default:      "false",
@@ -512,16 +554,16 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Optional: true,
 			Elem:     &schema.Schema{Type: schema.TypeInt},
 		},
-		"system_report_cleanup_interval": {
-			Type:         schema.TypeString,
-			Optional:     true,
-			Default:      "60",
-			ValidateFunc: validateInteger,
+		"statecache_properties": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceSCPropertiesSchema(),
 		},
-		"system_report_limit": {
+		"telemetry_interval": {
 			Type:         schema.TypeString,
 			Optional:     true,
-			Default:      "10",
+			Default:      "1440",
 			ValidateFunc: validateInteger,
 		},
 		"unresponsive_se_reboot": {
@@ -546,18 +588,6 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Type:         schema.TypeString,
 			Optional:     true,
 			Default:      "5",
-			ValidateFunc: validateInteger,
-		},
-		"upgrade_fat_se_lease_time": {
-			Type:         schema.TypeString,
-			Optional:     true,
-			Default:      "1200",
-			ValidateFunc: validateInteger,
-		},
-		"upgrade_lease_time": {
-			Type:         schema.TypeString,
-			Optional:     true,
-			Default:      "600",
 			ValidateFunc: validateInteger,
 		},
 		"upgrade_se_per_vs_scale_ops_txn_time": {
