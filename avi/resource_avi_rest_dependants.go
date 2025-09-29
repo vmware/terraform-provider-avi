@@ -21650,6 +21650,48 @@ func ResourceLicenseInfoSchema() *schema.Resource {
 	}
 }
 
+func ResourceLicenseQuotaUsageDetailsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"tenant_quota_usage_infos": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceTenantQuotaUsageInfoSchema(),
+			},
+		},
+	}
+}
+
+func ResourceLicenseQuotaUsageInfoSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"consumed": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateFloat,
+			},
+			"limit": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"reserved": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateFloat,
+			},
+			"uuid": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
 func ResourceLicenseReservationInfoSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -38073,6 +38115,24 @@ func ResourceTenantLabelSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceTenantQuotaUsageInfoSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"se_group_infos": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceLicenseQuotaUsageInfoSchema(),
+			},
+			"tenant_info": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceLicenseQuotaUsageInfoSchema(),
 			},
 		},
 	}

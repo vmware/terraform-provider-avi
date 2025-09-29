@@ -337,7 +337,7 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 		"log_records_allocation_percentage_for_events": {
 			Type:         schema.TypeString,
 			Optional:     true,
-			Default:      "20",
+			Default:      "50",
 			ValidateFunc: validateInteger,
 		},
 		"log_records_cleanup_target_percentage": {
