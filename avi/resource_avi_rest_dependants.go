@@ -43555,6 +43555,12 @@ func ResourceVserverL7MetricsObjSchema() *schema.Resource {
 				Computed:     true,
 				ValidateFunc: validateFloat,
 			},
+			"max_total_requests": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateFloat,
+			},
 			"node_obj_id": {
 				Type:     schema.TypeString,
 				Required: true,
