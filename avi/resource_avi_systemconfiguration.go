@@ -16,13 +16,6 @@ func ResourceSystemConfigurationSchema() map[string]*schema.Schema {
 			Computed: true,
 			Elem:     ResourceAdminAuthConfigurationSchema(),
 		},
-		"avi_email_login_password": {
-			Type:             schema.TypeString,
-			Optional:         true,
-			Computed:         true,
-			Sensitive:        true,
-			DiffSuppressFunc: suppressSensitiveFieldDiffs,
-		},
 		"common_criteria_mode": {
 			Type:         schema.TypeString,
 			Optional:     true,
