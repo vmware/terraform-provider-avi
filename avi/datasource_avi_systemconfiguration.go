@@ -14,10 +14,6 @@ func dataSourceAviSystemConfiguration() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceAdminAuthConfigurationSchema(),
 			},
-			"avi_email_login_password": {
-				Type:     schema.TypeString,
-				Computed: true,
-			},
 			"common_criteria_mode": {
 				Type:     schema.TypeString,
 				Computed: true,
