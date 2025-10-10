@@ -27,6 +27,7 @@ resource "avi_systemconfiguration" "foo" {
 The following arguments are supported:
 
 * `admin_auth_configuration` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `avi_email_login_password` - (Optional) Password for avi_email_login user. Field introduced in 31.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `common_criteria_mode` - (Optional) Common criteria mode's current state. Field introduced in 20.1.3. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `controller_analytics_policy` - (Optional) Controller metrics event dynamic thresholds can be set here. Controller_cpu_high and controller_mem_high evets can take configured dynamic thresholds. Field introduced in 21.1.3. Allowed with any value in enterprise, enterprise with cloud services edition.

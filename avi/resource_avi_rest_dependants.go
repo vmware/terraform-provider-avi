@@ -35338,6 +35338,11 @@ func ResourceSecureKeyExchangeDetailsSchema() *schema.Resource {
 func ResourceSecurityMgrDebugFilterSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"accumulate_http_methods": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
 			"enable_adaptive_config": {
 				Type:         schema.TypeString,
 				Optional:     true,
