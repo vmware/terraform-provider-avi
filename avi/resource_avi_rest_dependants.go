@@ -2197,25 +2197,6 @@ func ResourceApplicationSamplingConfigSchema() *schema.Resource {
 	}
 }
 
-func ResourceApplicationSamplingRuntimeSchema() *schema.Resource {
-	return &schema.Resource{
-		Schema: map[string]*schema.Schema{
-			"current_sampling_percent": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Computed:     true,
-				ValidateFunc: validateInteger,
-			},
-			"current_update_interval": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Computed:     true,
-				ValidateFunc: validateInteger,
-			},
-		},
-	}
-}
-
 func ResourceArchivePolicySchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -35368,6 +35349,11 @@ func ResourceSecureKeyExchangeDetailsSchema() *schema.Resource {
 func ResourceSecurityMgrDebugFilterSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"accumulate_http_methods": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
 			"enable_adaptive_config": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -35378,6 +35364,12 @@ func ResourceSecurityMgrDebugFilterSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+			"psm_programming_interval": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "5",
+				ValidateFunc: validateInteger,
 			},
 			"psm_rule_id_multiplier": {
 				Type:         schema.TypeString,
