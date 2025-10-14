@@ -15985,16 +15985,15 @@ func ResourceGslbSiteDnsVsSchema() *schema.Resource {
 func ResourceGslbSiteHealthStatusSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"controller_flavor": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"controller_gsinfo": {
 				Type:     schema.TypeList,
 				Optional: true,
 				Elem:     ResourceGslbPoolMemberRuntimeInfoSchema(),
-			},
-			"controller_size": {
-				Type:     schema.TypeSet,
-				Optional: true,
-				Computed: true,
-				Elem:     ResourceControllerSizeSchema(),
 			},
 			"datapath_gsinfo": {
 				Type:     schema.TypeList,
