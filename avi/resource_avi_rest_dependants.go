@@ -6362,6 +6362,17 @@ func ResourceClustifyCheckEventSchema() *schema.Resource {
 func ResourceCollectionRulesSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"enforced_report_period": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "REPORT_PERIOD_LAST_7_DAYS",
+			},
+			"enforced_report_samples": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "2000",
+				ValidateFunc: validateInteger,
+			},
 			"max_concurrent_workers": {
 				Type:         schema.TypeString,
 				Optional:     true,
