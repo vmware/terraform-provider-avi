@@ -75,6 +75,16 @@ func dataSourceAviVSDataScriptSet() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceRateLimiterSchema(),
 			},
+			"snat_ip6s": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceIpAddrSchema(),
+			},
+			"snat_ips": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceIpAddrSchema(),
+			},
 			"ssl_key_certificate_refs": {
 				Type:     schema.TypeList,
 				Computed: true,

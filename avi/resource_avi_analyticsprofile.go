@@ -183,6 +183,12 @@ func ResourceAnalyticsProfileSchema() map[string]*schema.Schema {
 			Default:      "false",
 			ValidateFunc: validateBool,
 		},
+		"exclude_conn_drop_client_small_window_as_error": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "true",
+			ValidateFunc: validateBool,
+		},
 		"exclude_dns_policy_drop_as_significant": {
 			Type:         schema.TypeString,
 			Optional:     true,

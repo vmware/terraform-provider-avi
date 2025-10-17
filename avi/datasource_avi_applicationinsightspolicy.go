@@ -5,24 +5,30 @@ package avi
 
 import "github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 
-func dataSourceAviFederationCheckpoint() *schema.Resource {
+func dataSourceAviApplicationInsightsPolicy() *schema.Resource {
 	return &schema.Resource{
-		Read: ResourceAviFederationCheckpointRead,
+		Read: ResourceAviApplicationInsightsPolicyRead,
 		Schema: map[string]*schema.Schema{
+			"application_insights_params": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceApplicationInsightsParamsSchema(),
+			},
+			"application_sampling_config": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceApplicationSamplingConfigSchema(),
+			},
 			"configpb_attributes": {
 				Type:     schema.TypeSet,
 				Computed: true,
 				Elem:     ResourceConfigPbAttributesSchema(),
 			},
-			"date": {
-				Type:     schema.TypeString,
-				Computed: true,
-			},
 			"description": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"is_federated": {
+			"enable_application_insights": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},

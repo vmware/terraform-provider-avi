@@ -1,0 +1,50 @@
+<!--
+    Copyright 2021 VMware, Inc.
+    SPDX-License-Identifier: Mozilla Public License 2.0
+-->
+---
+layout: "avi"
+page_title: "Avi: avi_applicationinsightsstate"
+sidebar_current: "docs-avi-resource-applicationinsightsstate"
+description: |-
+  Creates and manages Avi ApplicationInsightsState.
+---
+
+# avi_applicationinsightsstate
+
+The ApplicationInsightsState resource allows the creation and management of Avi ApplicationInsightsState
+
+## Example Usage
+
+```hcl
+resource "avi_applicationinsightsstate" "foo" {
+    name = "terraform-example-foo"
+    tenant_ref = "/api/tenant/?name=admin"
+}
+```
+
+## Argument Reference
+
+The following arguments are supported:
+
+* `application_insights_uuid` - (Optional) Uuid of the application insights policy. Field introduced in 31.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `application_sampling_runtime` - (Optional) Runtime application sampling configuration to control rate and volume of data ingestion for application insights. Controller updates the configuration based on the application traffic and the associated serviceengine load. Field introduced in 31.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 31.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `name` - (Optional) The name of the application insights state configuration. Field introduced in 31.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `tenant_ref` - (Optional) Details of the tenant for the application insights state. It is a reference to an object of type tenant. Field introduced in 31.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+
+
+### Timeouts
+
+The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
+
+* `create` - (Defaults to 40 mins) Used when creating the AMI
+* `update` - (Defaults to 40 mins) Used when updating the AMI
+* `delete` - (Defaults to 90 mins) Used when deregistering the AMI
+
+## Attributes Reference
+
+In addition to all arguments above, the following attributes are exported:
+
+* `uuid` -  Uuid of the applicationinsightsstate. Field introduced in 31.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+

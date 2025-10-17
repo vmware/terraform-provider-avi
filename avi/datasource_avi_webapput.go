@@ -9,24 +9,29 @@ func dataSourceAviWebappUT() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviWebappUTRead,
 		Schema: map[string]*schema.Schema{
+			"cloud_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"configpb_attributes": {
 				Type:     schema.TypeSet,
 				Computed: true,
 				Elem:     ResourceConfigPbAttributesSchema(),
 			},
+			"default_fifth_int": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"default_first_int": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"default_second_int": {
+			"default_fourth_int": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"default_string": {
-				Type:     schema.TypeString,
-				Computed: true,
-			},
-			"default_third_int": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},

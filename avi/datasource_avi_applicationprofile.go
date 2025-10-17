@@ -30,6 +30,11 @@ func dataSourceAviApplicationProfile() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"diameter_service_profile": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceDiameterServiceApplicationProfileSchema(),
+			},
 			"dns_service_profile": {
 				Type:     schema.TypeSet,
 				Computed: true,

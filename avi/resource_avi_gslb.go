@@ -16,6 +16,12 @@ func ResourceGslbSchema() map[string]*schema.Schema {
 			Default:      "0",
 			ValidateFunc: validateInteger,
 		},
+		"auto_tune_send_interval": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceAutoTuneSendIntervalSchema(),
+		},
 		"clear_on_max_retries": {
 			Type:         schema.TypeString,
 			Optional:     true,
@@ -62,11 +68,23 @@ func ResourceGslbSchema() map[string]*schema.Schema {
 			Default:      "3",
 			ValidateFunc: validateInteger,
 		},
+		"gs_member_fqdn_resolution_on_se": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
+		},
 		"is_federated": {
 			Type:         schema.TypeString,
 			Optional:     true,
 			Default:      "true",
 			ValidateFunc: validateBool,
+		},
+		"leader_change_info": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceLeaderChangeInfoSchema(),
 		},
 		"leader_cluster_uuid": {
 			Type:     schema.TypeString,
@@ -82,12 +100,6 @@ func ResourceGslbSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Required: true,
 		},
-		"replication_policy": {
-			Type:     schema.TypeSet,
-			Optional: true,
-			Computed: true,
-			Elem:     ResourceReplicationPolicySchema(),
-		},
 		"send_interval": {
 			Type:         schema.TypeString,
 			Optional:     true,
@@ -98,6 +110,12 @@ func ResourceGslbSchema() map[string]*schema.Schema {
 			Type:         schema.TypeString,
 			Optional:     true,
 			Computed:     true,
+			ValidateFunc: validateInteger,
+		},
+		"short_probe_interval": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "30",
 			ValidateFunc: validateInteger,
 		},
 		"sites": {

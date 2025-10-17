@@ -27,9 +27,12 @@ resource "avi_licenseledgerdetails" "foo" {
 
 The following arguments are supported:
 
-* `escrow_infos` - (Optional) Maintain information about reservation against cookie. Field introduced in 20.1.1. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-* `se_infos` - (Optional) Maintain information about consumed licenses against se_uuid. Field introduced in 20.1.1. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-* `tier_usages` - (Optional) License usage per tier. Field introduced in 20.1.1. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `escrow_infos` - (Optional) Maintain information about reservation against cookie. Field introduced in 20.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `se_group_infos` - (Optional) Maintain information about se group. Field introduced in 31.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `se_infos` - (Optional) Maintain information about consumed licenses against se_uuid. Field introduced in 20.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `tenant_infos` - (Optional) Maintain information about tenant. Field introduced in 31.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `tier_usages` - (Optional) License usage per tier. Field introduced in 20.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `total_licenses_reserved` - (Optional) Total of max licenses reserved as per quota config of tenant/segroup. Field introduced in 31.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
 
 
 ### Timeouts
@@ -44,5 +47,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-* `uuid` -  Uuid for reference. Field introduced in 20.1.1. Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+* `uuid` -  Uuid for reference. Field introduced in 20.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 

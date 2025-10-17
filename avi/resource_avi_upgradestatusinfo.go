@@ -26,6 +26,12 @@ func ResourceUpgradeStatusInfoSchema() map[string]*schema.Schema {
 			Computed:     true,
 			ValidateFunc: validateBool,
 		},
+		"dryrun_info": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceDryrunInfoSchema(),
+		},
 		"duration": {
 			Type:         schema.TypeString,
 			Optional:     true,
@@ -132,6 +138,11 @@ func ResourceUpgradeStatusInfoSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"prev_remote_image_ref": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
 		"previous_image_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
@@ -164,6 +175,11 @@ func ResourceUpgradeStatusInfoSchema() map[string]*schema.Schema {
 			ValidateFunc: validateInteger,
 		},
 		"reason": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
+		"remote_image_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,

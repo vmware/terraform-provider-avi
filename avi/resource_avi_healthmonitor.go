@@ -69,6 +69,18 @@ func ResourceHealthMonitorSchema() map[string]*schema.Schema {
 			Computed: true,
 			Elem:     ResourceHealthMonitorFtpSchema(),
 		},
+		"http2_monitor": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceHealthMonitorHttpSchema(),
+		},
+		"http2s_monitor": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceHealthMonitorHttpSchema(),
+		},
 		"http_monitor": {
 			Type:     schema.TypeSet,
 			Optional: true,
@@ -115,6 +127,12 @@ func ResourceHealthMonitorSchema() map[string]*schema.Schema {
 			Type:     schema.TypeList,
 			Optional: true,
 			Elem:     ResourceRoleFilterMatchLabelSchema(),
+		},
+		"monitor_ip": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceIpAddrSchema(),
 		},
 		"monitor_port": {
 			Type:         schema.TypeString,

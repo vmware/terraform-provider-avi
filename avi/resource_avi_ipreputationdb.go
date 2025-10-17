@@ -15,6 +15,11 @@ func ResourceIPReputationDBSchema() map[string]*schema.Schema {
 			Optional: true,
 			Elem:     &schema.Schema{Type: schema.TypeString},
 		},
+		"base_file_v6_refs": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     &schema.Schema{Type: schema.TypeString},
+		},
 		"configpb_attributes": {
 			Type:     schema.TypeSet,
 			Optional: true,
@@ -27,6 +32,11 @@ func ResourceIPReputationDBSchema() map[string]*schema.Schema {
 			Computed: true,
 		},
 		"incremental_file_refs": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     &schema.Schema{Type: schema.TypeString},
+		},
+		"incremental_file_v6_refs": {
 			Type:     schema.TypeList,
 			Optional: true,
 			Elem:     &schema.Schema{Type: schema.TypeString},
@@ -52,6 +62,11 @@ func ResourceIPReputationDBSchema() map[string]*schema.Schema {
 			Computed: true,
 		},
 		"uuid": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
+		"v6_version": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,

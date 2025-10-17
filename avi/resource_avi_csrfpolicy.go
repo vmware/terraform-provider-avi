@@ -21,6 +21,11 @@ func ResourceCSRFPolicySchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  "X-CSRF-TOKEN",
 		},
+		"csrf_file_ref": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
 		"description": {
 			Type:     schema.TypeString,
 			Optional: true,

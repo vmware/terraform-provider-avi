@@ -18,6 +18,10 @@ func dataSourceAviSSLProfile() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceSSLVersionSchema(),
 			},
+			"allow_legacy_renegotiation": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"cipher_enums": {
 				Type:     schema.TypeList,
 				Computed: true,
