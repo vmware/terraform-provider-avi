@@ -6375,6 +6375,17 @@ func ResourceClustifyCheckEventSchema() *schema.Resource {
 func ResourceCollectionRulesSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"enforced_report_period": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "REPORT_PERIOD_LAST_7_DAYS",
+			},
+			"enforced_report_samples": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "2000",
+				ValidateFunc: validateInteger,
+			},
 			"max_concurrent_workers": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -6391,6 +6402,49 @@ func ResourceCollectionRulesSchema() *schema.Resource {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Default:      "1800",
+				ValidateFunc: validateInteger,
+			},
+		},
+	}
+}
+
+func ResourceComplexityConstraintSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"min_length": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "15",
+				ValidateFunc: validateInteger,
+			},
+			"min_lowercase": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "1",
+				ValidateFunc: validateInteger,
+			},
+			"min_numeric": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "1",
+				ValidateFunc: validateInteger,
+			},
+			"min_special": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "1",
+				ValidateFunc: validateInteger,
+			},
+			"min_uppercase": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "1",
+				ValidateFunc: validateInteger,
+			},
+			"password_history": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "5",
 				ValidateFunc: validateInteger,
 			},
 		},
@@ -13653,6 +13707,19 @@ func ResourceEventMapSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceExpirationConstraintSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"password_expiration_days": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "365",
+				ValidateFunc: validateInteger,
 			},
 		},
 	}
@@ -21999,6 +22066,31 @@ func ResourceLocationHdrMatchSchema() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
+		},
+	}
+}
+
+func ResourceLockoutConstraintSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"lockout_evaluation_period": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "900",
+				ValidateFunc: validateInteger,
+			},
+			"lockout_max_auth_failures": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "3",
+				ValidateFunc: validateInteger,
+			},
+			"lockout_period": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "900",
+				ValidateFunc: validateInteger,
 			},
 		},
 	}

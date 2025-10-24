@@ -13,6 +13,11 @@ func dataSourceAviUserAccountProfile() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"complexity_constraint": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceComplexityConstraintSchema(),
+			},
 			"configpb_attributes": {
 				Type:     schema.TypeSet,
 				Computed: true,
@@ -21,6 +26,16 @@ func dataSourceAviUserAccountProfile() *schema.Resource {
 			"credentials_timeout_threshold": {
 				Type:     schema.TypeString,
 				Computed: true,
+			},
+			"expiration_constraint": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceExpirationConstraintSchema(),
+			},
+			"lockout_constraint": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceLockoutConstraintSchema(),
 			},
 			"login_failure_count_expiry_window": {
 				Type:     schema.TypeString,

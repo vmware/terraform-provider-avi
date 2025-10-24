@@ -16,6 +16,12 @@ func ResourceUserAccountProfileSchema() map[string]*schema.Schema {
 			Default:      "30",
 			ValidateFunc: validateInteger,
 		},
+		"complexity_constraint": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceComplexityConstraintSchema(),
+		},
 		"configpb_attributes": {
 			Type:     schema.TypeSet,
 			Optional: true,
@@ -27,6 +33,18 @@ func ResourceUserAccountProfileSchema() map[string]*schema.Schema {
 			Optional:     true,
 			Default:      "180",
 			ValidateFunc: validateInteger,
+		},
+		"expiration_constraint": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceExpirationConstraintSchema(),
+		},
+		"lockout_constraint": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceLockoutConstraintSchema(),
 		},
 		"login_failure_count_expiry_window": {
 			Type:         schema.TypeString,

@@ -29,8 +29,11 @@ The following arguments are supported:
 
 * `name` - (Required) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `account_lock_timeout` - (Optional) Lock timeout period (in minutes). Default is 30 minutes. Unit is min. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `complexity_constraint` - (Optional) Password complexity constraints for the user account profile. Field introduced in 31.3.1. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `credentials_timeout_threshold` - (Optional) The time period after which credentials expire. Default is 180 days. Unit is days. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `expiration_constraint` - (Optional) Password expiration settings for the user account profile. Field introduced in 31.3.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `lockout_constraint` - (Optional) Account lockout settings for the user account profile. Field introduced in 31.3.1. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `login_failure_count_expiry_window` - (Optional) The configurable time window beyond which we need to pop all the login failure timestamps from the login_failure_timestamps. Special values are 0 - do not reset login_failure_counts on the basis of time. Field introduced in 22.1.1. Unit is min. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `max_concurrent_sessions` - (Optional) Maximum number of concurrent sessions allowed. There are unlimited sessions by default. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `max_login_failure_count` - (Optional) Number of login attempts before lockout. Default is 3 attempts. Allowed values are 3-20. Special values are 0- unlimited login attempts allowed. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
