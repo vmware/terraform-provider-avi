@@ -40,7 +40,7 @@ In addition to all arguments above, the following attributes are exported:
 * `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `description` - Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `dhparam` - Dh parameters used in ssl. At this time, it is not configurable and is set to 2048 bits. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `ec_named_curve` - Elliptic curve cryptography namedcurves (tls supported groups)represented as defined by rfc 8422-section 5.1.1 andhttps //www.openssl.org/docs/man1.1.0/man3/ssl_ctx_set1_curves.html. Field introduced in 21.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `ec_named_curve` - Elliptic curve cryptography namedcurves (tls supported groups)represented as defined by rfc 8422-section 5.1.1 and https //docs.openssl.org/master/man3/ssl_ctx_set1_curves/. Field introduced in 21.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `enable_early_data` - Enable early data processing for tls1.3 connections. Field introduced in 18.2.6. Allowed with any value in enterprise, enterprise with cloud services edition. Allowed in essentials (allowed values- false), basic (allowed values- false) edition.
 * `enable_ssl_session_reuse` - Enable ssl session re-use. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `is_federated` - It specifies whether the object has to be replicated to the gslb followers. Field introduced in 22.1.3. Allowed with any value in enterprise, enterprise with cloud services edition.
@@ -48,7 +48,7 @@ In addition to all arguments above, the following attributes are exported:
 * `name` - Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `prefer_client_cipher_ordering` - Prefer the ssl cipher ordering presented by the client during the ssl handshake over the one specified in the ssl profile. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `send_close_notify` - Send 'close notify' alert message for a clean shutdown of the ssl connection. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `signature_algorithm` - Signature algorithms represented as defined by rfc5246-section 7.4.1.4.1 andhttps //www.openssl.org/docs/man1.1.0/man3/ssl_ctx_set1_client_sigalgs_list.html. Field introduced in 21.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `signature_algorithm` - Signature algorithms represented as defined by rfc5246-section 7.4.1.4.1 and https //docs.openssl.org/master/man3/ssl_ctx_set1_sigalgs/. Field introduced in 21.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `ssl_rating` - Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `ssl_session_timeout` - The amount of time in seconds before an ssl session expires. Unit is sec. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `tags` - Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
