@@ -25507,6 +25507,11 @@ func ResourceOAuthAppSettingsSchema() *schema.Resource {
 func ResourceOAuthProfileSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"audience": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"authorization_endpoint": {
 				Type:     schema.TypeString,
 				Required: true,
