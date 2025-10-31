@@ -42,5 +42,5 @@ In addition to all arguments above, the following attributes are exported:
 * `name` - Availabilty zone where vcenter list belongs to. Field introduced in 20.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `tenant_ref` - Availabilityzone belongs to tenant. It is a reference to an object of type tenant. Field introduced in 20.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `uuid` - Availability zone config uuid. Field introduced in 20.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `vsphere_zones` - Vsphere zone associated with the az. Field introduced in 31.3.1. Maximum of 1 items allowed. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `vsphere_zones` - Vsphere zone associated with the az. Field introduced in 32.1.1. Maximum of 1 items allowed. Allowed with any value in enterprise, enterprise with cloud services edition.
 
