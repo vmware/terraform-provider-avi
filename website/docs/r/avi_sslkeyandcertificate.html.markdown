@@ -53,7 +53,7 @@ The following arguments are supported:
 * `ocsp_response_info` - (Optional) Information related to ocsp response. Field introduced in 20.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `status` - (Optional) Enum options - ssl_certificate_finished, ssl_certificate_pending. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `type` - (Optional) Enum options - ssl_certificate_type_virtualservice, ssl_certificate_type_system, ssl_certificate_type_ca. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `type` - (Optional) Enum options - ssl_certificate_type_virtualservice, ssl_certificate_type_system, ssl_certificate_type_ca, ssl_certificate_type_client. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 
 
 ### Timeouts

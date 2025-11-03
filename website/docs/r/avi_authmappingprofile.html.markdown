@@ -29,7 +29,7 @@ The following arguments are supported:
 
 * `mapping_rules` - (Required) Rules list for tenant or role mapping. Field introduced in 22.1.1. Minimum of 1 items required. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `name` - (Required) Name of the authmappingprofile. Field introduced in 22.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `type` - (Required) Type of the auth profile for which these rules can be linked. Enum options - AUTH_PROFILE_LDAP, AUTH_PROFILE_TACACS_PLUS, AUTH_PROFILE_SAML, AUTH_PROFILE_PINGACCESS, AUTH_PROFILE_JWT, AUTH_PROFILE_OAUTH. Field introduced in 22.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `type` - (Required) Type of the auth profile for which these rules can be linked. Enum options - AUTH_PROFILE_LDAP, AUTH_PROFILE_TACACS_PLUS, AUTH_PROFILE_SAML, AUTH_PROFILE_PINGACCESS, AUTH_PROFILE_JWT, AUTH_PROFILE_OAUTH, AUTH_PROFILE_CLIENT_CERT. Field introduced in 22.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 22.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `description` - (Optional) Description for the authmappingprofile. Field introduced in 22.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `tenant_ref` - (Optional) Tenant ref for the auth mapping profile. It is a reference to an object of type tenant. Field introduced in 22.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.

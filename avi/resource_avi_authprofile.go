@@ -10,6 +10,12 @@ import (
 
 func ResourceAuthProfileSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
+		"client_cert": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceClientCertAuthSettingsSchema(),
+		},
 		"configpb_attributes": {
 			Type:     schema.TypeSet,
 			Optional: true,

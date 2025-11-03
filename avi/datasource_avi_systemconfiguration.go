@@ -139,6 +139,11 @@ func dataSourceAviSystemConfiguration() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceSecureChannelConfigurationSchema(),
 			},
+			"service_auth_configurations": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceServiceAuthConfigurationSchema(),
+			},
 			"snmp_configuration": {
 				Type:     schema.TypeSet,
 				Computed: true,

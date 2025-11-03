@@ -9,6 +9,11 @@ func dataSourceAviAuthProfile() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviAuthProfileRead,
 		Schema: map[string]*schema.Schema{
+			"client_cert": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceClientCertAuthSettingsSchema(),
+			},
 			"configpb_attributes": {
 				Type:     schema.TypeSet,
 				Computed: true,

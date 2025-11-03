@@ -597,11 +597,6 @@ func ResourceAdminAuthConfigurationSchema() *schema.Resource {
 				Optional: true,
 				Elem:     ResourceRemoteAuthConfigurationSchema(),
 			},
-			"service_auth_configurations": {
-				Type:     schema.TypeList,
-				Optional: true,
-				Elem:     ResourceServiceAuthConfigurationSchema(),
-			},
 		},
 	}
 }
@@ -5069,6 +5064,18 @@ func ResourceChildProcessInfoSchema() *schema.Resource {
 				Optional:     true,
 				Computed:     true,
 				ValidateFunc: validateInteger,
+			},
+		},
+	}
+}
+
+func ResourceClientCertAuthSettingsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"client_cert_refs": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
 		},
 	}
@@ -36172,18 +36179,18 @@ func ResourceServiceSchema() *schema.Resource {
 func ResourceServiceAuthConfigurationSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"auth_mapping_profile_ref": {
+				Type:     schema.TypeString,
+				Required: true,
+			},
+			"auth_profile_ref": {
+				Type:     schema.TypeString,
+				Required: true,
+			},
 			"index": {
 				Type:         schema.TypeString,
 				Required:     true,
 				ValidateFunc: validateInteger,
-			},
-			"service_auth_mapping_profile_ref": {
-				Type:     schema.TypeString,
-				Required: true,
-			},
-			"service_auth_profile_ref": {
-				Type:     schema.TypeString,
-				Required: true,
 			},
 		},
 	}

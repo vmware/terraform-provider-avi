@@ -177,6 +177,11 @@ func ResourceSystemConfigurationSchema() map[string]*schema.Schema {
 			Computed: true,
 			Elem:     ResourceSecureChannelConfigurationSchema(),
 		},
+		"service_auth_configurations": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceServiceAuthConfigurationSchema(),
+		},
 		"snmp_configuration": {
 			Type:     schema.TypeSet,
 			Optional: true,

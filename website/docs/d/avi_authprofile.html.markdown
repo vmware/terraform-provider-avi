@@ -32,6 +32,7 @@ data "avi_authprofile" "foo_authprofile" {
 
 In addition to all arguments above, the following attributes are exported:
 
+* `client_cert` - Client cert settings. Field introduced in 32.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `description` - Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `http` - Http user authentication params. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
@@ -43,6 +44,6 @@ In addition to all arguments above, the following attributes are exported:
 * `saml` - Saml settings. Field introduced in 17.2.3. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `tacacs_plus` - Tacacs+ settings. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `tenant_ref` - It is a reference to an object of type tenant. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `type` - Type of the auth profile. Enum options - AUTH_PROFILE_LDAP, AUTH_PROFILE_TACACS_PLUS, AUTH_PROFILE_SAML, AUTH_PROFILE_PINGACCESS, AUTH_PROFILE_JWT, AUTH_PROFILE_OAUTH. Allowed with any value in enterprise, enterprise with cloud services edition. Allowed in essentials (allowed values- auth_profile_ldap,auth_profile_tacacs_plus,auth_profile_saml,auth_profile_jwt,auth_profile_oauth), basic (allowed values- auth_profile_ldap,auth_profile_tacacs_plus,auth_profile_saml,auth_profile_jwt,auth_profile_oauth) edition.
+* `type` - Type of the auth profile. Enum options - AUTH_PROFILE_LDAP, AUTH_PROFILE_TACACS_PLUS, AUTH_PROFILE_SAML, AUTH_PROFILE_PINGACCESS, AUTH_PROFILE_JWT, AUTH_PROFILE_OAUTH, AUTH_PROFILE_CLIENT_CERT. Allowed with any value in enterprise, enterprise with cloud services edition. Allowed in essentials (allowed values- auth_profile_ldap,auth_profile_tacacs_plus,auth_profile_saml,auth_profile_jwt,auth_profile_oauth,auth_profile_client_cert), basic (allowed values- auth_profile_ldap,auth_profile_tacacs_plus,auth_profile_saml,auth_profile_jwt,auth_profile_oauth,auth_profile_client_cert) edition.
 * `uuid` - Uuid of the auth profile. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 
