@@ -29074,6 +29074,41 @@ func ResourceRemoteAuthConfigurationSchema() *schema.Resource {
 	}
 }
 
+func ResourceRemoteControllerSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"address": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"enabled": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
+			"password": {
+				Type:             schema.TypeString,
+				Optional:         true,
+				Computed:         true,
+				Sensitive:        true,
+				DiffSuppressFunc: suppressSensitiveFieldDiffs,
+			},
+			"tenant": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"username": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
 func ResourceRemoteInfoSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{

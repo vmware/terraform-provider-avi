@@ -22,6 +22,12 @@ func ResourceReportProfileSchema() map[string]*schema.Schema {
 			Default:      "1",
 			ValidateFunc: validateInteger,
 		},
+		"remote_controller": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceRemoteControllerSchema(),
+		},
 		"uuid": {
 			Type:     schema.TypeString,
 			Optional: true,

@@ -18,6 +18,11 @@ func dataSourceAviReportProfile() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"remote_controller": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceRemoteControllerSchema(),
+			},
 			"uuid": {
 				Type:     schema.TypeString,
 				Optional: true,
