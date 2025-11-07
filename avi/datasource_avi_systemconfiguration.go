@@ -108,10 +108,6 @@ func dataSourceAviSystemConfiguration() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceNTPConfigurationSchema(),
 			},
-			"password_policy_ref": {
-				Type:     schema.TypeString,
-				Computed: true,
-			},
 			"portal_configuration": {
 				Type:     schema.TypeSet,
 				Computed: true,

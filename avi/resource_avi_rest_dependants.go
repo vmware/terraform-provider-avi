@@ -28069,12 +28069,6 @@ func ResourcePortalConfigurationSchema() *schema.Resource {
 				Default:      "false",
 				ValidateFunc: validateBool,
 			},
-			"minimum_password_length": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Default:      "8",
-				ValidateFunc: validateInteger,
-			},
 			"password_strength_check": {
 				Type:         schema.TypeString,
 				Optional:     true,

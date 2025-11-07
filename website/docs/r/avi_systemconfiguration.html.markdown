@@ -48,7 +48,6 @@ The following arguments are supported:
 * `linux_configuration` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `mgmt_ip_access_control` - (Optional) Configure ip access control for controller to restrict open access. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `ntp_configuration` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `password_policy_ref` - (Optional) Reference to uniform password policy. When not set, legacy password settings are used. It is a reference to an object of type passwordpolicy. Field introduced in 32.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `portal_configuration` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `proxy_configuration` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `rekey_time_limit` - (Optional) Users can specify and update the time limit of rekeylimit in sshd_config.if nothing is specified, the default setting will be none. Field introduced in 30.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.

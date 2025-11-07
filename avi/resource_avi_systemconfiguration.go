@@ -139,11 +139,6 @@ func ResourceSystemConfigurationSchema() map[string]*schema.Schema {
 			Computed: true,
 			Elem:     ResourceNTPConfigurationSchema(),
 		},
-		"password_policy_ref": {
-			Type:     schema.TypeString,
-			Optional: true,
-			Computed: true,
-		},
 		"portal_configuration": {
 			Type:     schema.TypeSet,
 			Optional: true,
