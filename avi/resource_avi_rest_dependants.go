@@ -22272,7 +22272,7 @@ func ResourceLogManagerDebugFilterSchema() *schema.Resource {
 			"client_index_op_timeout_seconds": {
 				Type:         schema.TypeString,
 				Optional:     true,
-				Default:      "2",
+				Default:      "5",
 				ValidateFunc: validateInteger,
 			},
 			"db_notifn_chan_capacity": {
