@@ -10,6 +10,12 @@ import (
 
 func ResourceAuthMappingProfileSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
+		"allow_unlabelled_access": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "true",
+			ValidateFunc: validateBool,
+		},
 		"configpb_attributes": {
 			Type:     schema.TypeSet,
 			Optional: true,
@@ -20,6 +26,11 @@ func ResourceAuthMappingProfileSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
+		},
+		"dynamic_role_filters": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceRoleFilterSchema(),
 		},
 		"mapping_rules": {
 			Type:     schema.TypeList,

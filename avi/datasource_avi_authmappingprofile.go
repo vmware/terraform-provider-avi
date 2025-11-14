@@ -9,6 +9,10 @@ func dataSourceAviAuthMappingProfile() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviAuthMappingProfileRead,
 		Schema: map[string]*schema.Schema{
+			"allow_unlabelled_access": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"configpb_attributes": {
 				Type:     schema.TypeSet,
 				Computed: true,
@@ -17,6 +21,11 @@ func dataSourceAviAuthMappingProfile() *schema.Resource {
 			"description": {
 				Type:     schema.TypeString,
 				Computed: true,
+			},
+			"dynamic_role_filters": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceRoleFilterSchema(),
 			},
 			"mapping_rules": {
 				Type:     schema.TypeList,

@@ -25528,11 +25528,6 @@ func ResourceOAuthProfileSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
-			"instance_id": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
 			"introspection_endpoint": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -25576,27 +25571,12 @@ func ResourceOAuthProfileSchema() *schema.Resource {
 				Default:      "102400",
 				ValidateFunc: validateInteger,
 			},
-			"org_id": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
 			"pool_ref": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
 			"redirect_uri": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
-			"service_id": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
-			"service_name": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,

@@ -32,8 +32,10 @@ data "avi_authmappingprofile" "foo_authmappingprofile" {
 
 In addition to all arguments above, the following attributes are exported:
 
+* `allow_unlabelled_access` - Allow access to unlabelled objects. Field introduced in 32.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 22.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `description` - Description for the authmappingprofile. Field introduced in 22.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `dynamic_role_filters` - Filters for granular object access control based on object labels. Multiple filters are merged using the and operator. If empty, all objects according to the privileges will be accessible to the user. Field introduced in 32.1.1. Maximum of 4 items allowed. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `mapping_rules` - Rules list for tenant or role mapping. Field introduced in 22.1.1. Minimum of 1 items required. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `name` - Name of the authmappingprofile. Field introduced in 22.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `tenant_ref` - Tenant ref for the auth mapping profile. It is a reference to an object of type tenant. Field introduced in 22.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
