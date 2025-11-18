@@ -28267,10 +28267,10 @@ func ResourcePreChecksInfoSchema() *schema.Resource {
 func ResourcePreChecksParamsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
-			"export_config_timeout": {
+			"checks_base_timeout": {
 				Type:         schema.TypeString,
 				Optional:     true,
-				Default:      "3600",
+				Default:      "60",
 				ValidateFunc: validateInteger,
 			},
 			"max_alerts": {
