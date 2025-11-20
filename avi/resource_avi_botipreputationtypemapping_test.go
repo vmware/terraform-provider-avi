@@ -10,44 +10,40 @@ import (
 	"github.com/vmware/alb-sdk/go/clients"
 )
 
-func TestAVIHTTPPolicySetBasic(t *testing.T) {
+func TestAVIBotIPReputationTypeMappingBasic(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		PreCheck:     func() { testAccPreCheck(t) },
 		Providers:    testAccProviders,
-		CheckDestroy: testAccCheckAVIHTTPPolicySetDestroy,
+		CheckDestroy: testAccCheckAVIBotIPReputationTypeMappingDestroy,
 		Steps: []resource.TestStep{
 			{
-				Config: testAccAVIHTTPPolicySetConfig,
+				Config: testAccAVIBotIPReputationTypeMappingConfig,
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckAVIHTTPPolicySetExists("avi_httppolicyset.testHTTPPolicySet"),
+					testAccCheckAVIBotIPReputationTypeMappingExists("avi_botipreputationtypemapping.testBotIPReputationTypeMapping"),
 					resource.TestCheckResourceAttr(
-						"avi_httppolicyset.testHTTPPolicySet", "name", "test-http-policyset"),
-					resource.TestCheckResourceAttr(
-						"avi_httppolicyset.testHTTPPolicySet", "is_internal_policy", "false"),
+						"avi_botipreputationtypemapping.testBotIPReputationTypeMapping", "name", "bot_ip_reputation_map_31"),
 				),
 			},
 			{
-				Config: testAccAVIHTTPPolicySetupdatedConfig,
+				Config: testAccAVIBotIPReputationTypeMappingupdatedConfig,
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckAVIHTTPPolicySetExists("avi_httppolicyset.testHTTPPolicySet"),
+					testAccCheckAVIBotIPReputationTypeMappingExists("avi_botipreputationtypemapping.testBotIPReputationTypeMapping"),
 					resource.TestCheckResourceAttr(
-						"avi_httppolicyset.testHTTPPolicySet", "name", "test-http-policyset-updated"),
-					resource.TestCheckResourceAttr(
-						"avi_httppolicyset.testHTTPPolicySet", "is_internal_policy", "false"),
+						"avi_botipreputationtypemapping.testBotIPReputationTypeMapping", "name", "bot_ip_reputation_map_31-updated"),
 				),
 			},
 			{
-				ResourceName:      "avi_httppolicyset.testHTTPPolicySet",
+				ResourceName:      "avi_botipreputationtypemapping.testBotIPReputationTypeMapping",
 				ImportState:       true,
 				ImportStateVerify: false,
-				Config:            testAccAVIHTTPPolicySetConfig,
+				Config:            testAccAVIBotIPReputationTypeMappingConfig,
 			},
 		},
 	})
 
 }
 
-func testAccCheckAVIHTTPPolicySetExists(resourcename string) resource.TestCheckFunc {
+func testAccCheckAVIBotIPReputationTypeMappingExists(resourcename string) resource.TestCheckFunc {
 	return func(s *terraform.State) error {
 		conn := testAccProvider.Meta().(*clients.AviClient).AviSession
 		var obj interface{}
@@ -56,7 +52,7 @@ func testAccCheckAVIHTTPPolicySetExists(resourcename string) resource.TestCheckF
 			return fmt.Errorf("Not found: %s", resourcename)
 		}
 		if rs.Primary.ID == "" {
-			return fmt.Errorf("No AVI HTTPPolicySet ID is set")
+			return fmt.Errorf("No AVI BotIPReputationTypeMapping ID is set")
 		}
 		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
 		uuid := strings.Split(url, "#")[0]
@@ -70,11 +66,11 @@ func testAccCheckAVIHTTPPolicySetExists(resourcename string) resource.TestCheckF
 
 }
 
-func testAccCheckAVIHTTPPolicySetDestroy(s *terraform.State) error {
+func testAccCheckAVIBotIPReputationTypeMappingDestroy(s *terraform.State) error {
 	conn := testAccProvider.Meta().(*clients.AviClient).AviSession
 	var obj interface{}
 	for _, rs := range s.RootModule().Resources {
-		if rs.Type != "avi_httppolicyset" {
+		if rs.Type != "avi_botipreputationtypemapping" {
 			continue
 		}
 		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
@@ -88,30 +84,28 @@ func testAccCheckAVIHTTPPolicySetDestroy(s *terraform.State) error {
 			return err
 		}
 		if len(obj.(map[string]interface{})) > 0 {
-			return fmt.Errorf("AVI HTTPPolicySet still exists")
+			return fmt.Errorf("AVI BotIPReputationTypeMapping still exists")
 		}
 	}
 	return nil
 }
 
-const testAccAVIHTTPPolicySetConfig = `
+const testAccAVIBotIPReputationTypeMappingConfig = `
 data "avi_tenant" "default_tenant"{
     name= "admin"
 }
-resource "avi_httppolicyset" "testHTTPPolicySet" {
-	is_internal_policy = false
-	name = "test-http-policyset"
+resource "avi_botipreputationtypemapping" "testBotIPReputationTypeMapping" {
+	name = "bot_ip_reputation_map_31"
 	tenant_ref = data.avi_tenant.default_tenant.id
 }
 `
 
-const testAccAVIHTTPPolicySetupdatedConfig = `
+const testAccAVIBotIPReputationTypeMappingupdatedConfig = `
 data "avi_tenant" "default_tenant"{
     name= "admin"
 }
-resource "avi_httppolicyset" "testHTTPPolicySet" {
-	is_internal_policy = false
-	name = "test-http-policyset-updated"
+resource "avi_botipreputationtypemapping" "testBotIPReputationTypeMapping" {
+	name = "bot_ip_reputation_map_31-updated"
 	tenant_ref = data.avi_tenant.default_tenant.id
 }
 `

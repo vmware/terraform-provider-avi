@@ -10,44 +10,40 @@ import (
 	"github.com/vmware/alb-sdk/go/clients"
 )
 
-func TestAVIHTTPPolicySetBasic(t *testing.T) {
+func TestAVIAvailabilityZoneBasic(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		PreCheck:     func() { testAccPreCheck(t) },
 		Providers:    testAccProviders,
-		CheckDestroy: testAccCheckAVIHTTPPolicySetDestroy,
+		CheckDestroy: testAccCheckAVIAvailabilityZoneDestroy,
 		Steps: []resource.TestStep{
 			{
-				Config: testAccAVIHTTPPolicySetConfig,
+				Config: testAccAVIAvailabilityZoneConfig,
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckAVIHTTPPolicySetExists("avi_httppolicyset.testHTTPPolicySet"),
+					testAccCheckAVIAvailabilityZoneExists("avi_availabilityzone.testAvailabilityZone"),
 					resource.TestCheckResourceAttr(
-						"avi_httppolicyset.testHTTPPolicySet", "name", "test-http-policyset"),
-					resource.TestCheckResourceAttr(
-						"avi_httppolicyset.testHTTPPolicySet", "is_internal_policy", "false"),
+						"avi_availabilityzone.testAvailabilityZone", "name", "az-1"),
 				),
 			},
 			{
-				Config: testAccAVIHTTPPolicySetupdatedConfig,
+				Config: testAccAVIAvailabilityZoneupdatedConfig,
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckAVIHTTPPolicySetExists("avi_httppolicyset.testHTTPPolicySet"),
+					testAccCheckAVIAvailabilityZoneExists("avi_availabilityzone.testAvailabilityZone"),
 					resource.TestCheckResourceAttr(
-						"avi_httppolicyset.testHTTPPolicySet", "name", "test-http-policyset-updated"),
-					resource.TestCheckResourceAttr(
-						"avi_httppolicyset.testHTTPPolicySet", "is_internal_policy", "false"),
+						"avi_availabilityzone.testAvailabilityZone", "name", "az-1"),
 				),
 			},
 			{
-				ResourceName:      "avi_httppolicyset.testHTTPPolicySet",
+				ResourceName:      "avi_availabilityzone.testAvailabilityZone",
 				ImportState:       true,
 				ImportStateVerify: false,
-				Config:            testAccAVIHTTPPolicySetConfig,
+				Config:            testAccAVIAvailabilityZoneConfig,
 			},
 		},
 	})
 
 }
 
-func testAccCheckAVIHTTPPolicySetExists(resourcename string) resource.TestCheckFunc {
+func testAccCheckAVIAvailabilityZoneExists(resourcename string) resource.TestCheckFunc {
 	return func(s *terraform.State) error {
 		conn := testAccProvider.Meta().(*clients.AviClient).AviSession
 		var obj interface{}
@@ -56,7 +52,7 @@ func testAccCheckAVIHTTPPolicySetExists(resourcename string) resource.TestCheckF
 			return fmt.Errorf("Not found: %s", resourcename)
 		}
 		if rs.Primary.ID == "" {
-			return fmt.Errorf("No AVI HTTPPolicySet ID is set")
+			return fmt.Errorf("No AVI AvailabilityZone ID is set")
 		}
 		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
 		uuid := strings.Split(url, "#")[0]
@@ -70,11 +66,11 @@ func testAccCheckAVIHTTPPolicySetExists(resourcename string) resource.TestCheckF
 
 }
 
-func testAccCheckAVIHTTPPolicySetDestroy(s *terraform.State) error {
+func testAccCheckAVIAvailabilityZoneDestroy(s *terraform.State) error {
 	conn := testAccProvider.Meta().(*clients.AviClient).AviSession
 	var obj interface{}
 	for _, rs := range s.RootModule().Resources {
-		if rs.Type != "avi_httppolicyset" {
+		if rs.Type != "avi_availabilityzone" {
 			continue
 		}
 		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
@@ -88,30 +84,36 @@ func testAccCheckAVIHTTPPolicySetDestroy(s *terraform.State) error {
 			return err
 		}
 		if len(obj.(map[string]interface{})) > 0 {
-			return fmt.Errorf("AVI HTTPPolicySet still exists")
+			return fmt.Errorf("AVI AvailabilityZone still exists")
 		}
 	}
 	return nil
 }
 
-const testAccAVIHTTPPolicySetConfig = `
+const testAccAVIAvailabilityZoneConfig = `
 data "avi_tenant" "default_tenant"{
     name= "admin"
 }
-resource "avi_httppolicyset" "testHTTPPolicySet" {
-	is_internal_policy = false
-	name = "test-http-policyset"
+data "avi_cloud" "default_cloud" {
+    name= "Default-Cloud"
+}
+resource "avi_availabilityzone" "testAvailabilityZone" {
+	name = "az-1"
 	tenant_ref = data.avi_tenant.default_tenant.id
+	cloud_ref = data.avi_cloud.default_cloud.id
 }
 `
 
-const testAccAVIHTTPPolicySetupdatedConfig = `
+const testAccAVIAvailabilityZoneupdatedConfig = `
 data "avi_tenant" "default_tenant"{
     name= "admin"
 }
-resource "avi_httppolicyset" "testHTTPPolicySet" {
-	is_internal_policy = false
-	name = "test-http-policyset-updated"
+data "avi_cloud" "default_cloud" {
+    name= "Default-Cloud"
+}
+resource "avi_availabilityzone" "testAvailabilityZone" {
+	name = "az-1"
 	tenant_ref = data.avi_tenant.default_tenant.id
+	cloud_ref = data.avi_cloud.default_cloud.id
 }
 `

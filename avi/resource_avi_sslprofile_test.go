@@ -114,6 +114,7 @@ resource "avi_sslprofile" "testSSLProfile" {
 	name = "test-System-Standard-abc"
 	tenant_ref = data.avi_tenant.default_tenant.id
 	ssl_session_timeout = "86400"
+	is_federated = "false"
 	accepted_ciphers = "ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384"
 	prefer_client_cipher_ordering = false
 	accepted_versions {
@@ -126,7 +127,7 @@ accepted_versions {
 	type = "SSL_VERSION_TLS1_2"
 }
 	enable_ssl_session_reuse = true
-	cipher_enums = ["TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256","TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384","TLS_AES_256_GCM_SHA384","TLS_CHACHA20_POLY1305_SHA256","TLS_AES_128_GCM_SHA256"]
+	cipher_enums = ["TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256","TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384","TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256","TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384","TLS_RSA_WITH_AES_128_CBC_SHA"]
 	send_close_notify = true
 	ssl_rating {
 		performance_rating = "SSL_SCORE_EXCELLENT"
@@ -155,6 +156,7 @@ resource "avi_sslprofile" "testSSLProfile" {
 	name = "test-System-Standard-updated"
 	tenant_ref = data.avi_tenant.default_tenant.id
 	ssl_session_timeout = "86400"
+	is_federated = "false"
 	accepted_ciphers = "ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384"
 	prefer_client_cipher_ordering = false
 	accepted_versions {
@@ -167,7 +169,7 @@ accepted_versions {
 	type = "SSL_VERSION_TLS1_2"
 }
 	enable_ssl_session_reuse = true
-	cipher_enums = ["TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256","TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384","TLS_AES_256_GCM_SHA384","TLS_CHACHA20_POLY1305_SHA256","TLS_AES_128_GCM_SHA256"]
+	cipher_enums = ["TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256","TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384","TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256","TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384","TLS_RSA_WITH_AES_128_CBC_SHA"]
 	send_close_notify = true
 	ssl_rating {
 		performance_rating = "SSL_SCORE_EXCELLENT"

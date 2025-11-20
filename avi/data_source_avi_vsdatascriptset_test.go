@@ -38,6 +38,12 @@ resource "avi_vsdatascriptset" "testVSDataScriptSet" {
 	pool_refs = []
 	string_group_refs = []
 	protocol_parser_refs = []
+	datascript {
+	evt = "VS_DATASCRIPT_EVT_L4_REQUEST"
+	script = <<EOF
+avi.vs.log("request event")
+EOF
+}
 }
 
 data "avi_vsdatascriptset" "testVSDataScriptSet" {

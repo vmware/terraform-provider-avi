@@ -21,7 +21,7 @@ func TestAVINetworkSecurityPolicyBasic(t *testing.T) {
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckAVINetworkSecurityPolicyExists("avi_networksecuritypolicy.testNetworkSecurityPolicy"),
 					resource.TestCheckResourceAttr(
-						"avi_networksecuritypolicy.testNetworkSecurityPolicy", "name", "ns-abc-abc"),
+						"avi_networksecuritypolicy.testNetworkSecurityPolicy", "name", "networkw-security-policy"),
 				),
 			},
 			{
@@ -29,7 +29,7 @@ func TestAVINetworkSecurityPolicyBasic(t *testing.T) {
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckAVINetworkSecurityPolicyExists("avi_networksecuritypolicy.testNetworkSecurityPolicy"),
 					resource.TestCheckResourceAttr(
-						"avi_networksecuritypolicy.testNetworkSecurityPolicy", "name", "ns-updated"),
+						"avi_networksecuritypolicy.testNetworkSecurityPolicy", "name", "networkw-security-policy-updated"),
 				),
 			},
 			{
@@ -95,9 +95,26 @@ data "avi_tenant" "default_tenant"{
     name= "admin"
 }
 resource "avi_networksecuritypolicy" "testNetworkSecurityPolicy" {
-	name = "ns-abc-abc"
+	rules {
+	log = false
+	rl_param {
+		max_rate = "1000"
+		burst_size = "2000"
+	}
+	age = "0"
+	match {
+		vs_port {
+			match_criteria = "IS_IN"
+			ports = ["9090"]
+		}
+	}
+	action = "NETWORK_SECURITY_POLICY_ACTION_TYPE_ALLOW"
+	name = "networkw-security-policy-rule"
+	index = "0"
+	enable = false
+}
+	name = "networkw-security-policy"
 	tenant_ref = data.avi_tenant.default_tenant.id
-	description = "test network policy"
 }
 `
 
@@ -106,8 +123,25 @@ data "avi_tenant" "default_tenant"{
     name= "admin"
 }
 resource "avi_networksecuritypolicy" "testNetworkSecurityPolicy" {
-	name = "ns-updated"
+	rules {
+	log = false
+	rl_param {
+		max_rate = "1000"
+		burst_size = "2000"
+	}
+	age = "0"
+	match {
+		vs_port {
+			match_criteria = "IS_IN"
+			ports = ["9090"]
+		}
+	}
+	action = "NETWORK_SECURITY_POLICY_ACTION_TYPE_ALLOW"
+	name = "networkw-security-policy-rule"
+	index = "0"
+	enable = false
+}
+	name = "networkw-security-policy-updated"
 	tenant_ref = data.avi_tenant.default_tenant.id
-	description = "test network policy"
 }
 `

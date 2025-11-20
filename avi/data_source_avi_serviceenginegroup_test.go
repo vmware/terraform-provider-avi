@@ -46,7 +46,7 @@ func TestAVIDataSourceServiceEngineGroupBasic(t *testing.T) {
 					resource.TestCheckResourceAttr(
 						"avi_serviceenginegroup.testServiceEngineGroup", "log_disksz", "10000"),
 					resource.TestCheckResourceAttr(
-						"avi_serviceenginegroup.testServiceEngineGroup", "memory_per_se", "2048"),
+						"avi_serviceenginegroup.testServiceEngineGroup", "memory_per_se", "15360"),
 					resource.TestCheckResourceAttr(
 						"avi_serviceenginegroup.testServiceEngineGroup", "se_tunnel_mode", "0"),
 					resource.TestCheckResourceAttr(
@@ -198,7 +198,7 @@ resource "avi_serviceenginegroup" "testServiceEngineGroup" {
 	auto_rebalance = false
 	enable_hsm_priming = false
 	log_disksz = "10000"
-	memory_per_se = "2048"
+	memory_per_se = "15360"
 	se_tunnel_mode = "0"
 	se_sb_dedicated_core = false
 	distribute_load_active_standby = false

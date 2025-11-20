@@ -10,44 +10,44 @@ import (
 	"github.com/vmware/alb-sdk/go/clients"
 )
 
-func TestAVIHTTPPolicySetBasic(t *testing.T) {
+func TestAVIL4PolicySetBasic(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		PreCheck:     func() { testAccPreCheck(t) },
 		Providers:    testAccProviders,
-		CheckDestroy: testAccCheckAVIHTTPPolicySetDestroy,
+		CheckDestroy: testAccCheckAVIL4PolicySetDestroy,
 		Steps: []resource.TestStep{
 			{
-				Config: testAccAVIHTTPPolicySetConfig,
+				Config: testAccAVIL4PolicySetConfig,
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckAVIHTTPPolicySetExists("avi_httppolicyset.testHTTPPolicySet"),
+					testAccCheckAVIL4PolicySetExists("avi_l4policyset.testL4PolicySet"),
 					resource.TestCheckResourceAttr(
-						"avi_httppolicyset.testHTTPPolicySet", "name", "test-http-policyset"),
+						"avi_l4policyset.testL4PolicySet", "name", "L4Policy-set"),
 					resource.TestCheckResourceAttr(
-						"avi_httppolicyset.testHTTPPolicySet", "is_internal_policy", "false"),
+						"avi_l4policyset.testL4PolicySet", "is_internal_policy", "false"),
 				),
 			},
 			{
-				Config: testAccAVIHTTPPolicySetupdatedConfig,
+				Config: testAccAVIL4PolicySetupdatedConfig,
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckAVIHTTPPolicySetExists("avi_httppolicyset.testHTTPPolicySet"),
+					testAccCheckAVIL4PolicySetExists("avi_l4policyset.testL4PolicySet"),
 					resource.TestCheckResourceAttr(
-						"avi_httppolicyset.testHTTPPolicySet", "name", "test-http-policyset-updated"),
+						"avi_l4policyset.testL4PolicySet", "name", "L4Policy-set-updated"),
 					resource.TestCheckResourceAttr(
-						"avi_httppolicyset.testHTTPPolicySet", "is_internal_policy", "false"),
+						"avi_l4policyset.testL4PolicySet", "is_internal_policy", "false"),
 				),
 			},
 			{
-				ResourceName:      "avi_httppolicyset.testHTTPPolicySet",
+				ResourceName:      "avi_l4policyset.testL4PolicySet",
 				ImportState:       true,
 				ImportStateVerify: false,
-				Config:            testAccAVIHTTPPolicySetConfig,
+				Config:            testAccAVIL4PolicySetConfig,
 			},
 		},
 	})
 
 }
 
-func testAccCheckAVIHTTPPolicySetExists(resourcename string) resource.TestCheckFunc {
+func testAccCheckAVIL4PolicySetExists(resourcename string) resource.TestCheckFunc {
 	return func(s *terraform.State) error {
 		conn := testAccProvider.Meta().(*clients.AviClient).AviSession
 		var obj interface{}
@@ -56,7 +56,7 @@ func testAccCheckAVIHTTPPolicySetExists(resourcename string) resource.TestCheckF
 			return fmt.Errorf("Not found: %s", resourcename)
 		}
 		if rs.Primary.ID == "" {
-			return fmt.Errorf("No AVI HTTPPolicySet ID is set")
+			return fmt.Errorf("No AVI L4PolicySet ID is set")
 		}
 		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
 		uuid := strings.Split(url, "#")[0]
@@ -70,11 +70,11 @@ func testAccCheckAVIHTTPPolicySetExists(resourcename string) resource.TestCheckF
 
 }
 
-func testAccCheckAVIHTTPPolicySetDestroy(s *terraform.State) error {
+func testAccCheckAVIL4PolicySetDestroy(s *terraform.State) error {
 	conn := testAccProvider.Meta().(*clients.AviClient).AviSession
 	var obj interface{}
 	for _, rs := range s.RootModule().Resources {
-		if rs.Type != "avi_httppolicyset" {
+		if rs.Type != "avi_l4policyset" {
 			continue
 		}
 		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
@@ -88,30 +88,34 @@ func testAccCheckAVIHTTPPolicySetDestroy(s *terraform.State) error {
 			return err
 		}
 		if len(obj.(map[string]interface{})) > 0 {
-			return fmt.Errorf("AVI HTTPPolicySet still exists")
+			return fmt.Errorf("AVI L4PolicySet still exists")
 		}
 	}
 	return nil
 }
 
-const testAccAVIHTTPPolicySetConfig = `
+const testAccAVIL4PolicySetConfig = `
 data "avi_tenant" "default_tenant"{
     name= "admin"
 }
-resource "avi_httppolicyset" "testHTTPPolicySet" {
+resource "avi_l4policyset" "testL4PolicySet" {
 	is_internal_policy = false
-	name = "test-http-policyset"
+	l4_connection_policy {
+	}
+	name = "L4Policy-set"
 	tenant_ref = data.avi_tenant.default_tenant.id
 }
 `
 
-const testAccAVIHTTPPolicySetupdatedConfig = `
+const testAccAVIL4PolicySetupdatedConfig = `
 data "avi_tenant" "default_tenant"{
     name= "admin"
 }
-resource "avi_httppolicyset" "testHTTPPolicySet" {
+resource "avi_l4policyset" "testL4PolicySet" {
 	is_internal_policy = false
-	name = "test-http-policyset-updated"
+	l4_connection_policy {
+	}
+	name = "L4Policy-set-updated"
 	tenant_ref = data.avi_tenant.default_tenant.id
 }
 `

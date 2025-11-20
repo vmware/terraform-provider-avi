@@ -10,44 +10,40 @@ import (
 	"github.com/vmware/alb-sdk/go/clients"
 )
 
-func TestAVIHTTPPolicySetBasic(t *testing.T) {
+func TestAVIProtocolParserBasic(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		PreCheck:     func() { testAccPreCheck(t) },
 		Providers:    testAccProviders,
-		CheckDestroy: testAccCheckAVIHTTPPolicySetDestroy,
+		CheckDestroy: testAccCheckAVIProtocolParserDestroy,
 		Steps: []resource.TestStep{
 			{
-				Config: testAccAVIHTTPPolicySetConfig,
+				Config: testAccAVIProtocolParserConfig,
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckAVIHTTPPolicySetExists("avi_httppolicyset.testHTTPPolicySet"),
+					testAccCheckAVIProtocolParserExists("avi_protocolparser.testProtocolParser"),
 					resource.TestCheckResourceAttr(
-						"avi_httppolicyset.testHTTPPolicySet", "name", "test-http-policyset"),
-					resource.TestCheckResourceAttr(
-						"avi_httppolicyset.testHTTPPolicySet", "is_internal_policy", "false"),
+						"avi_protocolparser.testProtocolParser", "name", "custom-http-parser"),
 				),
 			},
 			{
-				Config: testAccAVIHTTPPolicySetupdatedConfig,
+				Config: testAccAVIProtocolParserupdatedConfig,
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckAVIHTTPPolicySetExists("avi_httppolicyset.testHTTPPolicySet"),
+					testAccCheckAVIProtocolParserExists("avi_protocolparser.testProtocolParser"),
 					resource.TestCheckResourceAttr(
-						"avi_httppolicyset.testHTTPPolicySet", "name", "test-http-policyset-updated"),
-					resource.TestCheckResourceAttr(
-						"avi_httppolicyset.testHTTPPolicySet", "is_internal_policy", "false"),
+						"avi_protocolparser.testProtocolParser", "name", "custom-http-parser-updated"),
 				),
 			},
 			{
-				ResourceName:      "avi_httppolicyset.testHTTPPolicySet",
+				ResourceName:      "avi_protocolparser.testProtocolParser",
 				ImportState:       true,
 				ImportStateVerify: false,
-				Config:            testAccAVIHTTPPolicySetConfig,
+				Config:            testAccAVIProtocolParserConfig,
 			},
 		},
 	})
 
 }
 
-func testAccCheckAVIHTTPPolicySetExists(resourcename string) resource.TestCheckFunc {
+func testAccCheckAVIProtocolParserExists(resourcename string) resource.TestCheckFunc {
 	return func(s *terraform.State) error {
 		conn := testAccProvider.Meta().(*clients.AviClient).AviSession
 		var obj interface{}
@@ -56,7 +52,7 @@ func testAccCheckAVIHTTPPolicySetExists(resourcename string) resource.TestCheckF
 			return fmt.Errorf("Not found: %s", resourcename)
 		}
 		if rs.Primary.ID == "" {
-			return fmt.Errorf("No AVI HTTPPolicySet ID is set")
+			return fmt.Errorf("No AVI ProtocolParser ID is set")
 		}
 		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
 		uuid := strings.Split(url, "#")[0]
@@ -70,11 +66,11 @@ func testAccCheckAVIHTTPPolicySetExists(resourcename string) resource.TestCheckF
 
 }
 
-func testAccCheckAVIHTTPPolicySetDestroy(s *terraform.State) error {
+func testAccCheckAVIProtocolParserDestroy(s *terraform.State) error {
 	conn := testAccProvider.Meta().(*clients.AviClient).AviSession
 	var obj interface{}
 	for _, rs := range s.RootModule().Resources {
-		if rs.Type != "avi_httppolicyset" {
+		if rs.Type != "avi_protocolparser" {
 			continue
 		}
 		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
@@ -88,30 +84,44 @@ func testAccCheckAVIHTTPPolicySetDestroy(s *terraform.State) error {
 			return err
 		}
 		if len(obj.(map[string]interface{})) > 0 {
-			return fmt.Errorf("AVI HTTPPolicySet still exists")
+			return fmt.Errorf("AVI ProtocolParser still exists")
 		}
 	}
 	return nil
 }
 
-const testAccAVIHTTPPolicySetConfig = `
+const testAccAVIProtocolParserConfig = `
 data "avi_tenant" "default_tenant"{
     name= "admin"
 }
-resource "avi_httppolicyset" "testHTTPPolicySet" {
-	is_internal_policy = false
-	name = "test-http-policyset"
+resource "avi_protocolparser" "testProtocolParser" {
+	name = "custom-http-parser"
+	parser_code = <<EOF
+
+function parse_request(req)
+  avi.log('Parsing HTTP request for inspection')
+  return req
+ end
+EOF
+	description = "Custom HTTP parser with simple logging"
 	tenant_ref = data.avi_tenant.default_tenant.id
 }
 `
 
-const testAccAVIHTTPPolicySetupdatedConfig = `
+const testAccAVIProtocolParserupdatedConfig = `
 data "avi_tenant" "default_tenant"{
     name= "admin"
 }
-resource "avi_httppolicyset" "testHTTPPolicySet" {
-	is_internal_policy = false
-	name = "test-http-policyset-updated"
+resource "avi_protocolparser" "testProtocolParser" {
+	name = "custom-http-parser-updated"
+	parser_code = <<EOF
+
+function parse_request(req)
+  avi.log('Parsing HTTP request for inspection')
+  return req
+ end
+EOF
+	description = "Custom HTTP parser with simple logging"
 	tenant_ref = data.avi_tenant.default_tenant.id
 }
 `
