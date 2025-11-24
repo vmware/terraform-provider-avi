@@ -21262,6 +21262,18 @@ func ResourceMemoryBalancerInfoSchema() *schema.Resource {
 func ResourceMemoryUsageSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"available": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"effective_ctlr_mem_used_percent": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
 			"free": {
 				Type:         schema.TypeString,
 				Optional:     true,
