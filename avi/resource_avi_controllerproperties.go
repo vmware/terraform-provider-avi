@@ -232,6 +232,12 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Default:      "false",
 			ValidateFunc: validateBool,
 		},
+		"event_manager_file_modified_ts_filter": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "180",
+			ValidateFunc: validateInteger,
+		},
 		"event_manager_max_goroutines": {
 			Type:         schema.TypeString,
 			Optional:     true,
