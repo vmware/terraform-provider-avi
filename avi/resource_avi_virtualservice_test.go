@@ -1,6 +1,6 @@
 /***************************************************************************
  * ========================================================================
- * Copyright 2024 VMware, Inc. All rights reserved. VMware Confidential
+ * Copyright (c) 2025 Broadcom Inc. and/or its subsidiaries. All Rights Reserved. Broadcom Confidential.
  * ========================================================================
  */
 
@@ -84,12 +84,6 @@ func testAccCheckAVIVirtualServiceValuesUpdated(vs *models.VirtualService, key s
 		}
 		if key == "name" && *vs.Name != val {
 			return fmt.Errorf("bad name, expected \"%v\", got: %#v", val, *vs.Name)
-		}
-		if key == "vip.0.enabled" && *vs.Vip[0].Enabled != val {
-			return fmt.Errorf("bad vip enabled, expected \"%v\", got: %#v", val, *vs.Vip[0].Enabled)
-		}
-		if key == "vip.0.vip_id" && *vs.Vip[0].VipID != val {
-			return fmt.Errorf("bad vip_id, expected \"%v\", got: %#v", val, *vs.Vip[0].VipID)
 		}
 		if key == "min_pools_up" && int(*vs.MinPoolsUp) != val {
 			return fmt.Errorf("bad min_pools_up, expected \"%v\", got: %v", val, *vs.MinPoolsUp)

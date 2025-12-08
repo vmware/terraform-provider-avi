@@ -13,6 +13,11 @@ func dataSourceAviGslb() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"auto_tune_send_interval": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceAutoTuneSendIntervalSchema(),
+			},
 			"clear_on_max_retries": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -48,9 +53,18 @@ func dataSourceAviGslb() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"gs_member_fqdn_resolution_on_se": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"is_federated": {
 				Type:     schema.TypeString,
 				Computed: true,
+			},
+			"leader_change_info": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceLeaderChangeInfoSchema(),
 			},
 			"leader_cluster_uuid": {
 				Type:     schema.TypeString,
@@ -65,16 +79,15 @@ func dataSourceAviGslb() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
-			"replication_policy": {
-				Type:     schema.TypeSet,
-				Computed: true,
-				Elem:     ResourceReplicationPolicySchema(),
-			},
 			"send_interval": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"send_interval_prior_to_maintenance_mode": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"short_probe_interval": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},

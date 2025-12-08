@@ -19,7 +19,7 @@ func ResourceTrustedHostProfileSchema() map[string]*schema.Schema {
 		"hosts": {
 			Type:     schema.TypeList,
 			Required: true,
-			Elem:     &schema.Schema{Type: schema.TypeString},
+			Elem:     ResourceTrustedHostSchema(),
 		},
 		"name": {
 			Type:     schema.TypeString,

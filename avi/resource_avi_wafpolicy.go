@@ -40,12 +40,6 @@ func ResourceWafPolicySchema() map[string]*schema.Schema {
 			Default:      "true",
 			ValidateFunc: validateBool,
 		},
-		"confidence_override": {
-			Type:     schema.TypeSet,
-			Optional: true,
-			Computed: true,
-			Elem:     ResourceAppLearningConfidenceOverrideSchema(),
-		},
 		"configpb_attributes": {
 			Type:     schema.TypeSet,
 			Optional: true,
@@ -67,19 +61,7 @@ func ResourceWafPolicySchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
-		"enable_app_learning": {
-			Type:         schema.TypeString,
-			Optional:     true,
-			Default:      "false",
-			ValidateFunc: validateBool,
-		},
-		"enable_auto_rule_updates": {
-			Type:         schema.TypeString,
-			Optional:     true,
-			Default:      "true",
-			ValidateFunc: validateBool,
-		},
-		"enable_regex_learning": {
+		"enable_streaming": {
 			Type:         schema.TypeString,
 			Optional:     true,
 			Default:      "false",
@@ -90,26 +72,21 @@ func ResourceWafPolicySchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  "WAF_FAILURE_MODE_OPEN",
 		},
+		"fixed_sampling_rate": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "1",
+			ValidateFunc: validateInteger,
+		},
 		"geo_db_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"learning_params": {
-			Type:     schema.TypeSet,
-			Optional: true,
-			Computed: true,
-			Elem:     ResourceAppLearningParamsSchema(),
-		},
 		"markers": {
 			Type:     schema.TypeList,
 			Optional: true,
 			Elem:     ResourceRoleFilterMatchLabelSchema(),
-		},
-		"min_confidence": {
-			Type:     schema.TypeString,
-			Optional: true,
-			Default:  "CONFIDENCE_VERY_HIGH",
 		},
 		"mode": {
 			Type:     schema.TypeString,
@@ -146,12 +123,17 @@ func ResourceWafPolicySchema() map[string]*schema.Schema {
 			Optional: true,
 			Elem:     ResourceWafPolicyRequiredDataFileSchema(),
 		},
+		"sampling_mode": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Default:  "WAF_SAMPLING_MODE_NO_SAMPLING",
+		},
 		"tenant_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
-		"updated_crs_rules_in_detection_mode": {
+		"use_evaluation_mode_on_crs_update": {
 			Type:         schema.TypeString,
 			Optional:     true,
 			Default:      "true",

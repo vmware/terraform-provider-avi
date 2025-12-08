@@ -18,6 +18,10 @@ func dataSourceAviCSRFPolicy() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"csrf_file_ref": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"description": {
 				Type:     schema.TypeString,
 				Computed: true,

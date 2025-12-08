@@ -1,9 +1,3 @@
-/***************************************************************************
- * ========================================================================
- * Copyright 2024 VMware, Inc. All rights reserved. VMware Confidential
- * ========================================================================
- */
-
 package avi
 
 import (
@@ -25,16 +19,28 @@ func TestAVIHTTPPolicySetBasic(t *testing.T) {
 			{
 				Config: testAccAVIHTTPPolicySetConfig,
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckAVIHTTPPolicySetExists("avi_httppolicyset.testhttppolicyset"),
+					testAccCheckAVIHTTPPolicySetExists("avi_httppolicyset.testHTTPPolicySet"),
 					resource.TestCheckResourceAttr(
-						"avi_httppolicyset.testhttppolicyset", "name", "policy-test")),
+						"avi_httppolicyset.testHTTPPolicySet", "name", "test-http-policyset"),
+					resource.TestCheckResourceAttr(
+						"avi_httppolicyset.testHTTPPolicySet", "is_internal_policy", "false"),
+				),
 			},
 			{
-				Config: testAccUpdatedAVIHTTPPolicySetConfig,
+				Config: testAccAVIHTTPPolicySetupdatedConfig,
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckAVIHTTPPolicySetExists("avi_httppolicyset.testhttppolicyset"),
+					testAccCheckAVIHTTPPolicySetExists("avi_httppolicyset.testHTTPPolicySet"),
 					resource.TestCheckResourceAttr(
-						"avi_httppolicyset.testhttppolicyset", "name", "policy-abc")),
+						"avi_httppolicyset.testHTTPPolicySet", "name", "test-http-policyset-updated"),
+					resource.TestCheckResourceAttr(
+						"avi_httppolicyset.testHTTPPolicySet", "is_internal_policy", "false"),
+				),
+			},
+			{
+				ResourceName:      "avi_httppolicyset.testHTTPPolicySet",
+				ImportState:       true,
+				ImportStateVerify: false,
+				Config:            testAccAVIHTTPPolicySetConfig,
 			},
 		},
 	})
@@ -50,7 +56,7 @@ func testAccCheckAVIHTTPPolicySetExists(resourcename string) resource.TestCheckF
 			return fmt.Errorf("Not found: %s", resourcename)
 		}
 		if rs.Primary.ID == "" {
-			return fmt.Errorf("No HTTP Policy Set ID is set")
+			return fmt.Errorf("No AVI HTTPPolicySet ID is set")
 		}
 		url := strings.SplitN(rs.Primary.ID, "/api", 2)[1]
 		uuid := strings.Split(url, "#")[0]
@@ -82,7 +88,7 @@ func testAccCheckAVIHTTPPolicySetDestroy(s *terraform.State) error {
 			return err
 		}
 		if len(obj.(map[string]interface{})) > 0 {
-			return fmt.Errorf("AVI HTTP Policy Set still exists")
+			return fmt.Errorf("AVI HTTPPolicySet still exists")
 		}
 	}
 	return nil
@@ -90,100 +96,22 @@ func testAccCheckAVIHTTPPolicySetDestroy(s *terraform.State) error {
 
 const testAccAVIHTTPPolicySetConfig = `
 data "avi_tenant" "default_tenant"{
-	name= "admin"
+    name= "admin"
 }
-data "avi_cloud" "default_cloud" {
-	name= "Default-Cloud"
-}
-data "avi_vrfcontext" "global_vrf" {
-	name= "global"
-}
-
-resource "avi_poolgroup" "testpoolgroup" {
-	name = "pg-test"
-	implicit_priority_labels= false
-	min_servers= 0
-	fail_action {
-		type= "FAIL_ACTION_CLOSE_CONN"
-	}
-	tenant_ref= data.avi_tenant.default_tenant.id
-	cloud_ref= data.avi_cloud.default_cloud.id
-}
-
-resource "avi_httppolicyset" "testhttppolicyset" {
-	name = "policy-test"
-	tenant_ref= data.avi_tenant.default_tenant.id
+resource "avi_httppolicyset" "testHTTPPolicySet" {
 	is_internal_policy = false
-	http_request_policy {
-		rules {
-         	index= 1
-      		enable= true
-			name= "rule-1"
-			match {
-				hdrs {
-					match_case= "INSENSITIVE"
-					hdr= "User-Agent"
-					value= [
-						"Backup_Pool_Redirect"
-					]
-					match_criteria= "HDR_CONTAINS"
-				}
-			}
-			switching_action {
-				action= "HTTP_SWITCHING_SELECT_POOLGROUP"
-				pool_group_ref = avi_poolgroup.testpoolgroup.id
-			}
-		}
-	}
+	name = "test-http-policyset"
+	tenant_ref = data.avi_tenant.default_tenant.id
 }
 `
 
-const testAccUpdatedAVIHTTPPolicySetConfig = `
+const testAccAVIHTTPPolicySetupdatedConfig = `
 data "avi_tenant" "default_tenant"{
-	name= "admin"
+    name= "admin"
 }
-data "avi_cloud" "default_cloud" {
-	name= "Default-Cloud"
-}
-data "avi_vrfcontext" "global_vrf" {
-	name= "global"
-}
-
-resource "avi_poolgroup" "testpoolgroup" {
-	name = "pg-test"
-	implicit_priority_labels= false
-	min_servers= 0
-	fail_action {
-		type= "FAIL_ACTION_CLOSE_CONN"
-	}
-	tenant_ref= data.avi_tenant.default_tenant.id
-	cloud_ref= data.avi_cloud.default_cloud.id
-}
-
-resource "avi_httppolicyset" "testhttppolicyset" {
-	name = "policy-abc"
-	tenant_ref= data.avi_tenant.default_tenant.id
+resource "avi_httppolicyset" "testHTTPPolicySet" {
 	is_internal_policy = false
-	http_request_policy {
-		rules {
-         	index= 1
-      		enable= true
-			name= "rule-1"
-			match {
-				hdrs {
-					match_case= "INSENSITIVE"
-					hdr= "User-Agent"
-					value= [
-						"Backup_Pool_Redirect"
-					]
-					match_criteria= "HDR_CONTAINS"
-				}
-			}
-			switching_action {
-				action= "HTTP_SWITCHING_SELECT_POOLGROUP"
-				pool_group_ref = avi_poolgroup.testpoolgroup.id
-			}
-		}
-	}
+	name = "test-http-policyset-updated"
+	tenant_ref = data.avi_tenant.default_tenant.id
 }
 `

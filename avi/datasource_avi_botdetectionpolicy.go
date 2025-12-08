@@ -19,6 +19,11 @@ func dataSourceAviBotDetectionPolicy() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceBotConfigClientBehaviorSchema(),
 			},
+			"configpb_attributes": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceConfigPbAttributesSchema(),
+			},
 			"description": {
 				Type:     schema.TypeString,
 				Computed: true,

@@ -93,6 +93,13 @@ resource "avi_applicationprofile" "testApplicationProfile" {
 			mime_types_group_refs = [data.avi_stringgroup.system_cacheablestringgroup.id]
 		}
 		http2_profile {
+			http2_initial_window_size = "64"
+			max_http2_concurrent_streams_per_connection = "128"
+			max_http2_control_frames_per_connection = "1000"
+			max_http2_empty_data_frames_per_connection = "1000"
+			max_http2_header_field_size = "4096"
+			max_http2_queued_frames_to_client_per_connection = "1000"
+			max_http2_requests_per_connection = "1000"
 		}
 		max_rps_unknown_uri = "0"
 		post_accept_timeout = "30000"
@@ -108,6 +115,9 @@ resource "avi_applicationprofile" "testApplicationProfile" {
 		use_app_keepalive_timeout = false
 	}
 	preserve_client_port = false
+	l4_ssl_profile {
+		ssl_stream_idle_timeout = "3600"
+	}
 }
 
 data "avi_applicationprofile" "testApplicationProfile" {

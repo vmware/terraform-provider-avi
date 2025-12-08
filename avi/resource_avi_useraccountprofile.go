@@ -10,11 +10,11 @@ import (
 
 func ResourceUserAccountProfileSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"account_lock_timeout": {
-			Type:         schema.TypeString,
-			Optional:     true,
-			Default:      "30",
-			ValidateFunc: validateInteger,
+		"complexity_constraint": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceComplexityConstraintSchema(),
 		},
 		"configpb_attributes": {
 			Type:     schema.TypeSet,
@@ -22,34 +22,22 @@ func ResourceUserAccountProfileSchema() map[string]*schema.Schema {
 			Computed: true,
 			Elem:     ResourceConfigPbAttributesSchema(),
 		},
-		"credentials_timeout_threshold": {
-			Type:         schema.TypeString,
-			Optional:     true,
-			Default:      "180",
-			ValidateFunc: validateInteger,
+		"expiration_constraint": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceExpirationConstraintSchema(),
 		},
-		"login_failure_count_expiry_window": {
-			Type:         schema.TypeString,
-			Optional:     true,
-			Default:      "0",
-			ValidateFunc: validateInteger,
+		"lockout_constraint": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceLockoutConstraintSchema(),
 		},
 		"max_concurrent_sessions": {
 			Type:         schema.TypeString,
 			Optional:     true,
 			Default:      "0",
-			ValidateFunc: validateInteger,
-		},
-		"max_login_failure_count": {
-			Type:         schema.TypeString,
-			Optional:     true,
-			Default:      "3",
-			ValidateFunc: validateInteger,
-		},
-		"max_password_history_count": {
-			Type:         schema.TypeString,
-			Optional:     true,
-			Default:      "4",
 			ValidateFunc: validateInteger,
 		},
 		"name": {

@@ -51,6 +51,11 @@ func ResourceTaskJournalSchema() map[string]*schema.Schema {
 			Required: true,
 			Elem:     ResourceJournalSummarySchema(),
 		},
+		"tasks": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceJournalTaskSchema(),
+		},
 		"tenant_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
@@ -60,6 +65,11 @@ func ResourceTaskJournalSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
+		},
+		"warnings": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceJournalErrorSchema(),
 		},
 	}
 }

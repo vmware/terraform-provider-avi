@@ -30,6 +30,10 @@ func dataSourceAviVirtualService() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"application_insights_ref": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"application_profile_ref": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -224,11 +228,6 @@ func dataSourceAviVirtualService() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"nsx_securitygroup": {
-				Type:     schema.TypeList,
-				Computed: true,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-			},
 			"oauth_vs_config": {
 				Type:     schema.TypeSet,
 				Computed: true,
@@ -244,6 +243,10 @@ func dataSourceAviVirtualService() *schema.Resource {
 				Computed: true,
 			},
 			"pool_ref": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"positive_security_ref": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},

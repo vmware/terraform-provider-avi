@@ -15,6 +15,11 @@ func ResourceFileObjectSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"child_refs": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     &schema.Schema{Type: schema.TypeString},
+		},
 		"compressed": {
 			Type:         schema.TypeString,
 			Optional:     true,
@@ -43,10 +48,26 @@ func ResourceFileObjectSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"events": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceFileObjectEventMapSchema(),
+		},
 		"expires_at": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
+		},
+		"gslb_geodb_format": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
+		"has_parent": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
 		},
 		"is_federated": {
 			Type:         schema.TypeString,

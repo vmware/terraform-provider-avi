@@ -75,12 +75,6 @@ func ResourceVsVipSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
-		"use_standard_alb": {
-			Type:         schema.TypeString,
-			Optional:     true,
-			Computed:     true,
-			ValidateFunc: validateBool,
-		},
 		"uuid": {
 			Type:     schema.TypeString,
 			Optional: true,

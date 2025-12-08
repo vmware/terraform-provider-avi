@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 ############################################################################
 # ========================================================================
-# Copyright 2024 VMware, Inc. All rights reserved. VMware Confidential
+# Copyright (c) 2025 Broadcom Inc. and/or its subsidiaries. All Rights Reserved. Broadcom Confidential.
 # ========================================================================
 ###
 

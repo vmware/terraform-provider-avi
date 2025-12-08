@@ -45,6 +45,10 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"arp_cache_timeout": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"async_ssl": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -62,12 +66,24 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Computed: true,
 				Elem:     &schema.Schema{Type: schema.TypeInt},
 			},
+			"auto_rebalance_cool_down_time": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"auto_rebalance_criteria": {
 				Type:     schema.TypeList,
 				Computed: true,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
+			"auto_rebalance_dry_run_enabled": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"auto_rebalance_interval": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"auto_rebalance_raise_events_for_actions": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
@@ -189,6 +205,10 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"disable_qat_bulk_crypto": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"disable_se_memory_check": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -270,6 +290,10 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Computed: true,
 			},
 			"enable_pcap_tx_ring": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"enable_qat": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
@@ -397,6 +421,10 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceKniPortRangeSchema(),
 			},
+			"kv_val_max_len": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"l7_conns_per_core": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -421,6 +449,11 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 			"least_load_core_selection": {
 				Type:     schema.TypeString,
 				Computed: true,
+			},
+			"license_quota": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceQuotaConfigSchema(),
 			},
 			"license_tier": {
 				Type:     schema.TypeString,
@@ -504,6 +537,10 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Elem:     ResourceRoleFilterMatchLabelSchema(),
 			},
 			"max_concurrent_external_hm": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"max_cpu_load_adaptive_sampling": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
@@ -605,6 +642,10 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"nd6_cache_timeout": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"netlink_poller_threads": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -649,6 +690,10 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeSet,
 				Computed: true,
 				Elem:     ResourceObjSyncConfigSchema(),
+			},
+			"objsync_mode": {
+				Type:     schema.TypeString,
+				Computed: true,
 			},
 			"objsync_port": {
 				Type:     schema.TypeString,
@@ -699,6 +744,10 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"pre_upgrade_se_available_mem_threshold": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"realtime_se_metrics": {
 				Type:     schema.TypeSet,
 				Computed: true,
@@ -712,11 +761,20 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"reserved_configuration": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceReservedConfigurationSchema(),
+			},
 			"resync_time_interval": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"sdb_flush_interval": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"sdb_key_timeout": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
@@ -827,6 +885,10 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Computed: true,
 			},
 			"se_ip_encap_ipc": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"se_kernel_rss": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
@@ -1056,10 +1118,6 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"use_objsync": {
-				Type:     schema.TypeString,
-				Computed: true,
-			},
 			"use_standard_alb": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -1183,6 +1241,11 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"vsphere_storage_policies": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceVsphereStoragePolicySchema(),
+			},
 			"vss_placement": {
 				Type:     schema.TypeSet,
 				Computed: true,
@@ -1197,6 +1260,10 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Computed: true,
 			},
 			"waf_mempool_size": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"waf_use_jit_for_pcre": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},

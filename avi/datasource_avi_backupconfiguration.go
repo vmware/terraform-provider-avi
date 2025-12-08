@@ -33,6 +33,10 @@ func dataSourceAviBackupConfiguration() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"bundle_mode": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"configpb_attributes": {
 				Type:     schema.TypeSet,
 				Computed: true,

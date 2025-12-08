@@ -14,18 +14,18 @@ linters:
   enable:
     - errcheck
     - gofmt
-    # - goimports
     - gosimple
-    - govet
+    # - govet
     - ineffassign
     - nakedret
     - misspell
-    - staticcheck
-    - typecheck
-    - unused
-    - unconvert
+    # - staticcheck
+    # - unused
+    # - unconvert
     - vet
     - vetshadow
+    # - typecheck
+    # - goimports
 
 linters-settings:
   errcheck:

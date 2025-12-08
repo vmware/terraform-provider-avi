@@ -23,6 +23,11 @@ func dataSourceAviApplicationPersistenceProfile() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"diameter_app_persistence_profile": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceDiameterAVPPersistenceProfileSchema(),
+			},
 			"hdr_persistence_profile": {
 				Type:     schema.TypeSet,
 				Computed: true,
@@ -53,6 +58,10 @@ func dataSourceAviApplicationPersistenceProfile() *schema.Resource {
 				Computed: true,
 			},
 			"persistence_type": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"persistence_update_interval": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},

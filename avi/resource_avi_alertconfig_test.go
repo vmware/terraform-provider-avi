@@ -161,14 +161,6 @@ sys_event_rule {
 	not_cond = false
 }
 sys_event_rule {
-	event_id = "OPENSTACK_ACCESS_FAILURE"
-	not_cond = false
-}
-sys_event_rule {
-	event_id = "OPENSTACK_IMAGE_UPLOAD_FAILURE"
-	not_cond = false
-}
-sys_event_rule {
 	event_id = "AWS_ACCESS_FAILURE"
 	not_cond = false
 }
@@ -217,14 +209,6 @@ sys_event_rule {
 	not_cond = false
 }
 sys_event_rule {
-	event_id = "DOCKER_UCP_ACCESS_FAILURE"
-	not_cond = false
-}
-sys_event_rule {
-	event_id = "DOCKER_UCP_IMAGE_UPLOAD_FAILURE"
-	not_cond = false
-}
-sys_event_rule {
 	event_id = "VCA_ACCESS_FAILURE"
 	not_cond = false
 }
@@ -238,14 +222,6 @@ sys_event_rule {
 }
 sys_event_rule {
 	event_id = "LS_IMAGE_UPLOAD_FAILURE"
-	not_cond = false
-}
-sys_event_rule {
-	event_id = "MESOS_ACCESS_FAILURE"
-	not_cond = false
-}
-sys_event_rule {
-	event_id = "MESOS_IMAGE_UPLOAD_FAILURE"
 	not_cond = false
 }
 sys_event_rule {
@@ -426,14 +402,6 @@ sys_event_rule {
 	not_cond = false
 }
 sys_event_rule {
-	event_id = "OPENSTACK_ACCESS_FAILURE"
-	not_cond = false
-}
-sys_event_rule {
-	event_id = "OPENSTACK_IMAGE_UPLOAD_FAILURE"
-	not_cond = false
-}
-sys_event_rule {
 	event_id = "AWS_ACCESS_FAILURE"
 	not_cond = false
 }
@@ -482,14 +450,6 @@ sys_event_rule {
 	not_cond = false
 }
 sys_event_rule {
-	event_id = "DOCKER_UCP_ACCESS_FAILURE"
-	not_cond = false
-}
-sys_event_rule {
-	event_id = "DOCKER_UCP_IMAGE_UPLOAD_FAILURE"
-	not_cond = false
-}
-sys_event_rule {
 	event_id = "VCA_ACCESS_FAILURE"
 	not_cond = false
 }
@@ -503,14 +463,6 @@ sys_event_rule {
 }
 sys_event_rule {
 	event_id = "LS_IMAGE_UPLOAD_FAILURE"
-	not_cond = false
-}
-sys_event_rule {
-	event_id = "MESOS_ACCESS_FAILURE"
-	not_cond = false
-}
-sys_event_rule {
-	event_id = "MESOS_IMAGE_UPLOAD_FAILURE"
 	not_cond = false
 }
 sys_event_rule {

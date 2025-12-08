@@ -44,12 +44,6 @@ func ResourceCloudConnectorUserSchema() map[string]*schema.Schema {
 			Computed: true,
 			Elem:     ResourceNsxtCredentialsSchema(),
 		},
-		"oci_credentials": {
-			Type:     schema.TypeSet,
-			Optional: true,
-			Computed: true,
-			Elem:     ResourceOCICredentialsSchema(),
-		},
 		"password": {
 			Type:             schema.TypeString,
 			Optional:         true,

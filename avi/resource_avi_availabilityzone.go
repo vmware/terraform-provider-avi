@@ -10,6 +10,21 @@ import (
 
 func ResourceAvailabilityZoneSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
+		"az_clusters": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceAZClusterSchema(),
+		},
+		"az_datastores": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceAZDatastoreSchema(),
+		},
+		"az_hosts": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceAZHostSchema(),
+		},
 		"cloud_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
@@ -35,10 +50,10 @@ func ResourceAvailabilityZoneSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
-		"vcenter_refs": {
+		"vsphere_zones": {
 			Type:     schema.TypeList,
-			Required: true,
-			Elem:     &schema.Schema{Type: schema.TypeString},
+			Optional: true,
+			Elem:     ResourceVSphereZoneSchema(),
 		},
 	}
 }

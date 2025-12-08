@@ -10,6 +10,11 @@ import (
 
 func ResourceWafPolicyPSMGroupSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
+		"completely_described_match_elements": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     &schema.Schema{Type: schema.TypeString},
+		},
 		"configpb_attributes": {
 			Type:     schema.TypeSet,
 			Optional: true,
@@ -37,6 +42,11 @@ func ResourceWafPolicyPSMGroupSchema() map[string]*schema.Schema {
 			Optional:     true,
 			Default:      "false",
 			ValidateFunc: validateBool,
+		},
+		"location_match_miss_action": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Default:  "WAF_ACTION_NO_OP",
 		},
 		"locations": {
 			Type:     schema.TypeList,

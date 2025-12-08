@@ -29,7 +29,7 @@ func TestAVINetworkProfileBasic(t *testing.T) {
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckAVINetworkProfileExists("avi_networkprofile.testNetworkProfile"),
 					resource.TestCheckResourceAttr(
-						"avi_networkprofile.testNetworkProfile", "name", "test-System-TCP-Proxy-updated"),
+						"avi_networkprofile.testNetworkProfile", "name", "test-System-TCP-Proxy-abc-updated"),
 				),
 			},
 			{
@@ -125,7 +125,7 @@ data "avi_tenant" "default_tenant"{
     name= "admin"
 }
 resource "avi_networkprofile" "testNetworkProfile" {
-	name = "test-System-TCP-Proxy-updated"
+	name = "test-System-TCP-Proxy-abc-updated"
 	tenant_ref = data.avi_tenant.default_tenant.id
 	profile {
 		tcp_proxy_profile {

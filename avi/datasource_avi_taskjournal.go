@@ -45,6 +45,11 @@ func dataSourceAviTaskJournal() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceJournalSummarySchema(),
 			},
+			"tasks": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceJournalTaskSchema(),
+			},
 			"tenant_ref": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -54,6 +59,11 @@ func dataSourceAviTaskJournal() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+			"warnings": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceJournalErrorSchema(),
 			},
 		},
 	}

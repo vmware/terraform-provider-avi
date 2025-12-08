@@ -50,6 +50,11 @@ func dataSourceAviServer() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"health_monitor_refs": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
 			"hostname": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -94,6 +99,11 @@ func dataSourceAviServer() *schema.Resource {
 			"server_node": {
 				Type:     schema.TypeString,
 				Computed: true,
+			},
+			"srv_rdata": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceGslbServiceSrvRdataSchema(),
 			},
 			"static": {
 				Type:     schema.TypeString,
