@@ -27,11 +27,11 @@ resource "avi_useraccountprofile" "foo" {
 
 The following arguments are supported:
 
+* `complexity_constraint` - (Required) Password complexity constraints for the user account profile. Field introduced in 32.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `expiration_constraint` - (Required) Password expiration settings for the user account profile. Field introduced in 32.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `lockout_constraint` - (Required) Account lockout settings for the user account profile. Field introduced in 32.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `name` - (Required) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `complexity_constraint` - (Optional) Password complexity constraints for the user account profile. Field introduced in 32.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `expiration_constraint` - (Optional) Password expiration settings for the user account profile. Field introduced in 32.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `lockout_constraint` - (Optional) Account lockout settings for the user account profile. Field introduced in 32.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `max_concurrent_sessions` - (Optional) Maximum number of concurrent sessions allowed. There are unlimited sessions by default. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 
 
