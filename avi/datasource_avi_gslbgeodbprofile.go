@@ -18,6 +18,10 @@ func dataSourceAviGslbGeoDbProfile() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"distance_computation_algorithm": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"entries": {
 				Type:     schema.TypeList,
 				Computed: true,
