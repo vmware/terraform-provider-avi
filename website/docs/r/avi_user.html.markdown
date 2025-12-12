@@ -28,6 +28,7 @@ resource "avi_user" "foo" {
 The following arguments are supported:
 
 * `name` - (Required) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `password` - (Required) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `access` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `anonymous_user` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `date_joined` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
@@ -41,7 +42,6 @@ The following arguments are supported:
 * `is_superuser` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `local` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `logged_in` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `password` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `passwordless` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `recovery_token` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `service_user` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
