@@ -130,7 +130,7 @@ accepted_versions {
 	send_close_notify = true
 	ssl_rating {
 		performance_rating = "SSL_SCORE_EXCELLENT"
-		security_score = "100.0"
+		security_score = "100"
 		compatibility_rating = "SSL_SCORE_GOOD"
 	}
 	dhparam = <<EOF
@@ -171,7 +171,7 @@ accepted_versions {
 	send_close_notify = true
 	ssl_rating {
 		performance_rating = "SSL_SCORE_EXCELLENT"
-		security_score = "100.0"
+		security_score = "100"
 		compatibility_rating = "SSL_SCORE_GOOD"
 	}
 	dhparam = <<EOF

@@ -147,7 +147,7 @@ resource "avi_controllerproperties" "testControllerProperties" {
 	max_seq_attach_ip_failures = "3"
 	secure_channel_cleanup_timeout = "60"
 	vs_se_vnic_ip_fail = "120"
-	ssl_certificate_expiry_warning_days = ["30","7","1"]
+	ssl_certificate_expiry_warning_days = ["1","7","30"]
 	secure_channel_se_token_timeout = "60"
 	secure_channel_controller_token_timeout = "60"
 	api_idle_timeout = "15"
