@@ -22437,13 +22437,13 @@ func ResourceLogManagerDebugFilterSchema() *schema.Resource {
 			"opensearch_num_shards": {
 				Type:         schema.TypeString,
 				Optional:     true,
-				Default:      "1",
+				Default:      "9",
 				ValidateFunc: validateInteger,
 			},
 			"opensearch_port": {
 				Type:     schema.TypeString,
 				Optional: true,
-				Default:  "9200",
+				Default:  "5010",
 			},
 			"query_queue_buffer_size": {
 				Type:         schema.TypeString,
@@ -40498,8 +40498,7 @@ func ResourceVSphereZoneSchema() *schema.Resource {
 			},
 			"zone_name": {
 				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
+				Required: true,
 			},
 		},
 	}
