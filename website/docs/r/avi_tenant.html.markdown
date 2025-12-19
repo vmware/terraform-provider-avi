@@ -36,6 +36,7 @@ The following arguments are supported:
 * `enforce_label_group` - (Optional) The referred label groups are enforced on the tenant if this is set to true.if this is set to false, the label groups are suggested for the tenant. Field introduced in 20.1.5. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `label_group_refs` - (Optional) The label_groups to be enforced on the tenant. This is strictly enforced only if enforce_label_group is set to true. It is a reference to an object of type labelgroup. Field introduced in 20.1.5. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `local` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `vcf_org_id` - (Optional) Vcf organization identifier. This field is automatically populated exclusively for tenants associated with vcf organizations. Field introduced in 32.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 
 
 ### Timeouts

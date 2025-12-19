@@ -42,4 +42,5 @@ In addition to all arguments above, the following attributes are exported:
 * `local` - Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `name` - Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `uuid` - Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `vcf_org_id` - Vcf organization identifier. This field is automatically populated exclusively for tenants associated with vcf organizations. Field introduced in 32.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 

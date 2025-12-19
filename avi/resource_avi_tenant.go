@@ -63,6 +63,11 @@ func ResourceTenantSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"vcf_org_id": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
 	}
 }
 
