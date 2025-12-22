@@ -767,7 +767,7 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 		"max_cpu_load_adaptive_sampling": {
 			Type:         schema.TypeString,
 			Optional:     true,
-			Default:      "80",
+			Default:      "95",
 			ValidateFunc: validateInteger,
 		},
 		"max_cpu_usage": {
