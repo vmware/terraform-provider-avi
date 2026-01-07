@@ -29,14 +29,14 @@ data "vsphere_virtual_machine" "template" {
 }
 
 resource "vsphere_virtual_machine" "vm" {
-  name             = "${var.vm_name}-${count.index+1}"
+  name             = "${var.vm_name}-${count.index + 1}"
   resource_pool_id = data.vsphere_resource_pool.resource_pool.id
   datastore_id     = data.vsphere_datastore.datastore.id
-  count = 3
-  num_cpus = 8
-  memory = 24576
-  guest_id = data.vsphere_virtual_machine.template.guest_id
-  scsi_type = data.vsphere_virtual_machine.template.scsi_type
+  count            = 3
+  num_cpus         = 8
+  memory           = 32768
+  guest_id         = data.vsphere_virtual_machine.template.guest_id
+  scsi_type        = data.vsphere_virtual_machine.template.scsi_type
 
   folder = var.vm_folder
   network_interface {
@@ -45,9 +45,9 @@ resource "vsphere_virtual_machine" "vm" {
   }
 
   disk {
-    label = "disk1"
-    size = data.vsphere_virtual_machine.template.disks.0.size
-    unit_number = 0
+    label            = "disk1"
+    size             = data.vsphere_virtual_machine.template.disks.0.size
+    unit_number      = 0
     eagerly_scrub    = data.vsphere_virtual_machine.template.disks.0.eagerly_scrub
     thin_provisioned = data.vsphere_virtual_machine.template.disks.0.thin_provisioned
   }
@@ -58,10 +58,11 @@ resource "vsphere_virtual_machine" "vm" {
 }
 
 provider "avi" {
-  avi_username   = var.avi_username
-  avi_password   = var.avi_password
-  avi_controller = vsphere_virtual_machine.vm[0].default_ip_address
-  avi_tenant     = "admin"
+  avi_username    = var.avi_username
+  avi_password    = var.avi_password
+  avi_controller  = vsphere_virtual_machine.vm[0].default_ip_address
+  avi_tenant      = "admin"
+  avi_api_timeout = var.avi_api_timeout
 }
 
 resource "avi_useraccount" "avi_user" {
