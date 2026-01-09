@@ -96,6 +96,7 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
+			ForceNew: true,
 		},
 		"cloud_type": {
 			Type:     schema.TypeString,
@@ -456,6 +457,7 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 			Default:  "VS_TYPE_NORMAL",
+			ForceNew: true,
 		},
 		"use_bridge_ip_as_vip": {
 			Type:         schema.TypeString,
@@ -493,6 +495,7 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 			Default:  "VS_TYPE_VH_SNI",
+			ForceNew: true,
 		},
 		"vip": {
 			Type:     schema.TypeList,

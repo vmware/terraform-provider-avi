@@ -27,21 +27,21 @@ resource "avi_vrfcontext" "foo" {
 
 The following arguments are supported:
 
-* `name` - (Required) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `attrs` - (Optional) Key/value vrfcontext attributes. Field introduced in 20.1.2. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `bfd_profile` - (Optional) Bfd configuration profile. Field introduced in 20.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `bgp_profile` - (Optional) Bgp local and peer info. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `cloud_ref` - (Optional) It is a reference to an object of type cloud. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `debugvrfcontext` - (Optional) Configure debug flags for vrf. Field introduced in 17.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `description` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `gateway_mon` - (Optional) Configure ping based heartbeat check for gateway in service engines of vrf. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `internal_gateway_monitor` - (Optional) Configure ping based heartbeat check for all default gateways in service engines of vrf. Field introduced in 17.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `lldp_enable` - (Optional) Enable lldp. Field introduced in 18.2.10, 20.1.1. Allowed with any value in enterprise, enterprise with cloud services edition. Allowed in essentials (allowed values- true), basic (allowed values- true) edition.
-* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `static_routes` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `system_default` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `tenant_ref` - (Optional) It is a reference to an object of type tenant. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `name` - (Required) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `attrs` - (Optional) Key/value vrfcontext attributes. Field introduced in 20.1.2. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `bfd_profile` - (Optional) Bfd configuration profile. Field introduced in 20.1.1. Allowed with any value in enterprise, enterprise with cloud services edition. 
+* `bgp_profile` - (Optional) Bgp local and peer info. Allowed with any value in enterprise, enterprise with cloud services edition. 
+* `cloud_ref` - (Optional) It is a reference to an object of type cloud. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `debugvrfcontext` - (Optional) Configure debug flags for vrf. Field introduced in 17.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `description` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `gateway_mon` - (Optional) Configure ping based heartbeat check for gateway in service engines of vrf. Allowed with any value in enterprise, enterprise with cloud services edition. 
+* `internal_gateway_monitor` - (Optional) Configure ping based heartbeat check for all default gateways in service engines of vrf. Field introduced in 17.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `lldp_enable` - (Optional) Enable lldp. Field introduced in 18.2.10, 20.1.1. Allowed with any value in enterprise, enterprise with cloud services edition. Allowed in essentials (allowed values- true), basic (allowed values- true) edition. 
+* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `static_routes` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `system_default` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. Changing this value forces the resource to be recreated.
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
 
 
 ### Timeouts

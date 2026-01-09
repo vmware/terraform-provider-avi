@@ -164,6 +164,7 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
+			ForceNew: true,
 		},
 		"compress_ip_rules_for_each_ns_subnet": {
 			Type:         schema.TypeString,

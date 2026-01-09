@@ -85,6 +85,7 @@ func ResourceGslbServiceSchema() map[string]*schema.Schema {
 			Type:         schema.TypeString,
 			Optional:     true,
 			Default:      "true",
+			ForceNew:     true,
 			ValidateFunc: validateBool,
 		},
 		"markers": {
@@ -122,6 +123,7 @@ func ResourceGslbServiceSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 			Default:  "GSLB_SERVICE_RECORD_TYPE_A_AAAA_CNAME",
+			ForceNew: true,
 		},
 		"resolve_cname": {
 			Type:         schema.TypeString,

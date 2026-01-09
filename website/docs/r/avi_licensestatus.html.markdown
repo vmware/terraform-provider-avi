@@ -27,10 +27,10 @@ resource "avi_licensestatus" "foo" {
 
 The following arguments are supported:
 
-* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.3. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `saas_status` - (Optional) Saas licensing status. Field introduced in 21.1.3. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `service_update` - (Optional) Pulse license service update. Field introduced in 21.1.4. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `tenant_uuid` - (Optional) Tenant uuid. Field introduced in 30.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.3. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `saas_status` - (Optional) Saas licensing status. Field introduced in 21.1.3. Allowed with any value in enterprise, enterprise with cloud services edition. 
+* `service_update` - (Optional) Pulse license service update. Field introduced in 21.1.4. Allowed with any value in enterprise, enterprise with cloud services edition. 
+* `tenant_uuid` - (Optional) Tenant uuid. Field introduced in 30.1.1. Allowed with any value in enterprise, enterprise with cloud services edition. 
 
 
 ### Timeouts

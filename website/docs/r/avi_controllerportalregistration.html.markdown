@@ -27,10 +27,10 @@ resource "avi_controllerportalregistration" "foo" {
 
 The following arguments are supported:
 
-* `name` - (Required) Field introduced in 18.2.6. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `asset` - (Optional) Field introduced in 18.2.6. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `portal_auth` - (Optional) Field introduced in 18.2.6. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `tenant_ref` - (Optional) It is a reference to an object of type tenant. Field introduced in 18.2.6. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `name` - (Required) Field introduced in 18.2.6. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `asset` - (Optional) Field introduced in 18.2.6. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `portal_auth` - (Optional) Field introduced in 18.2.6. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant. Field introduced in 18.2.6. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
 
 
 ### Timeouts

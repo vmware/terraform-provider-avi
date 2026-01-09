@@ -27,14 +27,14 @@ resource "avi_stringgroup" "foo" {
 
 The following arguments are supported:
 
-* `name` - (Required) Name of the string group. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `type` - (Required) Type of stringgroup. Enum options - SG_TYPE_STRING, SG_TYPE_KEYVAL. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `description` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `kv` - (Optional) Configure key value in the string group. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `longest_match` - (Optional) Enable the longest match, default is the shortest match. Field introduced in 18.2.8. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `tenant_ref` - (Optional) It is a reference to an object of type tenant. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `name` - (Required) Name of the string group. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `type` - (Required) Type of stringgroup. Enum options - SG_TYPE_STRING, SG_TYPE_KEYVAL. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `description` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `kv` - (Optional) Configure key value in the string group. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `longest_match` - (Optional) Enable the longest match, default is the shortest match. Field introduced in 18.2.8. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
 
 
 ### Timeouts

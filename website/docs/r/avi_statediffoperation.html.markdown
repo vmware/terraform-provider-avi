@@ -27,13 +27,13 @@ resource "avi_statediffoperation" "foo" {
 
 The following arguments are supported:
 
-* `events` - (Optional) Info for each statediff event. Field introduced in 21.1.3. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `name` - (Optional) Name of statediff operation. Field introduced in 21.1.3. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `node_uuid` - (Optional) Uuid of node for statediff operation entry. Field introduced in 21.1.3. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `operation` - (Optional) Type of statediff operation. Enum options - FB_UPGRADE, FB_ROLLBACK, FB_PATCH, FB_ROLLBACK_PATCH. Field introduced in 21.1.3. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `phase` - (Optional) Phase of statediff operation. Enum options - FB_PRE_SNAPSHOT, FB_POST_SNAPSHOT. Field introduced in 21.1.3. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `status` - (Optional) Status of statediff operation. Enum options - FB_INIT, FB_IN_PROGRESS, FB_COMPLETED, FB_FAILED, FB_COMPLETED_WITH_ERRORS. Field introduced in 21.1.3. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `tenant_ref` - (Optional) Tenant that this object belongs to. It is a reference to an object of type tenant. Field introduced in 21.1.3. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `events` - (Optional) Info for each statediff event. Field introduced in 21.1.3. Allowed with any value in enterprise, enterprise with cloud services edition. 
+* `name` - (Optional) Name of statediff operation. Field introduced in 21.1.3. Allowed with any value in enterprise, enterprise with cloud services edition. 
+* `node_uuid` - (Optional) Uuid of node for statediff operation entry. Field introduced in 21.1.3. Allowed with any value in enterprise, enterprise with cloud services edition. 
+* `operation` - (Optional) Type of statediff operation. Enum options - FB_UPGRADE, FB_ROLLBACK, FB_PATCH, FB_ROLLBACK_PATCH. Field introduced in 21.1.3. Allowed with any value in enterprise, enterprise with cloud services edition. 
+* `phase` - (Optional) Phase of statediff operation. Enum options - FB_PRE_SNAPSHOT, FB_POST_SNAPSHOT. Field introduced in 21.1.3. Allowed with any value in enterprise, enterprise with cloud services edition. 
+* `status` - (Optional) Status of statediff operation. Enum options - FB_INIT, FB_IN_PROGRESS, FB_COMPLETED, FB_FAILED, FB_COMPLETED_WITH_ERRORS. Field introduced in 21.1.3. Allowed with any value in enterprise, enterprise with cloud services edition. 
+* `tenant_ref` - (Optional) Tenant that this object belongs to. It is a reference to an object of type tenant. Field introduced in 21.1.3. Allowed with any value in enterprise, enterprise with cloud services edition. 
 
 
 ### Timeouts

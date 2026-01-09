@@ -27,15 +27,15 @@ resource "avi_tenant" "foo" {
 
 The following arguments are supported:
 
-* `name` - (Required) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `attrs` - (Optional) Key/value tenant attributes. Field introduced in 30.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `config_settings` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `created_by` - (Optional) Creator of this tenant. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `description` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `enforce_label_group` - (Optional) The referred label groups are enforced on the tenant if this is set to true.if this is set to false, the label groups are suggested for the tenant. Field introduced in 20.1.5. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `label_group_refs` - (Optional) The label_groups to be enforced on the tenant. This is strictly enforced only if enforce_label_group is set to true. It is a reference to an object of type labelgroup. Field introduced in 20.1.5. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `local` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `name` - (Required) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `attrs` - (Optional) Key/value tenant attributes. Field introduced in 30.1.1. Allowed with any value in enterprise, enterprise with cloud services edition. 
+* `config_settings` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `created_by` - (Optional) Creator of this tenant. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `description` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `enforce_label_group` - (Optional) The referred label groups are enforced on the tenant if this is set to true.if this is set to false, the label groups are suggested for the tenant. Field introduced in 20.1.5. Allowed with any value in enterprise, enterprise with cloud services edition. 
+* `label_group_refs` - (Optional) The label_groups to be enforced on the tenant. This is strictly enforced only if enforce_label_group is set to true. It is a reference to an object of type labelgroup. Field introduced in 20.1.5. Allowed with any value in enterprise, enterprise with cloud services edition. 
+* `local` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. Changing this value forces the resource to be recreated.
 
 
 ### Timeouts

@@ -54,6 +54,7 @@ func ResourceRateLimitConfigurationSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 			Default:  "RATE_LIMITER_API_CATEGORY",
+			ForceNew: true,
 		},
 		"uuid": {
 			Type:     schema.TypeString,

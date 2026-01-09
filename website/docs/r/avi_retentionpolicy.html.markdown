@@ -27,12 +27,12 @@ resource "avi_retentionpolicy" "foo" {
 
 The following arguments are supported:
 
-* `policy` - (Required) Policy specification. Field introduced in 31.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `enabled` - (Optional) Enables the policy. Field introduced in 31.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `history` - (Optional) History of previous runs. Field introduced in 31.1.1. Maximum of 10 items allowed. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `name` - (Optional) Name of the policy. Field introduced in 31.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `summary` - (Optional) Details of most recent run. Field introduced in 31.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `tenant_ref` - (Optional) Tenant uuid associated with the object. It is a reference to an object of type tenant. Field introduced in 31.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `policy` - (Required) Policy specification. Field introduced in 31.1.1. Allowed with any value in enterprise, enterprise with cloud services edition. 
+* `enabled` - (Optional) Enables the policy. Field introduced in 31.1.1. Allowed with any value in enterprise, enterprise with cloud services edition. 
+* `history` - (Optional) History of previous runs. Field introduced in 31.1.1. Maximum of 10 items allowed. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `name` - (Optional) Name of the policy. Field introduced in 31.1.1. Allowed with any value in enterprise, enterprise with cloud services edition. 
+* `summary` - (Optional) Details of most recent run. Field introduced in 31.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `tenant_ref` - (Optional) Tenant uuid associated with the object. It is a reference to an object of type tenant. Field introduced in 31.1.1. Allowed with any value in enterprise, enterprise with cloud services edition. 
 
 
 ### Timeouts

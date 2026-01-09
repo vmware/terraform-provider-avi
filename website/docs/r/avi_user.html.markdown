@@ -27,30 +27,30 @@ resource "avi_user" "foo" {
 
 The following arguments are supported:
 
-* `name` - (Required) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `password` - (Required) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `access` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `anonymous_user` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `date_joined` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `default_tenant_ref` - (Optional) It is a reference to an object of type tenant. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `email` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `enable_config_warnings` - (Optional) Flag to enable or disable config warnings. Field introduced in 31.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `full_name` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `is_active` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `is_internal_user` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `is_staff` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `is_superuser` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `local` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `logged_in` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `passwordless` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `recovery_token` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `service_user` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `token_expiration_date` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `ui_property` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `uid` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `unix_crypt_password` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `user_profile_ref` - (Optional) It is a reference to an object of type useraccountprofile. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `username` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `name` - (Required) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `password` - (Required) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `access` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `anonymous_user` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `date_joined` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `default_tenant_ref` - (Optional) It is a reference to an object of type tenant. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `email` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `enable_config_warnings` - (Optional) Flag to enable or disable config warnings. Field introduced in 31.2.1. Allowed with any value in enterprise, enterprise with cloud services edition. 
+* `full_name` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `is_active` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `is_internal_user` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `is_staff` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `is_superuser` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `local` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `logged_in` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `passwordless` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `recovery_token` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `service_user` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `token_expiration_date` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `ui_property` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `uid` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `unix_crypt_password` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `user_profile_ref` - (Optional) It is a reference to an object of type useraccountprofile. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `username` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
 
 
 ### Timeouts

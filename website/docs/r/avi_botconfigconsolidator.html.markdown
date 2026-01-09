@@ -27,11 +27,11 @@ resource "avi_botconfigconsolidator" "foo" {
 
 The following arguments are supported:
 
-* `name` - (Required) The name of this consolidator. Field introduced in 21.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 31.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `description` - (Optional) Human-readable description of this consolidator. Field introduced in 21.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `script` - (Optional) Script that consolidates results from all bot decision components. Field introduced in 21.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `tenant_ref` - (Optional) The unique identifier of the tenant to which this consolidator belongs. It is a reference to an object of type tenant. Field introduced in 21.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `name` - (Required) The name of this consolidator. Field introduced in 21.1.1. Allowed with any value in enterprise, enterprise with cloud services edition. 
+* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 31.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `description` - (Optional) Human-readable description of this consolidator. Field introduced in 21.1.1. Allowed with any value in enterprise, enterprise with cloud services edition. 
+* `script` - (Optional) Script that consolidates results from all bot decision components. Field introduced in 21.1.1. Allowed with any value in enterprise, enterprise with cloud services edition. 
+* `tenant_ref` - (Optional) The unique identifier of the tenant to which this consolidator belongs. It is a reference to an object of type tenant. Field introduced in 21.1.1. Allowed with any value in enterprise, enterprise with cloud services edition. 
 
 
 ### Timeouts

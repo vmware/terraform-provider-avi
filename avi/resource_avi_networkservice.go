@@ -14,6 +14,7 @@ func ResourceNetworkServiceSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
+			ForceNew: true,
 		},
 		"configpb_attributes": {
 			Type:     schema.TypeSet,
@@ -39,15 +40,18 @@ func ResourceNetworkServiceSchema() map[string]*schema.Schema {
 		"se_group_ref": {
 			Type:     schema.TypeString,
 			Required: true,
+			ForceNew: true,
 		},
 		"service_type": {
 			Type:     schema.TypeString,
 			Required: true,
+			ForceNew: true,
 		},
 		"tenant_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
+			ForceNew: true,
 		},
 		"uuid": {
 			Type:     schema.TypeString,
@@ -57,6 +61,7 @@ func ResourceNetworkServiceSchema() map[string]*schema.Schema {
 		"vrf_ref": {
 			Type:     schema.TypeString,
 			Required: true,
+			ForceNew: true,
 		},
 	}
 }

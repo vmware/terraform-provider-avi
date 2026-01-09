@@ -39,6 +39,7 @@ func ResourceServiceAuthProfileSchema() map[string]*schema.Schema {
 		"type": {
 			Type:     schema.TypeString,
 			Required: true,
+			ForceNew: true,
 		},
 		"uuid": {
 			Type:     schema.TypeString,
