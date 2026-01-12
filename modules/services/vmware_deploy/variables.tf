@@ -48,3 +48,9 @@ variable "avi_new_password" {
   type = string
   default = ""
 }
+
+variable "avi_api_timeout" {
+  type    = number
+  default = 3000
+  description = "Timeout in seconds for waiting for Avi Controller API to be ready and for individual API requests"
+}
