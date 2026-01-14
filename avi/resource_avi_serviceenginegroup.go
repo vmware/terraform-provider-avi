@@ -164,6 +164,7 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
+			ForceNew: true,
 		},
 		"compress_ip_rules_for_each_ns_subnet": {
 			Type:         schema.TypeString,
@@ -767,7 +768,7 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 		"max_cpu_load_adaptive_sampling": {
 			Type:         schema.TypeString,
 			Optional:     true,
-			Default:      "80",
+			Default:      "95",
 			ValidateFunc: validateInteger,
 		},
 		"max_cpu_usage": {

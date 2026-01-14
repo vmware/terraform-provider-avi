@@ -52,6 +52,7 @@ func ResourceTenantSchema() map[string]*schema.Schema {
 			Type:         schema.TypeString,
 			Optional:     true,
 			Default:      "true",
+			ForceNew:     true,
 			ValidateFunc: validateBool,
 		},
 		"name": {

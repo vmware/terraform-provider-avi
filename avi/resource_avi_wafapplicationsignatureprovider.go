@@ -31,6 +31,7 @@ func ResourceWafApplicationSignatureProviderSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
+			ForceNew: true,
 		},
 		"ruleset_version": {
 			Type:     schema.TypeString,
@@ -52,6 +53,7 @@ func ResourceWafApplicationSignatureProviderSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
+			ForceNew: true,
 		},
 		"uuid": {
 			Type:     schema.TypeString,

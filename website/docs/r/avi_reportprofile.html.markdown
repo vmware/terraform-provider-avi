@@ -27,8 +27,8 @@ resource "avi_reportprofile" "foo" {
 
 The following arguments are supported:
 
-* `collection_rules` - (Optional) Collection rules for the report. Field introduced in 31.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `max_concurrent_reports` - (Optional) Maximum number of concurrent reports allowed to be generated. Allowed values are 1-10. Field introduced in 31.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `collection_rules` - (Optional) Collection rules for the report. Field introduced in 31.2.1. Allowed with any value in enterprise, enterprise with cloud services edition. 
+* `max_concurrent_reports` - (Optional) Maximum number of concurrent reports allowed to be generated. Allowed values are 1-10. Field introduced in 31.2.1. Allowed with any value in enterprise, enterprise with cloud services edition. 
 
 
 ### Timeouts

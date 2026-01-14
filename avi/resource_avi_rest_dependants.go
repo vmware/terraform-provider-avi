@@ -3563,6 +3563,7 @@ func ResourceBgpPeerSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+				ForceNew: true,
 			},
 			"local_as": {
 				Type:         schema.TypeString,
@@ -9647,6 +9648,7 @@ func ResourceDebugVirtualServiceSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+				ForceNew: true,
 			},
 			"debug_hm": {
 				Type:     schema.TypeString,
@@ -11823,11 +11825,13 @@ func ResourceDsrProfileSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Default:  "ENCAP_IPINIP",
+				ForceNew: true,
 			},
 			"dsr_type": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Default:  "DSR_TYPE_L3",
+				ForceNew: true,
 			},
 		},
 	}
@@ -14644,28 +14648,34 @@ func ResourceGcpInfoSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+				ForceNew: true,
 			},
 			"machine_type": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+				ForceNew: true,
 			},
 			"network": {
 				Type:     schema.TypeString,
 				Required: true,
+				ForceNew: true,
 			},
 			"project": {
 				Type:     schema.TypeString,
 				Required: true,
+				ForceNew: true,
 			},
 			"subnet": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+				ForceNew: true,
 			},
 			"zone": {
 				Type:     schema.TypeString,
 				Required: true,
+				ForceNew: true,
 			},
 		},
 	}
@@ -14987,11 +14997,13 @@ func ResourceGslbGeoDbFileSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+				ForceNew: true,
 			},
 			"format": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Default:  "GSLB_GEODB_FILE_FORMAT_AVI",
+				ForceNew: true,
 			},
 			"timestamp": {
 				Type:         schema.TypeString,
@@ -16813,6 +16825,7 @@ func ResourceHSMSafenetClientInfoSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+				ForceNew: true,
 			},
 			"client_cert": {
 				Type:     schema.TypeString,
@@ -16834,12 +16847,14 @@ func ResourceHSMSafenetClientInfoSchema() *schema.Resource {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Computed:     true,
+				ForceNew:     true,
 				ValidateFunc: validateInteger,
 			},
 			"session_minor_number": {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Computed:     true,
+				ForceNew:     true,
 				ValidateFunc: validateInteger,
 			},
 		},
@@ -16853,6 +16868,7 @@ func ResourceHSMSafenetLunaSchema() *schema.Resource {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Computed:     true,
+				ForceNew:     true,
 				ValidateFunc: validateInteger,
 			},
 			"is_ha": {
@@ -17535,6 +17551,7 @@ func ResourceHTTPHdrValueSchema() *schema.Resource {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Default:      "false",
+				ForceNew:     true,
 				ValidateFunc: validateBool,
 			},
 			"val": {
@@ -22776,6 +22793,7 @@ func ResourceMemberInterfaceSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+				ForceNew: true,
 			},
 		},
 	}
@@ -24526,6 +24544,7 @@ func ResourceNetworkProfileUnionSchema() *schema.Resource {
 			"type": {
 				Type:     schema.TypeString,
 				Required: true,
+				ForceNew: true,
 			},
 			"udp_fast_path_profile": {
 				Type:     schema.TypeSet,
@@ -31456,6 +31475,7 @@ func ResourceSamlServiceProviderSettingsSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+				ForceNew: true,
 			},
 			"sp_nodes": {
 				Type:     schema.TypeList,
@@ -35504,6 +35524,7 @@ func ResourceServerSchema() *schema.Resource {
 				Type:     schema.TypeSet,
 				Optional: true,
 				Computed: true,
+				ForceNew: true,
 				Elem:     ResourceGeoLocationSchema(),
 			},
 			"mac_address": {
@@ -41683,6 +41704,7 @@ func ResourceVlanInterfaceSchema() *schema.Resource {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Default:      "false",
+				ForceNew:     true,
 				ValidateFunc: validateBool,
 			},
 			"vlan_id": {
@@ -45104,6 +45126,7 @@ func ResourceWafRuleSchema() *schema.Resource {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Default:      "false",
+				ForceNew:     true,
 				ValidateFunc: validateBool,
 			},
 			"mode": {
@@ -45548,23 +45571,27 @@ func ResourcevNICSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+				ForceNew: true,
 			},
 			"aggregator_chgd": {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Default:      "false",
+				ForceNew:     true,
 				ValidateFunc: validateBool,
 			},
 			"can_se_dp_takeover": {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Default:      "true",
+				ForceNew:     true,
 				ValidateFunc: validateBool,
 			},
 			"connected": {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Computed:     true,
+				ForceNew:     true,
 				ValidateFunc: validateBool,
 			},
 			"del_pending": {
@@ -45601,6 +45628,7 @@ func ResourcevNICSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+				ForceNew: true,
 			},
 			"ip6_autocfg_enabled": {
 				Type:         schema.TypeString,
@@ -45612,30 +45640,35 @@ func ResourcevNICSchema() *schema.Resource {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Default:      "false",
+				ForceNew:     true,
 				ValidateFunc: validateBool,
 			},
 			"is_avi_internal_network": {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Default:      "false",
+				ForceNew:     true,
 				ValidateFunc: validateBool,
 			},
 			"is_hsm": {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Default:      "false",
+				ForceNew:     true,
 				ValidateFunc: validateBool,
 			},
 			"is_mgmt": {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Default:      "false",
+				ForceNew:     true,
 				ValidateFunc: validateBool,
 			},
 			"is_portchannel": {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Default:      "false",
+				ForceNew:     true,
 				ValidateFunc: validateBool,
 			},
 			"link_up": {
@@ -45648,31 +45681,37 @@ func ResourcevNICSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+				ForceNew: true,
 			},
 			"mac_address": {
 				Type:     schema.TypeString,
 				Required: true,
+				ForceNew: true,
 			},
 			"members": {
 				Type:     schema.TypeList,
 				Optional: true,
+				ForceNew: true,
 				Elem:     ResourceMemberInterfaceSchema(),
 			},
 			"mtu": {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Default:      "1500",
+				ForceNew:     true,
 				ValidateFunc: validateInteger,
 			},
 			"network_name": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+				ForceNew: true,
 			},
 			"network_ref": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+				ForceNew: true,
 			},
 			"num_rx_descriptors": {
 				Type:         schema.TypeString,
@@ -45690,16 +45729,19 @@ func ResourcevNICSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+				ForceNew: true,
 			},
 			"port_uuid": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+				ForceNew: true,
 			},
 			"vlan_id": {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Default:      "0",
+				ForceNew:     true,
 				ValidateFunc: validateInteger,
 			},
 			"vlan_interfaces": {
@@ -45716,6 +45758,7 @@ func ResourcevNICSchema() *schema.Resource {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Default:      "0",
+				ForceNew:     true,
 				ValidateFunc: validateInteger,
 			},
 			"vrf_ref": {
