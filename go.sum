@@ -236,6 +236,14 @@ github.com/vmware/alb-sdk v0.0.0-20250630043100-7944fb16c885 h1:V5fpPC02pmsYJoTn
 github.com/vmware/alb-sdk v0.0.0-20250630043100-7944fb16c885/go.mod h1:fuRb4saDY/xy/UMeMvyKYmcplNknEL9ysaqYSw7reNE=
 github.com/vmware/alb-sdk v0.0.0-20251119041240-4818245918e4 h1:zNfV7pxEH6r6c5Vr3MoxZq/C+gM3KaMqSTFbIaDdwTU=
 github.com/vmware/alb-sdk v0.0.0-20251119041240-4818245918e4/go.mod h1:fuRb4saDY/xy/UMeMvyKYmcplNknEL9ysaqYSw7reNE=
+github.com/vmware/alb-sdk v0.0.0-20251211131417-5372e17b5e63 h1:l/VdBa6gIlIVwfZ+8MiVrW4rGbUTZaVTEKVDYqC4d5w=
+github.com/vmware/alb-sdk v0.0.0-20251211131417-5372e17b5e63/go.mod h1:fuRb4saDY/xy/UMeMvyKYmcplNknEL9ysaqYSw7reNE=
+github.com/vmware/alb-sdk v0.0.0-20251216125201-6d76f6166a5c h1:OPt+D+nAgQbLE/w3+d3qK1ZlwnxhTy7zmlq0SMNN9JQ=
+github.com/vmware/alb-sdk v0.0.0-20251216125201-6d76f6166a5c/go.mod h1:fuRb4saDY/xy/UMeMvyKYmcplNknEL9ysaqYSw7reNE=
+github.com/vmware/alb-sdk v0.0.0-20251223061835-a99f7f7db21a h1:qfK3lXd5c/GnoUqKEKNFC+LqxIIYDyWcpeP6fi39It0=
+github.com/vmware/alb-sdk v0.0.0-20251223061835-a99f7f7db21a/go.mod h1:fuRb4saDY/xy/UMeMvyKYmcplNknEL9ysaqYSw7reNE=
+github.com/vmware/alb-sdk v0.0.0-20260116070603-e1d45f154db5 h1:TvIGhS8mJaBsU6+fU6W4I0n2wONF7g6t3GGqcGv2wK8=
+github.com/vmware/alb-sdk v0.0.0-20260116070603-e1d45f154db5/go.mod h1:fuRb4saDY/xy/UMeMvyKYmcplNknEL9ysaqYSw7reNE=
 github.com/xanzy/ssh-agent v0.3.0 h1:wUMzuKtKilRgBAD1sUb8gOwwRr2FGoBVumcjoOACClI=
 github.com/xanzy/ssh-agent v0.3.0/go.mod h1:3s9xbODqPuuhK9JV1R321M/FlMZSBvE5aY6eAcqrDh0=
 github.com/yuin/goldmark v1.1.32/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
