@@ -42,7 +42,7 @@ resource "avi_sslprofile" "testSSLProfile" {
 	name = "test-System-Standard-abc"
 	tenant_ref = data.avi_tenant.default_tenant.id
 	ssl_session_timeout = "86400"
-	accepted_ciphers = "ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:AES128-SHA"
+	accepted_ciphers = "ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:AES128-SHA"
 	prefer_client_cipher_ordering = false
 	accepted_versions {
 	type = "SSL_VERSION_TLS1"
