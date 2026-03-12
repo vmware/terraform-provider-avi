@@ -803,7 +803,7 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 		"metrics_collection_mode": {
 			Type:         schema.TypeString,
 			Optional:     true,
-			Default:      "1",
+			Default:      "0",
 			ValidateFunc: validateInteger,
 		},
 		"mgmt_network_ref": {
