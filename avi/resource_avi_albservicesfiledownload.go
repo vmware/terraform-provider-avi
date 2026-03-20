@@ -19,14 +19,17 @@ func ResourceALBServicesFileDownloadSchema() map[string]*schema.Schema {
 		"destination_dir": {
 			Type:     schema.TypeString,
 			Required: true,
+			ForceNew: true,
 		},
 		"file_type": {
 			Type:     schema.TypeString,
 			Required: true,
+			ForceNew: true,
 		},
 		"file_uri": {
 			Type:     schema.TypeString,
 			Required: true,
+			ForceNew: true,
 		},
 		"message": {
 			Type:     schema.TypeString,
@@ -42,6 +45,7 @@ func ResourceALBServicesFileDownloadSchema() map[string]*schema.Schema {
 		"name": {
 			Type:     schema.TypeString,
 			Required: true,
+			ForceNew: true,
 		},
 		"status": {
 			Type:     schema.TypeString,

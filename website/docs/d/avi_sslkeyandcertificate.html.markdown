@@ -58,6 +58,6 @@ In addition to all arguments above, the following attributes are exported:
 * `ocsp_response_info` - Information related to ocsp response. Field introduced in 20.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `status` - Enum options - ssl_certificate_finished, ssl_certificate_pending. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `tenant_ref` - It is a reference to an object of type tenant. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `type` - Enum options - ssl_certificate_type_virtualservice, ssl_certificate_type_system, ssl_certificate_type_ca, ssl_certificate_type_client. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `type` - Enum options - ssl_certificate_type_virtualservice, ssl_certificate_type_system, ssl_certificate_type_ca, ssl_certificate_type_client, ssl_certificate_type_secure_channel. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `uuid` - Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 

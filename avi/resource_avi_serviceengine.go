@@ -14,33 +14,39 @@ func ResourceServiceEngineSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
+			ForceNew: true,
 		},
 		"cloud_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
+			ForceNew: true,
 		},
 		"container_mode": {
 			Type:         schema.TypeString,
 			Optional:     true,
 			Default:      "false",
+			ForceNew:     true,
 			ValidateFunc: validateBool,
 		},
 		"container_type": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Default:  "CONTAINER_TYPE_HOST",
+			ForceNew: true,
 		},
 		"controller_created": {
 			Type:         schema.TypeString,
 			Optional:     true,
 			Default:      "false",
+			ForceNew:     true,
 			ValidateFunc: validateBool,
 		},
 		"controller_ip": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
+			ForceNew: true,
 		},
 		"data_vnics": {
 			Type:     schema.TypeList,
@@ -56,21 +62,25 @@ func ResourceServiceEngineSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
+			ForceNew: true,
 		},
 		"host_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
+			ForceNew: true,
 		},
 		"hypervisor": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
+			ForceNew: true,
 		},
 		"mgmt_vnic": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Computed: true,
+			ForceNew: true,
 			Elem:     ResourcevNICSchema(),
 		},
 		"name": {
@@ -88,6 +98,7 @@ func ResourceServiceEngineSchema() map[string]*schema.Schema {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Computed: true,
+			ForceNew: true,
 			Elem:     ResourceSeResourcesSchema(),
 		},
 		"se_group_ref": {

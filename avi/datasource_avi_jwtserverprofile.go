@@ -40,6 +40,11 @@ func dataSourceAviJWTServerProfile() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"protected_resource_config": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceJWTProtectedResourceConfigSchema(),
+			},
 			"tenant_ref": {
 				Type:     schema.TypeString,
 				Optional: true,

@@ -20,6 +20,19 @@ func ResourceCertJwtStoreSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Required: true,
 		},
+		"key": {
+			Type:             schema.TypeString,
+			Required:         true,
+			Sensitive:        true,
+			DiffSuppressFunc: suppressSensitiveFieldDiffs,
+		},
+		"key_passphrase": {
+			Type:             schema.TypeString,
+			Optional:         true,
+			Computed:         true,
+			Sensitive:        true,
+			DiffSuppressFunc: suppressSensitiveFieldDiffs,
+		},
 		"kid": {
 			Type:     schema.TypeString,
 			Required: true,
@@ -32,6 +45,11 @@ func ResourceCertJwtStoreSchema() map[string]*schema.Schema {
 		"public_key_algorithm": {
 			Type:     schema.TypeString,
 			Required: true,
+		},
+		"type": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
 		},
 		"uuid": {
 			Type:     schema.TypeString,

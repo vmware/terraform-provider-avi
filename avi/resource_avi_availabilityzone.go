@@ -29,6 +29,7 @@ func ResourceAvailabilityZoneSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
+			ForceNew: true,
 		},
 		"configpb_attributes": {
 			Type:     schema.TypeSet,
@@ -39,6 +40,7 @@ func ResourceAvailabilityZoneSchema() map[string]*schema.Schema {
 		"name": {
 			Type:     schema.TypeString,
 			Required: true,
+			ForceNew: true,
 		},
 		"tenant_ref": {
 			Type:     schema.TypeString,

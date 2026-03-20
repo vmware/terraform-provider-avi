@@ -14,6 +14,7 @@ func ResourceHealthMonitorSchema() map[string]*schema.Schema {
 			Type:         schema.TypeString,
 			Optional:     true,
 			Computed:     true,
+			ForceNew:     true,
 			ValidateFunc: validateBool,
 		},
 		"authentication": {
@@ -109,6 +110,7 @@ func ResourceHealthMonitorSchema() map[string]*schema.Schema {
 			Type:         schema.TypeString,
 			Optional:     true,
 			Default:      "false",
+			ForceNew:     true,
 			ValidateFunc: validateBool,
 		},
 		"ldap_monitor": {
@@ -132,12 +134,14 @@ func ResourceHealthMonitorSchema() map[string]*schema.Schema {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Computed: true,
+			ForceNew: true,
 			Elem:     ResourceIpAddrSchema(),
 		},
 		"monitor_port": {
 			Type:         schema.TypeString,
 			Optional:     true,
 			Computed:     true,
+			ForceNew:     true,
 			ValidateFunc: validateInteger,
 		},
 		"name": {
@@ -218,6 +222,7 @@ func ResourceHealthMonitorSchema() map[string]*schema.Schema {
 		"type": {
 			Type:     schema.TypeString,
 			Required: true,
+			ForceNew: true,
 		},
 		"udp_monitor": {
 			Type:     schema.TypeSet,

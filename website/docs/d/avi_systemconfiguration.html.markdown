@@ -54,6 +54,7 @@ In addition to all arguments above, the following attributes are exported:
 * `linux_configuration` - Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `mgmt_ip_access_control` - Configure ip access control for controller to restrict open access. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `ntp_configuration` - Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `password_policy_managed_at_ops` - Indicates whether password policy fields are managed by vcf-ops. Field introduced in 32.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `portal_configuration` - Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `proxy_configuration` - Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `rekey_time_limit` - Users can specify and update the time limit of rekeylimit in sshd_config.if nothing is specified, the default setting will be none. Field introduced in 30.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.

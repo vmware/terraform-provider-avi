@@ -27,14 +27,14 @@ resource "avi_availabilityzone" "foo" {
 
 The following arguments are supported:
 
-* `name` - (Required) Availabilty zone where vcenter list belongs to. Field introduced in 20.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `az_clusters` - (Optional) Group of clusters belongs to the az. Field introduced in 31.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `az_datastores` - (Optional) Group of datastores associated with the az. Field introduced in 31.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `az_hosts` - (Optional) Group of hosts associated with the az. Field introduced in 31.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `cloud_ref` - (Optional) Availability zone belongs to cloud. It is a reference to an object of type cloud. Field introduced in 20.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `tenant_ref` - (Optional) Availabilityzone belongs to tenant. It is a reference to an object of type tenant. Field introduced in 20.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `vsphere_zones` - (Optional) Vsphere zone associated with the az. Field introduced in 32.1.1. Maximum of 1 items allowed. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `name` - (Required) Availabilty zone where vcenter list belongs to. Field introduced in 20.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. Changing this value forces the resource to be recreated.
+* `az_clusters` - (Optional) Group of clusters belongs to the az. Field introduced in 31.1.1. Allowed with any value in enterprise, enterprise with cloud services edition. 
+* `az_datastores` - (Optional) Group of datastores associated with the az. Field introduced in 31.2.1. Allowed with any value in enterprise, enterprise with cloud services edition. 
+* `az_hosts` - (Optional) Group of hosts associated with the az. Field introduced in 31.2.1. Allowed with any value in enterprise, enterprise with cloud services edition. 
+* `cloud_ref` - (Optional) Availability zone belongs to cloud. It is a reference to an object of type cloud. Field introduced in 20.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. Changing this value forces the resource to be recreated.
+* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `tenant_ref` - (Optional) Availabilityzone belongs to tenant. It is a reference to an object of type tenant. Field introduced in 20.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `vsphere_zones` - (Optional) Vsphere zone associated with the az. Field introduced in 32.1.1. Maximum of 1 items allowed. Allowed with any value in enterprise, enterprise with cloud services edition. 
 
 
 ### Timeouts

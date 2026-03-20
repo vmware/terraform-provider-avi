@@ -42,6 +42,10 @@ func dataSourceAviCloud() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"disable_metrics_polling": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"dns_provider_ref": {
 				Type:     schema.TypeString,
 				Computed: true,

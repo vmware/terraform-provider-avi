@@ -55,6 +55,10 @@ func dataSourceAviTenant() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"vcf_org_id": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 		},
 	}
 }

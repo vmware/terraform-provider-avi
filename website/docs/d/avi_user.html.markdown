@@ -43,6 +43,7 @@ In addition to all arguments above, the following attributes are exported:
 * `is_internal_user` - Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `is_staff` - Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `is_superuser` - Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `is_vcfa_user` - Indicates if the user was created via vcfa oauth authentication. Field introduced in 32.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `local` - Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `logged_in` - Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `name` - Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.

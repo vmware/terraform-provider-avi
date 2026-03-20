@@ -27,15 +27,15 @@ resource "avi_networkservice" "foo" {
 
 The following arguments are supported:
 
-* `name` - (Required) Name of the networkservice. Field introduced in 18.2.5. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `se_group_ref` - (Required) Service engine group to which the service is applied. It is a reference to an object of type serviceenginegroup. Field introduced in 18.2.5. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `service_type` - (Required) Indicates the type of networkservice. Enum options - ROUTING_SERVICE. Field introduced in 18.2.5. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `vrf_ref` - (Required) Vrf context to which the service is scoped. It is a reference to an object of type vrfcontext. Field introduced in 18.2.5. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `cloud_ref` - (Optional) It is a reference to an object of type cloud. Field introduced in 18.2.5. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `routing_service` - (Optional) Routing information of the networkservice. Field introduced in 18.2.5. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `tenant_ref` - (Optional) It is a reference to an object of type tenant. Field introduced in 18.2.5. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `name` - (Required) Name of the networkservice. Field introduced in 18.2.5. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `se_group_ref` - (Required) Service engine group to which the service is applied. It is a reference to an object of type serviceenginegroup. Field introduced in 18.2.5. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. Changing this value forces the resource to be recreated.
+* `service_type` - (Required) Indicates the type of networkservice. Enum options - ROUTING_SERVICE. Field introduced in 18.2.5. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. Changing this value forces the resource to be recreated.
+* `vrf_ref` - (Required) Vrf context to which the service is scoped. It is a reference to an object of type vrfcontext. Field introduced in 18.2.5. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. Changing this value forces the resource to be recreated.
+* `cloud_ref` - (Optional) It is a reference to an object of type cloud. Field introduced in 18.2.5. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. Changing this value forces the resource to be recreated.
+* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `routing_service` - (Optional) Routing information of the networkservice. Field introduced in 18.2.5. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant. Field introduced in 18.2.5. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. Changing this value forces the resource to be recreated.
 
 
 ### Timeouts

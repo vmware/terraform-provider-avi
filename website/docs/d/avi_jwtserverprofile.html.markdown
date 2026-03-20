@@ -39,6 +39,7 @@ In addition to all arguments above, the following attributes are exported:
 * `jwks_keys` - Jwks key set used for validating the jwt, only allowed with profile_type client_auth. Field introduced in 20.1.3. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `jwt_profile_type` - Type of jwt server profile which defines the usage type. Enum options - CLIENT_AUTH, CONTROLLER_INTERNAL_AUTH. Field introduced in 20.1.6. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `name` - Name of the jwt profile. Field introduced in 20.1.3. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `protected_resource_config` - Oauth 2.0 protected resource metadata configuration (rfc 9728). Only applicable when jwt_profile_type is client_auth. Field introduced in 32.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `tenant_ref` - Uuid of the tenant. It is a reference to an object of type tenant. Field introduced in 20.1.3. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `uuid` - Uuid of the jwtprofile. Field introduced in 20.1.3. Allowed with any value in enterprise, enterprise with cloud services edition.
 
