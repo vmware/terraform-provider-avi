@@ -32,9 +32,9 @@ data "avi_localworkerfdsversion" "foo_localworkerfdsversion" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `name` - Default glw fds version name. Field introduced in 31.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `tenant_ref` - Uuid of the tenant. It is a reference to an object of type tenant. Field introduced in 31.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `timeline` - Fds timeline maintained by glw. Field introduced in 31.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `uuid` - Default glw fds version uuid. Field introduced in 31.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `version` - Fds version maintained by glw. Field introduced in 31.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `name` - Default glw fds version name. Field introduced in 31.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `tenant_ref` - Uuid of the tenant. It is a reference to an object of type tenant. Field introduced in 31.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `timeline` - Fds timeline maintained by glw. Field introduced in 31.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `uuid` - Default glw fds version uuid. Field introduced in 31.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `version` - Fds version maintained by glw. Field introduced in 31.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 

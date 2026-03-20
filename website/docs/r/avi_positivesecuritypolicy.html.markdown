@@ -27,13 +27,13 @@ resource "avi_positivesecuritypolicy" "foo" {
 
 The following arguments are supported:
 
-* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 31.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `description` - (Optional) Details of the positive security configuration. Field introduced in 31.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `enable_positive_security_rule_updates` - (Optional) Enable positive security rule generation using the application learning data rules will be programmed in a dedicated learning group. Field introduced in 31.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `enable_regex_programming` - (Optional) Enable dynamic regex generation for positive security rules. This is an experimental feature and shouldn't be used in production. Field introduced in 31.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `name` - (Optional) The name of the positivesecurity configuration. Field introduced in 31.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `positive_security_params` - (Optional) Parameters for generating positive security rules. Field introduced in 31.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `tenant_ref` - (Optional) Details of the tenant for positive security policy. It is a reference to an object of type tenant. Field introduced in 31.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 31.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `description` - (Optional) Details of the positive security configuration. Field introduced in 31.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `enable_positive_security_rule_updates` - (Optional) Enable positive security rule generation using the application learning data rules will be programmed in a dedicated learning group. Field introduced in 31.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `enable_regex_programming` - (Optional) Enable dynamic regex generation for positive security rules. This is an experimental feature and shouldn't be used in production. Field introduced in 31.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `name` - (Optional) The name of the positivesecurity configuration. Field introduced in 31.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `positive_security_params` - (Optional) Parameters for generating positive security rules. Field introduced in 31.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `tenant_ref` - (Optional) Details of the tenant for positive security policy. It is a reference to an object of type tenant. Field introduced in 31.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
 
 
 ### Timeouts
@@ -48,5 +48,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-* `uuid` -  Uuid of the positive security configuration. Field introduced in 31.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `uuid` -  Uuid of the positive security configuration. Field introduced in 31.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 

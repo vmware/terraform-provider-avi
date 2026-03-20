@@ -36,9 +36,9 @@ In addition to all arguments above, the following attributes are exported:
 * `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `created_by` - Creator name. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `description` - Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `geo_db_ref` - Geo database. It is a reference to an object of type geodb. Field introduced in 21.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `internal` - Network security policy is created and modified by internal modules only. Should not be modified by users. Field introduced in 21.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `ip_reputation_db_ref` - Ip reputation database. It is a reference to an object of type ipreputationdb. Field introduced in 20.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `geo_db_ref` - Geo database. It is a reference to an object of type geodb. Field introduced in 21.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `internal` - Network security policy is created and modified by internal modules only. Should not be modified by users. Field introduced in 21.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `ip_reputation_db_ref` - Ip reputation database. It is a reference to an object of type ipreputationdb. Field introduced in 20.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `name` - Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `rules` - Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.

@@ -27,10 +27,10 @@ resource "avi_localworkerfdsversion" "foo" {
 
 The following arguments are supported:
 
-* `name` - (Optional) Default glw fds version name. Field introduced in 31.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `tenant_ref` - (Optional) Uuid of the tenant. It is a reference to an object of type tenant. Field introduced in 31.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `timeline` - (Optional) Fds timeline maintained by glw. Field introduced in 31.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `version` - (Optional) Fds version maintained by glw. Field introduced in 31.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `name` - (Optional) Default glw fds version name. Field introduced in 31.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `tenant_ref` - (Optional) Uuid of the tenant. It is a reference to an object of type tenant. Field introduced in 31.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `timeline` - (Optional) Fds timeline maintained by glw. Field introduced in 31.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `version` - (Optional) Fds version maintained by glw. Field introduced in 31.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
 
 
 ### Timeouts
@@ -45,5 +45,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-* `uuid` -  Default glw fds version uuid. Field introduced in 31.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `uuid` -  Default glw fds version uuid. Field introduced in 31.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 

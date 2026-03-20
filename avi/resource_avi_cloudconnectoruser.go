@@ -34,9 +34,22 @@ func ResourceCloudConnectorUserSchema() map[string]*schema.Schema {
 			Computed: true,
 			Elem:     ResourceGCPCredentialsSchema(),
 		},
+		"last_password_rotation": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Computed:     true,
+			ValidateFunc: validateInteger,
+		},
 		"name": {
 			Type:     schema.TypeString,
 			Required: true,
+		},
+		"new_password_enc": {
+			Type:             schema.TypeString,
+			Optional:         true,
+			Computed:         true,
+			Sensitive:        true,
+			DiffSuppressFunc: suppressSensitiveFieldDiffs,
 		},
 		"nsxt_credentials": {
 			Type:     schema.TypeSet,

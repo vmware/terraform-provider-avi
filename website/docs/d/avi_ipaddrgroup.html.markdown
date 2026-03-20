@@ -41,6 +41,7 @@ In addition to all arguments above, the following attributes are exported:
 * `marathon_service_port` - Task port associated with marathon service port. If marathon app has multiple service ports, this is required. Else, the first task port is used. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `name` - Name of the ip address group. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `nsx_groups` - An nsx group that maps to a dynamic collection of ip addresses, derived from its definition in nsx. Field introduced in 32.1.1. Maximum of 1 items allowed. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `prefixes` - Configure ip address prefix(es). Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `ranges` - Configure ip address range(s). Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `tenant_ref` - It is a reference to an object of type tenant. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.

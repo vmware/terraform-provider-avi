@@ -27,17 +27,17 @@ resource "avi_sspinstance" "foo" {
 
 The following arguments are supported:
 
-* `feature` - (Required) Type of the ssp feature instance. Enum options - SSP_INTELLIGENT_ASSIST, SSP_VDLS. Field introduced in 32.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `hostname` - (Required) Hostname of the ssp feature instance. Field introduced in 32.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `name` - (Required) Name of the onboarded ssp feature instance. Field introduced in 32.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `status` - (Required) Status of the ssp feature instance. Enum options - SSP_STATUS_IN_PROGRESS, SSP_STATUS_ACTIVE, SSP_STATUS_CERT_UPDATE_FAILED. Field introduced in 32.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `avi_client_cert` - (Optional) Client certificate that avi uses to authenticate with the ssp instance. Field introduced in 32.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `client_cert` - (Optional) Client certificate that the ssp instance uses to authenticate with avi. Field introduced in 32.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 32.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `description` - (Optional) Description of the onboarded ssp feature instance. Field introduced in 32.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `ingress_cert` - (Optional) Ingress (server) certificate chain that the ssp endpoint uses. Field introduced in 32.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `resources` - (Optional) Resources associated with the ssp feature instance. Field introduced in 32.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `tenant_ref` - (Optional) Tenant reference for the ssp object. It is a reference to an object of type tenant. Field introduced in 32.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `feature` - (Required) Type of the ssp feature instance. Enum options - SSP_INTELLIGENT_ASSIST, SSP_CENTRAL_LICENSING_SERVICE. Field introduced in 32.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. Changing this value forces the resource to be recreated.
+* `hostname` - (Required) Hostname of the ssp feature instance. Field introduced in 32.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `name` - (Required) Name of the onboarded ssp feature instance. Field introduced in 32.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. Changing this value forces the resource to be recreated.
+* `status` - (Required) Status of the ssp feature instance. Enum options - SSP_STATUS_IN_PROGRESS, SSP_STATUS_ACTIVE, SSP_STATUS_CERT_UPDATE_FAILED. Field introduced in 32.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `avi_client_cert` - (Optional) Client certificate that avi uses to authenticate with the ssp instance. Field introduced in 32.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `client_cert` - (Optional) Client certificate that the ssp instance uses to authenticate with avi. Field introduced in 32.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 32.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `description` - (Optional) Description of the onboarded ssp feature instance. Field introduced in 32.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `ingress_cert` - (Optional) Ingress (server) certificate chain that the ssp endpoint uses. Field introduced in 32.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `resources` - (Optional) Resources associated with the ssp feature instance. Field introduced in 32.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `tenant_ref` - (Optional) Tenant reference for the ssp object. It is a reference to an object of type tenant. Field introduced in 32.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
 
 
 ### Timeouts
@@ -52,5 +52,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-* `uuid` -  Uuid for the onboarded ssp feature instance. Field introduced in 32.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `uuid` -  Uuid for the onboarded ssp feature instance. Field introduced in 32.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 

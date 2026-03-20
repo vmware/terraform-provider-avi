@@ -57,6 +57,10 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"audit_qat_huge_pages": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"auto_rebalance": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -131,6 +135,10 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Elem:     ResourceConfigPbAttributesSchema(),
 			},
 			"connection_memory_percentage": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"control_qat_huge_pages": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
@@ -712,6 +720,10 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"optimistic_placement": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"os_reserved_memory": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -745,6 +757,10 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Computed: true,
 			},
 			"pre_upgrade_se_available_mem_threshold": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"qat_hpage_mem_per_process": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},

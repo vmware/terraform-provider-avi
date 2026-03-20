@@ -27,11 +27,11 @@ resource "avi_rmcloudopsproto" "foo" {
 
 The following arguments are supported:
 
-* `last_queried_se_creation_limit` - (Optional) The most recent value of concurrent se creation limit from cloudconnectorstatus. Field introduced in 20.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `name` - (Optional) Cloud name. Field introduced in 20.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `pending_se_creation_count` - (Optional) Number of se creations in progress. Field introduced in 20.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `pending_vnic_op_count` - (Optional) Number of vnic operations in progress (both add and delete). Field introduced in 20.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `se_create_limit_reached` - (Optional) Se creation limit reached. Field introduced in 31.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `last_queried_se_creation_limit` - (Optional) The most recent value of concurrent se creation limit from cloudconnectorstatus. Field introduced in 20.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `name` - (Optional) Cloud name. Field introduced in 20.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `pending_se_creation_count` - (Optional) Number of se creations in progress. Field introduced in 20.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `pending_vnic_op_count` - (Optional) Number of vnic operations in progress (both add and delete). Field introduced in 20.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `se_create_limit_reached` - (Optional) Se creation limit reached. Field introduced in 31.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
 
 
 ### Timeouts

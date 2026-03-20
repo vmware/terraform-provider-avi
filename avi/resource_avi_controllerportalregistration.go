@@ -26,6 +26,12 @@ func ResourceControllerPortalRegistrationSchema() map[string]*schema.Schema {
 			Computed: true,
 			Elem:     ResourceControllerPortalAuthSchema(),
 		},
+		"site_info": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceControllerPortalSiteInfoSchema(),
+		},
 		"tenant_ref": {
 			Type:     schema.TypeString,
 			Optional: true,

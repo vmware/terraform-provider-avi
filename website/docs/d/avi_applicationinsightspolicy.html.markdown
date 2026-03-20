@@ -32,12 +32,12 @@ data "avi_applicationinsightspolicy" "foo_applicationinsightspolicy" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `application_insights_params` - Application insights parameters to filter application learning from clients. Field introduced in 31.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `application_sampling_config` - Application sampling configuration to control rate and volume of data ingestion for application insights that the serviceengines are expected to send to the controller. Field introduced in 31.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `application_insights_params` - Application insights parameters to filter application learning from clients. Field introduced in 31.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `application_sampling_config` - Application sampling configuration to control rate and volume of data ingestion for application insights that the serviceengines are expected to send to the controller. Field introduced in 31.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 31.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `description` - Details of the application insights configuration. Field introduced in 31.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `enable_application_insights` - Enable application insights, formerly called learning for this virtual service. Field introduced in 31.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `name` - The name of the application insights configuration. Field introduced in 31.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `tenant_ref` - Details of the tenant for the application insights configuration. It is a reference to an object of type tenant. Field introduced in 31.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `uuid` - Uuid of the application insights configuration. Field introduced in 31.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `description` - Details of the application insights configuration. Field introduced in 31.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `enable_application_insights` - Enable application insights, formerly called learning for this virtual service. Field introduced in 31.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `name` - The name of the application insights configuration. Field introduced in 31.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `tenant_ref` - Details of the tenant for the application insights configuration. It is a reference to an object of type tenant. Field introduced in 31.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `uuid` - Uuid of the application insights configuration. Field introduced in 31.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 

@@ -26,6 +26,7 @@ func ResourceJWTServerProfileSchema() map[string]*schema.Schema {
 			Type:         schema.TypeString,
 			Optional:     true,
 			Default:      "false",
+			ForceNew:     true,
 			ValidateFunc: validateBool,
 		},
 		"issuer": {
@@ -46,6 +47,12 @@ func ResourceJWTServerProfileSchema() map[string]*schema.Schema {
 		"name": {
 			Type:     schema.TypeString,
 			Required: true,
+		},
+		"protected_resource_config": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceJWTProtectedResourceConfigSchema(),
 		},
 		"tenant_ref": {
 			Type:     schema.TypeString,

@@ -35,7 +35,7 @@ In addition to all arguments above, the following attributes are exported:
 * `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `created_by` - Creator name. Field introduced in 17.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `description` - Field introduced in 17.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `internal` - The dns policy is created and modified by internal modules only. This should not be modified by users. Field introduced in 21.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `internal` - The dns policy is created and modified by internal modules only. This should not be modified by users. Field introduced in 21.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `name` - Name of the dns policy. Field introduced in 17.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `rule` - Dns rules. Field introduced in 17.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.

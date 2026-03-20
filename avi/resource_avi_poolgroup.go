@@ -19,6 +19,7 @@ func ResourcePoolGroupSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
+			ForceNew: true,
 		},
 		"configpb_attributes": {
 			Type:     schema.TypeSet,

@@ -27,11 +27,11 @@ resource "avi_tenantbinding" "foo" {
 
 The following arguments are supported:
 
-* `name` - (Required) Name of the tenant binding. Field introduced in 32.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `shared_tenant_ref` - (Required) Uuid of the tenant to which the object is being shared. It is a reference to an object of type tenant. Field introduced in 32.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 32.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `se_group_ref` - (Optional) Uuid of the service engine group being shared. It is a reference to an object of type serviceenginegroup. Field introduced in 32.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `tenant_ref` - (Optional) Tenant uuid. This field is used for admin tenant context. It is a reference to an object of type tenant. Field introduced in 32.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `name` - (Required) Name of the tenant binding. Field introduced in 32.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `shared_tenant_ref` - (Required) Uuid of the tenant to which the object is being shared. It is a reference to an object of type tenant. Field introduced in 32.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 32.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `se_group_ref` - (Optional) Uuid of the service engine group being shared. It is a reference to an object of type serviceenginegroup. Field introduced in 32.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `tenant_ref` - (Optional) Tenant uuid. This field is used for admin tenant context. It is a reference to an object of type tenant. Field introduced in 32.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
 
 
 ### Timeouts
@@ -46,5 +46,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-* `uuid` -  Uuid of the tenant binding. Field introduced in 32.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `uuid` -  Uuid of the tenant binding. Field introduced in 32.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 

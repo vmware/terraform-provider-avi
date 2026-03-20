@@ -10,11 +10,22 @@ import (
 
 func ResourceLicenseStatusSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
+		"cls_status": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceCLSStatusSchema(),
+		},
 		"configpb_attributes": {
 			Type:     schema.TypeSet,
 			Optional: true,
 			Computed: true,
 			Elem:     ResourceConfigPbAttributesSchema(),
+		},
+		"legacy_license_grace_period": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
 		},
 		"saas_status": {
 			Type:     schema.TypeSet,
@@ -27,6 +38,12 @@ func ResourceLicenseStatusSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 			Elem:     ResourceLicenseServiceUpdateSchema(),
+		},
+		"support_legacy_license": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Computed:     true,
+			ValidateFunc: validateBool,
 		},
 		"tenant_uuid": {
 			Type:     schema.TypeString,

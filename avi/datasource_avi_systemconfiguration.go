@@ -80,6 +80,10 @@ func dataSourceAviSystemConfiguration() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"intelligent_assist_enabled": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"kex_algorithm_exclude": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -107,6 +111,10 @@ func dataSourceAviSystemConfiguration() *schema.Resource {
 				Type:     schema.TypeSet,
 				Computed: true,
 				Elem:     ResourceNTPConfigurationSchema(),
+			},
+			"password_policy_managed_at_ops": {
+				Type:     schema.TypeString,
+				Computed: true,
 			},
 			"portal_configuration": {
 				Type:     schema.TypeSet,

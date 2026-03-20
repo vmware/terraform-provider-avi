@@ -52,6 +52,11 @@ func dataSourceAviIpAddrGroup() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"nsx_groups": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
 			"prefixes": {
 				Type:     schema.TypeList,
 				Computed: true,

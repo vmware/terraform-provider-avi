@@ -85,6 +85,12 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Default:      "1",
 			ValidateFunc: validateInteger,
 		},
+		"audit_qat_huge_pages": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "true",
+			ValidateFunc: validateBool,
+		},
 		"auto_rebalance": {
 			Type:         schema.TypeString,
 			Optional:     true,
@@ -164,6 +170,7 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
+			ForceNew: true,
 		},
 		"compress_ip_rules_for_each_ns_subnet": {
 			Type:         schema.TypeString,
@@ -188,6 +195,12 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional:     true,
 			Default:      "50",
 			ValidateFunc: validateInteger,
+		},
+		"control_qat_huge_pages": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "true",
+			ValidateFunc: validateBool,
 		},
 		"core_shm_app_cache": {
 			Type:         schema.TypeString,
@@ -1009,6 +1022,12 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"optimistic_placement": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
+		},
 		"os_reserved_memory": {
 			Type:         schema.TypeString,
 			Optional:     true,
@@ -1060,6 +1079,11 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional:     true,
 			Default:      "0",
 			ValidateFunc: validateInteger,
+		},
+		"qat_hpage_mem_per_process": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Default:  "QAT_HPAGE_MEM_16MB",
 		},
 		"realtime_se_metrics": {
 			Type:     schema.TypeSet,

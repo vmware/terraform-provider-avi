@@ -35,7 +35,7 @@ In addition to all arguments above, the following attributes are exported:
 * `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.6. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `name` - Name of the pki profile. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `run_script_ref` - Alert script config object for certificate management profile. It is a reference to an object of type alertscriptconfig. Field introduced in 20.1.3. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `run_script_ref` - Alert script config object for certificate management profile. It is a reference to an object of type alertscriptconfig. Field introduced in 20.1.3. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `script_params` - Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `tenant_ref` - It is a reference to an object of type tenant. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `uuid` - Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.

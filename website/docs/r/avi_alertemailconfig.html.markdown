@@ -27,12 +27,12 @@ resource "avi_alertemailconfig" "foo" {
 
 The following arguments are supported:
 
-* `name` - (Required) A user-friendly name of the email notification service. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `to_emails` - (Required) Alerts are sent to the comma separated list of  email recipients. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `cc_emails` - (Optional) Alerts are copied to the comma separated list of  email recipients. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `description` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `tenant_ref` - (Optional) It is a reference to an object of type tenant. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `name` - (Required) A user-friendly name of the email notification service. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `to_emails` - (Required) Alerts are sent to the comma separated list of  email recipients. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `cc_emails` - (Optional) Alerts are copied to the comma separated list of  email recipients. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `description` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
 
 
 ### Timeouts
