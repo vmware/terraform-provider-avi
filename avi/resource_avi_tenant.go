@@ -52,6 +52,7 @@ func ResourceTenantSchema() map[string]*schema.Schema {
 			Type:         schema.TypeString,
 			Optional:     true,
 			Default:      "true",
+			ForceNew:     true,
 			ValidateFunc: validateBool,
 		},
 		"name": {
@@ -59,6 +60,11 @@ func ResourceTenantSchema() map[string]*schema.Schema {
 			Required: true,
 		},
 		"uuid": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
+		"vcf_org_id": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,

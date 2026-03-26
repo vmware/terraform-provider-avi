@@ -27,19 +27,19 @@ resource "avi_httppolicyset" "foo" {
 
 The following arguments are supported:
 
-* `name` - (Required) Name of the http policy set. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `cloud_config_cksum` - (Optional) Checksum of cloud configuration for pool. Internally set by cloud connector. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `created_by` - (Optional) Creator name. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `description` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `geo_db_ref` - (Optional) Geo database. It is a reference to an object of type geodb. Field introduced in 21.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `http_request_policy` - (Optional) Http request policy for the virtual service. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `http_response_policy` - (Optional) Http response policy for the virtual service. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `http_security_policy` - (Optional) Http security policy for the virtual service. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `ip_reputation_db_ref` - (Optional) Ip reputation database. It is a reference to an object of type ipreputationdb. Field introduced in 20.1.3. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `is_internal_policy` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `tenant_ref` - (Optional) It is a reference to an object of type tenant. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `name` - (Required) Name of the http policy set. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `cloud_config_cksum` - (Optional) Checksum of cloud configuration for pool. Internally set by cloud connector. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `created_by` - (Optional) Creator name. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `description` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `geo_db_ref` - (Optional) Geo database. It is a reference to an object of type geodb. Field introduced in 21.1.1. Allowed with any value in enterprise, enterprise with cloud services edition. 
+* `http_request_policy` - (Optional) Http request policy for the virtual service. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `http_response_policy` - (Optional) Http response policy for the virtual service. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `http_security_policy` - (Optional) Http security policy for the virtual service. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `ip_reputation_db_ref` - (Optional) Ip reputation database. It is a reference to an object of type ipreputationdb. Field introduced in 20.1.3. Allowed with any value in enterprise, enterprise with cloud services edition. 
+* `is_internal_policy` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
 
 
 ### Timeouts

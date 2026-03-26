@@ -27,9 +27,9 @@ resource "avi_labelgroup" "foo" {
 
 The following arguments are supported:
 
-* `name` - (Required) Name of the label group. Field introduced in 20.1.5. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `labels` - (Optional) List of allowed or suggested labels for the label group. Field introduced in 20.1.5. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `name` - (Required) Name of the label group. Field introduced in 20.1.5. Allowed with any value in enterprise, enterprise with cloud services edition. 
+* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `labels` - (Optional) List of allowed or suggested labels for the label group. Field introduced in 20.1.5. Allowed with any value in enterprise, enterprise with cloud services edition. 
 
 
 ### Timeouts

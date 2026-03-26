@@ -27,18 +27,18 @@ resource "avi_poolgroupdeploymentpolicy" "foo" {
 
 The following arguments are supported:
 
-* `name` - (Required) The name of the pool group deployment policy. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `auto_disable_old_prod_pools` - (Optional) It will automatically disable old production pools once there is a new production candidate. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `description` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `evaluation_duration` - (Optional) Duration of evaluation period for automatic deployment. Allowed values are 60-86400. Unit is sec. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `rules` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `scheme` - (Optional) Deployment scheme. Enum options - BLUE_GREEN, CANARY. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `target_test_traffic_ratio` - (Optional) Target traffic ratio before pool is made production. Allowed values are 1-100. Unit is ratio. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `tenant_ref` - (Optional) It is a reference to an object of type tenant. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `test_traffic_ratio_rampup` - (Optional) Ratio of the traffic that is sent to the pool under test. Test ratio of 100 means blue green. Allowed values are 1-100. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `webhook_ref` - (Optional) Webhook configured with url that avi controller will pass back information about pool group, old and new pool information and current deployment rule results. It is a reference to an object of type webhook. Field introduced in 17.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `name` - (Required) The name of the pool group deployment policy. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `auto_disable_old_prod_pools` - (Optional) It will automatically disable old production pools once there is a new production candidate. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `description` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `evaluation_duration` - (Optional) Duration of evaluation period for automatic deployment. Allowed values are 60-86400. Unit is sec. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `rules` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `scheme` - (Optional) Deployment scheme. Enum options - BLUE_GREEN, CANARY. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `target_test_traffic_ratio` - (Optional) Target traffic ratio before pool is made production. Allowed values are 1-100. Unit is ratio. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `test_traffic_ratio_rampup` - (Optional) Ratio of the traffic that is sent to the pool under test. Test ratio of 100 means blue green. Allowed values are 1-100. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `webhook_ref` - (Optional) Webhook configured with url that avi controller will pass back information about pool group, old and new pool information and current deployment rule results. It is a reference to an object of type webhook. Field introduced in 17.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
 
 
 ### Timeouts

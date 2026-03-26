@@ -36,7 +36,7 @@ In addition to all arguments above, the following attributes are exported:
 * `client_cert` - Client certificate that the ssp instance uses to authenticate with avi. Field introduced in 32.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 32.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `description` - Description of the onboarded ssp feature instance. Field introduced in 32.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `feature` - Type of the ssp feature instance. Enum options - SSP_INTELLIGENT_ASSIST, SSP_VDLS. Field introduced in 32.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `feature` - Type of the ssp feature instance. Enum options - SSP_INTELLIGENT_ASSIST, SSP_CENTRAL_LICENSING_SERVICE. Field introduced in 32.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `hostname` - Hostname of the ssp feature instance. Field introduced in 32.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `ingress_cert` - Ingress (server) certificate chain that the ssp endpoint uses. Field introduced in 32.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `name` - Name of the onboarded ssp feature instance. Field introduced in 32.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.

@@ -1,6 +1,6 @@
 /***************************************************************************
  * ========================================================================
- * Copyright (c) 2025 Broadcom Inc. and/or its subsidiaries. All Rights Reserved. Broadcom Confidential.
+ * Copyright (c) 2026 Broadcom Inc. and/or its subsidiaries. All Rights Reserved. Broadcom Confidential.
  * ========================================================================
  */
 
@@ -421,7 +421,7 @@ func APIRead(d *schema.ResourceData, meta interface{}, objType string, s map[str
 		if err != nil {
 			d.SetId("")
 			log.Printf("[ERROR] APIRead object with uuid %v not found err %v\n", uuid, err)
-			return err
+			return nil
 		}
 	} else if name, ok := d.GetOk("name"); ok {
 		var err error
@@ -440,7 +440,7 @@ func APIRead(d *schema.ResourceData, meta interface{}, objType string, s map[str
 		if err != nil {
 			d.SetId("")
 			log.Printf("[ERROR] APIRead object with name %v:%v not found err %v\n", objType, name, err)
-			return err
+			return nil
 		}
 	} else if specialobj {
 		path := "api/" + objType
@@ -449,7 +449,7 @@ func APIRead(d *schema.ResourceData, meta interface{}, objType string, s map[str
 		if err != nil {
 			d.SetId("")
 			log.Printf("[ERROR] APIRead special object with path %v not found err %v\n", path, err)
-			return err
+			return nil
 		}
 	} else {
 		d.SetId("")

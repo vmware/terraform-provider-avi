@@ -29,9 +29,17 @@ func dataSourceAviCloudConnectorUser() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceGCPCredentialsSchema(),
 			},
+			"last_password_rotation": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"name": {
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
+			},
+			"new_password_enc": {
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"nsxt_credentials": {

@@ -27,14 +27,14 @@ resource "avi_l4policyset" "foo" {
 
 The following arguments are supported:
 
-* `name` - (Required) Name of the l4 policy set. Field introduced in 17.2.7. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `created_by` - (Optional) Creator name. Field introduced in 17.2.7. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `description` - (Optional) Field introduced in 17.2.7. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `is_internal_policy` - (Optional) Field introduced in 17.2.7. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `l4_connection_policy` - (Optional) Policy to apply when a new transport connection is setup. Field introduced in 17.2.7. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `tenant_ref` - (Optional) It is a reference to an object of type tenant. Field introduced in 17.2.7. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `name` - (Required) Name of the l4 policy set. Field introduced in 17.2.7. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `created_by` - (Optional) Creator name. Field introduced in 17.2.7. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `description` - (Optional) Field introduced in 17.2.7. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `is_internal_policy` - (Optional) Field introduced in 17.2.7. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `l4_connection_policy` - (Optional) Policy to apply when a new transport connection is setup. Field introduced in 17.2.7. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant. Field introduced in 17.2.7. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
 
 
 ### Timeouts

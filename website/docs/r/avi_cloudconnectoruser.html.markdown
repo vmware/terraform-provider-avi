@@ -27,18 +27,20 @@ resource "avi_cloudconnectoruser" "foo" {
 
 The following arguments are supported:
 
-* `name` - (Required) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `azure_serviceprincipal` - (Optional) Field introduced in 17.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `azure_userpass` - (Optional) Field introduced in 17.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `gcp_credentials` - (Optional) Credentials for google cloud platform. Field introduced in 18.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `nsxt_credentials` - (Optional) Credentials to talk to nsx-t manager. Field introduced in 20.1.1. Allowed with any value in enterprise, basic, enterprise with cloud services edition.
-* `password` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `private_key` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `public_key` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `tenant_ref` - (Optional) It is a reference to an object of type tenant. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `tencent_credentials` - (Optional) Credentials for tencent cloud. Field introduced in 18.2.3. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `vcenter_credentials` - (Optional) Credentials to talk to vcenter. Field introduced in 20.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `name` - (Required) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `azure_serviceprincipal` - (Optional) Field introduced in 17.2.1. Allowed with any value in enterprise, enterprise with cloud services edition. 
+* `azure_userpass` - (Optional) Field introduced in 17.2.1. Allowed with any value in enterprise, enterprise with cloud services edition. 
+* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `gcp_credentials` - (Optional) Credentials for google cloud platform. Field introduced in 18.2.1. Allowed with any value in enterprise, enterprise with cloud services edition. 
+* `last_password_rotation` - (Optional) Timestamp (unix epoch in seconds) of last successful password rotation. Used to determine when next rotation is due based on cc_user_password_expiry_days. Field introduced in 32.1.1. Unit is sec. Allowed with any value in enterprise, enterprise with cloud services edition. 
+* `new_password_enc` - (Optional) New password stored temporarily during rotation. Cleared after successful rotation. Field introduced in 32.1.1. Allowed with any value in enterprise, enterprise with cloud services edition. 
+* `nsxt_credentials` - (Optional) Credentials to talk to nsx-t manager. Field introduced in 20.1.1. Allowed with any value in enterprise, basic, enterprise with cloud services edition. 
+* `password` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `private_key` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `public_key` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `tencent_credentials` - (Optional) Credentials for tencent cloud. Field introduced in 18.2.3. Allowed with any value in enterprise, enterprise with cloud services edition. 
+* `vcenter_credentials` - (Optional) Credentials to talk to vcenter. Field introduced in 20.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
 
 
 ### Timeouts

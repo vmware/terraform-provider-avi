@@ -59,6 +59,12 @@ func ResourceCloudSchema() map[string]*schema.Schema {
 			Default:      "true",
 			ValidateFunc: validateBool,
 		},
+		"disable_metrics_polling": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
+		},
 		"dns_provider_ref": {
 			Type:     schema.TypeString,
 			Optional: true,

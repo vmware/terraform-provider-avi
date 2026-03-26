@@ -32,6 +32,7 @@ func ResourceVsVipSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
+			ForceNew: true,
 		},
 		"configpb_attributes": {
 			Type:     schema.TypeSet,
@@ -74,6 +75,7 @@ func ResourceVsVipSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
+			ForceNew: true,
 		},
 		"uuid": {
 			Type:     schema.TypeString,
@@ -89,6 +91,7 @@ func ResourceVsVipSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
+			ForceNew: true,
 		},
 		"vsvip_cloud_config_cksum": {
 			Type:     schema.TypeString,

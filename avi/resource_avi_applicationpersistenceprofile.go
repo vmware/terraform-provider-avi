@@ -55,6 +55,7 @@ func ResourceApplicationPersistenceProfileSchema() map[string]*schema.Schema {
 			Type:         schema.TypeString,
 			Optional:     true,
 			Default:      "false",
+			ForceNew:     true,
 			ValidateFunc: validateBool,
 		},
 		"markers": {
@@ -69,6 +70,7 @@ func ResourceApplicationPersistenceProfileSchema() map[string]*schema.Schema {
 		"persistence_type": {
 			Type:     schema.TypeString,
 			Required: true,
+			ForceNew: true,
 		},
 		"persistence_update_interval": {
 			Type:         schema.TypeString,

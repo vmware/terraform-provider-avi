@@ -69,6 +69,18 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"cc_user_password_expiry_days": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"cc_user_password_rotation_job_period": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"cert_rotation_jwt_retention_days": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"check_vsvip_fqdn_syntax": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -167,6 +179,10 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Computed: true,
 			},
 			"enable_resmgr_log_cache_print": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"enable_streaming_based_nsx_ip_group_sync": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},

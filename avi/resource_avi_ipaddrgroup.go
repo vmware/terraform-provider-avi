@@ -57,6 +57,11 @@ func ResourceIpAddrGroupSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Required: true,
 		},
+		"nsx_groups": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     &schema.Schema{Type: schema.TypeString},
+		},
 		"prefixes": {
 			Type:     schema.TypeList,
 			Optional: true,

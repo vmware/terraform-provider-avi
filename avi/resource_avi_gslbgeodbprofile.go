@@ -21,6 +21,11 @@ func ResourceGslbGeoDbProfileSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"distance_computation_algorithm": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Default:  "GSLB_DISTANCE_AVI_OPTIMISED",
+		},
 		"entries": {
 			Type:     schema.TypeList,
 			Required: true,
@@ -30,6 +35,7 @@ func ResourceGslbGeoDbProfileSchema() map[string]*schema.Schema {
 			Type:         schema.TypeString,
 			Optional:     true,
 			Default:      "true",
+			ForceNew:     true,
 			ValidateFunc: validateBool,
 		},
 		"markers": {

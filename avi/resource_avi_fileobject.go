@@ -24,6 +24,7 @@ func ResourceFileObjectSchema() map[string]*schema.Schema {
 			Type:         schema.TypeString,
 			Optional:     true,
 			Default:      "false",
+			ForceNew:     true,
 			ValidateFunc: validateBool,
 		},
 		"configpb_attributes": {
@@ -67,17 +68,20 @@ func ResourceFileObjectSchema() map[string]*schema.Schema {
 			Type:         schema.TypeString,
 			Optional:     true,
 			Default:      "false",
+			ForceNew:     true,
 			ValidateFunc: validateBool,
 		},
 		"is_federated": {
 			Type:         schema.TypeString,
 			Optional:     true,
 			Default:      "false",
+			ForceNew:     true,
 			ValidateFunc: validateBool,
 		},
 		"name": {
 			Type:     schema.TypeString,
 			Required: true,
+			ForceNew: true,
 		},
 		"path": {
 			Type:     schema.TypeString,
@@ -94,6 +98,7 @@ func ResourceFileObjectSchema() map[string]*schema.Schema {
 			Type:         schema.TypeString,
 			Optional:     true,
 			Computed:     true,
+			ForceNew:     true,
 			ValidateFunc: validateBool,
 		},
 		"size": {
@@ -106,10 +111,12 @@ func ResourceFileObjectSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
+			ForceNew: true,
 		},
 		"type": {
 			Type:     schema.TypeString,
 			Required: true,
+			ForceNew: true,
 		},
 		"uuid": {
 			Type:     schema.TypeString,

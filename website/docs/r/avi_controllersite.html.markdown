@@ -27,11 +27,11 @@ resource "avi_controllersite" "foo" {
 
 The following arguments are supported:
 
-* `address` - (Required) Ip address or a dns resolvable, fully qualified domain name of the site controller cluster. Field introduced in 18.2.5. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `name` - (Required) Name for the site controller cluster. Field introduced in 18.2.5. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `port` - (Optional) The controller site cluster's rest api port number. Allowed values are 1-65535. Field introduced in 18.2.5. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `tenant_ref` - (Optional) Reference for the tenant. It is a reference to an object of type tenant. Field introduced in 18.2.5. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `address` - (Required) Ip address or a dns resolvable, fully qualified domain name of the site controller cluster. Field introduced in 18.2.5. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `name` - (Required) Name for the site controller cluster. Field introduced in 18.2.5. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `port` - (Optional) The controller site cluster's rest api port number. Allowed values are 1-65535. Field introduced in 18.2.5. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `tenant_ref` - (Optional) Reference for the tenant. It is a reference to an object of type tenant. Field introduced in 18.2.5. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
 
 
 ### Timeouts

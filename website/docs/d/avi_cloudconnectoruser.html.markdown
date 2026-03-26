@@ -36,7 +36,9 @@ In addition to all arguments above, the following attributes are exported:
 * `azure_userpass` - Field introduced in 17.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `gcp_credentials` - Credentials for google cloud platform. Field introduced in 18.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `last_password_rotation` - Timestamp (unix epoch in seconds) of last successful password rotation. Used to determine when next rotation is due based on cc_user_password_expiry_days. Field introduced in 32.1.1. Unit is sec. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `name` - Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `new_password_enc` - New password stored temporarily during rotation. Cleared after successful rotation. Field introduced in 32.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `nsxt_credentials` - Credentials to talk to nsx-t manager. Field introduced in 20.1.1. Allowed with any value in enterprise, basic, enterprise with cloud services edition.
 * `password` - Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `private_key` - Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.

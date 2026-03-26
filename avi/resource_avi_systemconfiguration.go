@@ -27,6 +27,7 @@ func ResourceSystemConfigurationSchema() map[string]*schema.Schema {
 			Type:         schema.TypeString,
 			Optional:     true,
 			Default:      "false",
+			ForceNew:     true,
 			ValidateFunc: validateBool,
 		},
 		"configpb_attributes": {
@@ -61,6 +62,7 @@ func ResourceSystemConfigurationSchema() map[string]*schema.Schema {
 			Type:         schema.TypeString,
 			Optional:     true,
 			Default:      "false",
+			ForceNew:     true,
 			ValidateFunc: validateBool,
 		},
 		"email_configuration": {
@@ -91,6 +93,7 @@ func ResourceSystemConfigurationSchema() map[string]*schema.Schema {
 			Type:         schema.TypeString,
 			Optional:     true,
 			Default:      "false",
+			ForceNew:     true,
 			ValidateFunc: validateBool,
 		},
 		"global_tenant_config": {
@@ -138,6 +141,12 @@ func ResourceSystemConfigurationSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 			Elem:     ResourceNTPConfigurationSchema(),
+		},
+		"password_policy_managed_at_ops": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
 		},
 		"portal_configuration": {
 			Type:     schema.TypeSet,

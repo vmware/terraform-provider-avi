@@ -27,11 +27,14 @@ resource "avi_certjwtstore" "foo" {
 
 The following arguments are supported:
 
-* `jwt` - (Required) Jwt containing current portal certificate along with the full certificate bundle chain, signed by the private key of previous portal certificate. Field introduced in 32.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `kid` - (Required) Sha256 thumbprint of the previous old portal certificate. Field introduced in 32.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `last_rotated_at` - (Required) Timestamp of certificate rotation. Field introduced in 32.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `public_key_algorithm` - (Required) Public key algorithm. Field introduced in 32.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 32.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `jwt` - (Required) Jwt containing current portal certificate along with the full certificate bundle chain, signed by the private key of previous portal certificate. Field introduced in 32.1.1. Allowed with any value in enterprise, enterprise with cloud services edition. 
+* `key` - (Required) Private key. Field introduced in 32.1.1. Allowed with any value in enterprise, enterprise with cloud services edition. 
+* `kid` - (Required) Sha256 thumbprint of the previous old portal certificate. Field introduced in 32.1.1. Allowed with any value in enterprise, enterprise with cloud services edition. 
+* `last_rotated_at` - (Required) Timestamp of certificate rotation. Field introduced in 32.1.1. Allowed with any value in enterprise, enterprise with cloud services edition. 
+* `public_key_algorithm` - (Required) Public key algorithm. Field introduced in 32.1.1. Allowed with any value in enterprise, enterprise with cloud services edition. 
+* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 32.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `key_passphrase` - (Optional) Private key passphrase. Field introduced in 32.1.1. Allowed with any value in enterprise, enterprise with cloud services edition. 
+* `type` - (Optional) Type of ssl certificate. Enum options - SSL_CERTIFICATE_TYPE_VIRTUALSERVICE, SSL_CERTIFICATE_TYPE_SYSTEM, SSL_CERTIFICATE_TYPE_CA, SSL_CERTIFICATE_TYPE_CLIENT, SSL_CERTIFICATE_TYPE_SECURE_CHANNEL. Field introduced in 32.1.1. Allowed with any value in enterprise, enterprise with cloud services edition. 
 
 
 ### Timeouts
