@@ -114,7 +114,7 @@ resource "avi_user" "testUser" {
 	tenant_ref = data.avi_tenant.default_tenant.id
 	all_tenants = false
 }
-	password = "G7#n2K!pL9xR"
+	password = "pbkdf2_sha256$100000$vwZd950E3jSj$tC/x4hJBolHm2Ki4uVNbMW59ZQcC95/p5UZUWjmTuFs="
 	username = "test-tf-user"
 	name = "test-tf-user"
 	full_name = "System Administrator"
