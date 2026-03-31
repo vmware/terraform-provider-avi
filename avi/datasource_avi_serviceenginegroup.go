@@ -1197,6 +1197,10 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceVipAutoscaleGroupSchema(),
 			},
+			"vmotion_notification_poll_interval": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"vnic_dhcp_ip_check_interval": {
 				Type:     schema.TypeString,
 				Computed: true,

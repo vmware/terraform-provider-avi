@@ -1697,6 +1697,12 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Computed: true,
 			Elem:     ResourceVipAutoscaleGroupSchema(),
 		},
+		"vmotion_notification_poll_interval": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "5",
+			ValidateFunc: validateInteger,
+		},
 		"vnic_dhcp_ip_check_interval": {
 			Type:         schema.TypeString,
 			Optional:     true,
