@@ -419,6 +419,11 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceCloudFlavorSchema(),
 			},
+			"ip_advertisement_profile": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceIpAdvertisementProfileSchema(),
+			},
 			"iptables": {
 				Type:     schema.TypeList,
 				Computed: true,

@@ -597,6 +597,12 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Computed: true,
 			Elem:     ResourceCloudFlavorSchema(),
 		},
+		"ip_advertisement_profile": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceIpAdvertisementProfileSchema(),
+		},
 		"iptables": {
 			Type:     schema.TypeList,
 			Optional: true,
