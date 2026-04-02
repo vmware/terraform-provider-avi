@@ -10,6 +10,11 @@ import (
 
 func ResourceAkoAmkoClusterSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
+		"cloud_config_cksum": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
 		"cloud_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
@@ -45,6 +50,11 @@ func ResourceAkoAmkoClusterSchema() map[string]*schema.Schema {
 		"name": {
 			Type:     schema.TypeString,
 			Required: true,
+		},
+		"tenant_ref": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
 		},
 		"uuid": {
 			Type:     schema.TypeString,

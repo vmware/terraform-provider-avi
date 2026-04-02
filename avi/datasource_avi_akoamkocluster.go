@@ -9,6 +9,10 @@ func dataSourceAviAkoAmkoCluster() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviAkoAmkoClusterRead,
 		Schema: map[string]*schema.Schema{
+			"cloud_config_cksum": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"cloud_ref": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -38,6 +42,11 @@ func dataSourceAviAkoAmkoCluster() *schema.Resource {
 				Elem:     ResourceAkoAmkoClusterMetadataSchema(),
 			},
 			"name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"tenant_ref": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
