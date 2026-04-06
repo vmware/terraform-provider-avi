@@ -33,6 +33,10 @@ func dataSourceAviLicenseStatus() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceLicenseServiceUpdateSchema(),
 			},
+			"ssp_license_reported_at": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"support_legacy_license": {
 				Type:     schema.TypeString,
 				Computed: true,

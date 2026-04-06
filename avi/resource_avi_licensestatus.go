@@ -39,6 +39,11 @@ func ResourceLicenseStatusSchema() map[string]*schema.Schema {
 			Computed: true,
 			Elem:     ResourceLicenseServiceUpdateSchema(),
 		},
+		"ssp_license_reported_at": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
 		"support_legacy_license": {
 			Type:         schema.TypeString,
 			Optional:     true,
