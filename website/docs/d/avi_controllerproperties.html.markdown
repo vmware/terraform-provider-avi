@@ -145,6 +145,7 @@ In addition to all arguments above, the following attributes are exported:
 * `vs_se_bootup_fail` - Unit is sec. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `vs_se_bootup_fail_patch` - Wait for longer for patch ses to boot up. Field introduced in 30.2.1. Unit is sec. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `vs_se_create_fail` - Unit is sec. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `vs_se_license_reservation_fail` - Time to wait before marking license reservation operation for an se as failed. Field introduced in 32.1.1. Unit is sec. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `vs_se_ping_fail` - Unit is sec. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `vs_se_vnic_fail` - Unit is sec. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `vs_se_vnic_ip_fail` - Unit is sec. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.

@@ -467,6 +467,10 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"vs_se_license_reservation_fail": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"vs_se_ping_fail": {
 				Type:     schema.TypeString,
 				Computed: true,

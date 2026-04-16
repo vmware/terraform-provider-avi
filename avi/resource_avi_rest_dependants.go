@@ -31863,7 +31863,7 @@ func ResourceSaasLicensingInfoSchema() *schema.Resource {
 			"enable_notional_reserve": {
 				Type:         schema.TypeString,
 				Optional:     true,
-				Default:      "true",
+				Default:      "false",
 				ValidateFunc: validateBool,
 			},
 		},

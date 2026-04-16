@@ -684,6 +684,12 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Default:      "1500",
 			ValidateFunc: validateInteger,
 		},
+		"vs_se_license_reservation_fail": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "30",
+			ValidateFunc: validateInteger,
+		},
 		"vs_se_ping_fail": {
 			Type:         schema.TypeString,
 			Optional:     true,
