@@ -375,6 +375,11 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 			Optional: true,
 			Elem:     ResourceServiceSchema(),
 		},
+		"session_key_forwarder_ref": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
 		"sideband_profile": {
 			Type:     schema.TypeSet,
 			Optional: true,

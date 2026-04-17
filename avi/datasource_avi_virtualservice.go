@@ -298,6 +298,10 @@ func dataSourceAviVirtualService() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceServiceSchema(),
 			},
+			"session_key_forwarder_ref": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"sideband_profile": {
 				Type:     schema.TypeSet,
 				Computed: true,
