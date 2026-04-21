@@ -30165,7 +30165,7 @@ func ResourceRestoreParamsSchema() *schema.Resource {
 			"type": {
 				Type:     schema.TypeString,
 				Optional: true,
-				Default:  "JSON",
+				Default:  "BUNDLE",
 			},
 		},
 	}

@@ -49,7 +49,7 @@ func ResourceBackupConfigurationSchema() map[string]*schema.Schema {
 		"bundle_mode": {
 			Type:         schema.TypeString,
 			Optional:     true,
-			Default:      "false",
+			Default:      "true",
 			ValidateFunc: validateBool,
 		},
 		"configpb_attributes": {
