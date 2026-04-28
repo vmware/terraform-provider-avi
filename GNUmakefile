@@ -1,7 +1,7 @@
 TEST?=$$(go list ./... | grep -v 'vendor')
 GOFMT_FILES?=$$(find . -name '*.go' | grep -v vendor)
 AVI_PROVIDER_NAMESPACE=vmware.com/avi/avi
-AVI_PROVIDER_VERSION=32.1.1
+AVI_PROVIDER_VERSION=32.1.2
 
 default: build
 
