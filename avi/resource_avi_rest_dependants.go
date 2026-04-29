@@ -39860,6 +39860,11 @@ func ResourceUserActivitySchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"password_expiry_time": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"previous_password": {
 				Type:     schema.TypeList,
 				Optional: true,

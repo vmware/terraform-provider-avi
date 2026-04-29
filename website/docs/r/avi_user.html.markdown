@@ -42,6 +42,7 @@ The following arguments are supported:
 * `is_superuser` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
 * `is_vcfa_user` - (Optional) Indicates if the user was created via vcfa oauth authentication. Field introduced in 32.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
 * `local` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `local_password_managed_externally` - (Optional) Indicates that this local user's password is managed externally (e.g. By vcf/sddc manager) rather than by avi. Field introduced in 32.1.2, 32.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
 * `logged_in` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
 * `passwordless` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
 * `recovery_token` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
