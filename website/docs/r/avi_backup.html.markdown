@@ -30,6 +30,7 @@ The following arguments are supported:
 * `file_name` - (Required) The file name of backup. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
 * `backup_config_ref` - (Optional) Backupconfiguration information. It is a reference to an object of type backupconfiguration. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
 * `local_file_url` - (Optional) Url to download the backup file. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `name` - (Optional) Name of the backup. Field introduced in 32.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
 * `remote_file_url` - (Optional) Url to download the backup file. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
 * `scheduler_ref` - (Optional) Scheduler information. It is a reference to an object of type scheduler. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
 * `tenant_ref` - (Optional) It is a reference to an object of type tenant. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
