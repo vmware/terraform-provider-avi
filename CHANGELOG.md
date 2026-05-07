@@ -41,6 +41,7 @@ BUG FIXES:
 - AV-186452: AVI-provider for Terraform version 22.1.2 and 22.1.4 creates any object in the Admin tenant.
 - AV-186737: Changes to certain subresources are not detected as changes by Terraform
 
+## 0.3.0 (Unreleased)
 ## 0.2.3 (June 16, 2020)
 Features:
 - Updated Avi Go SDK to latest.
