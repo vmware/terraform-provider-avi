@@ -315,6 +315,11 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"promoted_log_fields": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourcePromotedLogFieldsSchema(),
+			},
 			"query_host_fail": {
 				Type:     schema.TypeString,
 				Computed: true,

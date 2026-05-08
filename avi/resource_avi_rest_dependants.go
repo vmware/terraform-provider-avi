@@ -28893,6 +28893,28 @@ func ResourceProcessInfoSchema() *schema.Resource {
 	}
 }
 
+func ResourcePromotedLogFieldsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"app_log_fields": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
+			"conn_log_fields": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
+			"event_log_fields": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
+		},
+	}
+}
+
 func ResourcePropertySchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{

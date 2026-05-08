@@ -466,6 +466,12 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Default:      "1440",
 			ValidateFunc: validateInteger,
 		},
+		"promoted_log_fields": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourcePromotedLogFieldsSchema(),
+		},
 		"query_host_fail": {
 			Type:         schema.TypeString,
 			Optional:     true,
