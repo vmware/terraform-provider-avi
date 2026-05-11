@@ -58,6 +58,11 @@ func ResourceBackupConfigurationSchema() map[string]*schema.Schema {
 			Computed: true,
 			Elem:     ResourceConfigPbAttributesSchema(),
 		},
+		"known_hosts_file_ref": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
 		"maximum_backups_stored": {
 			Type:         schema.TypeString,
 			Optional:     true,
