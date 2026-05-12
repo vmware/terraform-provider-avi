@@ -21981,6 +21981,11 @@ func ResourceLicenseInfoSchema() *schema.Resource {
 				Required:     true,
 				ValidateFunc: validateInteger,
 			},
+			"se_group": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"service_cores": {
 				Type:         schema.TypeString,
 				Required:     true,
