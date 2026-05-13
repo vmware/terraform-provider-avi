@@ -31047,6 +31047,12 @@ func ResourceRoutingServiceSchema() *schema.Resource {
 				Default:      "false",
 				ValidateFunc: validateBool,
 			},
+			"routing_segmentation_mss": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "0",
+				ValidateFunc: validateInteger,
+			},
 		},
 	}
 }
