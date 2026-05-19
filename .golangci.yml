@@ -1,32 +1,31 @@
-issues:
-  max-per-linter: 0
-  max-same-issues: 0
-  exclude:
-    - SA1019
+version: "2"
 
 run:
-  deadline: 5m
-  skip-files:
-      - avi/resource_avi_rest_dependants.go
+  timeout: 5m
+
+formatters:
+  enable:
+    - gofmt
 
 linters:
-  disable-all: true
+  default: none
   enable:
     - errcheck
-    - gofmt
-    - gosimple
-    # - govet
     - ineffassign
     - nakedret
     - misspell
-    # - staticcheck
-    # - unused
-    # - unconvert
-    - vet
-    - vetshadow
-    # - typecheck
-    # - goimports
-
-linters-settings:
-  errcheck:
-    ignore: github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema:ForceNew|Set,fmt:.*,io:Close
+    - staticcheck
+    - govet
+  settings:
+    errcheck:
+      exclude-functions:
+        - fmt.Print
+        - fmt.Printf
+        - fmt.Println
+        - fmt.Fprint
+        - fmt.Fprintf
+        - fmt.Fprintln
+        - io.Close
+    govet:
+      enable:
+        - shadow
