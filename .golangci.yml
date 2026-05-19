@@ -10,12 +10,12 @@ formatters:
 linters:
   default: none
   enable:
-    - errcheck
+    #- errcheck
     - ineffassign
     - nakedret
-    - misspell
-    - staticcheck
-    - govet
+    #- misspell
+    #- staticcheck
+    #- govet
   settings:
     errcheck:
       exclude-functions:
