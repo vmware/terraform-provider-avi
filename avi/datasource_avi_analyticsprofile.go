@@ -375,6 +375,10 @@ func dataSourceAviAnalyticsProfile() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"waap_classification_disabled_penalty": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 		},
 	}
 }

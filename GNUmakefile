@@ -1,6 +1,7 @@
 TEST?=$$(go list ./... | grep -v 'vendor')
 GOFMT_FILES?=$$(find . -name '*.go' | grep -v vendor)
 AVI_PROVIDER_NAMESPACE=vmware.com/avi/avi
+AVI_PROVIDER_VERSION=32.2.1
 
 default: build
 
@@ -9,11 +10,11 @@ build: fmtcheck
 
 build13: GOOS=$(shell go env GOOS)
 build13: GOARCH=$(shell go env GOARCH)
-build13: DESTINATION=$(HOME)/.terraform.d/plugins/$(AVI_PROVIDER_NAMESPACE)/32.1.1/$(GOOS)_$(GOARCH)
+build13: DESTINATION=$(HOME)/.terraform.d/plugins/$(AVI_PROVIDER_NAMESPACE)/$(AVI_PROVIDER_VERSION)/$(GOOS)_$(GOARCH)
 build13: fmtcheck
 	@echo "==> Installing plugin to $(DESTINATION)"
 	@mkdir -p $(DESTINATION)
-	go build -o $(DESTINATION)/terraform-provider-avi_v32.1.1
+	go build -o $(DESTINATION)/terraform-provider-avi_v$(AVI_PROVIDER_VERSION)
 
 test: fmtcheck
 	go test -i $(TEST) || exit 1

@@ -25,10 +25,6 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"allow_unauthenticated_nodes": {
-				Type:     schema.TypeString,
-				Computed: true,
-			},
 			"api_idle_timeout": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -66,6 +62,18 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Computed: true,
 			},
 			"bm_use_ansible": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"cc_user_password_expiry_days": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"cc_user_password_rotation_job_period": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"cert_rotation_jwt_retention_days": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
@@ -170,6 +178,10 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"enable_streaming_based_nsx_ip_group_sync": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"event_manager_file_modified_ts_filter": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -220,6 +232,10 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Computed: true,
 			},
 			"ignore_vrf_in_networksubnetlist": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"intelligent_assist_project_key": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
@@ -298,6 +314,11 @@ func dataSourceAviControllerProperties() *schema.Resource {
 			"process_pki_profile_timeout_period": {
 				Type:     schema.TypeString,
 				Computed: true,
+			},
+			"promoted_log_fields": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourcePromotedLogFieldsSchema(),
 			},
 			"query_host_fail": {
 				Type:     schema.TypeString,
@@ -444,6 +465,10 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Computed: true,
 			},
 			"vs_se_create_fail": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"vs_se_license_reservation_fail": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},

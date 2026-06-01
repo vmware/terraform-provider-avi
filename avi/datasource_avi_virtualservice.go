@@ -30,6 +30,10 @@ func dataSourceAviVirtualService() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"api_policy_ref": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"application_insights_ref": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -189,6 +193,10 @@ func dataSourceAviVirtualService() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceL4PoliciesSchema(),
 			},
+			"label_profile_ref": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"ldap_vs_config": {
 				Type:     schema.TypeSet,
 				Computed: true,
@@ -297,6 +305,10 @@ func dataSourceAviVirtualService() *schema.Resource {
 				Type:     schema.TypeList,
 				Computed: true,
 				Elem:     ResourceServiceSchema(),
+			},
+			"session_key_forwarder_ref": {
+				Type:     schema.TypeString,
+				Computed: true,
 			},
 			"sideband_profile": {
 				Type:     schema.TypeSet,

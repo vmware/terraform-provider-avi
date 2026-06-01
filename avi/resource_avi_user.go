@@ -71,10 +71,22 @@ func ResourceUserSchema() map[string]*schema.Schema {
 			Default:      "false",
 			ValidateFunc: validateBool,
 		},
+		"is_vcfa_user": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
+		},
 		"local": {
 			Type:         schema.TypeString,
 			Optional:     true,
 			Computed:     true,
+			ValidateFunc: validateBool,
+		},
+		"local_password_managed_externally": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
 			ValidateFunc: validateBool,
 		},
 		"logged_in": {
@@ -89,8 +101,7 @@ func ResourceUserSchema() map[string]*schema.Schema {
 		},
 		"password": {
 			Type:             schema.TypeString,
-			Optional:         true,
-			Computed:         true,
+			Required:         true,
 			Sensitive:        true,
 			DiffSuppressFunc: suppressSensitiveFieldDiffs,
 		},
@@ -109,6 +120,7 @@ func ResourceUserSchema() map[string]*schema.Schema {
 			Type:         schema.TypeString,
 			Optional:     true,
 			Default:      "false",
+			ForceNew:     true,
 			ValidateFunc: validateBool,
 		},
 		"token_expiration_date": {

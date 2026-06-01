@@ -49,7 +49,7 @@ func ResourceBackupConfigurationSchema() map[string]*schema.Schema {
 		"bundle_mode": {
 			Type:         schema.TypeString,
 			Optional:     true,
-			Default:      "false",
+			Default:      "true",
 			ValidateFunc: validateBool,
 		},
 		"configpb_attributes": {
@@ -57,6 +57,11 @@ func ResourceBackupConfigurationSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 			Elem:     ResourceConfigPbAttributesSchema(),
+		},
+		"known_hosts_file_ref": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
 		},
 		"maximum_backups_stored": {
 			Type:         schema.TypeString,

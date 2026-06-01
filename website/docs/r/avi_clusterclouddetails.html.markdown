@@ -27,10 +27,10 @@ resource "avi_clusterclouddetails" "foo" {
 
 The following arguments are supported:
 
-* `name` - (Required) Field introduced in 17.2.5. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `azure_info` - (Optional) Azure info to configure cluster_vip on the controller. Field introduced in 17.2.5. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `tenant_ref` - (Optional) It is a reference to an object of type tenant. Field introduced in 17.2.5. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `name` - (Required) Field introduced in 17.2.5. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `azure_info` - (Optional) Azure info to configure cluster_vip on the controller. Field introduced in 17.2.5. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant. Field introduced in 17.2.5. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
 
 
 ### Timeouts

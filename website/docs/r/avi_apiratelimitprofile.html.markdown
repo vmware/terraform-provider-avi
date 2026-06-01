@@ -27,12 +27,12 @@ resource "avi_apiratelimitprofile" "foo" {
 
 The following arguments are supported:
 
-* `name` - (Required) Name of the api rate limit profile. Field introduced in 31.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `rate_limit_configuration_refs` - (Required) List of the rate limiter configuration uuids. It is a reference to an object of type ratelimitconfiguration. Field introduced in 31.2.1. Minimum of 1 items required. Maximum of 100 items allowed. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 31.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `description` - (Optional) Description for the api rate limit profile. Field introduced in 31.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `enabled` - (Optional) Activate/deactivate the api rate limit profile. Field introduced in 31.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `tenant_ref` - (Optional) Tenant ref for the api rate limit profile. It is a reference to an object of type tenant. Field introduced in 31.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `name` - (Required) Name of the api rate limit profile. Field introduced in 31.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `rate_limit_configuration_refs` - (Required) List of the rate limiter configuration uuids. It is a reference to an object of type ratelimitconfiguration. Field introduced in 31.2.1. Minimum of 1 items required. Maximum of 100 items allowed. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 31.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `description` - (Optional) Description for the api rate limit profile. Field introduced in 31.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `enabled` - (Optional) Activate/deactivate the api rate limit profile. Field introduced in 31.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `tenant_ref` - (Optional) Tenant ref for the api rate limit profile. It is a reference to an object of type tenant. Field introduced in 31.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
 
 
 ### Timeouts
@@ -47,5 +47,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-* `uuid` -  Uuid of the api rate limit profile. Field introduced in 31.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `uuid` -  Uuid of the api rate limit profile. Field introduced in 31.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 

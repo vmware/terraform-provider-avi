@@ -42,8 +42,8 @@ In addition to all arguments above, the following attributes are exported:
 * `nw_name` - Network name. Field introduced in 20.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `nw_ref` - Corresponding network object in avi. It is a reference to an object of type network. Field introduced in 20.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `opaque_network_id` - Opaque network id. Field introduced in 20.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `origin_id` - Origin id applicable to security only cloud. Field introduced in 22.1.2. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `security_only_nsxt` - Nsxt segment belongs to security only cloud. Field introduced in 22.1.2. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `origin_id` - Origin id applicable to security only cloud. Field introduced in 22.1.2. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `security_only_nsxt` - Nsxt segment belongs to security only cloud. Field introduced in 22.1.2. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `segment_gw` - Segment gateway. Field introduced in 20.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `segment_gw6` - V6 segment gateway. Field introduced in 20.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `segment_id` - Segment id. Field introduced in 20.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
@@ -53,6 +53,6 @@ In addition to all arguments above, the following attributes are exported:
 * `tenant_ref` - Nsxt segment belongs to tenant. It is a reference to an object of type tenant. Field introduced in 20.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `tier1_id` - Tier1 router id. Field introduced in 20.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `uuid` - Uuid. Field introduced in 20.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `vlan_ids` - Segment vlan ids. Field introduced in 20.1.5. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `vlan_ids` - Segment vlan ids. Field introduced in 20.1.5. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `vrf_context_ref` - Corresponding vrf context object in avi. It is a reference to an object of type vrfcontext. Field introduced in 20.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 

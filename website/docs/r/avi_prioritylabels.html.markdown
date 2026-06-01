@@ -27,13 +27,13 @@ resource "avi_prioritylabels" "foo" {
 
 The following arguments are supported:
 
-* `name` - (Required) The name of the priority labels. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `cloud_ref` - (Optional) It is a reference to an object of type cloud. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `description` - (Optional) A description of the priority labels. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `equivalent_labels` - (Optional) Equivalent priority labels in descending order. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `tenant_ref` - (Optional) It is a reference to an object of type tenant. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `name` - (Required) The name of the priority labels. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `cloud_ref` - (Optional) It is a reference to an object of type cloud. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. Changing this value forces the resource to be recreated.
+* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `description` - (Optional) A description of the priority labels. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `equivalent_labels` - (Optional) Equivalent priority labels in descending order. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
 
 
 ### Timeouts

@@ -32,8 +32,8 @@ data "avi_reportprofile" "foo_reportprofile" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `collection_rules` - Collection rules for the report. Field introduced in 31.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `max_concurrent_reports` - Maximum number of concurrent reports allowed to be generated. Allowed values are 1-10. Field introduced in 31.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `remote_controller` - Remote controller request to enable report generation for remote controller. If enabled, the report generation will be done for the remote controller. Field introduced in 32.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `uuid` - Uuid identifier for the reportprofile object. Field introduced in 31.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `collection_rules` - Collection rules for the report. Field introduced in 31.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `max_concurrent_reports` - Maximum number of concurrent reports allowed to be generated. Allowed values are 1-10. Field introduced in 31.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `remote_controller` - Remote controller request to enable report generation for remote controller. If enabled, the report generation will be done for the remote controller. Field introduced in 32.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `uuid` - Uuid identifier for the reportprofile object. Field introduced in 31.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 

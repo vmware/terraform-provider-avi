@@ -21,6 +21,11 @@ func dataSourceAviBackup() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"remote_file_url": {
 				Type:     schema.TypeString,
 				Computed: true,

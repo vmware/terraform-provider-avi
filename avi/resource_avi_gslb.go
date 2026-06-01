@@ -78,6 +78,7 @@ func ResourceGslbSchema() map[string]*schema.Schema {
 			Type:         schema.TypeString,
 			Optional:     true,
 			Default:      "true",
+			ForceNew:     true,
 			ValidateFunc: validateBool,
 		},
 		"leader_change_info": {
@@ -94,6 +95,7 @@ func ResourceGslbSchema() map[string]*schema.Schema {
 			Type:         schema.TypeString,
 			Optional:     true,
 			Default:      "false",
+			ForceNew:     true,
 			ValidateFunc: validateBool,
 		},
 		"name": {
@@ -132,6 +134,7 @@ func ResourceGslbSchema() map[string]*schema.Schema {
 			Type:         schema.TypeString,
 			Optional:     true,
 			Default:      "true",
+			ForceNew:     true,
 			ValidateFunc: validateBool,
 		},
 		"third_party_sites": {
@@ -148,6 +151,7 @@ func ResourceGslbSchema() map[string]*schema.Schema {
 			Type:         schema.TypeString,
 			Optional:     true,
 			Default:      "0",
+			ForceNew:     true,
 			ValidateFunc: validateInteger,
 		},
 	}

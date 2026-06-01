@@ -38,5 +38,5 @@ In addition to all arguments above, the following attributes are exported:
 * `tenant_ref` - It is a reference to an object of type tenant. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `uuid` - Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `virtual_ip` - A v4 virtual ip address for the cluster that always points to the v4 ip of the leader node in cluster. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `virtual_ip6` - A v6 virtual ip address for the cluster that always points to the v6 ip of the leader node in cluster. Field introduced in 30.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `virtual_ip6` - A v6 virtual ip address for the cluster that always points to the v6 ip of the leader node in cluster. Field introduced in 30.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 

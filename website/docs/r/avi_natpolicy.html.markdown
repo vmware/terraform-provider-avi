@@ -27,13 +27,13 @@ resource "avi_natpolicy" "foo" {
 
 The following arguments are supported:
 
-* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `created_by` - (Optional) Creator name. Field introduced in 18.2.3. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `description` - (Optional) Field introduced in 18.2.3. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `name` - (Optional) Name of the nat policy. Field introduced in 18.2.3. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `rules` - (Optional) Nat policy rules. Field introduced in 18.2.3. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `tenant_ref` - (Optional) It is a reference to an object of type tenant. Field introduced in 18.2.3. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `created_by` - (Optional) Creator name. Field introduced in 18.2.3. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `description` - (Optional) Field introduced in 18.2.3. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `name` - (Optional) Name of the nat policy. Field introduced in 18.2.3. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `rules` - (Optional) Nat policy rules. Field introduced in 18.2.3. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant. Field introduced in 18.2.3. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
 
 
 ### Timeouts

@@ -12,8 +12,7 @@ func ResourceUserAccountProfileSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"complexity_constraint": {
 			Type:     schema.TypeSet,
-			Optional: true,
-			Computed: true,
+			Required: true,
 			Elem:     ResourceComplexityConstraintSchema(),
 		},
 		"configpb_attributes": {
@@ -24,14 +23,12 @@ func ResourceUserAccountProfileSchema() map[string]*schema.Schema {
 		},
 		"expiration_constraint": {
 			Type:     schema.TypeSet,
-			Optional: true,
-			Computed: true,
+			Required: true,
 			Elem:     ResourceExpirationConstraintSchema(),
 		},
 		"lockout_constraint": {
 			Type:     schema.TypeSet,
-			Optional: true,
-			Computed: true,
+			Required: true,
 			Elem:     ResourceLockoutConstraintSchema(),
 		},
 		"max_concurrent_sessions": {

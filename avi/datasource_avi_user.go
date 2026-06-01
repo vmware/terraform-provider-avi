@@ -54,7 +54,15 @@ func dataSourceAviUser() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"is_vcfa_user": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"local": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"local_password_managed_externally": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},

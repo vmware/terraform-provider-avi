@@ -18,6 +18,14 @@ func dataSourceAviCertJwtStore() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"key": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"key_passphrase": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"kid": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -28,6 +36,10 @@ func dataSourceAviCertJwtStore() *schema.Resource {
 				Elem:     ResourceTimeStampSchema(),
 			},
 			"public_key_algorithm": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"type": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},

@@ -528,6 +528,12 @@ func ResourceAnalyticsProfileSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"waap_classification_disabled_penalty": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "50",
+			ValidateFunc: validateFloat,
+		},
 	}
 }
 

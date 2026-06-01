@@ -77,12 +77,14 @@ func ResourceSSLKeyAndCertificateSchema() map[string]*schema.Schema {
 			Type:         schema.TypeString,
 			Optional:     true,
 			Default:      "false",
+			ForceNew:     true,
 			ValidateFunc: validateBool,
 		},
 		"is_federated": {
 			Type:         schema.TypeString,
 			Optional:     true,
 			Default:      "false",
+			ForceNew:     true,
 			ValidateFunc: validateBool,
 		},
 		"key": {
@@ -141,6 +143,12 @@ func ResourceSSLKeyAndCertificateSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 			Elem:     ResourceOCSPResponseInfoSchema(),
+		},
+		"skip_auto_chain": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
 		},
 		"status": {
 			Type:     schema.TypeString,

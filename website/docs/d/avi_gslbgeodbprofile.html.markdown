@@ -34,6 +34,7 @@ In addition to all arguments above, the following attributes are exported:
 
 * `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `description` - Field introduced in 17.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `distance_computation_algorithm` - Algorithm to be used for computing distance between geo locations.only applicable when load balancing algorithm is gslb_algorithm_geo. Enum options - GSLB_DISTANCE_AVI_OPTIMISED, GSLB_DISTANCE_HAVERSINE. Field introduced in 32.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `entries` - List of geodb entries. An entry can either be a geodb file or an ip address group with geo properties. Field introduced in 17.1.1. Minimum of 1 items required. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `is_federated` - This field indicates that this object is replicated across gslb federation. Field introduced in 17.1.3. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.

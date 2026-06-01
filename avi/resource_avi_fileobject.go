@@ -10,6 +10,12 @@ import (
 
 func ResourceFileObjectSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
+		"api_spec_detail": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceApiSpecDetailSchema(),
+		},
 		"checksum": {
 			Type:     schema.TypeString,
 			Optional: true,
@@ -20,10 +26,17 @@ func ResourceFileObjectSchema() map[string]*schema.Schema {
 			Optional: true,
 			Elem:     &schema.Schema{Type: schema.TypeString},
 		},
+		"completed_events": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Computed:     true,
+			ValidateFunc: validateInteger,
+		},
 		"compressed": {
 			Type:         schema.TypeString,
 			Optional:     true,
 			Default:      "false",
+			ForceNew:     true,
 			ValidateFunc: validateBool,
 		},
 		"configpb_attributes": {
@@ -48,6 +61,17 @@ func ResourceFileObjectSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"duration": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Computed:     true,
+			ValidateFunc: validateInteger,
+		},
+		"end_time": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
 		"events": {
 			Type:     schema.TypeList,
 			Optional: true,
@@ -67,22 +91,36 @@ func ResourceFileObjectSchema() map[string]*schema.Schema {
 			Type:         schema.TypeString,
 			Optional:     true,
 			Default:      "false",
+			ForceNew:     true,
 			ValidateFunc: validateBool,
+		},
+		"history": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceTaskEventHistorySchema(),
 		},
 		"is_federated": {
 			Type:         schema.TypeString,
 			Optional:     true,
 			Default:      "false",
+			ForceNew:     true,
 			ValidateFunc: validateBool,
 		},
 		"name": {
 			Type:     schema.TypeString,
 			Required: true,
+			ForceNew: true,
 		},
 		"path": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
+		},
+		"progress": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Computed:     true,
+			ValidateFunc: validateInteger,
 		},
 		"read_only": {
 			Type:         schema.TypeString,
@@ -94,6 +132,7 @@ func ResourceFileObjectSchema() map[string]*schema.Schema {
 			Type:         schema.TypeString,
 			Optional:     true,
 			Computed:     true,
+			ForceNew:     true,
 			ValidateFunc: validateBool,
 		},
 		"size": {
@@ -102,14 +141,38 @@ func ResourceFileObjectSchema() map[string]*schema.Schema {
 			Computed:     true,
 			ValidateFunc: validateInteger,
 		},
-		"tenant_ref": {
+		"start_time": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
 		},
+		"state": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceFileObjectStateSchema(),
+		},
+		"task_events": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     ResourceTaskEventMapSchema(),
+		},
+		"tenant_ref": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+			ForceNew: true,
+		},
+		"total_events": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Computed:     true,
+			ValidateFunc: validateInteger,
+		},
 		"type": {
 			Type:     schema.TypeString,
 			Required: true,
+			ForceNew: true,
 		},
 		"uuid": {
 			Type:     schema.TypeString,

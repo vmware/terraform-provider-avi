@@ -37,13 +37,15 @@ In addition to all arguments above, the following attributes are exported:
 * `date_joined` - Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `default_tenant_ref` - It is a reference to an object of type tenant. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `email` - Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `enable_config_warnings` - Flag to enable or disable config warnings. Field introduced in 31.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `enable_config_warnings` - Flag to enable or disable config warnings. Field introduced in 31.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `full_name` - Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `is_active` - Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `is_internal_user` - Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `is_staff` - Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `is_superuser` - Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `is_vcfa_user` - Indicates if the user was created via vcfa oauth authentication. Field introduced in 32.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `local` - Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `local_password_managed_externally` - Indicates that this local user's password is managed externally (e.g. By vcf/sddc manager) rather than by avi. Field introduced in 32.1.2, 32.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `logged_in` - Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `name` - Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `password` - Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.

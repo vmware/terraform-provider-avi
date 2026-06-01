@@ -27,12 +27,12 @@ resource "avi_cluster" "foo" {
 
 The following arguments are supported:
 
-* `name` - (Required) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `nodes` - (Required) Minimum of 1 items required. Maximum of 7 items allowed. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `rejoin_nodes_automatically` - (Optional) Re-join cluster nodes automatically in the event one of the node is reset to factory. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `tenant_ref` - (Optional) It is a reference to an object of type tenant. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `virtual_ip` - (Optional) A v4 virtual ip address for the cluster that always points to the v4 ip of the leader node in cluster. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `virtual_ip6` - (Optional) A v6 virtual ip address for the cluster that always points to the v6 ip of the leader node in cluster. Field introduced in 30.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `name` - (Required) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `nodes` - (Required) Minimum of 1 items required. Maximum of 7 items allowed. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `rejoin_nodes_automatically` - (Optional) Re-join cluster nodes automatically in the event one of the node is reset to factory. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `virtual_ip` - (Optional) A v4 virtual ip address for the cluster that always points to the v4 ip of the leader node in cluster. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `virtual_ip6` - (Optional) A v6 virtual ip address for the cluster that always points to the v6 ip of the leader node in cluster. Field introduced in 30.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
 
 
 ### Timeouts

@@ -133,6 +133,7 @@ func ResourceGslbSMRuntimeSchema() map[string]*schema.Schema {
 			Type:         schema.TypeString,
 			Optional:     true,
 			Default:      "0",
+			ForceNew:     true,
 			ValidateFunc: validateInteger,
 		},
 	}

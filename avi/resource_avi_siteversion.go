@@ -14,6 +14,7 @@ func ResourceSiteVersionSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
+			ForceNew: true,
 		},
 		"name": {
 			Type:     schema.TypeString,

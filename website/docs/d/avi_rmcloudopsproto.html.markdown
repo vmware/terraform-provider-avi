@@ -36,6 +36,6 @@ In addition to all arguments above, the following attributes are exported:
 * `name` - Cloud name. Field introduced in 20.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `pending_se_creation_count` - Number of se creations in progress. Field introduced in 20.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `pending_vnic_op_count` - Number of vnic operations in progress (both add and delete). Field introduced in 20.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `se_create_limit_reached` - Se creation limit reached. Field introduced in 31.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `se_create_limit_reached` - Se creation limit reached. Field introduced in 31.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `uuid` - Cloud uuid. Field introduced in 20.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 

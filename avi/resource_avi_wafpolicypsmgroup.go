@@ -41,6 +41,7 @@ func ResourceWafPolicyPSMGroupSchema() map[string]*schema.Schema {
 			Type:         schema.TypeString,
 			Optional:     true,
 			Default:      "false",
+			ForceNew:     true,
 			ValidateFunc: validateBool,
 		},
 		"location_match_miss_action": {
@@ -71,6 +72,7 @@ func ResourceWafPolicyPSMGroupSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
+			ForceNew: true,
 		},
 		"uuid": {
 			Type:     schema.TypeString,
