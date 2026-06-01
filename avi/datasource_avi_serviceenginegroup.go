@@ -419,6 +419,11 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceCloudFlavorSchema(),
 			},
+			"ip_advertisement_profile": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceIpAdvertisementProfileSchema(),
+			},
 			"iptables": {
 				Type:     schema.TypeList,
 				Computed: true,
@@ -1196,6 +1201,10 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeSet,
 				Computed: true,
 				Elem:     ResourceVipAutoscaleGroupSchema(),
+			},
+			"vmotion_notification_poll_interval": {
+				Type:     schema.TypeString,
+				Computed: true,
 			},
 			"vnic_dhcp_ip_check_interval": {
 				Type:     schema.TypeString,

@@ -83,6 +83,12 @@ func ResourceUserSchema() map[string]*schema.Schema {
 			Computed:     true,
 			ValidateFunc: validateBool,
 		},
+		"local_password_managed_externally": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
+		},
 		"logged_in": {
 			Type:         schema.TypeString,
 			Optional:     true,

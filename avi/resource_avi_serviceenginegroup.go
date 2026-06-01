@@ -597,6 +597,12 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Computed: true,
 			Elem:     ResourceCloudFlavorSchema(),
 		},
+		"ip_advertisement_profile": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceIpAdvertisementProfileSchema(),
+		},
 		"iptables": {
 			Type:     schema.TypeList,
 			Optional: true,
@@ -1696,6 +1702,12 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 			Elem:     ResourceVipAutoscaleGroupSchema(),
+		},
+		"vmotion_notification_poll_interval": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "5",
+			ValidateFunc: validateInteger,
 		},
 		"vnic_dhcp_ip_check_interval": {
 			Type:         schema.TypeString,

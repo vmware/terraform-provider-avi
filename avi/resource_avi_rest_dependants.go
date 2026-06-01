@@ -19922,6 +19922,41 @@ func ResourceIpAddrRangeSchema() *schema.Resource {
 	}
 }
 
+func ResourceIpAddrTypeConfigSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"ip_type": {
+				Type:     schema.TypeString,
+				Required: true,
+			},
+			"periodicity": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+		},
+	}
+}
+
+func ResourceIpAdvertisementProfileSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"default_periodicity": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "10",
+				ValidateFunc: validateInteger,
+			},
+			"ip_types": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceIpAddrTypeConfigSchema(),
+			},
+		},
+	}
+}
+
 func ResourceIpAllocInfoSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -39714,6 +39749,11 @@ func ResourceUserActivitySchema() *schema.Resource {
 				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
 			"name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"password_expiry_time": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
