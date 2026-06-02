@@ -247,38 +247,7 @@ func ResourceALBServicesCaseAttachmentSchema() *schema.Resource {
 
 func ResourceALBServicesFileDownloadMetadataSchema() *schema.Resource {
 	return &schema.Resource{
-		Schema: map[string]*schema.Schema{
-			"checksum": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
-			"checksum_type": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
-			"chunk_size": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Computed:     true,
-				ValidateFunc: validateInteger,
-			},
-			"is_multi_part_download": {
-				Type:         schema.TypeString,
-				Required:     true,
-				ValidateFunc: validateBool,
-			},
-			"signed_url": {
-				Type:     schema.TypeString,
-				Required: true,
-			},
-			"total_size": {
-				Type:         schema.TypeString,
-				Required:     true,
-				ValidateFunc: validateInteger,
-			},
-		},
+		Schema: map[string]*schema.Schema{},
 	}
 }
 
@@ -1602,8 +1571,7 @@ func ResourceApiSimpleSchemaDescriptionSchema() *schema.Resource {
 			},
 			"type": {
 				Type:     schema.TypeString,
-				Optional: true,
-				Default:  "SCHEMA_TYPE_UNDEFINED",
+				Required: true,
 			},
 		},
 	}
@@ -7923,6 +7891,21 @@ func ResourceConfigUserPasswordChangeRequestSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"client_type": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"error_message": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"request_path": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"status": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -12989,12 +12972,6 @@ func ResourceEventDetailsSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 				Elem:     ResourceALBServicesCaseSchema(),
-			},
-			"albservices_file_download_details": {
-				Type:     schema.TypeSet,
-				Optional: true,
-				Computed: true,
-				Elem:     ResourceALBServicesFileDownloadSchema(),
 			},
 			"albservices_file_upload_details": {
 				Type:     schema.TypeSet,

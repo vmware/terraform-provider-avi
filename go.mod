@@ -1,10 +1,10 @@
 module github.com/vmware/terraform-provider-avi
 
-go 1.23.2
+go 1.25.6
 
 require (
 	github.com/hashicorp/terraform-plugin-sdk/v2 v2.20.0
-	github.com/vmware/alb-sdk v0.0.0-20251205100121-da9d94189958
+	github.com/vmware/alb-sdk v0.0.0-20260601040843-c4e2e9e22253
 )
 
 require (

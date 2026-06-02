@@ -24,7 +24,7 @@ func ResourceApiSchemaSchema() map[string]*schema.Schema {
 		"allow_additional_properties": {
 			Type:         schema.TypeString,
 			Optional:     true,
-			Default:      "false",
+			Computed:     true,
 			ValidateFunc: validateBool,
 		},
 		"array_item_type": {
@@ -93,7 +93,7 @@ func ResourceApiSchemaSchema() map[string]*schema.Schema {
 		"unique_items": {
 			Type:         schema.TypeString,
 			Optional:     true,
-			Default:      "false",
+			Computed:     true,
 			ValidateFunc: validateBool,
 		},
 		"uuid": {
