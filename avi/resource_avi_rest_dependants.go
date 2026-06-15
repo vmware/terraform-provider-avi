@@ -7099,6 +7099,21 @@ func ResourceConfigUserPasswordChangeRequestSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"client_type": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"error_message": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"request_path": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"status": {
 				Type:     schema.TypeString,
 				Optional: true,
