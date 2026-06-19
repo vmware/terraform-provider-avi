@@ -5044,6 +5044,23 @@ func ResourceCertificateAuthoritySchema() *schema.Resource {
 	}
 }
 
+func ResourceCertificateSecurityPolicySchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"blocked_certificate_signature_algorithms": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
+			"blocked_ocsp_request_hash_algorithms": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
+		},
+	}
+}
+
 func ResourceCfgStateSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -12895,6 +12912,12 @@ func ResourceEventDetailsSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 				Elem:     ResourceNsxtT1SegDetailsSchema(),
+			},
+			"ntp_weak_auth_algorithm_event_details": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceNtpWeakAuthAlgorithmEventDetailsSchema(),
 			},
 			"nw_subnet_clash_details": {
 				Type:     schema.TypeSet,
@@ -24859,7 +24882,7 @@ func ResourceNTPAuthenticationKeySchema() *schema.Resource {
 			"algorithm": {
 				Type:     schema.TypeString,
 				Optional: true,
-				Default:  "NTP_AUTH_ALGORITHM_MD5",
+				Default:  "NTP_AUTH_ALGORITHM_SHA256",
 			},
 			"key": {
 				Type:     schema.TypeString,
@@ -25876,6 +25899,18 @@ func ResourceNtlmLogSchema() *schema.Resource {
 	}
 }
 
+func ResourceNtpWeakAuthAlgorithmEventDetailsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"description": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
 func ResourceNuageSDNControllerSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -26240,6 +26275,11 @@ func ResourceOCSPConfigSchema() *schema.Resource {
 				Optional:     true,
 				Default:      "86400",
 				ValidateFunc: validateInteger,
+			},
+			"ocsp_request_hash_algorithms": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
 			"ocsp_resp_timeout": {
 				Type:         schema.TypeString,
