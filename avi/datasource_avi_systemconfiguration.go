@@ -14,9 +14,22 @@ func dataSourceAviSystemConfiguration() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceAdminAuthConfigurationSchema(),
 			},
+			"allow_legacy_sha1_ntp_auth": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"allow_private_ips": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"avi_email_login_password": {
 				Type:     schema.TypeString,
 				Computed: true,
+			},
+			"certificate_security_policy": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceCertificateSecurityPolicySchema(),
 			},
 			"common_criteria_mode": {
 				Type:     schema.TypeString,

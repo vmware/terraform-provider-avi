@@ -33,7 +33,7 @@ data "avi_tenant" "default_tenant"{
 }
 resource "avi_customipamdnsprofile" "testCustomIpamDnsProfile" {
 	name = "test-ipam-abc"
-	script_uri = "/"
+	script_uri = "controller://ipamdnsscripts/my_custom_ipam.py"
 	tenant_ref = data.avi_tenant.default_tenant.id
 }
 

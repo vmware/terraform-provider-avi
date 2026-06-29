@@ -5,20 +5,30 @@ package avi
 
 import "github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 
-func dataSourceAviTLSProfile() *schema.Resource {
+func dataSourceAviALBServicesStatus() *schema.Resource {
 	return &schema.Resource{
-		Read: ResourceAviTLSProfileRead,
+		Read: ResourceAviALBServicesStatusRead,
 		Schema: map[string]*schema.Schema{
-			"certificate_ref": {
-				Type:     schema.TypeString,
+			"asset_details": {
+				Type:     schema.TypeSet,
 				Computed: true,
+				Elem:     ResourceALBServicesAssetDetailsSchema(),
 			},
 			"configpb_attributes": {
 				Type:     schema.TypeSet,
 				Computed: true,
 				Elem:     ResourceConfigPbAttributesSchema(),
 			},
-			"description": {
+			"connected_at": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceTimeStampSchema(),
+			},
+			"connectivity_status": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"error": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
@@ -27,14 +37,24 @@ func dataSourceAviTLSProfile() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
-			"pki_profile_ref": {
+			"registration_status": {
 				Type:     schema.TypeString,
 				Computed: true,
+			},
+			"services_health": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceServiceHealthSchema(),
 			},
 			"tenant_ref": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+			"tenant_status": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourcePulseServicesTenantStatusSchema(),
 			},
 			"uuid": {
 				Type:     schema.TypeString,

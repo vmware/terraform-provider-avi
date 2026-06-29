@@ -32,6 +32,7 @@ data "avi_jwtserverprofile" "foo_jwtserverprofile" {
 
 In addition to all arguments above, the following attributes are exported:
 
+* `allowed_algorithms` - Allowed signing algorithms when the matched jwk omits the 'alg' field (rfc 7517 §4.4). If the jwk carries 'alg', that value always wins and this list is ignored. An empty list rejects all such tokens (secure default). Only applicable when jwt profile type is client_auth. Enum options - JWS_ALG_RS256, JWS_ALG_RS384, JWS_ALG_RS512, JWS_ALG_PS256, JWS_ALG_PS384, JWS_ALG_PS512, JWS_ALG_ES256, JWS_ALG_ES384, JWS_ALG_ES512. Field introduced in 32.2.1. Maximum of 9 items allowed. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `controller_internal_auth` - Jwt auth configuration for profile_type controller_internal_auth. Field introduced in 20.1.6. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `is_federated` - This field describes the object's replication scope. If the field is set to false, then the object is visible within the controller-cluster. If the field is set to true, then the object is replicated across the federation. Field introduced in 20.1.6. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.

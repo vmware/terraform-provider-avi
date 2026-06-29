@@ -10,6 +10,11 @@ import (
 
 func ResourceJWTServerProfileSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
+		"allowed_algorithms": {
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem:     &schema.Schema{Type: schema.TypeString},
+		},
 		"configpb_attributes": {
 			Type:     schema.TypeSet,
 			Optional: true,

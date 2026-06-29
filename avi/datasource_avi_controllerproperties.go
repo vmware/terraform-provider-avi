@@ -239,6 +239,14 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"ipgls_client_cache_size": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"ipgls_client_cache_ttl_minutes": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"log_records_allocated_size": {
 				Type:     schema.TypeString,
 				Computed: true,

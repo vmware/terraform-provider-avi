@@ -78,6 +78,40 @@ func ResourceALBServicesAccountUserSchema() *schema.Resource {
 	}
 }
 
+func ResourceALBServicesAssetDetailsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"asset_id": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"email": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"keyless_license": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceKeylessLicenseSchema(),
+			},
+			"site": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceALBServicesSiteInfoSchema(),
+			},
+			"user_name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
 func ResourceALBServicesCaseSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -260,6 +294,23 @@ func ResourceALBServicesJobParamSchema() *schema.Resource {
 				Computed: true,
 			},
 			"value": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceALBServicesSiteInfoSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"site_id": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"site_name": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -1571,7 +1622,8 @@ func ResourceApiSimpleSchemaDescriptionSchema() *schema.Resource {
 			},
 			"type": {
 				Type:     schema.TypeString,
-				Required: true,
+				Optional: true,
+				Default:  "SCHEMA_TYPE_UNDEFINED",
 			},
 		},
 	}
@@ -5836,6 +5888,23 @@ func ResourceCertificateAuthoritySchema() *schema.Resource {
 	}
 }
 
+func ResourceCertificateSecurityPolicySchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"blocked_certificate_signature_algorithms": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
+			"blocked_ocsp_request_hash_algorithms": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
+		},
+	}
+}
+
 func ResourceCfgStateSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -7902,6 +7971,11 @@ func ResourceConfigUserPasswordChangeRequestSchema() *schema.Resource {
 				Computed: true,
 			},
 			"request_path": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"request_user": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -10409,6 +10483,12 @@ func ResourceDebugServiceEngineSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 				Elem:     ResourceDebugServiceEngineObjSyncSchema(),
+			},
+			"pcap_ng": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "true",
+				ValidateFunc: validateBool,
 			},
 			"seagent_debug": {
 				Type:     schema.TypeList,
@@ -13752,6 +13832,12 @@ func ResourceEventDetailsSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 				Elem:     ResourceNsxtT1SegDetailsSchema(),
+			},
+			"ntp_weak_auth_algorithm_event_details": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceNtpWeakAuthAlgorithmEventDetailsSchema(),
 			},
 			"nw_subnet_clash_details": {
 				Type:     schema.TypeSet,
@@ -22019,6 +22105,18 @@ func ResourceKeyValueTupleSchema() *schema.Resource {
 	}
 }
 
+func ResourceKeylessLicenseSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"license_token": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
 func ResourceKniPortRangeSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -22620,10 +22718,11 @@ func ResourceLdapAuthSettingsSchema() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceLdapDirectorySettingsSchema(),
 			},
-			"tls_mode": {
-				Type:     schema.TypeString,
+			"tls_config": {
+				Type:     schema.TypeSet,
 				Optional: true,
-				Default:  "TLS_MODE_DISABLED",
+				Computed: true,
+				Elem:     ResourceTlsConfigSchema(),
 			},
 			"user_bind": {
 				Type:     schema.TypeSet,
@@ -23634,6 +23733,12 @@ func ResourceLogManagerDebugFilterSchema() *schema.Resource {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Default:      "8",
+				ValidateFunc: validateInteger,
+			},
+			"bulk_payload_buffer_percent": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "5",
 				ValidateFunc: validateInteger,
 			},
 			"bulk_payload_string_size": {
@@ -25940,7 +26045,7 @@ func ResourceNTPAuthenticationKeySchema() *schema.Resource {
 			"algorithm": {
 				Type:     schema.TypeString,
 				Optional: true,
-				Default:  "NTP_AUTH_ALGORITHM_MD5",
+				Default:  "NTP_AUTH_ALGORITHM_SHA256",
 			},
 			"key": {
 				Type:     schema.TypeString,
@@ -26991,6 +27096,18 @@ func ResourceNtlmLogSchema() *schema.Resource {
 	}
 }
 
+func ResourceNtpWeakAuthAlgorithmEventDetailsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"description": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
 func ResourceNuageSDNControllerSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -27155,10 +27272,11 @@ func ResourceOAuthProfileSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
-			"tls_mode": {
-				Type:     schema.TypeString,
+			"tls_config": {
+				Type:     schema.TypeSet,
 				Optional: true,
-				Default:  "TLS_MODE_DISABLED",
+				Computed: true,
+				Elem:     ResourceTlsConfigSchema(),
 			},
 			"token_endpoint": {
 				Type:     schema.TypeString,
@@ -27360,6 +27478,11 @@ func ResourceOCSPConfigSchema() *schema.Resource {
 				Optional:     true,
 				Default:      "86400",
 				ValidateFunc: validateInteger,
+			},
+			"ocsp_request_hash_algorithms": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
 			"ocsp_resp_timeout": {
 				Type:         schema.TypeString,
@@ -30112,6 +30235,43 @@ func ResourcePulseServicesTenantConfigSchema() *schema.Resource {
 				Optional:     true,
 				Computed:     true,
 				ValidateFunc: validateInteger,
+			},
+		},
+	}
+}
+
+func ResourcePulseServicesTenantStatusSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"iprep_synced_at": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"last_connected_at": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"last_disconnected_at": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"last_registered_at": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"last_token_refreshed_at": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"license_refreshed_at": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 		},
 	}
@@ -38084,6 +38244,56 @@ func ResourceServiceEngineParamsSchema() *schema.Resource {
 	}
 }
 
+func ResourceServiceHealthSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"available": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateBool,
+			},
+			"controllerreason": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"id": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"last_updated_time": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceTimeStampSchema(),
+			},
+			"name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"operational": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
+			"portalreason": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"reason": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "SYSERR_SUCCESS",
+			},
+		},
+	}
+}
+
 func ResourceServiceMatchSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -40294,6 +40504,23 @@ func ResourceTlsClientInfoSchema() *schema.Resource {
 				Optional:     true,
 				Computed:     true,
 				ValidateFunc: validateBool,
+			},
+		},
+	}
+}
+
+func ResourceTlsConfigSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"client_cert_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"tls_mode": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 		},
 	}

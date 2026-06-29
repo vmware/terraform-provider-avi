@@ -351,6 +351,18 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"ipgls_client_cache_size": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "10000",
+			ValidateFunc: validateInteger,
+		},
+		"ipgls_client_cache_ttl_minutes": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "5",
+			ValidateFunc: validateInteger,
+		},
 		"log_records_allocated_size": {
 			Type:         schema.TypeString,
 			Optional:     true,

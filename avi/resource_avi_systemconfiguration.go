@@ -16,12 +16,30 @@ func ResourceSystemConfigurationSchema() map[string]*schema.Schema {
 			Computed: true,
 			Elem:     ResourceAdminAuthConfigurationSchema(),
 		},
+		"allow_legacy_sha1_ntp_auth": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
+		},
+		"allow_private_ips": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
+		},
 		"avi_email_login_password": {
 			Type:             schema.TypeString,
 			Optional:         true,
 			Computed:         true,
 			Sensitive:        true,
 			DiffSuppressFunc: suppressSensitiveFieldDiffs,
+		},
+		"certificate_security_policy": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceCertificateSecurityPolicySchema(),
 		},
 		"common_criteria_mode": {
 			Type:         schema.TypeString,
