@@ -199,6 +199,10 @@ func dataSourceAviSystemConfiguration() *schema.Resource {
 				Computed: true,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
+			"truststore_ca_certs_pem": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"truststore_pkiprofile_ref": {
 				Type:     schema.TypeString,
 				Computed: true,

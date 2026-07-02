@@ -254,6 +254,11 @@ func ResourceSystemConfigurationSchema() map[string]*schema.Schema {
 			Optional: true,
 			Elem:     &schema.Schema{Type: schema.TypeString},
 		},
+		"truststore_ca_certs_pem": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
 		"truststore_pkiprofile_ref": {
 			Type:     schema.TypeString,
 			Optional: true,

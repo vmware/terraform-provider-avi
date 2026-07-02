@@ -552,6 +552,11 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"log_streaming_tls_config": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceTlsConfigSchema(),
+			},
 			"markers": {
 				Type:     schema.TypeList,
 				Computed: true,

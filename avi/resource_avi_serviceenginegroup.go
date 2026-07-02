@@ -784,6 +784,12 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Default:      "64",
 			ValidateFunc: validateInteger,
 		},
+		"log_streaming_tls_config": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceTlsConfigSchema(),
+		},
 		"markers": {
 			Type:     schema.TypeList,
 			Optional: true,
