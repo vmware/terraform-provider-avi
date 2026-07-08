@@ -1819,12 +1819,12 @@ func ResourceApiValidationSettingsSchema() *schema.Resource {
 			"unexpected_query_argument_action": {
 				Type:     schema.TypeString,
 				Optional: true,
-				Default:  "API_ACTION_LEARN",
+				Default:  "API_ACTION_FLAG",
 			},
 			"unexpected_request_body_parameter_action": {
 				Type:     schema.TypeString,
 				Optional: true,
-				Default:  "API_ACTION_LEARN",
+				Default:  "API_ACTION_FLAG",
 			},
 			"unknown_content_type_action": {
 				Type:     schema.TypeString,
@@ -14336,6 +14336,12 @@ func ResourceEventDetailsSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 				Elem:     ResourceSSLExpireDetailsSchema(),
+			},
+			"ssl_expired_details": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceSSLExpiredDetailsSchema(),
 			},
 			"ssl_export_details": {
 				Type:     schema.TypeSet,
@@ -32921,6 +32927,18 @@ func ResourceSSLExpireDetailsSchema() *schema.Resource {
 	}
 }
 
+func ResourceSSLExpiredDetailsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
 func ResourceSSLExportDetailsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -38865,27 +38883,25 @@ func ResourceSnmpV3UserParamsSchema() *schema.Resource {
 		Schema: map[string]*schema.Schema{
 			"auth_passphrase": {
 				Type:             schema.TypeString,
-				Optional:         true,
-				Default:          "avinetworks",
+				Required:         true,
 				Sensitive:        true,
 				DiffSuppressFunc: suppressSensitiveFieldDiffs,
 			},
 			"auth_type": {
 				Type:     schema.TypeString,
 				Optional: true,
-				Default:  "SNMP_V3_AUTH_MD5",
+				Default:  "SNMP_V3_AUTH_SHA_256",
 			},
 			"priv_passphrase": {
 				Type:             schema.TypeString,
-				Optional:         true,
-				Default:          "avinetworks",
+				Required:         true,
 				Sensitive:        true,
 				DiffSuppressFunc: suppressSensitiveFieldDiffs,
 			},
 			"priv_type": {
 				Type:     schema.TypeString,
 				Optional: true,
-				Default:  "SNMP_V3_PRIV_DES",
+				Default:  "SNMP_V3_PRIV_AES",
 			},
 			"username": {
 				Type:     schema.TypeString,
