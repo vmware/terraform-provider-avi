@@ -34,12 +34,6 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Default:      "false",
 			ValidateFunc: validateBool,
 		},
-		"allow_unauthenticated_nodes": {
-			Type:         schema.TypeString,
-			Optional:     true,
-			Default:      "false",
-			ValidateFunc: validateBool,
-		},
 		"api_idle_timeout": {
 			Type:         schema.TypeString,
 			Optional:     true,
