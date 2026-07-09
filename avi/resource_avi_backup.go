@@ -24,6 +24,11 @@ func ResourceBackupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"name": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
 		"remote_file_url": {
 			Type:     schema.TypeString,
 			Optional: true,

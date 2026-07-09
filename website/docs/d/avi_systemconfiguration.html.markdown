@@ -33,7 +33,9 @@ data "avi_systemconfiguration" "foo_systemconfiguration" {
 In addition to all arguments above, the following attributes are exported:
 
 * `admin_auth_configuration` - Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `allow_legacy_sha1_ntp_auth` - Allow ntp authentication using legacy md5 or sha1 algorithms. When enabled, configuring md5 or sha1 ntp keys is permitted but a warning event is generated in the controller ui. When disabled (default), only sha256 or stronger is accepted and configuring md5 or sha1 results in an api error. Field introduced in 32.1.3. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `avi_email_login_password` - Password for avi_email_login user. Field introduced in 31.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `certificate_security_policy` - Certificate security policy for the system. Field introduced in 32.1.3. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `common_criteria_mode` - Common criteria mode's current state. Field introduced in 20.1.3. Allowed with any value in enterprise, enterprise with cloud services edition.
 * `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `controller_analytics_policy` - Controller metrics event dynamic thresholds can be set here. Controller_cpu_high and controller_mem_high evets can take configured dynamic thresholds. Field introduced in 21.1.3. Allowed with any value in enterprise, enterprise with cloud services edition.
