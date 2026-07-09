@@ -85,6 +85,12 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Default:      "1",
 			ValidateFunc: validateInteger,
 		},
+		"audit_qat_huge_pages": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "true",
+			ValidateFunc: validateBool,
+		},
 		"auto_rebalance": {
 			Type:         schema.TypeString,
 			Optional:     true,
@@ -164,6 +170,7 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
+			ForceNew: true,
 		},
 		"compress_ip_rules_for_each_ns_subnet": {
 			Type:         schema.TypeString,
@@ -188,6 +195,12 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional:     true,
 			Default:      "50",
 			ValidateFunc: validateInteger,
+		},
+		"control_qat_huge_pages": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "true",
+			ValidateFunc: validateBool,
 		},
 		"core_shm_app_cache": {
 			Type:         schema.TypeString,
@@ -584,6 +597,12 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Computed: true,
 			Elem:     ResourceCloudFlavorSchema(),
 		},
+		"ip_advertisement_profile": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceIpAdvertisementProfileSchema(),
+		},
 		"iptables": {
 			Type:     schema.TypeList,
 			Optional: true,
@@ -729,6 +748,18 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Default:      "true",
 			ValidateFunc: validateBool,
 		},
+		"log_agent_udp_fqdn_resolve_interval": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "900",
+			ValidateFunc: validateInteger,
+		},
+		"log_agent_udp_fqdn_resolve_log_count": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "5000",
+			ValidateFunc: validateInteger,
+		},
 		"log_agent_unknown_vs_timer": {
 			Type:         schema.TypeString,
 			Optional:     true,
@@ -752,6 +783,12 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional:     true,
 			Default:      "64",
 			ValidateFunc: validateInteger,
+		},
+		"log_streaming_tls_config": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceTlsConfigSchema(),
 		},
 		"markers": {
 			Type:     schema.TypeList,
@@ -1009,6 +1046,12 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"optimistic_placement": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
+		},
 		"os_reserved_memory": {
 			Type:         schema.TypeString,
 			Optional:     true,
@@ -1060,6 +1103,11 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional:     true,
 			Default:      "0",
 			ValidateFunc: validateInteger,
+		},
+		"qat_hpage_mem_per_process": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Default:  "QAT_HPAGE_MEM_16MB",
 		},
 		"realtime_se_metrics": {
 			Type:     schema.TypeSet,
@@ -1672,6 +1720,12 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 			Elem:     ResourceVipAutoscaleGroupSchema(),
+		},
+		"vmotion_notification_poll_interval": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "5",
+			ValidateFunc: validateInteger,
 		},
 		"vnic_dhcp_ip_check_interval": {
 			Type:         schema.TypeString,

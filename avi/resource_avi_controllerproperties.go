@@ -34,12 +34,6 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Default:      "false",
 			ValidateFunc: validateBool,
 		},
-		"allow_unauthenticated_nodes": {
-			Type:         schema.TypeString,
-			Optional:     true,
-			Default:      "false",
-			ValidateFunc: validateBool,
-		},
 		"api_idle_timeout": {
 			Type:         schema.TypeString,
 			Optional:     true,
@@ -99,6 +93,24 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Optional:     true,
 			Default:      "true",
 			ValidateFunc: validateBool,
+		},
+		"cc_user_password_expiry_days": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "30",
+			ValidateFunc: validateInteger,
+		},
+		"cc_user_password_rotation_job_period": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "24",
+			ValidateFunc: validateInteger,
+		},
+		"cert_rotation_jwt_retention_days": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "180",
+			ValidateFunc: validateInteger,
 		},
 		"check_vsvip_fqdn_syntax": {
 			Type:         schema.TypeString,
@@ -250,6 +262,12 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Default:      "false",
 			ValidateFunc: validateBool,
 		},
+		"enable_streaming_based_nsx_ip_group_sync": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "true",
+			ValidateFunc: validateBool,
+		},
 		"event_manager_file_modified_ts_filter": {
 			Type:         schema.TypeString,
 			Optional:     true,
@@ -327,6 +345,23 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Optional:     true,
 			Default:      "false",
 			ValidateFunc: validateBool,
+		},
+		"intelligent_assist_project_key": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
+		"ipgls_client_cache_size": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "10000",
+			ValidateFunc: validateInteger,
+		},
+		"ipgls_client_cache_ttl_minutes": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "5",
+			ValidateFunc: validateInteger,
 		},
 		"log_records_allocated_size": {
 			Type:         schema.TypeString,
@@ -442,6 +477,12 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Optional:     true,
 			Default:      "1440",
 			ValidateFunc: validateInteger,
+		},
+		"promoted_log_fields": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourcePromotedLogFieldsSchema(),
 		},
 		"query_host_fail": {
 			Type:         schema.TypeString,
@@ -653,6 +694,12 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Type:         schema.TypeString,
 			Optional:     true,
 			Default:      "1500",
+			ValidateFunc: validateInteger,
+		},
+		"vs_se_license_reservation_fail": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "30",
 			ValidateFunc: validateInteger,
 		},
 		"vs_se_ping_fail": {

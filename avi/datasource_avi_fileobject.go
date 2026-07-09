@@ -9,6 +9,11 @@ func dataSourceAviFileObject() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviFileObjectRead,
 		Schema: map[string]*schema.Schema{
+			"api_spec_detail": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceApiSpecDetailSchema(),
+			},
 			"checksum": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -17,6 +22,10 @@ func dataSourceAviFileObject() *schema.Resource {
 				Type:     schema.TypeList,
 				Computed: true,
 				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
+			"completed_events": {
+				Type:     schema.TypeString,
+				Computed: true,
 			},
 			"compressed": {
 				Type:     schema.TypeString,
@@ -40,6 +49,14 @@ func dataSourceAviFileObject() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"duration": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"end_time": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"events": {
 				Type:     schema.TypeList,
 				Computed: true,
@@ -57,6 +74,11 @@ func dataSourceAviFileObject() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"history": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceTaskEventHistorySchema(),
+			},
 			"is_federated": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -67,6 +89,10 @@ func dataSourceAviFileObject() *schema.Resource {
 				Computed: true,
 			},
 			"path": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"progress": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
@@ -82,9 +108,27 @@ func dataSourceAviFileObject() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"start_time": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"state": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceFileObjectStateSchema(),
+			},
+			"task_events": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceTaskEventMapSchema(),
+			},
 			"tenant_ref": {
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
+			},
+			"total_events": {
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 			"type": {

@@ -16,6 +16,18 @@ func ResourceSystemConfigurationSchema() map[string]*schema.Schema {
 			Computed: true,
 			Elem:     ResourceAdminAuthConfigurationSchema(),
 		},
+		"allow_legacy_sha1_ntp_auth": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
+		},
+		"allow_private_ips": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
+		},
 		"avi_email_login_password": {
 			Type:             schema.TypeString,
 			Optional:         true,
@@ -23,10 +35,17 @@ func ResourceSystemConfigurationSchema() map[string]*schema.Schema {
 			Sensitive:        true,
 			DiffSuppressFunc: suppressSensitiveFieldDiffs,
 		},
+		"certificate_security_policy": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceCertificateSecurityPolicySchema(),
+		},
 		"common_criteria_mode": {
 			Type:         schema.TypeString,
 			Optional:     true,
 			Default:      "false",
+			ForceNew:     true,
 			ValidateFunc: validateBool,
 		},
 		"configpb_attributes": {
@@ -61,6 +80,7 @@ func ResourceSystemConfigurationSchema() map[string]*schema.Schema {
 			Type:         schema.TypeString,
 			Optional:     true,
 			Default:      "false",
+			ForceNew:     true,
 			ValidateFunc: validateBool,
 		},
 		"email_configuration": {
@@ -91,6 +111,7 @@ func ResourceSystemConfigurationSchema() map[string]*schema.Schema {
 			Type:         schema.TypeString,
 			Optional:     true,
 			Default:      "false",
+			ForceNew:     true,
 			ValidateFunc: validateBool,
 		},
 		"global_tenant_config": {
@@ -103,6 +124,12 @@ func ResourceSystemConfigurationSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
+		},
+		"intelligent_assist_enabled": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
 		},
 		"kex_algorithm_exclude": {
 			Type:     schema.TypeString,
@@ -138,6 +165,12 @@ func ResourceSystemConfigurationSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 			Elem:     ResourceNTPConfigurationSchema(),
+		},
+		"password_policy_managed_at_ops": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
 		},
 		"portal_configuration": {
 			Type:     schema.TypeSet,
@@ -220,6 +253,11 @@ func ResourceSystemConfigurationSchema() map[string]*schema.Schema {
 			Type:     schema.TypeList,
 			Optional: true,
 			Elem:     &schema.Schema{Type: schema.TypeString},
+		},
+		"truststore_ca_certs_pem": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
 		},
 		"truststore_pkiprofile_ref": {
 			Type:     schema.TypeString,

@@ -13,6 +13,7 @@ func ResourceWafCRSSchema() map[string]*schema.Schema {
 		"allowed_request_content_type_charsets": {
 			Type:     schema.TypeList,
 			Optional: true,
+			ForceNew: true,
 			Elem:     &schema.Schema{Type: schema.TypeString},
 		},
 		"configpb_attributes": {
@@ -24,24 +25,29 @@ func ResourceWafCRSSchema() map[string]*schema.Schema {
 		"description": {
 			Type:     schema.TypeString,
 			Required: true,
+			ForceNew: true,
 		},
 		"files": {
 			Type:     schema.TypeList,
 			Optional: true,
+			ForceNew: true,
 			Elem:     ResourceWafDataFileSchema(),
 		},
 		"groups": {
 			Type:     schema.TypeList,
 			Optional: true,
+			ForceNew: true,
 			Elem:     ResourceWafRuleGroupSchema(),
 		},
 		"integrity": {
 			Type:     schema.TypeString,
 			Required: true,
+			ForceNew: true,
 		},
 		"integrity_values": {
 			Type:     schema.TypeList,
 			Optional: true,
+			ForceNew: true,
 			Elem:     &schema.Schema{Type: schema.TypeString},
 		},
 		"markers": {
@@ -52,34 +58,41 @@ func ResourceWafCRSSchema() map[string]*schema.Schema {
 		"name": {
 			Type:     schema.TypeString,
 			Required: true,
+			ForceNew: true,
 		},
 		"release_date": {
 			Type:     schema.TypeString,
 			Required: true,
+			ForceNew: true,
 		},
 		"restricted_extensions": {
 			Type:     schema.TypeList,
 			Optional: true,
+			ForceNew: true,
 			Elem:     &schema.Schema{Type: schema.TypeString},
 		},
 		"restricted_headers": {
 			Type:     schema.TypeList,
 			Optional: true,
+			ForceNew: true,
 			Elem:     &schema.Schema{Type: schema.TypeString},
 		},
 		"tenant_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
+			ForceNew: true,
 		},
 		"uuid": {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
+			ForceNew: true,
 		},
 		"version": {
 			Type:     schema.TypeString,
 			Required: true,
+			ForceNew: true,
 		},
 	}
 }

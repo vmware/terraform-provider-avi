@@ -38,6 +38,6 @@ In addition to all arguments above, the following attributes are exported:
 * `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `name` - Name of the sso policy. Field introduced in 18.2.3. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `tenant_ref` - Uuid of the tenant. It is a reference to an object of type tenant. Field introduced in 18.2.3. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `type` - Sso policy type. Enum options - SSO_TYPE_SAML, SSO_TYPE_PINGACCESS, SSO_TYPE_JWT, SSO_TYPE_LDAP, SSO_TYPE_OAUTH. Field introduced in 18.2.5. Allowed with any value in enterprise, essentials, enterprise with cloud services edition. Allowed in basic (allowed values- sso_type_saml, sso_type_jwt, sso_type_ldap, sso_type_oauth) edition.
+* `type` - Sso policy type. Enum options - SSO_TYPE_SAML, SSO_TYPE_PINGACCESS, SSO_TYPE_JWT, SSO_TYPE_LDAP, SSO_TYPE_OAUTH. Field introduced in 18.2.5. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `uuid` - Uuid of the sso policy. Field introduced in 18.2.3. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 

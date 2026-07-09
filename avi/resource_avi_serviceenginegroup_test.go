@@ -33,7 +33,7 @@ func TestAVIServiceEngineGroupBasic(t *testing.T) {
 					resource.TestCheckResourceAttr(
 						"avi_serviceenginegroup.testServiceEngineGroup", "hm_on_standby", "true"),
 					resource.TestCheckResourceAttr(
-						"avi_serviceenginegroup.testServiceEngineGroup", "disk_per_se", "10"),
+						"avi_serviceenginegroup.testServiceEngineGroup", "disk_per_se", "15"),
 					resource.TestCheckResourceAttr(
 						"avi_serviceenginegroup.testServiceEngineGroup", "cpu_socket_affinity", "false"),
 					resource.TestCheckResourceAttr(
@@ -187,7 +187,7 @@ func TestAVIServiceEngineGroupBasic(t *testing.T) {
 					resource.TestCheckResourceAttr(
 						"avi_serviceenginegroup.testServiceEngineGroup", "hm_on_standby", "true"),
 					resource.TestCheckResourceAttr(
-						"avi_serviceenginegroup.testServiceEngineGroup", "disk_per_se", "10"),
+						"avi_serviceenginegroup.testServiceEngineGroup", "disk_per_se", "15"),
 					resource.TestCheckResourceAttr(
 						"avi_serviceenginegroup.testServiceEngineGroup", "cpu_socket_affinity", "false"),
 					resource.TestCheckResourceAttr(
@@ -399,7 +399,7 @@ resource "avi_serviceenginegroup" "testServiceEngineGroup" {
 	vcpus_per_se = "1"
 	active_standby = false
 	hm_on_standby = true
-	disk_per_se = "10"
+	disk_per_se = "15"
 	cpu_socket_affinity = false
 	vs_scalein_timeout_for_upgrade = "30"
 	se_name_prefix = "Avi"
@@ -497,7 +497,7 @@ resource "avi_serviceenginegroup" "testServiceEngineGroup" {
 	vcpus_per_se = "1"
 	active_standby = false
 	hm_on_standby = true
-	disk_per_se = "10"
+	disk_per_se = "15"
 	cpu_socket_affinity = false
 	vs_scalein_timeout_for_upgrade = "30"
 	se_name_prefix = "Avi"

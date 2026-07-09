@@ -60,6 +60,7 @@ func ResourceIPReputationDBSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
+			ForceNew: true,
 		},
 		"uuid": {
 			Type:     schema.TypeString,
@@ -74,6 +75,7 @@ func ResourceIPReputationDBSchema() map[string]*schema.Schema {
 		"vendor": {
 			Type:     schema.TypeString,
 			Required: true,
+			ForceNew: true,
 		},
 		"version": {
 			Type:     schema.TypeString,

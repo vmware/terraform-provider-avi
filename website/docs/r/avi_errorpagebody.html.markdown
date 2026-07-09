@@ -27,12 +27,12 @@ resource "avi_errorpagebody" "foo" {
 
 The following arguments are supported:
 
-* `error_page_body` - (Required) Error page body sent to client when match. Field introduced in 17.2.4. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `name` - (Required) Field introduced in 17.2.4. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `format` - (Optional) Format of an error page body html or json. Enum options - ERROR_PAGE_FORMAT_HTML, ERROR_PAGE_FORMAT_JSON. Field introduced in 18.2.3. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `tenant_ref` - (Optional) It is a reference to an object of type tenant. Field introduced in 17.2.4. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `error_page_body` - (Required) Error page body sent to client when match. Field introduced in 17.2.4. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `name` - (Required) Field introduced in 17.2.4. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `format` - (Optional) Format of an error page body html or json. Enum options - ERROR_PAGE_FORMAT_HTML, ERROR_PAGE_FORMAT_JSON. Field introduced in 18.2.3. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `markers` - (Optional) List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant. Field introduced in 17.2.4. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
 
 
 ### Timeouts

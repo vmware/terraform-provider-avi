@@ -38,6 +38,11 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"api_policy_ref": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
 		"application_insights_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
@@ -96,6 +101,7 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
+			ForceNew: true,
 		},
 		"cloud_type": {
 			Type:     schema.TypeString,
@@ -239,6 +245,11 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 			Optional: true,
 			Elem:     ResourceL4PoliciesSchema(),
 		},
+		"label_profile_ref": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
 		"ldap_vs_config": {
 			Type:     schema.TypeSet,
 			Optional: true,
@@ -374,6 +385,11 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 			Optional: true,
 			Elem:     ResourceServiceSchema(),
 		},
+		"session_key_forwarder_ref": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
 		"sideband_profile": {
 			Type:     schema.TypeSet,
 			Optional: true,
@@ -456,6 +472,7 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 			Default:  "VS_TYPE_NORMAL",
+			ForceNew: true,
 		},
 		"use_bridge_ip_as_vip": {
 			Type:         schema.TypeString,
@@ -493,6 +510,7 @@ func ResourceVirtualServiceSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 			Default:  "VS_TYPE_VH_SNI",
+			ForceNew: true,
 		},
 		"vip": {
 			Type:     schema.TypeList,

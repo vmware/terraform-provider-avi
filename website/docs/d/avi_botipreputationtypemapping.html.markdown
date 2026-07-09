@@ -33,8 +33,8 @@ data "avi_botipreputationtypemapping" "foo_botipreputationtypemapping" {
 In addition to all arguments above, the following attributes are exported:
 
 * `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 31.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `ip_reputation_mappings` - Map every ipreputationtype to a bot type (can be unknown). Field introduced in 21.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `name` - The name of this mapping. Field introduced in 21.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `tenant_ref` - The unique identifier of the tenant to which this mapping belongs. It is a reference to an object of type tenant. Field introduced in 21.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `uuid` - A unique identifier of this mapping. Field introduced in 21.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `ip_reputation_mappings` - Map every ipreputationtype to a bot type (can be unknown). Field introduced in 21.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `name` - The name of this mapping. Field introduced in 21.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `tenant_ref` - The unique identifier of the tenant to which this mapping belongs. It is a reference to an object of type tenant. Field introduced in 21.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `uuid` - A unique identifier of this mapping. Field introduced in 21.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 

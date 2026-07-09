@@ -9,6 +9,11 @@ func dataSourceAviJWTServerProfile() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviJWTServerProfileRead,
 		Schema: map[string]*schema.Schema{
+			"allowed_algorithms": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
 			"configpb_attributes": {
 				Type:     schema.TypeSet,
 				Computed: true,
@@ -39,6 +44,11 @@ func dataSourceAviJWTServerProfile() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+			"protected_resource_config": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceJWTProtectedResourceConfigSchema(),
 			},
 			"tenant_ref": {
 				Type:     schema.TypeString,

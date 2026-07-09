@@ -26,10 +26,10 @@ resource "avi_seproperties" "foo" {
 
 The following arguments are supported:
 
-* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `se_agent_properties` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `se_bootup_properties` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `se_runtime_properties` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `se_agent_properties` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `se_bootup_properties` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `se_runtime_properties` - (Optional) Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
 
 
 ### Timeouts

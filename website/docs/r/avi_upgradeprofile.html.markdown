@@ -27,11 +27,11 @@ resource "avi_upgradeprofile" "foo" {
 
 The following arguments are supported:
 
-* `controller_params` - (Optional) List of controller upgrade related configurable parameters. Field introduced in 31.2.1. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `dry_run` - (Optional) List of dryrun related configurable parameters. Field introduced in 31.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `image` - (Optional) List of image related configurable parameters. Field introduced in 31.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `pre_checks` - (Optional) List of upgrade pre-checks related configurable parameters. Field introduced in 31.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
-* `service_engine` - (Optional) List of service engine upgrade related configurable parameters. Field introduced in 31.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `controller_params` - (Optional) List of controller upgrade related configurable parameters. Field introduced in 31.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `dry_run` - (Optional) List of dryrun related configurable parameters. Field introduced in 31.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `image` - (Optional) List of image related configurable parameters. Field introduced in 31.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `pre_checks` - (Optional) List of upgrade pre-checks related configurable parameters. Field introduced in 31.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `service_engine` - (Optional) List of service engine upgrade related configurable parameters. Field introduced in 31.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
 
 
 ### Timeouts
@@ -46,5 +46,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-* `uuid` -  Uuid identifier for the upgradeprofile object. Field introduced in 31.1.1. Allowed with any value in enterprise, enterprise with cloud services edition.
+* `uuid` -  Uuid identifier for the upgradeprofile object. Field introduced in 31.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 

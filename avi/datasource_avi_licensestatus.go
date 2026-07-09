@@ -9,10 +9,19 @@ func dataSourceAviLicenseStatus() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviLicenseStatusRead,
 		Schema: map[string]*schema.Schema{
+			"cls_status": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceCLSStatusSchema(),
+			},
 			"configpb_attributes": {
 				Type:     schema.TypeSet,
 				Computed: true,
 				Elem:     ResourceConfigPbAttributesSchema(),
+			},
+			"legacy_license_grace_period": {
+				Type:     schema.TypeString,
+				Computed: true,
 			},
 			"saas_status": {
 				Type:     schema.TypeSet,
@@ -23,6 +32,14 @@ func dataSourceAviLicenseStatus() *schema.Resource {
 				Type:     schema.TypeSet,
 				Computed: true,
 				Elem:     ResourceLicenseServiceUpdateSchema(),
+			},
+			"ssp_license_reported_at": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"support_legacy_license": {
+				Type:     schema.TypeString,
+				Computed: true,
 			},
 			"tenant_uuid": {
 				Type:     schema.TypeString,

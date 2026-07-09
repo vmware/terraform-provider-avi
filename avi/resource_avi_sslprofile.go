@@ -51,6 +51,7 @@ func ResourceSSLProfileSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
+			ForceNew: true,
 		},
 		"ec_named_curve": {
 			Type:     schema.TypeString,
@@ -73,6 +74,7 @@ func ResourceSSLProfileSchema() map[string]*schema.Schema {
 			Type:         schema.TypeString,
 			Optional:     true,
 			Default:      "false",
+			ForceNew:     true,
 			ValidateFunc: validateBool,
 		},
 		"markers": {
@@ -127,6 +129,7 @@ func ResourceSSLProfileSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 			Default:  "SSL_PROFILE_TYPE_APPLICATION",
+			ForceNew: true,
 		},
 		"uuid": {
 			Type:     schema.TypeString,

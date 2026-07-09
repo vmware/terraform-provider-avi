@@ -14,9 +14,22 @@ func dataSourceAviSystemConfiguration() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceAdminAuthConfigurationSchema(),
 			},
+			"allow_legacy_sha1_ntp_auth": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"allow_private_ips": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"avi_email_login_password": {
 				Type:     schema.TypeString,
 				Computed: true,
+			},
+			"certificate_security_policy": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceCertificateSecurityPolicySchema(),
 			},
 			"common_criteria_mode": {
 				Type:     schema.TypeString,
@@ -80,6 +93,10 @@ func dataSourceAviSystemConfiguration() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"intelligent_assist_enabled": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"kex_algorithm_exclude": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -107,6 +124,10 @@ func dataSourceAviSystemConfiguration() *schema.Resource {
 				Type:     schema.TypeSet,
 				Computed: true,
 				Elem:     ResourceNTPConfigurationSchema(),
+			},
+			"password_policy_managed_at_ops": {
+				Type:     schema.TypeString,
+				Computed: true,
 			},
 			"portal_configuration": {
 				Type:     schema.TypeSet,
@@ -177,6 +198,10 @@ func dataSourceAviSystemConfiguration() *schema.Resource {
 				Type:     schema.TypeList,
 				Computed: true,
 				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
+			"truststore_ca_certs_pem": {
+				Type:     schema.TypeString,
+				Computed: true,
 			},
 			"truststore_pkiprofile_ref": {
 				Type:     schema.TypeString,

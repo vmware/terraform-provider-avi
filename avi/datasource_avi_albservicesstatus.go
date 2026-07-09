@@ -5,49 +5,56 @@ package avi
 
 import "github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 
-func dataSourceAviALBServicesFileDownload() *schema.Resource {
+func dataSourceAviALBServicesStatus() *schema.Resource {
 	return &schema.Resource{
-		Read: ResourceAviALBServicesFileDownloadRead,
+		Read: ResourceAviALBServicesStatusRead,
 		Schema: map[string]*schema.Schema{
+			"asset_details": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceALBServicesAssetDetailsSchema(),
+			},
 			"configpb_attributes": {
 				Type:     schema.TypeSet,
 				Computed: true,
 				Elem:     ResourceConfigPbAttributesSchema(),
 			},
-			"destination_dir": {
-				Type:     schema.TypeString,
-				Computed: true,
-			},
-			"file_type": {
-				Type:     schema.TypeString,
-				Computed: true,
-			},
-			"file_uri": {
-				Type:     schema.TypeString,
-				Computed: true,
-			},
-			"message": {
-				Type:     schema.TypeString,
-				Computed: true,
-			},
-			"metadata": {
+			"connected_at": {
 				Type:     schema.TypeSet,
 				Computed: true,
-				Elem:     ResourceALBServicesFileDownloadMetadataSchema(),
+				Elem:     ResourceTimeStampSchema(),
+			},
+			"connectivity_status": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"error": {
+				Type:     schema.TypeString,
+				Computed: true,
 			},
 			"name": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
-			"status": {
+			"registration_status": {
 				Type:     schema.TypeString,
 				Computed: true,
+			},
+			"services_health": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem:     ResourceServiceHealthSchema(),
 			},
 			"tenant_ref": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+			"tenant_status": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourcePulseServicesTenantStatusSchema(),
 			},
 			"uuid": {
 				Type:     schema.TypeString,

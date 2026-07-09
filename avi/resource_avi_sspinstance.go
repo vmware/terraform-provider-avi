@@ -34,6 +34,7 @@ func ResourceSspInstanceSchema() map[string]*schema.Schema {
 		"feature": {
 			Type:     schema.TypeString,
 			Required: true,
+			ForceNew: true,
 		},
 		"hostname": {
 			Type:     schema.TypeString,
@@ -47,6 +48,7 @@ func ResourceSspInstanceSchema() map[string]*schema.Schema {
 		"name": {
 			Type:     schema.TypeString,
 			Required: true,
+			ForceNew: true,
 		},
 		"resources": {
 			Type:     schema.TypeSet,

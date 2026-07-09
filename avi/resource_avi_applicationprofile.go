@@ -14,6 +14,7 @@ func ResourceApplicationProfileSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
+			ForceNew: true,
 		},
 		"cloud_config_cksum": {
 			Type:     schema.TypeString,
@@ -113,6 +114,7 @@ func ResourceApplicationProfileSchema() map[string]*schema.Schema {
 		"type": {
 			Type:     schema.TypeString,
 			Required: true,
+			ForceNew: true,
 		},
 		"uuid": {
 			Type:     schema.TypeString,
