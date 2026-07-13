@@ -26,12 +26,14 @@ func ResourceUserAccountSchema() map[string]*schema.Schema {
 			Required: true,
 		},
 		"old_password": {
-			Type:     schema.TypeString,
-			Optional: true,
+			Type:      schema.TypeString,
+			Optional:  true,
+			Sensitive: true,
 		},
 		"password": {
-			Type:     schema.TypeString,
-			Optional: true,
+			Type:      schema.TypeString,
+			Optional:  true,
+			Sensitive: true,
 		},
 		"local": {
 			Type:     schema.TypeBool,
