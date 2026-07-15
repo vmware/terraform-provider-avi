@@ -25,10 +25,6 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"allow_unauthenticated_nodes": {
-				Type:     schema.TypeString,
-				Computed: true,
-			},
 			"api_idle_timeout": {
 				Type:     schema.TypeString,
 				Computed: true,
