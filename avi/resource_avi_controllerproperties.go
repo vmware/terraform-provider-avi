@@ -88,12 +88,6 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Default:      "4",
 			ValidateFunc: validateInteger,
 		},
-		"bm_use_ansible": {
-			Type:         schema.TypeString,
-			Optional:     true,
-			Default:      "true",
-			ValidateFunc: validateBool,
-		},
 		"cc_user_password_expiry_days": {
 			Type:         schema.TypeString,
 			Optional:     true,
