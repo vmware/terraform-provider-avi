@@ -2209,11 +2209,6 @@ func ResourceApplicationLogSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
-			"api_label_ids": {
-				Type:     schema.TypeList,
-				Optional: true,
-				Elem:     &schema.Schema{Type: schema.TypeInt},
-			},
 			"api_log": {
 				Type:     schema.TypeSet,
 				Optional: true,
@@ -20222,6 +20217,11 @@ func ResourceHttpCookiePersistenceProfileSchema() *schema.Resource {
 				Optional: true,
 				Elem:     ResourceHttpCookiePersistenceKeySchema(),
 			},
+			"samesite": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "SAMESITE_NONE",
+			},
 			"timeout": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -25152,6 +25152,35 @@ func ResourceMetricsApiSrvDebugFilterSchema() *schema.Resource {
 				Optional:     true,
 				Computed:     true,
 				ValidateFunc: validateInteger,
+			},
+			"metrics_db_rd_boundary_window_min": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"metrics_db_rd_check_interval_sec": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"metrics_db_rd_lag_stale_after_sec": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"metrics_db_rd_lag_threshold_sec": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"metrics_db_rd_routing_mode": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 		},
 	}
@@ -39621,6 +39650,35 @@ func ResourceSwitchoverFailEventDetailsSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+		},
+	}
+}
+
+func ResourceSyslogServerConfigSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"format": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "SYSLOG_LEGACY",
+			},
+			"port": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "514",
+				ValidateFunc: validateInteger,
+			},
+			"server": {
+				Type:     schema.TypeSet,
+				Required: true,
+				Elem:     ResourceIpAddrSchema(),
+			},
+			"udp": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "true",
+				ValidateFunc: validateBool,
 			},
 		},
 	}

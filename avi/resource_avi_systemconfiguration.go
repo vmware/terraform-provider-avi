@@ -238,10 +238,10 @@ func ResourceSystemConfigurationSchema() map[string]*schema.Schema {
 			Default:      "false",
 			ValidateFunc: validateBool,
 		},
-		"syslog_servers": {
+		"syslog_server_settings": {
 			Type:     schema.TypeList,
 			Optional: true,
-			Elem:     ResourceIpAddrSchema(),
+			Elem:     ResourceSyslogServerConfigSchema(),
 		},
 		"telemetry_configuration": {
 			Type:     schema.TypeSet,

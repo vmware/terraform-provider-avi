@@ -61,10 +61,6 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"bm_use_ansible": {
-				Type:     schema.TypeString,
-				Computed: true,
-			},
 			"cc_user_password_expiry_days": {
 				Type:     schema.TypeString,
 				Computed: true,

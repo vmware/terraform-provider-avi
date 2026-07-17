@@ -184,10 +184,10 @@ func dataSourceAviSystemConfiguration() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"syslog_servers": {
+			"syslog_server_settings": {
 				Type:     schema.TypeList,
 				Computed: true,
-				Elem:     ResourceIpAddrSchema(),
+				Elem:     ResourceSyslogServerConfigSchema(),
 			},
 			"telemetry_configuration": {
 				Type:     schema.TypeSet,
