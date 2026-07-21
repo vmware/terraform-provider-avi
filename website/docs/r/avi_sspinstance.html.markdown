@@ -27,7 +27,7 @@ resource "avi_sspinstance" "foo" {
 
 The following arguments are supported:
 
-* `feature` - (Required) Type of the ssp feature instance. Enum options - SSP_INTELLIGENT_ASSIST, SSP_CENTRAL_LICENSING_SERVICE. Field introduced in 32.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. Changing this value forces the resource to be recreated.
+* `feature` - (Required) Type of the ssp feature instance. Enum options - SSP_AVI_OPERATIONS, SSP_CENTRAL_LICENSING_SERVICE. Field introduced in 32.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. Changing this value forces the resource to be recreated.
 * `hostname` - (Required) Hostname of the ssp feature instance. Field introduced in 32.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
 * `name` - (Required) Name of the onboarded ssp feature instance. Field introduced in 32.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. Changing this value forces the resource to be recreated.
 * `status` - (Required) Status of the ssp feature instance. Enum options - SSP_STATUS_IN_PROGRESS, SSP_STATUS_ACTIVE, SSP_STATUS_CERT_UPDATE_FAILED. Field introduced in 32.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 

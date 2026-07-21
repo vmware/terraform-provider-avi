@@ -10,6 +10,11 @@ import (
 
 func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
+		"ai_assistant_project_key": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
 		"alert_manager_use_evms": {
 			Type:         schema.TypeString,
 			Optional:     true,
@@ -339,11 +344,6 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Optional:     true,
 			Default:      "false",
 			ValidateFunc: validateBool,
-		},
-		"intelligent_assist_project_key": {
-			Type:     schema.TypeString,
-			Optional: true,
-			Computed: true,
 		},
 		"ipgls_client_cache_size": {
 			Type:         schema.TypeString,

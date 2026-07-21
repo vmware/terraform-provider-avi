@@ -27,6 +27,7 @@ resource "avi_controllerproperties" "foo" {
 
 The following arguments are supported:
 
+* `ai_assistant_project_key` - (Optional) Project key for the ai assistant feature. Field introduced in 32.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
 * `alert_manager_use_evms` - (Optional) Enable to use event manager as source of eventsdisable to use log manager as source of events. Field introduced in 30.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
 * `allow_admin_network_updates` - (Optional) Allow non-admin tenants to update admin vrfcontext and network objects. Field introduced in 18.2.7, 20.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
 * `allow_ip_forwarding` - (Optional) Field introduced in 17.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
@@ -82,7 +83,6 @@ The following arguments are supported:
 * `gslb_purge_batch_size` - (Optional) Batch size for the vs_mgr to perform datastrorecleanup during a gslb purge. Allowed values are 50-1200. Field introduced in 22.1.3. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
 * `gslb_purge_sleep_time_ms` - (Optional) Sleep time in the vs_mgr during a federatedpurge rpc call. Allowed values are 50-100. Field introduced in 22.1.3. Unit is milliseconds. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
 * `ignore_vrf_in_networksubnetlist` - (Optional) Ignore the vrf_context filter for /networksubnetlist api. Field introduced in 22.1.4. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
-* `intelligent_assist_project_key` - (Optional) Project key for the intelligent assist feature. Field introduced in 32.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
 * `ipgls_client_cache_size` - (Optional) Size of the ipgls client cache. This cache stores country code lookups for ip addresses to reduce grpc calls to the ipgls service. Set to 0 to disable caching. Allowed values are 0-1000000. Field introduced in 32.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
 * `ipgls_client_cache_ttl_minutes` - (Optional) Ttl for entries in the ipgls client cache. After this duration, cached ip geolocation data will expire and require a fresh lookup. Lower values provide fresher data but increase load on ipgls service. Higher values reduce load but may serve stale geolocation data. Allowed values are 1-1440. Field introduced in 32.2.1. Unit is min. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
 * `log_records_allocated_size` - (Optional) Disk size to be allocated [1mb to 500gb] to store logs on a controller vm. Allowed values are 1000-500000000. Field introduced in 31.2.1. Unit is kb. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
