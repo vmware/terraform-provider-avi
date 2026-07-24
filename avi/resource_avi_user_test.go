@@ -114,7 +114,7 @@ resource "avi_user" "testUser" {
 	tenant_ref = data.avi_tenant.default_tenant.id
 	all_tenants = false
 }
-	password = "pbkdf2_sha256$100000$vwZd950E3jSj$tC/x4hJBolHm2Ki4uVNbMW59ZQcC95/p5UZUWjmTuFs="
+	password = "DUMMYomgcOE2B74o!sKFE"
 	username = "test-tf-user"
 	name = "test-tf-user"
 	full_name = "System Administrator"
@@ -142,7 +142,7 @@ resource "avi_user" "testUser" {
 	tenant_ref = data.avi_tenant.default_tenant.id
 	all_tenants = false
 }
-	password = "pbkdf2_sha256$100000$vwZd950E3jSj$tC/x4hJBolHm2Ki4uVNbMW59ZQcC95/p5UZUWjmTuFs="
+	password = "DUMMYomgcOE2B74o!sKFE"
 	username = "test-tf-user"
 	name = "test-tf-user"
 	full_name = "System Administrator"
