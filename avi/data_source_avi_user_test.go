@@ -46,7 +46,7 @@ resource "avi_user" "testUser" {
 	tenant_ref = data.avi_tenant.default_tenant.id
 	all_tenants = false
 }
-	password = "var.AVI_PASSWORD"
+	password = "DUMMYomgcOE2B74o!sKFE"
 	username = "test-tf-user"
 	name = "test-tf-user"
 	full_name = "System Administrator"
