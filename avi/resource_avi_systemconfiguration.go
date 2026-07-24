@@ -16,6 +16,12 @@ func ResourceSystemConfigurationSchema() map[string]*schema.Schema {
 			Computed: true,
 			Elem:     ResourceAdminAuthConfigurationSchema(),
 		},
+		"ai_assistant_enabled": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
+		},
 		"allow_legacy_sha1_ntp_auth": {
 			Type:         schema.TypeString,
 			Optional:     true,
@@ -124,12 +130,6 @@ func ResourceSystemConfigurationSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
-		},
-		"intelligent_assist_enabled": {
-			Type:         schema.TypeString,
-			Optional:     true,
-			Default:      "false",
-			ValidateFunc: validateBool,
 		},
 		"kex_algorithm_exclude": {
 			Type:     schema.TypeString,

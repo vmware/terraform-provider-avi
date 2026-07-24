@@ -5662,10 +5662,22 @@ func ResourceCaptureIPCSchema() *schema.Resource {
 func ResourceCapturePacketFilterSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"capture_ipc_filters": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceCaptureIPCSchema(),
+			},
 			"capture_tcp_filters": {
 				Type:     schema.TypeList,
 				Optional: true,
 				Elem:     ResourceCaptureTCPFilterSchema(),
+			},
+			"client_ip": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceDebugIpAddrSchema(),
 			},
 		},
 	}
@@ -5864,17 +5876,32 @@ func ResourceCentralLicenseSubscriptionDetailsSchema() *schema.Resource {
 func ResourceCertificateAuthoritySchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
-			"ca_fingerprint": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
 			"ca_ref": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
+			"fingerprint": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"issuer": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"not_after": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"subject": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -12957,6 +12984,12 @@ func ResourceEmailConfigurationSchema() *schema.Resource {
 			"smtp_type": {
 				Type:     schema.TypeString,
 				Required: true,
+			},
+			"tls_config": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceTlsConfigSchema(),
 			},
 		},
 	}
@@ -22701,6 +22734,11 @@ func ResourceLdapAuthSettingsSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Default:  "name",
+			},
+			"pki_profile_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 			"port": {
 				Type:         schema.TypeString,

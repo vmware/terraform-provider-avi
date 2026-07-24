@@ -33,6 +33,7 @@ data "avi_systemconfiguration" "foo_systemconfiguration" {
 In addition to all arguments above, the following attributes are exported:
 
 * `admin_auth_configuration` - Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `ai_assistant_enabled` - Enable or disable ai assistant feature on the controller. Field introduced in 32.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `allow_legacy_sha1_ntp_auth` - Allow ntp authentication using legacy md5 or sha1 algorithms. When enabled, configuring md5 or sha1 ntp keys is permitted but a warning event is generated in the controller ui. When disabled (default), only sha256 or stronger is accepted and configuring md5 or sha1 results in an api error. Field introduced in 32.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `allow_private_ips` - Allow usage of private ips in crl server, saml metadata url. Field introduced in 32.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `avi_email_login_password` - Password for avi_email_login user. Field introduced in 31.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
@@ -51,7 +52,6 @@ In addition to all arguments above, the following attributes are exported:
 * `fips_mode` - Fips mode current state. Field introduced in 20.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `global_tenant_config` - Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `host_key_algorithm_exclude` - Users can specify comma separated list of deprecated host key algorithm.if nothing is specified, all known algorithms provided by openssh will be supported.this change could only apply on the controller node. Field introduced in 22.1.3. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `intelligent_assist_enabled` - Enable or disable intelligent assist feature on the controller. Field introduced in 32.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `kex_algorithm_exclude` - Users can specify comma separated list of deprecated key exchange algorithm.if nothing is specified, all known algorithms provided by openssh will be supported.this change could only apply on the controller node. Field introduced in 22.1.3. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `legacy_ssl_support` - Allow outgoing connections from controller to servers using tls 1.0/1.1. Field introduced in 31.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `license_quota` - License quota for the system. Field introduced in 31.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.

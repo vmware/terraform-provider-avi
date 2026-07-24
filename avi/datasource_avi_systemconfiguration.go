@@ -14,6 +14,10 @@ func dataSourceAviSystemConfiguration() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceAdminAuthConfigurationSchema(),
 			},
+			"ai_assistant_enabled": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"allow_legacy_sha1_ntp_auth": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -90,10 +94,6 @@ func dataSourceAviSystemConfiguration() *schema.Resource {
 				Elem:     ResourceTenantConfigurationSchema(),
 			},
 			"host_key_algorithm_exclude": {
-				Type:     schema.TypeString,
-				Computed: true,
-			},
-			"intelligent_assist_enabled": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},

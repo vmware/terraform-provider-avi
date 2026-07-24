@@ -9,6 +9,10 @@ func dataSourceAviControllerProperties() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviControllerPropertiesRead,
 		Schema: map[string]*schema.Schema{
+			"ai_assistant_project_key": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"alert_manager_use_evms": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -228,10 +232,6 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Computed: true,
 			},
 			"ignore_vrf_in_networksubnetlist": {
-				Type:     schema.TypeString,
-				Computed: true,
-			},
-			"intelligent_assist_project_key": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
