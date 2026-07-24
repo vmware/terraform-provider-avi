@@ -12985,6 +12985,12 @@ func ResourceEmailConfigurationSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Required: true,
 			},
+			"tls_config": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceTlsConfigSchema(),
+			},
 		},
 	}
 }
@@ -22728,6 +22734,11 @@ func ResourceLdapAuthSettingsSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Default:  "name",
+			},
+			"pki_profile_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 			"port": {
 				Type:         schema.TypeString,
