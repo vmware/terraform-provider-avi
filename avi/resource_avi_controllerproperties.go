@@ -267,6 +267,12 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Default:      "true",
 			ValidateFunc: validateBool,
 		},
+		"event_manager_api_rate_limit_per_min": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "60",
+			ValidateFunc: validateInteger,
+		},
 		"event_manager_file_modified_ts_filter": {
 			Type:         schema.TypeString,
 			Optional:     true,
