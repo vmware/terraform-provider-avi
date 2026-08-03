@@ -126,6 +126,11 @@ func ResourceSystemConfigurationSchema() map[string]*schema.Schema {
 			Computed: true,
 			Elem:     ResourceTenantConfigurationSchema(),
 		},
+		"gslb_client_cert_ref": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
 		"host_key_algorithm_exclude": {
 			Type:     schema.TypeString,
 			Optional: true,

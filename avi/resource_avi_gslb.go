@@ -142,6 +142,12 @@ func ResourceGslbSchema() map[string]*schema.Schema {
 			Optional: true,
 			Elem:     ResourceGslbThirdPartySiteSchema(),
 		},
+		"tls_config": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceTlsConfigSchema(),
+		},
 		"uuid": {
 			Type:     schema.TypeString,
 			Optional: true,

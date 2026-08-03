@@ -1196,6 +1196,37 @@ func ResourceAnomalyEventDetailsSchema() *schema.Resource {
 	}
 }
 
+func ResourceApiConfigLimitsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"num_api_paths_per_policy": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"num_api_schemas_per_policy": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"num_apis": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"num_schema_nesting": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+		},
+	}
+}
+
 func ResourceApiContentTypeMappingSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -1342,6 +1373,25 @@ func ResourceApiLabelsSchema() *schema.Resource {
 	}
 }
 
+func ResourceApiLearningLimitsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"num_api_params": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"num_apis": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+		},
+	}
+}
+
 func ResourceApiLogSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -1380,6 +1430,19 @@ func ResourceApiLogSchema() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				Elem:     ResourceApiViolationSchema(),
+			},
+		},
+	}
+}
+
+func ResourceApiMetricsLimitsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"num_apis": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
 			},
 		},
 	}
@@ -9227,24 +9290,6 @@ func ResourceControllerLicenseReconcileDetailsSchema() *schema.Resource {
 func ResourceControllerLimitsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
-			"api_policy_num_paths": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Computed:     true,
-				ValidateFunc: validateInteger,
-			},
-			"api_policy_num_schemas": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Computed:     true,
-				ValidateFunc: validateInteger,
-			},
-			"api_policy_num_vs": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Computed:     true,
-				ValidateFunc: validateInteger,
-			},
 			"bot_limits": {
 				Type:     schema.TypeSet,
 				Optional: true,
@@ -9487,6 +9532,31 @@ func ResourceControllerSizeSchema() *schema.Resource {
 	}
 }
 
+func ResourceControllerSizingApiLimitsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"config_limits": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceApiConfigLimitsSchema(),
+			},
+			"learning_limits": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceApiLearningLimitsSchema(),
+			},
+			"metrics_limits": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceApiMetricsLimitsSchema(),
+			},
+		},
+	}
+}
+
 func ResourceControllerSizingCloudLimitsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -9508,6 +9578,12 @@ func ResourceControllerSizingCloudLimitsSchema() *schema.Resource {
 func ResourceControllerSizingLimitsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"api_limits": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceControllerSizingApiLimitsSchema(),
+			},
 			"controller_sizing_cloud_limits": {
 				Type:     schema.TypeList,
 				Optional: true,
@@ -9561,18 +9637,6 @@ func ResourceControllerSizingLimitsSchema() *schema.Resource {
 				ValidateFunc: validateInteger,
 			},
 			"num_virtualservices": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Computed:     true,
-				ValidateFunc: validateInteger,
-			},
-			"num_virtualservices_application_insights": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Computed:     true,
-				ValidateFunc: validateInteger,
-			},
-			"num_virtualservices_positive_security": {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Computed:     true,
@@ -22725,6 +22789,11 @@ func ResourceLdapAuthSettingsSchema() *schema.Resource {
 				Default:      "true",
 				ValidateFunc: validateBool,
 			},
+			"client_cert_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"email_attribute": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -22762,11 +22831,11 @@ func ResourceLdapAuthSettingsSchema() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceLdapDirectorySettingsSchema(),
 			},
-			"tls_config": {
-				Type:     schema.TypeSet,
-				Optional: true,
-				Computed: true,
-				Elem:     ResourceTlsConfigSchema(),
+			"skip_hostname_verification": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
 			},
 			"user_bind": {
 				Type:     schema.TypeSet,
@@ -26635,7 +26704,7 @@ func ResourceNsxtConfigurationSchema() *schema.Resource {
 			"verify_certificate": {
 				Type:         schema.TypeString,
 				Optional:     true,
-				Default:      "false",
+				Default:      "true",
 				ValidateFunc: validateBool,
 			},
 			"vmc_mode": {
@@ -33363,6 +33432,12 @@ func ResourceSamlIdentityProviderSettingsSchema() *schema.Resource {
 				Default:      "false",
 				ValidateFunc: validateBool,
 			},
+			"tls_config": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceTlsConfigSchema(),
+			},
 		},
 	}
 }
@@ -37339,6 +37414,11 @@ func ResourceSecureChannelTokenSchema() *schema.Resource {
 				Optional:     true,
 				Computed:     true,
 				ValidateFunc: validateFloat,
+			},
+			"hash": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 			"in_use": {
 				Type:         schema.TypeString,
@@ -48123,7 +48203,7 @@ func ResourcevCenterConfigurationSchema() *schema.Resource {
 			"verify_certificate": {
 				Type:         schema.TypeString,
 				Optional:     true,
-				Default:      "false",
+				Default:      "true",
 				ValidateFunc: validateBool,
 			},
 		},
