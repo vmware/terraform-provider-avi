@@ -528,6 +528,14 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"log_agent_udp_fqdn_resolve_interval": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"log_agent_udp_fqdn_resolve_log_count": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"log_agent_unknown_vs_timer": {
 				Type:     schema.TypeString,
 				Computed: true,

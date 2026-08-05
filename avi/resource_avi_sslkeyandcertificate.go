@@ -144,6 +144,12 @@ func ResourceSSLKeyAndCertificateSchema() map[string]*schema.Schema {
 			Computed: true,
 			Elem:     ResourceOCSPResponseInfoSchema(),
 		},
+		"skip_auto_chain": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ValidateFunc: validateBool,
+		},
 		"status": {
 			Type:     schema.TypeString,
 			Optional: true,

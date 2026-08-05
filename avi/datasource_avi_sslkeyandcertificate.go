@@ -115,6 +115,10 @@ func dataSourceAviSSLKeyAndCertificate() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceOCSPResponseInfoSchema(),
 			},
+			"skip_auto_chain": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"status": {
 				Type:     schema.TypeString,
 				Computed: true,
