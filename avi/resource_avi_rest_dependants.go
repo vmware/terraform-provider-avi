@@ -46546,6 +46546,12 @@ func ResourceVserverL7MetricsObjSchema() *schema.Resource {
 				Computed:     true,
 				ValidateFunc: validateFloat,
 			},
+			"sum_waap_flag_count": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateFloat,
+			},
 			"sum_waap_hits": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -46553,6 +46559,12 @@ func ResourceVserverL7MetricsObjSchema() *schema.Resource {
 				ValidateFunc: validateFloat,
 			},
 			"sum_waap_orphan_api_count": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateFloat,
+			},
+			"sum_waap_reject_count": {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Computed:     true,
