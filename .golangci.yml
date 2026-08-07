@@ -1,32 +1,52 @@
+version: "2"
 issues:
-  max-per-linter: 0
   max-same-issues: 0
-  exclude:
-    - SA1019
-
-run:
-  deadline: 5m
-  skip-files:
-      - avi/resource_avi_rest_dependants.go
 
 linters:
-  disable-all: true
+  default: none
   enable:
     - errcheck
-    - gofmt
-    - gosimple
-    # - govet
     - ineffassign
-    - nakedret
     - misspell
-    # - staticcheck
-    # - unused
-    # - unconvert
-    - vet
-    - vetshadow
-    # - typecheck
-    # - goimports
+    - nakedret
+    - govet
+    - staticcheck
+  exclusions:
+    generated: lax
+    presets:
+      - comments
+      - common-false-positives
+      - legacy
+      - std-error-handling
+    rules:
+      - path: (.+)\.go$
+        text: SA1019
+      - text: "ST1005:"
+        linters:
+          - staticcheck
+      - text: "QF1001:"
+        linters:
+          - staticcheck
+    paths:
+      - third_party$
+      - builtin$
+      - examples$
+      - avi/resource_avi_rest_dependants\.go$
 
-linters-settings:
-  errcheck:
-    ignore: github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema:ForceNew|Set,fmt:.*,io:Close
+  settings:
+    errcheck:
+      exclude-functions:
+        - (*github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema.ResourceData).Set
+        - fmt:.*
+        - io:Close
+
+formatters:
+  enable:
+    - gofmt
+  exclusions:
+    generated: lax
+    paths:
+      - third_party$
+      - builtin$
+      - examples$
+      - avi/resource_avi_rest_dependants\.go$
