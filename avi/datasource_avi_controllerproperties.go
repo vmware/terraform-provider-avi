@@ -25,10 +25,6 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"allow_unauthenticated_nodes": {
-				Type:     schema.TypeString,
-				Computed: true,
-			},
 			"api_idle_timeout": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -183,6 +179,10 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Computed: true,
 			},
 			"enable_streaming_based_nsx_ip_group_sync": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"event_manager_api_rate_limit_per_min": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},

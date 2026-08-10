@@ -748,6 +748,18 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Default:      "true",
 			ValidateFunc: validateBool,
 		},
+		"log_agent_udp_fqdn_resolve_interval": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "900",
+			ValidateFunc: validateInteger,
+		},
+		"log_agent_udp_fqdn_resolve_log_count": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "5000",
+			ValidateFunc: validateInteger,
+		},
 		"log_agent_unknown_vs_timer": {
 			Type:         schema.TypeString,
 			Optional:     true,

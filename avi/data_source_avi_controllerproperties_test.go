@@ -68,8 +68,6 @@ func TestAVIDataSourceControllerPropertiesBasic(t *testing.T) {
 					resource.TestCheckResourceAttr(
 						"avi_controllerproperties.testControllerProperties", "max_seq_vnic_failures", "3"),
 					resource.TestCheckResourceAttr(
-						"avi_controllerproperties.testControllerProperties", "allow_unauthenticated_nodes", "false"),
-					resource.TestCheckResourceAttr(
 						"avi_controllerproperties.testControllerProperties", "allow_unauthenticated_apis", "false"),
 					resource.TestCheckResourceAttr(
 						"avi_controllerproperties.testControllerProperties", "vs_awaiting_se_timeout", "60"),
@@ -130,7 +128,6 @@ resource "avi_controllerproperties" "testControllerProperties" {
 	allow_ip_forwarding = false
 	vs_se_attach_ip_fail = "3600"
 	max_seq_vnic_failures = "3"
-	allow_unauthenticated_nodes = false
 	allow_unauthenticated_apis = false
 	vs_awaiting_se_timeout = "60"
 	warmstart_se_reconnect_wait_time = "300"

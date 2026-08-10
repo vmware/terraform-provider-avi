@@ -5035,7 +5035,27 @@ func ResourceCertificateAuthoritySchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"fingerprint": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"issuer": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"not_after": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"subject": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -19213,6 +19233,11 @@ func ResourceHttpCookiePersistenceProfileSchema() *schema.Resource {
 				Optional: true,
 				Elem:     ResourceHttpCookiePersistenceKeySchema(),
 			},
+			"samesite": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "SAMESITE_NONE",
+			},
 			"timeout": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -22443,6 +22468,12 @@ func ResourceLogAgentEventDetailSchema() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceLogAgentTCPConnEstRateExcdEventSchema(),
 			},
+			"streaming_event_detail": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceLogAgentStreamingEventDetailSchema(),
+			},
 			"tcp_detail": {
 				Type:     schema.TypeSet,
 				Optional: true,
@@ -22452,6 +22483,35 @@ func ResourceLogAgentEventDetailSchema() *schema.Resource {
 			"type": {
 				Type:     schema.TypeString,
 				Required: true,
+			},
+		},
+	}
+}
+
+func ResourceLogAgentStreamingEventDetailSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"error_code": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"error_reason": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"host": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"port": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
 			},
 		},
 	}
@@ -34932,6 +34992,12 @@ func ResourceSeRuntimePropertiesSchema() *schema.Resource {
 				Default:      "1024",
 				ValidateFunc: validateInteger,
 			},
+			"log_agent_malloc_trim_memory_threshold": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "300",
+				ValidateFunc: validateInteger,
+			},
 			"log_agent_max_concurrent_rsync": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -34949,6 +35015,12 @@ func ResourceSeRuntimePropertiesSchema() *schema.Resource {
 				Optional:     true,
 				Default:      "20",
 				ValidateFunc: validateFloat,
+			},
+			"log_agent_memory_monitor_interval": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "600",
+				ValidateFunc: validateInteger,
 			},
 			"log_agent_min_storage_per_vs": {
 				Type:         schema.TypeString,

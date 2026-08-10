@@ -34,12 +34,6 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Default:      "false",
 			ValidateFunc: validateBool,
 		},
-		"allow_unauthenticated_nodes": {
-			Type:         schema.TypeString,
-			Optional:     true,
-			Default:      "false",
-			ValidateFunc: validateBool,
-		},
 		"api_idle_timeout": {
 			Type:         schema.TypeString,
 			Optional:     true,
@@ -273,6 +267,12 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Optional:     true,
 			Default:      "true",
 			ValidateFunc: validateBool,
+		},
+		"event_manager_api_rate_limit_per_min": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "60",
+			ValidateFunc: validateInteger,
 		},
 		"event_manager_file_modified_ts_filter": {
 			Type:         schema.TypeString,
