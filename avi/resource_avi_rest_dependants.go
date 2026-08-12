@@ -969,12 +969,6 @@ func ResourceAlertRuleMetricSchema() *schema.Resource {
 func ResourceAlertSyslogServerSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
-			"anon_auth": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Default:      "false",
-				ValidateFunc: validateBool,
-			},
 			"format": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -985,17 +979,6 @@ func ResourceAlertSyslogServerSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
-			"ssl_key_and_certificate_ref": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
-			"strict_cert_verify": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Default:      "false",
-				ValidateFunc: validateBool,
-			},
 			"syslog_server": {
 				Type:     schema.TypeString,
 				Required: true,
@@ -1005,6 +988,12 @@ func ResourceAlertSyslogServerSchema() *schema.Resource {
 				Optional:     true,
 				Default:      "514",
 				ValidateFunc: validateInteger,
+			},
+			"tls_config": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceTlsConfigSchema(),
 			},
 			"tls_enable": {
 				Type:         schema.TypeString,
@@ -12428,6 +12417,12 @@ func ResourceDnsServiceApplicationProfileSchema() *schema.Resource {
 				Default:      "1",
 				ValidateFunc: validateInteger,
 			},
+			"rfc_compliant_soa_response": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
 			"ttl": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -18475,6 +18470,12 @@ func ResourceHTTPApplicationProfileSchema() *schema.Resource {
 				Default:      "48",
 				ValidateFunc: validateInteger,
 			},
+			"close_client_side_connection_on_error": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
 			"close_server_side_connection_on_error": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -18512,6 +18513,12 @@ func ResourceHTTPApplicationProfileSchema() *schema.Resource {
 				ValidateFunc: validateBool,
 			},
 			"disable_sni_hostname_check": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
+			"enable_100_continue_upstream_peek": {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Default:      "false",
@@ -38362,6 +38369,11 @@ func ResourceServiceEngineLimitsSchema() *schema.Resource {
 				Optional: true,
 				Elem:     ResourceServiceEngineCloudLimitsSchema(),
 			},
+			"serviceengine_waap_limits": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceServiceEngineSizingWaapLimitsSchema(),
+			},
 		},
 	}
 }
@@ -38404,6 +38416,36 @@ func ResourceServiceEngineParamsSchema() *schema.Resource {
 				Optional:     true,
 				Default:      "300",
 				ValidateFunc: validateInteger,
+			},
+		},
+	}
+}
+
+func ResourceServiceEngineSizingWaapLimitsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"max_vs_per_se": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"min_memory": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"min_vcpus": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"waap_se_size": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 		},
 	}
@@ -39952,6 +39994,12 @@ func ResourceTCPProxyProfileSchema() *schema.Resource {
 				ValidateFunc: validateBool,
 			},
 			"auto_window_growth": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "true",
+				ValidateFunc: validateBool,
+			},
+			"auto_window_growth_without_timestamp": {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Default:      "true",
@@ -46941,6 +46989,18 @@ func ResourceWAFLimitsSchema() *schema.Resource {
 				Optional:     true,
 				Computed:     true,
 				ValidateFunc: validateInteger,
+			},
+		},
+	}
+}
+
+func ResourceWaapModeConfigSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"se_size": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 		},
 	}
