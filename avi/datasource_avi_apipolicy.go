@@ -38,10 +38,6 @@ func dataSourceAviApiPolicy() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceApiPolicyLabelActionMappingSchema(),
 			},
-			"log_labels": {
-				Type:     schema.TypeString,
-				Computed: true,
-			},
 			"name": {
 				Type:     schema.TypeString,
 				Optional: true,

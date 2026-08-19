@@ -1863,11 +1863,6 @@ func ResourceApiValidationSettingsSchema() *schema.Resource {
 				Optional: true,
 				Default:  "API_ACTION_PASS",
 			},
-			"unexpected_header_parameter_action": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Default:  "API_ACTION_PASS",
-			},
 			"unexpected_query_argument_action": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -1877,6 +1872,11 @@ func ResourceApiValidationSettingsSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Default:  "API_ACTION_FLAG",
+			},
+			"unexpected_request_header_action": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "API_ACTION_PASS",
 			},
 			"unknown_content_type_action": {
 				Type:     schema.TypeString,
@@ -38627,6 +38627,11 @@ func ResourceSidebandProfileSchema() *schema.Resource {
 				Optional: true,
 				Elem:     ResourceIpAddrSchema(),
 			},
+			"pki_profile_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"sideband_max_request_body_size": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -46002,7 +46007,7 @@ func ResourceVserverL7MetricsObjSchema() *schema.Resource {
 				Computed:     true,
 				ValidateFunc: validateFloat,
 			},
-			"avg_waap_violation_count": {
+			"avg_waap_validation_fail_count": {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Computed:     true,
@@ -46660,7 +46665,7 @@ func ResourceVserverL7MetricsObjSchema() *schema.Resource {
 				Computed:     true,
 				ValidateFunc: validateFloat,
 			},
-			"sum_waap_violation_count": {
+			"sum_waap_validation_fail_count": {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Computed:     true,
