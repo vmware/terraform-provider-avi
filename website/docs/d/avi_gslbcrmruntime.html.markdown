@@ -43,6 +43,6 @@ In addition to all arguments above, the following attributes are exported:
 * `site_name` - This field tracks the site name. Field introduced in 31.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `status_info` - Crm operational status. Field introduced in 31.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `tenant_ref` - Uuid of the tenant. It is a reference to an object of type tenant. Field introduced in 31.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `tls_connection_err` - This field will provide error information if any in gslb tls connection between sites. Field introduced in 32.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `tls_connection_err` - This field will provide error information if any in gslb tls connection between sites. Field introduced in 32.1.4. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `uuid` - The uuid of db entry. Field introduced in 31.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 

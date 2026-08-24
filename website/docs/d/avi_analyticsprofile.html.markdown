@@ -120,5 +120,5 @@ In addition to all arguments above, the following attributes are exported:
 * `tenant_ref` - It is a reference to an object of type tenant. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `time_tracker_props` - Time tracker properties for connection establishment audit. Field introduced in 22.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `uuid` - Uuid of the analytics profile. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `waap_classification_disabled_penalty` - Penalty points per disabled orphan/zombie classification in waap. Field introduced in 32.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `waap_classification_disabled_penalty` - Penalty points per disabled orphan/zombie classification in waap. Field introduced in 32.1.4. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 

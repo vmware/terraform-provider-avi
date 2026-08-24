@@ -38,7 +38,7 @@ The following arguments are supported:
 * `site_name` - (Optional) This field tracks the site name. Field introduced in 31.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
 * `status_info` - (Optional) Crm operational status. Field introduced in 31.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
 * `tenant_ref` - (Optional) Uuid of the tenant. It is a reference to an object of type tenant. Field introduced in 31.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
-* `tls_connection_err` - (Optional) This field will provide error information if any in gslb tls connection between sites. Field introduced in 32.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `tls_connection_err` - (Optional) This field will provide error information if any in gslb tls connection between sites. Field introduced in 32.1.4. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
 
 
 ### Timeouts

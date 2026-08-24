@@ -27,9 +27,9 @@ resource "avi_albservicesstatus" "foo" {
 
 The following arguments are supported:
 
-* `name` - (Required) Name of the albservicesstatus object. Field introduced in 32.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `name` - (Required) Name of the albservicesstatus object. Field introduced in 32.1.4. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
 * `asset_details` - (Optional) Asset details corresponding to this controller cluster, on registering with pulse. Field introduced in 22.1.4. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
-* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 32.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 32.1.4. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
 * `connected_at` - (Optional) Timestamp of last successful connection. Field introduced in 22.1.3. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
 * `connectivity_status` - (Optional) Connectivity status of controller with albservices. Enum options - ALBSERVICES_CONNECTIVITY_UNKNOWN, ALBSERVICES_DISCONNECTED, ALBSERVICES_CONNECTED. Field introduced in 18.2.6. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
 * `error` - (Optional) Descriptive error message. Field introduced in 18.2.6. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 

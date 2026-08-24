@@ -27,16 +27,16 @@ resource "avi_akoamkocluster" "foo" {
 
 The following arguments are supported:
 
-* `created_by` - (Required) Ako/amko user identifier. Field introduced in 32.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
-* `name` - (Required) Name of the ako/amko cluster. Field introduced in 32.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
-* `cloud_config_cksum` - (Optional) Checksum of the cloud configuration for akoamkocluster object. Field introduced in 32.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
-* `cloud_ref` - (Optional) Cloud reference uuid in avi controller. It is a reference to an object of type cloud. Field introduced in 32.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
-* `cluster_type` - (Optional) Type of operator - ako or amko. Enum options - CLUSTER_TYPE_AKO, CLUSTER_TYPE_AMKO. Field introduced in 32.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
-* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 32.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
-* `deployment_info` - (Optional) Deployment configuration information. Field introduced in 32.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
-* `metadata` - (Optional) Additional cluster metadata. Field introduced in 32.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
-* `tenant_ref` - (Optional) Tenant that ako/amko cluster belongs to. It is a reference to an object of type tenant. Field introduced in 32.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
-* `version_info` - (Optional) Version information including kubernetes and ako/amko versions. Field introduced in 32.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `created_by` - (Required) Ako/amko user identifier. Field introduced in 32.1.4. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `name` - (Required) Name of the ako/amko cluster. Field introduced in 32.1.4. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `cloud_config_cksum` - (Optional) Checksum of the cloud configuration for akoamkocluster object. Field introduced in 32.1.4. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `cloud_ref` - (Optional) Cloud reference uuid in avi controller. It is a reference to an object of type cloud. Field introduced in 32.1.4. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `cluster_type` - (Optional) Type of operator - ako or amko. Enum options - CLUSTER_TYPE_AKO, CLUSTER_TYPE_AMKO. Field introduced in 32.1.4. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 32.1.4. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `deployment_info` - (Optional) Deployment configuration information. Field introduced in 32.1.4. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `metadata` - (Optional) Additional cluster metadata. Field introduced in 32.1.4. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `tenant_ref` - (Optional) Tenant that ako/amko cluster belongs to. It is a reference to an object of type tenant. Field introduced in 32.1.4. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `version_info` - (Optional) Version information including kubernetes and ako/amko versions. Field introduced in 32.1.4. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
 
 
 ### Timeouts
@@ -51,5 +51,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-* `uuid` -  Uuid of the ako/amko cluster. Field introduced in 32.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `uuid` -  Uuid of the ako/amko cluster. Field introduced in 32.1.4. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 
