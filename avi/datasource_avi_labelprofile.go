@@ -23,6 +23,10 @@ func dataSourceAviLabelProfile() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceLabelSchema(),
 			},
+			"log_labels": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"name": {
 				Type:     schema.TypeString,
 				Optional: true,

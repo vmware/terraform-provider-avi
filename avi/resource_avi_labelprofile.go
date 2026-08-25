@@ -26,6 +26,12 @@ func ResourceLabelProfileSchema() map[string]*schema.Schema {
 			Optional: true,
 			Elem:     ResourceLabelSchema(),
 		},
+		"log_labels": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "true",
+			ValidateFunc: validateBool,
+		},
 		"name": {
 			Type:     schema.TypeString,
 			Required: true,

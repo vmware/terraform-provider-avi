@@ -1077,6 +1077,10 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"seg_mode": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"self_se_election": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -1292,6 +1296,11 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 			"vss_placement_enabled": {
 				Type:     schema.TypeString,
 				Computed: true,
+			},
+			"waap_mode_config": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceWaapModeConfigSchema(),
 			},
 			"waf_mempool": {
 				Type:     schema.TypeString,

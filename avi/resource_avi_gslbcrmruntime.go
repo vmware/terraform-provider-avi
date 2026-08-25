@@ -70,6 +70,11 @@ func ResourceGslbCRMRuntimeSchema() map[string]*schema.Schema {
 			Optional: true,
 			Computed: true,
 		},
+		"tls_connection_err": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
 		"uuid": {
 			Type:     schema.TypeString,
 			Optional: true,
