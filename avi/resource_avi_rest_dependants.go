@@ -45893,12 +45893,6 @@ func ResourceVserverL7MetricsObjSchema() *schema.Resource {
 				Computed:     true,
 				ValidateFunc: validateFloat,
 			},
-			"avg_waap_authentication_errors": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Computed:     true,
-				ValidateFunc: validateFloat,
-			},
 			"avg_waap_hits": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -45906,48 +45900,6 @@ func ResourceVserverL7MetricsObjSchema() *schema.Resource {
 				ValidateFunc: validateFloat,
 			},
 			"avg_waap_orphan_api_count": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Computed:     true,
-				ValidateFunc: validateFloat,
-			},
-			"avg_waap_rate_limiting_errors": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Computed:     true,
-				ValidateFunc: validateFloat,
-			},
-			"avg_waap_redirects": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Computed:     true,
-				ValidateFunc: validateFloat,
-			},
-			"avg_waap_responses_301": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Computed:     true,
-				ValidateFunc: validateFloat,
-			},
-			"avg_waap_responses_302": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Computed:     true,
-				ValidateFunc: validateFloat,
-			},
-			"avg_waap_responses_303": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Computed:     true,
-				ValidateFunc: validateFloat,
-			},
-			"avg_waap_responses_307": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Computed:     true,
-				ValidateFunc: validateFloat,
-			},
-			"avg_waap_responses_308": {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Computed:     true,
@@ -45966,18 +45918,6 @@ func ResourceVserverL7MetricsObjSchema() *schema.Resource {
 				ValidateFunc: validateFloat,
 			},
 			"avg_waap_responses_403": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Computed:     true,
-				ValidateFunc: validateFloat,
-			},
-			"avg_waap_responses_407": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Computed:     true,
-				ValidateFunc: validateFloat,
-			},
-			"avg_waap_responses_429": {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Computed:     true,
@@ -46599,6 +46539,12 @@ func ResourceVserverL7MetricsObjSchema() *schema.Resource {
 				Computed:     true,
 				ValidateFunc: validateFloat,
 			},
+			"sum_waap_authentication_errors": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateFloat,
+			},
 			"sum_waap_flag_count": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -46617,7 +46563,49 @@ func ResourceVserverL7MetricsObjSchema() *schema.Resource {
 				Computed:     true,
 				ValidateFunc: validateFloat,
 			},
+			"sum_waap_rate_limiting_errors": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateFloat,
+			},
+			"sum_waap_redirects": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateFloat,
+			},
 			"sum_waap_reject_count": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateFloat,
+			},
+			"sum_waap_responses_301": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateFloat,
+			},
+			"sum_waap_responses_302": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateFloat,
+			},
+			"sum_waap_responses_303": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateFloat,
+			},
+			"sum_waap_responses_307": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateFloat,
+			},
+			"sum_waap_responses_308": {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Computed:     true,
@@ -46636,6 +46624,18 @@ func ResourceVserverL7MetricsObjSchema() *schema.Resource {
 				ValidateFunc: validateFloat,
 			},
 			"sum_waap_responses_403": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateFloat,
+			},
+			"sum_waap_responses_407": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateFloat,
+			},
+			"sum_waap_responses_429": {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Computed:     true,
