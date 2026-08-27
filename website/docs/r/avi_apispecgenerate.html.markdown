@@ -27,18 +27,18 @@ resource "avi_apispecgenerate" "foo" {
 
 The following arguments are supported:
 
-* `completed_events` - (Optional) Number of tasks completed. Field introduced in 32.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
-* `duration` - (Optional) Spec generation duration in seconds. Field introduced in 32.2.1. Unit is sec. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
-* `end_time` - (Optional) Time the spec generation completed or failed. Field introduced in 32.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
-* `name` - (Optional) Name of the spec generation object. Field introduced in 32.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
-* `params` - (Optional) Parameters for the spec generation. Field introduced in 32.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
-* `path` - (Optional) Path to the generated spec file. Field introduced in 32.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
-* `progress` - (Optional) Overall spec generation progress percentage. Allowed values are 0-100. Field introduced in 32.2.1. Unit is percent. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
-* `start_time` - (Optional) Time the spec generation started. Field introduced in 32.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
-* `state` - (Optional) Current lifecycle state of the spec generation. Field introduced in 32.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
-* `task_events` - (Optional) Per-task status and event details. Field introduced in 32.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
-* `tenant_ref` - (Optional) It is a reference to an object of type tenant. Field introduced in 32.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
-* `total_events` - (Optional) Total number of tasks. Field introduced in 32.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `completed_events` - (Optional) Number of tasks completed. Field introduced in 32.1.4. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `duration` - (Optional) Spec generation duration in seconds. Field introduced in 32.1.4. Unit is sec. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `end_time` - (Optional) Time the spec generation completed or failed. Field introduced in 32.1.4. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `name` - (Optional) Name of the spec generation object. Field introduced in 32.1.4. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `params` - (Optional) Parameters for the spec generation. Field introduced in 32.1.4. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `path` - (Optional) Path to the generated spec file. Field introduced in 32.1.4. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `progress` - (Optional) Overall spec generation progress percentage. Allowed values are 0-100. Field introduced in 32.1.4. Unit is percent. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `start_time` - (Optional) Time the spec generation started. Field introduced in 32.1.4. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `state` - (Optional) Current lifecycle state of the spec generation. Field introduced in 32.1.4. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `task_events` - (Optional) Per-task status and event details. Field introduced in 32.1.4. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `tenant_ref` - (Optional) It is a reference to an object of type tenant. Field introduced in 32.1.4. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `total_events` - (Optional) Total number of tasks. Field introduced in 32.1.4. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
 
 
 ### Timeouts
@@ -53,5 +53,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-* `uuid` -  Uuid of the spec generation object. Field introduced in 32.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `uuid` -  Uuid of the spec generation object. Field introduced in 32.1.4. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 

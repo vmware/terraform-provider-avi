@@ -4,9 +4,12 @@
 package avi
 
 import (
+	"context"
 	"errors"
-	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"log"
+	"strconv"
+
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourcePoolSchema() map[string]*schema.Schema {
@@ -369,6 +372,7 @@ func ResourcePoolSchema() map[string]*schema.Schema {
 		"servers": {
 			Type:     schema.TypeList,
 			Optional: true,
+			Computed: true,
 			Elem:     ResourceServerSchema(),
 		},
 		"service_metadata": {
@@ -433,13 +437,115 @@ func ResourcePoolSchema() map[string]*schema.Schema {
 	}
 }
 
+// suppressHostnameServerIPDiff suppresses plan diffs caused by the AVI
+// controller resolving a hostname to one or more IP addresses. When
+// resolve_server_by_dns is true the controller manages server IPs internally:
+// it may store a single resolved IP or expand the entry into multiple server
+// records — one per resolved IP. Without this hook Terraform would perpetually
+// try to revert those controller-managed IPs back to the user-configured
+// values on every subsequent plan.
+func suppressHostnameServerIPDiff(_ context.Context, d *schema.ResourceDiff, _ interface{}) error {
+	if !d.HasChange("servers") {
+		return nil
+	}
+	oldVal, newVal := d.GetChange("servers")
+	oldList, _ := oldVal.([]interface{})
+	newList, _ := newVal.([]interface{})
+
+	// Group all old-state server entries by hostname so that a single config
+	// entry can be expanded to N resolved entries (one per resolved IP).
+	oldByHostname := make(map[string][]interface{})
+	for _, oldSrv := range oldList {
+		oldServer, ok := oldSrv.(map[string]interface{})
+		if !ok {
+			continue
+		}
+		resolveByDNS, _ := strconv.ParseBool(oldServer["resolve_server_by_dns"].(string))
+		if !resolveByDNS {
+			continue
+		}
+		hostname, _ := oldServer["hostname"].(string)
+		if hostname == "" {
+			continue
+		}
+		oldByHostname[hostname] = append(oldByHostname[hostname], oldSrv)
+	}
+
+	var resultList []interface{}
+	modified := false
+
+	for _, newSrv := range newList {
+		newServer, ok := newSrv.(map[string]interface{})
+		if !ok {
+			resultList = append(resultList, newSrv)
+			continue
+		}
+		resolveByDNS, _ := strconv.ParseBool(newServer["resolve_server_by_dns"].(string))
+		hostname, _ := newServer["hostname"].(string)
+		if !resolveByDNS || hostname == "" {
+			resultList = append(resultList, newSrv)
+			continue
+		}
+
+		resolvedServers, exists := oldByHostname[hostname]
+		if !exists || len(resolvedServers) == 0 {
+			// No prior state for this hostname (first apply); keep the
+			// placeholder entry unchanged.
+			resultList = append(resultList, newSrv)
+			continue
+		}
+
+		// Only suppress when at least one resolved entry holds a real address
+		// (not "0.0.0.0"). If all old entries are still unresolved, keep the
+		// placeholder so the create path can send the correct value.
+		allUnresolved := true
+		for _, rs := range resolvedServers {
+			if rsServer, ok := rs.(map[string]interface{}); ok {
+				if extractIPAddr(rsServer["ip"]) != "0.0.0.0" {
+					allUnresolved = false
+					break
+				}
+			}
+		}
+		if allUnresolved {
+			resultList = append(resultList, newSrv)
+			continue
+		}
+
+		// Replace the single placeholder with ALL resolved entries from state.
+		// This handles both single-IP and multi-IP resolution.
+		resultList = append(resultList, resolvedServers...)
+		modified = true
+	}
+
+	if modified {
+		return d.SetNew("servers", resultList)
+	}
+	return nil
+}
+
+// extractIPAddr returns the addr string from a server's ip TypeSet value.
+func extractIPAddr(ipVal interface{}) string {
+	ipSet, ok := ipVal.(*schema.Set)
+	if !ok || ipSet.Len() == 0 {
+		return ""
+	}
+	entry, ok := ipSet.List()[0].(map[string]interface{})
+	if !ok {
+		return ""
+	}
+	addr, _ := entry["addr"].(string)
+	return addr
+}
+
 func resourceAviPool() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceAviPoolCreate,
-		Read:   ResourceAviPoolRead,
-		Update: resourceAviPoolUpdate,
-		Delete: resourceAviPoolDelete,
-		Schema: ResourcePoolSchema(),
+		Create:        resourceAviPoolCreate,
+		Read:          ResourceAviPoolRead,
+		Update:        resourceAviPoolUpdate,
+		Delete:        resourceAviPoolDelete,
+		Schema:        ResourcePoolSchema(),
+		CustomizeDiff: suppressHostnameServerIPDiff,
 		Importer: &schema.ResourceImporter{
 			State: ResourcePoolImporter,
 		},

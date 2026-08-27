@@ -43,12 +43,6 @@ func ResourceApiPolicySchema() map[string]*schema.Schema {
 			Optional: true,
 			Elem:     ResourceApiPolicyLabelActionMappingSchema(),
 		},
-		"log_labels": {
-			Type:         schema.TypeString,
-			Optional:     true,
-			Default:      "true",
-			ValidateFunc: validateBool,
-		},
 		"name": {
 			Type:     schema.TypeString,
 			Required: true,

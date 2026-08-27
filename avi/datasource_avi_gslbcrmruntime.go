@@ -61,6 +61,10 @@ func dataSourceAviGslbCRMRuntime() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"tls_connection_err": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"uuid": {
 				Type:     schema.TypeString,
 				Optional: true,

@@ -35,7 +35,7 @@ In addition to all arguments above, the following attributes are exported:
 * `backup_config_ref` - Backupconfiguration information. It is a reference to an object of type backupconfiguration. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `file_name` - The file name of backup. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `local_file_url` - Url to download the backup file. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
-* `name` - Name of the backup. Field introduced in 32.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `name` - Name of the backup. Field introduced in 32.1.3. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `remote_file_url` - Url to download the backup file. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `scheduler_ref` - Scheduler information. It is a reference to an object of type scheduler. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `tenant_ref` - It is a reference to an object of type tenant. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.

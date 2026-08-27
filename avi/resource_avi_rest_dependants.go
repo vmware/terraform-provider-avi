@@ -969,12 +969,6 @@ func ResourceAlertRuleMetricSchema() *schema.Resource {
 func ResourceAlertSyslogServerSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
-			"anon_auth": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Default:      "false",
-				ValidateFunc: validateBool,
-			},
 			"format": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -985,17 +979,6 @@ func ResourceAlertSyslogServerSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
-			"ssl_key_and_certificate_ref": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
-			"strict_cert_verify": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Default:      "false",
-				ValidateFunc: validateBool,
-			},
 			"syslog_server": {
 				Type:     schema.TypeString,
 				Required: true,
@@ -1005,6 +988,12 @@ func ResourceAlertSyslogServerSchema() *schema.Resource {
 				Optional:     true,
 				Default:      "514",
 				ValidateFunc: validateInteger,
+			},
+			"tls_config": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceTlsConfigSchema(),
 			},
 			"tls_enable": {
 				Type:         schema.TypeString,
@@ -1196,6 +1185,37 @@ func ResourceAnomalyEventDetailsSchema() *schema.Resource {
 	}
 }
 
+func ResourceApiConfigLimitsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"num_api_paths_per_policy": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"num_api_schemas_per_policy": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"num_apis": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"num_schema_nesting": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+		},
+	}
+}
+
 func ResourceApiContentTypeMappingSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -1342,6 +1362,25 @@ func ResourceApiLabelsSchema() *schema.Resource {
 	}
 }
 
+func ResourceApiLearningLimitsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"num_api_params": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"num_apis": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+		},
+	}
+}
+
 func ResourceApiLogSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -1380,6 +1419,19 @@ func ResourceApiLogSchema() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				Elem:     ResourceApiViolationSchema(),
+			},
+		},
+	}
+}
+
+func ResourceApiMetricsLimitsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"num_apis": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
 			},
 		},
 	}
@@ -1811,11 +1863,6 @@ func ResourceApiValidationSettingsSchema() *schema.Resource {
 				Optional: true,
 				Default:  "API_ACTION_PASS",
 			},
-			"unexpected_header_parameter_action": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Default:  "API_ACTION_PASS",
-			},
 			"unexpected_query_argument_action": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -1825,6 +1872,11 @@ func ResourceApiValidationSettingsSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Default:  "API_ACTION_FLAG",
+			},
+			"unexpected_request_header_action": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "API_ACTION_PASS",
 			},
 			"unknown_content_type_action": {
 				Type:     schema.TypeString,
@@ -9227,24 +9279,6 @@ func ResourceControllerLicenseReconcileDetailsSchema() *schema.Resource {
 func ResourceControllerLimitsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
-			"api_policy_num_paths": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Computed:     true,
-				ValidateFunc: validateInteger,
-			},
-			"api_policy_num_schemas": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Computed:     true,
-				ValidateFunc: validateInteger,
-			},
-			"api_policy_num_vs": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Computed:     true,
-				ValidateFunc: validateInteger,
-			},
 			"bot_limits": {
 				Type:     schema.TypeSet,
 				Optional: true,
@@ -9487,6 +9521,31 @@ func ResourceControllerSizeSchema() *schema.Resource {
 	}
 }
 
+func ResourceControllerSizingApiLimitsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"config_limits": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceApiConfigLimitsSchema(),
+			},
+			"learning_limits": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceApiLearningLimitsSchema(),
+			},
+			"metrics_limits": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceApiMetricsLimitsSchema(),
+			},
+		},
+	}
+}
+
 func ResourceControllerSizingCloudLimitsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -9508,6 +9567,12 @@ func ResourceControllerSizingCloudLimitsSchema() *schema.Resource {
 func ResourceControllerSizingLimitsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"api_limits": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceControllerSizingApiLimitsSchema(),
+			},
 			"controller_sizing_cloud_limits": {
 				Type:     schema.TypeList,
 				Optional: true,
@@ -9561,18 +9626,6 @@ func ResourceControllerSizingLimitsSchema() *schema.Resource {
 				ValidateFunc: validateInteger,
 			},
 			"num_virtualservices": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Computed:     true,
-				ValidateFunc: validateInteger,
-			},
-			"num_virtualservices_application_insights": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Computed:     true,
-				ValidateFunc: validateInteger,
-			},
-			"num_virtualservices_positive_security": {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Computed:     true,
@@ -12363,6 +12416,12 @@ func ResourceDnsServiceApplicationProfileSchema() *schema.Resource {
 				Optional:     true,
 				Default:      "1",
 				ValidateFunc: validateInteger,
+			},
+			"rfc_compliant_soa_response": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
 			},
 			"ttl": {
 				Type:         schema.TypeString,
@@ -18411,6 +18470,12 @@ func ResourceHTTPApplicationProfileSchema() *schema.Resource {
 				Default:      "48",
 				ValidateFunc: validateInteger,
 			},
+			"close_client_side_connection_on_error": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
 			"close_server_side_connection_on_error": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -18448,6 +18513,12 @@ func ResourceHTTPApplicationProfileSchema() *schema.Resource {
 				ValidateFunc: validateBool,
 			},
 			"disable_sni_hostname_check": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
+			"enable_100_continue_upstream_peek": {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Default:      "false",
@@ -22725,6 +22796,11 @@ func ResourceLdapAuthSettingsSchema() *schema.Resource {
 				Default:      "true",
 				ValidateFunc: validateBool,
 			},
+			"client_cert_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"email_attribute": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -22762,11 +22838,11 @@ func ResourceLdapAuthSettingsSchema() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceLdapDirectorySettingsSchema(),
 			},
-			"tls_config": {
-				Type:     schema.TypeSet,
-				Optional: true,
-				Computed: true,
-				Elem:     ResourceTlsConfigSchema(),
+			"skip_hostname_verification": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
 			},
 			"user_bind": {
 				Type:     schema.TypeSet,
@@ -26635,7 +26711,7 @@ func ResourceNsxtConfigurationSchema() *schema.Resource {
 			"verify_certificate": {
 				Type:         schema.TypeString,
 				Optional:     true,
-				Default:      "false",
+				Default:      "true",
 				ValidateFunc: validateBool,
 			},
 			"vmc_mode": {
@@ -33363,6 +33439,12 @@ func ResourceSamlIdentityProviderSettingsSchema() *schema.Resource {
 				Default:      "false",
 				ValidateFunc: validateBool,
 			},
+			"tls_config": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceTlsConfigSchema(),
+			},
 		},
 	}
 }
@@ -37340,6 +37422,11 @@ func ResourceSecureChannelTokenSchema() *schema.Resource {
 				Computed:     true,
 				ValidateFunc: validateFloat,
 			},
+			"hash": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"in_use": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -38282,6 +38369,11 @@ func ResourceServiceEngineLimitsSchema() *schema.Resource {
 				Optional: true,
 				Elem:     ResourceServiceEngineCloudLimitsSchema(),
 			},
+			"serviceengine_waap_limits": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceServiceEngineSizingWaapLimitsSchema(),
+			},
 		},
 	}
 }
@@ -38324,6 +38416,36 @@ func ResourceServiceEngineParamsSchema() *schema.Resource {
 				Optional:     true,
 				Default:      "300",
 				ValidateFunc: validateInteger,
+			},
+		},
+	}
+}
+
+func ResourceServiceEngineSizingWaapLimitsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"max_vs_per_se": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"min_memory": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"min_vcpus": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"waap_se_size": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 		},
 	}
@@ -38504,6 +38626,11 @@ func ResourceSidebandProfileSchema() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				Elem:     ResourceIpAddrSchema(),
+			},
+			"pki_profile_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 			"sideband_max_request_body_size": {
 				Type:         schema.TypeString,
@@ -39872,6 +39999,12 @@ func ResourceTCPProxyProfileSchema() *schema.Resource {
 				ValidateFunc: validateBool,
 			},
 			"auto_window_growth": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "true",
+				ValidateFunc: validateBool,
+			},
+			"auto_window_growth_without_timestamp": {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Default:      "true",
@@ -45760,12 +45893,6 @@ func ResourceVserverL7MetricsObjSchema() *schema.Resource {
 				Computed:     true,
 				ValidateFunc: validateFloat,
 			},
-			"avg_waap_authentication_errors": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Computed:     true,
-				ValidateFunc: validateFloat,
-			},
 			"avg_waap_hits": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -45773,48 +45900,6 @@ func ResourceVserverL7MetricsObjSchema() *schema.Resource {
 				ValidateFunc: validateFloat,
 			},
 			"avg_waap_orphan_api_count": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Computed:     true,
-				ValidateFunc: validateFloat,
-			},
-			"avg_waap_rate_limiting_errors": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Computed:     true,
-				ValidateFunc: validateFloat,
-			},
-			"avg_waap_redirects": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Computed:     true,
-				ValidateFunc: validateFloat,
-			},
-			"avg_waap_responses_301": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Computed:     true,
-				ValidateFunc: validateFloat,
-			},
-			"avg_waap_responses_302": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Computed:     true,
-				ValidateFunc: validateFloat,
-			},
-			"avg_waap_responses_303": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Computed:     true,
-				ValidateFunc: validateFloat,
-			},
-			"avg_waap_responses_307": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Computed:     true,
-				ValidateFunc: validateFloat,
-			},
-			"avg_waap_responses_308": {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Computed:     true,
@@ -45833,18 +45918,6 @@ func ResourceVserverL7MetricsObjSchema() *schema.Resource {
 				ValidateFunc: validateFloat,
 			},
 			"avg_waap_responses_403": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Computed:     true,
-				ValidateFunc: validateFloat,
-			},
-			"avg_waap_responses_407": {
-				Type:         schema.TypeString,
-				Optional:     true,
-				Computed:     true,
-				ValidateFunc: validateFloat,
-			},
-			"avg_waap_responses_429": {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Computed:     true,
@@ -45874,7 +45947,7 @@ func ResourceVserverL7MetricsObjSchema() *schema.Resource {
 				Computed:     true,
 				ValidateFunc: validateFloat,
 			},
-			"avg_waap_violation_count": {
+			"avg_waap_validation_fail_count": {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Computed:     true,
@@ -46466,6 +46539,18 @@ func ResourceVserverL7MetricsObjSchema() *schema.Resource {
 				Computed:     true,
 				ValidateFunc: validateFloat,
 			},
+			"sum_waap_authentication_errors": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateFloat,
+			},
+			"sum_waap_flag_count": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateFloat,
+			},
 			"sum_waap_hits": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -46473,6 +46558,54 @@ func ResourceVserverL7MetricsObjSchema() *schema.Resource {
 				ValidateFunc: validateFloat,
 			},
 			"sum_waap_orphan_api_count": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateFloat,
+			},
+			"sum_waap_rate_limiting_errors": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateFloat,
+			},
+			"sum_waap_redirects": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateFloat,
+			},
+			"sum_waap_reject_count": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateFloat,
+			},
+			"sum_waap_responses_301": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateFloat,
+			},
+			"sum_waap_responses_302": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateFloat,
+			},
+			"sum_waap_responses_303": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateFloat,
+			},
+			"sum_waap_responses_307": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateFloat,
+			},
+			"sum_waap_responses_308": {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Computed:     true,
@@ -46491,6 +46624,18 @@ func ResourceVserverL7MetricsObjSchema() *schema.Resource {
 				ValidateFunc: validateFloat,
 			},
 			"sum_waap_responses_403": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateFloat,
+			},
+			"sum_waap_responses_407": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateFloat,
+			},
+			"sum_waap_responses_429": {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Computed:     true,
@@ -46520,7 +46665,7 @@ func ResourceVserverL7MetricsObjSchema() *schema.Resource {
 				Computed:     true,
 				ValidateFunc: validateFloat,
 			},
-			"sum_waap_violation_count": {
+			"sum_waap_validation_fail_count": {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Computed:     true,
@@ -46849,6 +46994,18 @@ func ResourceWAFLimitsSchema() *schema.Resource {
 				Optional:     true,
 				Computed:     true,
 				ValidateFunc: validateInteger,
+			},
+		},
+	}
+}
+
+func ResourceWaapModeConfigSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"se_size": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 		},
 	}
@@ -48123,7 +48280,7 @@ func ResourcevCenterConfigurationSchema() *schema.Resource {
 			"verify_certificate": {
 				Type:         schema.TypeString,
 				Optional:     true,
-				Default:      "false",
+				Default:      "true",
 				ValidateFunc: validateBool,
 			},
 		},
