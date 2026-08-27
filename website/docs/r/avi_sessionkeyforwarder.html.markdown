@@ -27,15 +27,15 @@ resource "avi_sessionkeyforwarder" "foo" {
 
 The following arguments are supported:
 
-* `ip_ports` - (Required) Ip addresses and ports to be used for connection with session key forwarder. At least one entry required; maximum 16 (matches the per-core stats slot limit). Field introduced in 32.2.1. Minimum of 1 items required. Maximum of 16 items allowed. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
-* `name` - (Required) Name of the session key forwarder profile. Field introduced in 32.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
-* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 32.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
-* `enable` - (Optional) Enable or disable session key forwarder. Field introduced in 32.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
-* `pki_profile_ref` - (Optional) Pki profile used to validate the ssl certificate presented by a server. It is a reference to an object of type pkiprofile. Field introduced in 32.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
-* `ssl_key_and_certificate_ref` - (Optional) Service engines will present this ssl certificate to the server. It is a reference to an object of type sslkeyandcertificate. Field introduced in 32.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
-* `ssl_profile_ref` - (Optional) Ssl profile defines ciphers and ssl versions to be used for session key forwarder. It is a reference to an object of type sslprofile. Field introduced in 32.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
-* `tenant_ref` - (Optional) Tenant reference for the session key forwarder object. It is a reference to an object of type tenant. Field introduced in 32.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
-* `use_mgmt` - (Optional) If enabled, connection with session key forwarder will use the management network. Field introduced in 32.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `ip_ports` - (Required) Ip addresses and ports to be used for connection with session key forwarder. At least one entry required; maximum 16 (matches the per-core stats slot limit). Field introduced in 32.1.4. Minimum of 1 items required. Maximum of 16 items allowed. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `name` - (Required) Name of the session key forwarder profile. Field introduced in 32.1.4. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `configpb_attributes` - (Optional) Protobuf versioning for config pbs. Field introduced in 32.1.4. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `enable` - (Optional) Enable or disable session key forwarder. Field introduced in 32.1.4. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `pki_profile_ref` - (Optional) Pki profile used to validate the ssl certificate presented by a server. It is a reference to an object of type pkiprofile. Field introduced in 32.1.4. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `ssl_key_and_certificate_ref` - (Optional) Service engines will present this ssl certificate to the server. It is a reference to an object of type sslkeyandcertificate. Field introduced in 32.1.4. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `ssl_profile_ref` - (Optional) Ssl profile defines ciphers and ssl versions to be used for session key forwarder. It is a reference to an object of type sslprofile. Field introduced in 32.1.4. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `tenant_ref` - (Optional) Tenant reference for the session key forwarder object. It is a reference to an object of type tenant. Field introduced in 32.1.4. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
+* `use_mgmt` - (Optional) If enabled, connection with session key forwarder will use the management network. Field introduced in 32.1.4. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition. 
 
 
 ### Timeouts
@@ -50,5 +50,5 @@ The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/d
 
 In addition to all arguments above, the following attributes are exported:
 
-* `uuid` -  Uuid of the session key forwarder profile. Field introduced in 32.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `uuid` -  Uuid of the session key forwarder profile. Field introduced in 32.1.4. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 

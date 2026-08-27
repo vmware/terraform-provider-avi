@@ -1538,6 +1538,12 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Default:      "256",
 			ValidateFunc: validateInteger,
 		},
+		"seg_mode": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Default:  "SEG_MODE_NORMAL",
+			ForceNew: true,
+		},
 		"self_se_election": {
 			Type:         schema.TypeString,
 			Optional:     true,
@@ -1833,6 +1839,12 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Optional:     true,
 			Default:      "false",
 			ValidateFunc: validateBool,
+		},
+		"waap_mode_config": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceWaapModeConfigSchema(),
 		},
 		"waf_mempool": {
 			Type:         schema.TypeString,

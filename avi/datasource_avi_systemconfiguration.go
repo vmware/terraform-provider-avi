@@ -93,6 +93,10 @@ func dataSourceAviSystemConfiguration() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceTenantConfigurationSchema(),
 			},
+			"gslb_client_cert_ref": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"host_key_algorithm_exclude": {
 				Type:     schema.TypeString,
 				Computed: true,

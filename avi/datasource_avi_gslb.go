@@ -110,6 +110,11 @@ func dataSourceAviGslb() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceGslbThirdPartySiteSchema(),
 			},
+			"tls_config": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceTlsConfigSchema(),
+			},
 			"uuid": {
 				Type:     schema.TypeString,
 				Optional: true,
