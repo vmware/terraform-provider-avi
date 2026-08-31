@@ -1,0 +1,13 @@
+# Local .terraform directories
+**/.terraform/*
+**/*.tar.gz
+.terraform
+terraform.tfstate
+*.tfstate*
+terraform.tfvars
+.terraform.lock.hcl
+terraform.tfvars.*
+**/examples/*/.terraform/*
+**/examples/*/terraform.tfvars
+**/examples/*/terraform.lock.hcl
+**/examples/*/.test-data

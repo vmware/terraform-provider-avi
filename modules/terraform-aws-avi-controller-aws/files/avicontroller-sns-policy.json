@@ -1,0 +1,25 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "Stmt1499337009000",
+      "Effect": "Allow",
+      "Action": [
+        "sns:ConfirmSubscription",
+        "sns:CreateTopic",
+        "sns:DeleteTopic",
+        "sns:GetSubscriptionAttributes",
+        "sns:GetTopicAttributes",
+        "sns:ListSubscriptionsByTopic",
+        "sns:Publish",
+        "sns:SetTopicAttributes",
+        "sns:Subscribe",
+        "sns:ListTopics",
+        "sns:Unsubscribe"
+      ],
+      "Resource": [
+        "*"
+      ]
+    }
+  ]
+}

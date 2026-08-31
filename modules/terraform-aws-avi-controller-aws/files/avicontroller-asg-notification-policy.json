@@ -1,0 +1,17 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "Stmt1499337126000",
+      "Effect": "Allow",
+      "Action": [
+        "autoscaling:DeleteNotificationConfiguration",
+        "autoscaling:DescribeNotificationConfigurations",
+        "autoscaling:PutNotificationConfiguration"
+      ],
+      "Resource": [
+        "*"
+      ]
+    }
+  ]
+}
