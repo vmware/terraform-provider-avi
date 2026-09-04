@@ -192,6 +192,8 @@ github.com/vmware/alb-sdk v0.0.0-20260720042152-b07dca717947 h1:XCG3sYeJyblwFzoT
 github.com/vmware/alb-sdk v0.0.0-20260720042152-b07dca717947/go.mod h1:sJhs1izhBeV+Bp3M4tHORbYgsS5ub341aHDvz0/GdW0=
 github.com/vmware/alb-sdk v0.0.0-20260822092031-3d3d91b481c8 h1:L9r7B2+fWDna0uggt58Duy9XFvw8nxfL4tHuPGX+g2Q=
 github.com/vmware/alb-sdk v0.0.0-20260822092031-3d3d91b481c8/go.mod h1:sJhs1izhBeV+Bp3M4tHORbYgsS5ub341aHDvz0/GdW0=
+github.com/vmware/alb-sdk v0.0.0-20260902101138-bf8c2337cb43 h1:bkVeWV+pWRrEg6xvPGlk5xl46VeDpugTjIx4c8JuIF8=
+github.com/vmware/alb-sdk v0.0.0-20260902101138-bf8c2337cb43/go.mod h1:sJhs1izhBeV+Bp3M4tHORbYgsS5ub341aHDvz0/GdW0=
 github.com/xanzy/ssh-agent v0.3.0 h1:wUMzuKtKilRgBAD1sUb8gOwwRr2FGoBVumcjoOACClI=
 github.com/xanzy/ssh-agent v0.3.0/go.mod h1:3s9xbODqPuuhK9JV1R321M/FlMZSBvE5aY6eAcqrDh0=
 github.com/zclconf/go-cty v1.1.0/go.mod h1:xnAOWiHeOqg2nWS62VtQ7pbOu17FtxJNW8RLEih+O3s=
