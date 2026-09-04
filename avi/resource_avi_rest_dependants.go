@@ -37260,6 +37260,49 @@ func ResourceSecMgrDataEventSchema() *schema.Resource {
 	}
 }
 
+func ResourceSecMgrDebugFocusEntrySchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"duration": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "60",
+				ValidateFunc: validateInteger,
+			},
+			"max_events": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "500",
+				ValidateFunc: validateInteger,
+			},
+			"name": {
+				Type:     schema.TypeString,
+				Required: true,
+			},
+			"se_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"stage": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "STAGE_ALL",
+			},
+			"uri": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"vs_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
 func ResourceSecMgrThresholdSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -37545,10 +37588,21 @@ func ResourceSecurityMgrDebugFilterSchema() *schema.Resource {
 				Default:      "true",
 				ValidateFunc: validateBool,
 			},
+			"endpoint_consolidation_min_samples": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "20",
+				ValidateFunc: validateInteger,
+			},
 			"entity_ref": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+			"focus_entries": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceSecMgrDebugFocusEntrySchema(),
 			},
 			"learning_db_cleanup_lookback_period": {
 				Type:         schema.TypeString,
