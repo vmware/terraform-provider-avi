@@ -12,6 +12,7 @@
 package avi
 
 import (
+	"errors"
 	"io/ioutil"
 	"log"
 	"os"
@@ -276,6 +277,58 @@ func SetIDFromObj(d *schema.ResourceData, robj interface{}) {
 	}
 }
 
+// getUserTenants fetches the tenants the current session's user has access
+// to via api/user-tenant-list.
+func getUserTenants(client *clients.AviClient) ([]interface{}, error) {
+	var userTenants interface{}
+	if err := client.AviSession.Get("api/user-tenant-list", &userTenants); err != nil {
+		return nil, err
+	}
+	tenants, ok := userTenants.(map[string]interface{})["tenants"].([]interface{})
+	if !ok {
+		return nil, errors.New("unexpected api/user-tenant-list response format")
+	}
+	return tenants, nil
+}
+
+// getTenantNameFromRef resolves the tenant name for a tenant_ref value
+// (e.g. "https://host/api/tenant/tenant-<uuid>") via api/user-tenant-list,
+// which returns only the tenants the authenticated user has access to and
+// does not require the Tenant-read permission.
+func getTenantNameFromRef(client *clients.AviClient, tenantRef string) (string, error) {
+	path := strings.SplitN(tenantRef, "/", 4)[3]
+	tenantUUID := strings.SplitN(strings.TrimPrefix(path, "api/tenant/"), "#", 2)[0]
+	tenants, err := getUserTenants(client)
+	if err != nil {
+		return "", err
+	}
+	for _, t := range tenants {
+		if tmap, ok := t.(map[string]interface{}); ok && tmap["uuid"] == tenantUUID {
+			if name, ok := tmap["name"].(string); ok {
+				return name, nil
+			}
+		}
+	}
+	return "", errors.New("No object of type tenant with uuid " + tenantUUID + " is found")
+}
+
+// getTenantObjByName resolves a tenant object by name via
+// api/user-tenant-list, which returns only the tenants the authenticated
+// user has access to and does not require the Tenant-read permission
+// needed by GET api/tenant?name=<name>.
+func getTenantObjByName(client *clients.AviClient, name string) (interface{}, error) {
+	tenants, err := getUserTenants(client)
+	if err != nil {
+		return nil, err
+	}
+	for _, t := range tenants {
+		if tmap, ok := t.(map[string]interface{}); ok && tmap["name"] == name {
+			return tmap, nil
+		}
+	}
+	return nil, errors.New("No object of type tenant with name " + name + " is found")
+}
+
 // It is a API to create any Avi REST resource. It handles special situations with cloud
 // and tenant filters as objects may already be present.
 func APICreate(d *schema.ResourceData, meta interface{}, objType string, s map[string]*schema.Schema,
@@ -287,17 +340,15 @@ func APICreate(d *schema.ResourceData, meta interface{}, objType string, s map[s
 	if data, err := SchemaToAviData(obj, s); err == nil {
 		path := "api/" + objType
 		specialobj := IsPostNotAllowed(objType)
-		var obj interface{}
 		tenantName := ""
 		if tenantRef, ok := d.GetOk("tenant_ref"); ok && strings.Contains(tenantRef.(string),
 			"api/tenant/") {
-			tenantUUID := strings.SplitN(tenantRef.(string), "/", 4)[3]
-			err := client.AviSession.Get(tenantUUID, &obj)
+			var err error
+			tenantName, err = getTenantNameFromRef(client, tenantRef.(string))
 			if err != nil {
-				log.Printf("[ERROR] APICreateOrUpdate tenant with uuid %v not found err %v\n", tenantUUID, err)
+				log.Printf("[ERROR] APICreateOrUpdate tenant ref %v not found err %v\n", tenantRef, err)
 				return err
 			}
-			tenantName = obj.(map[string]interface{})["name"].(string)
 			log.Printf("[INFO] APICreateOrUpdate Tenant ref found %v", tenantName)
 		}
 		if specialobj {
@@ -340,17 +391,15 @@ func APIUpdate(d *schema.ResourceData, meta interface{}, objType string, s map[s
 	if data, err := SchemaToAviData(obj, s); err == nil {
 		path := "api/" + objType
 		specialobj := IsPostNotAllowed(objType)
-		var obj interface{}
 		tenantName := ""
 		if tenantRef, ok := d.GetOk("tenant_ref"); ok && strings.Contains(tenantRef.(string),
 			"api/tenant/") {
-			tenantUUID := strings.SplitN(tenantRef.(string), "/", 4)[3]
-			err := client.AviSession.Get(tenantUUID, &obj)
+			var err error
+			tenantName, err = getTenantNameFromRef(client, tenantRef.(string))
 			if err != nil {
-				log.Printf("[ERROR] APICreateOrUpdate tenant with uuid %v not found err %v\n", tenantUUID, err)
+				log.Printf("[ERROR] APICreateOrUpdate tenant ref %v not found err %v\n", tenantRef, err)
 				return err
 			}
-			tenantName = obj.(map[string]interface{})["name"].(string)
 			log.Printf("[INFO] APICreateOrUpdate Tenant ref found %v", tenantName)
 		}
 		if specialobj {
@@ -388,13 +437,12 @@ func APIRead(d *schema.ResourceData, meta interface{}, objType string, s map[str
 	tenantName := ""
 	if tenantRef, ok := d.GetOk("tenant_ref"); ok && strings.Contains(tenantRef.(string),
 		"api/tenant/") {
-		tenantUUID := strings.SplitN(tenantRef.(string), "/", 4)[3]
-		err := client.AviSession.Get(tenantUUID, &obj)
+		var err error
+		tenantName, err = getTenantNameFromRef(client, tenantRef.(string))
 		if err != nil {
-			log.Printf("[ERROR] APIRead tenant with uuid %v not found err %v\n", tenantUUID, err)
+			log.Printf("[ERROR] APIRead tenant ref %v not found err %v\n", tenantRef, err)
 			return err
 		}
-		tenantName = obj.(map[string]interface{})["name"].(string)
 		log.Printf("[INFO] APIRead Found Tenant Ref %v ", tenantName)
 	}
 	specialobj := IsPostNotAllowed(objType)
@@ -425,7 +473,14 @@ func APIRead(d *schema.ResourceData, meta interface{}, objType string, s map[str
 		}
 	} else if name, ok := d.GetOk("name"); ok {
 		var err error
-		if cloudRef, ok := d.GetOk("cloud_ref"); ok && strings.Contains(cloudRef.(string), "api/cloud/") {
+		if objType == "tenant" {
+			log.Printf("[DEBUG] APIRead using name %v \n", name)
+			obj, err = getTenantObjByName(client, name.(string))
+			if err != nil {
+				log.Printf("[ERROR] APIRead tenant with name %v not found err %v\n", name, err)
+				return err
+			}
+		} else if cloudRef, ok := d.GetOk("cloud_ref"); ok && strings.Contains(cloudRef.(string), "api/cloud/") {
 			cloudUUID := strings.SplitN(cloudRef.(string), "api/cloud/", 2)[1]
 			cloudUUID = strings.Split(cloudUUID, "#")[0]
 			log.Printf("[DEBUG] APIRead using cloud %v obj %v name %v\n", cloudUUID,
@@ -514,20 +569,18 @@ func APIRead(d *schema.ResourceData, meta interface{}, objType string, s map[str
 
 func APIDelete(d *schema.ResourceData, meta interface{}, objType string) error {
 	client := meta.(*clients.AviClient)
-	var obj interface{}
 	tenantName := ""
 	uuid := d.Get("uuid").(string)
 	if uuid != "" {
 		path := "api/" + objType + "/" + uuid
 		if tenantRef, ok := d.GetOk("tenant_ref"); ok && strings.Contains(tenantRef.(string),
 			"api/tenant/") {
-			tenantUUID := strings.SplitN(tenantRef.(string), "/", 4)[3]
-			err := client.AviSession.Get(tenantUUID, &obj)
+			var err error
+			tenantName, err = getTenantNameFromRef(client, tenantRef.(string))
 			if err != nil {
-				log.Printf("[ERROR] APIRead tenant with uuid %v not found err %v\n", tenantUUID, err)
+				log.Printf("[ERROR] APIDelete tenant ref %v not found err %v\n", tenantRef, err)
 				return err
 			}
-			tenantName = obj.(map[string]interface{})["name"].(string)
 			log.Printf("[INFO] APIDelete Found Tenant Ref %v ", tenantName)
 		}
 		err := client.AviSession.DeleteObject(path, session.SetOptTenant(tenantName))
