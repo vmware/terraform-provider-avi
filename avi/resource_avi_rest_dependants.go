@@ -974,11 +974,6 @@ func ResourceAlertSyslogServerSchema() *schema.Resource {
 				Optional: true,
 				Default:  "SYSLOG_LEGACY",
 			},
-			"pkiprofile_ref": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
 			"syslog_server": {
 				Type:     schema.TypeString,
 				Required: true,
@@ -40815,6 +40810,17 @@ func ResourceTlsConfigSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+			"pki_profile_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"skip_hostname_verification": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
 			},
 			"tls_mode": {
 				Type:     schema.TypeString,
