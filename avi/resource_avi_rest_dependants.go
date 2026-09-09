@@ -1422,6 +1422,12 @@ func ResourceApiLogSchema() *schema.Resource {
 func ResourceApiMetricsLimitsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"disk_kb_per_endpoint": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
 			"num_apis": {
 				Type:         schema.TypeString,
 				Optional:     true,
