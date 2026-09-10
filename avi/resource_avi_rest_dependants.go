@@ -279,6 +279,12 @@ func ResourceALBServicesCaseAttachmentSchema() *schema.Resource {
 	}
 }
 
+func ResourceALBServicesFileDownloadSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{},
+	}
+}
+
 func ResourceALBServicesFileDownloadMetadataSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{},
@@ -14196,6 +14202,18 @@ func ResourceEventDetailsSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 				Elem:     ResourceSeHmEventVsDetailsSchema(),
+			},
+			"se_internal_gateway_heartbeat_failed_details": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceSeGatewayHeartbeatFailedDetailsSchema(),
+			},
+			"se_internal_gateway_heartbeat_success_details": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceSeGatewayHeartbeatSuccessDetailsSchema(),
 			},
 			"se_ip6_dad_failed_event_details": {
 				Type:     schema.TypeSet,
@@ -40444,6 +40462,28 @@ func ResourceTechSupportEventParamsSchema() *schema.Resource {
 				Optional:     true,
 				Default:      "8",
 				ValidateFunc: validateInteger,
+			},
+		},
+	}
+}
+
+func ResourceTechSupportMessageSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"status": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"status_code": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"tech_support_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 		},
 	}
