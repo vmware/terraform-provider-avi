@@ -14196,6 +14196,18 @@ func ResourceEventDetailsSchema() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceSeHmEventVsDetailsSchema(),
 			},
+			"se_internal_gateway_heartbeat_failed_details": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceSeGatewayHeartbeatFailedDetailsSchema(),
+			},
+			"se_internal_gateway_heartbeat_success_details": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceSeGatewayHeartbeatSuccessDetailsSchema(),
+			},
 			"se_ip6_dad_failed_event_details": {
 				Type:     schema.TypeSet,
 				Optional: true,
