@@ -279,6 +279,12 @@ func ResourceALBServicesCaseAttachmentSchema() *schema.Resource {
 	}
 }
 
+func ResourceALBServicesFileDownloadSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{},
+	}
+}
+
 func ResourceALBServicesFileDownloadMetadataSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{},
@@ -974,11 +980,6 @@ func ResourceAlertSyslogServerSchema() *schema.Resource {
 				Optional: true,
 				Default:  "SYSLOG_LEGACY",
 			},
-			"pkiprofile_ref": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
 			"syslog_server": {
 				Type:     schema.TypeString,
 				Required: true,
@@ -1427,6 +1428,12 @@ func ResourceApiLogSchema() *schema.Resource {
 func ResourceApiMetricsLimitsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"disk_kb_per_endpoint": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
 			"num_apis": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -40448,6 +40455,28 @@ func ResourceTechSupportEventParamsSchema() *schema.Resource {
 	}
 }
 
+func ResourceTechSupportMessageSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"status": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"status_code": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"tech_support_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
 func ResourceTechSupportParamsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -40815,6 +40844,17 @@ func ResourceTlsConfigSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+			"pki_profile_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"skip_hostname_verification": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
 			},
 			"tls_mode": {
 				Type:     schema.TypeString,
