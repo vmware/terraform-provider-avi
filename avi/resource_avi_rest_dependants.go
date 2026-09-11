@@ -279,6 +279,12 @@ func ResourceALBServicesCaseAttachmentSchema() *schema.Resource {
 	}
 }
 
+func ResourceALBServicesFileDownloadSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{},
+	}
+}
+
 func ResourceALBServicesFileDownloadMetadataSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{},
@@ -974,11 +980,6 @@ func ResourceAlertSyslogServerSchema() *schema.Resource {
 				Optional: true,
 				Default:  "SYSLOG_LEGACY",
 			},
-			"pkiprofile_ref": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
 			"syslog_server": {
 				Type:     schema.TypeString,
 				Required: true,
@@ -1427,6 +1428,12 @@ func ResourceApiLogSchema() *schema.Resource {
 func ResourceApiMetricsLimitsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"disk_kb_per_endpoint": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
 			"num_apis": {
 				Type:         schema.TypeString,
 				Optional:     true,
@@ -14195,6 +14202,18 @@ func ResourceEventDetailsSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 				Elem:     ResourceSeHmEventVsDetailsSchema(),
+			},
+			"se_internal_gateway_heartbeat_failed_details": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceSeGatewayHeartbeatFailedDetailsSchema(),
+			},
+			"se_internal_gateway_heartbeat_success_details": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceSeGatewayHeartbeatSuccessDetailsSchema(),
 			},
 			"se_ip6_dad_failed_event_details": {
 				Type:     schema.TypeSet,
@@ -37260,6 +37279,49 @@ func ResourceSecMgrDataEventSchema() *schema.Resource {
 	}
 }
 
+func ResourceSecMgrDebugFocusEntrySchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"duration": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "60",
+				ValidateFunc: validateInteger,
+			},
+			"max_events": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "500",
+				ValidateFunc: validateInteger,
+			},
+			"name": {
+				Type:     schema.TypeString,
+				Required: true,
+			},
+			"se_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"stage": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "STAGE_ALL",
+			},
+			"uri": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"vs_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
 func ResourceSecMgrThresholdSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -37545,10 +37607,21 @@ func ResourceSecurityMgrDebugFilterSchema() *schema.Resource {
 				Default:      "true",
 				ValidateFunc: validateBool,
 			},
+			"endpoint_consolidation_min_samples": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "20",
+				ValidateFunc: validateInteger,
+			},
 			"entity_ref": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+			"focus_entries": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceSecMgrDebugFocusEntrySchema(),
 			},
 			"learning_db_cleanup_lookback_period": {
 				Type:         schema.TypeString,
@@ -40394,6 +40467,28 @@ func ResourceTechSupportEventParamsSchema() *schema.Resource {
 	}
 }
 
+func ResourceTechSupportMessageSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"status": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"status_code": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"tech_support_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
 func ResourceTechSupportParamsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -40761,6 +40856,17 @@ func ResourceTlsConfigSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+			"pki_profile_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"skip_hostname_verification": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
 			},
 			"tls_mode": {
 				Type:     schema.TypeString,
