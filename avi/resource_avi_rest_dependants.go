@@ -279,6 +279,12 @@ func ResourceALBServicesCaseAttachmentSchema() *schema.Resource {
 	}
 }
 
+func ResourceALBServicesFileDownloadSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{},
+	}
+}
+
 func ResourceALBServicesFileDownloadMetadataSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{},
@@ -40444,6 +40450,28 @@ func ResourceTechSupportEventParamsSchema() *schema.Resource {
 				Optional:     true,
 				Default:      "8",
 				ValidateFunc: validateInteger,
+			},
+		},
+	}
+}
+
+func ResourceTechSupportMessageSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"status": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"status_code": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"tech_support_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 		},
 	}
