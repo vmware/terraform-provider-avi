@@ -72,6 +72,12 @@ func ResourceApplicationProfileSchema() map[string]*schema.Schema {
 			Optional: true,
 			Elem:     ResourceRoleFilterMatchLabelSchema(),
 		},
+		"msg_lb_app_service_profile": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceMsgLbApplicationServiceProfileSchema(),
+		},
 		"name": {
 			Type:     schema.TypeString,
 			Required: true,
