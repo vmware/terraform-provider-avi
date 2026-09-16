@@ -1115,6 +1115,10 @@ func dataSourceAviServiceEngineGroup() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"supervisor_group": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"tenant_ref": {
 				Type:     schema.TypeString,
 				Optional: true,
