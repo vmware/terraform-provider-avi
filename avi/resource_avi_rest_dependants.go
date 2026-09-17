@@ -29938,11 +29938,35 @@ func ResourcePortalConfigurationSchema() *schema.Resource {
 				Default:      "true",
 				ValidateFunc: validateBool,
 			},
+			"enable_http": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "true",
+				ValidateFunc: validateBool,
+			},
+			"enable_https": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "true",
+				ValidateFunc: validateBool,
+			},
 			"enable_rate_limiter": {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Default:      "false",
 				ValidateFunc: validateBool,
+			},
+			"http_port": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"https_port": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
 			},
 			"legacy_ssl_support": {
 				Type:         schema.TypeString,
@@ -29954,6 +29978,12 @@ func ResourcePortalConfigurationSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+			"redirect_to_https": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "true",
+				ValidateFunc: validateBool,
 			},
 			"sslkeyandcertificate_refs": {
 				Type:     schema.TypeList,
