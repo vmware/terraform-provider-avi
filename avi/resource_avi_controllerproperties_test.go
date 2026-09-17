@@ -52,8 +52,6 @@ func TestAVIControllerPropertiesBasic(t *testing.T) {
 					resource.TestCheckResourceAttr(
 						"avi_controllerproperties.testControllerProperties", "query_host_fail", "180"),
 					resource.TestCheckResourceAttr(
-						"avi_controllerproperties.testControllerProperties", "bm_use_ansible", "true"),
-					resource.TestCheckResourceAttr(
 						"avi_controllerproperties.testControllerProperties", "se_offline_del", "172000"),
 					resource.TestCheckResourceAttr(
 						"avi_controllerproperties.testControllerProperties", "vs_se_bootup_fail", "480"),
@@ -133,8 +131,6 @@ func TestAVIControllerPropertiesBasic(t *testing.T) {
 						"avi_controllerproperties.testControllerProperties", "se_create_timeout", "900"),
 					resource.TestCheckResourceAttr(
 						"avi_controllerproperties.testControllerProperties", "query_host_fail", "180"),
-					resource.TestCheckResourceAttr(
-						"avi_controllerproperties.testControllerProperties", "bm_use_ansible", "true"),
 					resource.TestCheckResourceAttr(
 						"avi_controllerproperties.testControllerProperties", "se_offline_del", "172000"),
 					resource.TestCheckResourceAttr(
@@ -231,7 +227,6 @@ resource "avi_controllerproperties" "testControllerProperties" {
 	vs_key_rotate_period = "60"
 	se_create_timeout = "900"
 	query_host_fail = "180"
-	bm_use_ansible = true
 	se_offline_del = "172000"
 	vs_se_bootup_fail = "480"
 	upgrade_dns_ttl = "5"
@@ -275,7 +270,6 @@ resource "avi_controllerproperties" "testControllerProperties" {
 	vs_key_rotate_period = "60"
 	se_create_timeout = "900"
 	query_host_fail = "180"
-	bm_use_ansible = true
 	se_offline_del = "172000"
 	vs_se_bootup_fail = "480"
 	upgrade_dns_ttl = "5"
