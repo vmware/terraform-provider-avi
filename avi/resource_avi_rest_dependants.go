@@ -22592,6 +22592,12 @@ func ResourceL4RuleProtocolMatchSchema() *schema.Resource {
 func ResourceL4SSLApplicationProfileSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"collect_client_tls_fingerprint": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
 			"ssl_stream_idle_timeout": {
 				Type:         schema.TypeString,
 				Optional:     true,
