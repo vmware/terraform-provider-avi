@@ -282,6 +282,12 @@ func ResourcePoolSchema() map[string]*schema.Schema {
 			Computed:     true,
 			ValidateFunc: validateInteger,
 		},
+		"msg_lb_conn_pool_config": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceMsgLbConnPoolConfigSchema(),
+		},
 		"name": {
 			Type:     schema.TypeString,
 			Required: true,
