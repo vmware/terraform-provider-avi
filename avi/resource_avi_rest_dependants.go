@@ -29037,6 +29037,12 @@ func ResourceOpsHistorySchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"system": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateBool,
+			},
 			"upgrade_events": {
 				Type:     schema.TypeList,
 				Optional: true,
