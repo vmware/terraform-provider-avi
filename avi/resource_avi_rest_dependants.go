@@ -6056,6 +6056,85 @@ func ResourceChildProcessInfoSchema() *schema.Resource {
 	}
 }
 
+func ResourceClfPoolSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"health_monitor_refs": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
+			"lb_algorithm": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "LB_ALGORITHM_ROUND_ROBIN",
+			},
+			"log_format": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "CLF_LOG_FORMAT_SYSLOG_OCTET",
+			},
+			"name": {
+				Type:     schema.TypeString,
+				Required: true,
+			},
+			"pki_profile_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"priority": {
+				Type:         schema.TypeString,
+				Required:     true,
+				ValidateFunc: validateInteger,
+			},
+			"servers": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceClfServerSchema(),
+			},
+			"ssl_key_and_certificate_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"ssl_profile_ref": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"transport": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "CLF_TRANSPORT_TCP",
+			},
+		},
+	}
+}
+
+func ResourceClfServerSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"enabled": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "true",
+				ValidateFunc: validateBool,
+			},
+			"ip_addr": {
+				Type:     schema.TypeSet,
+				Required: true,
+				Elem:     ResourceIpAddrSchema(),
+			},
+			"port": {
+				Type:         schema.TypeString,
+				Required:     true,
+				ValidateFunc: validateInteger,
+			},
+		},
+	}
+}
+
 func ResourceClientCertAuthSettingsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -14490,6 +14569,12 @@ func ResourceEventDetailsSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 				Elem:     ResourceSSLRevokedDetailsSchema(),
+			},
+			"supervisor_se_group_free_license_details": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceSupervisorSeGroupFreeLicenseDetailsSchema(),
 			},
 			"switchover_details": {
 				Type:     schema.TypeSet,
@@ -39953,6 +40038,35 @@ func ResourceSummarizedSubnetInfoSchema() *schema.Resource {
 			"network": {
 				Type:     schema.TypeString,
 				Required: true,
+			},
+		},
+	}
+}
+
+func ResourceSupervisorSeGroupFreeLicenseDetailsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"free_su_limit": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateFloat,
+			},
+			"se_group_name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"se_group_uuid": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"service_units_used": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateFloat,
 			},
 		},
 	}
