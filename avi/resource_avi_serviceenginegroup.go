@@ -1590,6 +1590,12 @@ func ResourceServiceEngineGroupSchema() map[string]*schema.Schema {
 			Default:      "4096",
 			ValidateFunc: validateInteger,
 		},
+		"supervisor_group": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Computed:     true,
+			ValidateFunc: validateBool,
+		},
 		"tenant_ref": {
 			Type:     schema.TypeString,
 			Optional: true,
