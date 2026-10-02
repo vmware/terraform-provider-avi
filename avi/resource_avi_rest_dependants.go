@@ -1189,7 +1189,19 @@ func ResourceAnomalyEventDetailsSchema() *schema.Resource {
 func ResourceApiConfigLimitsSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"num_api_paths": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
 			"num_api_paths_per_policy": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
+			"num_api_schemas": {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Computed:     true,
