@@ -60,6 +60,11 @@ func dataSourceAviApplicationProfile() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceRoleFilterMatchLabelSchema(),
 			},
+			"msg_lb_app_service_profile": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceMsgLbApplicationServiceProfileSchema(),
+			},
 			"name": {
 				Type:     schema.TypeString,
 				Optional: true,
