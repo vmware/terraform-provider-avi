@@ -129,6 +129,12 @@ func ResourceControllerPropertiesSchema() map[string]*schema.Schema {
 			Default:      "60",
 			ValidateFunc: validateInteger,
 		},
+		"clock_skew_config": {
+			Type:     schema.TypeSet,
+			Optional: true,
+			Computed: true,
+			Elem:     ResourceClockSkewToleranceConfigSchema(),
+		},
 		"cloud_discovery_interval": {
 			Type:         schema.TypeString,
 			Optional:     true,

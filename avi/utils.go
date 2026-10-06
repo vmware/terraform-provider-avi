@@ -117,6 +117,16 @@ func CommonHash(v interface{}) int {
 	return schema.HashString("avi")
 }
 
+// objName extracts the "name" field from data (as produced by
+// SchemaToAviData/PreprocessAPIRes) for logging, without exposing the rest
+// of the payload.
+func objName(data interface{}) interface{} {
+	if m, ok := data.(map[string]interface{}); ok {
+		return m["name"]
+	}
+	return nil
+}
+
 // It sets default values in the terraform resources to avoid diffs for scalars.
 func SetDefaultsInAPIRes(apiRes interface{}, dLocal interface{}, s map[string]*schema.Schema) (interface{}, error) {
 	if apiRes == nil {
@@ -360,7 +370,7 @@ func APICreate(d *schema.ResourceData, meta interface{}, objType string, s map[s
 				SetIDFromObj(d, robj)
 			}
 		} else {
-			log.Printf("[INFO] APICreateOrUpdate: Creating obj %v schema %v data %v\n", objType, d, data)
+			log.Printf("[INFO] APICreateOrUpdate: Creating obj %v name %v\n", objType, objName(data))
 			err = client.AviSession.Post(path, data, &robj, session.SetOptTenant(tenantName))
 			if err != nil {
 				log.Printf("[ERROR] APICreateOrUpdate creation failed %v\n", err)
@@ -530,7 +540,7 @@ func APIRead(d *schema.ResourceData, meta interface{}, objType string, s map[str
 		} else {
 			log.Printf("[ERROR] APIRead in setting read object %v\n", err)
 		}
-		log.Printf("[DEBUG] type: %v modAPIRes: %v", objType, modAPIRes)
+		log.Printf("[DEBUG] type: %v name: %v", objType, objName(modAPIRes))
 	} else {
 		log.Printf("[ERROR] APIRead in modifying api response object for conversion %v\n", err)
 	}

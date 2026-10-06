@@ -6351,6 +6351,25 @@ func ResourceClientLogStreamingFormatSchema() *schema.Resource {
 	}
 }
 
+func ResourceClockSkewToleranceConfigSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"enabled": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "true",
+				ValidateFunc: validateBool,
+			},
+			"skew_tolerance": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "30",
+				ValidateFunc: validateInteger,
+			},
+		},
+	}
+}
+
 func ResourceCloneServerSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
@@ -28456,6 +28475,11 @@ func ResourceOauthSubRequestLogSchema() *schema.Resource {
 func ResourceObjSyncConfigSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"cert_validation_mode": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "OBJSYNC_CERT_VALIDATION_STRICT",
+			},
 			"objsync_cpu_limit": {
 				Type:         schema.TypeString,
 				Optional:     true,
