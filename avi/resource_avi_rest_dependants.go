@@ -9724,6 +9724,12 @@ func ResourceControllerSizingLimitsSchema() *schema.Resource {
 				Computed:     true,
 				ValidateFunc: validateInteger,
 			},
+			"num_geodb_records": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateInteger,
+			},
 			"num_pool_rt_metrics": {
 				Type:         schema.TypeString,
 				Optional:     true,
