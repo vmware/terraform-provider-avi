@@ -5,57 +5,39 @@ package avi
 
 import "github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 
-func dataSourceAviJWTServerProfile() *schema.Resource {
+func dataSourceAviClfProfile() *schema.Resource {
 	return &schema.Resource{
-		Read: ResourceAviJWTServerProfileRead,
+		Read: ResourceAviClfProfileRead,
 		Schema: map[string]*schema.Schema{
-			"allowed_algorithms": {
+			"clf_pools": {
 				Type:     schema.TypeList,
 				Computed: true,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-			},
-			"clock_skew_config": {
-				Type:     schema.TypeSet,
-				Computed: true,
-				Elem:     ResourceClockSkewToleranceConfigSchema(),
+				Elem:     ResourceClfPoolSchema(),
 			},
 			"configpb_attributes": {
 				Type:     schema.TypeSet,
 				Computed: true,
 				Elem:     ResourceConfigPbAttributesSchema(),
 			},
-			"controller_internal_auth": {
-				Type:     schema.TypeSet,
-				Computed: true,
-				Elem:     ResourceControllerInternalAuthSchema(),
-			},
-			"is_federated": {
+			"description": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"issuer": {
+			"enabled": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"jwks_keys": {
-				Type:     schema.TypeString,
+			"markers": {
+				Type:     schema.TypeList,
 				Computed: true,
-			},
-			"jwt_profile_type": {
-				Type:     schema.TypeString,
-				Computed: true,
+				Elem:     ResourceRoleFilterMatchLabelSchema(),
 			},
 			"name": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
-			"protected_resource_config": {
-				Type:     schema.TypeSet,
-				Computed: true,
-				Elem:     ResourceJWTProtectedResourceConfigSchema(),
-			},
-			"reject_non_expiring_tokens": {
+			"replicate": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
@@ -67,6 +49,10 @@ func dataSourceAviJWTServerProfile() *schema.Resource {
 			"uuid": {
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
+			},
+			"vrf_context_ref": {
+				Type:     schema.TypeString,
 				Computed: true,
 			},
 		},

@@ -10,6 +10,11 @@ import (
 
 func ResourceVSDataScriptSetSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
+		"clf_profile_ref": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+		},
 		"configpb_attributes": {
 			Type:     schema.TypeSet,
 			Optional: true,

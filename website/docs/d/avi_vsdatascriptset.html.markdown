@@ -32,6 +32,7 @@ data "avi_vsdatascriptset" "foo_vsdatascriptset" {
 
 In addition to all arguments above, the following attributes are exported:
 
+* `clf_profile_ref` - Optional custom log forward profile this datascriptset forwards logs to via avi.vs.log_forward(). Resolved from the specific datascriptset invoking log_forward(), not from the virtualservice it is attached to. It is a reference to an object of type clfprofile. Field introduced in 32.1.5. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `created_by` - Creator name. Field introduced in 17.1.11,17.2.4. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `datascript` - Datascripts to execute. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
