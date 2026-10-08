@@ -27850,6 +27850,12 @@ func ResourceOAuthSettingsSchema() *schema.Resource {
 				Type:     schema.TypeString,
 				Required: true,
 			},
+			"reject_non_expiring_tokens": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "true",
+				ValidateFunc: validateBool,
+			},
 			"resource_server": {
 				Type:     schema.TypeSet,
 				Optional: true,
