@@ -14,6 +14,11 @@ func dataSourceAviJWTServerProfile() *schema.Resource {
 				Computed: true,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
+			"clock_skew_config": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceClockSkewToleranceConfigSchema(),
+			},
 			"configpb_attributes": {
 				Type:     schema.TypeSet,
 				Computed: true,
@@ -49,6 +54,10 @@ func dataSourceAviJWTServerProfile() *schema.Resource {
 				Type:     schema.TypeSet,
 				Computed: true,
 				Elem:     ResourceJWTProtectedResourceConfigSchema(),
+			},
+			"reject_non_expiring_tokens": {
+				Type:     schema.TypeString,
+				Computed: true,
 			},
 			"tenant_ref": {
 				Type:     schema.TypeString,
