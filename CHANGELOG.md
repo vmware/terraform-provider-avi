@@ -1,3 +1,33 @@
+## 32.1.4
+FEATURES:
+- Added new resources and data sources: `avi_akoamkocluster`, `avi_albservicesstatus`, `avi_apipath`, `avi_apipolicy`, `avi_apischema`, `avi_apispecgenerate`, `avi_labelprofile`, `avi_sessionkeyforwarder`.
+- Added new data source `avi_tlsprofile`.
+- `avi_virtualservice`: added `api_policy_ref` and `label_profile_ref`.
+- `avi_serviceenginegroup`: added `log_streaming_tls_config`, `seg_mode` and `waap_mode_config`.
+- `avi_systemconfiguration`: added `ai_assistant_enabled`, `allow_private_ips`, `gslb_client_cert_ref` and `truststore_ca_certs_pem`.
+- `avi_controllerproperties`: added `ai_assistant_project_key`, `ipgls_client_cache_size`, `ipgls_client_cache_ttl_minutes`, `promoted_log_fields` and `vs_se_license_reservation_fail`.
+- `avi_gslb`: added `tls_config`; `avi_gslbcrmruntime`: added `tls_connection_err`.
+- `avi_analyticsprofile`: added `waap_classification_disabled_penalty`.
+- `avi_backupconfiguration`: added `known_hosts_file_ref`.
+- `avi_jwtserverprofile`: added `allowed_algorithms`.
+- `avi_fileobject`: added API spec generation progress fields (`api_spec_detail`, `state`, `progress`, `history`, etc.).
+- `avi_licensestatus`: added `ssp_license_reported_at`.
+
+IMPROVEMENTS:
+- Updated Avi Go SDK (`alb-sdk`) to the latest version.
+- Upgraded dependencies: `golang.org/x/crypto`, `golang.org/x/net`, `golang.org/x/sys`, `golang.org/x/text`, `google.golang.org/grpc` and `google.golang.org/protobuf`.
+- Updated resource and data source documentation.
+
+BREAKING CHANGES:
+- `avi_systemconfiguration`: `syslog_servers` replaced by `syslog_server_settings`.
+- `avi_controllerproperties`: removed `bm_use_ansible`.
+- Removed `avi_techsupportmessage` resource and data source.
+- Removed `avi_albservicesfiledownload` resource (data source replaced by `avi_sessionkeyforwarder`).
+
+BUG FIXES:
+- AV-273506: Fixed terraform functional test failures.
+- Fixed functional test failures for controllerproperties, customipamdnsprofile, user and useraccount tests.
+
 ## 0.3.0 (Unreleased)
 ## 0.2.3 (June 16, 2020)
 Features:
