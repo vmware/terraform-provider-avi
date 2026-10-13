@@ -27,6 +27,7 @@ BREAKING CHANGES:
 BUG FIXES:
 - AV-273506: Fixed terraform functional test failures.
 - Fixed functional test failures for controllerproperties, customipamdnsprofile, user and useraccount tests.
+- AV-293347: Resolve `tenant_ref` via user-tenant-list to avoid dependency on Tenant-read RBAC permission.
 
 ## 0.3.0 (Unreleased)
 ## 0.2.3 (June 16, 2020)
