@@ -12,7 +12,7 @@ func ResourceClfProfileSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"clf_pools": {
 			Type:     schema.TypeList,
-			Optional: true,
+			Required: true,
 			Elem:     ResourceClfPoolSchema(),
 		},
 		"configpb_attributes": {
@@ -51,6 +51,13 @@ func ResourceClfProfileSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Optional: true,
 			Computed: true,
+		},
+		"use_management": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "false",
+			ForceNew:     true,
+			ValidateFunc: validateBool,
 		},
 		"uuid": {
 			Type:     schema.TypeString,

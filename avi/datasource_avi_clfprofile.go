@@ -46,6 +46,10 @@ func dataSourceAviClfProfile() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"use_management": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"uuid": {
 				Type:     schema.TypeString,
 				Optional: true,

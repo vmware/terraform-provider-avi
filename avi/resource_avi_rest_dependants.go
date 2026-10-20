@@ -6102,7 +6102,7 @@ func ResourceClfPoolSchema() *schema.Resource {
 			},
 			"servers": {
 				Type:     schema.TypeList,
-				Optional: true,
+				Required: true,
 				Elem:     ResourceClfServerSchema(),
 			},
 			"ssl_key_and_certificate_ref": {
@@ -14234,6 +14234,12 @@ func ResourceEventDetailsSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 				Elem:     ResourceSeBgpPeerStateChangeDetailsSchema(),
+			},
+			"se_clf_details": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceSeClfEventDetailsSchema(),
 			},
 			"se_config_sedatastore_dl_fail": {
 				Type:     schema.TypeSet,
@@ -26302,10 +26308,22 @@ func ResourceMicroServiceMatchSchema() *schema.Resource {
 func ResourceMsgLbApplicationServiceProfileSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"enable_transaction_logs": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
 			"max_tcp_conn_per_client_per_server": {
 				Type:         schema.TypeString,
 				Optional:     true,
 				Default:      "1",
+				ValidateFunc: validateInteger,
+			},
+			"msg_lb_connection_log_interval": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "300",
 				ValidateFunc: validateInteger,
 			},
 			"session_binding_mode": {
@@ -26414,6 +26432,12 @@ func ResourceMsgLbStatsSchema() *schema.Resource {
 				Computed:     true,
 				ValidateFunc: validateInteger,
 			},
+			"interim": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateBool,
+			},
 			"servers": {
 				Type:     schema.TypeList,
 				Optional: true,
@@ -26486,7 +26510,7 @@ func ResourceMsgLbTransactionLogSchema() *schema.Resource {
 				Computed:     true,
 				ValidateFunc: validateInteger,
 			},
-			"server_ip": {
+			"server_ip_port": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -34664,6 +34688,29 @@ func ResourceSeBootupPropertiesSchema() *schema.Resource {
 				Optional:     true,
 				Default:      "8192",
 				ValidateFunc: validateInteger,
+			},
+		},
+	}
+}
+
+func ResourceSeClfEventDetailsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"clf_pool": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"clf_profile": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"server": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceSeHmEventServerDetailsSchema(),
 			},
 		},
 	}
