@@ -37,10 +37,6 @@ func dataSourceAviClfProfile() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
-			"replicate": {
-				Type:     schema.TypeString,
-				Computed: true,
-			},
 			"tenant_ref": {
 				Type:     schema.TypeString,
 				Optional: true,

@@ -41,12 +41,6 @@ func ResourceClfProfileSchema() map[string]*schema.Schema {
 			Type:     schema.TypeString,
 			Required: true,
 		},
-		"replicate": {
-			Type:         schema.TypeString,
-			Optional:     true,
-			Default:      "false",
-			ValidateFunc: validateBool,
-		},
 		"tenant_ref": {
 			Type:     schema.TypeString,
 			Optional: true,

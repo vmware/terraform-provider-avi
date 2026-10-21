@@ -6100,6 +6100,12 @@ func ResourceClfPoolSchema() *schema.Resource {
 				Required:     true,
 				ValidateFunc: validateInteger,
 			},
+			"replicate": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Default:      "false",
+				ValidateFunc: validateBool,
+			},
 			"servers": {
 				Type:     schema.TypeList,
 				Required: true,
