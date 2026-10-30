@@ -9,6 +9,10 @@ func dataSourceAviVSDataScriptSet() *schema.Resource {
 	return &schema.Resource{
 		Read: ResourceAviVSDataScriptSetRead,
 		Schema: map[string]*schema.Schema{
+			"clf_profile_ref": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"configpb_attributes": {
 				Type:     schema.TypeSet,
 				Computed: true,
