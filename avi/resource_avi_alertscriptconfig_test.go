@@ -98,7 +98,7 @@ resource "avi_alertscriptconfig" "testAlertScriptConfig" {
 	name = "test-se_grp_cleanup_old_spec_se-abc"
 	tenant_ref = data.avi_tenant.default_tenant.id
 	action_script = <<EOF
-#!/usr/bin/python3
+#!/usr/bin/env python3
 import os
 import json
 import sys
@@ -241,7 +241,7 @@ resource "avi_alertscriptconfig" "testAlertScriptConfig" {
 	name = "test-se_grp_cleanup_old_spec_se-updated"
 	tenant_ref = data.avi_tenant.default_tenant.id
 	action_script = <<EOF
-#!/usr/bin/python3
+#!/usr/bin/env python3
 import os
 import json
 import sys
