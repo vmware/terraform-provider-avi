@@ -215,6 +215,11 @@ func dataSourceAviPool() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"msg_lb_conn_pool_config": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceMsgLbConnPoolConfigSchema(),
+			},
 			"name": {
 				Type:     schema.TypeString,
 				Optional: true,
