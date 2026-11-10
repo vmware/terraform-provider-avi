@@ -41240,6 +41240,11 @@ func ResourceTencentZoneNetworkSchema() *schema.Resource {
 func ResourceTier1LogicalRouterInfoSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"attrs": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem:     ResourceKeyValueSchema(),
+			},
 			"locale_service": {
 				Type:     schema.TypeString,
 				Optional: true,
