@@ -43,6 +43,12 @@ func ResourceApiPolicySchema() map[string]*schema.Schema {
 			Optional: true,
 			Elem:     ResourceApiPolicyLabelActionMappingSchema(),
 		},
+		"max_request_body_inspection_size": {
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "1024",
+			ValidateFunc: validateInteger,
+		},
 		"name": {
 			Type:     schema.TypeString,
 			Required: true,

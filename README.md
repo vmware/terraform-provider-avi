@@ -28,7 +28,7 @@ Maintained by Broadcom/VMware (`vmware/terraform-provider-avi`), built on top of
 ├── website/docs/{r,d}/*.html.markdown  # Terraform Registry docs, one page per resource/data source
 ├── examples/                    # example .tf configs (aws, azure, gcp, nsxt, openstack, vmware, pool, waf_V2, ...)
 ├── modules/                     # reusable TF modules (services/vmware_deploy, nia/pool - Consul-Terraform-Sync)
-├── scripts/                     # gofmtcheck.sh, errcheck.sh, changelog-links.sh, gogetcookie.sh
+├── scripts/                     # gofmtcheck.sh, errcheck.sh, changelog-links.sh
 ├── GNUmakefile                  # build/test/lint targets
 └── .github/workflows/           # golangci-lint.yml, release.yml (goreleaser)
 ```
