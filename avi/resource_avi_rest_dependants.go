@@ -1417,6 +1417,11 @@ func ResourceApiLogSchema() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"matched_api_path": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"omitted_api_violations": {
 				Type:         schema.TypeString,
 				Optional:     true,
