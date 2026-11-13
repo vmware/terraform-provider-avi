@@ -47626,6 +47626,11 @@ func ResourceWafApplicationSignatureAppVersionSchema() *schema.Resource {
 func ResourceWafApplicationSignaturesSchema() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
+			"mode": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"provider_ref": {
 				Type:     schema.TypeString,
 				Optional: true,
