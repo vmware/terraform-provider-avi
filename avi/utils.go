@@ -389,6 +389,17 @@ func APIUpdate(d *schema.ResourceData, meta interface{}, objType string, s map[s
 	}
 
 	if data, err := SchemaToAviData(obj, s); err == nil {
+		if objType == "pool" {
+			// servers is Computed, so d still returns the old servers when the config
+			// has none. Send no servers so the PUT clears them.
+			if raw := d.GetRawConfig(); !raw.IsNull() && raw.IsKnown() {
+				ign := raw.GetAttr("ignore_servers")
+				srv := raw.GetAttr("servers")
+				if !(!ign.IsNull() && ign.IsKnown() && ign.True()) && srv.IsKnown() && (srv.IsNull() || srv.LengthInt() == 0) {
+					delete(data.(map[string]interface{}), "servers")
+				}
+			}
+		}
 		path := "api/" + objType
 		specialobj := IsPostNotAllowed(objType)
 		tenantName := ""
@@ -529,6 +540,13 @@ func APIRead(d *schema.ResourceData, meta interface{}, objType string, s map[str
 			}
 		} else {
 			log.Printf("[ERROR] APIRead in setting read object %v\n", err)
+		}
+		if objType == "pool" {
+			// A pool with no servers has no "servers" key in the response, so the
+			// stale servers stay in state unless we clear them here.
+			if m, ok := modAPIRes.(map[string]interface{}); ok && m["servers"] == nil {
+				d.Set("servers", nil)
+			}
 		}
 		log.Printf("[DEBUG] type: %v modAPIRes: %v", objType, modAPIRes)
 	} else {
