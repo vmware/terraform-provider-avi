@@ -38,6 +38,10 @@ func dataSourceAviApiPolicy() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceApiPolicyLabelActionMappingSchema(),
 			},
+			"max_request_body_inspection_size": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"name": {
 				Type:     schema.TypeString,
 				Optional: true,

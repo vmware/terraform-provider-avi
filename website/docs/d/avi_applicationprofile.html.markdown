@@ -32,7 +32,7 @@ data "avi_applicationprofile" "foo_applicationprofile" {
 
 In addition to all arguments above, the following attributes are exported:
 
-* `app_service_type` - Specifies app service type for an application. Enum options - APP_SERVICE_TYPE_L7_HORIZON, APP_SERVICE_TYPE_L4_BLAST, APP_SERVICE_TYPE_L4_PCOIP, APP_SERVICE_TYPE_L4_FTP, APP_SERVICE_TYPE_HTTP_MCP. Field introduced in 21.1.3. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `app_service_type` - Specifies app service type for an application, including l4 message-level load balancing (app_service_type_l4_msg_lb) for iso 8583-style traffic. Enum options - APP_SERVICE_TYPE_L7_HORIZON, APP_SERVICE_TYPE_L4_BLAST, APP_SERVICE_TYPE_L4_PCOIP, APP_SERVICE_TYPE_L4_FTP, APP_SERVICE_TYPE_HTTP_MCP, APP_SERVICE_TYPE_L4_MSG_LB. Field introduced in 21.1.3. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `cloud_config_cksum` - Checksum of application profiles. Internally set by cloud connector. Field introduced in 17.2.14, 18.1.5, 18.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `configpb_attributes` - Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `created_by` - Name of the application profile creator. Field introduced in 17.2.14, 18.1.5, 18.2.1. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
@@ -43,6 +43,7 @@ In addition to all arguments above, the following attributes are exported:
 * `http_profile` - Specifies the http application proxy profile parameters. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `l4_ssl_profile` - Specifies various l4 ssl service related controls for virtual service. Field introduced in 22.1.2. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `markers` - List of labels to be used for granular rbac. Field introduced in 20.1.5. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
+* `msg_lb_app_service_profile` - Per-client connection cap settings for l4 message-level load balancing (app_service_type_l4_msg_lb). Ignored for other application profile types. Field introduced in 32.1.5. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `name` - The name of the application profile. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `preserve_client_ip` - Specifies if client ip needs to be preserved for backend connection. Not compatible with connection multiplexing. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
 * `preserve_client_port` - Specifies if we need to preserve client port while preserving client ip for backend connections. Field introduced in 17.2.7. Allowed with any value in enterprise, essentials, basic, enterprise with cloud services edition.
