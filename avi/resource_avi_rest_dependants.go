@@ -16065,6 +16065,11 @@ func ResourceGatewayMonitorSchema() *schema.Resource {
 				Default:      "15",
 				ValidateFunc: validateInteger,
 			},
+			"monitor_protocol": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "GATEWAY_MONITOR_ICMP",
+			},
 			"subnet": {
 				Type:     schema.TypeSet,
 				Optional: true,
@@ -21109,6 +21114,11 @@ func ResourceInternalGatewayMonitorSchema() *schema.Resource {
 				Optional:     true,
 				Default:      "15",
 				ValidateFunc: validateInteger,
+			},
+			"monitor_protocol": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "GATEWAY_MONITOR_ICMP",
 			},
 		},
 	}
