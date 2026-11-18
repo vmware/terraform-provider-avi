@@ -451,6 +451,20 @@ func ResourcePoolSchema() map[string]*schema.Schema {
 // try to revert those controller-managed IPs back to the user-configured
 // values on every subsequent plan.
 func suppressHostnameServerIPDiff(_ context.Context, d *schema.ResourceDiff, _ interface{}) error {
+	// servers is Computed, so the SDK treats "no servers blocks in config" as
+	// "not set" and keeps the old servers. If the config really has zero
+	// servers blocks (and ignore_servers is not set), plan an empty list.
+	if raw := d.GetRawConfig(); !raw.IsNull() && raw.IsKnown() {
+		ign := raw.GetAttr("ignore_servers")
+		ignoreServers := !ign.IsNull() && ign.IsKnown() && ign.True()
+		srv := raw.GetAttr("servers")
+		if !ignoreServers && srv.IsKnown() && (srv.IsNull() || srv.LengthInt() == 0) {
+			if old, _ := d.GetChange("servers"); len(old.([]interface{})) > 0 {
+				return d.SetNew("servers", []interface{}{})
+			}
+			return nil
+		}
+	}
 	if !d.HasChange("servers") {
 		return nil
 	}
