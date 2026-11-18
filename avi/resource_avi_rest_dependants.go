@@ -14607,6 +14607,12 @@ func ResourceEventDetailsSchema() *schema.Resource {
 				Computed: true,
 				Elem:     ResourceSSLRevokedDetailsSchema(),
 			},
+			"supervisor_se_group_free_license_details": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Computed: true,
+				Elem:     ResourceSupervisorSeGroupFreeLicenseDetailsSchema(),
+			},
 			"switchover_details": {
 				Type:     schema.TypeSet,
 				Optional: true,
@@ -40134,6 +40140,35 @@ func ResourceSummarizedSubnetInfoSchema() *schema.Resource {
 			"network": {
 				Type:     schema.TypeString,
 				Required: true,
+			},
+		},
+	}
+}
+
+func ResourceSupervisorSeGroupFreeLicenseDetailsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"free_su_limit": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateFloat,
+			},
+			"se_group_name": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"se_group_uuid": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"service_units_used": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Computed:     true,
+				ValidateFunc: validateFloat,
 			},
 		},
 	}
