@@ -89,6 +89,11 @@ func dataSourceAviControllerProperties() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"clock_skew_config": {
+				Type:     schema.TypeSet,
+				Computed: true,
+				Elem:     ResourceClockSkewToleranceConfigSchema(),
+			},
 			"cloud_discovery_interval": {
 				Type:     schema.TypeString,
 				Computed: true,
